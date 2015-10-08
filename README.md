@@ -1,1 +1,1 @@
-# Misskey-Web
+# Misskey Web
