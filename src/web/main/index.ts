@@ -11,6 +11,8 @@ import * as cookieParser from 'cookie-parser';
 const expressMinify: any = require('express-minify');
 import * as moment from 'moment';
 
+import * as User from '../models/user';
+
 const config: any = require('../config');
 
 console.log('Web server loaded');
@@ -52,10 +54,25 @@ server.use(expressSession({
 	})
 }));
 
+// Renderer function
+function display(req: express.Request, res: express.Response, viewName: string, renderData: any): void {
+	res.render(viewName, mix((<any>req).renderData, renderData));
+
+	function mix(obj: any, src: any): any {
+		var own: (v: string) => boolean = {}.hasOwnProperty;
+		for (var key in src) {
+			if (own.call(src, key)) {
+				obj[key] = src[key];
+			}
+		}
+		return obj;
+	}
+}
+
 function initSession(req: express.Request, res: express.Response, callback: () => void) {
 	var uas = req.headers['user-agent'];
 	var ua: string;
-	var uaType: string;
+	var uaType: string = 'desktop';
 	if (uas != null) {
 		ua = uas.toLowerCase();
 		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
@@ -66,35 +83,35 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 		uaType = 'desktop';
 	}
 
-	(<any>req).login = req.session != null && (<any>req.session).userId != null;
-	(<any>req).data = { // Render data
+	var isLogin: boolean = req.session != null && (<any>req.session).userId != null;
+	(<any>req).login = isLogin;
+	(<any>req).renderData = { // Render data
 		pagePath: req.path,
 		config: config.publicConfig,
 		url: config.publicConfig.url,
 		apiUrl: config.publicConfig.apiUrl,
 		webStreamingUrl: config.publicConfig.webStreamingUrl,
-		login: (<any>req).login,
+		login: isLogin,
 		ua: uaType,
 		moment: moment
 	};
 
-	# Renderer function
-		res.display = (req, res, name, render - data) -> res.render name, req.data << <render-data
-
-	# Check logged in, set user instance
-	if req.login
-		user- id = req.session.user - id
-	User.find - by - id user- id, (, user) ->
-	req
-		..data.me = user
-			..me = user
-	callback!
-	else
-	req
-		..data.me = null
-			..me = null
-	callback!
+	// Check logged in, set user instance if logged in
+	if (isLogin) {
+		var userId: string = (<any>req.session).userId;
+		User.find - by - id user- id, (, user) ->
+		req
+			..data.me = user
+				..me = user
+		callback!
+		}
+	else {
+		req
+			..data.me = null
+				..me = null
+		callback!
 	}
+}
 
 # Statics
 server.get '/favicon.ico' (req, res) -> res.send - file path.resolve "#__dirname/resources/favicon.ico"
