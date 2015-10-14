@@ -51,17 +51,18 @@ server.use(expressSession({
 	})
 }));
 
-function initSession(req: Express.Request, res: Express.Response, callback: () => void) {
+function initSession(req: express.Request, res: express.Response, callback: () => void) {
 	var uas = req.headers['user-agent'];
+	var ua: string;
+	var uaType: string;
 	if (uas != null) {
-		ua = uas.to - lower -case!
-		is - mobile = /(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test ua
-		req.is - mobile = !!is - mobile
-	}
-	else {
+		ua = uas.toLowerCase();
+		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
+			uaType = 'mobile';
+		}
+	} else {
 		ua = null
-		is - mobile = no
-		req.is - mobile = no
+		uaType = 'desktop';
 	}
 	req.login = req.session ? && req.session.user - id ?
 		req.data = # Render datas
