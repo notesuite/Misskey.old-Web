@@ -1,0 +1,20 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"noEmitOnError": true,
+		"noImplicitAny": true,
+		"sourceMap": false,
+		"target": "ES6",
+		"removeComments": true,
+		"noLib": true,
+		"outDir": "built",
+		"rootDir": "src"
+	},
+	"files": [
+		"node_modules/typescript/lib/lib.es6.d.ts",
+		"typings/bundle.d.ts",
+		"src/index.ts",
+		"src/server.ts",
+		"src/maintenance.ts"
+	]
+}
