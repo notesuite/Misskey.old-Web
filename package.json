@@ -1,10 +1,10 @@
 {
-  "name": "misskey-api",
+  "name": "misskey-web",
   "version": "0.0.0",
-  "description": "Misskey API",
+  "description": "Misskey Web",
   "main": "./built/index.js",
   "repository": {
-    "url": "https://github.com/MissKernel/Misskey-API.git"
+    "url": "https://github.com/MissKernel/Misskey-Web.git"
   },
   "scripts": {
     "start": "node ./built/index.js",
