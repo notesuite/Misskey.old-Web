@@ -15,6 +15,7 @@
 		"typings/bundle.d.ts",
 		"src/index.ts",
 		"src/server.ts",
-		"src/web/maintenance.ts"
+		"src/web/maintenance.ts",
+		"src/web/main/index.ts"
 	]
 }

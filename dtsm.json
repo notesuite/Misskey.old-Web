@@ -33,6 +33,27 @@
     },
     "del/del.d.ts": {
       "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "body-parser/body-parser.d.ts": {
+      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "cookie-parser/cookie-parser.d.ts": {
+      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "express-session/express-session.d.ts": {
+      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "moment/moment.d.ts": {
+      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "cors/cors.d.ts": {
+      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "compression/compression.d.ts": {
+      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "connect-mongo/connect-mongo.d.ts": {
+      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
     }
   }
 }
