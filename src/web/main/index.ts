@@ -51,7 +51,7 @@ server.use(expressSession({
 	})
 }));
 
-function initSession(req, res, callback) {
+function initSession(req: Express.Request, res: Express.Response, callback: () => void) {
 	var uas = req.headers['user-agent'];
 	if (uas != null) {
 		ua = uas.to - lower -case!
