@@ -9,6 +9,7 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 // import * as expressMinify from 'express-minify';
 const expressMinify: any = require('express-minify');
+import * as moment from 'moment';
 
 const config: any = require('../config');
 
@@ -64,16 +65,18 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 		ua = null
 		uaType = 'desktop';
 	}
-	req.login = req.session ? && req.session.user - id ?
-		req.data = # Render datas
-	page - path: req.path
-	config: config.public - config
-	url: config.public - config.url
-	api - url: config.public - config.api - url
-	web - streaming - url: config.public - config.web - streaming - url
-	login: req.login
-	is - mobile: req.is - mobile
-	moment: moment
+
+	(<any>req).login = req.session != null && (<any>req.session).userId != null;
+	(<any>req).data = { // Render data
+		pagePath: req.path,
+		config: config.publicConfig,
+		url: config.publicConfig.url,
+		apiUrl: config.publicConfig.apiUrl,
+		webStreamingUrl: config.publicConfig.webStreamingUrl,
+		login: (<any>req).login,
+		ua: uaType,
+		moment: moment
+	};
 
 	# Renderer function
 		res.display = (req, res, name, render - data) -> res.render name, req.data << <render-data
