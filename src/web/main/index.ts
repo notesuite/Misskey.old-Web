@@ -1,6 +1,9 @@
 import * as http from 'http';
 import * as express from 'express';
 import * as expressSession from 'express-session';
+import * as mongoose from 'mongoose';
+import * as MongoStore from 'connect-mongo';
+const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(expressSession);
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
@@ -14,6 +17,9 @@ console.log('Web server loaded');
 // Grobal options
 const sessionExpires = 1000 * 60 * 60 * 24 * 365;
 const htmlpretty = '  ';
+
+// Init DB connection
+const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 // Init server
 const server: express.Express = express();
@@ -39,16 +45,11 @@ server.use(expressSession({
 		secure: false,
 		expires: new Date(Date.now() + sessionExpires),
 		maxAge: sessionExpires,
-	}
+	},
+	store: new _MongoStore({
+		mongooseConnection: db
+	})
 }));
-cookie:
-
-
-
-
-store: new RedisStore do
-	db: 1
-		prefix: 'misskey-session:'
 
 function initSession(req, res, callback) {
 	var uas = req.headers['user-agent'];
