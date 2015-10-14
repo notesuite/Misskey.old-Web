@@ -21,4 +21,9 @@ app.use(vhost('misskey.xyz', mainServer));
 app.use(vhost('dev.misskey.xyz', devServer));
 
 // Listen core app
-server.listen(config.port.webHttp);
+server.listen(config.port.webHttp, () => {
+	var host: string = server.address().address;
+	var port: number = server.address().port;
+
+	console.log(`>>> Misskey listening at ${host}:${port} <<<`);
+});
