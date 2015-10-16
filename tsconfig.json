@@ -16,6 +16,7 @@
 		"src/index.ts",
 		"src/server.ts",
 		"src/models/user.ts",
+		"src/utils/requestApi.ts",
 		"src/web/maintenance.ts",
 		"src/web/main/index.ts"
 	]
