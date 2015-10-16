@@ -3,7 +3,7 @@ import * as request from 'request';
 
 const config: any = require('../config');
 
-export default function (method: string, endpoint: string, params: any): Promise<any> {
+export default function(method: string, endpoint: string, params: any): Promise<any> {
 	'use strict';
 	return new Promise((resolve: (value: any) => void, reject: (err: any) => void) => {
 		// 送信する

@@ -12,6 +12,7 @@ const expressMinify: any = require('express-minify');
 import * as moment from 'moment';
 
 import * as User from '../models/user';
+import requestApi from '../utils/requestApi';
 
 const config: any = require('../config');
 
@@ -99,6 +100,9 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 	// Check logged in, set user instance if logged in
 	if (isLogin) {
 		var userId: string = (<any>req.session).userId;
+		requestApi("GET", "users/show", { "user-id": userId }).then(() => {
+
+		});
 		User.find - by - id user- id, (, user) ->
 		req
 			..data.me = user
