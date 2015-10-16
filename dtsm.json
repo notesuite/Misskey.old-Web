@@ -54,6 +54,9 @@
     },
     "connect-mongo/connect-mongo.d.ts": {
       "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+    },
+    "request/request.d.ts": {
+      "ref": "43f4fc592a99e2f0f8f4ee3ae26a3a8e2f5ca3ae"
     }
   }
 }

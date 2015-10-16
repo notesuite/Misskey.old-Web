@@ -46,6 +46,7 @@
     "mongoose": "4.1.11",
     "mongoose-auto-increment": "4.0.0",
     "multer": "0.1.8",
+    "request": "2.65.0",
     "vhost": "3.0.1"
   },
   "private": true
