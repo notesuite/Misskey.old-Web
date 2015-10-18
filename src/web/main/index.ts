@@ -1,4 +1,4 @@
-import * as http from 'http';
+// import * as http from 'http';
 import * as path from 'path';
 import * as express from 'express';
 import * as expressSession from 'express-session';
@@ -37,6 +37,8 @@ server.set('X-Frame-Options', 'SAMEORIGIN');
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
+server.use(compression());
+server.use(expressMinify());
 
 // Session settings
 server.use(expressSession({
