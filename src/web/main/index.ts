@@ -102,8 +102,8 @@ function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, ca
 	}
 	
 	// Renderer function
-	res.display = (req: MisskeyExpressRequest, res: express.Response, viewName: string, renderData: any): void => {
-		res.render(viewName, mix(req.renderData, renderData));
+	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData: any): void => {
+		res.render(viewName, mix(sessionreq.renderData, renderData));
 	
 		function mix(obj: any, src: any): any {
 			var own: (v: string) => boolean = {}.hasOwnProperty;
