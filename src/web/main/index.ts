@@ -14,6 +14,7 @@ import * as moment from 'moment';
 
 import { User } from '../models/user';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../misskeyExpressResponse';
 import requestApi from '../utils/requestApi';
 
 const config: any = require('../config');
@@ -59,22 +60,7 @@ server.use(expressSession({
 	})
 }));
 
-// Renderer function
-function display(req: MisskeyExpressRequest, res: express.Response, viewName: string, renderData: any): void {
-	res.render(viewName, mix(req.renderData, renderData));
-
-	function mix(obj: any, src: any): any {
-		var own: (v: string) => boolean = {}.hasOwnProperty;
-		for (var key in src) {
-			if (own.call(src, key)) {
-				obj[key] = src[key];
-			}
-		}
-		return obj;
-	}
-}
-
-function initSession(req: MisskeyExpressRequest, res: express.Response, callback: () => void) {
+function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, callback: () => void) {
 	var uas = req.headers['user-agent'];
 	var ua: string;
 	var uaType: string = 'desktop';
@@ -114,6 +100,21 @@ function initSession(req: MisskeyExpressRequest, res: express.Response, callback
 		req.renderData.me = null;
 		callback();
 	}
+	
+	// Renderer function
+	res.display = (req: MisskeyExpressRequest, res: express.Response, viewName: string, renderData: any): void => {
+		res.render(viewName, mix(req.renderData, renderData));
+	
+		function mix(obj: any, src: any): any {
+			var own: (v: string) => boolean = {}.hasOwnProperty;
+			for (var key in src) {
+				if (own.call(src, key)) {
+					obj[key] = src[key];
+				}
+			}
+			return obj;
+		}
+	}
 }
 
 // Statics
@@ -121,7 +122,7 @@ server.get('/favicon.ico', (req, res) => { res.sendFile(path.resolve(`${__dirnam
 server.get('/manifest.json', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`)) });
 
 // Init session
-server.all('*', (req: MisskeyExpressRequest, res: express.Response, next: () => void) => {
+server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	initSession(req, res, () => {
 		next();
 	});
