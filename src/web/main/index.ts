@@ -1,4 +1,5 @@
 import * as http from 'http';
+import * as path from 'path';
 import * as express from 'express';
 import * as expressSession from 'express-session';
 import * as mongoose from 'mongoose';
@@ -16,7 +17,7 @@ import requestApi from '../utils/requestApi';
 
 const config: any = require('../config');
 
-console.log('Web server loaded');
+console.log('Init Web server');
 
 // Grobal options
 const sessionExpires = 1000 * 60 * 60 * 24 * 365;
@@ -112,41 +113,42 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 	}
 }
 
-# Statics
-server.get '/favicon.ico' (req, res) -> res.send - file path.resolve "#__dirname/resources/favicon.ico"
-server.get '/manifest.json' (req, res) -> res.send - file path.resolve "#__dirname/resources/manifest.json"
+// Statics
+server.get('/favicon.ico', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/favicon.ico`))});
+server.get('/manifest.json', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`))});
 
-# Init session
-server.all '*' (req, res, next) ->
-server.init - session req, res, ->
-		if req.is - mobile
-			server.set 'views' "#__dirname/sites/mobile/views/pages"
-		else
-server.set 'views' "#__dirname/sites/desktop/views/pages"
-next!
+// Init session
+server.all('*', (req: express.Request, res: express.Response, next: () => void) => {
+	initSession(req, res, () => {
+		next();
+	});
+});
 
-# Resources rooting
-resources - router server
+// Resources rooting
+resourcesRouter(server);
 
-# General rooting
-router server
+// General rooting
+router(server);
 
-# Not found handling
-server.use(req, res) ->
-res
-	..status 404
-		..display req, res, 'not-found' {}
+// Not found handling
+server.use((req: express.Request, res: express.Response) => {
+	res.status(404);
+	(<any>res).display(req, res, 'not-found');
+});
 
-# Error handling
-server.use(err, req, res, next) ->
-console.error err
-display - err = "#{err.stack}\r\n#{repeat 32 '-'}\r\n#{req.method} #{req.url} [#{new Date!}]"
-if (req.has - own - property \login) && req.login
-display - err += "\r\n#{req.me?id ? ''}"
-res.status 500
-if res.has - own - property \display
-res.display req, res, \error {err: display - err }
-	else
-res.send err
+// Error handling
+server.use((err: any, req: express.Request, res: express.Response, next: () => void) => {
+	console.error(err);
+	var displayErr = "#{err.stack}\r\n#{repeat 32 '-'}\r\n#{req.method} #{req.url} [#{new Date!}]";
+	if ((req.hasOwnProperty('login')) && (<any>req).login) {
+		displayErr += "\r\n#{req.me?id ? ''}"
+	}
+	res.status(500);
+	if (res.hasOwnProperty('display')) {
+		(<any>res).display(req, res, 'error', {err: displayErr });
+	} else {
+		res.send(err);
+	}
+});
 
-exports.server = server
+exports.server = server;
