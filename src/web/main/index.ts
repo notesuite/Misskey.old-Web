@@ -75,7 +75,7 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 	var uas = req.headers['user-agent'];
 	var ua: string;
 	var uaType: string = 'desktop';
-	if (uas != null) {
+	if (uas !== null) {
 		ua = uas.toLowerCase();
 		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
 			uaType = 'mobile';
@@ -85,7 +85,7 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 		uaType = 'desktop';
 	}
 
-	var isLogin: boolean = req.session != null && (<any>req.session).userId != null;
+	var isLogin: boolean = req.session !== null && (<any>req.session).userId !== null;
 	(<any>req).login = isLogin;
 	(<any>req).renderData = { // Render data
 		pagePath: req.path,
