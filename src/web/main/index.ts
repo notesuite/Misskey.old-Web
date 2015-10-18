@@ -100,20 +100,15 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 	// Check logged in, set user instance if logged in
 	if (isLogin) {
 		var userId: string = (<any>req.session).userId;
-		requestApi("GET", "users/show", { "user-id": userId }).then(() => {
-
+		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
+			(<any>req).me = user;
+			(<any>req).data.me = user;
+			callback();
 		});
-		User.find - by - id user- id, (, user) ->
-		req
-			..data.me = user
-				..me = user
-		callback!
-		}
-	else {
-		req
-			..data.me = null
-				..me = null
-		callback!
+	} else {
+		(<any>req).me = null;
+		(<any>req).data.me = null;
+		callback();
 	}
 }
 
