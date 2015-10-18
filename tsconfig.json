@@ -18,6 +18,7 @@
 		"src/models/user.ts",
 		"src/utils/requestApi.ts",
 		"src/web/maintenance.ts",
-		"src/web/main/index.ts"
+		"src/web/main/index.ts",
+		"src/web/main/router.ts"
 	]
 }

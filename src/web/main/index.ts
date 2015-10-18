@@ -124,11 +124,8 @@ server.all('*', (req: express.Request, res: express.Response, next: () => void) 
 	});
 });
 
-// Resources rooting
-resourcesRouter(server);
-
 // General rooting
-router(server);
+require('router')(server);
 
 // Not found handling
 server.use((req: express.Request, res: express.Response) => {
