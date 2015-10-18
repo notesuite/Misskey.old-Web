@@ -13,6 +13,7 @@ const expressMinify: any = require('express-minify');
 import * as moment from 'moment';
 
 import { User } from '../models/user';
+import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import requestApi from '../utils/requestApi';
 
 const config: any = require('../config');
@@ -57,8 +58,8 @@ server.use(expressSession({
 }));
 
 // Renderer function
-function display(req: express.Request, res: express.Response, viewName: string, renderData: any): void {
-	res.render(viewName, mix((<any>req).renderData, renderData));
+function display(req: MisskeyExpressRequest, res: express.Response, viewName: string, renderData: any): void {
+	res.render(viewName, mix(req.renderData, renderData));
 
 	function mix(obj: any, src: any): any {
 		var own: (v: string) => boolean = {}.hasOwnProperty;
@@ -71,7 +72,7 @@ function display(req: express.Request, res: express.Response, viewName: string, 
 	}
 }
 
-function initSession(req: express.Request, res: express.Response, callback: () => void) {
+function initSession(req: MisskeyExpressRequest, res: express.Response, callback: () => void) {
 	var uas = req.headers['user-agent'];
 	var ua: string;
 	var uaType: string = 'desktop';
@@ -85,9 +86,9 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 		uaType = 'desktop';
 	}
 
-	var isLogin: boolean = req.session !== null && (<any>req.session).userId !== null;
-	(<any>req).login = isLogin;
-	(<any>req).renderData = { // Render data
+	var isLogin: boolean = req.session !== null && req.session.userId !== null;
+	req.isLogin = isLogin;
+	req.renderData = { // Render data
 		pagePath: req.path,
 		config: config.publicConfig,
 		url: config.publicConfig.url,
@@ -100,25 +101,25 @@ function initSession(req: express.Request, res: express.Response, callback: () =
 
 	// Check logged in, set user instance if logged in
 	if (isLogin) {
-		var userId: string = (<any>req.session).userId;
+		var userId: string = req.session.userId;
 		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
-			(<any>req).me = user;
-			(<any>req).data.me = user;
+			req.me = user;
+			req.renderData.me = user;
 			callback();
 		});
 	} else {
-		(<any>req).me = null;
-		(<any>req).data.me = null;
+		req.me = null;
+		req.renderData.me = null;
 		callback();
 	}
 }
 
 // Statics
-server.get('/favicon.ico', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/favicon.ico`))});
-server.get('/manifest.json', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`))});
+server.get('/favicon.ico', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/favicon.ico`)) });
+server.get('/manifest.json', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`)) });
 
 // Init session
-server.all('*', (req: express.Request, res: express.Response, next: () => void) => {
+server.all('*', (req: MisskeyExpressRequest, res: express.Response, next: () => void) => {
 	initSession(req, res, () => {
 		next();
 	});
@@ -142,7 +143,7 @@ server.use((err: any, req: express.Request, res: express.Response, next: () => v
 	}
 	res.status(500);
 	if (res.hasOwnProperty('display')) {
-		(<any>res).display(req, res, 'error', {err: displayErr });
+		(<any>res).display(req, res, 'error', { err: displayErr });
 	} else {
 		res.send(err);
 	}
