@@ -52,7 +52,7 @@ server.use(expressSession({
 		httpOnly: false,
 		secure: false,
 		expires: new Date(Date.now() + sessionExpires),
-		maxAge: sessionExpires,
+		maxAge: sessionExpires
 	},
 	store: new _MongoStore({
 		mongooseConnection: db
