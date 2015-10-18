@@ -22,8 +22,8 @@ const config: any = require('../config');
 console.log('Init Web server');
 
 // Grobal options
-const sessionExpires = 1000 * 60 * 60 * 24 * 365;
-const htmlpretty = '  ';
+const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
+const htmlpretty: string = '  ';
 
 // Init DB connection
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
@@ -60,21 +60,22 @@ server.use(expressSession({
 	})
 }));
 
-function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, callback: () => void) {
-	var uas = req.headers['user-agent'];
-	var ua: string;
-	var uaType: string = 'desktop';
-	if (uas !== null) {
-		ua = uas.toLowerCase();
-		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
-			uaType = 'mobile';
+function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, callback: () => void): void {
+	'use strict';
+	const uastring: string = req.headers['user-agent'];
+	const ua: string = ((): string => {
+		if (uastring !== null) {
+			if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(uastring.toLowerCase())) {
+				return 'mobile';
+			} else {
+				return 'desktop';
+			}
+		} else {
+			return 'desktop';
 		}
-	} else {
-		ua = null
-		uaType = 'desktop';
-	}
+	})();
 
-	var isLogin: boolean = req.session !== null && req.session.userId !== null;
+	const isLogin: boolean = req.session !== null && req.session.userId !== null;
 	req.isLogin = isLogin;
 	req.renderData = { // Render data
 		pagePath: req.path,
@@ -83,13 +84,13 @@ function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, ca
 		apiUrl: config.publicConfig.apiUrl,
 		webStreamingUrl: config.publicConfig.webStreamingUrl,
 		login: isLogin,
-		ua: uaType,
+		ua: ua,
 		moment: moment
 	};
 
 	// Check logged in, set user instance if logged in
 	if (isLogin) {
-		var userId: string = req.session.userId;
+		const userId: string = req.session.userId;
 		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
 			req.me = user;
 			req.renderData.me = user;
@@ -100,13 +101,11 @@ function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, ca
 		req.renderData.me = null;
 		callback();
 	}
-	
 	// Renderer function
 	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData: any): void => {
 		res.render(viewName, mix(sessionreq.renderData, renderData));
-	
 		function mix(obj: any, src: any): any {
-			var own: (v: string) => boolean = {}.hasOwnProperty;
+			const own: (v: string) => boolean = {}.hasOwnProperty;
 			for (var key in src) {
 				if (own.call(src, key)) {
 					obj[key] = src[key];
@@ -114,12 +113,16 @@ function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, ca
 			}
 			return obj;
 		}
-	}
+	};
 }
 
 // Statics
-server.get('/favicon.ico', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/favicon.ico`)) });
-server.get('/manifest.json', (req, res) => { res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`)) });
+server.get('/favicon.ico', (req: express.Request, res: express.Response) => {
+	res.sendFile(path.resolve(`${__dirname}/resources/favicon.ico`));
+});
+server.get('/manifest.json', (req: express.Request, res: express.Response) => {
+	res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`));
+});
 
 // Init session
 server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
@@ -132,18 +135,15 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 require('router')(server);
 
 // Not found handling
-server.use((req: express.Request, res: express.Response) => {
+server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 	res.status(404);
-	(<any>res).display(req, res, 'not-found');
+	res.display(req, 'not-found', {});
 });
 
 // Error handling
 server.use((err: any, req: express.Request, res: express.Response, next: () => void) => {
 	console.error(err);
-	var displayErr = "#{err.stack}\r\n#{repeat 32 '-'}\r\n#{req.method} #{req.url} [#{new Date!}]";
-	if ((req.hasOwnProperty('login')) && (<any>req).login) {
-		displayErr += "\r\n#{req.me?id ? ''}"
-	}
+	const displayErr: string = `${err.stack}\r\n----------------\r\n${req.method} ${req.url} [${new Date()}]`;
 	res.status(500);
 	if (res.hasOwnProperty('display')) {
 		(<any>res).display(req, res, 'error', { err: displayErr });
