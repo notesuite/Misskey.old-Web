@@ -11,7 +11,7 @@ import * as cookieParser from 'cookie-parser';
 const expressMinify: any = require('express-minify');
 import * as moment from 'moment';
 
-import * as User from '../models/user';
+import { User } from '../models/user';
 import requestApi from '../utils/requestApi';
 
 const config: any = require('../config');
