@@ -1,7 +1,7 @@
 import * as express from 'express';
 
-import { MisskeyExpressRequest } from '../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../misskeyExpressResponse';
+import { MisskeyExpressRequest } from '../../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
 
 function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse, name: string, options?: any) {
 	switch (req.ua) {

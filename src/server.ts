@@ -14,11 +14,15 @@ app.disable('x-powered-by');
 
 const server: http.Server = http.createServer(app);
 
-// Define servers
+// Declare servers
 const mainServer: express.Express = require(`${__dirname}/web/main`).server;
-// const devServer: express.Express = require(`${__dirname}/web/dev`).server;
 app.use(vhost(config.publicConfig.host, mainServer));
+// const devServer: express.Express = require(`${__dirname}/web/dev`).server;
 // app.use(vhost(config.publicConfig.developerCenterHost, devServer));
+
+app.get('/', (req: express.Request, res: express.Response) => {
+	res.send('kyoppie');
+});
 
 // Listen core app
 server.listen(config.port.http, () => {
