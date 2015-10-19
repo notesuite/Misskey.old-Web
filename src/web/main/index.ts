@@ -19,7 +19,8 @@ import requestApi from '../../utils/requestApi';
 
 import config from '../../config';
 
-import router from './router';
+import resourcesRouter from './resourcesRouter';
+import pageRouter from './pageRouter';
 
 console.log('Init Web server');
 
@@ -137,8 +138,9 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 	}
 });
 
-// General rooting
-router(server);
+// Rooting
+resourcesRouter(server);
+pageRouter(server);
 
 // Not found handling
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {

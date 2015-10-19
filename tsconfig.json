@@ -22,7 +22,8 @@
 		"src/utils/requestApi.ts",
 		"src/web/maintenance.ts",
 		"src/web/main/index.ts",
-		"src/web/main/router.ts",
+		"src/web/main/pageRouter.ts",
+		"src/web/main/resourcesRouter.ts",
 		"src/web/main/sites/desktop/controllers/entrance.ts"
 	]
 }
