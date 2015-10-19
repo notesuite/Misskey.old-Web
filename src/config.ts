@@ -27,18 +27,22 @@ export interface IConfig {
 		http: number;
 		https: number;
 	};
+	apiServerIp: string;
+	apiServerPort: number;
 }
 
 export const defaultConfig: IConfig = {
 	mongo: {
 		uri: "mongodb://localhost/Misskey",
 		options: {
-			user: "himawari",
-			pass: "sakurako0907"
+			user: "",
+			pass: ""
 		}
 	},
 	port: {
 		http: 80,
 		https: 443
-	}
+	},
+	apiServerIp: "",
+	apiServerPort: 0
 };
