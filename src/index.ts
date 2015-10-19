@@ -1,15 +1,5 @@
 console.log('Welcome to Misskey!');
 
-function import$(obj: any, src: any): void {
-	'use strict';
-	const own: (v: string) => boolean = {}.hasOwnProperty;
-	for (var key in src) {
-		if (own.call(src, key)) {
-			obj[key] = src[key];
-		}
-	}
-}
-
 import * as readline from 'readline';
 import * as fs from 'fs';
 import * as config from './config';
