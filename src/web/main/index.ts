@@ -19,6 +19,8 @@ import requestApi from '../../utils/requestApi';
 
 import config from '../../config';
 
+import router from './router';
+
 console.log('Init Web server');
 
 // Grobal options
@@ -132,7 +134,7 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 });
 
 // General rooting
-require('./router')(server);
+router(server);
 
 // Not found handling
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
