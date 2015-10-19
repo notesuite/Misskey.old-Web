@@ -85,7 +85,12 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 		}
 	})();
 
-	const isLogin: boolean = req.session !== null && req.session.userId !== null;
+	const isLogin: boolean =
+		req.hasOwnProperty('session') &&
+		req.session !== null &&
+		req.session.hasOwnProperty('userId') &&
+		req.session.userId !== null;
+
 	req.isLogin = isLogin;
 	req.ua = ua;
 	req.renderData = { // Render data
@@ -112,6 +117,7 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 		req.renderData.me = null;
 		next();
 	}
+
 	// Renderer function
 	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData: any): void => {
 		res.render(viewName, mix(sessionreq.renderData, renderData));
