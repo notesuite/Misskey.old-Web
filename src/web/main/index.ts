@@ -15,7 +15,7 @@ import * as moment from 'moment';
 import { User } from '../models/user';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
-import requestApi from '../utils/requestApi';
+import requestApi from '../../utils/requestApi';
 
 const config: any = require('../config');
 
