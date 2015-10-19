@@ -23,7 +23,6 @@ if (fs.existsSync(config.configPath)) {
 			if (!fs.existsSync(config.configDirectoryPath)) {
 				fs.mkdirSync(config.configDirectoryPath);
 			}
-			
 			fs.writeFile(config.configPath, JSON.stringify(conf), (writeErr: NodeJS.ErrnoException) => {
 				if (writeErr) {
 					console.log('configの書き込み時に問題が発生しました:');
