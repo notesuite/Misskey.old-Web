@@ -59,6 +59,6 @@ export const defaultConfig: IConfig = {
 	publicConfig: {
 		url: "http://misskey.xyz",
 		apiUrl: "http://api.misskey.xyz",
-		webStreamingUrl: "http://api.misskey.xyz:2000",
+		webStreamingUrl: "http://api.misskey.xyz:2000"
 	}
 };
