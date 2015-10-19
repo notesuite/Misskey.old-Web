@@ -44,7 +44,7 @@ export default function(app: express.Express): void {
 					res.sendFile(cssPath);
 				}
 			} else {
-				next();
+				res.sendFile(path.resolve(`${__dirname}/sites/desktop/${req.path}`));
 			}
 		}
 	});
