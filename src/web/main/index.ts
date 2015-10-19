@@ -17,7 +17,7 @@ import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
 import requestApi from '../../utils/requestApi';
 
-const config: any = require('../config');
+import config from '../../config';
 
 console.log('Init Web server');
 
