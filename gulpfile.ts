@@ -14,7 +14,7 @@ task('watch', ['build', 'lint'], () => {
 	watch('./src/**/*.ts', ['build:ts', 'lint']);
 });
 
-task('build', ['build:ts']);
+task('build', ['build:ts', 'build-copy']);
 
 task('build:ts', () => {
 	return tsProject.src()
@@ -31,6 +31,11 @@ task('lint', () => {
 			tslint: require('tslint')
 		}))
 		.pipe(tslint.report('verbose'));
+});
+
+task('build-copy', () => {
+	return src(['./src/**/*', '!./src/**/*.ts'])
+		.pipe(dest('./built'));
 });
 
 task('clean', cb => {

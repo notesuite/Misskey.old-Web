@@ -35,7 +35,6 @@ const server: express.Express = express();
 server.locals.compileDebug = false;
 server.locals.pretty = htmlpretty;
 server.set('view engine', 'jade');
-server.set('views', `${__dirname}/views/pages`);
 server.set('X-Frame-Options', 'SAMEORIGIN');
 
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -104,23 +103,9 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 		moment: moment
 	};
 
-	// Check logged in, set user instance if logged in
-	if (isLogin) {
-		const userId: string = req.session.userId;
-		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
-			req.me = user;
-			req.renderData.me = user;
-			next();
-		});
-	} else {
-		req.me = null;
-		req.renderData.me = null;
-		next();
-	}
-
 	// Renderer function
 	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData?: any): void => {
-		const viewPath: string = `${sessionreq.ua}/views/${viewName}`;
+		const viewPath: string = `${__dirname}/sites/${sessionreq.ua}/views/pages/${viewName}`;
 		if (renderData !== null) {
 			res.render(viewPath, mix(sessionreq.renderData, renderData));
 		} else {
@@ -136,6 +121,20 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 			return obj;
 		}
 	};
+
+	// Check logged in, set user instance if logged in
+	if (isLogin) {
+		const userId: string = req.session.userId;
+		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
+			req.me = user;
+			req.renderData.me = user;
+			next();
+		});
+	} else {
+		req.me = null;
+		req.renderData.me = null;
+		next();
+	}
 });
 
 // General rooting
