@@ -119,8 +119,12 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 	}
 
 	// Renderer function
-	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData: any): void => {
-		res.render(viewName, mix(sessionreq.renderData, renderData));
+	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData?: any): void => {
+		if (renderData !== null) {
+			res.render(viewName, mix(sessionreq.renderData, renderData));
+		} else {
+			res.render(viewName, sessionreq.renderData);
+		}
 		function mix(obj: any, src: any): any {
 			const own: (v: string) => boolean = {}.hasOwnProperty;
 			for (var key in src) {
