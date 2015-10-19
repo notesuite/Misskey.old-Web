@@ -132,7 +132,7 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 });
 
 // General rooting
-require('router')(server);
+require('./router')(server);
 
 // Not found handling
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
