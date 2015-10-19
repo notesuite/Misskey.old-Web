@@ -29,6 +29,14 @@ export interface IConfig {
 	};
 	apiServerIp: string;
 	apiServerPort: number;
+	cookiePass: string;
+	sessionKey: string;
+	sessionSecret: string;
+	publicConfig: {
+		url: string;
+		apiUrl: string;
+		webStreamingUrl: string;
+	};
 }
 
 export const defaultConfig: IConfig = {
@@ -44,5 +52,13 @@ export const defaultConfig: IConfig = {
 		https: 443
 	},
 	apiServerIp: "",
-	apiServerPort: 0
+	apiServerPort: 0,
+	cookiePass: "",
+	sessionKey: "sid",
+	sessionSecret: "",
+	publicConfig: {
+		url: "http://misskey.xyz",
+		apiUrl: "http://api.misskey.xyz",
+		webStreamingUrl: "http://api.misskey.xyz:2000",
+	}
 };
