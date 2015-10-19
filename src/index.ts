@@ -47,4 +47,3 @@ function initServer(): void {
 	'use strict';
 	require('./server');
 }
-
