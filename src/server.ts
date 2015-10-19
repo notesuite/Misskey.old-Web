@@ -6,7 +6,7 @@ import config from './config';
 
 const vhost: any = require('vhost');
 
-console.log('Servers loader loaded');
+console.log('Initializing servers');
 
 // Init express
 const app: express.Express = express();
@@ -17,8 +17,8 @@ const server: http.Server = http.createServer(app);
 // Define servers
 const mainServer: express.Express = require(`${__dirname}/web/main`).server;
 // const devServer: express.Express = require(`${__dirname}/web/dev`).server;
-app.use(vhost('misskey.xyz', mainServer));
-// app.use(vhost('dev.misskey.xyz', devServer));
+app.use(vhost(config.publicConfig.host, mainServer));
+// app.use(vhost(config.publicConfig.developerCenterHost, devServer));
 
 // Listen core app
 server.listen(config.port.http, () => {

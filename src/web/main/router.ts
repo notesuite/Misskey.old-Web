@@ -22,6 +22,7 @@ export default function(app: express.Express): void {
 	console.log('Init Web router');
 	
 	app.get('/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		console.log("akari");
 		if (req.isLogin) {
 			callController(req, res, 'home');
 		} else {

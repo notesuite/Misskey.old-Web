@@ -33,8 +33,12 @@ export interface IConfig {
 	sessionKey: string;
 	sessionSecret: string;
 	publicConfig: {
+		host: string;
 		url: string;
+		apiHost: string;
 		apiUrl: string;
+		developerCenterHost: string;
+		developerCenterUrl: string;
 		webStreamingUrl: string;
 	};
 }
@@ -57,8 +61,12 @@ export const defaultConfig: IConfig = {
 	sessionKey: "sid",
 	sessionSecret: "",
 	publicConfig: {
+		host: "misskey.xyz",
 		url: "http://misskey.xyz",
+		apiHost: "api.misskey.xyz",
 		apiUrl: "http://api.misskey.xyz",
+		developerCenterHost: "dev.misskey.xyz",
+		developerCenterUrl: "http://dev.misskey.xyz",
 		webStreamingUrl: "http://api.misskey.xyz:2000"
 	}
 };
