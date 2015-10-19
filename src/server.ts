@@ -2,7 +2,7 @@
 import * as http from 'http';
 import * as express from 'express';
 // import * as vhost from 'vhost';
-import config from 'config';
+import config from './config';
 
 const vhost: any = require('vhost');
 
