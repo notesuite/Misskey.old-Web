@@ -120,10 +120,11 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 
 	// Renderer function
 	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData?: any): void => {
+		const viewPath: string = `${sessionreq.ua}/views/${viewName}`;
 		if (renderData !== null) {
-			res.render(viewName, mix(sessionreq.renderData, renderData));
+			res.render(viewPath, mix(sessionreq.renderData, renderData));
 		} else {
-			res.render(viewName, sessionreq.renderData);
+			res.render(viewPath, sessionreq.renderData);
 		}
 		function mix(obj: any, src: any): any {
 			const own: (v: string) => boolean = {}.hasOwnProperty;
