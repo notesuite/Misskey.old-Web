@@ -62,8 +62,16 @@ server.use(expressSession({
 	})
 }));
 
-function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, callback: () => void): void {
-	'use strict';
+// Statics
+server.get('/favicon.ico', (req: express.Request, res: express.Response) => {
+	res.sendFile(path.resolve(`${__dirname}/resources/favicon.ico`));
+});
+server.get('/manifest.json', (req: express.Request, res: express.Response) => {
+	res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`));
+});
+
+// Init session
+server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	const uastring: string = req.headers['user-agent'];
 	const ua: string = ((): string => {
 		if (uastring !== null) {
@@ -96,12 +104,12 @@ function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, ca
 		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
 			req.me = user;
 			req.renderData.me = user;
-			callback();
+			next();
 		});
 	} else {
 		req.me = null;
 		req.renderData.me = null;
-		callback();
+		next();
 	}
 	// Renderer function
 	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData: any): void => {
@@ -116,21 +124,6 @@ function initSession(req: MisskeyExpressRequest, res: MisskeyExpressResponse, ca
 			return obj;
 		}
 	};
-}
-
-// Statics
-server.get('/favicon.ico', (req: express.Request, res: express.Response) => {
-	res.sendFile(path.resolve(`${__dirname}/resources/favicon.ico`));
-});
-server.get('/manifest.json', (req: express.Request, res: express.Response) => {
-	res.sendFile(path.resolve(`${__dirname}/resources/manifest.json`));
-});
-
-// Init session
-server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	initSession(req, res, () => {
-		next();
-	});
 });
 
 // General rooting
