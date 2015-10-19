@@ -5,17 +5,18 @@ import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
 
 function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse, name: string, options?: any): void {
 	'use strict';
-	switch (req.ua) {
-		case 'desktop':
-			require("./sites/desktop/controllers/" + name)(req, res, options);
-			break;
-		case 'mobile':
-			require("./sites/mobile/controllers/" + name)(req, res, options);
-			break;
-		default:
-			require("./sites/desktop/controllers/" + name)(req, res, options);
-			break;
-	}
+	const controller: (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any) => void
+		= ((): (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any) => void => {
+			switch (req.ua) {
+				case 'desktop':
+					return require(`./sites/desktop/controllers/${name}`);
+				case 'mobile':
+					return require(`./sites/mobile/controllers/${name}`);
+				default:
+					return require(`./sites/desktop/controllers/${name}`);
+			}
+		})();
+	controller(req, res, options);
 }
 
 export default function(app: express.Express): void {
