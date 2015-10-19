@@ -1,10 +1,5 @@
 console.log('Welcome to Misskey!');
 
-import$(global, require('prelude-ls'));
-import$(global, require('./utils/json'));
-import$(global, require('./utils/null-or-empty'));
-import$(global, require('./utils/mongoose-query'));
-
 function import$(obj: any, src: any): void {
 	'use strict';
 	const own: (v: string) => boolean = {}.hasOwnProperty;
