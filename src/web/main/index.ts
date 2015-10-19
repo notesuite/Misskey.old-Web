@@ -87,6 +87,7 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 
 	const isLogin: boolean = req.session !== null && req.session.userId !== null;
 	req.isLogin = isLogin;
+	req.ua = ua;
 	req.renderData = { // Render data
 		pagePath: req.path,
 		config: config.publicConfig,
