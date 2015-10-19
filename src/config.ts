@@ -33,6 +33,7 @@ export interface IConfig {
 	sessionKey: string;
 	sessionSecret: string;
 	publicConfig: {
+		themeColor: string;
 		host: string;
 		url: string;
 		apiHost: string;
@@ -61,6 +62,7 @@ export const defaultConfig: IConfig = {
 	sessionKey: "sid",
 	sessionSecret: "",
 	publicConfig: {
+		themeColor: "#0e91bc",
 		host: "misskey.xyz",
 		url: "http://misskey.xyz",
 		apiHost: "api.misskey.xyz",

@@ -57,6 +57,12 @@
     },
     "request/request.d.ts": {
       "ref": "43f4fc592a99e2f0f8f4ee3ae26a3a8e2f5ca3ae"
+    },
+    "gm/gm.d.ts": {
+      "ref": "af5b8275d1f2b92738b93fddabc461fc20c553a1"
+    },
+    "less/less.d.ts": {
+      "ref": "af5b8275d1f2b92738b93fddabc461fc20c553a1"
     }
   }
 }
