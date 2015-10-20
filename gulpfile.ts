@@ -5,6 +5,7 @@ import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as del from 'del';
 const babel = require('gulp-babel');
+const ls = require('gulp-livescript');
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
 	typescript: require('typescript')
@@ -14,7 +15,7 @@ task('watch', ['build', 'lint'], () => {
 	watch('./src/**/*.ts', ['build:ts', 'lint']);
 });
 
-task('build', ['build:ts', 'build-copy']);
+task('build', ['build:ts', 'build:ls', 'build-copy']);
 
 task('build:ts', () => {
 	return tsProject.src()
@@ -22,6 +23,12 @@ task('build:ts', () => {
 		.pipe(babel({
 			modules: 'commonStrict'
 		}))
+		.pipe(dest('./built'));
+});
+
+task('build:ls', () => {
+	return src('./src/**/*.ls')
+		.pipe(ls())
 		.pipe(dest('./built'));
 });
 
