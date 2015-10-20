@@ -9,13 +9,13 @@ function swing($elem, force)
 $ ->
 	function set-features1-design-layer
 		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height! + 128}px"
-	
+
 	function set-footer-design-layer
 		$ '#footer > .design-layer' .css \height "#{$ \#footer .outer-height! + 128}px"
-	
+
 	set-features1-design-layer!
 	set-footer-design-layer!
-	
+
 	$ window .resize ->
 		set-features1-design-layer!
 		set-footer-design-layer!
@@ -28,7 +28,7 @@ $ ->
 				'opacity': '0'
 				'transition': 'all ease-in 0.5s'
 			}
-		
+
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 
@@ -76,7 +76,7 @@ function init-register-form
 		.done ->
 			location.href = config.url
 		.fail ->
-	
+
 	$ '#register-cancel' .click (event) ->
 		hide-register-form!
 
@@ -84,7 +84,7 @@ function init-register-form
 		$column = $ '#register-form .user-name'
 		$input = $ user-name-input-query
 		right = no
-		
+
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
 			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
@@ -103,7 +103,7 @@ function init-register-form
 			right = no
 			hide-message!
 			sn = $input .val!
-			
+
 			$ '.profile-page-url-preview' .text "https://misskey.xyz/#sn"
 
 			if sn != ''
@@ -152,14 +152,14 @@ function init-register-form
 		$input = $ nickname-input-query
 		$column = $ '#register-form .nickname'
 		right = no
-		
+
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
 			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
 			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
-			
+
 		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
@@ -194,14 +194,14 @@ function init-register-form
 		$input = $ password-input-query
 		$column = $ '#register-form .password'
 		right = no
-		
+
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
 			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
 			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
-		
+
 		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
@@ -244,14 +244,14 @@ function init-register-form
 		$input = $ password-retype-input-query
 		$column = $ '#register-form .password-retype'
 		right = no
-		
+
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
 			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
 			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
-		
+
 		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
@@ -318,6 +318,7 @@ function show-register-form
 	$ \#register-form-background .animate {
 		opacity: 1
 	} 500ms \linear
+	$ \#register-form .css \display \block
 	$ \#register-form .animate {
 		top: 0
 		opacity: 1
@@ -333,4 +334,5 @@ function hide-register-form
 	$ \#register-form .animate {
 		top: '-200%'
 		opacity: 0
-	} 1000ms \easeInOutQuart
+	} 1000ms \easeInOutQuart ->
+		$ \#register-form .css \display \none
