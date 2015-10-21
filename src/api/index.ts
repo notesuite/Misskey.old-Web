@@ -22,6 +22,9 @@ import router from './router';
 
 console.log('Init Web API relay server');
 
+// Init DB connection
+const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
+
 // Init server
 const server: express.Express = express();
 server.set('X-Frame-Options', 'SAMEORIGIN');
@@ -39,11 +42,7 @@ server.use(expressSession({
 	saveUninitialized: true,
 	cookie: {
 		path: '/',
-		domain: ".#{config.public-config.domain}",
-		httpOnly: false,
-		secure: false,
-		expires: new Date(Date.now() + sessionExpires),
-		maxAge: sessionExpires
+		domain: `.${config.publicConfig.host}`
 	},
 	store: new _MongoStore({
 		mongooseConnection: db

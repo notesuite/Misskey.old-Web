@@ -51,7 +51,7 @@ server.use(expressSession({
 	saveUninitialized: true,
 	cookie: {
 		path: '/',
-		domain: ".#{config.public-config.domain}",
+		domain: `.${config.publicConfig.host}`,
 		httpOnly: false,
 		secure: false,
 		expires: new Date(Date.now() + sessionExpires),
