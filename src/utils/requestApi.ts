@@ -3,7 +3,7 @@ import * as request from 'request';
 
 import config from '../config';
 
-export default function(method: string, endpoint: string, params: any): Promise<any> {
+export default function(method: string, endpoint: string, params: any, userId?: string): Promise<any> {
 	'use strict';
 	return new Promise((resolve: (value: any) => void, reject: (err: any) => void) => {
 		// 送信する
@@ -12,7 +12,8 @@ export default function(method: string, endpoint: string, params: any): Promise<
 			method: method,
 			formData: params,
 			headers: {
-				'passkey': config.apiPasskey
+				'passkey': config.apiPasskey,
+				'user-id': userId
 			}
 		}, (err: any, response: http.IncomingMessage) => {
 			if (err) {

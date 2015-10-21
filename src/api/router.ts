@@ -10,11 +10,16 @@ export default function(app: express.Express): void {
 	console.log('Init Web API relay server router');
 
 	app.get('/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		res.send('sakuhima');
+		if (req.isLogin) {
+			res.send(req.session.userId);
+		} else {
+			res.send('sakuhima');
+		}
 	});
-	
+
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi("GET", req.path, req.query).then((response: any) => {
+		const userId: string = req.isLogin ? req.session.userId : null;
+		requestApi("GET", req.path, req.query, userId).then((response: any) => {
 			res.send(response);
 		});
 	});

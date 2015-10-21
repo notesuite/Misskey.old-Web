@@ -1,5 +1,4 @@
 // import * as http from 'http';
-import * as path from 'path';
 import * as express from 'express';
 import * as expressSession from 'express-session';
 import * as mongoose from 'mongoose';
@@ -11,10 +10,8 @@ import * as cookieParser from 'cookie-parser';
 // import * as expressMinify from 'express-minify';
 const expressMinify: any = require('express-minify');
 
-import { User } from '../models/user';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
-import requestApi from '../utils/requestApi';
 
 import config from '../config';
 
@@ -48,6 +45,17 @@ server.use(expressSession({
 		mongooseConnection: db
 	})
 }));
+
+// Init session
+server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+	req.isLogin =
+		req.hasOwnProperty('session') &&
+		req.session !== null &&
+		req.session.hasOwnProperty('userId') &&
+		req.session.userId !== null;
+
+	next();
+});
 
 // Rooting
 router(server);
