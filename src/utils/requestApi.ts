@@ -10,7 +10,10 @@ export default function(method: string, endpoint: string, params: any): Promise<
 		request({
 			url: `http://${config.apiServerIp}:${config.apiServerPort}/register`,
 			method: method,
-			formData: params
+			formData: params,
+			headers: {
+				'passkey': config.apiPasskey
+			}
 		}, (err: any, response: http.IncomingMessage) => {
 			if (err) {
 				reject(err);

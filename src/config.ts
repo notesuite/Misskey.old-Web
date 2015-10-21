@@ -27,6 +27,7 @@ export interface IConfig {
 		http: number;
 		https: number;
 	};
+	apiPasskey: string;
 	apiServerIp: string;
 	apiServerPort: number;
 	cookiePass: string;
@@ -58,6 +59,7 @@ export const defaultConfig: IConfig = {
 		http: 80,
 		https: 443
 	},
+	apiPasskey: "",
 	apiServerIp: "",
 	apiServerPort: 0,
 	cookiePass: "",
