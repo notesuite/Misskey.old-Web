@@ -20,6 +20,8 @@
 		"src/misskeyExpressResponse.ts",
 		"src/models/user.ts",
 		"src/utils/requestApi.ts",
+		"src/api/index.ts",
+		"src/api/router.ts",
 		"src/web/maintenance.ts",
 		"src/web/main/index.ts",
 		"src/web/main/pageRouter.ts",
