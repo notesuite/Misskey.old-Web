@@ -33,6 +33,7 @@ const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, conf
 
 // Init server
 const server: express.Express = express();
+server.disable('x-powered-by');
 server.locals.compileDebug = false;
 server.locals.pretty = htmlpretty;
 server.set('view engine', 'jade');

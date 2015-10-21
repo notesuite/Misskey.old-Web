@@ -6,21 +6,22 @@ import config from '../config';
 export default function(method: string, endpoint: string, params: any, userId?: string): Promise<any> {
 	'use strict';
 	return new Promise((resolve: (value: any) => void, reject: (err: any) => void) => {
-		// 送信する
-		request({
+		const options: request.Options = {
 			url: `http://${config.apiServerIp}:${config.apiServerPort}/${endpoint}`,
 			method: method,
-			formData: params,
+			formData: method !== 'GET' ? params : null,
+			qs: method === 'GET' ? params : null,
 			headers: {
 				'passkey': config.apiPasskey,
 				'user-id': userId
 			}
-		}, (err: any, response: http.IncomingMessage) => {
+		};
+		request(options, (err: any, response: http.IncomingMessage, body: any) => {
 			if (err) {
 				reject(err);
 			} else {
-				console.log(response);
-				resolve(response);
+				console.log(body);
+				resolve(JSON.parse(body));
 			}
 		});
 	});

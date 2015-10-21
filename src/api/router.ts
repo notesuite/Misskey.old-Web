@@ -19,8 +19,8 @@ export default function(app: express.Express): void {
 
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
-		requestApi("GET", req.path, req.query, userId).then((response: any) => {
-			res.send(response);
+		requestApi("GET", req.path.substring(1), req.query, userId).then((response: any) => {
+			res.json(response);
 		});
 	});
 }

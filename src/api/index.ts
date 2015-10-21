@@ -24,8 +24,8 @@ const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, conf
 
 // Init server
 const server: express.Express = express();
+server.disable('x-powered-by');
 server.set('X-Frame-Options', 'SAMEORIGIN');
-
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
@@ -48,9 +48,10 @@ server.use(expressSession({
 
 // CORS middleware
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	res.header('Access-Control-Allow-Origin', config.publicConfig.host);
+	res.header('Access-Control-Allow-Origin', config.publicConfig.url);
 	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
 	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Credentials', 'true');
 
 	next();
 });
