@@ -8,7 +8,7 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 	return new Promise((resolve: (value: any) => void, reject: (err: any) => void) => {
 		// 送信する
 		request({
-			url: `http://${config.apiServerIp}:${config.apiServerPort}/register`,
+			url: `http://${config.apiServerIp}:${config.apiServerPort}/${endpoint}`,
 			method: method,
 			formData: params,
 			headers: {
