@@ -16,7 +16,9 @@ const server: http.Server = http.createServer(app);
 
 // Declare servers
 const mainServer: express.Express = require(`${__dirname}/web/main`).server;
+const apiRelayServer: express.Express = require(`${__dirname}/api`).server;
 app.use(vhost(config.publicConfig.host, mainServer));
+app.use(vhost(config.publicConfig.apiHost, apiRelayServer));
 // const devServer: express.Express = require(`${__dirname}/web/dev`).server;
 // app.use(vhost(config.publicConfig.developerCenterHost, devServer));
 

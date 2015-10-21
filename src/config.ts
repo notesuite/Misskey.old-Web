@@ -38,6 +38,8 @@ export interface IConfig {
 		url: string;
 		apiHost: string;
 		apiUrl: string;
+		apiCoreHost: string;
+		apiCoreUrl: string;
 		developerCenterHost: string;
 		developerCenterUrl: string;
 		webStreamingUrl: string;
@@ -65,8 +67,10 @@ export const defaultConfig: IConfig = {
 		themeColor: "#0e91bc",
 		host: "misskey.xyz",
 		url: "http://misskey.xyz",
-		apiHost: "api.misskey.xyz",
-		apiUrl: "http://api.misskey.xyz",
+		apiHost: "himasaku.misskey.xyz",
+		apiUrl: "http://himasaku.misskey.xyz",
+		apiCoreHost: "api.misskey.xyz",
+		apiCoreUrl: "http://api.misskey.xyz",
 		developerCenterHost: "dev.misskey.xyz",
 		developerCenterUrl: "http://dev.misskey.xyz",
 		webStreamingUrl: "http://api.misskey.xyz:2000"

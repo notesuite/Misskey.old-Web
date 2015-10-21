@@ -124,13 +124,14 @@ function init-register-form
 						data-type: \json
 						xhr-fields: {+withCredentials}}
 					.done (result) ->
-						if result
+						if result.available
 							right = no
 							show-message 'このIDは既に使用されていますっ' no
 						else
 							right = yes
 							show-message 'このIDは使用できますっ！' yes
-					.fail ->
+					.fail (err) ->
+						console.error err
 						show-message '確認に失敗しました;;' null
 
 		function show-message(message, success)

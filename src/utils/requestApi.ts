@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as request from 'request';
 
-const config: any = require('../config');
+import config from '../config';
 
 export default function(method: string, endpoint: string, params: any): Promise<any> {
 	'use strict';
