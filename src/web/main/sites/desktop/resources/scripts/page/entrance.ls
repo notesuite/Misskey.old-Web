@@ -53,16 +53,12 @@ $ ->
 function init-register-form
 	$progress = $ '#register-form progress'
 	user-name-input-query = '#register-form .user-name .user-name-input'
-	nickname-input-query = '#register-form .nickname .nickname-input'
 	password-input-query = '#register-form .password .password-input'
 	password-retype-input-query = '#register-form .password-retype .password-retype-input'
-	user-color-input-query = '#register-form .user-color .user-color-input'
 
 	init-user-name-section!
-	init-nickname-section!
 	init-password-section!
 	init-password-retype-section!
-	init-user-color-section!
 
 	$ '#register-form form' .submit (event) ->
 		event.prevent-default!
@@ -84,13 +80,6 @@ function init-register-form
 		$column = $ '#register-form .user-name'
 		$input = $ user-name-input-query
 		right = no
-
-		$input .focus ->
-			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
-			$cursor .animate {
-				top: "#{top}px"
-			} 1000ms \easeOutElastic
 
 		$input .on \keypress (event) ->
 			if event.which == 13
@@ -149,59 +138,10 @@ function init-register-form
 		function hide-message
 			$ '#user-name-available' .remove!
 
-	function init-nickname-section
-		$input = $ nickname-input-query
-		$column = $ '#register-form .nickname'
-		right = no
-
-		$input .focus ->
-			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
-			$cursor .animate {
-				top: "#{top}px"
-			} 1000ms \easeOutElastic
-
-		$input .on \keypress (event) ->
-			if event.which == 13
-				if right then next!
-				false
-			else
-				true
-
-		$input .keyup ->
-			right = no
-			hide-message!
-			name = $input .val!
-			if name.length > 0chars
-				right = yes
-				show-message 'Great!' yes
-
-		function show-message(message, success)
-			hide-message!
-			klass = if success == null
-				then ''
-				else
-					if success then \done else \fail
-			$message = $ "<p id=\"nicknameAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .nickname' .animate {
-				'margin-top': 0
-				opacity: 1
-			} 500ms \easeOutCubic
-
-		function hide-message
-			$ '#nicknameAvailable' .remove!
-
 	function init-password-section
 		$input = $ password-input-query
 		$column = $ '#register-form .password'
 		right = no
-
-		$input .focus ->
-			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
-			$cursor .animate {
-				top: "#{top}px"
-			} 1000ms \easeOutElastic
 
 		$input .on \keypress (event) ->
 			if event.which == 13
@@ -246,13 +186,6 @@ function init-register-form
 		$column = $ '#register-form .password-retype'
 		right = no
 
-		$input .focus ->
-			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
-			$cursor .animate {
-				top: "#{top}px"
-			} 1000ms \easeOutElastic
-
 		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
@@ -289,30 +222,6 @@ function init-register-form
 
 		function hide-message
 			$ '#passwordRetypeAvailable' .remove!
-
-	function init-user-color-section
-		right = no
-
-		$ user-color-input-query .change ->
-			hide-message!
-			color = $ user-color-input-query .val!
-			right = yes
-			show-message 'Good!' yes
-
-		function show-message(message, success)
-			hide-message!
-			klass = if success == null
-				then ''
-				else
-					if success then \done else \fail
-			$message = $ "<p id=\"userColorAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .user-color' .animate {
-				'margin-top': 0
-				opacity: 1
-			} 500ms \easeOutCubic
-
-		function hide-message
-			$ '#userColorAvailable' .remove!
 
 function show-register-form
 	$ \#register-form-background .css \display \block

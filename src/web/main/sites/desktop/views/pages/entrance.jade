@@ -72,27 +72,16 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					h2
 						i.fa.fa-child
 						| 新しいアカウントを作成する(新規登録)
-				progress(max=7, value=0)
 				form
-					img#register-form-cursor(src='/resources/images/register-form-arrow.svg', alt='')
-					p.hello
-						| MisskeyはTwitter風SNSです。いますぐアカウントを作成して、Misskeyを楽しみましょう。
 					div.column.user-name
 						label
 							p.caption
-								i.fa.fa-at
+								i.fa.fa-user
 								| ユーザー名
 							div.field
 								input.user-name-input(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
 								i.at @
 								p.profile-page-url-preview https://misskey.xyz/
-					div.column.nickname
-						label
-							p.caption
-								i.fa.fa-user
-								| ニックネーム
-							div.field
-								input.nickname-input(name='name', type='text', required)
 					div.column.password
 						label
 							p.caption
@@ -107,17 +96,10 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 								| パスワード(再入力)
 							div.field
 								input.password-retype-input(name='retype-password', type='password', required)
-					div.column.user-color
-						label
-							p.caption
-								i.fa.fa-paint-brush
-								| ユーザーカラー
-							div.field
-								input.user-color-input(name='color', type='color', required)
 					div.actions
 						button#register-cancel(type='button')
 							i.fa.fa-ban
 							| キャンセル
 						button#register-accept(type='submit')
 							i.fa.fa-check
-							| 作成
+							| アカウントを作成
