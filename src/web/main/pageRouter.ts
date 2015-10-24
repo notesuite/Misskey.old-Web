@@ -33,8 +33,8 @@ export default function(app: express.Express): void {
 		}
 	});
 
-	app.get('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi("GET", 'login', req.query).then((response: any) => {
+	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		requestApi("GET", 'login', req.body).then((response: any) => {
 			const user: User = response.user;
 			req.session.userId = user.id;
 			req.session.save(() => {

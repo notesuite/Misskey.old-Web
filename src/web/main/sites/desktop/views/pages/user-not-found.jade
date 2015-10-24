@@ -1,0 +1,21 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='description', content='Sorry, user not found.')
+		meta(name='keywords', content='Misskey')
+		title= 'Oops'
+		link(rel='stylesheet', href='/resources/styles/user-not-found.css')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			h1
+				i.fa.fa-exclamation-triangle
+				| ユーザーが見つかりません
+			p
+				| Back to 
+				a(href='/') home
+				| .

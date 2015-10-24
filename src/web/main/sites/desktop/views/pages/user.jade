@@ -1,0 +1,60 @@
+extends ../layouts/user
+
+block title
+	= user.name
+
+block assets
+	link(rel='stylesheet', href='/resources/styles/page/user-home.css?user=' + user.screenName)
+	script(src='/resources/scripts/page/user-home.js')
+
+block contents
+	div#left-sub-contents
+		if user.location != null && user.location != ""
+			p#location
+				i.fa.fa-map-marker
+				= user.location
+		if user.url != null && user.url != ""
+			p#website
+				a(href= user.url)
+					i.fa.fa-link
+					= user.url
+		section#followers
+			h2
+				i.fa.fa-users
+				| Followers
+			ol
+				each user in followersRecent
+					li
+						a(href= '/' + user.screenName)
+							img.icon(src=user.iconImageUrl, alt='icon', title=user.name)
+	div#main-content
+		div#timeline!= timelineHtml
+	div#right-sub-contents
+		div#friend-form
+			if login
+				if me.id != user.id
+					if isFollowMe
+						p#friend-status
+							i.fa.fa-heart
+							| フォローされています
+					if isFollowing
+						button#friend-button.following フォロー中
+					else
+						button#friend-button.not-following フォロー
+				else
+					p#friend-status
+						i.fa.fa-smile-o
+						| You
+			else
+				p
+					| このユーザーをフォローするにはログインしてください
+						
+		if recentPhotoStatuses != null && recentPhotoStatuses.length > 0
+			section#photos
+				h2
+					i.fa.fa-camera
+					| Photos
+				ol.photos
+					each status in recentPhotoStatuses
+						li.photo(style='background-image: url("' + status.imageUrls[0] + '")', title=status.displayCreatedAt)
+							a(href=config.url + '/' + user.screenName + '/status/' + status.id)

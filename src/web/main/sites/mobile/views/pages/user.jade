@@ -1,0 +1,11 @@
+extends ../layouts/user
+
+block title
+	title= user.name
+
+block stylesheet
+	link(rel='stylesheet', href='/resources/styles/common/timeline.css')
+
+block content
+	div#timeline!= timelineHtml
+	

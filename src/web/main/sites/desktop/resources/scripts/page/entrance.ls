@@ -33,7 +33,7 @@ $ ->
 			..attr \disabled on
 
 		$.ajax '/login' {
-			type: \get
+			type: \post
 			data: $form.serialize!}
 		.done ->
 			location.reload!

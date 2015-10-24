@@ -1,0 +1,9 @@
+li.log.web-incoming(class= done ? 'success' : 'failure')
+	span.date= date
+	span.course incoming
+	span.server WEB
+	span.remote-addr(style= 'background:' + color)= remoteAddr
+	span.protocol= protocol
+	span.method= method
+	span.path= path
+	span.ua= ua

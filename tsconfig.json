@@ -26,6 +26,7 @@
 		"src/web/main/index.ts",
 		"src/web/main/pageRouter.ts",
 		"src/web/main/resourcesRouter.ts",
-		"src/web/main/sites/desktop/controllers/entrance.ts"
+		"src/web/main/sites/desktop/controllers/entrance.ts",
+		"src/web/main/sites/desktop/controllers/home.ts"
 	]
 }
