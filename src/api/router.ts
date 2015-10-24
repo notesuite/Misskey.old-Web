@@ -1,5 +1,6 @@
 import * as express from 'express';
 
+import { User } from '../models/user';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
 
@@ -15,6 +16,16 @@ export default function(app: express.Express): void {
 		} else {
 			res.send('sakuhima');
 		}
+	});
+
+	app.get('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		requestApi("GET", req.path.substring(1), req.query).then((response: any) => {
+			const user: User = response.user;
+			req.session.userId = user.id;
+			req.session.save(() => {
+				res.json(response);
+			});
+		});
 	});
 
 	app.post('/account/create', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
