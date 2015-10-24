@@ -155,7 +155,7 @@ server.use((err: any, req: express.Request, res: express.Response, next: () => v
 	const displayErr: string = `${err.stack}\r\n----------------\r\n${req.method} ${req.url} [${new Date()}]`;
 	res.status(500);
 	if (res.hasOwnProperty('display')) {
-		(<any>res).display(req, res, 'error', { err: displayErr });
+		(<any>res).display(req, 'error', { err: displayErr });
 	} else {
 		res.send(err);
 	}
