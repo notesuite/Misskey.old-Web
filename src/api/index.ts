@@ -1,6 +1,7 @@
 // import * as http from 'http';
 import * as express from 'express';
 import * as expressSession from 'express-session';
+import * as multer from 'multer';
 import * as mongoose from 'mongoose';
 import * as MongoStore from 'connect-mongo';
 const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(expressSession);
@@ -27,6 +28,7 @@ const server: express.Express = express();
 server.disable('x-powered-by');
 server.set('X-Frame-Options', 'SAMEORIGIN');
 server.use(bodyParser.urlencoded({ extended: true }));
+server.use(multer());
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
 server.use(expressMinify());

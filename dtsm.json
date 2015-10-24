@@ -66,6 +66,9 @@
     },
     "socket.io/socket.io.d.ts": {
       "ref": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
+    },
+    "multer/multer.d.ts": {
+      "ref": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
     }
   }
 }
