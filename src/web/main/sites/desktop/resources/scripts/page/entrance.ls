@@ -32,8 +32,8 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 
-		$.ajax \/login {
-			type: \post
+		$.ajax '/login' {
+			type: \get
 			data: $form.serialize!}
 		.done ->
 			location.reload!

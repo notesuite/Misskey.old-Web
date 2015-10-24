@@ -1,5 +1,7 @@
 import * as express from 'express';
 
+import {User} from '../../models/user';
+import requestApi from '../../utils/requestApi';
 import { MisskeyExpressRequest } from '../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
 
@@ -29,5 +31,15 @@ export default function(app: express.Express): void {
 		} else {
 			callController(req, res, 'entrance');
 		}
+	});
+
+	app.get('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		requestApi("GET", 'login', req.query).then((response: any) => {
+			const user: User = response.user;
+			req.session.userId = user.id;
+			req.session.save(() => {
+				res.json(response);
+			});
+		});
 	});
 }
