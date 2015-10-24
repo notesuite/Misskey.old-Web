@@ -152,10 +152,9 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 // Error handling
 server.use((err: any, req: express.Request, res: express.Response, next: () => void) => {
 	console.error(err);
-	const displayErr: string = `${err.stack}\r\n----------------\r\n${req.method} ${req.url} [${new Date()}]`;
 	res.status(500);
 	if (res.hasOwnProperty('display')) {
-		(<any>res).display(req, 'error', { err: displayErr });
+		(<any>res).display(req, 'error', { err: err.stack });
 	} else {
 		res.send(err);
 	}
