@@ -19,6 +19,7 @@
 		"src/misskeyExpressRequest.ts",
 		"src/misskeyExpressResponse.ts",
 		"src/models/user.ts",
+		"src/models/status.ts",
 		"src/models/userHomeLayout.ts",
 		"src/utils/requestApi.ts",
 		"src/api/index.ts",
@@ -27,6 +28,7 @@
 		"src/web/main/index.ts",
 		"src/web/main/pageRouter.ts",
 		"src/web/main/resourcesRouter.ts",
+		"src/web/main/sites/desktop/utils/generateHomeTimelineHtml.ts",
 		"src/web/main/sites/desktop/controllers/entrance.ts",
 		"src/web/main/sites/desktop/controllers/home.ts"
 	]
