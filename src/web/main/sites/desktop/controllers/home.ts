@@ -3,7 +3,7 @@ import { Status } from '../../../../../models/status';
 import { UserHomeLayout, IUserHomeLayout } from '../../../../../models/userHomeLayout';
 import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
-import generateHomeTimelineHtml from '../utils/generateHomeTimelineHtml';
+// import generateHomeTimelineHtml from '../utils/generateHomeTimelineHtml';
 import requestApi from '../../../../../utils/requestApi';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any = {}): void => {
@@ -36,20 +36,21 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 				return widget;
 			}
 		});
-		
+
 		Promise.all([
-			// Get statuses of timeline
-			new Promise((resolve, reject) => {
+			// Get timeline
+			new Promise((resolve: (timeline: string) => void, reject: (err: any) => void) => {
 				if (customizeMode || useWidgets.indexOf('timeline') > -1) {
 					requestApi('GET', 'statuses/timeline', { 'limit': 10 }, me.id).then((tl: Status[]) => {
-						generateHomeTimelineHtml(tl, me, (timelineHtml: string) => {
+						/*generateHomeTimelineHtml(tl, me, (timelineHtml: string) => {
 							resolve(timelineHtml);
-						});
+						});*/
+						resolve(null);
 					});
 				} else {
 					resolve(null);
 				}
-			}),
+			})/*,
 
 			// Get recommendation users
 			new Promise((resolve, reject) => {
@@ -69,7 +70,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 				} else {
 					resolve(null);
 				}
-			})
+			})*/
 		]).then((results: any[]) => {
 			res.display(req, 'home', {
 				layout: layout,
