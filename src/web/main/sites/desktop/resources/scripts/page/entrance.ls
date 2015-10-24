@@ -70,7 +70,7 @@ function init-register-form
 			data-type: \json
 			xhr-fields: {+withCredentials}}
 		.done ->
-			location.href = config.url
+			location.href = "#{config.url}/welcome"
 		.fail ->
 
 	$ '#register-cancel' .click (event) ->
