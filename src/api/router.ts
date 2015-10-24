@@ -29,4 +29,11 @@ export default function(app: express.Express): void {
 			res.json(response);
 		});
 	});
+
+	app.post('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		const userId: string = req.isLogin ? req.session.userId : null;
+		requestApi("POST", req.path.substring(1), req.body, userId).then((response: any) => {
+			res.json(response);
+		});
+	});
 }

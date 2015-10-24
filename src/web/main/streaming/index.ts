@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as session from 'express-session';
 import * as SocketIO from 'socket.io';
-import config from '../../config';
+import config from '../../../config';
 
 console.log('Init Web streaming server');
 

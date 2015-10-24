@@ -161,3 +161,5 @@ server.use((err: any, req: express.Request, res: express.Response, next: () => v
 });
 
 exports.server = server;
+
+require('./streaming');
