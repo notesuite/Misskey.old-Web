@@ -50,6 +50,7 @@
     "mongoose": "4.1.11",
     "multer": "0.1.8",
     "request": "2.65.0",
+    "socket.io": "1.3.7",
     "vhost": "3.0.2"
   },
   "private": true

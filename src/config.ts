@@ -26,6 +26,7 @@ export interface IConfig {
 	port: {
 		http: number;
 		https: number;
+		streaming: number;
 	};
 	apiPasskey: string;
 	apiServerIp: string;
@@ -57,7 +58,8 @@ export const defaultConfig: IConfig = {
 	},
 	port: {
 		http: 80,
-		https: 443
+		https: 443,
+		streaming: 3000
 	},
 	apiPasskey: "",
 	apiServerIp: "",
