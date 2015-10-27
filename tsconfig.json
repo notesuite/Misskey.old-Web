@@ -19,18 +19,18 @@
 		"src/misskeyExpressRequest.ts",
 		"src/misskeyExpressResponse.ts",
 		"src/models/user.ts",
-		"src/models/status.ts",
+		"src/models/post.ts",
 		"src/models/userHomeLayout.ts",
 		"src/utils/requestApi.ts",
 		"src/api/index.ts",
 		"src/api/router.ts",
+		"src/web/index.ts",
 		"src/web/maintenance.ts",
-		"src/web/main/index.ts",
-		"src/web/main/pageRouter.ts",
-		"src/web/main/resourcesRouter.ts",
-		"src/web/main/streaming/index.ts",
-		"src/web/main/sites/desktop/utils/generateHomeTimelineHtml.ts",
-		"src/web/main/sites/desktop/controllers/entrance.ts",
-		"src/web/main/sites/desktop/controllers/home.ts"
+		"src/web/pageRouter.ts",
+		"src/web/resourcesRouter.ts",
+		"src/web/streaming/index.ts",
+		"src/web/sites/desktop/utils/generateHomeTimelineHtml.ts",
+		"src/web/sites/desktop/controllers/entrance.ts",
+		"src/web/sites/desktop/controllers/home.ts"
 	]
 }

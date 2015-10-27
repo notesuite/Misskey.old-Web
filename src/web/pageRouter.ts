@@ -32,6 +32,10 @@ export default function(app: express.Express): void {
 			callController(req, res, 'entrance');
 		}
 	});
+	
+	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'iAlbum');
+	});
 
 	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		requestApi("GET", 'login', req.body).then((response: any) => {
