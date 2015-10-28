@@ -3,6 +3,6 @@ div#misskey-album
 	link(rel='stylesheet', href='/resources/styles/common/album.css')
 	ol.files
 	form.upload-form(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
-		input(name='image', type='file', accept='*')
+		input(name='file', type='file', accept='*')
 		input.submit-button(type='submit', value='Uplad', role='button')
 		

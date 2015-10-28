@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as express from 'express';
 
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
@@ -26,6 +27,21 @@ export default function(app: express.Express): void {
 	app.get('/web/album/files', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		requestApi("GET", req.path.substring(1), req.query).then((files: Object[]) => {
 			res.send(mapToHtml(`${__dirname}/../web/sites/desktop/views/dynamic-parts/album/file.jade`, files));
+		});
+	});
+
+	app.post('/album/upload', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		const file: Express.Multer.File = req.files['file'];
+		const data: any = req.body;
+		data.file = {
+			value: fs.readFileSync(file.path),
+			options: {
+				filename: file.originalname,
+				contentType: file.mimetype
+			}
+		};
+		requestApi('POST', req.path.substring(1), data, req.session.userId).then((files: Object[]) => {
+			res.sendStatus(200);
 		});
 	});
 
