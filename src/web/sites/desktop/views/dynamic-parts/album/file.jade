@@ -1,0 +1,20 @@
+li.item.file(data-file-id= file.id)
+	div.context-menu
+		ul
+			li
+				
+				| 選択
+			li
+				| 開く
+		ul
+			li
+				i.fa.fa-download
+				| ダウンロード
+		ul
+			li
+				i.fa.fa-i-cursor
+				| 名前を変更
+			li
+				i.fa.fa-trash-o
+				| 削除
+	div.content(style= 'background-image: url(' + file.serverPath + ');')

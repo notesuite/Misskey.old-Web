@@ -24,6 +24,7 @@
 		"src/utils/requestApi.ts",
 		"src/api/index.ts",
 		"src/api/router.ts",
+		"src/api/utils/mapToHtml.ts",
 		"src/web/index.ts",
 		"src/web/maintenance.ts",
 		"src/web/pageRouter.ts",

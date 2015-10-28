@@ -6,6 +6,6 @@ import requestApi from '../../../../../utils/requestApi';
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any = {}): void => {
 	'use strict';
 
-	res.display(req, 'iAlbum', {
+	res.display(req, 'i/album', {
 	});
 };

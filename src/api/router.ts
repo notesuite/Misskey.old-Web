@@ -2,8 +2,8 @@ import * as express from 'express';
 
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
-
 import requestApi from '../utils/requestApi';
+import mapToHtml from './utils/mapToHtml';
 
 export default function(app: express.Express): void {
 	'use strict';
@@ -20,6 +20,12 @@ export default function(app: express.Express): void {
 	app.post('/account/create', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		requestApi("POST", req.path.substring(1), req.body).then((response: any) => {
 			res.json(response);
+		});
+	});
+	
+	app.get('/web/album/files', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		requestApi("GET", req.path.substring(1), req.query).then((files: Object[]) => {
+			res.send(mapToHtml(`${__dirname}/../web/sites/desktop/views/dynamic-parts/album/file.jade`, files));
 		});
 	});
 
