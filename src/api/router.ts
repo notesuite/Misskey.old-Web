@@ -26,7 +26,8 @@ export default function(app: express.Express): void {
 
 	app.get('/web/album/files', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		requestApi("GET", 'album/files', req.query, req.session.userId).then((files: Object[]) => {
-			res.send(mapToHtml(`${__dirname}/../web/sites/desktop/views/dynamic-parts/album/file.jade`, files));
+			console.log(files);
+			res.send(mapToHtml(`${__dirname}/../web/sites/desktop/views/dynamic-parts/album/file.jade`, 'file', files));
 		});
 	});
 
