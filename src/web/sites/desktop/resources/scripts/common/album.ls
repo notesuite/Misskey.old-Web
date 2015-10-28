@@ -8,7 +8,7 @@ $ ->
 	function load-files
 		$.ajax "#{config.api-url}/web/album/files" {
 			type: \get
-			data: new FormData $form.0
+			data: {}
 			-processData
 			-contentType
 			data-type: \text

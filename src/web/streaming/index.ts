@@ -34,6 +34,4 @@ io.use((socket: SocketIO.Socket, next: (err: any) => void) => {
 */
 });
 
-console.log(sessionStore);
-
 server.listen(config.port.streaming);
