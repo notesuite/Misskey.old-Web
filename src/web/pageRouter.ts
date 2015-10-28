@@ -1,9 +1,9 @@
 import * as express from 'express';
 
-import {User} from '../../models/user';
-import requestApi from '../../utils/requestApi';
-import { MisskeyExpressRequest } from '../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
+import {User} from '../models/user';
+import requestApi from '../utils/requestApi';
+import { MisskeyExpressRequest } from '../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../misskeyExpressResponse';
 
 function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse, name: string, options?: any): void {
 	'use strict';
@@ -32,9 +32,9 @@ export default function(app: express.Express): void {
 			callController(req, res, 'entrance');
 		}
 	});
-	
+
 	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		callController(req, res, 'iAlbum');
+		callController(req, res, 'i/album');
 	});
 
 	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {

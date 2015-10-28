@@ -3,12 +3,12 @@ import * as path from 'path';
 import * as express from 'express';
 import * as less from 'less';
 
-import { User } from '../../models/user';
-import { MisskeyExpressRequest } from '../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
-import requestApi from '../../utils/requestApi';
+import { User } from '../models/user';
+import { MisskeyExpressRequest } from '../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../misskeyExpressResponse';
+import requestApi from '../utils/requestApi';
 
-import config from '../../config';
+import config from '../config';
 
 export default function(app: express.Express): void {
 	'use strict';

@@ -1,5 +1,7 @@
+import {User} from './user';
+
 export interface Post {
-	app: IApplication;
+	app: any;
 	appId: string;
 	createdAt: Date;
 	cursor: number;
@@ -8,6 +10,6 @@ export interface Post {
 	repliesCount: number;
 	repostsCount: number;
 	type: string;
-	user: IUser;
+	user: User;
 	userId: string;
 }

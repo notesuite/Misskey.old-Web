@@ -15,9 +15,9 @@ import * as moment from 'moment';
 import { User } from '../models/user';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
-import requestApi from '../../utils/requestApi';
+import requestApi from '../utils/requestApi';
 
-import config from '../../config';
+import config from '../config';
 
 import resourcesRouter from './resourcesRouter';
 import pageRouter from './pageRouter';
