@@ -1,4 +1,8 @@
 #misskey-album {
+	> form {
+		margin: 64px;
+	}
+
 	> .files {
 		margin: 0;
 		padding: 0;
@@ -23,10 +27,15 @@
 			}
 
 			> .content {
+				box-sizing: border-box;
 				position: relative;
 				width: 100%;
 				height: 100%;
-				border: solid 1px #eee;
+				border: solid 4px #eee;
+
+				&:hover {
+					border: solid 4px #ddd;
+				}
 
 				> .name {
 					display: block;
@@ -34,8 +43,9 @@
 					top: 128px;
 					width: 100%;
 					margin: 0;
-					padding: 8px 0;
+					padding: 0;
 					text-align: center;
+					word-wrap: break-word;
 				}
 			}
 
@@ -44,7 +54,7 @@
 					background-color: #fff;
 					background-repeat: no-repeat;
 					background-position: center center;
-					background-size: cover;
+					background-size: contain;
 				}
 			}
 		}
