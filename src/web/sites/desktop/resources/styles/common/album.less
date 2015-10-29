@@ -1,60 +1,108 @@
+@themeColor: <%themeColor%>;
+
 #misskey-album {
+	&, * {
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		cursor: default;
+	}
+
 	> form {
 		margin: 64px;
 	}
 
-	> .files {
-		margin: 0;
-		padding: 0;
-		list-style: none;
+	> .browser {
+		display: block;
+		position: relative;
+		background: #f9f9f9;
 
-		&:after {
-			content: '';
-			display: block;
-			clear: both;
+		> .selection {
+			display: none;
+			box-sizing: border-box;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			width: 0;
+			height: 0;
+			border: solid 1px @themeColor;
+			background: fade(@themeColor, 50%);
+			opacity: 0;
 		}
 
-		> .item {
+		> .files {
 			display: block;
-			float: left;
-			margin: 16px;
+			position: relative;
+			margin: 0;
 			padding: 0;
-			width: 128px;
-			height: 128px;
+			list-style: none;
 
-			> .context-menu {
-				display: none;
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
 			}
 
-			> .content {
-				box-sizing: border-box;
-				position: relative;
-				width: 100%;
-				height: 100%;
-				border: solid 4px #eee;
+			> .item {
+				display: block;
+				float: left;
+				margin: 16px;
+				padding: 0;
+				width: 128px;
+				height: 128px;
 
-				&:hover {
-					border: solid 4px #ddd;
+				&[data-selected=true] {
+					> .content {
+						border: solid 4px @themeColor;
+
+						&:hover {
+							border: solid 4px lighten(@themeColor, 20%);
+						}
+					}
 				}
 
-				> .name {
-					display: block;
-					position: absolute;
-					top: 128px;
-					width: 100%;
-					margin: 0;
-					padding: 0;
-					text-align: center;
-					word-wrap: break-word;
+				> .context-menu {
+					display: none;
 				}
-			}
 
-			&.file {
 				> .content {
-					background-color: #fff;
-					background-repeat: no-repeat;
-					background-position: center center;
-					background-size: contain;
+					box-sizing: border-box;
+					position: relative;
+					width: 100%;
+					height: 100%;
+					border: solid 4px #eee;
+
+					&:hover {
+						border: solid 4px #ddd;
+					}
+
+					> .name {
+						display: block;
+						position: absolute;
+						top: 124px;
+						width: 100%;
+						margin: 0;
+						padding: 4px 0 0 0;
+						text-align: center;
+						word-wrap: break-word;
+					}
+				}
+
+				&.file[data-mimetype='image/png'],
+				&.file[data-mimetype='image/jpeg'],
+				&.file[data-mimetype='image/gif'] {
+					> .content {
+						background-color: #fff;
+						background-repeat: no-repeat;
+						background-position: center center;
+						background-size: contain;
+
+						&:hover {
+							//background-size: cover;
+						}
+					}
 				}
 			}
 		}

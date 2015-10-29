@@ -1,6 +1,9 @@
 case file.type
 	when 'file'
-		li.item.file(data-file-id= file.id)
+		li.item.file(
+				data-selected='false'
+				data-file-id= file.id
+				data-mimetype= file.mimeType)
 			div.context-menu
 				ul
 					li
@@ -21,7 +24,9 @@ case file.type
 			div.content(style= 'background-image: url(' + file.url + ');')
 				p.name= file.name
 	when 'folder'
-		li.item.folder(data-folder-id= file.id)
+		li.item.folder(
+				data-selected='false'
+				data-folder-id= file.id)
 			div.context-menu
 				ul
 					li
