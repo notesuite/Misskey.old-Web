@@ -1,28 +1,3 @@
-if login
-	div#misskey-create-status-form-back(role='presentation')
-	div#misskey-create-status-form-container
-		form#misskey-create-status-form(enctype='multipart/form-data', role='form')
-			h1
-				| 新しい投稿
-			button.close-button(type='button', role='button')
-				i.fa.fa-times
-			div.me-icon-area
-				img.icon(src=me.iconImageUrl, alt='icon', title=me.comment)
-			div.main
-				textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
-				div.image-attacher
-					p
-						i.fa.fa-picture-o
-					input(name='image', type='file', accept='image/*')
-				input.submit-button(type='submit', value!='Update &#xf1d8;', role='button', disabled)
-			div.progress
-				p.status
-					i.fa.fa-spinner.fa-pulse
-					span.text
-				progress(form='misskey-create-status-form', value='0')
-			div.image-preview-container
-				div.image-preview
-
 header#misskey-main-header(
 		role='banner'
 		data-user-color= (rootUser != null) ? rootUser.color : login ? me.color : config.themeColor)
@@ -91,9 +66,9 @@ header#misskey-main-header(
 								li.talk(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href='/i/talks')
 									i.fa.fa-comments
 									| Talks
-								li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
-									i.fa.fa-users
-									| Boards
+								li.mention(class= pagePath == '/i/album' ? 'active' : ''): a.ui-waves-effect(href='/i/album')
+									i.fa.fa-cloud
+									| Album
 				div.right
 					form.search(action='/search', method='get', role='search')
 						input(type='search', name='q', placeholder!='&#xf002; Search')
