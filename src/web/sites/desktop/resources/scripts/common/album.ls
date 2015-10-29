@@ -5,6 +5,7 @@ $ ->
 	$album-uploads = $album.find '> .uploads'
 	$album-uploader = $album-header.find '> .uploader'
 	$album-browser = $album.find '> .browser'
+	$album-browser-contextmenu = $album-browser.find '> .menu'
 	$selection = $album-browser.find '> .selection'
 	$album-files = $album-browser.find '> .files'
 
@@ -43,6 +44,25 @@ $ ->
 		.fail (data) ->
 			window.display-message 'アップロードに失敗しました。'
 
+	function init-contextmenu($trigger, $menu)
+		$trigger.bind \contextmenu (e) ->
+			function close
+				$menu.attr \data-active \false
+			function open
+				$ document .mousedown (e) ->
+					if !$.contains $menu[0], e.target
+						close!
+				$menu.attr \data-active \true
+				$menu.css {
+					top: e.page-y
+					left: e.page-x
+				}
+			if ($menu.attr \data-active) == \true
+				close!
+			else
+				open!
+			false
+
 	# Init uploader
 	$album-uploader.find \button .click ->
 		$album-uploader.find \input .click!
@@ -52,6 +72,9 @@ $ ->
 		for i from 0 to files.length - 1
 			file = files.item i
 			upload file
+
+	# Init context menu
+	init-contextmenu $album-browser, $album-browser-contextmenu
 
 	# Init selectd area highlighter
 	$album-browser.mousedown (e) ->
@@ -105,7 +128,6 @@ $ ->
 				else
 					$item.attr \data-selected \false
 		function up(e)
-			console.log 'kyoppie'
 			$ \html .off \mousemove move
 			$ \html .off \mouseup up
 			$selection.animate {
@@ -123,8 +145,8 @@ $ ->
 		$.ajax "#{config.api-url}/web/album/files" {
 			type: \get
 			data: {}
-			-processData
-			-contentType
+			-process-data
+			-content-type
 			data-type: \text
 			xhr-fields: {+with-credentials}}
 		.done (html) ->
@@ -132,9 +154,10 @@ $ ->
 			$album-files.empty!
 			$album-files.append $files
 
-			# Init event handlers
+			# Init
 			$album-files.find \.file .each ->
 				$file = $ @
+				init-contextmenu $file, $file.find '> .context-menu'
 				$file.mousedown (e) ->
 					e.stop-immediate-propagation!
 				$file.click ->
