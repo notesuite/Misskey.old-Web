@@ -5,6 +5,7 @@ import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
 // import generateHomeTimelineHtml from '../utils/generateHomeTimelineHtml';
 import requestApi from '../../../../utils/requestApi';
+import mapToHtml from '../../../../utils/mapToHtml';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any = {}): void => {
 	'use strict';
@@ -41,11 +42,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 			// Get timeline
 			new Promise((resolve: (timeline: string) => void, reject: (err: any) => void) => {
 				if (customizeMode || useWidgets.indexOf('timeline') > -1) {
-					requestApi('GET', 'statuses/timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
-						/*generateHomeTimelineHtml(tl, me, (timelineHtml: string) => {
-							resolve(timelineHtml);
-						});*/
-						resolve(null);
+					requestApi('GET', 'timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
+						resolve(mapToHtml(`${__dirname}/../views/dynamic-parts/post/smart/post.jade`, 'post', tl));
 					});
 				} else {
 					resolve(null);

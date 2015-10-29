@@ -4,7 +4,7 @@ import * as express from 'express';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
 import requestApi from '../utils/requestApi';
-import mapToHtml from './utils/mapToHtml';
+import mapToHtml from '../utils/mapToHtml';
 
 export default function(app: express.Express): void {
 	'use strict';
