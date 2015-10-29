@@ -7,8 +7,8 @@ $ ->
 	
 	# Init selectd area highlighter
 	$album-browser.mousedown (e) ->
-		top = e.page-y
-		left = e.page-x
+		top = e.page-y - $album-browser.offset!.top
+		left = e.page-x - $album-browser.offset!.left
 		$selection.stop!
 		$selection.css {
 			display: \block
@@ -19,8 +19,8 @@ $ ->
 			opacity: 1
 		}
 		function move(e)
-			cursor-x = e.page-x
-			cursor-y = e.page-y
+			cursor-x = e.page-x - $album-browser.offset!.left
+			cursor-y = e.page-y - $album-browser.offset!.top
 			w = cursor-x - left
 			h = cursor-y - top
 			css = {
@@ -52,12 +52,14 @@ $ ->
 				item-left = $item.offset!.left
 				item-width = $item.outer-width!
 				item-height = $item.outer-height!
-				if ((item-left + item-width) > selection-left && item-left < (selection-left + selection-width))
+				if ((item-left + item-width) > selection-left) && (item-left < (selection-left + selection-width)) && ((item-top + item-height) > selection-top) && (item-top < (selection-top + selection-height))
 					$item.attr \data-selected \true
+				else
+					$item.attr \data-selected \false
 		function up(e)
 			console.log 'kyoppie'
 			$ \html .off \mousemove move
-			$album-browser.off \mouseup up
+			$ \html .off \mouseup up
 			$selection.animate {
 				opacity: 0
 			} 200ms ->
@@ -65,7 +67,7 @@ $ ->
 					display: \none
 				}
 		$ \html .on \mousemove move
-		$album-browser.on \mouseup up
+		$ \html .on \mouseup up
 
 	load-files!
 
