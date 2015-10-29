@@ -62,7 +62,7 @@ $ ->
 			$ \html .off \mouseup up
 			$selection.animate {
 				opacity: 0
-			} 200ms ->
+			} 100ms ->
 				$selection.css {
 					display: \none
 				}
