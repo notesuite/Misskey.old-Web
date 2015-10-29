@@ -6,14 +6,52 @@ $ ->
 	$album-browser = $album.find '> .browser'
 	$selection = $album-browser.find '> .selection'
 	$album-files = $album-browser.find '> .files'
-	
+
+	function upload(file)
+		$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
+		data = new FormData!
+			..append \file file
+		$.ajax config.api-url + '/album/upload' {
+			+async
+			type: \post
+			-process-data
+			-content-type
+			data: data
+			data-type: \json
+			xhr-fields: {+with-credentials}
+			xhr: ->
+				XHR = $.ajax-settings.xhr!
+				if XHR.upload
+					XHR.upload.add-event-listener \progress (e) ->
+						percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
+						if percentage == 100
+							$progress-bar
+								..remove-attr \value
+								..remove-attr \max
+							$progress-status .text "いろいろと処理しています... しばらくお待ちください"
+						else
+							$progress-bar
+								..attr \max e.total
+								..attr \value e.loaded
+							$progress-status .text "アップロードしています... #{percentage}%"
+					, false
+				XHR
+		}
+		.done (data) ->
+			window.display-message 'アップロードしました'
+		.fail (data) ->
+			window.display-message 'アップロードに失敗しました。'
+
 	# Init uploader
-	$album-uploader.find \input .change ->
-		$album-uploader.submit!
 	$album-uploader.find \button .click ->
 		$album-uploader.find \input .click!
 		false
-	
+	$album-uploader.find \input .change ->
+		files = ($album-uploader.find \input)[0].files
+		for i from 0 to files.length - 1
+			file = files.item i
+			upload file
+
 	# Init selectd area highlighter
 	$album-browser.mousedown (e) ->
 		top = e.page-y - $album-browser.offset!.top
@@ -47,9 +85,9 @@ $ ->
 			else
 				css.height = -h
 				css.top = cursor-y
-				
+
 			$selection.css css
-			
+
 			# 重なり判定
 			selection-top = $selection.offset!.top
 			selection-left = $selection.offset!.left
@@ -92,7 +130,7 @@ $ ->
 			$files = $ html
 			$album-files.empty!
 			$album-files.append $files
-			
+
 			# Init event handlers
 			$album-files.find \.file .each ->
 				$file = $ @
