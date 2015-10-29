@@ -1,9 +1,18 @@
 $ ->
 	current-location = null
 	$album = $ \#misskey-album
+	$album-header = $album.find '> header'
+	$album-uploader = $album-header.find '> .uploader'
 	$album-browser = $album.find '> .browser'
 	$selection = $album-browser.find '> .selection'
 	$album-files = $album-browser.find '> .files'
+	
+	# Init uploader
+	$album-uploader.find \input .change ->
+		$album-uploader.submit!
+	$album-uploader.find \button .click ->
+		$album-uploader.find \input .click!
+		false
 	
 	# Init selectd area highlighter
 	$album-browser.mousedown (e) ->

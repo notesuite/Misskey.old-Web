@@ -2,16 +2,14 @@ div#misskey-album
 	script(src='/resources/scripts/common/album.js')
 	link(rel='stylesheet', href='/resources/styles/common/album.css')
 	header
-		button
-			i.fa.fa-cloud-upload
-			| アップロード
+		form.uploader(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
+			input(name='file', type='file', accept='*', multiple)
+			button
+				i.fa.fa-cloud-upload
+				| アップロード
 		nav
 			ol.path
 				
 	div.browser
 		div.selection(role='presentation')
 		ol.files
-	form.upload-form(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
-		input(name='file', type='file', accept='*')
-		input.submit-button(type='submit', value='Uplad', role='button')
-		
