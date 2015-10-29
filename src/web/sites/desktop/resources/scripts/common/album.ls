@@ -2,6 +2,7 @@ $ ->
 	current-location = null
 	$album = $ \#misskey-album
 	$album-header = $album.find '> header'
+	$album-uploads = $album.find '> .uploads'
 	$album-uploader = $album-header.find '> .uploader'
 	$album-browser = $album.find '> .browser'
 	$selection = $album-browser.find '> .selection'
@@ -9,6 +10,8 @@ $ ->
 
 	function upload(file)
 		$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
+		$progress-bar = $info.find \progress
+		$album-uploads.find \ol .append $info
 		data = new FormData!
 			..append \file file
 		$.ajax config.api-url + '/album/upload' {
@@ -28,12 +31,10 @@ $ ->
 							$progress-bar
 								..remove-attr \value
 								..remove-attr \max
-							$progress-status .text "いろいろと処理しています... しばらくお待ちください"
 						else
 							$progress-bar
 								..attr \max e.total
 								..attr \value e.loaded
-							$progress-status .text "アップロードしています... #{percentage}%"
 					, false
 				XHR
 		}
