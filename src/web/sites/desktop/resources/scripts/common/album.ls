@@ -44,19 +44,28 @@ $ ->
 		.fail (data) ->
 			window.display-message 'アップロードに失敗しました。'
 
-	function init-contextmenu($trigger, $menu)
+	function init-contextmenu($trigger, $menu, shown)
 		$trigger.bind \contextmenu (e) ->
+			e.stop-immediate-propagation!
+			function mousedown(e)
+				if e.which == 3
+					close!
+				if !$.contains $menu[0], e.target
+					close!
 			function close
 				$menu.attr \data-active \false
+				$ document .off \mousedown mousedown
 			function open
-				$ document .mousedown (e) ->
-					if !$.contains $menu[0], e.target
-						close!
+				$album.find \.context-menu .each ->
+					($ @).attr \data-active \false
+				$ document .on \mousedown mousedown
 				$menu.attr \data-active \true
 				$menu.css {
 					top: e.page-y
 					left: e.page-x
 				}
+				if shown !== undefined
+					shown!
 			if ($menu.attr \data-active) == \true
 				close!
 			else
@@ -157,7 +166,8 @@ $ ->
 			# Init
 			$album-files.find \.file .each ->
 				$file = $ @
-				init-contextmenu $file, $file.find '> .context-menu'
+				init-contextmenu $file, ($file.find '> .context-menu'), ->
+					$file.attr \data-selected \true
 				$file.mousedown (e) ->
 					e.stop-immediate-propagation!
 				$file.click ->

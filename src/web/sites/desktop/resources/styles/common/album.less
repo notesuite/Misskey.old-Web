@@ -28,8 +28,8 @@
 		> ul {
 			display: block;
 			position: relative;
-			margin: 8px 0;
-			padding: 0;
+			margin: 0;
+			padding: 8px 0;
 			list-style: none;
 			border-bottom: solid 1px #eee;
 
@@ -48,7 +48,19 @@
 				}
 
 				> i {
+					width: 1em;
 					margin-right: 0.5em;
+					text-align: center;
+
+					& + p {
+						margin-left: 0;
+					}
+				}
+
+				> p {
+					display: inline;
+					margin: 0;
+					margin-left: 1.5em;
 				}
 			}
 		}

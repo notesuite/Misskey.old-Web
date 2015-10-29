@@ -7,20 +7,20 @@ case file.type
 			div.context-menu
 				ul
 					li
-						| 選択
+						p 選択
 					li
-						| 開く
+						p 開く
 				ul
 					li
 						i.fa.fa-download
-						| ダウンロード
+						p ダウンロード
 				ul
 					li
-						i.fa.fa-cursor
-						| 名前を変更
+						i.fa.fa-i-cursor
+						p 名前を変更
 					li
 						i.fa.fa-trash-o
-						| 削除
+						p 削除
 			div.content(style= 'background-image: url(' + file.url + ');')
 				p.name= file.name
 	when 'folder'
