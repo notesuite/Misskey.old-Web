@@ -8,5 +8,5 @@ export default function(templatePath: string, key: string, values: Object[]): st
 		const args: any = {};
 		args[key] = value;
 		return compiler(args);
-	}).join();
+	}).join('');
 }
