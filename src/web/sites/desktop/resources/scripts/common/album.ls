@@ -64,8 +64,8 @@ $ ->
 					($ @).on \mousedown mousedown
 				$menu.attr \data-active \true
 				$menu.css {
-					top: e.page-y
-					left: e.page-x
+					top: e.client-y
+					left: e.client-x
 					opacity: 0
 				}
 				$menu.animate {
@@ -94,8 +94,8 @@ $ ->
 
 	# Init selectd area highlighter
 	$album-browser.mousedown (e) ->
-		top = e.page-y - $album-browser.offset!.top
-		left = e.page-x - $album-browser.offset!.left
+		left = e.client-x - ($album.position!.left + $album-browser.position!.left) + $album-browser.scroll-left!
+		top = e.client-y - ($album.position!.top + $album-browser.position!.top) + $album-browser.scroll-top!
 		$selection.stop!
 		$selection.css {
 			display: \block
@@ -108,8 +108,9 @@ $ ->
 		$album-files.find \.file .each ->
 			($ @).attr \data-selected \false
 		function move(e)
-			cursor-x = e.page-x - $album-browser.offset!.left
-			cursor-y = e.page-y - $album-browser.offset!.top
+			console.log $album.position!.left
+			cursor-x = e.client-x - ($album.position!.left + $album-browser.position!.left) + $album-browser.scroll-left!
+			cursor-y = e.client-y - ($album.position!.top + $album-browser.position!.top) + $album-browser.scroll-top!
 			w = cursor-x - left
 			h = cursor-y - top
 			css = {

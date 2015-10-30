@@ -1,6 +1,13 @@
 @themeColor: <%themeColor%>;
 
 #misskey-album {
+	position: fixed;
+	top: 64px;
+	left: 64px;
+	bottom: 64px;
+	right: 64px;
+	//height: ~"calc(100% - 128px)";
+
 	&, * {
 		user-select: none;
 		-moz-user-select: none;
@@ -67,9 +74,9 @@
 	}
 
 	> header {
-		position: relative;
 		z-index: 1;
 		//box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+		height: ~"calc(1em + 32px)";
 		background: #000;
 
 		&:after {
@@ -135,6 +142,8 @@
 	> .browser {
 		display: block;
 		position: relative;
+		height: ~"calc(100% - (1em + 32px))";
+		overflow: scroll;
 		//background: #f9f9f9;
 		background: #151515;
 
