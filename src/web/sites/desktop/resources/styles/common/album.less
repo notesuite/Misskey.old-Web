@@ -7,6 +7,10 @@
 		-webkit-user-select: none;
 		-ms-user-select: none;
 		cursor: default;
+
+		&:not(i) {
+			font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+		}
 	}
 
 	.context-menu {
@@ -15,10 +19,6 @@
 		z-index: 2;
 		background: #fff;
 		box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-
-		&, *:not(i) {
-			font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
-		}
 
 		&[data-active='true'] {
 			display: block;
@@ -66,19 +66,58 @@
 		}
 	}
 
-	> form {
-		margin: 64px;
-	}
-
 	> header {
 		position: relative;
 		z-index: 1;
-		padding: 8px;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
 		> .uploader {
 			> input {
 				display: none;
+			}
+
+			button {
+				display: block;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				box-sizing: border-box;
+				padding: 16px;
+				margin: 0;
+				font-size: 1.2em;
+				color: #555;
+				outline: none;
+				border: none;
+				border-radius: 0;
+				box-shadow: none;
+				background: transparent;
+				transition: all .5s ease;
+				cursor: pointer;
+
+				* {
+					cursor: pointer;
+				}
+
+				&:hover {
+					color: @themeColor;
+					transition: all .2s ease;
+				}
+
+				&:focus {
+					color: @themeColor;
+					transition: all .2s ease;
+				}
+
+				&:active {
+					color: darken(@themeColor, 30%);
+					transition: all .2s ease;
+				}
+
+				i {
+					margin-right: 0.5em;
+					font-family: FontAwesome;
+				}
 			}
 		}
 	}
@@ -131,6 +170,15 @@
 						&:hover {
 							//border: solid 4px lighten(@themeColor, 20%);
 							outline: solid 4px lighten(@themeColor, 20%);
+
+							> .name {
+								background: lighten(@themeColor, 20%);
+							}
+						}
+
+						> .name {
+							color: contrast(@themeColor, #000, #fff, 70%);
+							background: @themeColor;
 						}
 					}
 				}
@@ -154,13 +202,14 @@
 						display: block;
 						position: absolute;
 						top: 124px;
-						width: 100%;
-						margin: 0;
-						padding: 8px 0 0 0;
+						width: ~"calc(100% + 8px)";
+						margin: 4px 0 0 -4px;
+						padding: 4px 0 4px 0;
 						font-size: 0.9em;
 						text-align: center;
 						word-wrap: break-word;
 						color: #556677;
+						transition: background 0.1s ease, color 0.1s ease;
 					}
 				}
 

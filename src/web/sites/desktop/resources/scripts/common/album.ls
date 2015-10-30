@@ -48,10 +48,12 @@ $ ->
 		$trigger.bind \contextmenu (e) ->
 			e.stop-immediate-propagation!
 			function mousedown(e)
+				e.stop-immediate-propagation!
 				if e.which == 3
 					close!
 				if !$.contains $menu[0], e.target
 					close!
+				false
 			function close
 				$menu.attr \data-active \false
 				$ document .off \mousedown mousedown
@@ -63,7 +65,11 @@ $ ->
 				$menu.css {
 					top: e.page-y
 					left: e.page-x
+					opacity: 0
 				}
+				$menu.animate {
+					opacity: 1
+				} 100ms
 				if shown !== undefined
 					shown!
 			if ($menu.attr \data-active) == \true
@@ -98,6 +104,8 @@ $ ->
 			height: 0
 			opacity: 1
 		}
+		$album-files.find \.file .each ->
+			($ @).attr \data-selected \false
 		function move(e)
 			cursor-x = e.page-x - $album-browser.offset!.left
 			cursor-y = e.page-y - $album-browser.offset!.top
