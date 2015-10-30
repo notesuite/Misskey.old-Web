@@ -57,11 +57,11 @@ $ ->
 				false
 			function close
 				$menu.attr \data-active \false
-				$ document .off \mousedown mousedown
+				$ 'body *' .each ->
+					($ @).off \mousedown mousedown
 			function open
-				$album.find \.context-menu .each ->
-					($ @).attr \data-active \false
-				$ document .on \mousedown mousedown
+				$ 'body *' .each ->
+					($ @).on \mousedown mousedown
 				$menu.attr \data-active \true
 				$menu.css {
 					top: e.page-y
