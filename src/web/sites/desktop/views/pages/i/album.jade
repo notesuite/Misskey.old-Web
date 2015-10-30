@@ -1,10 +1,10 @@
-extends ../../layouts/main
+doctype html
 
-block title
-	| Misskey アルバム
-
-block head
-	link(rel='stylesheet', href='/resources/styles/page/i/album.css')
-
-block body
-	include ../../common/album
+html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
+	head(prefix='og: http://ogp.me/ns#')
+		include ../../common/head
+		title Misskey アルバム
+		link(rel='stylesheet', href='/resources/styles/page/i/album.css')
+		
+	body
+		include ../../common/album
