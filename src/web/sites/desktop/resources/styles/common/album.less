@@ -71,7 +71,15 @@
 		z-index: 1;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
 		> .uploader {
+			float: left;
+
 			> input {
 				display: none;
 			}
@@ -119,6 +127,10 @@
 					font-family: FontAwesome;
 				}
 			}
+		}
+
+		> nav {
+			float: left;
 		}
 	}
 
@@ -233,7 +245,7 @@
 	}
 
 	> .uploads {
-		display: block;
+		display: none;
 		position: fixed;
 		bottom: 0;
 		right: 0;

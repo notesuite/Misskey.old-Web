@@ -10,6 +10,7 @@ $ ->
 	$album-files = $album-browser.find '> .files'
 
 	function upload(file)
+		$album-uploads.css \display \block
 		$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
 		$album-uploads.find \ol .append $info
