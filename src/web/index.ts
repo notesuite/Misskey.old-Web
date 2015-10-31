@@ -72,7 +72,7 @@ server.get('/manifest.json', (req: express.Request, res: express.Response) => {
 });
 
 // Init session
-server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	const uastring: string = req.headers['user-agent'];
 	const ua: string = ((): string => {
 		if (uastring !== null) {
@@ -127,11 +127,21 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 	// Check logged in, set user instance if logged in
 	if (isLogin) {
 		const userId: string = req.session.userId;
-		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
+		if (req.session.hasOwnProperty('user')) {
+			const user: User = req.session.user;
 			req.me = user;
 			req.renderData.me = user;
 			next();
-		});
+		} else {
+			requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
+				req.me = user;
+				req.renderData.me = user;
+				req.session.user = user;
+				req.session.save(() => {
+					next();
+				});
+			});
+		}
 	} else {
 		req.me = null;
 		req.renderData.me = null;
@@ -141,6 +151,22 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 
 // Rooting
 resourcesRouter(server);
+
+// set request session cookie
+server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+	if (req.isLogin) {
+		const userId: string = req.session.userId;
+		requestApi("GET", "users/show", { "user-id": userId }).then((user: User) => {
+			req.session.user = user;
+			req.session.save(() => {
+				next();
+			});
+		});
+	} else {
+		next();
+	}
+});
+
 pageRouter(server);
 
 // Not found handling
