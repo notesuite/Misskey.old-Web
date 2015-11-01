@@ -206,7 +206,7 @@ li.post(
 							li.stargazer
 								a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
 									img.icon(src=stargazer.iconImageUrl, alt='icon')
-			if post.replies.length > 0 && post.replies[0] != null
+			if post.replies.length > 0
 				i.fa.fa-ellipsis-v.reply-info
 			aside.form-and-replies
 				if login
@@ -226,8 +226,8 @@ li.post(
 					p この投稿に返信するにはログインしてください。
 				aside.replies(itemprop='comment')
 					ol.statuses
-						if status.replies.length > 0 && status.replies[0] != null
-							each reply in status.replies
+						if post.replies.length > 0
+							each reply in post.replies
 								li.status(title!= '#{reply.createdAt}&#x0A;'
 									data-id= reply.id
 									data-user-id= reply.user.id
@@ -235,7 +235,7 @@ li.post(
 									data-user-verified!= reply.user.isVerified.toString())
 									article
 										a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
-											img.icon(src=reply.user.iconImageUrl, alt='icon')
+											img.icon(src=reply.user.iconUrl, alt='icon')
 										header
 											if reply.user.isVerified
 												img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
