@@ -26,7 +26,7 @@ console.log('Init Web server');
 
 // Grobal options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
-const htmlpretty: string = '\t';
+const htmlpretty: string = '    ';
 
 // Init DB connection
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);

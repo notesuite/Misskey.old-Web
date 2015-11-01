@@ -43,6 +43,13 @@ mixin status(status)
 			div.text
 				p!= status.text
 
+mixin extract(post)
+	case post.type
+		when 'status'
+			+status(post)
+		when 'repost'
+			+extract(post.post)
+
 mixin post(post)
 	li.post(
 			class                   = post.type
@@ -78,12 +85,6 @@ mixin post(post)
 							i.fa.fa-ban
 							p キャンセル
 		article(role='article')
-			mixin extract(post)
-				case post.type
-					when 'status'
-						+status(post)
-					when 'repost'
-						+extract(post.post)
 			+extract(post)
 			footer.footer
 				ul.actions
