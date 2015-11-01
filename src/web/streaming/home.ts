@@ -4,7 +4,7 @@ import * as cookie from 'cookie';
 import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
-	user: any
+	user: any;
 }
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
@@ -32,11 +32,14 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 			// Subscribe Home stream channel
 			subscriber.subscribe(`misskey:userStream:${socket.user.id}`);
-			subscriber.on('message', (_: any, contentString: string) =>{
+			subscriber.on('message', (_: any, contentString: string) => {
 				const content: any = JSON.parse(contentString);
-				switch(content.type) {
+				switch (content.type) {
 					case 'post':
 						socket.emit('post', 'kyoppie');
+						console.log('kyooopie');
+						break;
+					default:
 						break;
 				}
 			});

@@ -23,7 +23,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 		'small-calendar'
 	];
 
-	UserHomeLayout.findOne({userId: me.id}, (err: any, userLayout: IUserHomeLayout) => {
+	UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IUserHomeLayout) => {
 		const defaultLayout: any = {
 			left: [],
 			center: ['timeline'],
