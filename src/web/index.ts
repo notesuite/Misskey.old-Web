@@ -19,8 +19,7 @@ import requestApi from '../utils/requestApi';
 
 import config from '../config';
 
-import resourcesRouter from './resourcesRouter';
-import pageRouter from './pageRouter';
+import router from './router';
 
 console.log('Init Web server');
 
@@ -39,6 +38,7 @@ server.locals.pretty = htmlpretty;
 server.set('view engine', 'jade');
 server.set('X-Frame-Options', 'SAMEORIGIN');
 
+server.use(express.static('resources'));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
@@ -149,9 +149,6 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 	}
 });
 
-// Rooting
-resourcesRouter(server);
-
 // set request session cookie
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	if (req.isLogin) {
@@ -167,7 +164,8 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 	}
 });
 
-pageRouter(server);
+// Rooting
+router(server);
 
 // Not found handling
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {

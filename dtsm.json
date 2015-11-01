@@ -69,6 +69,9 @@
     },
     "multer/multer.d.ts": {
       "ref": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
+    },
+    "gulp-less/gulp-less.d.ts": {
+      "ref": "eb59a40d3c2f3257e34ec2ede181046230814a41"
     }
   }
 }
