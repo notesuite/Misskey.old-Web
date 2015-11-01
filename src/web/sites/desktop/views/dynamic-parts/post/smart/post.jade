@@ -1,30 +1,23 @@
 - var isMyStatus = login && (me.id == status.userId)
 
-div.status.article(
-		class                   = status.isRepostToStatus ? 'repost' : 'normal'
-		lang                    = status.user.lang
-		title                   = status.displayCreatedAt
+li.post(
+		class                   = post.type
+		lang                    = post.user.lang
+		title                   = post.createdAt
 		itemscope
 		itemtype                = 'http://schema.org/BlogPosting'
-		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
-		data-status-id          = status.id
-		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
-		data-id                 = status.id
-		data-created-at         = status.createdAt
-		data-cursor             = status.cursor
-		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
-		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null
-		data-source-id          = status.isRepostToStatus ? status.id : null
-		data-text               = status.text
-		data-user-id            = status.user.id
-		data-user-screen-name   = status.user.screenName
-		data-user-name          = status.user.name
-		data-user-color         = status.user.color
-		data-user-verified     != status.user.isVerified.toString()
-		data-is-reply          != status.isReply.toString()
+		data-post-url           = config.url + '/' + post.user.screenName + '/post/' + post.id
+		data-id                 = post.id
+		data-cursor             = post.cursor
+		data-user-id            = post.user.id
+		data-user-screen-name   = post.user.screenName
+		data-user-name          = post.user.name
+		data-user-color         = post.user.color
+		data-user-verified     != post.user.isVerified.toString()
+		data-is-reply          != (post.inReplyToPost !== null).toString()
 		data-is-talk           != (status.moreTalk != null).toString()
-		data-is-favorited      != login ? status.isFavorited.toString() : null
-		data-is-reposted       != login ? status.isReposted.toString() : null
+		data-is-favorited      != login ? post.isFavorited.toString() : null
+		data-is-reposted       != login ? post.isReposted.toString() : null
 		data-is-repostpost     != status.isRepostToStatus.toString()
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
 		data-display-html-is-active='false')
