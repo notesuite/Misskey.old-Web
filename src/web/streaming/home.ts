@@ -32,8 +32,13 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 			// Subscribe Home stream channel
 			subscriber.subscribe(`misskey:userStream:${socket.user.id}`);
-			subscriber.on('message', (_: any, content: string) =>{
-				content = JSON.parse(content);
+			subscriber.on('message', (_: any, contentString: string) =>{
+				const content: any = JSON.parse(contentString);
+				switch(content.type) {
+					case 'post':
+						socket.emit('post', 'kyoppie');
+						break;
+				}
 			});
 		});
 	});
