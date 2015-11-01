@@ -1,47 +1,7 @@
 - var isMyPost = login && (me.id == post.user.id)
 
 mixin status(status)
-	if status.moreTalk != null
-		aside.talk
-			i.fa.fa-ellipsis-v
-			ol.statuses
-				each talkPost in status.moreTalk
-					li.status(title!= '#{talkPost.createdAt}&#x0A;'
-						data-id= talkPost.id
-						data-user-id= talkPost.user.id
-						data-user-color= talkPost.user.color
-						data-user-verified!= talkPost.user.isVerified.toString())
-						article
-							a.icon-anchor(href= config.url + '/' + talkPost.user.screenName, title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
-								img.icon(src=talkPost.user.iconImageUrl, alt='icon')
-							header
-								if talkPost.user.isVerified
-									img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-								h2
-									a(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
-								span.screen-name= '@' + talkPost.user.screenName
-								a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt, pubdate, data-display-type='relative')= talkPost.createdAt
-							div.main
-								div.text
-									p!= (talkPost.isReply ? '<a href="' + config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
-								if talkPost.isImageAttached
-									img.image(src=talkPost.imageUrls[0], alt='image')
-	if status.isRepostToStatus
-		div.repost-information
-			p.info
-				a.icon-anchor(href=config.url + '/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
-					img.icon(src=status.repostedByUser.iconImageUrl, alt='icon')
-				span.text
-					i.fa.fa-retweet
-					| Reposted by 
-					a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
-			if status.source.text != null && status.source.text != ''
-				article
-					div.text
-						p!= textParser(status.source.text)
-					if status.source.isImageAttached
-						img.image(src=status.source.imageUrls[0], alt='image', itemprop='image')
-	if status.isReply
+	if status.inReplyToPost !== null
 		div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
 			data-id= status.replySource.id
 			data-user-id= status.replySource.user.id
@@ -65,7 +25,7 @@ mixin status(status)
 	div.main
 		div.icon-area
 			a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
-				img.icon(src=status.user.iconImageUrl, alt='icon')
+				img.icon(src=status.user.iconUrl, alt='icon')
 		header.header
 			div.author(itemprop='author')
 				h2
@@ -83,21 +43,7 @@ mixin status(status)
 					time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 		div.content(itemprop='articleBody')
 			div.text
-				p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
-			div.tag
-				if status.tag != null
-					ol(itemprop='keywords')
-						each tag in status.tag
-							li= tag
-			if status.isImageAttached
-				div.attached-images
-					ol.images
-						each imageUrl in status.imageUrls
-							li.image(data-is-expanded='false')
-								div.background
-								button.expand(title='拡大', role='button')
-									i.fa.fa-expand
-								img.image(src=imageUrl, alt='image', itemprop='image')
+				p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToPost.id + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 
 li.post(
 		class                   = post.type
@@ -246,5 +192,3 @@ li.post(
 										div.main
 											div.text
 												p!= (reply.isReply ? '<a href="' + config.url + '/' + reply.user.screenName + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
-											if reply.isImageAttached
-												img.image(src=reply.imageUrls[0], alt='image')
