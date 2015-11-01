@@ -79,7 +79,7 @@ $ ->
 			$info.append-to $ '#widget-notices'
 	.fail (data) ->
 
-	socket = io.connect config.web-streaming-url + '/streaming/web/home'
+	socket = io.connect config.web-streaming-url + '/streaming/home'
 
 	socket.on \connect ->
 		console.log 'Connected'

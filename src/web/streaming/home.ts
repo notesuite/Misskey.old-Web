@@ -9,10 +9,9 @@ interface MKSocketIOSocket extends SocketIO.Socket {
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
 	io.of('/streaming/home').on('connection', (socket: MKSocketIOSocket) => {
+
 		// Connect to Redis
-		const subscriber: redis.RedisClient = redis.createClient({
-			host: config.redisServerHost
-		});
+		const subscriber: redis.RedisClient = redis.createClient(6379, config.redisServerHost);
 
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);

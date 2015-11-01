@@ -2,6 +2,9 @@ import * as http from 'http';
 import * as session from 'express-session';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
+import * as mongoose from 'mongoose';
+import * as MongoStore from 'connect-mongo';
+const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
 import config from '../../config';
 
 console.log('Init Web streaming server');
@@ -15,10 +18,11 @@ const server: http.Server = http.createServer((req: http.IncomingMessage, res: h
 
 const io: SocketIO.Server = SocketIO.listen(server);
 
-const RedisStore: any = require('connect-redis')(session);
-const sessionStore: any = new RedisStore({
-	db: 1,
-	prefix: 'misskey-session:'
+// Init DB connection
+const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
+
+const sessionStore: any = new _MongoStore({
+	mongooseConnection: db
 });
 
 // Authorization
