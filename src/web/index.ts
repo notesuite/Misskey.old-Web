@@ -38,11 +38,11 @@ server.locals.pretty = htmlpretty;
 server.set('view engine', 'jade');
 server.set('X-Frame-Options', 'SAMEORIGIN');
 
-server.use('/resources', express.static(`${__dirname}/resources`));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
 server.use(expressMinify());
+server.use('/resources', express.static(`${__dirname}/resources`));
 
 // Session settings
 server.use(expressSession({
