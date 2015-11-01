@@ -41,8 +41,8 @@ server.set('X-Frame-Options', 'SAMEORIGIN');
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
-server.use(expressMinify());
 server.use('/resources', express.static(`${__dirname}/resources`));
+// server.use(expressMinify());
 
 // Session settings
 server.use(expressSession({
