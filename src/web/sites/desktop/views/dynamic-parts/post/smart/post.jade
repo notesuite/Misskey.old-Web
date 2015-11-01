@@ -43,96 +43,97 @@ mixin status(status)
 			div.text
 				p!= status.text
 
-li.post(
-		class                   = post.type
-		lang                    = post.user.lang
-		title                   = post.createdAt
-		itemscope
-		itemtype                = 'http://schema.org/BlogPosting'
-		data-post-url           = config.url + '/' + post.user.screenName + '/post/' + post.id
-		data-id                 = post.id
-		data-cursor             = post.cursor
-		data-user-id            = post.user.id
-		data-user-screen-name   = post.user.screenName
-		data-user-name          = post.user.name
-		data-user-color         = post.user.color
-		data-user-verified     != post.user.isVerified.toString()
-		data-is-reply          != (post.inReplyToPost !== null).toString()
-		data-is-talk           != (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null).toString()
-		data-is-favorited      != login ? post.isFavorited.toString() : null
-		data-is-reposted       != login ? post.isReposted.toString() : null
-		data-display-html-is-active='false')
-	if login
-		div.repost-form
-			div.background
-			form.form
-				h2
-					i.fa.fa-retweet
-					| この投稿をRepostしますか？
-				div.actions
-					button.accept(type='submit')
-						i.fa.fa-check
-						p Repost
-					button.cancel(type='button')
-						i.fa.fa-ban
-						p キャンセル
-	article(role='article')
-		mixin extract(post)
-			case post.type
-				when 'status'
-					+status(post)
-				when 'repost'
-					+extract(post.post)
-		+extract(post)
-		footer.footer
-			ul.actions
-				li.reply
-					button.reply-button(title='返信', role='button')
-						i.fa.fa-reply
-					a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
-				li.repost
-					button.repost-button(title= post.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+mixin post(post)
+	li.post(
+			class                   = post.type
+			lang                    = post.user.lang
+			title                   = post.createdAt
+			itemscope
+			itemtype                = 'http://schema.org/BlogPosting'
+			data-post-url           = config.url + '/' + post.user.screenName + '/post/' + post.id
+			data-id                 = post.id
+			data-cursor             = post.cursor
+			data-user-id            = post.user.id
+			data-user-screen-name   = post.user.screenName
+			data-user-name          = post.user.name
+			data-user-color         = post.user.color
+			data-user-verified     != post.user.isVerified.toString()
+			data-is-reply          != (post.inReplyToPost !== null).toString()
+			data-is-talk           != (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null).toString()
+			data-is-favorited      != login ? post.isFavorited.toString() : null
+			data-is-reposted       != login ? post.isReposted.toString() : null
+			data-display-html-is-active='false')
+		if login
+			div.repost-form
+				div.background
+				form.form
+					h2
 						i.fa.fa-retweet
-					a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
-				li.favorite
-					button.favorite-button(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
-						i.fa.fa-star
-					a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
-			if post.stargazers != null
-				ol.stargazers
-					each stargazer in post.stargazers
-						li.stargazer
-							a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
-								img.icon(src=stargazer.iconUrl, alt='icon')
-		if post.replies.length > 0
-			i.fa.fa-ellipsis-v.reply-info
-		aside.form-and-replies
-			form.reply-form(role='form')
-				img.me-icon(src=me.iconUrl, alt='icon')
-				div.form
-					textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
-					div.design-allow(role='presentation')
-					input(name='in-reply-to-post-id', type='hidden', value=post.id)
-					input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
-			aside.replies(itemprop='comment')
-				ol.statuses
-					if post.replies.length > 0
-						each reply in post.replies
-							li.status(title!= '#{reply.createdAt}&#x0A;'
-								data-id= reply.id
-								data-user-id= reply.user.id
-								data-user-color= reply.user.color
-								data-user-verified!= reply.user.isVerified.toString())
-								article
-									a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
-										img.icon(src=reply.user.iconUrl, alt='icon')
-									header
-										if reply.user.isVerified
-											img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-										h2
-											a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
-										span.screen-name= '@' + reply.user.screenName
-										a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
-									div.main
-										div.text
-											p!= (reply.isReply ? '<a href="' + config.url + '/' + reply.user.screenName + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
+						| この投稿をRepostしますか？
+					div.actions
+						button.accept(type='submit')
+							i.fa.fa-check
+							p Repost
+						button.cancel(type='button')
+							i.fa.fa-ban
+							p キャンセル
+		article(role='article')
+			mixin extract(post)
+				case post.type
+					when 'status'
+						+status(post)
+					when 'repost'
+						+extract(post.post)
+			+extract(post)
+			footer.footer
+				ul.actions
+					li.reply
+						button.reply-button(title='返信', role='button')
+							i.fa.fa-reply
+						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
+					li.repost
+						button.repost-button(title= post.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+							i.fa.fa-retweet
+						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
+					li.favorite
+						button.favorite-button(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+							i.fa.fa-star
+						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
+				if post.stargazers != null
+					ol.stargazers
+						each stargazer in post.stargazers
+							li.stargazer
+								a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
+									img.icon(src=stargazer.iconUrl, alt='icon')
+			if post.replies.length > 0
+				i.fa.fa-ellipsis-v.reply-info
+			aside.form-and-replies
+				form.reply-form(role='form')
+					img.me-icon(src=me.iconUrl, alt='icon')
+					div.form
+						textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
+						div.design-allow(role='presentation')
+						input(name='in-reply-to-post-id', type='hidden', value=post.id)
+						input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
+				aside.replies(itemprop='comment')
+					ol.statuses
+						if post.replies.length > 0
+							each reply in post.replies
+								li.status(title!= '#{reply.createdAt}&#x0A;'
+									data-id= reply.id
+									data-user-id= reply.user.id
+									data-user-color= reply.user.color
+									data-user-verified!= reply.user.isVerified.toString())
+									article
+										a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
+											img.icon(src=reply.user.iconUrl, alt='icon')
+										header
+											if reply.user.isVerified
+												img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+											h2
+												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
+											span.screen-name= '@' + reply.user.screenName
+											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
+										div.main
+											div.text
+												p!= (reply.isReply ? '<a href="' + config.url + '/' + reply.user.screenName + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)

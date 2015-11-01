@@ -1,3 +1,5 @@
+include ../post/smart/post
+
 div.misskey-home-widget#widget-timeline(data-widget-not-allow-move='true', data-widget-not-allow-remove='true', data-widget-id='timeline', data-widget-name='タイムライン')
     div#post-form-container
         form#post-form(role='form', data-ui-background-wallpaper-blur='true')
@@ -11,5 +13,12 @@ div.misskey-home-widget#widget-timeline(data-widget-not-allow-move='true', data-
                     p
                         i.fa.fa-picture-o
                     input(name='image', type='file', accept='image/*')
-    div.timeline-container
-        div.timeline-main!= timelineHtml
+    div.timeline
+        if timeline.length > 0
+            each post in timeline
+                +post(post)
+        else
+            p.empty
+                | タイムラインに表示するコンテンツがありません。
+                br
+                | フォローしている人の投稿と、自分の投稿がここに表示されます。
