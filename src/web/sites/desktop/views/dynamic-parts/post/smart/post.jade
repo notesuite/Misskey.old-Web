@@ -114,11 +114,9 @@ li.post(
 		data-user-color         = post.user.color
 		data-user-verified     != post.user.isVerified.toString()
 		data-is-reply          != (post.inReplyToPost !== null).toString()
-		data-is-talk           != (status.moreTalk != null).toString()
+		data-is-talk           != (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null).toString()
 		data-is-favorited      != login ? post.isFavorited.toString() : null
 		data-is-reposted       != login ? post.isReposted.toString() : null
-		data-is-repostpost     != status.isRepostToStatus.toString()
-		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
 		data-display-html-is-active='false')
 	article(role='article')
 		if login
