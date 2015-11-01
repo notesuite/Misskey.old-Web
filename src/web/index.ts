@@ -38,7 +38,7 @@ server.locals.pretty = htmlpretty;
 server.set('view engine', 'jade');
 server.set('X-Frame-Options', 'SAMEORIGIN');
 
-server.use(express.static('resources'));
+server.use('/resources', express.static(`${__dirname}/resources`));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());

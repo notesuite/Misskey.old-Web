@@ -41,12 +41,12 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 		meta(property='twitter:image', content='')
 		meta(property='twitter:url', content=config.url)
 		title Misskey
-		script(src='/resources/scripts/common/timeline-core.js')
+		script(src='/resources/desktop/scripts/common/timeline-core.js')
 		script(src=webStreamingUrl + '/socket.io/socket.io.js')
-		script(src='/resources/scripts/page/home.js')
+		script(src='/resources/desktop/scripts/page/home.js')
 		if customizeMode
-			script(src='/resources/scripts/page/home-customize.js')
-		link(rel='stylesheet', href='/resources/styles/page/home.css')
+			script(src='/resources/desktop/scripts/page/home-customize.js')
+		link(rel='stylesheet', href='/resources/desktop/styles/page/home.css')
 		
 	body
 		if !customizeMode

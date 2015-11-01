@@ -23,7 +23,7 @@ function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 
 export default function(app: express.Express): void {
 	'use strict';
-	console.log('Init Web pages router');
+	console.log('Init Web router');
 
 	app.get('/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {

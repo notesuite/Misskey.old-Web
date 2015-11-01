@@ -1,9 +1,9 @@
 header#misskey-main-header(
 		role='banner'
 		data-user-color= (rootUser != null) ? rootUser.color : login ? me.color : config.themeColor)
-	script(src='/resources/scripts/lib/moment.js')
-	script(src='/resources/scripts/common/header.js')
-	img(src='/resources/images/notices-loading.gif', alt='', style='display: none;')
+	script(src='/resources/desktop/scripts/lib/moment.js')
+	script(src='/resources/desktop/scripts/common/header.js')
+	img(src='/resources/desktop/images/notices-loading.gif', alt='', style='display: none;')
 	if config.env == 'development'
 		p.env-development-info
 			strong
