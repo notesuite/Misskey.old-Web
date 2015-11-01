@@ -31,6 +31,7 @@ export interface IConfig {
 	apiPasskey: string;
 	apiServerIp: string;
 	apiServerPort: number;
+	redisServerHost: string;
 	cookiePass: string;
 	sessionKey: string;
 	sessionSecret: string;
@@ -64,6 +65,7 @@ export const defaultConfig: IConfig = {
 	apiPasskey: "",
 	apiServerIp: "",
 	apiServerPort: 0,
+	redisServerHost: "",
 	cookiePass: "",
 	sessionKey: "sid",
 	sessionSecret: "",
