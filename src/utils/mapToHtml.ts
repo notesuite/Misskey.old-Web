@@ -6,6 +6,7 @@ export default function(templatePath: string, key: string, values: Object[], gro
 	return values.map((value: Object) => {
 		const args: any = grobalValue;
 		args[key] = value;
+		console.log(args);
 		return compiler(args);
 	}).join('');
 }

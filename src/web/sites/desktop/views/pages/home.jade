@@ -1,3 +1,26 @@
+mixin widget(widgets)
+	if widgets != null && widgets.length > 0
+		each widget in widgets
+			case widget
+				when 'timeline'
+					include ../dynamic-parts/home-widgets/timeline
+				when 'my-status'
+					include ../dynamic-parts/home-widgets/my-status
+				when 'notices'
+					include ../dynamic-parts/home-widgets/notices
+				when 'recommendation-users'
+					include ../dynamic-parts/home-widgets/recommendation-users
+				when 'donate'
+					include ../dynamic-parts/home-widgets/donate
+				when 'big-analog-clock'
+					include ../dynamic-parts/home-widgets/big-analog-clock
+				when 'small-analog-clock'
+					include ../dynamic-parts/home-widgets/small-analog-clock
+				when 'big-calendar'
+					include ../dynamic-parts/home-widgets/big-calendar
+				when 'small-calendar'
+					include ../dynamic-parts/home-widgets/small-calendar
+
 doctype html
 
 html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
@@ -36,27 +59,7 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 					i.fa.fa-wrench
 					| ホームのカスタマイズ中
 			div#customizer-garbage-storage
-				if unuseWidgets != null && unuseWidgets.length > 0
-					each widget in unuseWidgets
-						case widget
-							when 'timeline'
-								include ../dynamic-parts/home-widgets/timeline
-							when 'my-status'
-								include ../dynamic-parts/home-widgets/my-status
-							when 'notices'
-								include ../dynamic-parts/home-widgets/notices
-							when 'recommendation-users'
-								include ../dynamic-parts/home-widgets/recommendation-users
-							when 'donate'
-								include ../dynamic-parts/home-widgets/donate
-							when 'big-analog-clock'
-								include ../dynamic-parts/home-widgets/big-analog-clock
-							when 'small-analog-clock'
-								include ../dynamic-parts/home-widgets/small-analog-clock
-							when 'big-calendar'
-								include ../dynamic-parts/home-widgets/big-calendar
-							when 'small-calendar'
-								include ../dynamic-parts/home-widgets/small-calendar
+				+widget(unuseWidgets)
 		main
 			if customizeMode
 				div#customizer-nav-container
@@ -80,70 +83,9 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 			div#contents
 				if customizeMode || (layout.left != null && layout.left.length > 0)
 					div#left-contents
-						if layout.left != null && layout.left.length > 0
-							each widget in layout.left
-								case widget
-									when 'timeline'
-										include ../dynamic-parts/home-widgets/timeline
-									when 'my-status'
-										include ../dynamic-parts/home-widgets/my-status
-									when 'notices'
-										include ../dynamic-parts/home-widgets/notices
-									when 'recommendation-users'
-										include ../dynamic-parts/home-widgets/recommendation-users
-									when 'donate'
-										include ../dynamic-parts/home-widgets/donate
-									when 'big-analog-clock'
-										include ../dynamic-parts/home-widgets/big-analog-clock
-									when 'small-analog-clock'
-										include ../dynamic-parts/home-widgets/small-analog-clock
-									when 'big-calendar'
-										include ../dynamic-parts/home-widgets/big-calendar
-									when 'small-calendar'
-										include ../dynamic-parts/home-widgets/small-calendar
+						+widget(layout.left)
 				div#main-contents(role='main')
-					if layout.center != null && layout.center.length > 0
-						each widget in layout.center
-							case widget
-								when 'timeline'
-									include ../dynamic-parts/home-widgets/timeline
-								when 'my-status'
-									include ../dynamic-parts/home-widgets/my-status
-								when 'notices'
-									include ../dynamic-parts/home-widgets/notices
-								when 'recommendation-users'
-									include ../dynamic-parts/home-widgets/recommendation-users
-								when 'donate'
-									include ../dynamic-parts/home-widgets/donate
-								when 'big-analog-clock'
-									include ../dynamic-parts/home-widgets/big-analog-clock
-								when 'small-analog-clock'
-									include ../dynamic-parts/home-widgets/small-analog-clock
-								when 'big-calendar'
-									include ../dynamic-parts/home-widgets/big-calendar
-								when 'small-calendar'
-									include ../dynamic-parts/home-widgets/small-calendar
+					+widget(layout.center)
 				if customizeMode || (layout.right != null && layout.right.length > 0)
 					div#right-contents
-						if layout.right != null && layout.right.length > 0
-							each widget in layout.right
-								case widget
-									when 'timeline'
-										include ../dynamic-parts/home-widgets/timeline
-									when 'my-status'
-										include ../dynamic-parts/home-widgets/my-status
-									when 'notices'
-										include ../dynamic-parts/home-widgets/notices
-									when 'recommendation-users'
-										include ../dynamic-parts/home-widgets/recommendation-users
-									when 'donate'
-										include ../dynamic-parts/home-widgets/donate
-									when 'big-analog-clock'
-										include ../dynamic-parts/home-widgets/big-analog-clock
-									when 'small-analog-clock'
-										include ../dynamic-parts/home-widgets/small-analog-clock
-									when 'big-calendar'
-										include ../dynamic-parts/home-widgets/big-calendar
-									when 'small-calendar'
-										include ../dynamic-parts/home-widgets/small-calendar
-						
+						+widget(layout.right)
