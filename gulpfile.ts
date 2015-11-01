@@ -6,6 +6,7 @@ import * as tslint from 'gulp-tslint';
 import * as del from 'del';
 const babel = require('gulp-babel');
 const less = require('gulp-less');
+const minifyCSS = require('gulp-minify-css');
 const ls = require('gulp-livescript');
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
@@ -37,6 +38,7 @@ task('build:less', () =>
 {
 	return src('./src/**/*.less')
 		.pipe(less())
+		.pipe(minifyCSS())
 		.pipe(dest('./built'));
 });
 
