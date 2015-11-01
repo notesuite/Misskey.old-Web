@@ -43,7 +43,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 			new Promise((resolve: (timeline: string) => void, reject: (err: any) => void) => {
 				if (customizeMode || useWidgets.indexOf('timeline') > -1) {
 					requestApi('GET', 'timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
-						resolve(mapToHtml(`${__dirname}/../views/dynamic-parts/post/smart/post.jade`, 'post', tl));
+						const html: string = mapToHtml(`${__dirname}/../views/dynamic-parts/post/smart/post.jade`, 'post', tl, req.renderData);
+						console.log(html);
+						resolve(html);
 					});
 				} else {
 					resolve(null);
@@ -77,6 +79,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 				timelineHtml: results[0],
 				recommendationUsers: results[1]
 			});
+		}, (err: any) => {
+			console.error(err);
 		});
 	});
 };

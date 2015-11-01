@@ -1,11 +1,10 @@
-import * as jade from 'jade';
+const jade: any = require('jade');
 
-export default function(templatePath: string, key: string, values: Object[]): string {
+export default function(templatePath: string, key: string, values: Object[], grobalValue: Object = {}): string {
 	'use strict';
-	// 型定義間違ってませんか？
-	const compiler: (locals?: any) => string = (<any>jade).compileFile(templatePath);
+	const compiler: (locals?: any) => string = jade.compileFile(templatePath);
 	return values.map((value: Object) => {
-		const args: any = {};
+		const args: any = grobalValue;
 		args[key] = value;
 		return compiler(args);
 	}).join('');
