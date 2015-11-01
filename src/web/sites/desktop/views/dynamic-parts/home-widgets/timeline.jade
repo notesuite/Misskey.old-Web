@@ -15,8 +15,9 @@ div.misskey-home-widget#widget-timeline(data-widget-not-allow-move='true', data-
                     input(name='image', type='file', accept='image/*')
     div.timeline
         if timeline.length > 0
-            each post in timeline
-                +post(post)
+            ol.posts
+                each post in timeline
+                    +post(post)
         else
             p.empty
                 | タイムラインに表示するコンテンツがありません。

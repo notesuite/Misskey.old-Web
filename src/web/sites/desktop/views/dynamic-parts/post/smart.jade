@@ -57,7 +57,6 @@ mixin post(post)
 			title                   = post.createdAt
 			itemscope
 			itemtype                = 'http://schema.org/BlogPosting'
-			data-post-url           = config.url + '/' + post.user.screenName + '/post/' + post.id
 			data-id                 = post.id
 			data-cursor             = post.cursor
 			data-user-id            = post.user.id
