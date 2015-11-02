@@ -50,7 +50,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 							`${__dirname}/../../web/sites/desktop/views/dynamic-parts/post/smart.jade`);
 
 						// 投稿の詳細を取得
-						requestApi('GET', 'post/show', {'post-id': postId}, socket.user.id).then((res: any) => {
+						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((res: any) => {
 							// HTMLにしてクライアントに送信
 							socket.emit(content.type, compiler({
 								post: res,
