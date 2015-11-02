@@ -23,23 +23,9 @@ mixin widget(widgets)
 
 doctype html
 
-html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
+html#misskey(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
 	head(prefix='og: http://ogp.me/ns#')
 		include ../common/head
-		meta(name='description', content='ママに咲いたカーネーション')
-		meta(name='keywords', content='Misskey')
-		meta(property='og:title', content='Misskey')
-		meta(property='og:type', content='article')
-		meta(property='og:description', content='Misskey')
-		meta(property='og:url', content=config.url)
-		meta(property='og:image', content='')
-		meta(property='og:site_name', content='Misskey')
-		meta(property='twitter:card', content='summary')
-		meta(property='twitter:site', content='@syuilo')
-		meta(property='twitter:title', content='Misskey')
-		meta(property='twitter:description', content='Misskey')
-		meta(property='twitter:image', content='')
-		meta(property='twitter:url', content=config.url)
 		title Misskey
 		script(src='/resources/desktop/scripts/common/timeline-core.js')
 		script(src=webStreamingUrl + '/socket.io/socket.io.js')
