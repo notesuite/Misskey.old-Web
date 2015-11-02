@@ -1,6 +1,8 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
+const jade: any = require('jade');
+import requestApi from '../../utils/requestApi';
 import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
@@ -34,11 +36,28 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 			// Subscribe Home stream channel
 			subscriber.subscribe(`misskey:userStream:${socket.user.id}`);
 			subscriber.on('message', (_: any, contentString: string) => {
+				// メッセージはJSONなのでパース
 				const content: any = JSON.parse(contentString);
+
 				switch (content.type) {
+					// 投稿
 					case 'post':
-						socket.emit('post', 'kyoppie');
-						console.log('kyooopie');
+						// 投稿ID
+						const postId: any = content.value.id;
+
+						// 投稿のHTMLコンパイラ
+						const compiler: any = jade.compileFile(
+							`${__dirname}/../../web/sites/desktop/views/dynamic-parts/post/smart.jade`);
+
+						// 投稿の詳細を取得
+						requestApi('GET', 'post/show', {'post-id': postId}, socket.user.id).then((res: any) => {
+							// HTMLにしてクライアントに送信
+							socket.emit(content.type, compiler({
+								post: res,
+								me: socket.user,
+								config: config.publicConfig
+							}));
+						});
 						break;
 					default:
 						break;
