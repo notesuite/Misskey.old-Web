@@ -8,12 +8,6 @@ $.fn.extend {
 window.escapeHTML = (val) ->
 	$ '<div />' .text(val).html!
 
-window.init-waves-effects = ->
-	Waves.attach '.ui-button'
-	Waves.attach '.ui-cancel-button'
-	Waves.attach '.ui-waves-effect'
-	Waves.init!
-
 window.display-message = (message) ->
 	$message = $ '<p class="ui-message">' .text message
 	$ \body .prepend $message
@@ -268,6 +262,3 @@ $ ->
 				| ago <  10s       => 'たった今'
 				| _ => ''
 			$ @ .text time-text
-
-	# Attach Waves effects
-	window.init-waves-effects!

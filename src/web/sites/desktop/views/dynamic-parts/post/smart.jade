@@ -1,5 +1,3 @@
-- var login = (me != null);
-
 mixin status(status)
 	if status.inReplyToPost !== null
 		div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
@@ -53,6 +51,7 @@ mixin extract(post)
 			+extract(post.post)
 
 mixin post(post)
+	- var login = (me != null);
 	li.post(
 			class                   = post.type
 			lang                    = post.user.lang
@@ -138,4 +137,4 @@ mixin post(post)
 											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
 										div.main
 											div.text
-												p!= (reply.isReply ? '<a href="' + config.url + '/' + reply.user.screenName + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
+												p!= reply.text
