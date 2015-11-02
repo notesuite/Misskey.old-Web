@@ -7,7 +7,7 @@ function post
 	$submit-button.attr \disabled yes
 	$submit-button.attr \value 'Updating...'
 
-	$.ajax config.api-url + '/statuses/create' {
+	$.ajax config.api-url + '/statuses/update' {
 		type: \post
 		-process-data
 		-content-type
