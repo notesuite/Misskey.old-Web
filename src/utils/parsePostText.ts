@@ -1,9 +1,14 @@
-const markdown: any = require('markdown').markdown;
+const marked: any = require('marked');
 
 export default function(text: string, isPlain: boolean): string {
 	'use strict';
 	if (!isPlain) {
-		text = markdown.toHTML(text);
+		marked.setOptions({
+			gfm: true,
+			breaks: true,
+			sanitize: true
+		});
+		text = marked(text);
 	}
 	return text;
 }
