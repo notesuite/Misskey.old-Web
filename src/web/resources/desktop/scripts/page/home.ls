@@ -94,13 +94,9 @@ $ ->
 		$notice = ($ notice).hide!
 		$notice.prepend-to ($ '#widget-notices .notices') .show 200
 
-	socket.on \status (status) ->
-		console.log \status status
-		window.STATUS_CORE.add-status ($ '#widget-timeline > .timeline-container > .timeline-main > .timeline'), $ status
-
-	socket.on \repost (status) ->
-		console.log \repost status
-		window.STATUS_CORE.add-status ($ '#widget-timeline > .timeline-container > .timeline-main > .timeline'), $ status
+	socket.on \post (post) ->
+		console.log \post post
+		window.STATUS_CORE.add-status ($ '#widget-timeline > .timeline > .posts'), $ status
 
 	socket.on \reply (status) ->
 		console.log \reply status
