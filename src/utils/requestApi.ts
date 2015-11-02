@@ -20,7 +20,7 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 			if (err) {
 				reject(err);
 			} else {
-				console.log(body);
+				// console.log(body);
 				resolve(JSON.parse(body));
 			}
 		});

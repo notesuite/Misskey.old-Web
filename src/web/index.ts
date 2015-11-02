@@ -25,7 +25,6 @@ console.log('Init Web server');
 
 // Grobal options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
-const htmlpretty: string = '    ';
 
 // Init DB connection
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
@@ -34,7 +33,7 @@ const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, conf
 const server: express.Express = express();
 server.disable('x-powered-by');
 server.locals.compileDebug = false;
-server.locals.pretty = htmlpretty;
+// server.locals.pretty = '    ';
 server.set('view engine', 'jade');
 server.set('X-Frame-Options', 'SAMEORIGIN');
 
