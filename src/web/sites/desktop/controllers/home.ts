@@ -4,6 +4,7 @@ import { UserHomeLayout, IUserHomeLayout } from '../../../../models/userHomeLayo
 import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
 // import generateHomeTimelineHtml from '../utils/generateHomeTimelineHtml';
+import parsePostText from '../../../../utils/parsePostText';
 import requestApi from '../../../../utils/requestApi';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any = {}): void => {
@@ -42,7 +43,14 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 			new Promise((resolve: (timeline: Post[]) => void, reject: (err: any) => void) => {
 				if (customizeMode || useWidgets.indexOf('timeline') > -1) {
 					requestApi('GET', 'timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
-						resolve(tl);
+						resolve(tl.map((post: Post) => {
+							switch (post.type) {
+								case 'status':
+									(<any>post).text = parsePostText((<any>post).text, (<any>post).isPlain);
+									break;
+							}
+							return post;
+						}));
 					});
 				} else {
 					resolve(null);

@@ -16,8 +16,7 @@ mixin status(status)
 					span.screen-name= '@' + status.replySource.user.screenName
 					a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt, pubdate, data-display-type='relative')= status.replySource.createdAt
 				div.main
-					div.text
-						p!= (status.replySource.isReply ? '<a href="' + config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
+					div.text!= status.replySource.text
 					if status.replySource.isImageAttached
 						img.image(src=status.replySource.imageUrls[0], alt='image')
 	div.main
@@ -40,8 +39,7 @@ mixin status(status)
 				a.time-anchor(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url')
 					time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 		div.content(itemprop='articleBody')
-			div.text
-				p!= status.text
+			div.text!= status.text
 
 mixin extract(post)
 	case post.type
@@ -136,5 +134,4 @@ mixin post(post)
 											span.screen-name= '@' + reply.user.screenName
 											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
 										div.main
-											div.text
-												p!= reply.text
+											div.text!= reply.text
