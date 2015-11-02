@@ -5,51 +5,52 @@ window.TIMELINE_CORE = {}
 		window.TIMELINE_CORE.tl = $tl
 		$tl.find '> .posts > .ppst' .each ->
 			window.TIMELINE_CORE.set-event $ @
-	..set-event = ($status) ->
+
+	..set-event = ($post) ->
 		function check-favorited
-			($status.attr \data-is-favorited) == \true
+			($post.attr \data-is-favorited) == \true
 
 		function check-reposted
-			($status.attr \data-is-reposted) == \true
+			($post.attr \data-is-reposted) == \true
 
 		function activate-display-state
 			animation-speed = 200ms
-			if ($status.attr \data-display-html-is-active) == \false
-				reply-form-text = $status.children \article .find '.article-main > .form-and-replies .reply-form textarea' .val!
-				$ '.timeline > .statuses > .status > .status.article' .each ->
+			if ($post.attr \data-display-html-is-active) == \false
+				reply-form-text = $post.children \article .find '.form-and-replies .reply-form textarea' .val!
+				window.TIMELINE_CORE.tl.find '> .posts > .ppst' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
 						..remove-class \display-html-active-status-prev
 						..remove-class \display-html-active-status-next
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > i' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .talk > i' .each ->
 					$ @ .show animation-speed
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .reply-info' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .talk > .posts' .each ->
+					$ @ .hide animation-speed
+				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .reply-info' .each ->
 					$ @ .show animation-speed
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > .statuses' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .form-and-replies' .each ->
 					$ @ .hide animation-speed
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .form-and-replies' .each ->
-					$ @ .hide animation-speed
-				$status
+				$post
 					..attr \data-display-html-is-active \true
-					..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
-					..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
-					..children \article .find  '.article-main > .talk > i' .hide animation-speed
-					..children \article .find  '.article-main > .talk > .statuses' .show animation-speed
-					..children \article .find  '.article-main > .reply-info' .hide animation-speed
-					..children \article .find  '.article-main > .form-and-replies' .show animation-speed
-					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .val ''
-					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .focus! .val reply-form-text
+					..parent!.prev!.add-class \display-html-active-status-prev
+					..parent!.next!.add-class \display-html-active-status-next
+					..children \article .find  '.talk > i' .hide animation-speed
+					..children \article .find  '.talk > .statuses' .show animation-speed
+					..children \article .find  '.reply-info' .hide animation-speed
+					..children \article .find  '.form-and-replies' .show animation-speed
+					..children \article .find  '.form-and-replies .reply-form textarea' .val ''
+					..children \article .find  '.form-and-replies .reply-form textarea' .focus! .val reply-form-text
 			else
-				$status
+				$post
 					..attr \data-display-html-is-active \false
-					..parent!.prev!.find '.status.article' .remove-class \display-html-active-status-prev
-					..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
-					..children \article .find  '.article-main > .talk > i' .show animation-speed
-					..children \article .find  '.article-main > .talk > .statuses' .hide animation-speed
-					..children \article .find  '.article-main > .reply-info' .show animation-speed
-					..children \article .find  '.article-main > .form-and-replies' .hide animation-speed
+					..parent!.prev!.remove-class \display-html-active-status-prev
+					..parent!.next!.remove-class \display-html-active-status-next
+					..children \article .find  '.talk > i' .show animation-speed
+					..children \article .find  '.talk > .statuses' .hide animation-speed
+					..children \article .find  '.reply-info' .show animation-speed
+					..children \article .find  '.form-and-replies' .hide animation-speed
 
-		$status
+		$post
 			# Click event
 			..click (event) ->
 				can-event = ! (((<[ input textarea button i time a ]>

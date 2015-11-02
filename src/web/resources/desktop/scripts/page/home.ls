@@ -94,7 +94,6 @@ $ ->
 		$notice.prepend-to ($ '#widget-notices .notices') .show 200
 
 	socket.on \post (post) ->
-		console.log \post post
 		window.TIMELINE_CORE.add $ post
 
 	socket.on \reply (status) ->
