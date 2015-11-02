@@ -9,7 +9,7 @@ import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 // import * as expressMinify from 'express-minify';
-const expressMinify: any = require('express-minify');
+// const expressMinify: any = require('express-minify');
 import * as moment from 'moment';
 
 import { User } from '../models/user';

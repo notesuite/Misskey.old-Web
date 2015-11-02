@@ -48,6 +48,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 								case 'status':
 									(<any>post).text = parsePostText((<any>post).text, (<any>post).isPlain);
 									break;
+								default:
+									break;
 							}
 							return post;
 						}));
