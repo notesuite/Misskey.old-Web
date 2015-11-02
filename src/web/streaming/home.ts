@@ -2,6 +2,7 @@ import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 const jade: any = require('jade');
+import parsePostText from '../../utils/parsePostText';
 import requestApi from '../../utils/requestApi';
 import config from '../../config';
 
@@ -50,10 +51,11 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 							`${__dirname}/../sites/desktop/views/lib/post/smartRender.jade`);
 
 						// 投稿の詳細を取得
-						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((res: any) => {
+						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((post: any) => {
+							post.text = parsePostText(post.text, post.isPlain);
 							// HTMLにしてクライアントに送信
 							socket.emit(content.type, compiler({
-								post: res,
+								post: post,
 								me: socket.user,
 								config: config.publicConfig
 							}));

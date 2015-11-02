@@ -23,6 +23,7 @@
 		"src/models/userHomeLayout.ts",
 		"src/utils/requestApi.ts",
 		"src/utils/mapToHtml.ts",
+		"src/utils/parsePostText.ts",
 		"src/api/index.ts",
 		"src/api/router.ts",
 		"src/web/index.ts",
