@@ -1,6 +1,10 @@
 prelude = require 'prelude-ls'
 
-window.STATUS_CORE = {}
+window.TIMELINE_CORE = {}
+	..init = ($tl) ->
+		window.TIMELINE_CORE.tl = $tl
+		$tl.find '> .posts > .ppst' .each ->
+			window.TIMELINE_CORE.set-event $ @
 	..set-event = ($status) ->
 		function check-favorited
 			($status.attr \data-is-favorited) == \true
@@ -240,15 +244,11 @@ window.STATUS_CORE = {}
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 
-	..add-status = ($tl, $status) ->
+	..add = ($post) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 
-		$status = $ '<li class="status">' .append($status).hide!
 		#$recent-status = ($ ($tl.children '.statuses' .children '.status')[0]) .children \.status
 		#if ($recent-status.attr \data-display-html-is-active) == \true
 		#	$status.children \.status .add-class \display-html-active-status-prev
-		window.STATUS_CORE.set-event $status.children '.status.article'
-		$status.prepend-to (($tl.children '.statuses')[0]) .show 200
-
-		# Attach Wave effects
-		init-waves-effects!
+		window.TIMELINE_CORE.set-event $post
+		$post.prepend-to ((window.TIMELINE_CORE.tl.children '.posts')[0])

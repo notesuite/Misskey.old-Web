@@ -55,8 +55,7 @@ $ ->
 	catch
 		console.log 'oops'
 
-	$ '.timeline .statuses .status .status.article' .each ->
-		window.STATUS_CORE.set-event $ @
+	window.TIMELINE_CORE.init $ '.timeline'
 
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
@@ -96,7 +95,7 @@ $ ->
 
 	socket.on \post (post) ->
 		console.log \post post
-		window.STATUS_CORE.add-status ($ '#widget-timeline > .timeline > .posts'), $ status
+		window.TIMELINE_CORE.add $ post
 
 	socket.on \reply (status) ->
 		console.log \reply status
@@ -191,8 +190,8 @@ $ ->
 					me.data \loading no
 					$statuses = $ data
 					$statuses.each ->
-						$status = $ '<li class="status">' .append $ @
-						window.STATUS_CORE.set-event $status.children '.status.article'
+						$status = $ @
+						window.TIMELINE_CORE.set-event $status.children '.status.article'
 						$status.append-to $ '#widget-timeline .timeline > .statuses'
 					# Attach Wave effects
 					init-waves-effects!

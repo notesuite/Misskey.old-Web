@@ -47,16 +47,11 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 						// 投稿のHTMLコンパイラ
 						const compiler: any = jade.compileFile(
-							`${__dirname}/../sites/desktop/views/dynamic-parts/post/smart.jade`);
+							`${__dirname}/../sites/desktop/views/lib/post/smartRender.jade`);
 
 						// 投稿の詳細を取得
 						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((res: any) => {
 							// HTMLにしてクライアントに送信
-							console.log(compiler({
-								post: res,
-								me: socket.user,
-								config: config.publicConfig
-							}));
 							socket.emit(content.type, compiler({
 								post: res,
 								me: socket.user,
