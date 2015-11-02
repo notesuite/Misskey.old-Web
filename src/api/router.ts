@@ -1,10 +1,8 @@
-import * as fs from 'fs';
 import * as express from 'express';
 
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
 import requestApi from '../utils/requestApi';
-import mapToHtml from '../utils/mapToHtml';
 
 export default function(app: express.Express): void {
 	'use strict';
@@ -18,33 +16,9 @@ export default function(app: express.Express): void {
 		}
 	});
 
-	app.post('/account/create', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi("POST", req.path.substring(1), req.body).then((response: any) => {
-			res.json(response);
-		});
-	});
+	app.get('/album-browser/album/files', require('./endpoints/album-browser/album/files'));
 
-	app.get('/web/album/files', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi("GET", 'album/files', req.query, req.session.userId).then((files: Object[]) => {
-			console.log(files);
-			res.send(mapToHtml(`${__dirname}/../web/sites/desktop/views/dynamic-parts/album/file.jade`, 'file', files));
-		});
-	});
-
-	app.post('/album/upload', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		const file: Express.Multer.File = req.files['file'];
-		const data: any = req.body;
-		data.file = {
-			value: fs.readFileSync(file.path),
-			options: {
-				filename: file.originalname,
-				contentType: file.mimetype
-			}
-		};
-		requestApi('POST', req.path.substring(1), data, req.session.userId).then((files: Object[]) => {
-			res.sendStatus(200);
-		});
-	});
+	app.post('/album-browser/album/upload', require('./endpoints/album-browser/album/upload'));
 
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;

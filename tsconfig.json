@@ -26,6 +26,8 @@
 		"src/utils/parsePostText.ts",
 		"src/api/index.ts",
 		"src/api/router.ts",
+		"src/api/endpoints/album-browser/album/upload.ts",
+		"src/api/endpoints/album-browser/album/files.ts",
 		"src/web/index.ts",
 		"src/web/maintenance.ts",
 		"src/web/router.ts",

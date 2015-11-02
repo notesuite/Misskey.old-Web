@@ -17,18 +17,18 @@ window.TIMELINE_CORE = {}
 			animation-speed = 200ms
 			if ($post.attr \data-display-html-is-active) == \false
 				reply-form-text = $post.children \article .find '.form-and-replies .reply-form textarea' .val!
-				window.TIMELINE_CORE.tl.find '> .posts > .ppst' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .post' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
 						..remove-class \display-html-active-status-prev
 						..remove-class \display-html-active-status-next
-				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .talk > i' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > i' .each ->
 					$ @ .show animation-speed
-				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .talk > .posts' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > .posts' .each ->
 					$ @ .hide animation-speed
-				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .reply-info' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .reply-info' .each ->
 					$ @ .show animation-speed
-				window.TIMELINE_CORE.tl.find '> .posts > .ppst > article > .form-and-replies' .each ->
+				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .form-and-replies' .each ->
 					$ @ .hide animation-speed
 				$post
 					..attr \data-display-html-is-active \true
@@ -107,11 +107,11 @@ window.TIMELINE_CORE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/web/status/reply.plain" {
+				$.ajax "#{config.api-url}/web/home/post/reply" {
 					type: \post
 					data: new FormData $form.0
-					-processData
-					-contentType
+					-process-data
+					-content-type
 					data-type: \text
 					xhr-fields: {+with-credentials}}
 				.done (html) ->
@@ -119,7 +119,7 @@ window.TIMELINE_CORE = {}
 					$submit-button.attr \disabled off
 					$reply.append-to $status.find '.replies > .statuses'
 					$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
-					$i.append-to $status.find '.article-main'
+					$i.append-to $status
 					$form.remove!
 					window.display-message '返信しました！'
 				.fail ->
@@ -209,7 +209,7 @@ window.TIMELINE_CORE = {}
 				$.ajax "#{config.api-url}/status/repost" {
 					type: \post
 					data:
-						'status-id': $status.attr \data-id
+						'post-id': $status.attr \data-id
 						text: $status.find '.repost-form > form > .comment-form > input[name=text]' .val!
 					data-type: \json
 					xhr-fields: {+withCredentials}}

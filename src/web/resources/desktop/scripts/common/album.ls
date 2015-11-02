@@ -16,7 +16,7 @@ $ ->
 		$album-uploads.find \ol .append $info
 		data = new FormData!
 			..append \file file
-		$.ajax config.api-url + '/album/upload' {
+		$.ajax config.api-url + '/album-browser/album/upload' {
 			+async
 			type: \post
 			-process-data
@@ -161,7 +161,7 @@ $ ->
 	load-files!
 
 	function load-files
-		$.ajax "#{config.api-url}/web/album/files" {
+		$.ajax "#{config.api-url}/album-browser/album/files" {
 			type: \get
 			data: {}
 			-process-data
