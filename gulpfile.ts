@@ -8,6 +8,7 @@ const babel = require('gulp-babel');
 const less = require('gulp-less');
 const minifyCSS = require('gulp-minify-css');
 const ls = require('gulp-livescript');
+const uglify = require('gulp-uglify');
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
 	typescript: require('typescript')
@@ -31,6 +32,7 @@ task('build:ts', () => {
 task('build:ls', () => {
 	return src('./src/**/*.ls')
 		.pipe(ls())
+		.pipe(uglify())
 		.pipe(dest('./built'));
 });
 
