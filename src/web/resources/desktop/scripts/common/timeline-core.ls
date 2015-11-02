@@ -107,7 +107,7 @@ window.TIMELINE_CORE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/web/home/post/reply" {
+				$.ajax "#{config.api-url}/home/post/reply" {
 					type: \post
 					data: new FormData $form.0
 					-process-data
@@ -147,9 +147,9 @@ window.TIMELINE_CORE = {}
 					..attr \disabled on
 				if check-favorited!
 					$status.attr \data-is-favorited \false
-					$.ajax "#{config.api-url}/status/unfavorite" {
+					$.ajax "#{config.api-url}/post/unfavorite" {
 						type: \delete
-						data: {'status-id': $status.attr \data-id}
+						data: {'post-id': $status.attr \data-id}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
 					.done ->
@@ -178,9 +178,9 @@ window.TIMELINE_CORE = {}
 			..find 'article > .article-main > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
 					$status.attr \data-is-reposted \false
-					$.ajax "#{config.api-url}/status/unrepost" {
+					$.ajax "#{config.api-url}/post/unrepost" {
 						type: \delete
-						data: {'status-id': $status.attr \data-id}
+						data: {'post-id': $status.attr \data-id}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
 					.done ->
@@ -206,7 +206,7 @@ window.TIMELINE_CORE = {}
 					..attr \disabled on
 					..attr \data-reposting \true
 				$status.attr \data-is-reposted \true
-				$.ajax "#{config.api-url}/status/repost" {
+				$.ajax "#{config.api-url}/post/repost" {
 					type: \post
 					data:
 						'post-id': $status.attr \data-id

@@ -20,6 +20,8 @@ export default function(app: express.Express): void {
 
 	app.post('/album-browser/album/upload', require('./endpoints/album-browser/album/upload'));
 
+	app.post('/home/post/reply', require('./endpoints/home/post/reply'));
+
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi("GET", req.path.substring(1), req.query, userId).then((response: any) => {
