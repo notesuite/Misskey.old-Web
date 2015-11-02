@@ -113,7 +113,9 @@ mixin post(post)
 						textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
 						div.design-allow(role='presentation')
 						input(name='in-reply-to-post-id', type='hidden', value=post.id)
-						input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
+						button.submit-button.ui-button(type='submit', role='button')
+							| Reply
+							i.fa.fa-reply
 				aside.replies(itemprop='comment')
 					ol.statuses
 						if post.replies.length > 0

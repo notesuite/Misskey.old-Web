@@ -3,7 +3,7 @@ prelude = require 'prelude-ls'
 window.TIMELINE_CORE = {}
 	..init = ($tl) ->
 		window.TIMELINE_CORE.tl = $tl
-		$tl.find '> .posts > .ppst' .each ->
+		$tl.find '> .posts > .post' .each ->
 			window.TIMELINE_CORE.set-event $ @
 
 	..set-event = ($post) ->

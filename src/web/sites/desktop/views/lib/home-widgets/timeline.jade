@@ -7,8 +7,9 @@ div.misskey-home-widget#widget-timeline(data-widget-not-allow-move='true', data-
             div.form
                 textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
                 div.design-allow(role='presentation')
-                input.ui-button(type='submit', value!='Update &#xf1d8;', role='button')
-                ul.tag.ui-taginput
+                button.ui-button(type='submit', role='button')
+                    | Update
+                    i.fa.fa-paper-plane
                 div.image-attacher
                     p
                         i.fa.fa-picture-o

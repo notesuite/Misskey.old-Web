@@ -1789,81 +1789,35 @@ textarea {
 	display: inline-block;
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0;
-	min-width: 5em;
-	line-height: 1em !important;
-	font-size: 1em !important;
-	text-decoration: none;
-	color: contrast(@themeColor, #000, #fff, 70%);
-	background: @themeColor !important;
-	outline: none;
-	border: none;
-	border-radius: 2px;
-	box-shadow: none;
-	transition: background 0.1s ease;
-
-	&, * {
-		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-		font-weight: bold;
-		cursor: pointer;
-	}
-
-	> * {
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		vertical-align: baseline !important;
-		padding: 12px 16px;
-		line-height: 1em !important;
-		font-size: 1em !important;
-	}
-
-	&:hover {
-		background: lighten(@themeColor, 10%) !important;
-	}
-
-	&:active {
-		background: darken(@themeColor, 10%) !important;
-		transition: background 0s ease;
-	}
-}
-
-.ui-cancel-button {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	display: inline-block;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 12px 16px;
-	min-width: 5em;
-	cursor: pointer;
-	line-height: 1em !important;
-	font-size: 1em !important;
+	padding: 10px 10px;
+	line-height: 1.1em;
+	font-size: 1.1em;
 	font-weight: normal;
 	text-decoration: none;
-	color: #fff;
-	background: #ccc !important;
+	color: #444;
+	background: transparent;
 	outline: none;
 	border: none;
-	border-radius: 2px;
+	border-radius: 0;
 	box-shadow: none;
-	transition: background 0.1s ease;
+	cursor: pointer;
+	transition: color 0.1s ease;
 
-	> * {
-		vertical-align: baseline !important;
-		padding: 12px 16px;
-		line-height: 1em !important;
-		font-size: 1em !important;
+	* {
+		pointer-events: none;
+	}
+
+	i {
+		margin: 0 0.375em;
 	}
 
 	&:hover {
-		background: #bbb !important;
+		color: @themeColor;
 	}
 
 	&:active {
-		background: #aaa !important;
-		transition: background 0s ease;
+		color: darken(@themeColor, 10%);
+		transition: color 0s ease;
 	}
 }
 
@@ -1871,38 +1825,6 @@ textarea {
 	height: 6em;
 	width: 100%;
 	max-width: 100%;
-}
-
-.ui-attach-image {
-	box-sizing: border-box;
-	display: inline-block;
-	position: relative;
-	margin: 6px 8px;
-	padding: 4px 16px;
-	vertical-align: bottom;
-	border-radius: 3px;
-	border: dashed 2px #ccc;
-	color: #777;
-	font-size: 1em;
-
-	&:hover {
-		border: dashed 2px #777;
-	}
-
-	input[type=file] {
-		display: inline;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		opacity: 0;
-	}
-
-	img {
-		max-width: 100%;
-		max-height: 128px;
-	}
 }
 
 .ui-dialog {
@@ -1970,47 +1892,6 @@ textarea {
 
 	&:hover .balloon {
 		opacity: 1;
-	}
-}
-
-.image-attacher {
-	box-sizing: border-box;
-	display: inline-block;
-	position: relative;
-	margin: 2px 8px;
-	padding: 8px 16px;
-	vertical-align: top;
-	line-height: 1.2em;
-	outline: dashed 2px #ccc;
-
-	&:hover {
-		outline: dashed 2px #777;
-	}
-
-	input[type=file] {
-		display: inline;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-		opacity: 0;
-	}
-
-	p {
-		pointer-events: none;
-		margin: 0;
-		padding: 0;
-		color: #777;
-		line-height: 1.2em;
-		font-size: 1em;
-	}
-
-	img {
-		pointer-events: none;
-		max-width: 100%;
-		max-height: 128px;
 	}
 }
 
