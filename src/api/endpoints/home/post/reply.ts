@@ -6,7 +6,7 @@ import requestApi from '../../../../utils/requestApi';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
-	requestApi('POST', 'statuses/update', req.query, req.session.userId).then((status: Object) => {
-
+	requestApi('POST', 'statuses/update', req.body, req.session.userId).then((status: Object) => {
+		
 	});
 };

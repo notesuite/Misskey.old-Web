@@ -1,24 +1,24 @@
 mixin status(status)
 	if status.inReplyToPost !== null
-		div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
-			data-id= status.replySource.id
-			data-user-id= status.replySource.user.id
-			data-user-color= status.replySource.user.color
-			data-user-verified!= status.replySource.user.isVerified.toString())
+		div.reply-source(title!= '#{status.inReplyToPost.createdAt}&#x0A;'
+			data-id= status.inReplyToPost.id
+			data-user-id= status.inReplyToPost.user.id
+			data-user-color= status.inReplyToPost.user.color
+			data-user-verified!= status.inReplyToPost.user.isVerified.toString())
 			article
-				a.icon-anchor(href=config.url + '/widget/talk/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName)
-					img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
+				a.icon-anchor(href=config.url + '/widget/talk/' + status.inReplyToPost.user.screenName, title= status.inReplyToPost.user.comment != null ? status.inReplyToPost.user.comment : '@' + status.inReplyToPost.user.screenName)
+					img.icon(src=status.inReplyToPost.user.iconImageUrl, alt='icon')
 				header
-					if status.replySource.user.isVerified
+					if status.inReplyToPost.user.isVerified
 						img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 					h2
-						a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
-					span.screen-name= '@' + status.replySource.user.screenName
-					a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt, pubdate, data-display-type='relative')= status.replySource.createdAt
+						a(href=config.url + '/' + status.inReplyToPost.user.screenName, target='_blank')= status.inReplyToPost.user.name
+					span.screen-name= '@' + status.inReplyToPost.user.screenName
+					a(href=config.url + '/' + status.inReplyToPost.user.screenName + '/status/' + status.inReplyToPost.id): time(datetime=status.inReplyToPost.createdAt, pubdate, data-display-type='relative')= status.inReplyToPost.createdAt
 				div.main
-					div.text!= status.replySource.text
-					if status.replySource.isImageAttached
-						img.image(src=status.replySource.imageUrls[0], alt='image')
+					div.text!= status.inReplyToPost.text
+					if status.inReplyToPost.isImageAttached
+						img.image(src=status.inReplyToPost.imageUrls[0], alt='image')
 	div.main
 		div.icon-area
 			a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
