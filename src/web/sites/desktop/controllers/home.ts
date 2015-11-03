@@ -42,7 +42,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 			// Get timeline
 			new Promise((resolve: (timeline: Post[]) => void, reject: (err: any) => void) => {
 				if (customizeMode || useWidgets.indexOf('timeline') > -1) {
-					requestApi('GET', 'timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
+					requestApi('GET', 'posts/timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
 						console.log(tl);
 						resolve(tl.map((post: Post) => {
 							switch (post.type) {
