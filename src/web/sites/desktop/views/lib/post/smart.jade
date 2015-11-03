@@ -80,6 +80,18 @@ mixin post(post)
 					h2
 						i.fa.fa-retweet
 						| この投稿をRepostしますか？
+					article(role='article')
+						a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='icon')
+							img.icon(src=post.user.iconUrl, alt='icon')
+						header.header
+							h3
+								a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
+							if post.user.isVerified
+								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+							span.screen-name= '@' + post.user.screenName
+							a(href=config.url + '/' + post.user.screenName + '/status/' + post.id, itemprop='url'): time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+						div.main(itemprop='articleBody')
+							+content(post)
 					div.actions
 						button.accept(type='submit')
 							i.fa.fa-check

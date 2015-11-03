@@ -142,7 +142,7 @@ window.TIMELINE_CORE = {}
 			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
 
 			# Init favorite button
-			..find 'article > .article-main > .footer > .actions > .favorite > .favorite-button' .click ->
+			..find 'article > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-favorited!
@@ -171,13 +171,13 @@ window.TIMELINE_CORE = {}
 						$status.attr \data-is-favorited \false
 
 			# Init reply button
-			..find 'article > .article-main > .footer > .actions > .reply > .reply-button' .click ->
+			..find 'article > .footer > .actions > .reply > .reply-button' .click ->
 				activate-display-state!
 
 			# Init repost button
-			..find 'article > .article-main > .footer > .actions > .repost > .repost-button' .click ->
+			..find 'article > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
-					$status.attr \data-is-reposted \false
+					$post.attr \data-is-reposted \false
 					$.ajax "#{config.api-url}/post/unrepost" {
 						type: \delete
 						data: {'post-id': $status.attr \data-id}
@@ -189,12 +189,12 @@ window.TIMELINE_CORE = {}
 						$button.attr \disabled off
 						$status.attr \data-is-reposted \true
 				else
-					$status.find '.repost-form .background' .css \display \block
-					$status.find '.repost-form .background' .animate {
+					$post.find '.repost-form .background' .css \display \block
+					$post.find '.repost-form .background' .animate {
 						opacity: 1
 					} 100ms \linear
-					$status.find '.repost-form .form' .css \display \block
-					$status.find '.repost-form .form' .animate {
+					$post.find '.repost-form .form' .css \display \block
+					$post.find '.repost-form .form' .animate {
 						opacity: 1
 					} 100ms \linear
 
@@ -205,12 +205,11 @@ window.TIMELINE_CORE = {}
 				$submit-button = $form.find \.accept
 					..attr \disabled on
 					..attr \data-reposting \true
-				$status.attr \data-is-reposted \true
-				$.ajax "#{config.api-url}/post/repost" {
+				$post.attr \data-is-reposted \true
+				$.ajax "#{config.api-url}/reposts/create" {
 					type: \post
 					data:
-						'post-id': $status.attr \data-id
-						text: $status.find '.repost-form > form > .comment-form > input[name=text]' .val!
+						'post-id': $post.attr \data-id
 					data-type: \json
 					xhr-fields: {+withCredentials}}
 				.done ->
@@ -218,32 +217,32 @@ window.TIMELINE_CORE = {}
 						..attr \disabled off
 						..attr \data-reposting \false
 					window.display-message 'Reposted!'
-					$status.find '.repost-form .background' .animate {
+					$post.find '.repost-form .background' .animate {
 						opacity: 0
-					} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
-					$status.find '.repost-form .form' .animate {
+					} 100ms \linear -> $post.find '.repost-form .background' .css \display \none
+					$post.find '.repost-form .form' .animate {
 						opacity: 0
-					} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
+					} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
 				.fail ->
 					$submit-button
 						..attr \disabled off
 						..attr \data-reposting \false
-					$status.attr \data-is-reposted \false
+					$post.attr \data-is-reposted \false
 					window.display-message 'Repostに失敗しました。再度お試しください。'
 			..find '.repost-form > .form > .actions > .cancel' .click ->
-				$status.find '.repost-form .background' .animate {
+				$post.find '.repost-form .background' .animate {
 					opacity: 0
-				} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
-				$status.find '.repost-form .form' .animate {
+				} 100ms \linear -> $post.find '.repost-form .background' .css \display \none
+				$post.find '.repost-form .form' .animate {
 					opacity: 0
-				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
+				} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
 			..find '.repost-form .background' .click ->
-				$status.find '.repost-form .background' .animate {
+				$post.find '.repost-form .background' .animate {
 					opacity: 0
-				} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
-				$status.find '.repost-form .form' .animate {
+				} 100ms \linear -> $post.find '.repost-form .background' .css \display \none
+				$post.find '.repost-form .form' .animate {
 					opacity: 0
-				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
+				} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
 
 	..add = ($post) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
