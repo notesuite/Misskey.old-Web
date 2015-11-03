@@ -11,7 +11,7 @@ mixin common(post)
 					i.fa.fa-reply
 				a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
 			li.repost
-				button.repost-button(title= post.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+				button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
 					i.fa.fa-retweet
 				a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
 			li.favorite
