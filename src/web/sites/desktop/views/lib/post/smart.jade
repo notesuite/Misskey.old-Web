@@ -1,3 +1,10 @@
+mixin content(post)
+	case post.type
+		when 'status'
+			div.text!= post.text
+		when 'repost'
+			
+
 mixin status(status)
 	if status.inReplyToPost !== null
 		div.reply-source(title!= '#{status.inReplyToPost.createdAt}&#x0A;'
@@ -7,7 +14,7 @@ mixin status(status)
 			data-user-verified!= status.inReplyToPost.user.isVerified.toString())
 			article
 				a.icon-anchor(href=config.url + '/widget/talk/' + status.inReplyToPost.user.screenName, title= status.inReplyToPost.user.comment != null ? status.inReplyToPost.user.comment : '@' + status.inReplyToPost.user.screenName)
-					img.icon(src=status.inReplyToPost.user.iconImageUrl, alt='icon')
+					img.icon(src=status.inReplyToPost.user.iconUrl, alt='icon')
 				header
 					if status.inReplyToPost.user.isVerified
 						img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
@@ -16,9 +23,7 @@ mixin status(status)
 					span.screen-name= '@' + status.inReplyToPost.user.screenName
 					a(href=config.url + '/' + status.inReplyToPost.user.screenName + '/status/' + status.inReplyToPost.id): time(datetime=status.inReplyToPost.createdAt, pubdate, data-display-type='relative')= status.inReplyToPost.createdAt
 				div.main
-					div.text!= status.inReplyToPost.text
-					if status.inReplyToPost.isImageAttached
-						img.image(src=status.inReplyToPost.imageUrls[0], alt='image')
+					+content(status.inReplyToPost)
 	div.main
 		div.icon-area
 			a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
@@ -39,7 +44,7 @@ mixin status(status)
 				a.time-anchor(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url')
 					time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 		div.content(itemprop='articleBody')
-			div.text!= status.text
+			+content(status)
 
 mixin extract(post)
 	case post.type
