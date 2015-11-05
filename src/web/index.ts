@@ -132,7 +132,7 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 			req.renderData.me = user;
 			next();
 		} else {
-			requestApi('GET', 'account/show', {}).then((user: User) => {
+			requestApi('GET', 'account/show', {}, userId).then((user: User) => {
 				req.me = user;
 				req.renderData.me = user;
 				req.session.user = user;
@@ -152,7 +152,7 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	if (req.isLogin) {
 		const userId: string = req.session.userId;
-		requestApi('GET', 'account/show', {}).then((user: User) => {
+		requestApi('GET', 'account/show', {}, userId).then((user: User) => {
 			req.session.user = user;
 			req.session.save(() => {
 				next();
