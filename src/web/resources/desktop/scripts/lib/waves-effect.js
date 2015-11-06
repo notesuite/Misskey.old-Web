@@ -47,23 +47,32 @@
 		var attachees = document.getElementsByClassName(className);
 		Array.prototype.forEach.call(attachees, function(attachee) {
 			attachee.addEventListener('mousedown', function(event) {
-				event.target.style.position = 'relative';
+				var target = event.target;
+				var rect = target.getBoundingClientRect();
+				var positionX = rect.left;
+				var positionY = rect.top;
+				var targetX = positionX;
+				var targetY = positionY;
+				
+				target.style.position = 'relative';
+				
 				var rippleContainer = document.createElement('div');
 				rippleContainer.className = 'waveseffect-ripple-container';
 				rippleContainer.style.position = 'absolute';
 				rippleContainer.style.zIndex = '-1';
 				rippleContainer.style.top = '0';
 				rippleContainer.style.left = '0';
-				rippleContainer.style.width = event.target.clientWidth.toString() + 'px';
-				rippleContainer.style.height = event.target.clientHeight.toString() + 'px';
+				rippleContainer.style.width = target.clientWidth.toString() + 'px';
+				rippleContainer.style.height = target.clientHeight.toString() + 'px';
 				rippleContainer.style.overflow = 'hidden';
 				rippleContainer.style.pointerEvents = 'none';
 				// rippleContainer.style.backgroundColor = 'red';
+				
 				var ripple = document.createElement('div');
 				ripple.className = 'waveseffect-ripple';
 				ripple.style.position = 'absolute';
-				ripple.style.top = (event.pageY - event.target.offsetTop - 1).toString() + 'px';
-				ripple.style.left = (event.pageX - event.target.offsetLeft - 1).toString() + 'px';
+				ripple.style.top = (event.clientY - targetY - 1).toString() + 'px';
+				ripple.style.left = (event.clientX - targetX - 1).toString() + 'px';
 				ripple.style.width = '2px';
 				ripple.style.height = '2px';
 				ripple.style.borderRadius = '100%';
@@ -72,12 +81,12 @@
 				ripple.style.transform = 'scale(1, 1)';
 				ripple.style.transition = 'all 1s cubic-bezier(0,.75,.25,1)';
 				rippleContainer.appendChild(ripple);
-				event.target.appendChild(rippleContainer);
+				target.appendChild(rippleContainer);
 				
-				var boxW = event.target.clientWidth;
-				var boxH = event.target.clientHeight;
-				var circleCenterX = event.pageX - event.target.offsetLeft;
-				var circleCenterY = event.pageY - event.target.offsetTop;
+				var boxW = target.clientWidth;
+				var boxH = target.clientHeight;
+				var circleCenterX = event.clientX - targetX;
+				var circleCenterY = event.clientY - targetY;
 				
 				var scale = calcCircleScale(boxW, boxH, circleCenterX, circleCenterY);
 				
@@ -89,7 +98,7 @@
 					ripple.style.opacity = '0';
 				}, 1000);
 				setTimeout(function() {
-					event.target.removeChild(rippleContainer); 
+					target.removeChild(rippleContainer); 
 				}, 2000);
 			}, false);
 		});
