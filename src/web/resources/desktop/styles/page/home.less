@@ -36,16 +36,19 @@ main {
 			box-sizing: border-box;
 			max-width: 560px;
 			margin: 0;
+			padding: 16px;
 		}
 
 		#left-contents {
-			flex: 1 1 316px;
-			max-width: 316px;
+			flex: 1 1 300px;
+			max-width: 300px;
+			padding: 16px 0 16px 16px;
 		}
 
 		#right-contents {
-			flex: 1 1 316px;
-			max-width: 316px;
+			flex: 1 1 300px;
+			max-width: 300px;
+			padding: 16px 16px 16px 0;
 		}
 	}
 }
@@ -318,8 +321,6 @@ main {
 }
 
 #widget-timeline {
-	margin: 8px;
-
 	#post-form-container {
 		box-sizing: border-box;
 		width: 100%;
@@ -501,8 +502,6 @@ main {
 #widget-my-status {
 	display: block;
 	box-sizing: border-box;
-	width: ~"calc(100% - 16px)";
-	margin: 8px;
 	background: transparent;
 	border-radius: 8px;
 	.shadow;
@@ -599,10 +598,8 @@ main {
 #widget-notices {
 	display: block;
 	box-sizing: border-box;
-	width: ~"calc(100% - 16px)";
 	max-height: 400px;
 	overflow: auto;
-	margin: 8px;
 	background: #fff;
 	background-color: #fff;
 	//background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(@blurredWallpaperUrl);
@@ -895,8 +892,6 @@ main {
 
 #widget-recommendation-users {
 	box-sizing: border-box;
-	width: ~"calc(100% - 16px)";
-	margin: 8px;
 	background: #fff;
 	background-color: #fff;
 	//background-image: url(@blurredWallpaperUrl);
@@ -1031,8 +1026,6 @@ main {
 #widget-donate {
 	display: block;
 	box-sizing: border-box;
-	width: ~"calc(100% - 16px)";
-	margin: 8px;
 	padding: 16px;
 	color: #94836F;
 	background: #fff;
