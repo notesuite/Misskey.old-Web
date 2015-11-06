@@ -30,10 +30,9 @@ body {
 	display: inline-block;
 	cursor: auto;
 	box-sizing: border-box;
-	padding: 8px 12px;
+	padding: 16px 12px;
 	margin: 0;
 	width: 100%;
-	height: ~"calc(1.5em + 16px + 4px)";
 	font-size: 1em;
 	color: #000;
 	outline: none;
@@ -130,7 +129,7 @@ main {
 				input[type=text],
 				input[type=password] {
 					.text-input;
-					padding: 8px 12px 8px 32px;
+					padding: 16px 12px 16px 32px;
 				}
 			}
 
@@ -187,7 +186,7 @@ main {
 			border: 0;
 			border-radius: 8px;
 			box-shadow: none;
-			background: #00acce;
+			background: @themeColor;
 			overflow: hidden;
 			cursor: pointer;
 
@@ -204,11 +203,11 @@ main {
 			}
 
 			&:hover {
-				background: #00c3e5;
+				background: #ea582c;
 			}
 
 			&:active {
-				background: #0097b2;
+				background: #d15f3c;
 			}
 
 			.waves-ripple {
