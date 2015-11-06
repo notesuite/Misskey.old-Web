@@ -12,7 +12,7 @@ html, body {
 
 html {
 	color: #444;
-	background: #fff;
+	background: #e0dedc;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
 	-moz-user-select: text;
 	-webkit-user-select: text;
 	-ms-user-select: text;
-	display: block;
+	display: inline-block;
 	cursor: auto;
 	box-sizing: border-box;
 	padding: 8px 12px;
@@ -37,45 +37,25 @@ body {
 	font-size: 1em;
 	color: #000;
 	outline: none;
-	border: solid 2px #eee;
-	border-radius: 4px;
+	border: none;
+	border-bottom: solid 2px #eee;
+	border-radius: 0;
 	box-shadow: none;
 	background: #fff;
 	transition: all .5s ease;
 	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
 
 	&:hover {
-		border: solid 2px #00acce;
+		border-bottom: solid 2px @themeColor;
 		transition: all .2s ease;
 	}
 
 	&:focus {
-		color: #006f87;
-		border: solid 2px #00acce;
+		color: @themeColor;
+		border-bottom: solid 2px @themeColor;
 		transition: all .1s ease;
 	}
 }
-
-.input-at {
-	display: block;
-	position: absolute;
-	top: 2px;
-	left: 2px;
-	padding: 8px 12px;
-	margin: 0;
-	width: 1em;
-	height: 1.5em;
-	font-size: 1em;
-	font-style: normal;
-	color: #777;
-	background: rgba(0, 0, 0, 0.025);
-	border: none;
-	border-radius: 2px 0px 0px 2px;
-	cursor: text;
-	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-	transition: all .5s ease;
-}
-
 
 main {
 	display: block;
@@ -111,17 +91,17 @@ main {
 			width: 310px;
 			background: #fff;
 			//box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
-			border: solid 2px #eee;
-			border-radius: 8px;
+			box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
 			transform-origin: center top;
 			transform: perspective(512px);
 
 			h2 {
 				display: block;
 				margin: 0 0 12px 0;
+				padding: 0 0 14px 0;
 				text-align: center;
 				font-size: 1em;
-				font-weight: normal;
+				font-weight: bold;
 				color: #888;
 				border-bottom: solid 1px #eee;
 
@@ -132,50 +112,25 @@ main {
 
 			label {
 				display: block;
+				position: relative;
 				margin: 8px 0;
 
-				p.caption {
-					display: inline-block;
-					box-sizing: border-box;
-					padding: 8px 12px 4px 12px;
-					margin: 0;
-					line-height: 1.5em;
-					font-size: 1em;
-					font-weight: bold;
-					color: #006f87;
-					transition: all .5s ease;
-
-					i {
-						margin-right: 6px;
-						color: #00acce;
-					}
-				}
-
-				.field {
-					position: relative;
-
-					&:hover input {
-						border: solid 2px #00acce;
-						transition: all .2s ease;
-					}
-				}
-
-				.at {
-					.input-at;
-				}
-
-				#id {
-					padding-left: ~"calc(1em + 24px + 12px)";
-
-					&:focus + .at {
-						color: #006f87;
-						transition: all .1s ease;
-					}
+				i {
+					display: block;
+					position: absolute;
+					bottom: 0;
+					top: 0;
+					left: 8px;
+					z-index: 1;
+					margin: auto;
+					height: 1em;
+					color: #898786;
 				}
 
 				input[type=text],
 				input[type=password] {
 					.text-input;
+					padding: 8px 12px 8px 32px;
 				}
 			}
 
@@ -328,10 +283,6 @@ main {
 			height: ~"calc(100% - (1em + 32px + 6px))";
 			overflow: auto;
 
-			.at {
-				.input-at;
-			}
-
 			input[type=text],
 			input[type=password] {
 				-webkit-appearance: none;
@@ -366,15 +317,6 @@ main {
 				&:focus {
 					color: #fff;
 					border: solid 2px #fff;
-					transition: all .1s ease;
-				}
-			}
-
-			input[name='screen-name'] {
-				padding-left: ~"calc(1em + 24px + 12px)" !important;
-
-				&:focus + .at {
-					color: #006f87;
 					transition: all .1s ease;
 				}
 			}

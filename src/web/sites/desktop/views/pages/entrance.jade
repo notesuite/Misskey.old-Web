@@ -36,31 +36,24 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 			div.contents
 				form#login-form(action='/login', method='post')
 					h2
-						| ログイン
-						i.fa.fa-sign-in
+						| ACCOUNT
 					label
-						p.caption
-							i.fa.fa-user
-							| ユーザー名
-						div.field
-							input#id(name='screen-name'
-								type='text'
-								pattern='^[0-9A-Za-z_]+$'
-								placeholder='User name'
-								autocomplete='off'
-								autofocus
-								required)
-							i.at @
+						i.fa.fa-at
+						input#id(name='screen-name'
+							type='text'
+							pattern='^[0-9A-Za-z_]+$'
+							placeholder='User name'
+							autocomplete='off'
+							autofocus
+							required)
 					label
-						p.caption
-							i.fa.fa-lock
-							| パスワード
+						i.fa.fa-lock
 						input(name='password'
 							type='password'
 							placeholder='Password'
 							autocomplete='off'
 							required)
-					input(type='submit', value!='Login &#xf105;')
+					input(type='submit', value!='SIGN IN &#xf105;')
 				button.ui-waves-effect#new
 					i.fa.fa-pencil-square-o
 					| アカウントを作成する

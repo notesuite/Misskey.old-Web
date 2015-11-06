@@ -53,7 +53,7 @@
 				ripple.style.width = '2px';
 				ripple.style.height = '2px';
 				ripple.style.borderRadius = '100%';
-				ripple.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+				ripple.style.backgroundColor = 'rgba(0, 0, 0, 0.15)';
 				ripple.style.opacity = '1';
 				ripple.style.transform = 'scale(1, 1)';
 				ripple.style.transition = 'all 1.5s cubic-bezier(0, .5, .5, 1)';
