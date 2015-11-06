@@ -62,15 +62,28 @@ main {
 	max-width: 1200px;
 	margin: 0 auto;
 
-	h1 {
-		display: block;
-		margin: 0;
+	header {
 		padding: 32px 64px;
-		text-align: left;
-		font-size: 2em;
-		font-weight: bold;
 		color: @themeColor;
-		// text-shadow: 0px 0px 16px #000;
+		background: #3a3a3a;
+		border-bottom: solid 8px @themeColor, 0 12px 1px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 10px 0 #3a3a3a;
+
+		h1 {
+			display: block;
+			margin: 0;
+			padding: 0;
+			text-align: left;
+			font-size: 2em;
+			font-weight: normal;
+			// text-shadow: 0px 0px 16px #000;
+		}
+
+		p {
+			display: block;
+			margin: 0;
+			padding: 0;
+		}
 	}
 
 	.contents {
