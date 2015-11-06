@@ -21,7 +21,12 @@ script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 script(src='/resources/desktop/scripts/lib/jquery-cookie.js')
 script(src='/resources/desktop/scripts/lib/jquery.transit.min.js')
 script(src='/resources/desktop/scripts/lib/prelude-browser.js')
+script(src='/resources/desktop/scripts/lib/waves-effect.js')
 script(src='/resources/desktop/scripts/common/main.js')
+script.
+	window.onload = function() {
+		WavesEffect.attachToClass('ui-waves-effect');
+	};
 script.
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
