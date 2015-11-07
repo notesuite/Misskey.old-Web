@@ -32,22 +32,22 @@ main {
 		position: relative;
 
 		#main-contents {
-			flex: 1 1 560px;
+			flex: 1 1 570px;
 			box-sizing: border-box;
-			max-width: 560px;
+			max-width: 570px;
 			margin: 0;
-			padding: 16px;
+			padding: 16px 24px;
 		}
 
 		#left-contents {
-			flex: 1 1 300px;
-			max-width: 300px;
+			flex: 1 1 270px;
+			max-width: 270px;
 			padding: 16px 0 16px 16px;
 		}
 
 		#right-contents {
-			flex: 1 1 300px;
-			max-width: 300px;
+			flex: 1 1 270px;
+			max-width: 270px;
 			padding: 16px 16px 16px 0;
 		}
 	}
@@ -543,6 +543,7 @@ main {
 			line-height: 56px;
 			font-weight: bold;
 			font-size: 1em;
+			font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 		}
 	}
 
@@ -1028,18 +1029,18 @@ main {
 	box-sizing: border-box;
 	padding: 16px;
 	color: #94836F;
-	background: #fff;
-	background-color: #fff;
-	//background-image: linear-gradient(rgba(255, 170, 27, 0.5), rgba(255, 170, 27, 0.1)), url(@blurredWallpaperUrl);
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-	border-radius: 8px;
+
+	*:not(i) {
+		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+	}
 
 	h1 {
 		margin: 0;
 		font-size: 1em;
+
+		i {
+			margin-right: 0.25em;
+		}
 	}
 
 	p {
