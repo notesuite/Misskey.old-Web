@@ -95,6 +95,15 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 								placeholder='Retype passcode',
 								autocomplete='off',
 								required)
+					div.column.agree-tou
+						label
+							input(
+								name='agree-tou',
+								type='checkbox',
+								required)
+							p
+								| I agree to the 
+								a(href='') Terms of Use(Japanese)
 					div.actions
 						button#register-cancel(type='button')
 							i.fa.fa-ban
