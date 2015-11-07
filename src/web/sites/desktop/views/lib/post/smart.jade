@@ -73,7 +73,7 @@ mixin status(status)
 						img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 					h2
 						a(href=config.url + '/' + status.inReplyToPost.user.screenName, target='_blank')= status.inReplyToPost.user.name
-					span.screen-name= '@' + status.inReplyToPost.user.screenName
+					span.screen-name= status.inReplyToPost.user.screenName
 					a(href=config.url + '/' + status.inReplyToPost.user.screenName + '/status/' + status.inReplyToPost.id): time(datetime=status.inReplyToPost.createdAt, pubdate, data-display-type='relative')= status.inReplyToPost.createdAt
 				div.main
 					+content(status.inReplyToPost)
@@ -87,7 +87,7 @@ mixin status(status)
 					a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
 				if status.user.isVerified
 					img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-				span.screen-name= '@' + status.user.screenName
+				span.screen-name= status.user.screenName
 			div.right
 				if status.app != null
 					a.via-anchor
