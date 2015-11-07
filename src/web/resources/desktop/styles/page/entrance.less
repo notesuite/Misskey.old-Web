@@ -291,7 +291,7 @@ main {
 			box-sizing: border-box;
 			position: relative;
 			margin: 0;
-			padding: 38px;
+			padding: 38px 54px;
 			height: ~"calc(100% - (1em + 32px + 6px))";
 			overflow: auto;
 
@@ -312,19 +312,31 @@ main {
 					display: block;
 					clear: both;
 					margin: 0;
-					padding: 4px 8px;
+					padding: 8px 0;
+
+					.field {
+						position: relative;
+						padding: 0 0 0 12px;
+
+						> i {
+							display: block;
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							left: -16px;
+							height: 1em;
+							margin: auto;
+							color: #DCD5D1;
+						}
+					}
 				}
 			}
 
 			.agree-tou {
 				padding: 12px 0;
 
-				label {
-					padding: 4px 16px;
-
-					p {
-						display: inline;
-					}
+				p {
+					display: inline;
 				}
 			}
 		}
@@ -400,7 +412,7 @@ main {
 				appearance: none;
 				display: inline-block;
 				box-sizing: border-box;
-				margin: 0 8px;
+				margin: 0 0 0 8px;
 				padding: 8px 12px;
 				font-size: 1em;
 				color: #fff;
@@ -434,7 +446,7 @@ main {
 				appearance: none;
 				display: inline-block;
 				box-sizing: border-box;
-				margin: 0 8px;
+				margin: 0 8px 0 0;
 				padding: 8px 12px;
 				font-size: 1em;
 				color: #555;

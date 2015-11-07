@@ -71,39 +71,47 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 				form
 					div.column.user-name
 						label
-							input.user-name-input(
-								name='screen-name',
-								type='text',
-								placeholder='User name',
-								pattern='^[a-zA-Z0-9_]+$',
-								autocomplete='off',
-								required)
+							div.field
+								i.fa.fa-circle
+								input.user-name-input(
+									name='screen-name',
+									type='text',
+									placeholder='User name',
+									pattern='^[a-zA-Z0-9_]+$',
+									autocomplete='off',
+									required)
 							p.profile-page-url-preview https://misskey.xyz/
 					div.column.password
 						label
-							input.password-input(
-								name='password',
-								type='password',
-								placeholder='Passcode',
-								autocomplete='off',
-								required)
+							div.field
+								i.fa.fa-circle
+								input.password-input(
+									name='password',
+									type='password',
+									placeholder='Passcode',
+									autocomplete='off',
+									required)
 					div.column.password-retype
 						label
-							input.password-retype-input(
-								name='retype-password',
-								type='password',
-								placeholder='Retype passcode',
-								autocomplete='off',
-								required)
+							div.field
+								i.fa.fa-circle
+								input.password-retype-input(
+									name='retype-password',
+									type='password',
+									placeholder='Retype passcode',
+									autocomplete='off',
+									required)
 					div.column.agree-tou
 						label
-							input(
-								name='agree-tou',
-								type='checkbox',
-								required)
-							p
-								| I agree to the 
-								a(href='') Terms of Use(Japanese)
+							div.field
+								i.fa.fa-circle
+								input(
+									name='agree-tou',
+									type='checkbox',
+									required)
+								p
+									| I agree to the 
+									a(href='') Terms of Use(Japanese)
 					div.actions
 						button#register-cancel(type='button')
 							i.fa.fa-ban
