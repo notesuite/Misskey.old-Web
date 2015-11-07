@@ -112,6 +112,7 @@ main {
 				margin: 0 0 12px 0;
 				padding: 0 0 14px 0;
 				text-align: center;
+				text-transform: uppercase;
 				font-size: 1em;
 				font-weight: bold;
 				color: #888;
@@ -195,6 +196,7 @@ main {
 			line-height: 1em;
 			font-size: 1.1em;
 			color: #fff;
+			text-transform: uppercase;
 			outline: 0;
 			border: 0;
 			border-radius: 8px;
@@ -257,29 +259,27 @@ main {
 
 	.main {
 		position: absolute;
-		top: 0;
+		top: 64px;
 		right: 0;
-		bottom: 0;
 		left: 0;
-		width: 600px;
-		height: 600px;
+		width: 490px;
 		margin: auto;
-		background: #71C4B3;
-		border-radius: 8px;
+		background: #FFFBF7;
 
 		header {
 			display: block;
-			border-bottom: solid 2px rgba(255, 255, 255, 0.3);
+			background: #3a3a3a;
 
 			h2 {
 				display: block;
 				margin: 0;
-				padding: 16px 0;
+				padding: 24px 0;
 				text-align: center;
 				font-size: 1em;
 				line-height: 1em;
 				font-weight: bold;
-				color: #FFFBCF;
+				text-transform: uppercase;
+				color: @themeColor;
 
 				i {
 					margin-right: 6px;
@@ -291,46 +291,13 @@ main {
 			box-sizing: border-box;
 			position: relative;
 			margin: 0;
-			padding: 24px 48px 0 48px;
+			padding: 38px;
 			height: ~"calc(100% - (1em + 32px + 6px))";
 			overflow: auto;
 
 			input[type=text],
 			input[type=password] {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				user-select: text;
-				-moz-user-select: text;
-				-webkit-user-select: text;
-				-ms-user-select: text;
-				display: block;
-				cursor: auto;
-				box-sizing: border-box;
-				padding: 8px 12px;
-				margin: 0;
-				width: 100%;
-				height: ~"calc(1.5em + 16px + 4px)";
-				font-size: 1em;
-				color: rgba(255, 255, 255, 0.7);
-				outline: none;
-				border: solid 2px rgba(255, 255, 255, 0.7);
-				border-radius: 4px;
-				box-shadow: none;
-				background: transparent;
-				transition: all .5s ease;
-				font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-
-				&:hover {
-					border: solid 2px #fff;
-					transition: all .2s ease;
-				}
-
-				&:focus {
-					color: #fff;
-					border: solid 2px #fff;
-					transition: all .1s ease;
-				}
+				.text-input;
 			}
 
 			.profile-page-url-preview {
@@ -346,42 +313,7 @@ main {
 					clear: both;
 					margin: 0;
 					padding: 4px 8px;
-
-					.caption {
-						display: inline-block;
-						box-sizing: border-box;
-						padding: 0 12px 4px 12px;
-						margin: 0;
-						line-height: 1.5em;
-						font-size: 1em;
-						font-weight: bold;
-						color: #006f87;
-						transition: all .5s ease;
-
-						i {
-							margin-right: 6px;
-							color: #00acce;
-						}
-					}
-
-					.field {
-						position: relative;
-
-						input {
-							max-width: 18em;
-						}
-					}
 				}
-			}
-
-			.column.password {
-				float: left;
-				width: 50%;
-			}
-
-			.column.password-retype {
-				float: left;
-				width: 50%;
 			}
 		}
 
@@ -447,7 +379,7 @@ main {
 
 		.actions {
 			clear: both;
-			padding: 16px 0;
+			padding: 16px 0 0 0;
 			text-align: right;
 
 			#register-accept {
@@ -464,7 +396,7 @@ main {
 				border: 0;
 				border-radius: 4px;
 				box-shadow: none;
-				background: #00acce;
+				background: @themeColor;
 				cursor: pointer;
 
 				* {
@@ -476,11 +408,11 @@ main {
 				}
 
 				&:hover {
-					background: #00c3e5;
+					background: lighten(@themeColor, 10%);
 				}
 
 				&:active {
-					background: #0097b2;
+					background: darken(@themeColor, 10%);
 				}
 			}
 
@@ -519,9 +451,4 @@ main {
 			}
 		}
 	}
-}
-
-.complete {
-	transform-origin: center top !important;
-	transition: none !important;
 }

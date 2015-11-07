@@ -39,7 +39,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 			div.contents
 				form#login-form(action='/login', method='post')
 					h2
-						| ACCOUNT
+						| Account
 					label
 						i.fa.fa-at
 						input#id(name='screen-name'
@@ -59,7 +59,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					input(type='submit', value!='SIGN IN &#xf105;')
 				button.ui-waves-effect#new
 					i.fa.fa-pencil-square-o
-					| CREATE ACCOUNT
+					| Create account
 		
 		div#register-form-background(role='presentation')
 		div#register-form
@@ -67,35 +67,38 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 				header
 					h2
 						i.fa.fa-child
-						| 新しいアカウントを作成する(新規登録)
+						| Create my Misskey account
 				form
 					div.column.user-name
 						label
-							p.caption
-								i.fa.fa-user
-								| ユーザー名
-							div.field
-								input.user-name-input(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
-								i.at @
-								p.profile-page-url-preview https://misskey.xyz/
+							input.user-name-input(
+								name='screen-name',
+								type='text',
+								placeholder='User name',
+								pattern='^[a-zA-Z0-9_]+$',
+								autocomplete='off',
+								required)
+							p.profile-page-url-preview https://misskey.xyz/
 					div.column.password
 						label
-							p.caption
-								i.fa.fa-lock
-								| パスワード
-							div.field
-								input.password-input(name='password', type='password', required)
+							input.password-input(
+								name='password',
+								type='password',
+								placeholder='Passcode',
+								autocomplete='off',
+								required)
 					div.column.password-retype
 						label
-							p.caption
-								i.fa.fa-lock
-								| パスワード(再入力)
-							div.field
-								input.password-retype-input(name='retype-password', type='password', required)
+							input.password-retype-input(
+								name='retype-password',
+								type='password',
+								placeholder='Retype passcode',
+								autocomplete='off',
+								required)
 					div.actions
 						button#register-cancel(type='button')
 							i.fa.fa-ban
-							| キャンセル
+							| Cancel
 						button#register-accept(type='submit')
 							i.fa.fa-check
-							| アカウントを作成
+							| Create!
