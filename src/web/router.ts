@@ -24,12 +24,34 @@ function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 export default function(app: express.Express): void {
 	'use strict';
 	console.log('Init Web router');
+	
+	app.param('userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, screenName: string) => {
+		requestApi('GET', 'users/show', {
+			screenNameLower: screenName.toLowerCase()
+		}).then((user: User) => {
+			if (user !== null) {
+				req.rootUser = user;
+				next();
+			} else {
+				res.status(404);
+				res.display(req, res, 'user-not-found', {});
+			}
+		});
+	});
 
 	app.get('/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
 			callController(req, res, 'home');
 		} else {
 			callController(req, res, 'entrance');
+		}
+	});
+	
+	app.get('/i/*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+		if (req.isLogin) {
+			next();
+		} else {
+			callController(req, res, 'login');
 		}
 	});
 
@@ -47,5 +69,9 @@ export default function(app: express.Express): void {
 				res.json(response);
 			});
 		});
+	});
+	
+	app.get('/:userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'user');
 	});
 }
