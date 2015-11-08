@@ -30,11 +30,11 @@ export default function(app: express.Express): void {
 			screenNameLower: screenName.toLowerCase()
 		}).then((user: User) => {
 			if (user !== null) {
-				req.rootUser = user;
+				req.user = user;
 				next();
 			} else {
 				res.status(404);
-				res.display(req, res, 'user-not-found', {});
+				res.display(req, 'user-not-found', {});
 			}
 		});
 	});
