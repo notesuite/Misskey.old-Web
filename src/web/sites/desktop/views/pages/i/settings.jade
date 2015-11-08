@@ -2,14 +2,14 @@ doctype html
 
 html(lang='ja', dir='ltr')
 	head
-		include ../common/head
+		include ../../common/head
 		title 設定
-		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
-		script(src='/resources/scripts/lib/syuiloui.js')
-		script(src='/resources/scripts/page/i-settings.js')
+		link(rel='stylesheet', href='/resources/styles/page/i/settings.css')
+		script(src='/resources/desktop/scripts/lib/syuiloui.js')
+		script(src='/resources/desktop/scripts/page/i/settings.js')
 	
 	body
-		include ../common/header
+		include ../../common/header
 		
 		main(role='main')
 			div.main
@@ -114,7 +114,7 @@ html(lang='ja', dir='ltr')
 								| :
 							p.credit
 								i.fa.fa-leaf
-								= me.point.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+								= me.credit.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 
 					div#mail
 						p coming soon....
