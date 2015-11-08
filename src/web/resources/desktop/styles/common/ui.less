@@ -1771,6 +1771,42 @@ textarea {
 	}
 }
 
+@media (max-width: 600px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .right {
+					> .time {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .left {
+					> nav {
+						> .main-nav {
+							> ul {
+								> li {
+									> a {
+										padding: 0 16px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 /* General UI
  * ---------------------------------------------------------------- */
 
