@@ -6,17 +6,11 @@ html(lang='ja', dir='ltr')
 		meta(name='description', content='Not found')
 		meta(name='keywords', content='Misskey')
 		title= 'Not found'
-		link(rel='stylesheet', href='/resources/styles/not-found.css')
+		link(rel='stylesheet', href='/resources/desktop/styles/page/not-found.css')
 	
 	body
 		include ../common/header
 		
 		main(role='main')
-			h1
-				i.fa.fa-exclamation-triangle
-				| Not found.
-			p コンテンツが見つかりません。URLが正しいかご確認ください。
-			p
-				| Back to 
-				a(href='/') home
-				| .
+			h1 Not found.
+			p コンテンツが見つかりません。
