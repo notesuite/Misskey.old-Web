@@ -53,6 +53,31 @@ main {
 	}
 }
 
+@media (max-width: 1000px) {
+	main {
+		#contents {
+			#left-contents {
+				display: none;
+			}
+
+			#right-contents {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	main {
+		#contents {
+			#main-contents {
+				padding: 0;
+				max-width: 100%;
+			}
+		}
+	}
+}
+
 #customizer-menu {
 	display: block;
 	box-sizing: border-box;
