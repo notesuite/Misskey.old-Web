@@ -394,7 +394,7 @@ textarea {
 			clear: both;
 		}
 
-		> .mainContentsContainer {
+		> .main-contents-container {
 			width: 100%;
 			max-width: 1300px;
 			margin: 0 auto;
@@ -404,7 +404,7 @@ textarea {
 				height: 3rem;
 
 				> nav {
-					> .mainNav {
+					> .main-nav {
 						display: inline-block;
 						margin: 0;
 						padding: 0;
@@ -483,6 +483,11 @@ textarea {
 
 									> i {
 										margin-right: 8px;
+									}
+
+									> p {
+										display: inline;
+										margin: 0;
 									}
 
 									> .unreadCount {
@@ -997,7 +1002,7 @@ textarea {
 							&:hover {
 								background: rgba(0, 0, 0, 0.1);
 
-								> .screenName {
+								> .screen-name {
 									color: #fff;
 								}
 
@@ -1013,7 +1018,7 @@ textarea {
 							&:active {
 								background: rgba(0, 0, 0, 0.2);
 
-								> .screenName {
+								> .screen-name {
 									color: #fff;
 								}
 
@@ -1032,7 +1037,7 @@ textarea {
 								clear: both;
 							}
 
-							> .screenName {
+							> .screen-name {
 								display: block;
 								float: left;
 								margin: 0 16px;
@@ -1700,18 +1705,70 @@ textarea {
 	}
 }
 
-#misskey-musicCenter {
-	position: fixed;
-	z-index: 1023;
-	top: -100%;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url("/resources/images/sakurako.jpg");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-	transition: top 0.5s cubic-bezier(0,0,0,1);
+@media (max-width: 1100px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .left {
+					> nav {
+						> .main-nav {
+							> ul {
+								> li {
+									> a {
+										> i {
+											margin-right: 0;
+										}
+
+										> p {
+											display: none;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .right {
+					> .account {
+						> .dropdown {
+							> .dropdown-header {
+								> .screen-name {
+									display: none;
+								}
+
+								> .icon {
+									margin: 8px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .right {
+					> .search {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }
 
 /* General UI
