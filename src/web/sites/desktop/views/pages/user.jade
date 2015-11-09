@@ -33,11 +33,11 @@ block contents
 		div#friend-form
 			if login
 				if me.id != user.id
-					if isFollowMe
+					if user.isFollowMyself
 						p#friend-status
 							i.fa.fa-heart
 							| フォローされています
-					if isFollowing
+					if user.isFollowing
 						button#friend-button.following フォロー中
 					else
 						button#friend-button.not-following フォロー
