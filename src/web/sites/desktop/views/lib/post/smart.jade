@@ -41,38 +41,16 @@ mixin common(post)
 				if post.replies.length > 0
 					each reply in post.replies
 						li.status(title!= '#{reply.createdAt}&#x0A;'
-							data-id= reply.id
-							data-user-id= reply.user.id)
-							article
-								a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
-									img.icon(src=reply.user.iconUrl, alt='icon')
-								header
-									if reply.user.isVerified
-										img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-									h2
-										a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
-									span.screen-name= '@' + reply.user.screenName
-									a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
-								div.main
-									div.text!= reply.text
+								data-id= reply.id
+								data-user-id= reply.user.id)
+							+subPost(reply)
 
 mixin status(status)
 	if status.inReplyToPost !== null
 		div.reply-source(title!= '#{status.inReplyToPost.createdAt}&#x0A;'
-			data-id= status.inReplyToPost.id
-			data-user-id= status.inReplyToPost.user.id)
-			article
-				a.icon-anchor(href=config.url + '/widget/talk/' + status.inReplyToPost.user.screenName, title= status.inReplyToPost.user.comment != null ? status.inReplyToPost.user.comment : '@' + status.inReplyToPost.user.screenName)
-					img.icon(src=status.inReplyToPost.user.iconUrl, alt='icon')
-				header
-					if status.inReplyToPost.user.isVerified
-						img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-					h2
-						a(href=config.url + '/' + status.inReplyToPost.user.screenName, target='_blank')= status.inReplyToPost.user.name
-					span.screen-name= status.inReplyToPost.user.screenName
-					a(href=config.url + '/' + status.inReplyToPost.user.screenName + '/status/' + status.inReplyToPost.id): time(datetime=status.inReplyToPost.createdAt, pubdate, data-display-type='relative')= status.inReplyToPost.createdAt
-				div.main
-					+content(status.inReplyToPost)
+				data-id= status.inReplyToPost.id
+				data-user-id= status.inReplyToPost.user.id)
+			+subPost(status.inReplyToPost)
 	div.main
 		div.icon-area
 			a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
@@ -158,3 +136,17 @@ mixin post(post)
 							p キャンセル
 		article(role='article')
 			+extract(post)
+
+mixin subPost(post)
+	article
+		a.icon-anchor(href=config.url + '/widget/talk/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
+			img.icon(src=post.user.iconUrl, alt='icon')
+		header
+			if post.user.isVerified
+				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+			h2
+				a(href=config.url + '/' + post.user.screenName, target='_blank')= post.user.name
+			span.screen-name= post.user.screenName
+			a(href=config.url + '/' + post.user.screenName + '/status/' + post.id): time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt
+		div.main
+			+content(post)
