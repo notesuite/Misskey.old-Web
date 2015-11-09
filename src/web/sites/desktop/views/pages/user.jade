@@ -8,28 +8,9 @@ block assets
 	script(src='/resources/desktop/scripts/page/user-home.js')
 
 block contents
-	div#left-sub-contents
-		if user.location != null && user.location != ""
-			p#location
-				i.fa.fa-map-marker
-				= user.location
-		if user.url != null && user.url != ""
-			p#website
-				a(href= user.url)
-					i.fa.fa-link
-					= user.url
-		section#followers
-			h2
-				i.fa.fa-users
-				| Followers
-			ol
-				each user in followersRecent
-					li
-						a(href= '/' + user.screenName)
-							img.icon(src=user.iconUrl, alt='icon', title=user.name)
 	div#main-content
 		div#timeline!= timelineHtml
-	div#right-sub-contents
+	div#sub-contents
 		div#friend-form
 			if login
 				if me.id != user.id
