@@ -12,7 +12,24 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	const user: User = req.user;
 	const me: User = req.me;
 
-	res.display(req, 'user', {
-		user: user
+	requestApi('GET', 'posts/user-timeline', {
+		'user-id': user.id
+	}, me !== null ? me.id : null).then((tl: Post[]) => {
+		const timeline: Object[] = tl.map((post: Post) => {
+			switch (post.type) {
+				case 'status':
+					(<any>post).text = parsePostText((<any>post).text, (<any>post).isPlain);
+					break;
+				default:
+					break;
+			}
+			return post;
+		});
+		
+		res.display(req, 'user', {
+			user: user,
+			me: me,
+			timeline: timeline
+		});
 	});
 };
