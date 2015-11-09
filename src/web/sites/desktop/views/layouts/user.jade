@@ -7,7 +7,7 @@ html(lang='ja'
 	itemscope
 	itemtype='http://schema.org/ProfilePage'
 	data-user-id= user.id
-	data-is-following!= login ? isFollowing != null ? isFollowing.toString() : null : null
+	data-is-following!= login ? user.isFollowing != null ? user.isFollowing.toString() : null : null
 	data-is-me!= isMe.toString())
 	head(prefix='og: http://ogp.me/ns#')
 		include ../common/head
@@ -111,7 +111,7 @@ html(lang='ja'
 					div.main
 						div#icon-area
 							a.icon-anchor
-								img#icon(src=user.iconImageUrl, alt='icon', itemprop='image')
+								img#icon(src=user.iconUrl, alt='icon', itemprop='image')
 							div.comment-container
 								p#comment
 									if user.comment != null && user.comment != ""
