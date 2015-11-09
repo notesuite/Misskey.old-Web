@@ -42,9 +42,7 @@ mixin common(post)
 					each reply in post.replies
 						li.status(title!= '#{reply.createdAt}&#x0A;'
 							data-id= reply.id
-							data-user-id= reply.user.id
-							data-user-color= reply.user.color
-							data-user-verified!= reply.user.isVerified.toString())
+							data-user-id= reply.user.id)
 							article
 								a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
 									img.icon(src=reply.user.iconUrl, alt='icon')
@@ -62,9 +60,7 @@ mixin status(status)
 	if status.inReplyToPost !== null
 		div.reply-source(title!= '#{status.inReplyToPost.createdAt}&#x0A;'
 			data-id= status.inReplyToPost.id
-			data-user-id= status.inReplyToPost.user.id
-			data-user-color= status.inReplyToPost.user.color
-			data-user-verified!= status.inReplyToPost.user.isVerified.toString())
+			data-user-id= status.inReplyToPost.user.id)
 			article
 				a.icon-anchor(href=config.url + '/widget/talk/' + status.inReplyToPost.user.screenName, title= status.inReplyToPost.user.comment != null ? status.inReplyToPost.user.comment : '@' + status.inReplyToPost.user.screenName)
 					img.icon(src=status.inReplyToPost.user.iconUrl, alt='icon')
@@ -131,8 +127,6 @@ mixin post(post)
 			data-user-id            = post.user.id
 			data-user-screen-name   = post.user.screenName
 			data-user-name          = post.user.name
-			data-user-color         = post.user.color
-			data-user-verified     != post.user.isVerified.toString()
 			data-is-favorited      != login ? post.type == 'repost' ? post.post.isFavorited.toString() : post.isFavorited.toString() : null
 			data-is-reposted       != login ? post.type == 'repost' ? post.post.isReposted.toString() : post.isReposted.toString() : null
 			data-display-html-is-active='false')
