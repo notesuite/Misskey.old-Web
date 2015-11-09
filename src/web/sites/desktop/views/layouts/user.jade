@@ -102,8 +102,8 @@ html(lang='ja'
 									th フォロー
 									th フォロワー
 								tr
-									td: a(href='/' + user.screenName)= user.statusesCount
-									td: a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
+									td: a(href='/' + user.screenName)= user.postsCount
+									td: a(href='/' + user.screenName + '/favorites')= user.favoritesCount
 									td: a(href='/' + user.screenName + '/followings')= user.followingsCount
 									td: a(href='/' + user.screenName + '/followers')= user.followersCount
 				nav#header-nav(role='navigation')
