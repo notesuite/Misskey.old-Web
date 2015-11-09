@@ -1,4 +1,5 @@
 extends ../layouts/user
+include ../lib/post/smart
 
 block title
 	= user.name
@@ -8,8 +9,6 @@ block assets
 	script(src='/resources/desktop/scripts/page/user-home.js')
 
 block contents
-	div#main-content
-		div#timeline!= timelineHtml
 	div#sub-contents
 		div#friend-form
 			if login
@@ -40,3 +39,12 @@ block contents
 						each status in recentPhotoStatuses
 							li.photo(style='background-image: url("' + status.imageUrls[0] + '")', title=status.displayCreatedAt)
 								a(href=config.url + '/' + user.screenName + '/status/' + status.id)
+	div#main-content
+		div#timeline
+			if timeline.length > 0
+				ol.posts
+					each post in timeline
+						+post(post)
+			else
+				p.empty
+					| このユーザーはまだ何も投稿していないようです。

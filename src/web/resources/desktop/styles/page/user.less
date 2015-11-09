@@ -531,17 +531,7 @@ main {
 			max-width: 600px;
 
 			#timeline {
-				> .timeline {
-					> .statuses {
-						> .status:first-child {
-							> .status.article {
-								> article {
-									margin: 0 0 16px 0;
-								}
-							}
-						}
-					}
-				}
+				@import "../common/timeline";
 			}
 
 			#followings-list, #followers-list {
@@ -624,20 +614,20 @@ main {
 						}
 					}
 
-						li[data-user-verified='true'] {
-							> h2 > a {
-								&:before {
-									content: '';
-									display: inline-block;
-									vertical-align: text-bottom;
-									margin-right: 4px;
-									width: 1.1em;
-									height: 1.1em;
-									background-image: url('/resources/images/verified.png');
-									background-size: 1.1em 1.1em;
-								}
+					li[data-user-verified='true'] {
+						> h2 > a {
+							&:before {
+								content: '';
+								display: inline-block;
+								vertical-align: text-bottom;
+								margin-right: 4px;
+								width: 1.1em;
+								height: 1.1em;
+								background-image: url('/resources/images/verified.png');
+								background-size: 1.1em 1.1em;
 							}
 						}
+					}
 				}
 			}
 		}
