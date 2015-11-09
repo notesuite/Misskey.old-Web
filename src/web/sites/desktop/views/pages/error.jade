@@ -3,10 +3,9 @@ doctype html
 html(lang='ja', dir='ltr')
 	head
 		include ../common/head
-		meta(name='description', content='Oops')
-		meta(name='keywords', content='Misskey')
+		meta(name='description', content='Something happened')
 		title= 'Oops'
-		link(rel='stylesheet', href='/resources/styles/page/error.css')
+		link(rel='stylesheet', href='/resources/desktop/styles/page/error.css')
 	
 	body
 		include ../common/header
@@ -18,7 +17,3 @@ html(lang='ja', dir='ltr')
 			details
 				summary 詳細情報
 				pre= err
-			p
-				| Back to 
-				a(href='/') home
-				| .
