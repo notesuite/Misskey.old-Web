@@ -28,7 +28,7 @@ export default function(app: express.Express): void {
 	app.param('userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, screenName: string) => {
 		requestApi('GET', 'users/show', {
 			'screen-name': screenName
-		}).then((user: User) => {
+		}, req.isLogin ? req.me.id : null).then((user: User) => {
 			console.log(user);
 			if (user !== null) {
 				req.user = user;
