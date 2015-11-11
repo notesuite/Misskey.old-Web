@@ -17,8 +17,10 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 			}
 		};
 		request(options, (err: any, response: http.IncomingMessage, body: any) => {
-			if (err) {
+			if (err !== null) {
 				reject(err);
+			} else if (response.statusCode !== 200) {
+				reject(body);
 			} else {
 				// console.log(body);
 				resolve(JSON.parse(body));
