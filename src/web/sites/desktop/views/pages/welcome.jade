@@ -1,0 +1,21 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='description', content='Misskeyを始めよう')
+		title= 'Misskeyを始めよう'
+		link(rel='stylesheet', href='/resources/desktop/styles/page/welcome.css')
+	
+	body
+		main(role='main')
+			h1 Misskeyへようこそ
+			section
+				h2 ニックネームを入力してください
+				input(type='text', name='name')
+			section
+				h2 アイコンをアップロードしましょう
+				input(type='file', name='icon')
+			section
+				h2 ユーザーをフォローするとより楽しめます
+				ul#users
