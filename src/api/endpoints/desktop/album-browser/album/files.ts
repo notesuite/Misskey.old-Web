@@ -1,9 +1,7 @@
-import * as fs from 'fs';
-import * as express from 'express';
-import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
-import requestApi from '../../../../utils/requestApi';
-import mapToHtml from '../../../../utils/mapToHtml';
+import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
+import requestApi from '../../../../../utils/requestApi';
+import mapToHtml from '../../../../../utils/mapToHtml';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';

@@ -25,7 +25,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			}
 			return post;
 		});
-		
+
 		res.display(req, 'user', {
 			user: user,
 			me: me,

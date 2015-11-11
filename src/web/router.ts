@@ -24,7 +24,7 @@ function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 export default function(app: express.Express): void {
 	'use strict';
 	console.log('Init Web router');
-	
+
 	app.param('userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, screenName: string) => {
 		requestApi('GET', 'users/show', {
 			'screen-name': screenName
@@ -47,7 +47,7 @@ export default function(app: express.Express): void {
 			callController(req, res, 'entrance');
 		}
 	});
-	
+
 	app.get('/i/*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		if (req.isLogin) {
 			next();
@@ -59,7 +59,7 @@ export default function(app: express.Express): void {
 	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'i/album');
 	});
-	
+
 	app.get('/i/settings', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/settings'));
 
 	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
@@ -71,7 +71,7 @@ export default function(app: express.Express): void {
 			});
 		});
 	});
-	
+
 	app.get('/:userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'user');
 	});

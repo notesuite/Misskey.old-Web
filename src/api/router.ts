@@ -33,14 +33,14 @@ export default function(app: express.Express): void {
 			res.json(response);
 		});
 	});
-	
+
 	app.put('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('PUT', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
 		});
 	});
-	
+
 	app.delete('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('DELETE', req.path.substring(1), req.body, userId).then((response: any) => {
