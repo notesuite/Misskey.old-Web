@@ -46,11 +46,6 @@ mixin common(post)
 							+subPost(reply)
 
 mixin status(status)
-	if status.inReplyToPost !== null
-		div.reply-source(title!= '#{status.inReplyToPost.createdAt}&#x0A;'
-				data-id= status.inReplyToPost.id
-				data-user-id= status.inReplyToPost.user.id)
-			+subPost(status.inReplyToPost)
 	div.main
 		div.icon-area
 			a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
@@ -73,6 +68,35 @@ mixin status(status)
 		div.content(itemprop='articleBody')
 			+content(status)
 	+common(status)
+
+mixin reply(reply)
+	div.reply-source(title!= '#{reply.inReplyToPost.createdAt}&#x0A;'
+			data-id= reply.inReplyToPost.id
+			data-user-id= reply.inReplyToPost.user.id)
+		+subPost(reply.inReplyToPost)
+	div.main
+		div.icon-area
+			a.icon-anchor(href=config.url + '/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName, rel='icon')
+				img.icon(src=reply.user.iconUrl, alt='icon')
+		header.header
+			div.author(itemprop='author')
+				h2
+					a.user-name(href=config.url + '/' + reply.user.screenName, target='_blank', rel='author')= reply.user.name
+				if reply.user.isVerified
+					img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+				span.screen-name= reply.user.screenName
+			div.right
+				if reply.app != null
+					a.via-anchor
+						p.via
+							span.caption via
+							b.app-name= reply.app.name
+				a.time-anchor(href=config.url + '/' + reply.user.screenName + '/post/' + reply.id, itemprop='url')
+					time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
+		div.content(itemprop='articleBody')
+			+content(reply)
+	+common(reply)
+
 
 mixin repost(repost)
 	div.repost-information
