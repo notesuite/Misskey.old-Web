@@ -22,7 +22,7 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 			} else if (response.statusCode !== 200) {
 				reject({
 					statusCode: response.statusCode,
-					body: body.error
+					body: JSON.parse(body).error
 				});
 			} else {
 				// console.log(body);
