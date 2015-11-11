@@ -24,14 +24,28 @@ export default function(app: express.Express): void {
 
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
-		requestApi("GET", req.path.substring(1), req.query, userId).then((response: any) => {
+		requestApi('GET', req.path.substring(1), req.query, userId).then((response: any) => {
 			res.json(response);
 		});
 	});
 
 	app.post('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
-		requestApi("POST", req.path.substring(1), req.body, userId).then((response: any) => {
+		requestApi('POST', req.path.substring(1), req.body, userId).then((response: any) => {
+			res.json(response);
+		});
+	});
+	
+	app.put('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		const userId: string = req.isLogin ? req.session.userId : null;
+		requestApi('PUT', req.path.substring(1), req.body, userId).then((response: any) => {
+			res.json(response);
+		});
+	});
+	
+	app.delete('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		const userId: string = req.isLogin ? req.session.userId : null;
+		requestApi('DELETE', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
 		});
 	});
