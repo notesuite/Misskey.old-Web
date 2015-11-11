@@ -3,19 +3,13 @@ doctype html
 html(lang='ja', dir='ltr')
 	head
 		include ../common/head
-		meta(name='description', content='Sorry, user not found.')
-		meta(name='keywords', content='Misskey')
-		title= 'Oops'
-		link(rel='stylesheet', href='/resources/styles/user-not-found.css')
+		meta(name='description', content='Not found')
+		title= 'Not found'
+		link(rel='stylesheet', href='/resources/desktop/styles/page/user-not-found.css')
 	
 	body
 		include ../common/header
 		
 		main(role='main')
-			h1
-				i.fa.fa-exclamation-triangle
-				| ユーザーが見つかりません
-			p
-				| Back to 
-				a(href='/') home
-				| .
+			h1 Not found
+			p 見つかりません。
