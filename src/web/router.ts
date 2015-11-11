@@ -38,7 +38,7 @@ export default function(app: express.Express): void {
 				res.display(req, 'user-not-found', {});
 			}
 		}, (err: any) => {
-			if (err.statusCode === 404) {
+			if (err.body === 'not-found') {
 				res.status(404);
 				res.display(req, 'user-not-found', {});
 			}
