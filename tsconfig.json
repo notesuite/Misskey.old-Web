@@ -38,6 +38,7 @@
 		"src/web/sites/desktop/controllers/entrance.ts",
 		"src/web/sites/desktop/controllers/home.ts",
 		"src/web/sites/desktop/controllers/user.ts",
+		"src/web/sites/desktop/controllers/i/home-customize.ts",
 		"src/web/sites/desktop/controllers/i/album.ts"
 	]
 }

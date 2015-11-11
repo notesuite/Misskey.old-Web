@@ -62,6 +62,8 @@ export default function(app: express.Express): void {
 
 	app.get('/i/settings', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/settings'));
 
+	app.get('/i/home-customize', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/home-customize'));
+
 	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		requestApi("GET", 'login', req.body).then((response: any) => {
 			const user: User = response.user;
