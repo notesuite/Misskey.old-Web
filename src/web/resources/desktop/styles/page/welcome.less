@@ -1,7 +1,50 @@
 ﻿@import "../common";
 
+html, body, main {
+	height: 100%;
+}
+
 html {
 	color: #fff;
 	background: #82C3C3;
 	text-align: center;
+}
+
+* {
+	font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+}
+
+h1 {
+	display: block;
+	margin: 0;
+	padding: 0;
+	line-height: 128px;
+	font-size: 2em;
+	font-weight: lighter;
+	opacity: 0;
+}
+
+#slides {
+	display: block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: ~"calc(100% - 128px)";
+	list-style: none;
+	overflow: hidden;
+
+	> li {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 100%;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+
+		&:first-child {
+			left: 0;
+		}
+	}
 }

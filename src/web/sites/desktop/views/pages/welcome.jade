@@ -11,12 +11,16 @@ html(lang='ja', dir='ltr')
 	body
 		main(role='main')
 			h1 Misskeyへようこそ
-			section
-				h2 ニックネームを入力してください
-				input(type='text', name='name')
-			section
-				h2 アイコンをアップロードしましょう
-				input(type='file', name='icon')
-			section
-				h2 ユーザーをフォローするとより楽しめます
-				ul#users
+			ol#slides
+				li
+					section
+						h2 ニックネームを入力してください
+						input(type='text', name='name')
+				li
+					section
+						h2 アイコンをアップロードしましょう
+						input(type='file', name='icon')
+				li
+					section
+						h2 ユーザーをフォローするとより楽しめます
+						ul#users
