@@ -16,11 +16,9 @@ export default function(app: express.Express): void {
 		}
 	});
 
-	app.get('/album-browser/album/files', require('./endpoints/album-browser/album/files'));
-
-	app.post('/album-browser/album/upload', require('./endpoints/album-browser/album/upload'));
-
-	app.post('/home/post/reply', require('./endpoints/home/post/reply'));
+	app.get('/desktop/album-browser/album/files', require('./endpoints/desktop/album-browser/album/files'));
+	app.post('/desktop/album-browser/album/upload', require('./endpoints/desktop/album-browser/album/upload'));
+	app.post('/desktop/home/post/reply', require('./endpoints/desktop/home/post/reply'));
 
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
