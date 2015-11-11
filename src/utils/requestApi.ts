@@ -20,7 +20,10 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 			if (err !== null) {
 				reject(err);
 			} else if (response.statusCode !== 200) {
-				reject(body);
+				reject({
+					statusCode: response.statusCode,
+					body: body
+				});
 			} else {
 				// console.log(body);
 				resolve(JSON.parse(body));
