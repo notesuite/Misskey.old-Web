@@ -47,7 +47,7 @@ export default function(app: express.Express): void {
 			callController(req, res, 'entrance');
 		}
 	});
-	
+
 	app.get('/welcome', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'welcome');
 	});
