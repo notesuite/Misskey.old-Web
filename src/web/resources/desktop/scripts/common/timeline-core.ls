@@ -107,7 +107,7 @@ window.TIMELINE_CORE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/desktop/home/post/reply" {
+				$.ajax "#{config.api-url}/desktop/home/posts/reply" {
 					type: \post
 					data: new FormData $form.0
 					-process-data
