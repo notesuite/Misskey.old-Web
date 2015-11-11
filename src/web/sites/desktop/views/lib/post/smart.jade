@@ -2,6 +2,8 @@ mixin content(post)
 	case post.type
 		when 'status'
 			div.text!= post.text
+		when 'reply'
+			div.text!= post.text
 			
 mixin common(post)
 	footer.footer
@@ -113,6 +115,8 @@ mixin extract(post)
 	case post.type
 		when 'status'
 			+status(post)
+		when 'reply'
+			+reply(post)
 		when 'repost'
 			+repost(post)
 
