@@ -16,23 +16,29 @@ html {
 
 h1 {
 	display: block;
+	position: relative;
+	top: -64px;
 	margin: 0;
 	padding: 0;
 	line-height: 128px;
 	font-size: 2em;
 	font-weight: lighter;
 	opacity: 0;
+	transition: top 1s cubic-bezier(0,.5,.5,1);
 }
 
 #slides {
 	display: block;
 	position: relative;
+	top: -64px;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	height: ~"calc(100% - 128px)";
 	list-style: none;
 	overflow: hidden;
+	opacity: 0;
+	transition: top 1s cubic-bezier(0,.5,.5,1);
 
 	> li {
 		display: block;
