@@ -14,7 +14,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			contentType: file.mimetype
 		}
 	};
-	requestApi('POST', 'album/files/upload', data, req.session.userId).then((files: Object[]) => {
-		res.sendStatus(200);
+	requestApi('POST', 'album/files/upload', data, req.session.userId).then((file: Object) => {
+		res.json(file);
 	});
 };

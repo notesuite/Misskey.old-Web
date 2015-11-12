@@ -161,7 +161,7 @@ $ ->
 	load-files!
 
 	function load-files
-		$.ajax "#{config.api-url}/album-browser/album/files" {
+		$.ajax "#{config.api-url}/desktop/album-browser/album/files" {
 			type: \get
 			data: {}
 			-process-data

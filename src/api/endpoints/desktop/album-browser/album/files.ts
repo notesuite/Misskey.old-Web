@@ -5,7 +5,7 @@ import mapToHtml from '../../../../../utils/mapToHtml';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
-	requestApi("GET", 'album/files', req.query, req.session.userId).then((files: Object[]) => {
-		res.send(mapToHtml(`${__dirname}/../web/sites/desktop/views/dynamic-parts/album/file.jade`, 'file', files));
+	requestApi('GET', 'album/files/list', req.query, req.session.userId).then((files: Object[]) => {
+		res.send(mapToHtml(`${__dirname}/../../../../../web/sites/desktop/views/lib/album/file.jade`, 'file', files));
 	});
 };
