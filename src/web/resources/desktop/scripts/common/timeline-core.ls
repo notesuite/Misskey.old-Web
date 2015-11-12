@@ -137,10 +137,6 @@ window.TIMELINE_CORE = {}
 							$input.parent '.image-attacher' .append $img
 						..readAsDataURL file
 
-			## Init tag input of reply-form
-			#..find '.reply-form .tag'
-			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
-
 			# Init favorite button
 			..find 'article > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
@@ -182,7 +178,7 @@ window.TIMELINE_CORE = {}
 						type: \delete
 						data: {'post-id': $status.attr \data-id}
 						data-type: \json
-						xhr-fields: {+withCredentials}}
+						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -243,6 +239,18 @@ window.TIMELINE_CORE = {}
 				$post.find '.repost-form .form' .animate {
 					opacity: 0
 				} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
+
+			# Init ogp preview
+			..find 'article > .main > .content > .text a' .each ->
+				$link = $ @
+				$.ajax "#{config.api-url}/ogp/parse" {
+					type: \get
+					data:
+						'url': $link.attr \href
+					data-type: \text
+					xhr-fields: {+with-credentials}}
+				.done (html) ->
+					console.log html
 
 	..add = ($post) ->
 		new Audio '/resources/sounds/pop.mp3' .play!

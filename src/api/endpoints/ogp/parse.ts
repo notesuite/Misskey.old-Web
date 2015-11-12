@@ -16,9 +16,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		if (err !== null) {
 			res.sendStatus(500);
 		} else if (response.statusCode !== 200) {
-			console.log(body);
-		} else {
 			res.sendStatus(500);
+		} else {
+			res.send(body);
 		}
 	});
 };
