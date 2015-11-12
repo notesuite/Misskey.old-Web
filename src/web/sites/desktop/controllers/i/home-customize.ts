@@ -1,6 +1,6 @@
 import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
-const home = require('../home');
+const home: any = require('../home');
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
