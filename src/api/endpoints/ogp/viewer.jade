@@ -1,5 +1,8 @@
 aside.url-preview
-	div.thumbnail(style= 'background-image: url(' + image + ');')
+	if image
+		div.thumbnail(style= 'background-image: url(' + image + ');')
 	h1.title= title
 	p.description= description
 	p.site-name= siteName
+	if icon
+		img.icon(src= icon)
