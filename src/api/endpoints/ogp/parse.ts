@@ -74,6 +74,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			? $('title').text()
 			: ogTitle;
 
+		// Language
+		const lang: string = $('html').attr('lang');
+
 		// Favicon
 		const shortcutIconPath: string = $('link[rel="shortcut icon"]').attr('href');
 		const iconPath: string = $('link[rel="icon"]').attr('href');
@@ -91,6 +94,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			url,
 			title,
 			icon,
+			lang,
 			type: ogType,
 			image: ogImage,
 			description: ogDescription,
