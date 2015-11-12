@@ -250,7 +250,7 @@ window.TIMELINE_CORE = {}
 					data-type: \text
 					xhr-fields: {+with-credentials}}
 				.done (html) ->
-					console.log html
+					$post.find 'article > .main > .content' .append $ html
 
 	..add = ($post) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
