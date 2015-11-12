@@ -12,7 +12,11 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			return res.sendStatus(500);
 		}
 		const $: any = result.$;
-		console.log($('title').text());
+		const getOGPdata = (name: string) => $(`meta[property="og:${name}"]`).attr('content');
+		const ogTitle = getOGPdata('title');
+		const ogType = getOGPdata('type');
+		const ogImage = getOGPdata('image');
+		
 	}, (err: any) => {
 		res.sendStatus(500);
 	});
