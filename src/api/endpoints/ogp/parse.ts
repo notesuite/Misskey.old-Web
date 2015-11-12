@@ -27,6 +27,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		const ogType = getOGPdata('type');
 		const ogImage = getOGPdata('image');
 		const ogDescription = getOGPdata('description');
+		const ogSiteName = getOGPdata('site_name');
 		console.log(ogTitle);
 
 		const compiler: (locals?: any) => string = jade.compileFile(
@@ -38,7 +39,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			title: ogTitle,
 			type: ogType,
 			image: ogImage,
-			description: ogDescription
+			description: ogDescription,
+			siteName: ogSiteName
 		});
 
 		res.send(viewer);
