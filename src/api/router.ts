@@ -16,6 +16,7 @@ export default function(app: express.Express): void {
 		}
 	});
 
+	app.get('/ogp/parse', require('./ogp/parse'));
 	app.get('/desktop/album-browser/album/files', require('./endpoints/desktop/album-browser/album/files'));
 	app.post('/desktop/album-browser/album/upload', require('./endpoints/desktop/album-browser/album/upload'));
 	app.post('/desktop/home/posts/reply', require('./endpoints/desktop/home/posts/reply'));

@@ -12,7 +12,7 @@ block contents
 		div#friend-form
 			if login
 				if me.id != user.id
-					if user.isFollowMyself
+					if user.isFollowingMe
 						p#friend-status
 							i.fa.fa-heart
 							| フォローされています
