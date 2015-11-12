@@ -74,6 +74,10 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			? $('title').text()
 			: ogTitle;
 
+		if (nullOrEmpty(title)) {
+			return res.sendStatus(500);
+		}
+
 		// Language
 		const lang: string = $('html').attr('lang');
 
