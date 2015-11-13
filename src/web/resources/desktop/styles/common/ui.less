@@ -178,12 +178,19 @@ textarea {
 		}
 
 		> li {
+			user-select: none;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			cursor: default;
 			display: block;
 			float: left;
 			margin: 0;
 			padding: 16px 24px;
 			color: #DAD1CC;
+			cursor: pointer;
 			overflow: hidden;
+			transition: background 0.1s ease;
 
 			&:active {
 				background: rgba(0, 0, 0, 0.05);
@@ -299,6 +306,13 @@ textarea {
 				&:active {
 					color: darken(@themeColor, 10%);
 					transition: color 0s ease;
+				}
+			}
+
+			&#misskey-post-form-photo-status-tab-page {
+				textarea {
+					height: 5em;
+					min-height: 5em;
 				}
 			}
 		}
