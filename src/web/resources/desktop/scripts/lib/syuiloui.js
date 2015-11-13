@@ -5,7 +5,7 @@ SYUILOUI.Tab = function($tabList) {
 
 	$tabList.find('li').each(function(i, elem) {
 		var $tabListItem = $(elem);
-		var id = $tabListItem.find('a').attr('href');
+		var id = '#' + $tabListItem.attr('data-ref');
 		$tabContents.push($(id));
 		$tabListItem.addClass('unactive');
 
@@ -15,19 +15,19 @@ SYUILOUI.Tab = function($tabList) {
 			$(this).removeClass('unactive').addClass('active');
 
 			$.each($tabContents, function() {
-				$(this).css("display", "none");
+				$(this).css('display', 'none');
 			});
 
-			$tabContents[num].css("display", "block");
+			$tabContents[num].css('display', 'block');
 
 			return false;
 		});
 	});
 
 	$.each($tabContents, function() {
-		$(this).css("display", "none");
+		$(this).css('display', 'none');
 	});
 
 	$tabList.find('li:eq(0)').removeClass('unactive').addClass('active');
-	$tabContents[0].css("display", "block");
+	$tabContents[0].css('display', 'block');
 }

@@ -125,7 +125,7 @@ $ ->
 	update-clock!
 	set-interval update-clock, 1000ms
 
-	SYUILOUI.Tab $ '#misskey-post-form-tabs > ul'
+	SYUILOUI.Tab $ '#misskey-post-form-tabs'
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
 		if window.music-center-open
@@ -292,7 +292,6 @@ $ ->
 			.fail ->
 
 	$ \#misskey-post-button .click ->
-		$ \#misskey-post-form .find \textarea .focus!
 		$ \#misskey-post-form-back .css \display \block
 		$ \#misskey-post-form-back .animate {
 			opacity: 1
@@ -301,6 +300,7 @@ $ ->
 		$ \#misskey-post-form .animate {
 			opacity: 1
 		} 100ms \linear
+		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
 	$ \#misskey-post-form .click (e) ->
 		e.stop-propagation!
 	$ \#misskey-post-form-container .click ->

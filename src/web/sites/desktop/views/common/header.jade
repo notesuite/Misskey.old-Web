@@ -4,21 +4,23 @@ if login
 		form#misskey-post-form(enctype='multipart/form-data', role='form')
 			button.close-button(type='button', role='button')
 				i.fa.fa-times
-			div#misskey-post-form-tabs
-				ul
-					li: a(href='#misskey-post-form-status-tab-page', title='近況')
-						i.fa.fa-comment-o
-					li: a(href='#misskey-post-form-photo-status-tab-page', title='画像付き投稿')
-						i.fa.fa-picture-o
-					li: a(href='#misskey-post-form-video-status-tab-page', title='動画付き投稿')
-						i.fa.fa-film
-					li: a(href='#misskey-post-form-audio-status-tab-page', title='音声付き投稿')
-						i.fa.fa-music
-					li: a(href='#misskey-post-form-poll-tab-page', title='投票')
-						i.fa.fa-pie-chart
+			ul#misskey-post-form-tabs
+				li(data-ref='misskey-post-form-status-tab-page', title='近況')
+					i.fa.fa-comment-o
+				li(data-ref='misskey-post-form-photo-status-tab-page', title='画像付き投稿')
+					i.fa.fa-picture-o
+				li(data-ref='misskey-post-form-video-status-tab-page', title='動画付き投稿')
+					i.fa.fa-film
+				li(data-ref='misskey-post-form-audio-status-tab-page', title='音声付き投稿')
+					i.fa.fa-music
+				li(data-ref='misskey-post-form-poll-tab-page', title='投票')
+					i.fa.fa-pie-chart
 			div#misskey-post-form-tab-pages
 				div#misskey-post-form-status-tab-page
 					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+					button.submit
+						| Update
+						i.fa.fa-paper-plane
 				
 header#misskey-main-header(
 		role='banner'
