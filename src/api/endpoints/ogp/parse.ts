@@ -6,6 +6,7 @@ const jade: any = require('jade');
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
+client.timeout = 10000;
 
 /**
  * 文字列が空かどうかを判定します。
