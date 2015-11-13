@@ -7,6 +7,10 @@ const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
 
+/**
+ * 文字列が空かどうかを判定します。
+ * @val: 文字列
+ */
 function nullOrEmpty(val: string): boolean {
 	'use strict';
 
@@ -21,12 +25,21 @@ function nullOrEmpty(val: string): boolean {
 	}
 }
 
+/**
+ * URLに含まれる末尾のクエリを除去します。
+ * @url: URL
+ */
 function removeUrlQuery(url: string): string {
 	'use strict';
 
 	return url.replace(/\?.*$/,'');
 }
 
+/**
+ * 相対パスを任意のURLを元にして絶対パスに変換します。
+ * @url: 元となるURL
+ * @path: 元となる相対パス
+ */
 function getFullPath(url: string, path: string): string {
 	'use strict';
 
@@ -78,6 +91,11 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			return res.sendStatus(500);
 		}
 
+		// OGPで失敗したらmetaタグのdescriptionから拝借
+		const description: string = nullOrEmpty(ogDescription)
+			? $('meta[name="description"]').attr('content')
+			: ogDescription;
+
 		// Language
 		const lang: string = $('html').attr('lang');
 
@@ -99,9 +117,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			title,
 			icon,
 			lang,
+			description,
 			type: ogType,
 			image: ogImage,
-			description: ogDescription,
 			siteName: ogSiteName
 		});
 

@@ -907,6 +907,8 @@
 				}
 
 				> .content {
+					overflow: hidden;
+
 					> .text {
 						user-select: text;
 						-moz-user-select: text;
@@ -916,7 +918,6 @@
 						display: block;
 						margin: 0;
 						padding: 0;
-						overflow: hidden;
 						word-wrap: break-word;
 						font-size: 1.1em;
 						color: #8c615a;
@@ -1082,7 +1083,6 @@
 						position: relative;
 						padding: 12px;
 						margin: 16px 0 0 0;
-						overflow: hidden;
 						word-wrap: break-word;
 						border: solid 1px #EFE4DF;
 						border-radius: 4px;
@@ -1094,6 +1094,12 @@
 							> .title {
 								text-decoration: underline;
 							}
+						}
+
+						&:after {
+							content: '';
+							display: block;
+							clear: both;
 						}
 
 						> .thumbnail {
