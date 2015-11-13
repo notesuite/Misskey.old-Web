@@ -18,12 +18,18 @@ if login
 			div#misskey-post-form-tab-pages
 				div#misskey-post-form-status-tab-page
 					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
-					button.submit
+					button.submit(type='submit')
 						| Update
 						i.fa.fa-paper-plane
 				div#misskey-post-form-photo-status-tab-page
 					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
-					button.submit
+					button.attach-from-local.ui-waves-effect(type='button', role='button')
+						i.fa.fa-upload
+						| PCから画像を添付
+					button.attach-from-album.ui-waves-effect(type='button', role='button')
+						i.fa.fa-folder-open
+						| アルバムから画像を添付
+					button.submit(type='submit')
 						| Update
 						i.fa.fa-paper-plane
 				div#misskey-post-form-video-status-tab-page
