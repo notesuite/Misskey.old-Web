@@ -164,6 +164,37 @@ textarea {
 			pointer-events: none;
 		}
 	}
+
+	> #misskey-post-form-tabs {
+		> ul {
+			display: block;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> li {
+				display: block;
+				margin: 0;
+				padding: 0;
+				float: left;
+
+				> a {
+					display: block;
+					padding: 16px;
+
+					> i {
+						font-size: 2em;
+					}
+				}
+			}
+		}
+	}
 }
 
 #misskey-main-header {
