@@ -314,6 +314,12 @@ $ ->
 					top: \0px
 					opacity: 1
 				}
+				set-timeout ->
+					$tab.find \i .css {
+						transition: ''
+						top: ''
+					}
+				, 300ms
 			, i * 30
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
 	$ \#misskey-post-form .click (e) ->
