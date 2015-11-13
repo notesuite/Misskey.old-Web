@@ -71,7 +71,6 @@ server.all('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: 
 		req.session.hasOwnProperty('userId') &&
 		req.session.userId !== null;
 
-	console.log(req.path);
 	next();
 });
 

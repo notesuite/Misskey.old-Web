@@ -25,6 +25,9 @@ export default function(app: express.Express): void {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('GET', req.path.substring(1), req.query, userId).then((response: any) => {
 			res.json(response);
+		}, (err: any) => {
+			res.status(err.statusCode);
+			res.send(err.body);
 		});
 	});
 
@@ -32,6 +35,9 @@ export default function(app: express.Express): void {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('POST', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
+		}, (err: any) => {
+			res.status(err.statusCode);
+			res.send(err.body);
 		});
 	});
 
@@ -39,6 +45,9 @@ export default function(app: express.Express): void {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('PUT', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
+		}, (err: any) => {
+			res.status(err.statusCode);
+			res.send(err.body);
 		});
 	});
 
@@ -46,6 +55,9 @@ export default function(app: express.Express): void {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('DELETE', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
+		}, (err: any) => {
+			res.status(err.statusCode);
+			res.send(err.body);
 		});
 	});
 }
