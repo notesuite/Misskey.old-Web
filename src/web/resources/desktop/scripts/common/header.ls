@@ -340,7 +340,6 @@ $ ->
 		} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
 
 	$ \#misskey-post-form .find \textarea .bind \input ->
-		console.log \a
 		$ \#misskey-post-form .find \.submit-button .attr \disabled off
 
 	$ \#misskey-post-form .find '.image-attacher input[name=image]' .change ->

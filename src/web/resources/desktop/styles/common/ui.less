@@ -280,7 +280,7 @@ textarea {
 				display: inline-block;
 				box-sizing: border-box;
 				margin: 10px 10px 0 0;
-				padding: 8px 12px;
+				padding: 10px 14px;
 				line-height: 1.1em;
 				font-size: 1em;
 				font-weight: normal;
@@ -299,7 +299,7 @@ textarea {
 				}
 
 				i {
-					margin-right: 0 0.375em;
+					margin-right: 0.375em;
 				}
 
 				&:hover {
@@ -309,6 +309,10 @@ textarea {
 				&:active {
 					color: darken(@themeColor, 10%);
 					transition: color 0s ease;
+				}
+
+				&:focus {
+					border: solid 1px @themeColor;
 				}
 			}
 
