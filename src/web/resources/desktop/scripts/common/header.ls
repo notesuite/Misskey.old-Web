@@ -300,6 +300,21 @@ $ ->
 		$ \#misskey-post-form .animate {
 			opacity: 1
 		} 100ms \linear
+		$ \#misskey-post-form-tabs .find \li .each (i) ->
+			$tab = $ @
+			$tab.find \i .css \transition \none
+			$tab.find \i .css {
+				top: \-16px
+				opacity: 0
+			}
+
+			set-timeout ->
+				$tab.find \i .css \transition 'top 0.3s ease-out, opacity 0.3s ease-out'
+				$tab.find \i .css {
+					top: \0px
+					opacity: 1
+				}
+			, i * 30
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
 	$ \#misskey-post-form .click (e) ->
 		e.stop-propagation!
