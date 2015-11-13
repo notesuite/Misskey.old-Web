@@ -184,9 +184,16 @@ textarea {
 				padding: 0;
 				float: left;
 
+				&.active {
+					> a {
+						color: @themeColor;
+					}
+				}
+
 				> a {
 					display: block;
 					padding: 16px;
+					color: #DAD1CC;
 
 					> i {
 						font-size: 2em;
