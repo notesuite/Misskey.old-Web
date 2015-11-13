@@ -21,8 +21,12 @@ script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 script(src='/resources/desktop/scripts/lib/jquery-cookie.js')
 script(src='/resources/desktop/scripts/lib/jquery.transit.min.js')
 script(src='/resources/desktop/scripts/lib/prelude-browser.js')
-script(src='/resources/desktop/scripts/lib/waves-effect.js')
-script(src='/resources/desktop/scripts/common/main.js')
+script
+	include ../../../../resources/desktop/scripts/lib/waves-effect.js
+script
+	include ../../../../resources/desktop/scripts/lib/syuiloui.js
+script
+	include ../../../../resources/desktop/scripts/common/main.js
 script.
 	window.onload = function() {
 		WavesEffect.attachToClass('ui-waves-effect');

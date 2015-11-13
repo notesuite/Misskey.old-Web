@@ -23,8 +23,8 @@ mixin widget(widgets)
 
 doctype html
 
-html#misskey(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
-	head(prefix='og: http://ogp.me/ns#')
+html#misskey(lang=me.lang, dir='ltr', data-user-id= me.id)
+	head
 		include ../common/head
 		title Misskey
 		script(src='/resources/desktop/scripts/common/timeline-core.js')

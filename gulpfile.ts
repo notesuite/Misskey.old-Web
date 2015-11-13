@@ -18,7 +18,7 @@ task('watch', ['build', 'lint'], () => {
 	watch('./src/**/*.ts', ['build:ts', 'lint']);
 });
 
-task('build', ['build:ts', 'build:ls', 'build:less', 'build-copy']);
+task('build', ['build:ts', 'build:ls', 'build:js', 'build:less', 'build-copy']);
 
 task('build:ts', () => {
 	return tsProject.src()
@@ -32,6 +32,12 @@ task('build:ts', () => {
 task('build:ls', () => {
 	return src('./src/**/*.ls')
 		.pipe(ls())
+		.pipe(uglify())
+		.pipe(dest('./built'));
+});
+
+task('build:js', () => {
+	return src('./src/**/*.js')
 		.pipe(uglify())
 		.pipe(dest('./built'));
 });
@@ -53,7 +59,7 @@ task('lint', () => {
 });
 
 task('build-copy', () => {
-	return src(['./src/**/*', '!./src/**/*.ts'])
+	return src(['./src/**/*', '!./src/**/*.ts', '!./src/**/*.ls', '!./src/**/*.js'])
 		.pipe(dest('./built'));
 });
 

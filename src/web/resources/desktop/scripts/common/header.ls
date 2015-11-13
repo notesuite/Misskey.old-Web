@@ -125,6 +125,8 @@ $ ->
 	update-clock!
 	set-interval update-clock, 1000ms
 
+	SYUILOUI.Tab $ '#misskey-post-form-tabs > ul'
+
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
 		if window.music-center-open
 			$ '#misskey-main-header > .informationCenter' .css \height '0'
@@ -146,7 +148,7 @@ $ ->
 		false
 
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
-	
+
 	# 「Misskey Menu」ドロップダウン
 	$ '#misskey-main-header .misskey-menu .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-main-header .misskey-menu .dropdown'
@@ -290,50 +292,50 @@ $ ->
 			.fail ->
 
 	$ \#misskey-post-button .click ->
-		$ \#misskey-create-status-form .find \textarea .focus!
-		$ \#misskey-create-status-form-back .css \display \block
-		$ \#misskey-create-status-form-back .animate {
+		$ \#misskey-post-form .find \textarea .focus!
+		$ \#misskey-post-form-back .css \display \block
+		$ \#misskey-post-form-back .animate {
 			opacity: 1
 		} 100ms \linear
-		$ \#misskey-create-status-form-container .css \display \block
-		$ \#misskey-create-status-form .animate {
+		$ \#misskey-post-form-container .css \display \block
+		$ \#misskey-post-form .animate {
 			opacity: 1
 		} 100ms \linear
-	$ \#misskey-create-status-form .click (e) ->
+	$ \#misskey-post-form .click (e) ->
 		e.stop-propagation!
-	$ \#misskey-create-status-form-container .click ->
-		$ \#misskey-create-status-form-back .animate {
+	$ \#misskey-post-form-container .click ->
+		$ \#misskey-post-form-back .animate {
 			opacity: 0
-		} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
-		$ \#misskey-create-status-form .animate {
+		} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
+		$ \#misskey-post-form .animate {
 			opacity: 0
-		} 100ms \linear -> $ \#misskey-create-status-form-container .css \display \none
-	$ \#misskey-create-status-form .find \.close-button .click ->
-		$ \#misskey-create-status-form-back .animate {
+		} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
+	$ \#misskey-post-form .find \.close-button .click ->
+		$ \#misskey-post-form-back .animate {
 			opacity: 0
-		} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
-		$ \#misskey-create-status-form .animate {
+		} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
+		$ \#misskey-post-form .animate {
 			opacity: 0
-		} 100ms \linear -> $ \#misskey-create-status-form-container .css \display \none
+		} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
 
-	$ \#misskey-create-status-form .find \textarea .bind \input ->
+	$ \#misskey-post-form .find \textarea .bind \input ->
 		console.log \a
-		$ \#misskey-create-status-form .find \.submit-button .attr \disabled off
+		$ \#misskey-post-form .find \.submit-button .attr \disabled off
 
-	$ \#misskey-create-status-form .find '.image-attacher input[name=image]' .change ->
+	$ \#misskey-post-form .find '.image-attacher input[name=image]' .change ->
 		$input = $ @
-		$ \#misskey-create-status-form .find '.image-preview-container' .css \display \block
-		$ \#misskey-create-status-form .find \.submit-button .attr \disabled off
+		$ \#misskey-post-form .find '.image-preview-container' .css \display \block
+		$ \#misskey-post-form .find \.submit-button .attr \disabled off
 		file = $input.prop \files .0
 		if file.type.match 'image.*'
 			reader = new FileReader!
 				..onload = ->
 					$img = $ '<img>' .attr \src reader.result
-					$ \#misskey-create-status-form .find '.image-preview' .find 'img' .remove!
-					$ \#misskey-create-status-form .find '.image-preview' .append $img
+					$ \#misskey-post-form .find '.image-preview' .find 'img' .remove!
+					$ \#misskey-post-form .find '.image-preview' .append $img
 				..readAsDataURL file
 
-	$ \#misskey-create-status-form .submit (event) ->
+	$ \#misskey-post-form .submit (event) ->
 		event.prevent-default!
 		$form = $ @
 		$submit-button = $form.find '[type=submit]'
@@ -383,14 +385,14 @@ $ ->
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
 			$progress.css \display \none
-			$ \#misskey-create-status-form .find '.image-preview-container' .css \display \none
-			$ \#misskey-create-status-form .find '.image-preview' .find 'img' .remove!
-			$ \#misskey-create-status-form-back .animate {
+			$ \#misskey-post-form .find '.image-preview-container' .css \display \none
+			$ \#misskey-post-form .find '.image-preview' .find 'img' .remove!
+			$ \#misskey-post-form-back .animate {
 				opacity: 0
-			} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
-			$ \#misskey-create-status-form .animate {
+			} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
+			$ \#misskey-post-form .animate {
 				opacity: 0
-			} 100ms \linear -> $ \#misskey-create-status-form-container .css \display \none
+			} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
 		.fail (data) ->
 			window.display-message '投稿に失敗しました。'
 			$submit-button.attr \disabled off

@@ -1,26 +1,27 @@
 include ../post/smart
 
 div.misskey-home-widget#widget-timeline(data-widget-not-allow-move='true', data-widget-not-allow-remove='true', data-widget-id='timeline', data-widget-name='タイムライン')
-    div#post-form-container
-        form#post-form(role='form', data-ui-background-wallpaper-blur='true')
-            img.icon(src=me.iconUrl, alt='icon', title=me.comment)
-            div.form
-                textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
-                div.design-allow(role='presentation')
-                button.ui-button(type='submit', role='button')
-                    | Update
-                    i.fa.fa-paper-plane
-                div.image-attacher
-                    p
-                        i.fa.fa-picture-o
-                    input(name='image', type='file', accept='image/*')
-    div.timeline
-        if timeline.length > 0
-            ol.posts
-                each post in timeline
-                    +post(post)
-        else
-            p.empty
-                | タイムラインに表示するコンテンツがありません。
-                br
-                | フォローしている人の投稿と、自分の投稿がここに表示されます。
+	//
+		div#post-form-container
+			form#post-form(role='form', data-ui-background-wallpaper-blur='true')
+				img.icon(src=me.iconUrl, alt='icon', title=me.comment)
+				div.form
+					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+					div.design-allow(role='presentation')
+					button.ui-button(type='submit', role='button')
+						| Update
+						i.fa.fa-paper-plane
+					div.image-attacher
+						p
+							i.fa.fa-picture-o
+						input(name='image', type='file', accept='image/*')
+	div.timeline
+		if timeline.length > 0
+			ol.posts
+				each post in timeline
+					+post(post)
+		else
+			p.empty
+				| タイムラインに表示するコンテンツがありません。
+				br
+				| フォローしている人の投稿と、自分の投稿がここに表示されます。

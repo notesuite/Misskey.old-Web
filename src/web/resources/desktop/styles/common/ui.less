@@ -98,7 +98,7 @@ textarea {
 
 /* UI
  * ---------------------------------------------------------------- */
-#misskey-create-status-form-back {
+#misskey-post-form-back {
 	display: none;
 	position: fixed;
 	z-index: 127;
@@ -110,7 +110,7 @@ textarea {
 	opacity: 0;
 }
 
-#misskey-create-status-form-container {
+#misskey-post-form-container {
 	display: none;
 	position: fixed;
 	top: 0;
@@ -119,7 +119,7 @@ textarea {
 	height: 100%;
 }
 
-#misskey-create-status-form {
+#misskey-post-form {
 	display: block;
 	position: absolute;
 	top: 20%;
@@ -132,23 +132,6 @@ textarea {
 	padding: 0 32px 24px 32px;
 	background: #fff;
 	opacity: 0;
-
-	h1 {
-		display: block;
-		position: relative;
-		margin: 0;
-		padding: 10px 0 8px 0;
-		text-align: center;
-		font-size: 1em;
-		font-weight: bold;
-		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-		color: #555;
-		border-bottom: solid 1px #eee;
-
-		i {
-			margin-right: 8px;
-		}
-	}
 
 	> .close-button {
 		display: block;
@@ -179,146 +162,6 @@ textarea {
 
 		* {
 			pointer-events: none;
-		}
-	}
-
-	> .me-icon-area {
-		display: block;
-		float: left;
-		width: 56px;
-
-		> .icon {
-			display: block;
-			width: 48px;
-			height: 48px;
-			margin: 8px;
-		}
-	}
-
-	> .main {
-		display: block;
-		float: left;
-		width: ~"calc(100% - 56px)";
-
-		> textarea {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			user-select: text;
-			-moz-user-select: text;
-			-webkit-user-select: text;
-			-ms-user-select: text;
-			display: block;
-			box-sizing: border-box;
-			cursor: auto;
-			margin: 0;
-			padding: 12px 12px;
-			width: 100%;
-			min-width: 100%;
-			max-width: 100%;
-			height: 6em;
-			font-size: 1em;
-			color: #444;
-			outline: none;
-			border: none;
-			border-radius: 0;
-			box-shadow: none;
-		}
-
-		> .submit-button {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			display: inline-block;
-			float: right;
-			box-sizing: border-box;
-			margin: 0;
-			padding: 12px 16px;
-			min-width: 5em;
-			line-height: 1em !important;
-			font-size: 1em !important;
-			text-decoration: none;
-			font-family: FontAwesome, 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-			font-weight: bold;
-			color: contrast(@themeColor, #000, #fff, 70%);
-			background: @themeColor;
-			outline: none;
-			border: none;
-			border-radius: 2px;
-			box-shadow: none;
-			cursor: pointer;
-
-			&:disabled {
-				background: #ddd;
-			}
-
-			&:hover {
-				background: lighten(@themeColor, 10%);
-			}
-
-			&:active {
-				background: darken(@themeColor, 10%);
-			}
-		}
-	}
-
-	.progress {
-		display: none;
-		margin-bottom: 16px;
-
-		.status {
-			margin: 0 0 4px 0;
-			padding: 0;
-			font-size: 0.8em;
-			color: rgba(0, 0, 0, 0.7);
-
-			> i {
-				margin-right: 0.25em;
-			}
-		}
-
-		progress {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			display: block;
-			margin: 0;
-			width: 100%;
-			height: 8px;
-			border: solid 1px #ddd;
-			border-radius: 8px;
-			overflow: hidden;
-
-			&::-webkit-progress-value {
-				background-color: @themeColor;
-			}
-
-			&::-webkit-progress-bar {
-				background-color: #fff;
-			}
-
-			&:not([value])::-webkit-progress-bar {
-				background-image: url('/resources/images/indeter.gif');
-			}
-		}
-	}
-
-	> .image-preview-container {
-		display: none;
-		clear: both;
-		padding: 8px 0 4px 0;
-
-		> .image-preview {
-			display: block;
-			padding: 8px;
-			margin: 0;
-			background: #fff;
-
-			img {
-				width: 100%;
-				max-width: 128px;
-				vertical-align: bottom;
-			}
 		}
 	}
 }
