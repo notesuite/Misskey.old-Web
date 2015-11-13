@@ -25,6 +25,14 @@ window.display-message = (message) ->
 			$message.remove!
 	, 5000ms
 
+window.display-album-file-select-dialog = ->
+	$.ajax "#{config.api-url}/desktop/album/open" {
+		type: \get
+		data-type: \text
+		xhr-fields: {+with-credentials}}
+	.done (html) ->
+		$ html .append-to $ 'body' .hide!.fade-in 200ms
+
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
 	$window = $ '''
 		<div class="ui window" id="''' + id + '''">

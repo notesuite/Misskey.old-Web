@@ -1,6 +1,5 @@
 div#misskey-album
 	script(src='/resources/desktop/scripts/common/album.js')
-	link(rel='stylesheet', href='/resources/desktop/styles/common/album.css')
 	header
 		form.uploader(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
 			input(name='file', type='file', accept='*', multiple)

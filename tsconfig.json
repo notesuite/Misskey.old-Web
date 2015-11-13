@@ -27,6 +27,7 @@
 		"src/api/index.ts",
 		"src/api/router.ts",
 		"src/api/endpoints/ogp/parse.ts",
+		"src/api/endpoints/desktop/album/open.ts",
 		"src/api/endpoints/desktop/album-browser/album/upload.ts",
 		"src/api/endpoints/desktop/album-browser/album/files.ts",
 		"src/api/endpoints/desktop/home/posts/reply.ts",
