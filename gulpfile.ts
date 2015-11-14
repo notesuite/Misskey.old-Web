@@ -23,9 +23,9 @@ task('build', [
 	'build:ls',
 	'build:js',
 	'build:less',
-	'build-desktop-resources',
-	'build-mobile-resources',
-	'build-copy'
+	'build-copy',
+	'move-desktop-resources',
+	'move-mobile-resources'
 ]);
 
 task('build:ts', () => {
@@ -65,25 +65,23 @@ task('lint', () => {
 		.pipe(tslint.report('verbose'));
 });
 
-task('build-desktop-resources', () => {
-	return src('./src/sites/desktop/resources/**/*.*')
-		.pipe(dest('./built/resources/desktop'));
-});
-
-task('build-mobile-resources', () => {
-	return src('./src/sites/mobile/resources/**/*.*')
-		.pipe(dest('./built/resources/mobile'));
-});
-
 task('build-copy', () => {
 	return src([
 		'./src/**/*',
 		'!./src/**/*.ts',
 		'!./src/**/*.ls',
-		'!./src/**/*.js',
-		'!./src/sites/desktop/resources/**/*.*',
-		'!./src/sites/mobile/resources/**/*.*'
+		'!./src/**/*.js'
 	]).pipe(dest('./built'));
+});
+
+task('move-desktop-resources', () => {
+	return src('./built/sites/desktop/resources/**/*.*')
+		.pipe(dest('./built/resources/desktop'));
+});
+
+task('move-mobile-resources', () => {
+	return src('./built/sites/mobile/resources/**/*.*')
+		.pipe(dest('./built/resources/mobile'));
 });
 
 /*
