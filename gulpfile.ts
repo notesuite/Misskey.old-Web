@@ -3,7 +3,7 @@
 import { task, src, dest, watch } from 'gulp';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
-import * as del from 'del';
+// import * as del from 'del';
 const babel = require('gulp-babel');
 const less = require('gulp-less');
 const minifyCSS = require('gulp-minify-css');
@@ -42,8 +42,7 @@ task('build:js', () => {
 		.pipe(dest('./built'));
 });
 
-task('build:less', () =>
-{
+task('build:less', () => {
 	return src('./src/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS())
@@ -63,6 +62,7 @@ task('build-copy', () => {
 		.pipe(dest('./built'));
 });
 
+/*
 task('clean', cb => {
 	del(['./built', './tmp'], cb);
 });
@@ -70,5 +70,6 @@ task('clean', cb => {
 task('clean-all', ['clean'], cb => {
 	del(['./node_modules', './typings'], cb);
 });
+*/
 
 task('test', ['build', 'lint']);

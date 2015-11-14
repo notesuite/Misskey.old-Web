@@ -23,7 +23,7 @@ mixin widget(widgets)
 
 doctype html
 
-html#misskey(lang=me.lang, dir='ltr', data-user-id= me.id)
+html#misskey(lang=me.lang, dir='ltr', data-user-id= me.id, data-worker-id= workerId)
 	head
 		include ../common/head
 		title Misskey

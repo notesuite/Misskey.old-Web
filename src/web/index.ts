@@ -1,4 +1,5 @@
-// import * as http from 'http';
+import * as cluster from 'cluster';
+import * as http from 'http';
 import * as path from 'path';
 import * as express from 'express';
 import * as expressSession from 'express-session';
@@ -11,6 +12,7 @@ import * as cookieParser from 'cookie-parser';
 // import * as expressMinify from 'express-minify';
 // const expressMinify: any = require('express-minify');
 import * as moment from 'moment';
+import { logDone, logFailed, logInfo } from 'log-cool';
 
 import { User } from '../models/user';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
@@ -21,7 +23,7 @@ import config from '../config';
 
 import router from './router';
 
-console.log('Init Web server');
+console.log(`Init Web server [worker id: ${cluster.worker.id}]`);
 
 // Grobal options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
@@ -101,6 +103,7 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 		webStreamingUrl: config.publicConfig.webStreamingUrl,
 		login: isLogin,
 		ua: ua,
+		workerId: cluster.worker.id,
 		moment: moment
 	};
 
@@ -183,6 +186,13 @@ server.use((err: any, req: express.Request, res: express.Response, next: () => v
 	}
 });
 
-exports.server = server;
-
 require('./streaming');
+
+const httpServer: http.Server = http.createServer(server);
+
+httpServer.listen(config.port.http, () => {
+	const host: string = httpServer.address().address;
+	const port: number = httpServer.address().port;
+
+	logDone(`Misskey worker '${cluster.worker.id}' is now listening at ${host}:${port}`);
+});

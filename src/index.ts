@@ -1,41 +1,23 @@
-console.log('Welcome to Misskey!');
+import * as cluster from 'cluster';
 
-import * as readline from 'readline';
-import * as fs from 'fs';
-import * as config from './config';
+if (cluster.isMaster) {
+	console.log('Welcome to Misskey!');
 
-if (fs.existsSync(config.configPath)) {
-	initServer();
+	// Count the machine's CPUs
+	const cpuCount: number = require('os').cpus().length;
+
+	// Create a worker for each CPU
+	for (var i = 0; i < cpuCount; i += 1) {
+		cluster.fork();
+	}
 } else {
-	// Init config form
-	const i: readline.ReadLine = readline.createInterface({
-		input: process.stdin,
-		output: process.stdout
-	});
-	i.question('Enter the user name of MongoDB: ', (mongoUserName: string) => {
-		i.question('Enter the password of MongoDB: ', (mongoPassword: string) => {
-			i.close();
-
-			const conf: config.IConfig = config.defaultConfig;
-			conf.mongo.options.user = mongoUserName;
-			conf.mongo.options.pass = mongoPassword;
-
-			if (!fs.existsSync(config.configDirectoryPath)) {
-				fs.mkdirSync(config.configDirectoryPath);
-			}
-			fs.writeFile(config.configPath, JSON.stringify(conf, null, '\t'), (writeErr: NodeJS.ErrnoException) => {
-				if (writeErr) {
-					console.log('configの書き込み時に問題が発生しました:');
-					console.error(writeErr);
-				} else {
-					initServer();
-				}
-			});
-		});
-	});
+	require('./web');
 }
 
-function initServer(): void {
-	'use strict';
-	require('./server');
-}
+// Listen for dying workers
+cluster.on('exit', (worker: cluster.Worker) => {
+	// Replace the dead worker,
+	// we're not sentimental
+	console.log(`Worker ${worker.id} died :(`);
+	cluster.fork();
+});
