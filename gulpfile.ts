@@ -18,7 +18,15 @@ task('watch', ['build', 'lint'], () => {
 	watch('./src/**/*.ts', ['build:ts', 'lint']);
 });
 
-task('build', ['build:ts', 'build:ls', 'build:js', 'build:less', 'build-copy']);
+task('build', [
+	'build:ts',
+	'build:ls',
+	'build:js',
+	'build:less',
+	'build-desktop-resources',
+	'build-mobile-resources',
+	'build-copy'
+]);
 
 task('build:ts', () => {
 	return tsProject.src()
@@ -57,9 +65,25 @@ task('lint', () => {
 		.pipe(tslint.report('verbose'));
 });
 
+task('build-desktop-resources', () => {
+	return src('./src/sites/desktop/resources/**/*.*')
+		.pipe(dest('./built/resources/desktop'));
+});
+
+task('build-mobile-resources', () => {
+	return src('./src/sites/mobile/resources/**/*.*')
+		.pipe(dest('./built/resources/mobile'));
+});
+
 task('build-copy', () => {
-	return src(['./src/**/*', '!./src/**/*.ts', '!./src/**/*.ls', '!./src/**/*.js'])
-		.pipe(dest('./built'));
+	return src([
+		'./src/**/*',
+		'!./src/**/*.ts',
+		'!./src/**/*.ls',
+		'!./src/**/*.js',
+		'!./src/sites/desktop/resources/**/*.*',
+		'!./src/sites/mobile/resources/**/*.*'
+	]).pipe(dest('./built'));
 });
 
 /*

@@ -11,7 +11,7 @@ if (cluster.isMaster) {
 		cluster.fork();
 	}
 } else {
-	require('./web');
+	require('./server');
 }
 
 // Listen for dying workers
