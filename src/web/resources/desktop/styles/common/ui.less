@@ -122,7 +122,7 @@ textarea {
 #misskey-post-form {
 	display: block;
 	position: absolute;
-	top: 20%;
+	top: 15%;
 	left: 0;
 	right: 0;
 	box-sizing: border-box;
@@ -317,7 +317,6 @@ textarea {
 				textarea {
 					height: 5em;
 					min-height: 5em;
-					border-radius: 4px 4px 0 0;
 				}
 
 				.attach-from-local,
@@ -328,9 +327,9 @@ textarea {
 					display: inline-block;
 					box-sizing: border-box;
 					margin: 0;
-					padding: 10px 14px;
+					padding: 12px 14px;
 					width: 50%;
-					line-height: 1.1em;
+					line-height: 1em;
 					font-size: 1em;
 					font-weight: normal;
 					text-decoration: none;
@@ -338,7 +337,7 @@ textarea {
 					background: transparent;
 					outline: none;
 					border: none;
-					border-radius: 4px;
+					border-radius: 0;
 					box-shadow: none;
 					cursor: pointer;
 					transition: color 0.1s ease;
@@ -359,23 +358,6 @@ textarea {
 						color: darken(@themeColor, 10%);
 						transition: color 0s ease;
 					}
-
-					&:focus {
-						border-color: @themeColor;
-					}
-				}
-
-				.attach-from-local {
-					border-left: solid 1px #D4C2B8;
-					border-bottom: solid 1px #D4C2B8;
-					border-radius: 0 0 0 4px;
-				}
-
-				.attach-from-album {
-					border-left: solid 1px #D4C2B8;
-					border-right: solid 1px #D4C2B8;
-					border-bottom: solid 1px #D4C2B8;
-					border-radius: 0 0 4px 0;
 				}
 			}
 		}
