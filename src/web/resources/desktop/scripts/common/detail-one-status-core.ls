@@ -136,7 +136,7 @@ window.STATUS_CORE = {}
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
 					..attr \value 'Replying...'
-				$.ajax "#{config.api-url}/web/status/reply-detail-one.plain" {
+				$.ajax "#{config.web-api-url}/web/status/reply-detail-one.plain" {
 					type: \post
 					data: new FormData $form.0
 					-processData
@@ -182,7 +182,7 @@ window.STATUS_CORE = {}
 					..attr \title '読み込み中...'
 					..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-				$.ajax config.api-url + '/web/status/get-talk-detail-one-html.plain' {
+				$.ajax config.web-api-url + '/web/status/get-talk-detail-one-html.plain' {
 					type: \get
 					data: {
 						'status-id': $status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-id
@@ -212,7 +212,7 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 				if check-pinned!
 					$status.attr \data-is-pinned \false
-					$.ajax "#{config.api-url}/account/delete-pinned-status" {
+					$.ajax "#{config.web-api-url}/account/delete-pinned-status" {
 						type: \delete
 						data: {}
 						data-type: \json
@@ -224,7 +224,7 @@ window.STATUS_CORE = {}
 						$status.attr \data-is-pinned \true
 				else
 					$status.attr \data-is-pinned \true
-					$.ajax "#{config.api-url}/account/update-pinned-status" {
+					$.ajax "#{config.web-api-url}/account/update-pinned-status" {
 						type: \put
 						data: {'status-id': $status.attr \data-id}
 						data-type: \json
@@ -241,7 +241,7 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 				if check-favorited!
 					$status.attr \data-is-favorited \false
-					$.ajax "#{config.api-url}/status/unfavorite" {
+					$.ajax "#{config.web-api-url}/status/unfavorite" {
 						type: \delete
 						data: {'status-id': $status.attr \data-id}
 						data-type: \json
@@ -253,7 +253,7 @@ window.STATUS_CORE = {}
 						$status.attr \data-is-favorited \true
 				else
 					$status.attr \data-is-favorited \true
-					$.ajax "#{config.api-url}/status/favorite" {
+					$.ajax "#{config.web-api-url}/status/favorite" {
 						type: \post
 						data: {'status-id': $status.attr \data-id}
 						data-type: \json
@@ -272,7 +272,7 @@ window.STATUS_CORE = {}
 			..find 'article > .main > .main > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
 					$status.attr \data-is-reposted \false
-					$.ajax "#{config.api-url}/status/unrepost" {
+					$.ajax "#{config.web-api-url}/status/unrepost" {
 						type: \delete
 						data: {'status-id': $status.attr \data-id}
 						data-type: \json
@@ -300,7 +300,7 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 					..attr \data-reposting \true
 				$status.attr \data-is-reposted \true
-				$.ajax "#{config.api-url}/status/repost" {
+				$.ajax "#{config.web-api-url}/status/repost" {
 					type: \post
 					data:
 						'status-id': $status.attr \data-id

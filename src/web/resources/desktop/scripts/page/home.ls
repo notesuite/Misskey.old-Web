@@ -7,7 +7,7 @@ function post
 	$submit-button.attr \disabled yes
 	$submit-button.attr \value 'Updating...'
 
-	$.ajax config.api-url + '/posts/status' {
+	$.ajax config.web-api-url + '/posts/status' {
 		type: \post
 		-process-data
 		-content-type
@@ -50,7 +50,7 @@ $ ->
 		$ '#post-form textarea' .val $.cookie \post-autosave
 
 	# 通知読み込み
-	$.ajax config.api-url + '/notice/timeline-webhtml' {
+	$.ajax config.web-api-url + '/notice/timeline-webhtml' {
 		type: \get
 		data: {}
 		data-type: \json
@@ -166,7 +166,7 @@ $ ->
 		if current > $ document .height! - 50
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax config.api-url + '/web/status/timeline-homehtml' {
+				$.ajax config.web-api-url + '/web/status/timeline-homehtml' {
 					type: \get
 					data: {
 						'max-cursor': $ '#widget-timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
@@ -192,7 +192,7 @@ $ ->
 			$button.attr \disabled yes
 
 			if ($user.attr \data-is-following) == \true
-				$.ajax config.api-url + '/users/unfollow' {
+				$.ajax config.web-api-url + '/users/unfollow' {
 					type: \delete
 					data: { 'user-id': $user.attr \data-user-id }
 					data-type: \json
@@ -206,7 +206,7 @@ $ ->
 				.fail ->
 					$button.attr \disabled no
 			else
-				$.ajax config.api-url + '/users/follow' {
+				$.ajax config.web-api-url + '/users/follow' {
 					type: \post
 					data: { 'user-id': $user.attr \data-user-id }
 					data-type: \json

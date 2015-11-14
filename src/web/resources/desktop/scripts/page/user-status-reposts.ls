@@ -36,7 +36,7 @@ $ ->
 			$friend-button.click ->
 				$friend-button.attr \disabled on
 				if check-follow!
-					$.ajax "#{config.api-url}/users/unfollow" {
+					$.ajax "#{config.web-api-url}/users/unfollow" {
 						type: \delete
 						data: {'user-id': user-id}
 						data-type: \json
@@ -53,7 +53,7 @@ $ ->
 					.fail ->
 						$friend-button.attr \disabled off
 				else
-					$.ajax "#{config.api-url}/users/follow" {
+					$.ajax "#{config.web-api-url}/users/follow" {
 						type: \post
 						data: {'user-id': user-id}
 						data-type: \json

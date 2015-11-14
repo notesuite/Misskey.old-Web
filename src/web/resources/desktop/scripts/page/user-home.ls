@@ -11,7 +11,7 @@ $ ->
 		if current > $ document .height! - 32
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
+				$.ajax config.web-api-url + '/web/status/user-timeline-detailhtml' {
 					type: \get
 					data: {
 						'user-id': $ \html .attr \data-user-id

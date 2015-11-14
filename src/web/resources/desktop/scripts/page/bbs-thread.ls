@@ -39,7 +39,7 @@ $ ->
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '投稿しています...'
 
-		$.ajax config.api-url + '/bbs/post/create' {
+		$.ajax config.web-api-url + '/bbs/post/create' {
 			type: \post
 			-process-data
 			-content-type
@@ -93,7 +93,7 @@ $ ->
 			($button.attr \data-enable) == \true
 		
 		if check-watch!
-			$.ajax "#{config.api-url}/bbs/thread/unwatch" {
+			$.ajax "#{config.web-api-url}/bbs/thread/unwatch" {
 				type: \delete
 				data: {'thread-id': thread-id}
 				data-type: \json
@@ -108,7 +108,7 @@ $ ->
 			.fail ->
 				$button.attr \disabled off
 		else
-			$.ajax "#{config.api-url}/bbs/thread/watch" {
+			$.ajax "#{config.web-api-url}/bbs/thread/watch" {
 				type: \post
 				data: {'thread-id': thread-id}
 				data-type: \json
@@ -131,7 +131,7 @@ $ ->
 			($button.attr \data-enable) == \true
 		
 		if check-favorite!
-			$.ajax "#{config.api-url}/bbs/thread/unfavorite" {
+			$.ajax "#{config.web-api-url}/bbs/thread/unfavorite" {
 				type: \delete
 				data: {'thread-id': thread-id}
 				data-type: \json
@@ -146,7 +146,7 @@ $ ->
 			.fail ->
 				$button.attr \disabled off
 		else
-			$.ajax "#{config.api-url}/bbs/thread/favorite" {
+			$.ajax "#{config.web-api-url}/bbs/thread/favorite" {
 				type: \post
 				data: {'thread-id': thread-id}
 				data-type: \json

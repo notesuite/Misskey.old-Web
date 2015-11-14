@@ -9,7 +9,7 @@ $ ->
 		$submit-button.attr \disabled on
 		$submit-button.attr \value '保存中...'
 
-		$.ajax "#{config.api-url}/account/update" {
+		$.ajax "#{config.web-api-url}/account/update" {
 			type: \put
 			-process-data
 			-content-type
@@ -30,7 +30,7 @@ $ ->
 		$submit-button.attr \disabled on
 		$submit-button.attr \value '保存中...'
 
-		$.ajax "#{config.api-url}/account/update-color" {
+		$.ajax "#{config.web-api-url}/account/update-color" {
 			type: \put
 			-process-data
 			-content-type
@@ -54,7 +54,7 @@ $ ->
 		$progress.css \display \block
 		$submit-button.attr \disabled on
 		$submit-button.attr \value '更新中...'
-		$.ajax config.api-url + '/account/update-wallpaper' {
+		$.ajax config.web-api-url + '/account/update-wallpaper' {
 			+async
 			type: \put
 			-process-data
@@ -99,7 +99,7 @@ $ ->
 			fd = new FormData!
 			fd.append \app-id $app.attr \data-app-id
 
-			$.ajax "#{config.api-url}/account/remove-app" {
+			$.ajax "#{config.web-api-url}/account/remove-app" {
 				type: \delete
 				-process-data
 				-content-type

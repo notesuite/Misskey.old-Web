@@ -107,7 +107,7 @@ window.TIMELINE_CORE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/desktop/home/posts/reply" {
+				$.ajax "#{config.web-api-url}/desktop/home/posts/reply" {
 					type: \post
 					data: new FormData $form.0
 					-process-data
@@ -143,7 +143,7 @@ window.TIMELINE_CORE = {}
 					..attr \disabled on
 				if check-favorited!
 					$status.attr \data-is-favorited \false
-					$.ajax "#{config.api-url}/post/unfavorite" {
+					$.ajax "#{config.web-api-url}/post/unfavorite" {
 						type: \delete
 						data: {'post-id': $status.attr \data-id}
 						data-type: \json
@@ -155,7 +155,7 @@ window.TIMELINE_CORE = {}
 						$status.attr \data-is-favorited \true
 				else
 					$status.attr \data-is-favorited \true
-					$.ajax "#{config.api-url}/status/favorite" {
+					$.ajax "#{config.web-api-url}/status/favorite" {
 						type: \post
 						data: {'status-id': $status.attr \data-id}
 						data-type: \json
@@ -174,7 +174,7 @@ window.TIMELINE_CORE = {}
 			..find 'article > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
 					$post.attr \data-is-reposted \false
-					$.ajax "#{config.api-url}/post/unrepost" {
+					$.ajax "#{config.web-api-url}/post/unrepost" {
 						type: \delete
 						data: {'post-id': $status.attr \data-id}
 						data-type: \json
@@ -202,7 +202,7 @@ window.TIMELINE_CORE = {}
 					..attr \disabled on
 					..attr \data-reposting \true
 				$post.attr \data-is-reposted \true
-				$.ajax "#{config.api-url}/reposts/create" {
+				$.ajax "#{config.web-api-url}/reposts/create" {
 					type: \post
 					data:
 						'post-id': $post.attr \data-id
@@ -243,7 +243,7 @@ window.TIMELINE_CORE = {}
 			# Init ogp preview
 			..find 'article > .main > .content > .text a' .each ->
 				$link = $ @
-				$.ajax "#{config.api-url}/ogp/parse" {
+				$.ajax "#{config.web-api-url}/ogp/parse" {
 					type: \get
 					data:
 						'url': $link.attr \href

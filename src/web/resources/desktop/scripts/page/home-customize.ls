@@ -58,7 +58,7 @@ $ ->
 		fd = new FormData!
 		fd.append \layout JSON.stringify layout
 
-		$.ajax "#{config.api-url}/account/update-home-layout" {
+		$.ajax "#{config.web-api-url}/account/update-home-layout" {
 			type: \put
 			-process-data
 			-content-type

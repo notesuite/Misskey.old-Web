@@ -35,7 +35,7 @@ $ ->
 		$button = $ @
 			..attr \disabled on
 		if check-follow!
-			$.ajax "#{config.api-url}/users/unfollow" {
+			$.ajax "#{config.web-api-url}/users/unfollow" {
 				type: \delete
 				data: {'user-id': $ \html .attr \data-user-id}
 				data-type: \json
@@ -51,7 +51,7 @@ $ ->
 			.fail ->
 				$button.attr \disabled off
 		else
-			$.ajax "#{config.api-url}/users/follow" {
+			$.ajax "#{config.web-api-url}/users/follow" {
 				type: \post
 				data: {'user-id': $ \html .attr \data-user-id}
 				data-type: \json
@@ -102,7 +102,7 @@ function init-icon-edit-form
 		event.prevent-default!
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '更新しています...'
-		$.ajax config.api-url + '/account/update-icon' {
+		$.ajax config.web-api-url + '/account/update-icon' {
 			+async
 			type: \put
 			-process-data
@@ -176,7 +176,7 @@ function init-header-image-edit-form
 		event.prevent-default!
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '更新しています...'
-		$.ajax config.api-url + '/account/update-banner' {
+		$.ajax config.web-api-url + '/account/update-banner' {
 			+async
 			type: \put
 			-process-data

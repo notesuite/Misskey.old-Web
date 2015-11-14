@@ -20,7 +20,7 @@ $ ->
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '更新しています...'
 
-		$.ajax config.api-url + '/bbs/thread/update' {
+		$.ajax config.web-api-url + '/bbs/thread/update' {
 			type: \put
 			-process-data
 			-content-type

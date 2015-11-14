@@ -11,7 +11,7 @@ $ ->
 			fd = new FormData!
 			fd.append \app-id $app.attr \data-app-id
 
-			$.ajax "#{config.api-url}/account/remove-app" {
+			$.ajax "#{config.web-api-url}/account/remove-app" {
 				type: \delete
 				-process-data
 				-content-type

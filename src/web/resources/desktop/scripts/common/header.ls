@@ -1,7 +1,7 @@
 window.music-center-open = no
 
 function update-statuses
-	$.ajax "#{config.api-url}/web/get-header-statuses" {
+	$.ajax "#{config.web-api-url}/web/get-header-statuses" {
 		type: \get
 		data-type: \json
 		xhr-fields: {+with-credentials}}
@@ -200,7 +200,7 @@ $ ->
 					$message.remove!
 			, i * 50
 
-		$.ajax config.api-url + '/notice/delete-all' {
+		$.ajax config.web-api-url + '/notice/delete-all' {
 			type: \delete
 			data: {}
 			data-type: \json
@@ -231,7 +231,7 @@ $ ->
 			$ '<img class="loading" src="/resources/images/notices-loading.gif" alt="loading..." />' .append-to $notices-container
 
 			# 通知読み込み
-			$.ajax config.api-url + '/notice/timeline-webhtml' {
+			$.ajax config.web-api-url + '/notice/timeline-webhtml' {
 				type: \get
 				data: {}
 				data-type: \json
@@ -267,7 +267,7 @@ $ ->
 			$result.empty!
 		else
 			$input.attr \data-active \true
-			$.ajax "#{config.api-url}/search/user" {
+			$.ajax "#{config.web-api-url}/search/user" {
 				type: \get
 				data: {'query': $input .val!}
 				data-type: \json
@@ -373,7 +373,7 @@ $ ->
 		jQuery.each ($form.find 'input[type=file]')[0].files, (i, file) ->
 			fd.append \image file
 
-		$.ajax config.api-url + '/status/update' {
+		$.ajax config.web-api-url + '/status/update' {
 			+async
 			type: \post
 			-process-data

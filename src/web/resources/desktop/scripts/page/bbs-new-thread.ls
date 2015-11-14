@@ -8,7 +8,7 @@ $ ->
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '作成しています...'
 
-		$.ajax config.api-url + '/bbs/thread/create' {
+		$.ajax config.web-api-url + '/bbs/thread/create' {
 			type: \post
 			-process-data
 			-content-type

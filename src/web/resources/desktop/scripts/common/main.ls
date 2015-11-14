@@ -26,7 +26,7 @@ window.display-message = (message) ->
 	, 5000ms
 
 window.display-album-file-select-dialog = ->
-	$.ajax "#{config.api-url}/desktop/album/open" {
+	$.ajax "#{config.web-api-url}/desktop/album/open" {
 		type: \get
 		data-type: \text
 		xhr-fields: {+with-credentials}}

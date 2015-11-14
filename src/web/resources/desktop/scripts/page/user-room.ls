@@ -590,7 +590,7 @@ class Room
 	save: (done, fail) ->
 		json = @export-layout-json!
 
-		$.ajax config.api-url + '/account/update-room' {
+		$.ajax config.web-api-url + '/account/update-room' {
 			type: \put
 			data: {
 				'layout': json

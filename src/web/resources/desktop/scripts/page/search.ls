@@ -19,7 +19,7 @@ $ ->
 				$result.empty!
 			else
 				$input.attr \data-active \true
-				$.ajax "#{config.api-url}/search/user" {
+				$.ajax "#{config.web-api-url}/search/user" {
 					type: \get
 					data: {'query': $input .val!}
 					data-type: \json

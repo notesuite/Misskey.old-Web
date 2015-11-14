@@ -64,7 +64,7 @@ function init-register-form
 		event.prevent-default!
 		$form = $ @
 
-		$.ajax "#{config.api-url}/account/create" {
+		$.ajax "#{config.web-api-url}/account/create" {
 			type: \post
 			data: $form.serialize!
 			data-type: \json
@@ -107,7 +107,7 @@ function init-register-form
 					show-message err, no
 				else
 					show-message '確認中...' null
-					$.ajax "#{config.api-url}/screenname-available" {
+					$.ajax "#{config.web-api-url}/screenname-available" {
 						type: \get
 						data: {'screen-name': sn}
 						data-type: \json

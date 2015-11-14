@@ -20,7 +20,7 @@ window.TALKSTREAM = {}
 					text = $ @ .val!
 					$textp = $ '<p class="text">' .text text
 					$textarea.replace-with $textp
-					$.ajax config.api-url + '/talk/fix' {
+					$.ajax config.web-api-url + '/talk/fix' {
 						type: \put
 						data: {'message-id': id, text: text}
 						data-type: \json
@@ -35,7 +35,7 @@ window.TALKSTREAM = {}
 			$message.find \.delete-button .click ->
 				$button = $ @
 				$button.attr \disabled yes
-				$.ajax config.api-url + '/talk/delete' {
+				$.ajax config.web-api-url + '/talk/delete' {
 					type: \delete
 					data: {'message-id': id}
 					data-type: \json
@@ -74,7 +74,7 @@ function send-message
 
 	$submit-button.attr \disabled yes
 
-	$.ajax config.api-url + '/talk/say' {
+	$.ajax config.web-api-url + '/talk/say' {
 		type: \post
 		-process-data
 		-content-type
@@ -142,7 +142,7 @@ $ ->
 		if ($ '#otherparty-status #otherparty-typing')[0]
 			$ '#otherparty-status #otherparty-typing' .remove!
 		add-message $message
-		$.ajax config.api-url + '/talk/read' {
+		$.ajax config.web-api-url + '/talk/read' {
 			type: \post
 			data: {'message-id': message-id}
 			data-type: \json
@@ -256,7 +256,7 @@ $ ->
 		$button = $ @
 		$button.attr \disabled yes
 		$button.text '読み込み中'
-		$.ajax config.api-url + '/web/talk/timeline-html' {
+		$.ajax config.web-api-url + '/web/talk/timeline-html' {
 			type: \get
 			data: {
 				'otherparty-id': otherparty-id

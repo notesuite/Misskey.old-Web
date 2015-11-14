@@ -18,7 +18,7 @@ $ ->
 		$button = $ @
 			..attr \disabled on
 		if check-follow!
-			$.ajax "#{config.api-url}/users/unfollow" {
+			$.ajax "#{config.web-api-url}/users/unfollow" {
 				type: \delete
 				data: {'user-id': $ \html .attr \data-user-id}
 				data-type: \json
@@ -34,7 +34,7 @@ $ ->
 			.fail ->
 				$button.attr \disabled off
 		else
-			$.ajax "#{config.api-url}/users/follow" {
+			$.ajax "#{config.web-api-url}/users/follow" {
 				type: \post
 				data: {'user-id': $ \html .attr \data-user-id}
 				data-type: \json
