@@ -71,6 +71,10 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			siteName: ogSiteName
 		});
 
+		res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+		res.header('Pragma', 'no-cache');
+		res.header('Expires', '0');
+		res.header('Content-Type', 'text/plain');
 		res.send(viewer);
 	}, (err: any) => {
 		res.sendStatus(500);

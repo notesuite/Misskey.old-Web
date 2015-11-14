@@ -243,7 +243,7 @@ window.TIMELINE_CORE = {}
 			# Init ogp preview
 			..find 'article > .main > .content > .text a' .each ->
 				$link = $ @
-				$.ajax "#{config.web-api-url}/ogp/parse" {
+				$.ajax "#{config.web-api-url}/web/ogp/parse" {
 					type: \get
 					data:
 						'url': $link.attr \href
