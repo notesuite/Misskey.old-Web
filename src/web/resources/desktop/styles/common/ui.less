@@ -130,7 +130,7 @@ textarea {
 	max-width: 550px;
 	margin: auto;
 	padding: 0;
-	background: #FFF7F3;
+	background: #fff;
 	opacity: 0;
 
 	*:not(i) {
@@ -190,7 +190,7 @@ textarea {
 			display: block;
 			float: left;
 			margin: 0;
-			padding: 16px 24px;
+			padding: 12px 24px;
 			color: #DAD1CC;
 			cursor: pointer;
 			overflow: hidden;
@@ -211,24 +211,19 @@ textarea {
 
 			&:hover {
 				color: #bAb1aC;
-
-				> i {
-					top: -4px;
-				}
 			}
 
 			> i {
 				position: relative;
 				top: 0;
-				font-size: 1.2em;
+				font-size: 1em;
 				transition: top 0.1s ease;
 			}
 		}
 	}
 
 	> #misskey-post-form-tab-pages {
-		padding: 16px 16px 0 16px;
-		background: #fff;
+		padding: 16px;
 
 		> div {
 
@@ -256,19 +251,16 @@ textarea {
 				margin: 0;
 				padding: 8px 12px;
 				outline: 0;
-				border: solid 1px #D0C0B9;
-				border-radius: 4px;
+				border: none;
+				border-radius: 0;
 				font-size: 1em;
-				transition: border 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+				transition: color 0.2s ease, box-shadow 0.2s ease;
 
 				&:hover {
-					border: solid 1px @themeColor;
 				}
 
 				&:focus {
 					color: darken(@themeColor, 20%);
-					outline: none;
-					border: solid 1px @themeColor;
 					box-shadow: 0 0 8px fade(@themeColor, 20%);
 				}
 			}
@@ -280,14 +272,14 @@ textarea {
 				display: block;
 				float: right;
 				box-sizing: border-box;
-				margin: 0;
-				padding: 16px 14px 22px 14px;
-				line-height: 1.1em;
-				font-size: 1.1em;
+				margin: 8px 0 0 0;
+				padding: 10px 18px;
+				line-height: 1em;
+				font-size: 1em;
 				font-weight: normal;
 				text-decoration: none;
-				color: #95856e;
-				background: transparent;
+				color: #fff;
+				background: @themeColor;
 				outline: none;
 				border: none;
 				border-radius: 0;
@@ -300,16 +292,20 @@ textarea {
 				}
 
 				i {
-					margin: 0 0.375em;
+					margin-left: 0.375em;
 				}
 
 				&:hover {
-					color: @themeColor;
+					background: lighten(@themeColor, 10%);
 				}
 
 				&:active {
-					color: darken(@themeColor, 10%);
-					transition: color 0s ease;
+					background: darken(@themeColor, 10%);
+					transition: background 0s ease;
+				}
+
+				&:focus {
+					outline: solid 2px fade(@themeColor, 50%);
 				}
 			}
 
