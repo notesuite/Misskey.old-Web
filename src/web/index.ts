@@ -10,6 +10,7 @@ import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as moment from 'moment';
+const subdomain: any = require('subdomain');
 // import { logDone, logFailed, logInfo } from 'log-cool';
 
 import { User } from '../models/user';
@@ -20,6 +21,7 @@ import requestApi from '../utils/requestApi';
 import config from '../config';
 
 import router from './router';
+import apiRouter from './api/router';
 
 console.log(`Init Web server [worker id: ${cluster.worker.id}]`);
 
@@ -37,6 +39,7 @@ server.locals.compileDebug = false;
 server.set('view engine', 'jade');
 server.set('X-Frame-Options', 'SAMEORIGIN');
 
+server.use(subdomain({ base : config.publicConfig.domain, removeWWW : true }));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
@@ -165,6 +168,7 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 
 // Rooting
 router(server);
+apiRouter(server);
 
 // Not found handling
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {

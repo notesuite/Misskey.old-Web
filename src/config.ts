@@ -37,48 +37,16 @@ export interface IConfig {
 	sessionSecret: string;
 	publicConfig: {
 		themeColor: string;
+		domain: string;
 		host: string;
 		url: string;
 		apiHost: string;
 		apiUrl: string;
-		apiCoreHost: string;
-		apiCoreUrl: string;
+		webApiDomain: string;
+		webApiHost: string;
+		webApiUrl: string;
 		developerCenterHost: string;
 		developerCenterUrl: string;
 		webStreamingUrl: string;
 	};
 }
-
-export const defaultConfig: IConfig = {
-	mongo: {
-		uri: "mongodb://localhost/Misskey",
-		options: {
-			user: "",
-			pass: ""
-		}
-	},
-	port: {
-		http: 80,
-		https: 443,
-		streaming: 3000
-	},
-	apiPasskey: "",
-	apiServerIp: "",
-	apiServerPort: 0,
-	redisServerHost: "",
-	cookiePass: "",
-	sessionKey: "sid",
-	sessionSecret: "",
-	publicConfig: {
-		themeColor: "#0e91bc",
-		host: "misskey.xyz",
-		url: "http://misskey.xyz",
-		apiHost: "himasaku.misskey.xyz",
-		apiUrl: "http://himasaku.misskey.xyz",
-		apiCoreHost: "api.misskey.xyz",
-		apiCoreUrl: "http://api.misskey.xyz",
-		developerCenterHost: "dev.misskey.xyz",
-		developerCenterUrl: "http://dev.misskey.xyz",
-		webStreamingUrl: "http://api.misskey.xyz:2000"
-	}
-};
