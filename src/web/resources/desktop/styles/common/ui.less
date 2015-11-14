@@ -2555,9 +2555,10 @@ input.tagit-hidden-field {
 		bottom: 0;
 		right: 0;
 		width: 512px;
-		background: #fff;
-		border-top: solid 4px #eee;
-		border-left: solid 4px #eee;
+		background: #000;
+		border-top: solid 1px #404040;
+		border-left: solid 1px #404040;
+		color: #fff;
 
 		> ol {
 			display: block;
@@ -2567,6 +2568,41 @@ input.tagit-hidden-field {
 			height: 192px;
 			overflow: scroll;
 			list-style: none;
+
+			> li {
+				padding: 8px;
+				border-bottom: solid 1px #404040;
+
+				p {
+					margin: 0 0 4px 0;
+					font-size: 0.9em;
+				}
+
+				progress {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					display: block;
+					margin: 0;
+					width: 100%;
+					height: 8px;
+					border: none;
+					border-radius: 0;
+					overflow: hidden;
+
+					&::-webkit-progress-value {
+						background-color: @themeColor;
+					}
+
+					&::-webkit-progress-bar {
+						background-color: #000;
+					}
+
+					&:not([value])::-webkit-progress-bar {
+						background-image: url('/resources/common/images/indeter.gif');
+					}
+				}
+			}
 		}
 	}
 }
