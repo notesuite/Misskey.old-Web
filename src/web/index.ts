@@ -9,10 +9,8 @@ const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(expressSession);
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-// import * as expressMinify from 'express-minify';
-// const expressMinify: any = require('express-minify');
 import * as moment from 'moment';
-import { logDone, logFailed, logInfo } from 'log-cool';
+// import { logDone, logFailed, logInfo } from 'log-cool';
 
 import { User } from '../models/user';
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
@@ -43,7 +41,6 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
 server.use('/resources', express.static(`${__dirname}/resources`));
-// server.use(expressMinify());
 
 // Session settings
 server.use(expressSession({
@@ -194,5 +191,5 @@ httpServer.listen(config.port.http, () => {
 	const host: string = httpServer.address().address;
 	const port: number = httpServer.address().port;
 
-	logDone(`Misskey worker '${cluster.worker.id}' is now listening at ${host}:${port}`);
+	console.log(`Misskey worker '${cluster.worker.id}' is now listening at ${host}:${port}`);
 });
