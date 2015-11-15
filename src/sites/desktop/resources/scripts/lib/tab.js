@@ -33,4 +33,4 @@ module.exports = function($tabList) {
 
 	$tabList.find('li:eq(0)').removeClass('unactive').addClass('active');
 	$tabContents[0].css('display', 'block');
-}
+};
