@@ -23,8 +23,8 @@ task('watch', ['build', 'lint'], () => {
 
 task('build', [
 	'build:ts',
-	'build:ls',
-	'build:js',
+	'build-frontside:ls',
+	'build-frontside:js',
 	'build:less',
 	'build-copy',
 	'browserify'
@@ -39,17 +39,17 @@ task('build:ts', () => {
 		.pipe(dest('./built'));
 });
 
-task('build:ls', () => {
-	return src('./src/**/*.ls')
+task('build-frontside:ls', () => {
+	return src('./src/sites/*/resources/scripts/**/*.ls')
 		.pipe(ls())
 		.pipe(uglify())
-		.pipe(dest('./built'));
+		.pipe(dest('./tmp/frontside'));
 });
 
-task('build:js', () => {
-	return src('./src/**/*.js')
+task('build-frontside:js', () => {
+	return src('./src/sites/*/resources/scripts/**/*.js')
 		.pipe(uglify())
-		.pipe(dest('./built'));
+		.pipe(dest('./tmp/frontside'));
 });
 
 task('build:less', () => {
@@ -77,11 +77,11 @@ task('build-copy', () => {
 });
 
 task('browserify', () => {
-	return glob('./built/sites/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
+	return glob('./tmp/frontside/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
 		files.map((entry: string) => {
 			browserify({ entries: [entry] })
 				.bundle()
-				.pipe(source(entry))
+				.pipe(source(entry.replace('/tmp/frontside/', '/sites/')))
 				.pipe(dest('./built'));
 		});
 	});

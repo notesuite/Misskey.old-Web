@@ -1,15 +1,15 @@
-doctype html
+extends ../layout
 
-html(lang='ja', dir='ltr')
-	head
-		include ../common/head
-		meta(name='description', content='Not found')
-		title= 'Not found'
-		link(rel='stylesheet', href='/resources/desktop/styles/page/not-found.css')
-	
-	body
-		include ../common/header
-		
-		main(role='main')
-			h1 Not found
-			p コンテンツが見つかりません。
+block title
+	| Not found
+
+block meta
+	meta(name='description', content='Not found')
+
+block assets
+	link(rel='stylesheet', href='/resources/desktop/styles/page/not-found.css')
+
+block body
+	main(role='main')
+		h1 Not found
+		p コンテンツが見つかりません。
