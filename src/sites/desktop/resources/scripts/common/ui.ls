@@ -461,3 +461,6 @@ $ ->
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
 	$ \body .css \margin-top "#{header-height}px"
+
+	WavesEffect.attachToClass('ui-waves-effect');
+	
