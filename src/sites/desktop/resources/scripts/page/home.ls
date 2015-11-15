@@ -1,5 +1,3 @@
-prelude = require 'prelude-ls'
-
 function post
 	$form = $ \#post-form
 	$submit-button = $form.find '[type=submit]'
