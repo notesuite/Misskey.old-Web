@@ -1,3 +1,53 @@
+extends ../layout
+
+block title
+	| Misskey
+
+block assets
+	script(src=webStreamingUrl + '/socket.io/socket.io.js')
+	script(src='/resources/desktop/scripts/page/home.js')
+	if customizeMode
+		script(src='/resources/desktop/scripts/page/home-customize.js')
+	link(rel='stylesheet', href='/resources/desktop/styles/page/home.css')
+
+block body
+	if customizeMode
+		div#customizer-menu
+			p
+				i.fa.fa-wrench
+				| ホームのカスタマイズ中
+		div#customizer-garbage-storage
+			+widget(unuseWidgets)
+	main
+		if customizeMode
+			div#customizer-nav-container
+				div#customizer-nav
+					div.add-widget-form
+						p
+							| 利用可能な
+							b ウィジェット
+							| :
+						select#customizer-available-widgets
+						button#customizer-add-widget-button(role='button')
+							i.fa.fa-check
+							| 追加
+					div.save-or-cancel
+						button#customizer-cancel-button(role='button')
+							i.fa.fa-ban
+							| 変更を破棄
+						button#customizer-save-button(role='button')
+							i.fa.fa-check
+							| 変更を保存
+		div#contents
+			if customizeMode || (layout.left != null && layout.left.length > 0)
+				div#left-contents
+					+widget(layout.left)
+			div#main-contents(role='main')
+				+widget(layout.center)
+			if customizeMode || (layout.right != null && layout.right.length > 0)
+				div#right-contents
+					+widget(layout.right)
+
 mixin widget(widgets)
 	if widgets != null && widgets.length > 0
 		each widget in widgets
@@ -20,57 +70,3 @@ mixin widget(widgets)
 					include ../lib/home-widgets/big-calendar
 				when 'small-calendar'
 					include ../lib/home-widgets/small-calendar
-
-doctype html
-
-html#misskey(lang=me.lang, dir='ltr', data-user-id= me.id, data-worker-id= workerId)
-	head
-		include ../common/head
-		title Misskey
-		script(src='/resources/desktop/scripts/common/timeline-core.js')
-		script(src=webStreamingUrl + '/socket.io/socket.io.js')
-		script(src='/resources/desktop/scripts/page/home.js')
-		if customizeMode
-			script(src='/resources/desktop/scripts/page/home-customize.js')
-		link(rel='stylesheet', href='/resources/desktop/styles/page/home.css')
-		
-	body
-		if !customizeMode
-			include ../common/header
-		
-		if customizeMode
-			div#customizer-menu
-				p
-					i.fa.fa-wrench
-					| ホームのカスタマイズ中
-			div#customizer-garbage-storage
-				+widget(unuseWidgets)
-		main
-			if customizeMode
-				div#customizer-nav-container
-					div#customizer-nav
-						div.add-widget-form
-							p
-								| 利用可能な
-								b ウィジェット
-								| :
-							select#customizer-available-widgets
-							button#customizer-add-widget-button(role='button')
-								i.fa.fa-check
-								| 追加
-						div.save-or-cancel
-							button#customizer-cancel-button(role='button')
-								i.fa.fa-ban
-								| 変更を破棄
-							button#customizer-save-button(role='button')
-								i.fa.fa-check
-								| 変更を保存
-			div#contents
-				if customizeMode || (layout.left != null && layout.left.length > 0)
-					div#left-contents
-						+widget(layout.left)
-				div#main-contents(role='main')
-					+widget(layout.center)
-				if customizeMode || (layout.right != null && layout.right.length > 0)
-					div#right-contents
-						+widget(layout.right)

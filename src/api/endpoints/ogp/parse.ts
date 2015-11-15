@@ -7,6 +7,7 @@ const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
 client.timeout = 10000;
+client.maxDataSize = 1000000; // 1MB
 
 /**
  * 指定されたURLのページのプレビューウィジェットを生成します。
@@ -21,6 +22,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	// リクエスト送信
 	client.fetch(url).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
+			console.error(result.error);
 			return res.sendStatus(500);
 		}
 
