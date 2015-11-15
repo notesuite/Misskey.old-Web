@@ -1,6 +1,46 @@
-window.music-center-open = no
+window.display-message = (message) ->
+	$message = $ '<p class="ui-message">' .text message
+	$ \body .prepend $message
+	$message.transition {
+		opacity: \1
+		perspective: \1024
+		rotate-x: \0
+	} 200ms \ease
+	set-timeout ->
+		$message.transition {
+			opacity: \0
+			perspective: \1024
+			rotate-x: \90
+		} 200ms \ease ->
+			$message.remove!
+	, 5000ms
 
-function update-statuses
+window.display-album-file-select-dialog = ->
+	$.ajax "#{config.web-api-url}/desktop/album/open" {
+		type: \get
+		data-type: \text
+		xhr-fields: {+with-credentials}}
+	.done (html) ->
+		$ html .append-to $ 'body' .hide!.fade-in 200ms
+
+function update-relative-times
+	now = new Date!
+	$ "time[data-display-type='relative']" .each ->
+		date = new Date($ @ .attr \datetime)
+		ago = ~~((now - date) / 1000)
+		time-text = switch
+			| ago >= 31536000s => ~~(ago / 31536000s) + '年前'
+			| ago >= 2592000s  => ~~(ago / 2592000s) + 'ヶ月前'
+			| ago >= 604800s   => ~~(ago / 604800s) + '週間前'
+			| ago >= 86400s    => ~~(ago / 86400s) + '日前'
+			| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
+			| ago >= 60s       => ~~(ago / 60s) + '分前'
+			| ago >= 10s       => ~~(ago % 60s) + '秒前'
+			| ago <  10s       => 'たった今'
+			| _ => ''
+		$ @ .text time-text
+
+function update-header-statuses
 	$.ajax "#{config.web-api-url}/web/get-header-statuses" {
 		type: \get
 		data-type: \json
@@ -22,7 +62,7 @@ function update-statuses
 				$ '<span class="unreadCount">' .text unread-talk-messages-count
 	.fail ->
 
-function update-clock
+function update-header-clock
 	s = (new Date!).get-seconds!
 	m = (new Date!).get-minutes!
 	h = (new Date!).get-hours!
@@ -119,20 +159,18 @@ function update-clock
 	ctx.stroke!
 
 $ ->
-	update-statuses!
-	set-interval update-statuses, 10000ms
+	update-relative-times!
 
-	update-clock!
-	set-interval update-clock, 1000ms
+	# Update relative times
+	set-interval update-relative-times, 1000ms
+
+	update-header-statuses!
+	set-interval update-header-statuses, 10000ms
+
+	update-header-clock!
+	set-interval update-header-clock, 1000ms
 
 	SYUILOUI.Tab $ '#misskey-post-form-tabs'
-
-	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
-		if window.music-center-open
-			$ '#misskey-main-header > .informationCenter' .css \height '0'
-		else
-			$ '#misskey-main-header > .informationCenter' .css \height '200px'
-		window.music-center-open = !music-center-open
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
 		window-id = "misskey-window-talk-histories"
@@ -420,10 +458,6 @@ $ ->
 			$progress.css \display \none
 			$submit-button.attr \value 'Re Update'
 
-
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
 	$ \body .css \margin-top "#{header-height}px"
-	$ \html .css \background-position "center #{header-height}px"
-	$ '[data-ui-background-wallpaper-blur="true"]' .each ->
-		$ @ .css \background-position "center #{header-height}px"

@@ -17,7 +17,7 @@ html#misskey(
 		meta(charset='utf-8')
 		meta(name='robots', content='all')
 		meta(name='application-name', content='Misskey')
-		meta(name='theme-color', content=config.themeColor)
+		meta(name='theme-color', content= config.themeColor)
 		meta(name='google-site-verification', content='0KUjKH7EJj28VnWKm0p_Uo1bc6i3ldPNQOHvjxlvnm4')
 		meta(name='msvalidate.01', content='48D10EEFFD5D1BD12088BC2081892F14')
 		meta(name='dns-prefetch', content='//maxcdn.bootstrapcdn.com')
@@ -37,12 +37,13 @@ html#misskey(
 		script(src='/resources/desktop/scripts/lib/jquery-cookie.js')
 		script(src='/resources/desktop/scripts/lib/jquery.transit.min.js')
 		script(src='/resources/desktop/scripts/lib/prelude-browser.js')
+		script(src='/resources/desktop/scripts/lib/moment.js')
 		script
-			include ../../../../resources/desktop/scripts/lib/waves-effect.js
+			include ../../../resources/desktop/scripts/lib/waves-effect.js
 		script
-			include ../../../../resources/desktop/scripts/lib/syuiloui.js
+			include ../../../resources/desktop/scripts/lib/syuiloui.js
 		script
-			include ../../../../resources/desktop/scripts/common/main.js
+			include ../../../resources/desktop/scripts/common/ui.js
 		script.
 			window.onload = function() {
 				WavesEffect.attachToClass('ui-waves-effect');
@@ -101,9 +102,6 @@ html#misskey(
 							p coming soon
 					
 		header#misskey-main-header(role='banner')
-			script(src='/resources/desktop/scripts/lib/moment.js')
-			script
-				include ../../../../resources/desktop/scripts/common/header.js
 			img(src='/resources/desktop/images/notices-loading.gif', alt='', style='display: none;')
 			if config.env == 'development'
 				p.env-development-info
