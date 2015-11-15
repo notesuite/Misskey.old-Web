@@ -67,12 +67,12 @@ task('build-frontside-styles', () => {
 });
 
 task('build-frontside-resources', ['build-copy', 'build-frontside-scripts', 'build-frontside-styles'], () => {
-	return src([
+	src([
 		'./built/sites/desktop/resources/**/*'
 	]).pipe(dest('./built/resources/desktop'))
-	.pipe(src([
+	src([
 		'./built/sites/mobile/resources/**/*'
-	]).pipe(dest('./built/resources/mobile')));
+	]).pipe(dest('./built/resources/mobile'));
 });
 
 task('lint', () => {
