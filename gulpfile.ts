@@ -77,12 +77,12 @@ task('build-copy', () => {
 });
 
 task('browserify', () => {
-	return glob('./built/resources/**/*.js', (err: Error, files: string[]) => {
+	return glob('./built/sites/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
 		files.map((entry: string) => {
 			browserify({ entries: [entry] })
 				.bundle()
 				.pipe(source(entry))
-				.pipe(dest('./a'));
+				.pipe(dest('./built'));
 		});
 	});
 });
