@@ -1,3 +1,5 @@
+Tab = require '../lib/tab.js'
+
 window.display-message = (message) ->
 	$message = $ '<p class="ui-message">' .text message
 	$ \body .prepend $message
@@ -170,7 +172,7 @@ $ ->
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
 
-	SYUILOUI.Tab $ '#misskey-post-form-tabs'
+	Tab $ '#misskey-post-form-tabs'
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
 		window-id = "misskey-window-talk-histories"
@@ -463,4 +465,3 @@ $ window .load ->
 	$ \body .css \margin-top "#{header-height}px"
 
 	WavesEffect.attachToClass('ui-waves-effect');
-	

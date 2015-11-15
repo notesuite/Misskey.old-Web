@@ -1,6 +1,9 @@
-var SYUILOUI = {};
+/**
+ * Tab
+ * (c) syuilo 2015
+ */
 
-SYUILOUI.Tab = function($tabList) {
+module.exports = function($tabList) {
 	var $tabContents = [];
 
 	$tabList.find('li').each(function(i, elem) {
