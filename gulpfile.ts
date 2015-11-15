@@ -81,6 +81,7 @@ task('browserify', () => {
 		files.map((entry: string) => {
 			browserify({ entries: [entry] })
 				.bundle()
+				.pipe(source(entry))
 				.pipe(dest('./a'));
 		});
 	});
