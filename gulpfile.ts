@@ -23,9 +23,8 @@ task('watch', ['build', 'lint'], () => {
 
 task('build', [
 	'build:ts',
-	'build:less',
 	'build-copy',
-	'build-frontside-scripts'
+	'build-frontside-resources'
 ]);
 
 task('build:ts', () => {
@@ -61,11 +60,17 @@ task('build-frontside-scripts', ['build-frontside:ls', 'build-frontside:js'], ()
 	});
 });
 
-task('build:less', () => {
+task('build-frontside-styles', () => {
 	return src('./src/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS())
 		.pipe(dest('./built'));
+});
+
+task('build-frontside-resources', ['build-frontside-scripts', 'build-frontside-styles'], () => {
+	return src([
+		'./built/sites/desktop/resources/**/*'
+	]).pipe(dest('./built/resources'));
 });
 
 task('lint', () => {
