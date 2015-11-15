@@ -1,4 +1,6 @@
+moment = require '../lib/moment.js'
 Tab = require '../lib/tab.js'
+WavesEffect = require '../lib/waves-effect.js'
 
 window.display-message = (message) ->
 	$message = $ '<p class="ui-message">' .text message
