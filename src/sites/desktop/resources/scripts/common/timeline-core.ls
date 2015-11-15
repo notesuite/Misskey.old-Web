@@ -1,5 +1,3 @@
-prelude = require 'prelude-ls'
-
 window.TIMELINE_CORE = {}
 	..init = ($tl) ->
 		window.TIMELINE_CORE.tl = $tl
@@ -54,7 +52,7 @@ window.TIMELINE_CORE = {}
 			# Click event
 			..click (event) ->
 				can-event = ! (((<[ input textarea button i time a ]>
-					|> prelude.map (element) -> $ event.target .is element)
+					|> $.map (element) -> $ event.target .is element)
 					.index-of yes) >= 0)
 
 				if document.get-selection!.to-string! != ''

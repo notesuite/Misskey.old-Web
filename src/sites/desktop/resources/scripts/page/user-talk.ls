@@ -1,5 +1,3 @@
-prelude = require 'prelude-ls'
-
 window.TALKSTREAM = {}
 	..set-event = ($message) ->
 		id = $message.attr \data-id

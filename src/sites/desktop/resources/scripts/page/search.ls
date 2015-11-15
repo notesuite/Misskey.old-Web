@@ -1,5 +1,3 @@
-prelude = require 'prelude-ls'
-
 $ ->
 	q = $ \html .attr \data-query
 	q = $ '<div>' .text q .html!

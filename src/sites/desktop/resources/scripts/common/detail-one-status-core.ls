@@ -1,5 +1,3 @@
-prelude = require 'prelude-ls'
-
 window.STATUS_CORE = {}
 	..set-event = ($status) ->
 		function check-favorited
@@ -112,7 +110,7 @@ window.STATUS_CORE = {}
 						$stargazer.find \.ui-tooltip .css \left ($stargazer.outer-width! / 2) - ($tooltip.outer-width! / 2)
 					->
 						$stargazer.find \.ui-tooltip .remove!
-			
+
 			# Init reposter tooltips
 			..find '.main .stargazers-and-reposters > .reposters > .reposters > .reposter > a' .each ->
 				$reposter = $ @

@@ -1,5 +1,3 @@
-prelude = require 'prelude-ls'
-
 window.STATUS_CORE = {}
 	..set-event = ($status) ->
 		function check-favorited

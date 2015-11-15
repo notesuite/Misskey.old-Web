@@ -1,5 +1,3 @@
-prelude = require 'prelude-ls'
-
 $ ->
 	is-me = $ \html .attr \data-is-me
 

@@ -1,6 +1,7 @@
 /// <reference path="./typings/bundle.d.ts" />
 
 import { task, src, dest, watch } from 'gulp';
+import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
@@ -25,8 +26,6 @@ task('build', [
 	'build:js',
 	'build:less',
 	'build-copy',
-	'move-desktop-resources',
-	'move-mobile-resources',
 	'browserify'
 ]);
 
@@ -76,20 +75,14 @@ task('build-copy', () => {
 	]).pipe(dest('./built'));
 });
 
-task('move-desktop-resources', () => {
-	return src('./built/sites/desktop/resources/**/*.*')
-		.pipe(dest('./built/resources/desktop'));
-});
-
-task('move-mobile-resources', () => {
-	return src('./built/sites/mobile/resources/**/*.*')
-		.pipe(dest('./built/resources/mobile'));
-});
-
 task('browserify', () => {
-	return browserify('./built/resources/**/*.js')
-		.bundle()
-		.pipe(dest('./built'));
+	return glob('./built/resources/**/*.js', (err: Error, files: string[]) => {
+		files.map((entry: string) => {
+			browserify({ entries: [entry] })
+				.bundle()
+				.pipe(dest('./built'));
+		});
+	});
 });
 
 /*
