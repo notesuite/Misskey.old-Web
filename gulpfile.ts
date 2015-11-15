@@ -5,6 +5,7 @@ import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
+import * as source from 'vinyl-source-stream';
 // import * as del from 'del';
 const babel = require('gulp-babel');
 const less = require('gulp-less');
@@ -80,7 +81,7 @@ task('browserify', () => {
 		files.map((entry: string) => {
 			browserify({ entries: [entry] })
 				.bundle()
-				.pipe(dest('./built'));
+				.pipe(dest('./a'));
 		});
 	});
 });

@@ -81,6 +81,9 @@
     },
     "glob/glob.d.ts": {
       "ref": "aed176536a202b9a2475ce1989ea6d2d0226a185"
+    },
+    "vinyl-source-stream/vinyl-source-stream.d.ts": {
+      "ref": "aed176536a202b9a2475ce1989ea6d2d0226a185"
     }
   }
 }
