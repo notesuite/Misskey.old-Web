@@ -8,6 +8,11 @@ client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
 client.timeout = 10000;
 
+/**
+ * 指定されたURLのページのプレビューウィジェットを生成します。
+ * @req: MisskeyExpressRequest
+ * @res: MisskeyExpressResponse
+ */
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
 
@@ -16,6 +21,13 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	// リクエスト送信
 	client.fetch(url).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
+			return res.sendStatus(500);
+		}
+
+		const contentType: string = result.response.headers['content-type'];
+
+		// HTMLじゃなかった場合は中止
+		if (contentType.indexOf('text/html') === -1) {
 			return res.sendStatus(500);
 		}
 
@@ -70,13 +82,14 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			image: ogImage,
 			siteName: ogSiteName
 		});
-
-		res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-		res.header('Pragma', 'no-cache');
-		res.header('Expires', '0');
-		res.header('Content-Type', 'text/plain');
+		
+		res.set({
+			'Content-Type': 'text/plain'
+		});
+		
 		res.send(viewer);
 	}, (err: any) => {
+		console.error(err);
 		res.sendStatus(500);
 	});
 };

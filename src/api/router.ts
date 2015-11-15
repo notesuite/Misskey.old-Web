@@ -11,6 +11,16 @@ export default function(app: express.Express): void {
 	'use strict';
 	console.log('Init Web API server router');
 
+	// APIのレスポンスはキャッシュさせない
+	app.all(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+		res.set({
+			'Cache-Control': 'no-cache, no-store, must-revalidate',
+			'Pragma': 'no-cache',
+			'Expires': '0'
+		});
+		next();
+	});
+
 	app.get(`/subdomain/${domain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
 			res.send(req.me.id);

@@ -66,10 +66,12 @@ server.use(expressSession({
 
 // CORS middleware
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	res.header('Access-Control-Allow-Origin', config.publicConfig.url);
-	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-	res.header('Access-Control-Allow-Headers', 'Content-Type');
-	res.header('Access-Control-Allow-Credentials', 'true');
+	res.set({
+		'Access-Control-Allow-Origin': config.publicConfig.url,
+		'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+		'Access-Control-Allow-Headers': 'Content-Type',
+		'Access-Control-Allow-Credentials': 'true'
+	});
 
 	 // intercept OPTIONS method
 	if (req.method === 'OPTIONS') {
