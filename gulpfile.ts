@@ -70,7 +70,10 @@ task('build-frontside-styles', () => {
 task('build-frontside-resources', ['build-frontside-scripts', 'build-frontside-styles'], () => {
 	return src([
 		'./built/sites/desktop/resources/**/*'
-	]).pipe(dest('./built/resources'));
+	]).pipe(dest('./built/resources/desktop'))
+	.pipe(src([
+		'./built/sites/mobile/resources/**/*'
+	]).pipe(dest('./built/resources/mobile')));
 });
 
 task('lint', () => {
