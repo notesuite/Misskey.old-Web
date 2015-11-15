@@ -23,7 +23,6 @@ task('watch', ['build', 'lint'], () => {
 
 task('build', [
 	'build:ts',
-	'build-copy',
 	'build-frontside-resources'
 ]);
 
@@ -67,7 +66,7 @@ task('build-frontside-styles', () => {
 		.pipe(dest('./built'));
 });
 
-task('build-frontside-resources', ['build-frontside-scripts', 'build-frontside-styles'], () => {
+task('build-frontside-resources', ['build-copy', 'build-frontside-scripts', 'build-frontside-styles'], () => {
 	return src([
 		'./built/sites/desktop/resources/**/*'
 	]).pipe(dest('./built/resources/desktop'))
