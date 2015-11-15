@@ -26,7 +26,8 @@ task('build', [
 	'build:less',
 	'build-copy',
 	'move-desktop-resources',
-	'move-mobile-resources'
+	'move-mobile-resources',
+	'browserify'
 ]);
 
 task('build:ts', () => {
@@ -83,6 +84,12 @@ task('move-desktop-resources', () => {
 task('move-mobile-resources', () => {
 	return src('./built/sites/mobile/resources/**/*.*')
 		.pipe(dest('./built/resources/mobile'));
+});
+
+task('browserify', () => {
+	return browserify('./built/resources/**/*.js')
+		.bundle()
+		.pipe(dest('./built'));
 });
 
 /*
