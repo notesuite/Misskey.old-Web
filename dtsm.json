@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-		 "express/express.d.ts": {
+    "express/express.d.ts": {
       "ref": "b27d0d0e1ce4207a7a5b1da847cb776c16d7531e"
     },
     "mongoose/mongoose.d.ts": {
@@ -75,6 +75,9 @@
     },
     "redis/redis.d.ts": {
       "ref": "eb59a40d3c2f3257e34ec2ede181046230814a41"
+    },
+    "browserify/browserify.d.ts": {
+      "ref": "aed176536a202b9a2475ce1989ea6d2d0226a185"
     }
-	}
+  }
 }

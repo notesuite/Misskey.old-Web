@@ -3,6 +3,7 @@
 import { task, src, dest, watch } from 'gulp';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
+import * as browserify from 'browserify';
 // import * as del from 'del';
 const babel = require('gulp-babel');
 const less = require('gulp-less');
