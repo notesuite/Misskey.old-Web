@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "body-parser": "1.14.1",
-    "cheerio-httpcli": "0.3.6",
+    "cheerio-httpcli": "0.3.7",
     "compression": "1.6.0",
     "connect-mongo": "0.8.2",
     "cookie": "0.2.0",
