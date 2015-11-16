@@ -64,14 +64,14 @@ task('build-frontside-scripts', ['build-frontside:ls', 'build-frontside:js'], (d
 task('minify-frontside-scripts', ['build-frontside-scripts'], () => {
 	return src('./tmp/sites/*/resources/scripts/**/*.js')
 		.pipe(uglify())
-		.pipe(dest('./tmp/minified'));
+		.pipe(dest('./tmp/build-resources/sites'));
 });
 
 task('build-frontside-styles', () => {
 	return src('./src/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS())
-		.pipe(dest('./built'));
+		.pipe(dest('./tmp/build-resources'));
 });
 
 task('build-frontside-resources', [
@@ -80,10 +80,10 @@ task('build-frontside-resources', [
 		'minify-frontside-scripts',
 		'build-frontside-styles'], () => {
 	src([
-		'./tmp/minified/desktop/resources/**/*'
+		'./tmp/build-resources/sites/desktop/resources/**/*'
 	]).pipe(dest('./built/resources/desktop'))
 	src([
-		'./tmp/minified/mobile/resources/**/*'
+		'./tmp/build-resources/sites/mobile/resources/**/*'
 	]).pipe(dest('./built/resources/mobile'));
 });
 
