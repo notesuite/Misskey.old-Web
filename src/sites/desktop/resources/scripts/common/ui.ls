@@ -22,13 +22,36 @@ window.display-message = (message) ->
 			$message.remove!
 	, 5000ms
 
-window.display-album-file-select-dialog = ->
-	$.ajax "#{config.web-api-url}/desktop/album/open" {
+window.open-album = ->
+	$.ajax "#{config.web-api-url}/web/desktop/album/open" {
 		type: \get
 		data-type: \text
 		xhr-fields: {+with-credentials}}
 	.done (html) ->
-		$ html .append-to $ 'body' .hide!.fade-in 200ms
+		$ 'body' .append $ html
+		$ \#misskey-album-background .animate {
+			opacity: 1
+		} 100ms \linear
+
+		$ \#misskey-album .css {
+			transform: 'scale(1.2)'
+			opacity: 0
+		}
+		$ \#misskey-album .transition {
+			opacity: \1
+			scale: \1
+		} 1000ms 'cubic-bezier(0, 1, 0, 1)'
+
+		$ \#misskey-album-background .click ->
+			$ \#misskey-album-background .animate {
+				opacity: 0
+			} 100ms \linear -> $ \#misskey-album-background .remove!
+			$ \#misskey-album .stop!
+			$ \#misskey-album .transition {
+				opacity: \0
+				scale: \0.8
+			} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
+				$ \#misskey-album .remove!
 
 function update-relative-times
 	now = new Date!
@@ -176,7 +199,7 @@ function open-post-form
 	$ \#misskey-post-form .transition {
 		opacity: \1
 		scale: \1
-	} 1000ms 'cubic-bezier(0,1,0,1)'
+	} 1000ms 'cubic-bezier(0, 1, 0, 1)'
 	$ \#misskey-post-form-tabs .find \li .each (i) ->
 		$tab = $ @
 		$tab.find \i .css \transition \none
@@ -439,6 +462,9 @@ $ ->
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
 			$submit-button.text 'Re Update'
+
+	$ '#misskey-post-form-photo-status-tab-page > .attach-from-album' .click ->
+		open-album!
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!

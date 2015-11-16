@@ -1,20 +1,22 @@
-div#misskey-album
-	script(src='/resources/desktop/scripts/common/album.js')
-	header
-		form.uploader(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
-			input(name='file', type='file', accept='*', multiple)
-			button
-				i.fa.fa-cloud-upload
-				| アップロード
-		nav
-			ol.path
-	div.browser
-		div.context-menu.menu
-			ul
-				li
-					i.fa.fa-folder
-					p フォルダーを作成
-		div.selection(role='presentation')
-		ol.files
-	div.uploads
-		ol
+#misskey-album-container
+	#misskey-album-background(role='presentation')
+	#misskey-album
+		script(src='/resources/desktop/scripts/common/album.js')
+		header
+			form.uploader(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
+				input(name='file', type='file', accept='*', multiple)
+				button
+					i.fa.fa-cloud-upload
+					| アップロード
+			nav
+				ol.path
+		.browser
+			.context-menu.menu
+				ul
+					li
+						i.fa.fa-folder
+						p フォルダーを作成
+			.selection(role='presentation')
+			ol.files
+		.uploads
+			ol

@@ -8,11 +8,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../../../sites/desktop/views/common/album.jade`);
+		`${__dirname}/../../../../sites/desktop/views/common/album.jade`);
 
-	const browser: string = compiler({
-		config: config.publicConfig
-	});
+	const browser: string = compiler(req.renderData);
 
 	res.send(browser);
 };
