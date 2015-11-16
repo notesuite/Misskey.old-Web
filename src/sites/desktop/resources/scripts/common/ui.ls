@@ -4,6 +4,9 @@ moment = require 'moment'
 
 Tab = require '../lib/tab.js'
 WavesEffect = require '../lib/waves-effect.js'
+Album = require '../common/album.js'
+
+album = new Album
 
 window.display-message = (message) ->
 	$message = $ '<p class="ui-message">' .text message
@@ -52,6 +55,8 @@ window.open-album = ->
 				scale: \0.8
 			} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
 				$ \#misskey-album .remove!
+
+		album.init!
 
 function update-relative-times
 	now = new Date!
