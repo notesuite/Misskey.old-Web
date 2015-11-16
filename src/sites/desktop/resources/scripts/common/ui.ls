@@ -171,6 +171,7 @@ function open-post-form
 		opacity: 1
 	} 100ms \linear
 	$ \#misskey-post-form-container .css \display \block
+	$ \#misskey-post-form .stop!
 	$ \#misskey-post-form .css \transform 'scale(1.2)'
 	$ \#misskey-post-form .transition {
 		opacity: \1
@@ -203,10 +204,11 @@ function close-post-form
 	$ \#misskey-post-form-back .animate {
 		opacity: 0
 	} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
+	$ \#misskey-post-form .stop!
 	$ \#misskey-post-form .transition {
 		opacity: \0
 		scale: \0.8
-	} 1000ms 'cubic-bezier(0,1,0,1)' ->
+	} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
 		$ \#misskey-post-form-container .css \display \none
 
 $ ->
