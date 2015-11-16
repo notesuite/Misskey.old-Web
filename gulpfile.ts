@@ -52,6 +52,7 @@ task('build-frontside-scripts', ['build-frontside:ls', 'build-frontside:js'], (d
 	glob('./tmp/frontside/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
 		const tasks = files.map((entry: string) => {
 			return browserify({ entries: [entry] })
+				.transform(debowerify)
 				.bundle()
 				.pipe(source(entry.replace('/tmp/frontside/', '/sites/')))
 				.pipe(dest('./tmp'));

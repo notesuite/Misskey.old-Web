@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery.transit": "~0.9.12"
+    "jquery.transit": "~0.9.12",
+    "moment": "~2.10.6"
   }
 }
