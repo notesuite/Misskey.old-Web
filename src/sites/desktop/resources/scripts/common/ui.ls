@@ -1,7 +1,9 @@
-moment = require '../lib/moment.js'
+require 'jquery'
+require 'jquery.transit'
+require 'moment'
+
 Tab = require '../lib/tab.js'
 WavesEffect = require '../lib/waves-effect.js'
-require 'jquery.transit'
 
 window.display-message = (message) ->
 	$message = $ '<p class="ui-message">' .text message
@@ -435,4 +437,4 @@ $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
 	$ \body .css \margin-top "#{header-height}px"
 
-	WavesEffect.attachToClass('ui-waves-effect');
+	WavesEffect.attach-to-class \ui-waves-effect

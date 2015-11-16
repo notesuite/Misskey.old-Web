@@ -1,3 +1,4 @@
+require '../common/ui.js'
 TIMELINE_CORE = require '../common/timeline-core.js'
 
 function post
