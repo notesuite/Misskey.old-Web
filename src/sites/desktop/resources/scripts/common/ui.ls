@@ -26,37 +26,7 @@ window.display-message = (message) ->
 	, 5000ms
 
 window.open-album = ->
-	$.ajax "#{config.web-api-url}/web/desktop/album/open" {
-		type: \get
-		data-type: \text
-		xhr-fields: {+with-credentials}}
-	.done (html) ->
-		$ 'body' .append $ html
-		$ \#misskey-album-background .animate {
-			opacity: 1
-		} 100ms \linear
-
-		$ \#misskey-album .css {
-			transform: 'scale(1.2)'
-			opacity: 0
-		}
-		$ \#misskey-album .transition {
-			opacity: \1
-			scale: \1
-		} 1000ms 'cubic-bezier(0, 1, 0, 1)'
-
-		$ \#misskey-album-background .click ->
-			$ \#misskey-album-background .animate {
-				opacity: 0
-			} 100ms \linear -> $ \#misskey-album-background .remove!
-			$ \#misskey-album .stop!
-			$ \#misskey-album .transition {
-				opacity: \0
-				scale: \0.8
-			} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
-				$ \#misskey-album .remove!
-
-		album.init!
+	album.open!
 
 function update-relative-times
 	now = new Date!
