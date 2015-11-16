@@ -140,6 +140,20 @@ class Album
 			THIS.$album-chooser.find '.submit-button' .one \click ->
 				cb 'a'
 
+	add-file: ($file) ->
+		THIS = @
+		THIS.$album-files.append $file
+		THIS.init-contextmenu $file, ($file.find '> .context-menu'), ->
+			$file.attr \data-selected \true
+		$file.mousedown (e) ->
+			e.stop-immediate-propagation!
+		$file.click ->
+			is-selected = ($file.attr \data-selected) == \true
+			if is-selected
+				$file.attr \data-selected \false
+			else
+				$file.attr \data-selected \true
+
 	load-files: ->
 		THIS = @
 		$.ajax "#{config.web-api-url}/web/desktop/album/files" {
@@ -152,21 +166,8 @@ class Album
 		.done (html) ->
 			$files = $ html
 			THIS.$album-files.empty!
-			THIS.$album-files.append $files
-
-			# Init
-			THIS.$album-files.find \.file .each ->
-				$file = $ @
-				THIS.init-contextmenu $file, ($file.find '> .context-menu'), ->
-					$file.attr \data-selected \true
-				$file.mousedown (e) ->
-					e.stop-immediate-propagation!
-				$file.click ->
-					is-selected = ($file.attr \data-selected) == \true
-					if is-selected
-						$file.attr \data-selected \false
-					else
-						$file.attr \data-selected \true
+			$files.each ->
+				THIS.add-file $ @
 		.fail ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
@@ -184,7 +185,7 @@ class Album
 			-process-data
 			-content-type
 			data: data
-			data-type: \json
+			data-type: \text
 			xhr-fields: {+with-credentials}
 			xhr: ->
 				XHR = $.ajax-settings.xhr!
@@ -202,8 +203,10 @@ class Album
 					, false
 				XHR
 		}
-		.done (data) ->
-			window.display-message 'アップロードしました'
+		.done (html) ->
+			current-location = if THIS.current-location == null then \null else THIS.current-location
+			if current-location == ($ html).attr \data-folder-id
+				THIS.add-file $ html
 		.fail (data) ->
 			window.display-message 'アップロードに失敗しました。'
 

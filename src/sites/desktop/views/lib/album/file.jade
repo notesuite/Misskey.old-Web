@@ -1,9 +1,12 @@
+- if (!file.hasOwnProperty('type')) { file.type = 'file'; }
+
 case file.type
 	when 'file'
 		li.item.file(
 				data-selected='false'
 				data-file-id= file.id
-				data-mimetype= file.mimeType)
+				data-mimetype= file.mimeType,
+				data-folder-id= file.folder === null ? 'null' : file.folder)
 			div.context-menu
 				ul
 					li
