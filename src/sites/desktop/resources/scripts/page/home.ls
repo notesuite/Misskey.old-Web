@@ -45,9 +45,11 @@ $ ->
 
 	TIMELINE_CORE.init $ '.timeline'
 
+	/*
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
 		$ '#post-form textarea' .val $.cookie \post-autosave
+	*/
 
 	# 通知読み込み
 	$.ajax config.web-api-url + '/notice/timeline-webhtml' {
@@ -129,35 +131,6 @@ $ ->
 				450
 				true
 				url
-
-	$ \#post-form .find '.image-attacher input[name=image]' .change ->
-		$input = $ @
-		file = $input.prop(\files).0
-		if file.type.match 'image.*'
-			reader = new FileReader!
-			reader.onload = ->
-				$img = $ '<img>' .attr \src reader.result
-				$input.parent '.image-attacher' .find 'p, img' .remove!
-				$input.parent '.image-attacher' .append $img
-			reader.read-as-dataURL file
-
-	$ window .keypress (e) ->
-		if e.char-code == 13 && e.ctrl-key
-			post $ '#postForm textarea'
-
-	$ \#post-form .submit (event) ->
-		event.prevent-default!
-		post!
-
-	$ '#post-form textarea' .bind \input ->
-		text = $ '#post-form textarea' .val!
-
-		# オートセーブ
-		$.cookie \post-autosave text, { path: '/', expires: 365 }
-
-	$ '#post-form textarea' .keydown (e) ->
-		if e.ctrl-key and e.key-code == 13
-			post!
 
 	# Read more
 	$ window .scroll ->
