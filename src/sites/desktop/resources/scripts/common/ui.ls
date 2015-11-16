@@ -162,6 +162,46 @@ function update-header-clock
 		(canv-h / 2) + uv.y * length
 	ctx.stroke!
 
+function open-post-form
+	$ \#misskey-post-form-back .css \display \block
+	$ \#misskey-post-form-back .animate {
+		opacity: 1
+	} 100ms \linear
+	$ \#misskey-post-form-container .css \display \block
+	$ \#misskey-post-form .animate {
+		opacity: 1
+	} 100ms \linear
+	$ \#misskey-post-form-tabs .find \li .each (i) ->
+		$tab = $ @
+		$tab.find \i .css \transition \none
+		$tab.find \i .css {
+			top: \-16px
+			opacity: 0
+		}
+
+		set-timeout ->
+			$tab.find \i .css \transition 'top 0.3s ease-out, opacity 0.3s ease-out'
+			$tab.find \i .css {
+				top: \0px
+				opacity: 1
+			}
+			set-timeout ->
+				$tab.find \i .css {
+					transition: ''
+					top: ''
+				}
+			, 300ms
+		, i * 30
+	$ \#misskey-post-form-status-tab-page .find \textarea .focus!
+
+function close-post-form
+	$ \#misskey-post-form-back .animate {
+		opacity: 0
+	} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
+	$ \#misskey-post-form .animate {
+		opacity: 0
+	} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
+
 $ ->
 	update-relative-times!
 
@@ -334,52 +374,13 @@ $ ->
 			.fail ->
 
 	$ \#misskey-post-button .click ->
-		$ \#misskey-post-form-back .css \display \block
-		$ \#misskey-post-form-back .animate {
-			opacity: 1
-		} 100ms \linear
-		$ \#misskey-post-form-container .css \display \block
-		$ \#misskey-post-form .animate {
-			opacity: 1
-		} 100ms \linear
-		$ \#misskey-post-form-tabs .find \li .each (i) ->
-			$tab = $ @
-			$tab.find \i .css \transition \none
-			$tab.find \i .css {
-				top: \-16px
-				opacity: 0
-			}
-
-			set-timeout ->
-				$tab.find \i .css \transition 'top 0.3s ease-out, opacity 0.3s ease-out'
-				$tab.find \i .css {
-					top: \0px
-					opacity: 1
-				}
-				set-timeout ->
-					$tab.find \i .css {
-						transition: ''
-						top: ''
-					}
-				, 300ms
-			, i * 30
-		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
+		open-post-form!
 	$ \#misskey-post-form .click (e) ->
 		e.stop-propagation!
 	$ \#misskey-post-form-container .click ->
-		$ \#misskey-post-form-back .animate {
-			opacity: 0
-		} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
-		$ \#misskey-post-form .animate {
-			opacity: 0
-		} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
+		close-post-form!
 	$ \#misskey-post-form .find \.close-button .click ->
-		$ \#misskey-post-form-back .animate {
-			opacity: 0
-		} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
-		$ \#misskey-post-form .animate {
-			opacity: 0
-		} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
+		close-post-form!
 
 	$ \#misskey-post-form .find \textarea .bind \input ->
 		$ \#misskey-post-form .find \.submit-button .attr \disabled off
@@ -397,25 +398,19 @@ $ ->
 					$ \#misskey-post-form .find '.image-preview' .append $img
 				..readAsDataURL file
 
-	$ \#misskey-post-form .submit (event) ->
+	$ \#misskey-post-form-status-tab-page .submit (event) ->
 		event.prevent-default!
 		$form = $ @
 		$submit-button = $form.find '[type=submit]'
-		$progress = $form.find \.progress
-		$progress-bar = $form.find \progress
-		$progress-status = $form.find '.progress .status .text'
 
-		$progress.css \display \block
 		$submit-button.attr \disabled on
-		$submit-button.attr \value 'Updating'
+		$submit-button.text 'Updating'
 		$form.find \textarea .attr \disabled on
 
 		fd = new FormData!
 		fd.append \text ($form.find \textarea .val!)
-		jQuery.each ($form.find 'input[type=file]')[0].files, (i, file) ->
-			fd.append \image file
 
-		$.ajax config.web-api-url + '/status/update' {
+		$.ajax config.web-api-url + '/posts/status' {
 			+async
 			type: \post
 			-process-data
@@ -423,44 +418,18 @@ $ ->
 			data: fd
 			data-type: \json
 			xhr-fields: {+with-credentials}
-			xhr: ->
-				XHR = $.ajax-settings.xhr!
-				if XHR.upload
-					XHR.upload.add-event-listener \progress (e) ->
-						percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
-						if percentage == 100
-							$progress-bar
-								..remove-attr \value
-								..remove-attr \max
-							$progress-status .text "しばらくお待ちください..."
-						else
-							$progress-bar
-								..attr \max e.total
-								..attr \value e.loaded
-							$progress-status .text "アップロードしています... #{percentage}%"
-					, false
-				XHR
 		}
 		.done (data) ->
 			window.display-message '投稿しました！'
 			$form[0].reset!
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
-			$progress.css \display \none
-			$ \#misskey-post-form .find '.image-preview-container' .css \display \none
-			$ \#misskey-post-form .find '.image-preview' .find 'img' .remove!
-			$ \#misskey-post-form-back .animate {
-				opacity: 0
-			} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
-			$ \#misskey-post-form .animate {
-				opacity: 0
-			} 100ms \linear -> $ \#misskey-post-form-container .css \display \none
+			close-post-form!
 		.fail (data) ->
 			window.display-message '投稿に失敗しました。'
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
-			$progress.css \display \none
-			$submit-button.attr \value 'Re Update'
+			$submit-button.text 'Re Update'
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
