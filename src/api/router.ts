@@ -10,7 +10,6 @@ const domain: string = config.publicConfig.webApiDomain;
 
 export default function(app: express.Express): void {
 	'use strict';
-	console.log('Init Web API server router');
 
 	// APIのレスポンスはキャッシュさせない
 	app.all(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {

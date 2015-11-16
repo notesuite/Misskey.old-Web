@@ -23,7 +23,6 @@ function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 
 export default function(app: express.Express): void {
 	'use strict';
-	console.log('Init Web router');
 
 	app.param('userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, screenName: string) => {
 		requestApi('GET', 'users/show', {

@@ -16,6 +16,7 @@ const subdomain: any = require('subdomain');
 import { User } from './models/user';
 import { MisskeyExpressRequest } from './misskeyExpressRequest';
 import { MisskeyExpressResponse } from './misskeyExpressResponse';
+import namingWorkerId from './utils/namingWorkerId';
 import requestApi from './utils/requestApi';
 
 import config from './config';
@@ -23,7 +24,7 @@ import config from './config';
 import router from './router';
 import apiRouter from './api/router';
 
-console.log(`Init Web server [worker id: ${cluster.worker.id}]`);
+console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
 // Grobal options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
@@ -120,7 +121,7 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 		webStreamingUrl: config.publicConfig.webStreamingUrl,
 		login: isLogin,
 		ua: ua,
-		workerId: cluster.worker.id,
+		workerId: namingWorkerId(cluster.worker.id),
 		moment: moment
 	};
 
@@ -212,5 +213,5 @@ httpServer.listen(config.port.http, () => {
 	const host: string = httpServer.address().address;
 	const port: number = httpServer.address().port;
 
-	console.log(`Misskey worker '${cluster.worker.id}' is now listening at ${host}:${port}`);
+	console.log(`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${host}:${port}\u001b[0m`);
 });

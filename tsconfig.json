@@ -25,6 +25,7 @@
 		"src/utils/requestApi.ts",
 		"src/utils/mapToHtml.ts",
 		"src/utils/parsePostText.ts",
+		"src/utils/namingWorkerId.ts",
 		"src/api/router.ts",
 		"src/api/endpoints/ogp/parse.ts",
 		"src/api/endpoints/desktop/album/open.ts",

@@ -7,8 +7,6 @@ import * as MongoStore from 'connect-mongo';
 const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
 import config from '../config';
 
-console.log('Init Web streaming server');
-
 const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
 	res.writeHead(200, {
 		'Content-Type': 'text/plain'

@@ -1,4 +1,5 @@
 import * as cluster from 'cluster';
+import namingWorkerId from './utils/namingWorkerId';
 
 if (cluster.isMaster) {
 	console.log('Welcome to Misskey!');
@@ -18,6 +19,6 @@ if (cluster.isMaster) {
 cluster.on('exit', (worker: cluster.Worker) => {
 	// Replace the dead worker,
 	// we're not sentimental
-	console.log(`Worker ${worker.id} died :(`);
+	console.log(`\u001b[1;31m${namingWorkerId(worker.id)} died :(\u001b[0m`);
 	cluster.fork();
 });
