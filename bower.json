@@ -1,0 +1,22 @@
+{
+  "name": "misskey-web",
+  "description": "Misskey Web",
+  "main": "./built/index.js",
+  "authors": [
+    "syuilo <syuilotan@yahoo.co.jp>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MissKernel/Misskey-Web",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.transit": "~0.9.12"
+  }
+}
