@@ -1,8 +1,8 @@
-window.TIMELINE_CORE = {}
+TIMELINE_CORE = {}
 	..init = ($tl) ->
-		window.TIMELINE_CORE.tl = $tl
+		TIMELINE_CORE.tl = $tl
 		$tl.find '> .posts > .post' .each ->
-			window.TIMELINE_CORE.set-event $ @
+			TIMELINE_CORE.set-event $ @
 
 	..set-event = ($post) ->
 		function check-favorited
@@ -15,18 +15,18 @@ window.TIMELINE_CORE = {}
 			animation-speed = 200ms
 			if ($post.attr \data-display-html-is-active) == \false
 				reply-form-text = $post.children \article .find '.form-and-replies .reply-form textarea' .val!
-				window.TIMELINE_CORE.tl.find '> .posts > .post' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
 						..remove-class \display-html-active-status-prev
 						..remove-class \display-html-active-status-next
-				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > i' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > i' .each ->
 					$ @ .show animation-speed
-				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > .posts' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > .posts' .each ->
 					$ @ .hide animation-speed
-				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .reply-info' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > article > .reply-info' .each ->
 					$ @ .show animation-speed
-				window.TIMELINE_CORE.tl.find '> .posts > .post > article > .form-and-replies' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > article > .form-and-replies' .each ->
 					$ @ .hide animation-speed
 				$post
 					..attr \data-display-html-is-active \true
@@ -52,7 +52,7 @@ window.TIMELINE_CORE = {}
 			# Click event
 			..click (event) ->
 				can-event = ! (((<[ input textarea button i time a ]>
-					|> $.map (element) -> $ event.target .is element)
+					.map (element) -> $ event.target .is element)
 					.index-of yes) >= 0)
 
 				if document.get-selection!.to-string! != ''
@@ -256,5 +256,7 @@ window.TIMELINE_CORE = {}
 		#$recent-status = ($ ($tl.children '.statuses' .children '.status')[0]) .children \.status
 		#if ($recent-status.attr \data-display-html-is-active) == \true
 		#	$status.children \.status .add-class \display-html-active-status-prev
-		window.TIMELINE_CORE.set-event $post
-		$post.prepend-to ((window.TIMELINE_CORE.tl.children '.posts')[0])
+		TIMELINE_CORE.set-event $post
+		$post.prepend-to ((TIMELINE_CORE.tl.children '.posts')[0])
+
+module.exports = TIMELINE_CORE

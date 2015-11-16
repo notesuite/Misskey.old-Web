@@ -1,3 +1,5 @@
+TIMELINE_CORE = require '../common/timeline-core.js'
+
 function post
 	$form = $ \#post-form
 	$submit-button = $form.find '[type=submit]'
@@ -41,7 +43,7 @@ $ ->
 	catch
 		console.log 'oops'
 
-	window.TIMELINE_CORE.init $ '.timeline'
+	TIMELINE_CORE.init $ '.timeline'
 
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
@@ -80,7 +82,7 @@ $ ->
 		$notice.prepend-to ($ '#widget-notices .notices') .show 200
 
 	socket.on \post (post) ->
-		window.TIMELINE_CORE.add $ post
+		TIMELINE_CORE.add $ post
 
 	socket.on \reply (status) ->
 		console.log \reply status
@@ -176,7 +178,7 @@ $ ->
 					$statuses = $ data
 					$statuses.each ->
 						$status = $ @
-						window.TIMELINE_CORE.set-event $status.children '.status.article'
+						TIMELINE_CORE.set-event $status.children '.status.article'
 						$status.append-to $ '#widget-timeline .timeline > .statuses'
 					# Attach Wave effects
 					init-waves-effects!
