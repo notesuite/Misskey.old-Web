@@ -9,6 +9,7 @@ class Album
 		@$album-header = @$album.find '> header'
 		@$album-uploads = @$album.find '> .uploads'
 		@$album-uploader = @$album-header.find '> .uploader'
+		@$album-chooser = @$album-header.find '> .chooser'
 		@$album-browser = @$album.find '> .browser'
 		@$album-browser-contextmenu = @$album-browser.find '> .menu'
 		@$selection = @$album-browser.find '> .selection'
@@ -94,7 +95,7 @@ class Album
 
 		THIS.load-files!
 
-	open: ->
+	open: (opened-callback) ->
 		THIS = @
 		$.ajax "#{config.web-api-url}/web/desktop/album/open" {
 			type: \get
@@ -103,6 +104,7 @@ class Album
 		.done (html) ->
 			$ 'body' .append $ html
 			THIS.init!
+			opened-callback!
 			$ \#misskey-album-background .animate {
 				opacity: 1
 			} 100ms \linear
@@ -120,6 +122,7 @@ class Album
 				THIS.close!
 
 	close: ->
+		THIS = @
 		$ \#misskey-album-background .animate {
 			opacity: 0
 		} 100ms \linear -> $ \#misskey-album-background .remove!
@@ -129,6 +132,13 @@ class Album
 			scale: \0.8
 		} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
 			$ \#misskey-album .remove!
+
+	choose-file: (cb) ->
+		THIS = @
+		THIS.open ->
+			THIS.$album-chooser.css \display \block
+			THIS.$album-chooser.find '.submit-button' .one \click ->
+				cb 'a'
 
 	load-files: ->
 		THIS = @

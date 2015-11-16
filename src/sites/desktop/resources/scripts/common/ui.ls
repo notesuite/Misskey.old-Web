@@ -26,7 +26,8 @@ window.display-message = (message) ->
 	, 5000ms
 
 window.open-album = ->
-	album.open!
+	album.choose-file (files) ->
+		alert files
 
 function update-relative-times
 	now = new Date!
