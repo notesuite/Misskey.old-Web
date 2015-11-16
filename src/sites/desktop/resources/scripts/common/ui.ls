@@ -1,6 +1,6 @@
 require 'jquery'
 require 'jquery.transit'
-require 'moment'
+moment = require 'moment'
 
 Tab = require '../lib/tab.js'
 WavesEffect = require '../lib/waves-effect.js'
