@@ -10,6 +10,7 @@ class Album
 		@$album-uploads = @$album.find '> .uploads'
 		@$album-uploader = @$album-header.find '> .uploader'
 		@$album-chooser = @$album-header.find '> .chooser'
+		@$album-close = @$album-header.find '> .close'
 		@$album-browser = @$album.find '> .browser'
 		@$album-browser-contextmenu = @$album-browser.find '> .menu'
 		@$selection = @$album-browser.find '> .selection'
@@ -93,6 +94,9 @@ class Album
 			$ \html .on \mousemove move
 			$ \html .on \mouseup up
 
+		THIS.$album-close.click ->
+			THIS.close!
+
 		THIS.load-files!
 
 	open: (opened-callback) ->
@@ -142,6 +146,7 @@ class Album
 				THIS.$album-files.find '> .file[data-selected="true"]' .each ->
 					selected-file-data.push JSON.parse ($ @).attr \data-data
 				cb selected-file-data
+				THIS.close!
 
 	add-file: ($file) ->
 		THIS = @
