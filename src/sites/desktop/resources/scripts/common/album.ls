@@ -96,7 +96,7 @@ class Album
 
 	load-files: ->
 		THIS = @
-		$.ajax "#{config.web-api-url}/desktop/album-browser/album/files" {
+		$.ajax "#{config.web-api-url}/web/desktop/album/files" {
 			type: \get
 			data: {}
 			-process-data
@@ -161,6 +161,7 @@ class Album
 			window.display-message 'アップロードに失敗しました。'
 
 	init-contextmenu: ($trigger, $menu, shown) ->
+		THIS = @
 		$trigger.bind \contextmenu (e) ->
 			e.stop-immediate-propagation!
 			function mousedown(e)
@@ -178,9 +179,11 @@ class Album
 				$ 'body *' .each ->
 					($ @).on \mousedown mousedown
 				$menu.attr \data-active \true
+				left = e.client-x - THIS.$album.position!.left
+				top = e.client-y - THIS.$album.position!.top
 				$menu.css {
-					top: e.client-y
-					left: e.client-x
+					top
+					left
 					opacity: 0
 				}
 				$menu.animate {
