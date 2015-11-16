@@ -5,7 +5,9 @@ import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
+const debowerify = require('debowerify');
 const source = require('vinyl-source-stream');
+const es = require('event-stream');
 // import * as del from 'del';
 const babel = require('gulp-babel');
 const less = require('gulp-less');
@@ -38,25 +40,31 @@ task('build:ts', () => {
 task('build-frontside:ls', () => {
 	return src('./src/sites/*/resources/scripts/**/*.ls')
 		.pipe(ls())
-		.pipe(uglify())
 		.pipe(dest('./tmp/frontside'));
 });
 
 task('build-frontside:js', () => {
 	return src('./src/sites/*/resources/scripts/**/*.js')
-		.pipe(uglify())
 		.pipe(dest('./tmp/frontside'));
 });
 
-task('build-frontside-scripts', ['build-frontside:ls', 'build-frontside:js'], () => {
-	return glob('./tmp/frontside/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
-		files.map((entry: string) => {
-			browserify({ entries: [entry] })
+task('build-frontside-scripts', ['build-frontside:ls', 'build-frontside:js'], (done) => {
+	glob('./tmp/frontside/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
+		const tasks = files.map((entry: string) => {
+			return browserify({ entries: [entry] })
+				.transform(debowerify)
 				.bundle()
 				.pipe(source(entry.replace('/tmp/frontside/', '/sites/')))
-				.pipe(dest('./built'));
+				.pipe(dest('./tmp'));
 		});
+		es.merge(tasks).on('end', done);
 	});
+});
+
+task('minify-frontside-scripts', ['build-frontside-scripts'], () => {
+	return src('./tmp/sites/*/resources/scripts/**/*.js')
+		.pipe(uglify())
+		.pipe(dest('./tmp/minified'));
 });
 
 task('build-frontside-styles', () => {
@@ -66,12 +74,16 @@ task('build-frontside-styles', () => {
 		.pipe(dest('./built'));
 });
 
-task('build-frontside-resources', ['build-copy', 'build-frontside-scripts', 'build-frontside-styles'], () => {
+task('build-frontside-resources', [
+		'build-copy',
+		'build-frontside-scripts',
+		'minify-frontside-scripts',
+		'build-frontside-styles'], () => {
 	src([
-		'./built/sites/desktop/resources/**/*'
+		'./tmp/minified/desktop/resources/**/*'
 	]).pipe(dest('./built/resources/desktop'))
 	src([
-		'./built/sites/mobile/resources/**/*'
+		'./tmp/minified/mobile/resources/**/*'
 	]).pipe(dest('./built/resources/mobile'));
 });
 
