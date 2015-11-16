@@ -6,7 +6,8 @@ case file.type
 				data-selected='false'
 				data-file-id= file.id
 				data-mimetype= file.mimeType,
-				data-folder-id= file.folder === null ? 'null' : file.folder)
+				data-folder-id= file.folder === null ? 'null' : file.folder,
+				data-data= JSON.stringify(file))
 			div.context-menu
 				ul
 					li

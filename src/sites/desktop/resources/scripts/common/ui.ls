@@ -27,7 +27,7 @@ window.display-message = (message) ->
 
 window.open-album = ->
 	album.choose-file (files) ->
-		alert files
+		alert JSON.stringify files
 
 function update-relative-times
 	now = new Date!
