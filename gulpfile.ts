@@ -5,7 +5,6 @@ import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
-const debowerify = require('debowerify');
 const source = require('vinyl-source-stream');
 const es = require('event-stream');
 // import * as del from 'del';
@@ -52,7 +51,6 @@ task('build-frontside-scripts', ['build-frontside:ls', 'build-frontside:js'], (d
 	glob('./tmp/frontside/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
 		const tasks = files.map((entry: string) => {
 			return browserify({ entries: [entry] })
-				.transform(debowerify)
 				.bundle()
 				.pipe(source(entry.replace('/tmp/frontside/', '/sites/')))
 				.pipe(dest('./tmp'));

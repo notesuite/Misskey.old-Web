@@ -1,4 +1,4 @@
-require 'jquery'
+$ = require 'jquery'
 require 'jquery.transit'
 moment = require 'moment'
 

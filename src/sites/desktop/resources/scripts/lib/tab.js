@@ -3,6 +3,8 @@
  * (c) syuilo 2015
  */
 
+var $ = require('jquery');
+
 module.exports = function($tabList) {
 	var $tabContents = [];
 

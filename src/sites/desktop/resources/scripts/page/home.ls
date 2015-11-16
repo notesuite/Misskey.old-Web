@@ -1,4 +1,5 @@
 require '../common/ui.js'
+$ = require 'jquery'
 TIMELINE_CORE = require '../common/timeline-core.js'
 
 function post

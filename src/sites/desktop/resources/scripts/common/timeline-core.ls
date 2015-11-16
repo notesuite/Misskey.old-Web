@@ -1,3 +1,5 @@
+$ = require 'jquery'
+
 TIMELINE_CORE = {}
 	..init = ($tl) ->
 		TIMELINE_CORE.tl = $tl
