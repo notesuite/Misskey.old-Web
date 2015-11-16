@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as multer from 'multer';
+const upload: any = multer({ dest: 'uploads/' });
 
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
@@ -32,7 +33,7 @@ export default function(app: express.Express): void {
 	app.get(`/subdomain/${domain}/web/ogp/parse`, require('./endpoints/ogp/parse'));
 	app.get(`/subdomain/${domain}/web/desktop/album/open`, require('./endpoints/desktop/album/open'));
 	app.get(`/subdomain/${domain}/web/desktop/album/files`, require('./endpoints/desktop/album/files'));
-	app.post(`/subdomain/${domain}/web/desktop/album/upload`, require('./endpoints/desktop/album/upload'));
+	app.post(`/subdomain/${domain}/web/desktop/album/upload`, upload, require('./endpoints/desktop/album/upload'));
 	app.post(`/subdomain/${domain}/web/desktop/home/posts/reply`, require('./endpoints/desktop/home/posts/reply'));
 	
 	app.get(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
@@ -45,7 +46,7 @@ export default function(app: express.Express): void {
 		});
 	});
 
-	app.post(`/subdomain/${domain}/*`, multer({ dest: 'uploads/'}), (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.post(`/subdomain/${domain}/*`, upload, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('POST', req.path.replace(`/subdomain/${domain}/`, ''), req.body, userId).then((response: any) => {
 			res.json(response);

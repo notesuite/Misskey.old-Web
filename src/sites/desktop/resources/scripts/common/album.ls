@@ -23,7 +23,7 @@ class Album
 			files = (THIS.$album-uploader.find \input)[0].files
 			for i from 0 to files.length - 1
 				file = files.item i
-				upload file
+				THIS.upload file
 
 		# Init context menu
 		THIS.init-contextmenu THIS.$album-browser, THIS.$album-browser-contextmenu
@@ -171,13 +171,14 @@ class Album
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
 	upload: (file) ->
-		$album-uploads.css \display \block
+		THIS = @
+		THIS.$album-uploads.css \display \block
 		$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
-		$album-uploads.find \ol .append $info
+		THIS.$album-uploads.find \ol .append $info
 		data = new FormData!
 			..append \file file
-		$.ajax config.web-api-url + '/web/desktop/album-browser/album/upload' {
+		$.ajax "#{config.web-api-url}/web/desktop/album/upload" {
 			+async
 			type: \post
 			-process-data
