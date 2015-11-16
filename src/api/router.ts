@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as multer from 'multer';
 
 import { MisskeyExpressRequest } from '../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../misskeyExpressResponse';
@@ -45,7 +46,7 @@ export default function(app: express.Express): void {
 		});
 	});
 
-	app.post(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.post(`/subdomain/${domain}/*`, multer({ dest: 'uploads/'}), (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('POST', req.path.replace(`/subdomain/${domain}/`, ''), req.body, userId).then((response: any) => {
 			res.json(response);

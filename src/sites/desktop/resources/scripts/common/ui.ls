@@ -411,7 +411,6 @@ $ ->
 		fd.append \text ($form.find \textarea .val!)
 
 		$.ajax config.web-api-url + '/posts/status' {
-			+async
 			type: \post
 			-process-data
 			-content-type
