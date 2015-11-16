@@ -209,7 +209,8 @@ function close-post-form
 		opacity: \0
 		scale: \0.8
 	} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
-		$ \#misskey-post-form-container .css \display \none
+		if ($ \#misskey-post-form .css \opacity) === '0'
+			$ \#misskey-post-form-container .css \display \none
 
 $ ->
 	update-relative-times!
