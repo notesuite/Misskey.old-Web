@@ -338,8 +338,8 @@ function init-photo-status-form
 
 		fd = new FormData!
 		fd.append \text ($form.find \textarea .val!)
-		fd.append \photos JSON.stringify $form.find \.photos .children.each ->
-			($ @).attr \data-id
+		fd.append \photos JSON.stringify(($form.find '.photos > li' .map ->
+			($ @).attr \data-id).get!)
 
 		$.ajax config.web-api-url + '/posts/photo' {
 			type: \post
