@@ -101,6 +101,9 @@ class Album
 
 	open: (opened-callback) ->
 		THIS = @
+		$ \#misskey-album .stop!
+		$ \#misskey-album-background .stop!
+		$ \#misskey-album-container .remove!
 		$.ajax "#{config.web-api-url}/web/desktop/album/open" {
 			type: \get
 			data-type: \text
@@ -130,14 +133,17 @@ class Album
 		$ \#misskey-album-background .css \pointer-events \none
 		$ \#misskey-album-background .animate {
 			opacity: 0
-		} 100ms \linear -> $ \#misskey-album-background .remove!
+		} 100ms \linear ->
+			if ($ \#misskey-album-background .css \opacity) == \0
+				$ \#misskey-album-background .remove!
 		$ \#misskey-album .stop!
 		$ \#misskey-album .css \pointer-events \none
 		$ \#misskey-album .transition {
 			opacity: \0
 			scale: \0.8
 		} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
-			$ \#misskey-album .remove!
+			if ($ \#misskey-album .css \opacity) == \0
+				$ \#misskey-album .remove!
 
 	choose-file: (cb) ->
 		THIS = @
