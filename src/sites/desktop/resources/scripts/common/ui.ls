@@ -291,7 +291,7 @@ class StatusPostForm
 			items = (event.clipboard-data || event.original-event.clipboard-data).items
 			for i from 0 to items.length - 1
 				item = items[i]
-				if item.type.index-of \image != -1
+				if item.kind == \file && item.type.index-of \image != -1
 					file = item.get-as-file!
 					console.log file
 					THIS.postForm.photoPostForm.focus!
