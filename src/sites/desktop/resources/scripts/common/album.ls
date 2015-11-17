@@ -145,14 +145,14 @@ class Album
 		THIS.open ->
 			THIS.$album-chooser.css \display \block
 			THIS.$album-chooser.find '.submit-button' .one \click ->
-				selected-file-data = []
+				selected-files = []
 				THIS.$album-files.find '> .file[data-selected="true"]' .each ->
-					selected-file-data.push JSON.parse ($ @).attr \data-data
-				cb selected-file-data
+					selected-files.push JSON.parse ($ @).attr \data-data
+				cb selected-files
 				THIS.close!
 
 		THIS.file-opened = ($file) ->
-			cb JSON.parse $file.attr \data-data
+			cb [JSON.parse $file.attr \data-data]
 			THIS.close!
 
 	add-file: ($file) ->

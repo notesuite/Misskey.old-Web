@@ -25,7 +25,7 @@ case file.type
 					li
 						i.fa.fa-trash-o
 						p 削除
-			div.content(style= 'background-image: url(' + file.url + ');')
+			div.content(style={'background-image': 'url(#{file.url})'})
 				p.name= file.name
 	when 'folder'
 		li.item.folder(

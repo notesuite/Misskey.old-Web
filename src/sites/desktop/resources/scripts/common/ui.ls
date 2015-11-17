@@ -25,9 +25,8 @@ window.display-message = (message) ->
 			$message.remove!
 	, 5000ms
 
-window.open-album = ->
-	album.choose-file (files) ->
-		alert JSON.stringify files
+window.open-select-album-file-dialog = (cb) ->
+	album.choose-file cb
 
 function update-relative-times
 	now = new Date!
@@ -440,7 +439,10 @@ $ ->
 			$submit-button.text 'Re Update'
 
 	$ '#misskey-post-form-photo-status-tab-page > .attach-from-album' .click ->
-		open-album!
+		window.open-select-album-file-dialog (files) ->
+			files.each (file) ->
+				$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
+				$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
