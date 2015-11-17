@@ -9,10 +9,12 @@ module.exports = function($tabList, onChanged) {
 	var ids = [];
 	var $tabContents = [];
 	
-	function select(id) {
+	function select(id, riseChangeEvent) {
+		riseChangeEvent = riseChangeEvent === undefined ? true : riseChangeEvent;
+
 		var num = ids.indexOf(id);
 		$tabList.find('li').removeClass('active').addClass('unactive');
-		$(this).removeClass('unactive').addClass('active');
+		$tabList.find('li:eq(' + num + ')').removeClass('unactive').addClass('active');
 
 		$.each($tabContents, function() {
 			$(this).css('display', 'none');
@@ -20,7 +22,7 @@ module.exports = function($tabList, onChanged) {
 
 		$tabContents[num].css('display', 'block');
 		
-		if (onChanged !== undefined) {
+		if (onChanged !== undefined && riseChangeEvent) {
 			onChanged(id);
 		}
 	}

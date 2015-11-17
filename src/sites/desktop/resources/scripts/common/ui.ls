@@ -232,6 +232,7 @@ class PostForm
 			THIS.close!
 
 	open: ->
+		THIS = @
 		$ \#misskey-post-form-back .css \display \block
 		$ \#misskey-post-form-back .animate {
 			opacity: 1
@@ -263,7 +264,7 @@ class PostForm
 					}
 				, 300ms
 			, i * 50
-		statusPostForm.focus!
+		THIS.statusPostForm.focus!
 
 	close: ->
 		$ \#misskey-post-form-back .animate {
@@ -291,6 +292,7 @@ class StatusPostForm
 				item = items[i]
 				if item.type.index-of \image != -1
 					file = item.get-as-file!
+					THIS.postForm.photoPostForm.focus!
 					THIS.postForm.photoPostForm.upload-new-file file
 
 		$ \#misskey-post-form-status-tab-page .find '.image-attacher input[name=image]' .change ->
@@ -339,6 +341,8 @@ class StatusPostForm
 				$submit-button.text 'Re Update'
 
 	focus: ->
+		THIS = @
+		THIS.postForm.tab.select \misskey-post-form-status-tab-page no
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
 
 class PhotoPostForm
@@ -409,6 +413,8 @@ class PhotoPostForm
 			THIS.add-file JSON.parse ($ html).attr \data-data
 
 	focus: ->
+		THIS = @
+		THIS.postForm.tab.select \misskey-post-form-photo-tab-page no
 		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 $ ->
