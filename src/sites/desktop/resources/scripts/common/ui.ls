@@ -293,7 +293,6 @@ class StatusPostForm
 				item = items[i]
 				if item.kind == \file && item.type.index-of \image != -1
 					file = item.get-as-file!
-					console.log file
 					THIS.postForm.photoPostForm.focus!
 					THIS.postForm.photoPostForm.upload-new-file file
 
@@ -355,6 +354,14 @@ class PhotoPostForm
 		Sortable.create ($ '#misskey-post-form-photo-tab-page > .photos')[0], {
 			animation: 150ms
 		}
+
+		$ '#misskey-post-form-photo-tab-page textarea' .on \paste (event) ->
+			items = (event.clipboard-data || event.original-event.clipboard-data).items
+			for i from 0 to items.length - 1
+				item = items[i]
+				if item.kind == \file && item.type.index-of \image != -1
+					file = item.get-as-file!
+					THIS.postForm.photoPostForm.upload-new-file file
 
 		$ '#misskey-post-form-photo-tab-page > .attach-from-album' .click ->
 			window.open-select-album-file-dialog (files) ->
