@@ -287,6 +287,10 @@ class StatusPostForm
 		$ '#misskey-post-form-status-tab-page textarea' .bind \input ->
 			$ \#misskey-post-form .find \.submit-button .attr \disabled off
 
+		$ '#misskey-post-form-status-tab-page textarea' .keypress (e) ->
+			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+				THIS.submit!
+
 		$ '#misskey-post-form-status-tab-page textarea' .on \paste (event) ->
 			items = (event.clipboard-data || event.original-event.clipboard-data).items
 			for i from 0 to items.length - 1
@@ -311,35 +315,40 @@ class StatusPostForm
 
 		$ \#misskey-post-form-status-tab-page .submit (event) ->
 			event.prevent-default!
-			$form = $ @
-			$submit-button = $form.find '[type=submit]'
+			THIS.submit!
 
-			$submit-button.attr \disabled on
-			$submit-button.text 'Updating'
-			$form.find \textarea .attr \disabled on
+	submit: ->
+		THIS = @
 
-			fd = new FormData!
-			fd.append \text ($form.find \textarea .val!)
+		$form = $ \#misskey-post-form-status-tab-page
+		$submit-button = $form.find '[type=submit]'
 
-			$.ajax config.web-api-url + '/posts/status' {
-				type: \post
-				-process-data
-				-content-type
-				data: fd
-				data-type: \json
-				xhr-fields: {+with-credentials}
-			}
-			.done (data) ->
-				window.display-message '投稿しました！'
-				$form[0].reset!
-				$submit-button.attr \disabled off
-				$form.find \textarea .attr \disabled off
-				close-post-form!
-			.fail (data) ->
-				window.display-message '投稿に失敗しました。'
-				$submit-button.attr \disabled off
-				$form.find \textarea .attr \disabled off
-				$submit-button.text 'Re Update'
+		$submit-button.attr \disabled on
+		$submit-button.text 'Updating'
+		$form.find \textarea .attr \disabled on
+
+		fd = new FormData!
+		fd.append \text ($form.find \textarea .val!)
+
+		$.ajax config.web-api-url + '/posts/status' {
+			type: \post
+			-process-data
+			-content-type
+			data: fd
+			data-type: \json
+			xhr-fields: {+with-credentials}
+		}
+		.done (data) ->
+			window.display-message '投稿しました！'
+			$form[0].reset!
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			THIS.postForm.close!
+		.fail (data) ->
+			window.display-message '投稿に失敗しました。'
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			$submit-button.text 'Re Update'
 
 	focus: ->
 		THIS = @
@@ -363,6 +372,10 @@ class PhotoPostForm
 					file = item.get-as-file!
 					THIS.postForm.photoPostForm.upload-new-file file
 
+		$ '#misskey-post-form-photo-tab-page textarea' .keypress (e) ->
+			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+				THIS.submit!
+
 		$ '#misskey-post-form-photo-tab-page > .attach-from-album' .click ->
 			window.open-select-album-file-dialog (files) ->
 				files.for-each (file) ->
@@ -380,37 +393,7 @@ class PhotoPostForm
 
 		$ \#misskey-post-form-photo-tab-page .submit (event) ->
 			event.prevent-default!
-			$form = $ @
-			$submit-button = $form.find '[type=submit]'
-
-			$submit-button.attr \disabled on
-			$submit-button.text 'Updating'
-			$form.find \textarea .attr \disabled on
-
-			fd = new FormData!
-			fd.append \text ($form.find \textarea .val!)
-			fd.append \photos JSON.stringify(($form.find '.photos > li' .map ->
-				($ @).attr \data-id).get!)
-
-			$.ajax config.web-api-url + '/posts/photo' {
-				type: \post
-				-process-data
-				-content-type
-				data: fd
-				data-type: \json
-				xhr-fields: {+with-credentials}
-			}
-			.done (data) ->
-				window.display-message '投稿しました！'
-				$form[0].reset!
-				$submit-button.attr \disabled off
-				$form.find \textarea .attr \disabled off
-				close-post-form!
-			.fail (data) ->
-				window.display-message '投稿に失敗しました。'
-				$submit-button.attr \disabled off
-				$form.find \textarea .attr \disabled off
-				$submit-button.text 'Re Update'
+			THIS.submit!
 
 	add-file: (file-data) ->
 		$thumbnail = $ "<li style='background-image: url(#{file-data.url});' data-id='#{file-data.id}' />"
@@ -420,6 +403,41 @@ class PhotoPostForm
 		THIS = @
 		THIS.postForm.upload-file file, ($ '#misskey-post-form-photo-tab-page'), (html) ->
 			THIS.add-file JSON.parse ($ html).attr \data-data
+
+	submit: ->
+		THIS = @
+
+		$form = $ \#misskey-post-form-photo-tab-page
+		$submit-button = $form.find '[type=submit]'
+
+		$submit-button.attr \disabled on
+		$submit-button.text 'Updating'
+		$form.find \textarea .attr \disabled on
+
+		fd = new FormData!
+		fd.append \text ($form.find \textarea .val!)
+		fd.append \photos JSON.stringify(($form.find '.photos > li' .map ->
+			($ @).attr \data-id).get!)
+
+		$.ajax config.web-api-url + '/posts/photo' {
+			type: \post
+			-process-data
+			-content-type
+			data: fd
+			data-type: \json
+			xhr-fields: {+with-credentials}
+		}
+		.done (data) ->
+			window.display-message '投稿しました！'
+			$form[0].reset!
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			THIS.postForm.close!
+		.fail (data) ->
+			window.display-message '投稿に失敗しました。'
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			$submit-button.text 'Re Update'
 
 	focus: ->
 		THIS = @
