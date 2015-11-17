@@ -397,6 +397,10 @@ class PhotoPostForm
 
 	add-file: (file-data) ->
 		$thumbnail = $ "<li style='background-image: url(#{file-data.url});' data-id='#{file-data.id}' />"
+		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="/resources/desktop/images/form-file-thumbnail-remove.png" alt="remove"></button>'
+		$thumbnail.append $remove-button
+		$remove-button.click ->
+			$thumbnail.remove!
 		$ '#misskey-post-form-photo-tab-page > .photos' .append $thumbnail
 
 	upload-new-file: (file) ->

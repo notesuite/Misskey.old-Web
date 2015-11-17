@@ -1289,6 +1289,7 @@
 
 							> li {
 								display: block;
+								position: relative;
 								float: left;
 								margin: 4px;
 								padding: 0;
@@ -1301,8 +1302,28 @@
 								background-size: cover;
 								cursor: move;
 
-								&[data-dragging='true'] {
-									opacity: 0.5;
+								&:hover {
+									> .remove {
+										display: block;
+									}
+								}
+
+								> .remove {
+									-webkit-appearance: none;
+									-moz-appearance: none;
+									appearance: none;
+									display: none;
+									position: absolute;
+									right: -6px;
+									top: -6px;
+									margin: 0;
+									padding: 0;
+									background: transparent;
+									outline: none;
+									border: none;
+									border-radius: 0;
+									box-shadow: none;
+									cursor: pointer;
 								}
 							}
 						}

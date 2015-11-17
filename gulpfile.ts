@@ -81,8 +81,14 @@ task('build-frontside-resources', [
 		'./tmp/build-resources/sites/desktop/resources/**/*'
 	]).pipe(dest('./built/resources/desktop'))
 	src([
+		'./src/sites/desktop/resources/images/**/*'
+	]).pipe(dest('./built/resources/desktop/images'))
+	src([
 		'./tmp/build-resources/sites/mobile/resources/**/*'
 	]).pipe(dest('./built/resources/mobile'));
+	src([
+		'./src/sites/mobile/resources/images/**/*'
+	]).pipe(dest('./built/resources/mobile/images'))
 });
 
 task('lint', () => {
