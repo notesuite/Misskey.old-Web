@@ -287,10 +287,10 @@ function init-status-form
 
 function init-photo-status-form
 	function add-thumbnail-to-photo-status-form(file)
-		$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
-		$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
+		$thumbnail = $ "<li style='background-image: url(#{file.url});' data-id='#{file.id}' />"
+		$ '#misskey-post-form-photo-status-tab-page > .photos' .append $thumbnail
 
-	Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .attached-files')[0], {
+	Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .photos')[0], {
 		animation: 150ms
 	}
 
@@ -326,6 +326,40 @@ function init-photo-status-form
 					add-thumbnail-to-photo-status-form JSON.parse ($ html).attr \data-data
 				->
 					$info.remove!
+
+	$ \#misskey-post-form-photo-status-tab-page .submit (event) ->
+		event.prevent-default!
+		$form = $ @
+		$submit-button = $form.find '[type=submit]'
+
+		$submit-button.attr \disabled on
+		$submit-button.text 'Updating'
+		$form.find \textarea .attr \disabled on
+
+		fd = new FormData!
+		fd.append \text ($form.find \textarea .val!)
+		fd.append \photos JSON.stringify $form.find \.photos .children.each ->
+			($ @).attr \data-id
+
+		$.ajax config.web-api-url + '/posts/photo' {
+			type: \post
+			-process-data
+			-content-type
+			data: fd
+			data-type: \json
+			xhr-fields: {+with-credentials}
+		}
+		.done (data) ->
+			window.display-message '投稿しました！'
+			$form[0].reset!
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			close-post-form!
+		.fail (data) ->
+			window.display-message '投稿に失敗しました。'
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			$submit-button.text 'Re Update'
 
 $ ->
 	update-relative-times!
