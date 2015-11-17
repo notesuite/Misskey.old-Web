@@ -440,7 +440,7 @@ $ ->
 
 	$ '#misskey-post-form-photo-status-tab-page > .attach-from-album' .click ->
 		window.open-select-album-file-dialog (files) ->
-			files.each (file) ->
+			files.for-each (file) ->
 				$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
 				$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
 
