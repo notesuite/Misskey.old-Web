@@ -189,27 +189,6 @@ function update-header-clock
 		(canv-h / 2) + uv.y * length
 	ctx.stroke!
 
-function post-form-upload-file(file, $form, complete)
-	$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
-	$progress-bar = $info.find \progress
-	$form.find '> .uploads' .append $info
-	window.upload-file do
-		file
-		(total, uploaded, percentage) ->
-			if percentage == 100
-				$progress-bar
-					..remove-attr \value
-					..remove-attr \max
-			else
-				$progress-bar
-					..attr \max total
-					..attr \value uploaded
-		(html) ->
-			$info.remove!
-			complete html
-		->
-			$info.remove!
-
 class PostForm
 	->
 		THIS = @
@@ -278,6 +257,28 @@ class PostForm
 			if ($ \#misskey-post-form .css \opacity) === '0'
 				$ \#misskey-post-form-container .css \display \none
 
+	upload-file: (file, $form, complete) ->
+		name = if file.has-own-property \name then file.name else 'untitled'
+		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
+		$progress-bar = $info.find \progress
+		$form.find '> .uploads' .append $info
+		window.upload-file do
+			file
+			(total, uploaded, percentage) ->
+				if percentage == 100
+					$progress-bar
+						..remove-attr \value
+						..remove-attr \max
+				else
+					$progress-bar
+						..attr \max total
+						..attr \value uploaded
+			(html) ->
+				$info.remove!
+				complete html
+			->
+				$info.remove!
+
 class StatusPostForm
 	(postForm) ->
 		THIS = @
@@ -287,11 +288,12 @@ class StatusPostForm
 			$ \#misskey-post-form .find \.submit-button .attr \disabled off
 
 		$ '#misskey-post-form-status-tab-page textarea' .on \paste (event) ->
-			items = event.original-event.clipboard-data.items
+			items = (event.clipboard-data || event.original-event.clipboard-data).items
 			for i from 0 to items.length - 1
 				item = items[i]
 				if item.type.index-of \image != -1
 					file = item.get-as-file!
+					console.log file
 					THIS.postForm.photoPostForm.focus!
 					THIS.postForm.photoPostForm.upload-new-file file
 
@@ -409,7 +411,7 @@ class PhotoPostForm
 
 	upload-new-file: (file) ->
 		THIS = @
-		post-form-upload-file file, ($ '#misskey-post-form-photo-tab-page'), (html) ->
+		THIS.postForm.upload-file file, ($ '#misskey-post-form-photo-tab-page'), (html) ->
 			THIS.add-file JSON.parse ($ html).attr \data-data
 
 	focus: ->
