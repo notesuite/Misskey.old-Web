@@ -47,7 +47,7 @@ window.upload-file = (file, uploading, success, failed) ->
 			XHR
 	}
 	.done (html) ->
-		success!
+		success html
 	.fail (data) ->
 		failed!
 
@@ -235,6 +235,10 @@ function close-post-form
 	} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
 		if ($ \#misskey-post-form .css \opacity) === '0'
 			$ \#misskey-post-form-container .css \display \none
+
+function add-thumbnail-to-photo-status-form(file)
+	$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
+	$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
 
 $ ->
 	update-relative-times!
@@ -464,14 +468,14 @@ $ ->
 			$form.find \textarea .attr \disabled off
 			$submit-button.text 'Re Update'
 
+	Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .attached-files')[0], {
+		animation: 150ms
+	}
+
 	$ '#misskey-post-form-photo-status-tab-page > .attach-from-album' .click ->
 		window.open-select-album-file-dialog (files) ->
 			files.for-each (file) ->
-				$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
-				$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
-			Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .attached-files')[0], {
-				animation: 150ms
-			}
+				add-thumbnail-to-photo-status-form file
 
 	$ '#misskey-post-form-photo-status-tab-page > .attach-from-local' .click ->
 		$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .click!
@@ -480,7 +484,25 @@ $ ->
 		files = ($ '#misskey-post-form-photo-status-tab-page > input[type=file]')[0].files
 		for i from 0 to files.length - 1
 			file = files.item i
-			window.upload-file file
+			$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
+			$progress-bar = $info.find \progress
+			$ '#misskey-post-form-photo-status-tab-page > .uploads' .append $info
+			window.upload-file do
+				file
+				(total, uploaded, percentage) ->
+					if percentage == 100
+						$progress-bar
+							..remove-attr \value
+							..remove-attr \max
+					else
+						$progress-bar
+							..attr \max total
+							..attr \value uploaded
+				(html) ->
+					$info.remove!
+					add-thumbnail-to-photo-status-form JSON.parse ($ html).attr \data-data
+				->
+					$info.remove!
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
