@@ -1,6 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 moment = require 'moment'
+Sortable = require 'Sortable'
 
 Tab = require '../lib/tab.js'
 WavesEffect = require '../lib/waves-effect.js'
@@ -443,6 +444,9 @@ $ ->
 			files.for-each (file) ->
 				$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
 				$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
+			Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .attached-files')[0], {
+				animation: 150ms
+			}
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
