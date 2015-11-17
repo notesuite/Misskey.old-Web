@@ -7,7 +7,7 @@ export default function(req: MisskeyExpressRequest, res: MisskeyExpressResponse)
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../../../../../sites/desktop/views/lib/post/smart/subPostRender.jade`);
+		`${__dirname}/../../../../../sites/desktop/views/lib/post/smart/repliesSubPostRender.jade`);
 
 	const photos: string = req.body['photos'];
 

@@ -76,9 +76,9 @@ TIMELINE_CORE = {}
 			.done (html) ->
 				$reply = $ html
 				$submit-button.attr \disabled off
-				$reply.append-to $status.find '.replies'
+				$reply.append-to $post.find '.replies'
 				$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
-				$i.append-to $status
+				$i.append-to $post
 				$form.remove!
 				window.display-message '返信しました！'
 			.fail ->

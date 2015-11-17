@@ -1,5 +1,6 @@
 include ./content
 include ./subPost
+include ./repliesSubPost
 
 mixin status(status)
 	div.main
@@ -134,7 +135,7 @@ mixin post(post)
 							li.stargazer
 								a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
 									img.icon(src=stargazer.iconUrl, alt='icon')
-			if post.replies.length > 0
+			if post.repliesCount > 0
 				i.fa.fa-ellipsis-v.reply-info
 			aside.form-and-replies
 				form.reply-form(role='form')
@@ -153,7 +154,3 @@ mixin post(post)
 							i.fa.fa-reply
 						input(name='file', type='file', accept='image/*', multiple)
 				ol.replies(itemprop='comment')
-					if post.replies.length > 0
-						each reply in post.replies
-							li
-								+subPost(reply)
