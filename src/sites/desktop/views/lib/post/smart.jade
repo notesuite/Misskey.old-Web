@@ -4,8 +4,10 @@ mixin content(post)
 			div.text!= post.text
 		when 'photo'
 			div.text!= post.text
-			div.photos
-				p a
+			ol.photos
+				each photo in post.photos
+					li.photo
+						img.image(src= photo.url, alt= '')
 			
 mixin common(post)
 	footer.footer
