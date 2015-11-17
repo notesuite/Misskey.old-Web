@@ -323,26 +323,26 @@ class PhotoPostForm
 	->
 		THIS = @
 
-		Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .photos')[0], {
+		Sortable.create ($ '#misskey-post-form-photo-tab-page > .photos')[0], {
 			animation: 150ms
 		}
 
-		$ '#misskey-post-form-photo-status-tab-page > .attach-from-album' .click ->
+		$ '#misskey-post-form-photo-tab-page > .attach-from-album' .click ->
 			window.open-select-album-file-dialog (files) ->
 				files.for-each (file) ->
 					THIS.add-file file
 
-		$ '#misskey-post-form-photo-status-tab-page > .attach-from-local' .click ->
-			$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .click!
+		$ '#misskey-post-form-photo-tab-page > .attach-from-local' .click ->
+			$ '#misskey-post-form-photo-tab-page > input[type=file]' .click!
 			false
 
-		$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .change ->
-			files = ($ '#misskey-post-form-photo-status-tab-page > input[type=file]')[0].files
+		$ '#misskey-post-form-photo-tab-page > input[type=file]' .change ->
+			files = ($ '#misskey-post-form-photo-tab-page > input[type=file]')[0].files
 			for i from 0 to files.length - 1
 				file = files.item i
 				THIS.upload-new-file file
 
-		$ \#misskey-post-form-photo-status-tab-page .submit (event) ->
+		$ \#misskey-post-form-photo-tab-page .submit (event) ->
 			event.prevent-default!
 			$form = $ @
 			$submit-button = $form.find '[type=submit]'
@@ -378,12 +378,15 @@ class PhotoPostForm
 
 	add-file: (file-data) ->
 		$thumbnail = $ "<li style='background-image: url(#{file-data.url});' data-id='#{file-data.id}' />"
-		$ '#misskey-post-form-photo-status-tab-page > .photos' .append $thumbnail
+		$ '#misskey-post-form-photo-tab-page > .photos' .append $thumbnail
 
 	upload-new-file: (file) ->
 		THIS = @
-		post-form-upload-file file, ($ '#misskey-post-form-photo-status-tab-page'), ->
+		post-form-upload-file file, ($ '#misskey-post-form-photo-tab-page'), ->
 			THIS.add-file JSON.parse ($ html).attr \data-data
+
+	focus: ->
+		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 $ ->
 	update-relative-times!
@@ -567,7 +570,7 @@ $ ->
 
 	init-status-form!
 
-	init-photo-status-form!
+	init-photo-form!
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
