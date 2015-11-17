@@ -127,10 +127,12 @@ class Album
 
 	close: ->
 		THIS = @
+		$ \#misskey-album-background .css \pointer-events \none
 		$ \#misskey-album-background .animate {
 			opacity: 0
 		} 100ms \linear -> $ \#misskey-album-background .remove!
 		$ \#misskey-album .stop!
+		$ \#misskey-album .css \pointer-events \none
 		$ \#misskey-album .transition {
 			opacity: \0
 			scale: \0.8
@@ -139,6 +141,7 @@ class Album
 
 	choose-file: (cb) ->
 		THIS = @
+
 		THIS.open ->
 			THIS.$album-chooser.css \display \block
 			THIS.$album-chooser.find '.submit-button' .one \click ->
@@ -147,6 +150,10 @@ class Album
 					selected-file-data.push JSON.parse ($ @).attr \data-data
 				cb selected-file-data
 				THIS.close!
+
+		THIS.file-opened = ($file) ->
+			cb JSON.parse $file.attr \data-data
+			THIS.close!
 
 	add-file: ($file) ->
 		THIS = @
@@ -163,7 +170,7 @@ class Album
 				$file.attr \data-selected \true
 		$file.dblclick ->
 			$file.attr \data-selected \true
-			alert ($file.attr \data-file-id)
+			THIS.file-opened $file
 
 	load-files: ->
 		THIS = @
