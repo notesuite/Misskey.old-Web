@@ -236,9 +236,96 @@ function close-post-form
 		if ($ \#misskey-post-form .css \opacity) === '0'
 			$ \#misskey-post-form-container .css \display \none
 
-function add-thumbnail-to-photo-status-form(file)
-	$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
-	$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
+function init-status-form
+	$ '#misskey-post-form-status-tab-page textarea' .bind \input ->
+		$ \#misskey-post-form .find \.submit-button .attr \disabled off
+
+	$ \#misskey-post-form-status-tab-page .find '.image-attacher input[name=image]' .change ->
+		$input = $ @
+		$ \#misskey-post-form .find '.image-preview-container' .css \display \block
+		$ \#misskey-post-form .find \.submit-button .attr \disabled off
+		file = $input.prop \files .0
+		if file.type.match 'image.*'
+			reader = new FileReader!
+				..onload = ->
+					$img = $ '<img>' .attr \src reader.result
+					$ \#misskey-post-form .find '.image-preview' .find 'img' .remove!
+					$ \#misskey-post-form .find '.image-preview' .append $img
+				..readAsDataURL file
+
+	$ \#misskey-post-form-status-tab-page .submit (event) ->
+		event.prevent-default!
+		$form = $ @
+		$submit-button = $form.find '[type=submit]'
+
+		$submit-button.attr \disabled on
+		$submit-button.text 'Updating'
+		$form.find \textarea .attr \disabled on
+
+		fd = new FormData!
+		fd.append \text ($form.find \textarea .val!)
+
+		$.ajax config.web-api-url + '/posts/status' {
+			type: \post
+			-process-data
+			-content-type
+			data: fd
+			data-type: \json
+			xhr-fields: {+with-credentials}
+		}
+		.done (data) ->
+			window.display-message '投稿しました！'
+			$form[0].reset!
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			close-post-form!
+		.fail (data) ->
+			window.display-message '投稿に失敗しました。'
+			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
+			$submit-button.text 'Re Update'
+
+function init-photo-status-form
+	function add-thumbnail-to-photo-status-form(file)
+		$thumbnail = $ "<li style='background-image: url(#{file.url});' />"
+		$ '#misskey-post-form-photo-status-tab-page > .attached-files' .append $thumbnail
+
+	Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .attached-files')[0], {
+		animation: 150ms
+	}
+
+	$ '#misskey-post-form-photo-status-tab-page > .attach-from-album' .click ->
+		window.open-select-album-file-dialog (files) ->
+			files.for-each (file) ->
+				add-thumbnail-to-photo-status-form file
+
+	$ '#misskey-post-form-photo-status-tab-page > .attach-from-local' .click ->
+		$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .click!
+		false
+
+	$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .change ->
+		files = ($ '#misskey-post-form-photo-status-tab-page > input[type=file]')[0].files
+		for i from 0 to files.length - 1
+			file = files.item i
+			$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
+			$progress-bar = $info.find \progress
+			$ '#misskey-post-form-photo-status-tab-page > .uploads' .append $info
+			window.upload-file do
+				file
+				(total, uploaded, percentage) ->
+					if percentage == 100
+						$progress-bar
+							..remove-attr \value
+							..remove-attr \max
+					else
+						$progress-bar
+							..attr \max total
+							..attr \value uploaded
+				(html) ->
+					$info.remove!
+					add-thumbnail-to-photo-status-form JSON.parse ($ html).attr \data-data
+				->
+					$info.remove!
 
 $ ->
 	update-relative-times!
@@ -420,89 +507,9 @@ $ ->
 	$ \#misskey-post-form .find \.close-button .click ->
 		close-post-form!
 
-	$ \#misskey-post-form .find \textarea .bind \input ->
-		$ \#misskey-post-form .find \.submit-button .attr \disabled off
+	init-status-form!
 
-	$ \#misskey-post-form .find '.image-attacher input[name=image]' .change ->
-		$input = $ @
-		$ \#misskey-post-form .find '.image-preview-container' .css \display \block
-		$ \#misskey-post-form .find \.submit-button .attr \disabled off
-		file = $input.prop \files .0
-		if file.type.match 'image.*'
-			reader = new FileReader!
-				..onload = ->
-					$img = $ '<img>' .attr \src reader.result
-					$ \#misskey-post-form .find '.image-preview' .find 'img' .remove!
-					$ \#misskey-post-form .find '.image-preview' .append $img
-				..readAsDataURL file
-
-	$ \#misskey-post-form-status-tab-page .submit (event) ->
-		event.prevent-default!
-		$form = $ @
-		$submit-button = $form.find '[type=submit]'
-
-		$submit-button.attr \disabled on
-		$submit-button.text 'Updating'
-		$form.find \textarea .attr \disabled on
-
-		fd = new FormData!
-		fd.append \text ($form.find \textarea .val!)
-
-		$.ajax config.web-api-url + '/posts/status' {
-			type: \post
-			-process-data
-			-content-type
-			data: fd
-			data-type: \json
-			xhr-fields: {+with-credentials}
-		}
-		.done (data) ->
-			window.display-message '投稿しました！'
-			$form[0].reset!
-			$submit-button.attr \disabled off
-			$form.find \textarea .attr \disabled off
-			close-post-form!
-		.fail (data) ->
-			window.display-message '投稿に失敗しました。'
-			$submit-button.attr \disabled off
-			$form.find \textarea .attr \disabled off
-			$submit-button.text 'Re Update'
-
-	Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .attached-files')[0], {
-		animation: 150ms
-	}
-
-	$ '#misskey-post-form-photo-status-tab-page > .attach-from-album' .click ->
-		window.open-select-album-file-dialog (files) ->
-			files.for-each (file) ->
-				add-thumbnail-to-photo-status-form file
-
-	$ '#misskey-post-form-photo-status-tab-page > .attach-from-local' .click ->
-		$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .click!
-		false
-	$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .change ->
-		files = ($ '#misskey-post-form-photo-status-tab-page > input[type=file]')[0].files
-		for i from 0 to files.length - 1
-			file = files.item i
-			$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
-			$progress-bar = $info.find \progress
-			$ '#misskey-post-form-photo-status-tab-page > .uploads' .append $info
-			window.upload-file do
-				file
-				(total, uploaded, percentage) ->
-					if percentage == 100
-						$progress-bar
-							..remove-attr \value
-							..remove-attr \max
-					else
-						$progress-bar
-							..attr \max total
-							..attr \value uploaded
-				(html) ->
-					$info.remove!
-					add-thumbnail-to-photo-status-form JSON.parse ($ html).attr \data-data
-				->
-					$info.remove!
+	init-photo-status-form!
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
