@@ -1,61 +1,5 @@
-mixin content(post)
-	case post.type
-		when 'status'
-			div.text!= post.text
-		when 'photo'
-			div.text!= post.text
-			ol.photos
-				each photo in post.photos
-					li.photo
-						img.image(src= photo.url, alt= '')
-			
-mixin common(post)
-	footer.footer
-		ul.actions
-			li.reply
-				button.reply-button(title='返信', role='button')
-					i.fa.fa-reply
-				a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
-			li.repost
-				button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
-					i.fa.fa-retweet
-				a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
-			li.favorite
-				button.favorite-button(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
-					i.fa.fa-star
-				a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
-		if post.stargazers != null
-			ol.stargazers
-				each stargazer in post.stargazers
-					li.stargazer
-						a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
-							img.icon(src=stargazer.iconUrl, alt='icon')
-	if post.replies.length > 0
-		i.fa.fa-ellipsis-v.reply-info
-	aside.form-and-replies
-		form.reply-form(role='form')
-			img.me-icon(src=me.iconUrl, alt='icon')
-			div.form
-				textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
-				div.design-allow(role='presentation')
-				ol.photos
-				ol.uploads
-				button.attach-from-local(type='button', role='button', title='PCから画像を添付する')
-					i.fa.fa-upload
-				button.attach-from-album(type='button', role='button', title='アルバムから画像を添付する')
-					i.fa.fa-folder-open
-				button.submit-button.ui-button(type='submit', role='button')
-					| Reply
-					i.fa.fa-reply
-				input(name='file', type='file', accept='image/*', multiple)
-		aside.replies(itemprop='comment')
-			ol.statuses
-				if post.replies.length > 0
-					each reply in post.replies
-						li.status(title!= '#{reply.createdAt}&#x0A;'
-								data-id= reply.id
-								data-user-id= reply.user.id)
-							+subPost(reply)
+include ./content
+include ./subPost
 
 mixin status(status)
 	div.main
@@ -79,7 +23,6 @@ mixin status(status)
 					time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 		div.content(itemprop='articleBody')
 			+content(status)
-	+common(status)
 
 mixin photo(reply)
 	div.main
@@ -103,8 +46,6 @@ mixin photo(reply)
 					time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
 		div.content(itemprop='articleBody')
 			+content(reply)
-	+common(reply)
-
 
 mixin repost(repost)
 	div.repost-information
@@ -171,22 +112,47 @@ mixin post(post)
 							p キャンセル
 		article(role='article')
 			if post.inReplyToPost
-				div.reply-source(title!= '#{post.inReplyToPost.createdAt}&#x0A;'
-						data-id= post.inReplyToPost.id
-						data-user-id= post.inReplyToPost.user.id)
-					+subPost(post.inReplyToPost)
+				+subPost('article', post.inReplyToPost)(class='reply-source')
 			+extract(post)
-
-mixin subPost(post)
-	article
-		a.icon-anchor(href=config.url + '/widget/talk/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
-			img.icon(src=post.user.iconUrl, alt='icon')
-		header
-			if post.user.isVerified
-				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-			h2
-				a(href=config.url + '/' + post.user.screenName, target='_blank')= post.user.name
-			span.screen-name= post.user.screenName
-			a(href=config.url + '/' + post.user.screenName + '/status/' + post.id): time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt
-		div.main
-			+content(post)
+			footer.footer
+				ul.actions
+					li.reply
+						button.reply-button(title='返信', role='button')
+							i.fa.fa-reply
+						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
+					li.repost
+						button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
+							i.fa.fa-retweet
+						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
+					li.favorite
+						button.favorite-button(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+							i.fa.fa-star
+						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
+				if post.stargazers != null
+					ol.stargazers
+						each stargazer in post.stargazers
+							li.stargazer
+								a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
+									img.icon(src=stargazer.iconUrl, alt='icon')
+			if post.replies.length > 0
+				i.fa.fa-ellipsis-v.reply-info
+			aside.form-and-replies
+				form.reply-form(role='form')
+					img.me-icon(src=me.iconUrl, alt='icon')
+					div.form
+						textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
+						div.design-allow(role='presentation')
+						ol.photos
+						ol.uploads
+						button.attach-from-local(type='button', role='button', title='PCから画像を添付する')
+							i.fa.fa-upload
+						button.attach-from-album(type='button', role='button', title='アルバムから画像を添付する')
+							i.fa.fa-folder-open
+						button.submit-button.ui-button(type='submit', role='button')
+							| Reply
+							i.fa.fa-reply
+						input(name='file', type='file', accept='image/*', multiple)
+				ol.replies(itemprop='comment')
+					if post.replies.length > 0
+						each reply in post.replies
+							+subPost('li', reply)

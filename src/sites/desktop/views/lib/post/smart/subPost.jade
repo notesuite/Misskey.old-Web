@@ -1,0 +1,18 @@
+include ./content
+
+mixin subPost(tagName, post)
+	#{tagName}(class!= attributes.class + ' ' + post.type
+			title!= '#{post.createdAt}&#x0A;'
+			data-id= post.id
+			data-user-id= post.user.id)
+		a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
+			img.icon(src=post.user.iconUrl, alt='icon')
+		header
+			if post.user.isVerified
+				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+			h2
+				a(href=config.url + '/' + post.user.screenName, target='_blank')= post.user.name
+			span.screen-name= post.user.screenName
+			a(href=config.url + '/' + post.user.screenName + '/status/' + post.id): time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt
+		div.main
+			+content(post)
