@@ -259,6 +259,6 @@ TIMELINE_CORE = {}
 		#if ($recent-status.attr \data-display-html-is-active) == \true
 		#	$status.children \.status .add-class \display-html-active-status-prev
 		TIMELINE_CORE.set-event $post
-		$post.prepend-to ((TIMELINE_CORE.tl.children '.posts')[0])
+		$post.prepend-to ((TIMELINE_CORE.tl.children '.posts')[0]) .hide!.slide-down 200ms
 
 module.exports = TIMELINE_CORE
