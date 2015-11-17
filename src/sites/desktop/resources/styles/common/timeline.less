@@ -1452,18 +1452,8 @@
 					list-style: none;
 					text-align: left;
 
-					> .status {
-						position: relative;
-
-						&[data-user-verified='true'] {
-							> article > header > h2 > a {
-								&:before {
-									/*.timeline-verified-icon;*/
-								}
-							}
-						}
-
-						> article {
+					> li {
+						> .sub-post {
 							.timeline-sub-article;
 						}
 					}

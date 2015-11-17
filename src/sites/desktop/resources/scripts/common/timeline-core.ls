@@ -76,7 +76,7 @@ TIMELINE_CORE = {}
 			.done (html) ->
 				$reply = $ html
 				$submit-button.attr \disabled off
-				$reply.append-to $status.find '.replies > .statuses'
+				$reply.append-to $status.find '.replies'
 				$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
 				$i.append-to $status
 				$form.remove!

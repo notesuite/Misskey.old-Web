@@ -112,7 +112,7 @@ mixin post(post)
 							p キャンセル
 		article(role='article')
 			if post.inReplyToPost
-				+subPost('article', post.inReplyToPost)(class='reply-source')
+				+subPost(post.inReplyToPost)(class='reply-source')
 			+extract(post)
 			footer.footer
 				ul.actions
@@ -155,4 +155,5 @@ mixin post(post)
 				ol.replies(itemprop='comment')
 					if post.replies.length > 0
 						each reply in post.replies
-							+subPost('li', reply)
+							li
+								+subPost(reply)
