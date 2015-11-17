@@ -189,53 +189,6 @@ function update-header-clock
 		(canv-h / 2) + uv.y * length
 	ctx.stroke!
 
-function open-post-form
-	$ \#misskey-post-form-back .css \display \block
-	$ \#misskey-post-form-back .animate {
-		opacity: 1
-	} 100ms \linear
-	$ \#misskey-post-form-container .css \display \block
-	$ \#misskey-post-form .stop!
-	$ \#misskey-post-form .css \transform 'scale(1.2)'
-	$ \#misskey-post-form .transition {
-		opacity: \1
-		scale: \1
-	} 1000ms 'cubic-bezier(0, 1, 0, 1)'
-	$ \#misskey-post-form-tabs .find \li .each (i) ->
-		$tab = $ @
-		$tab.find \i .css \transition \none
-		$tab.find \i .css {
-			top: \-16px
-			opacity: 0
-		}
-
-		set-timeout ->
-			$tab.find \i .css \transition 'top 0.3s ease-out, opacity 0.3s ease-out'
-			$tab.find \i .css {
-				top: \0px
-				opacity: 1
-			}
-			set-timeout ->
-				$tab.find \i .css {
-					transition: ''
-					top: ''
-				}
-			, 300ms
-		, i * 50
-	$ \#misskey-post-form-status-tab-page .find \textarea .focus!
-
-function close-post-form
-	$ \#misskey-post-form-back .animate {
-		opacity: 0
-	} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
-	$ \#misskey-post-form .stop!
-	$ \#misskey-post-form .transition {
-		opacity: \0
-		scale: \0.8
-	} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
-		if ($ \#misskey-post-form .css \opacity) === '0'
-			$ \#misskey-post-form-container .css \display \none
-
 function post-form-upload-file(file, $form, complete)
 	$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
 	$progress-bar = $info.find \progress
@@ -253,16 +206,82 @@ function post-form-upload-file(file, $form, complete)
 					..attr \value uploaded
 		(html) ->
 			$info.remove!
-			complete!
+			complete html
 		->
 			$info.remove!
 
-statusPostForm = new StatusPostForm
+class PostForm
+	->
+		THIS = @
 
-photoPostForm = new PhotoPostForm
+		THIS.photoPostForm = new PhotoPostForm THIS
+		THIS.statusPostForm = new StatusPostForm THIS
+
+		THIS.tab = Tab ($ '#misskey-post-form-tabs'), (id) ->
+			switch (id)
+			| \misskey-post-form-status-tab-page => THIS.statusPostForm.focus!
+			| \misskey-post-form-photo-tab-page => THIS.photoPostForm.focus!
+
+		$ \#misskey-post-button .click ->
+			THIS.open!
+		$ \#misskey-post-form .click (e) ->
+			e.stop-propagation!
+		$ \#misskey-post-form-container .click ->
+			THIS.close!
+		$ \#misskey-post-form .find \.close-button .click ->
+			THIS.close!
+
+	open: ->
+		$ \#misskey-post-form-back .css \display \block
+		$ \#misskey-post-form-back .animate {
+			opacity: 1
+		} 100ms \linear
+		$ \#misskey-post-form-container .css \display \block
+		$ \#misskey-post-form .stop!
+		$ \#misskey-post-form .css \transform 'scale(1.2)'
+		$ \#misskey-post-form .transition {
+			opacity: \1
+			scale: \1
+		} 1000ms 'cubic-bezier(0, 1, 0, 1)'
+		$ \#misskey-post-form-tabs .find \li .each (i) ->
+			$tab = $ @
+			$tab.find \i .css \transition \none
+			$tab.find \i .css {
+				top: \-16px
+				opacity: 0
+			}
+			set-timeout ->
+				$tab.find \i .css \transition 'top 0.3s ease-out, opacity 0.3s ease-out'
+				$tab.find \i .css {
+					top: \0px
+					opacity: 1
+				}
+				set-timeout ->
+					$tab.find \i .css {
+						transition: ''
+						top: ''
+					}
+				, 300ms
+			, i * 50
+		statusPostForm.focus!
+
+	close: ->
+		$ \#misskey-post-form-back .animate {
+			opacity: 0
+		} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
+		$ \#misskey-post-form .stop!
+		$ \#misskey-post-form .transition {
+			opacity: \0
+			scale: \0.8
+		} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
+			if ($ \#misskey-post-form .css \opacity) === '0'
+				$ \#misskey-post-form-container .css \display \none
 
 class StatusPostForm
-	->
+	(postForm) ->
+		THIS = @
+		THIS.postForm = postForm
+
 		$ '#misskey-post-form-status-tab-page textarea' .bind \input ->
 			$ \#misskey-post-form .find \.submit-button .attr \disabled off
 
@@ -272,7 +291,7 @@ class StatusPostForm
 				item = items[i]
 				if item.type.index-of \image != -1
 					file = item.get-as-file!
-					photoPostForm.upload-new-file file
+					THIS.postForm.photoPostForm.upload-new-file file
 
 		$ \#misskey-post-form-status-tab-page .find '.image-attacher input[name=image]' .change ->
 			$input = $ @
@@ -319,9 +338,13 @@ class StatusPostForm
 				$form.find \textarea .attr \disabled off
 				$submit-button.text 'Re Update'
 
+	focus: ->
+		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
+
 class PhotoPostForm
-	->
+	(postForm) ->
 		THIS = @
+		THIS.postForm = postForm
 
 		Sortable.create ($ '#misskey-post-form-photo-tab-page > .photos')[0], {
 			animation: 150ms
@@ -382,13 +405,15 @@ class PhotoPostForm
 
 	upload-new-file: (file) ->
 		THIS = @
-		post-form-upload-file file, ($ '#misskey-post-form-photo-tab-page'), ->
+		post-form-upload-file file, ($ '#misskey-post-form-photo-tab-page'), (html) ->
 			THIS.add-file JSON.parse ($ html).attr \data-data
 
 	focus: ->
 		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 $ ->
+	postForm = new PostForm
+
 	update-relative-times!
 
 	# Update relative times
@@ -399,8 +424,6 @@ $ ->
 
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
-
-	Tab $ '#misskey-post-form-tabs'
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
 		window-id = "misskey-window-talk-histories"
@@ -480,7 +503,6 @@ $ ->
 			$info.append-to $notices-container
 		.fail (data) ->
 
-
 	# 「通知」ドロップダウン
 	$ '#misskey-main-header .notices .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-main-header .notices .dropdown'
@@ -558,19 +580,6 @@ $ ->
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
 					window.init-waves-effects!
 			.fail ->
-
-	$ \#misskey-post-button .click ->
-		open-post-form!
-	$ \#misskey-post-form .click (e) ->
-		e.stop-propagation!
-	$ \#misskey-post-form-container .click ->
-		close-post-form!
-	$ \#misskey-post-form .find \.close-button .click ->
-		close-post-form!
-
-	init-status-form!
-
-	init-photo-form!
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!

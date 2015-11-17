@@ -5,26 +5,35 @@
 
 var $ = require('jquery');
 
-module.exports = function($tabList) {
+module.exports = function($tabList, onChanged) {
+	var ids = [];
 	var $tabContents = [];
+	
+	function select(id) {
+		var num = ids.indexOf(id);
+		$tabList.find('li').removeClass('active').addClass('unactive');
+		$(this).removeClass('unactive').addClass('active');
 
+		$.each($tabContents, function() {
+			$(this).css('display', 'none');
+		});
+
+		$tabContents[num].css('display', 'block');
+		
+		if (onChanged !== undefined) {
+			onChanged(id);
+		}
+	}
+	
 	$tabList.find('li').each(function(i, elem) {
 		var $tabListItem = $(elem);
-		var id = '#' + $tabListItem.attr('data-ref');
-		$tabContents.push($(id));
+		var id = $tabListItem.attr('data-ref');
+		ids.push(id);
+		$tabContents.push($('#' + id));
 		$tabListItem.addClass('unactive');
-
+		
 		$tabListItem.click(function() {
-			var num = $tabList.find('li').index(this);
-			$tabList.find('li').removeClass('active').addClass('unactive');
-			$(this).removeClass('unactive').addClass('active');
-
-			$.each($tabContents, function() {
-				$(this).css('display', 'none');
-			});
-
-			$tabContents[num].css('display', 'block');
-
+			select($(this).attr('data-ref'));
 			return false;
 		});
 	});
@@ -35,4 +44,8 @@ module.exports = function($tabList) {
 
 	$tabList.find('li:eq(0)').removeClass('unactive').addClass('active');
 	$tabContents[0].css('display', 'block');
+	
+	return {
+		select: select
+	};
 };
