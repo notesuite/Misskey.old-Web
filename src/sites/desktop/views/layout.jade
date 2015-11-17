@@ -72,12 +72,14 @@ html#misskey(
 						form#misskey-post-form-photo-status-tab-page
 							textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 							ol.attached-files
+							ol.uploads
 							button.attach-from-local.ui-waves-effect(type='button', role='button')
 								i.fa.fa-upload
 								| PCから画像を添付
 							button.attach-from-album.ui-waves-effect(type='button', role='button')
 								i.fa.fa-folder-open
 								| アルバムから画像を添付
+							input(name='file', type='file', accept='image/*', multiple)
 							button.submit(type='submit')
 								| Update
 								i.fa.fa-paper-plane

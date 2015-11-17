@@ -26,6 +26,31 @@ window.display-message = (message) ->
 			$message.remove!
 	, 5000ms
 
+window.upload-file = (file, uploading, success, failed) ->
+	data = new FormData!
+		..append \file file
+	$.ajax "#{config.web-api-url}/web/desktop/album/upload" {
+		+async
+		type: \post
+		-process-data
+		-content-type
+		data: data
+		data-type: \text
+		xhr-fields: {+with-credentials}
+		xhr: ->
+			XHR = $.ajax-settings.xhr!
+			if XHR.upload
+				XHR.upload.add-event-listener \progress (e) ->
+					percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
+					uploading e.total, e.loaded, percentage
+				, false
+			XHR
+	}
+	.done (html) ->
+		success!
+	.fail (data) ->
+		failed!
+
 window.open-select-album-file-dialog = (cb) ->
 	album.choose-file cb
 
@@ -447,6 +472,15 @@ $ ->
 			Sortable.create ($ '#misskey-post-form-photo-status-tab-page > .attached-files')[0], {
 				animation: 150ms
 			}
+
+	$ '#misskey-post-form-photo-status-tab-page > .attach-from-local' .click ->
+		$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .click!
+		false
+	$ '#misskey-post-form-photo-status-tab-page > input[type=file]' .change ->
+		files = ($ '#misskey-post-form-photo-status-tab-page > input[type=file]')[0].files
+		for i from 0 to files.length - 1
+			file = files.item i
+			window.upload-file file
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
