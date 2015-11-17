@@ -58,9 +58,17 @@ TIMELINE_CORE = {}
 			$form = $post.find '.reply-form'
 			$submit-button = $form.find \.submit-button
 				..attr \disabled on
-			$.ajax "#{config.web-api-url}/desktop/home/posts/reply" {
+				..text 'Replying...'
+
+			fd = new FormData!
+			fd.append \text ($form.find \textarea .val!)
+			fd.append \in-reply-to-post-id ($post.attr \data-entity-id)
+			fd.append \photos JSON.stringify(($form.find '.photos > li' .map ->
+				($ @).attr \data-id).get!)
+
+			$.ajax "#{config.web-api-url}/web/desktop/home/posts/reply" {
 				type: \post
-				data: new FormData $form.0
+				data: fd
 				-process-data
 				-content-type
 				data-type: \text
@@ -74,7 +82,10 @@ TIMELINE_CORE = {}
 				$form.remove!
 				window.display-message '返信しました！'
 			.fail ->
-				$submit-button.attr \disabled off
+				window.display-message '返信に失敗しました。再度お試しください。'
+				$submit-button
+					..attr \disabled off
+					..text 'Re Reply'
 
 		function add-file(file-data)
 			$thumbnail = $ "<li style='background-image: url(#{file-data.url});' data-id='#{file-data.id}' />"
