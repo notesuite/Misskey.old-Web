@@ -38,10 +38,17 @@ mixin common(post)
 			div.form
 				textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
 				div.design-allow(role='presentation')
-				input(name='in-reply-to-post-id', type='hidden', value=post.id)
+				ol.photos
+				ol.uploads
+				button.attach-from-local(type='button', role='button', title='PCから画像を添付する')
+					i.fa.fa-upload
+				button.attach-from-album(type='button', role='button', title='アルバムから画像を添付する')
+					i.fa.fa-folder-open
 				button.submit-button.ui-button(type='submit', role='button')
 					| Reply
 					i.fa.fa-reply
+				input(name='in-reply-to-post-id', type='hidden', value=post.id)
+				input(name='file', type='file', accept='image/*', multiple)
 		aside.replies(itemprop='comment')
 			ol.statuses
 				if post.replies.length > 0

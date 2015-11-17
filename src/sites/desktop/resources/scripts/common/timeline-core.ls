@@ -1,4 +1,8 @@
 $ = require 'jquery'
+Sortable = require 'Sortable'
+Album = require '../common/album.js'
+
+album = new Album
 
 TIMELINE_CORE = {}
 	..init = ($tl) ->
@@ -49,6 +53,85 @@ TIMELINE_CORE = {}
 					..children \article .find  '.talk > .statuses' .hide animation-speed
 					..children \article .find  '.reply-info' .show animation-speed
 					..children \article .find  '.form-and-replies' .hide animation-speed
+
+		function submit-reply
+			$form = $post.find '.reply-form'
+			$submit-button = $form.find \.submit-button
+				..attr \disabled on
+			$.ajax "#{config.web-api-url}/desktop/home/posts/reply" {
+				type: \post
+				data: new FormData $form.0
+				-process-data
+				-content-type
+				data-type: \text
+				xhr-fields: {+with-credentials}}
+			.done (html) ->
+				$reply = $ html
+				$submit-button.attr \disabled off
+				$reply.append-to $status.find '.replies > .statuses'
+				$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
+				$i.append-to $status
+				$form.remove!
+				window.display-message '返信しました！'
+			.fail ->
+				$submit-button.attr \disabled off
+
+		function add-file(file-data)
+			$thumbnail = $ "<li style='background-image: url(#{file-data.url});' data-id='#{file-data.id}' />"
+			$post.find '.reply-form .photos' .append $thumbnail
+
+		function upload-new-file(file)
+			name = if file.has-own-property \name then file.name else 'untitled'
+			$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
+			$progress-bar = $info.find \progress
+			$post.find '.reply-form .uploads' .append $info
+			window.upload-file do
+				file
+				(total, uploaded, percentage) ->
+					if percentage == 100
+						$progress-bar
+							..remove-attr \value
+							..remove-attr \max
+					else
+						$progress-bar
+							..attr \max total
+							..attr \value uploaded
+				(html) ->
+					$info.remove!
+					add-file JSON.parse ($ html).attr \data-data
+				->
+					$info.remove!
+
+		Sortable.create ($post.find '.reply-form .photos')[0], {
+			animation: 150ms
+		}
+
+		$post.find '.reply-form textarea' .on \paste (event) ->
+			items = (event.clipboard-data || event.original-event.clipboard-data).items
+			for i from 0 to items.length - 1
+				item = items[i]
+				if item.kind == \file && item.type.index-of \image != -1
+					file = item.get-as-file!
+					upload-new-file file
+
+		$post.find '.reply-form textarea' .keypress (e) ->
+			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+				submit-reply!
+
+		$post.find '.reply-form .attach-from-album' .click ->
+			window.open-select-album-file-dialog (files) ->
+				files.for-each (file) ->
+					add-file file
+
+		$post.find '.reply-form .attach-from-local' .click ->
+			$post.find '.reply-form input[type=file]' .click!
+			false
+
+		$post.find '.reply-form input[type=file]' .change ->
+			files = ($post.find '.reply-form input[type=file]')[0].files
+			for i from 0 to files.length - 1
+				file = files.item i
+				upload-new-file file
 
 		$post
 			# Click event
@@ -104,26 +187,7 @@ TIMELINE_CORE = {}
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
 				event.prevent-default!
-				$form = $ @
-				$submit-button = $form.find \.submit-button
-					..attr \disabled on
-				$.ajax "#{config.web-api-url}/desktop/home/posts/reply" {
-					type: \post
-					data: new FormData $form.0
-					-process-data
-					-content-type
-					data-type: \text
-					xhr-fields: {+with-credentials}}
-				.done (html) ->
-					$reply = $ html
-					$submit-button.attr \disabled off
-					$reply.append-to $status.find '.replies > .statuses'
-					$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
-					$i.append-to $status
-					$form.remove!
-					window.display-message '返信しました！'
-				.fail ->
-					$submit-button.attr \disabled off
+				submit-reply!
 
 			# Preview attache image
 			..find '.image-attacher input[name=image]' .change ->
