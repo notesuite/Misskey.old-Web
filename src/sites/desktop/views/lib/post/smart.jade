@@ -2,8 +2,10 @@ mixin content(post)
 	case post.type
 		when 'status'
 			div.text!= post.text
-		when 'reply'
+		when 'photo'
 			div.text!= post.text
+			div.photos
+				p a
 			
 mixin common(post)
 	footer.footer
@@ -71,11 +73,7 @@ mixin status(status)
 			+content(status)
 	+common(status)
 
-mixin reply(reply)
-	div.reply-source(title!= '#{reply.inReplyToPost.createdAt}&#x0A;'
-			data-id= reply.inReplyToPost.id
-			data-user-id= reply.inReplyToPost.user.id)
-		+subPost(reply.inReplyToPost)
+mixin photo(reply)
 	div.main
 		div.icon-area
 			a.icon-anchor(href=config.url + '/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName, rel='icon')
@@ -115,8 +113,8 @@ mixin extract(post)
 	case post.type
 		when 'status'
 			+status(post)
-		when 'reply'
-			+reply(post)
+		when 'photo'
+			+photo(post)
 		when 'repost'
 			+repost(post)
 
@@ -163,6 +161,11 @@ mixin post(post)
 							i.fa.fa-ban
 							p キャンセル
 		article(role='article')
+			if post.inReplyToPost
+				div.reply-source(title!= '#{post.inReplyToPost.createdAt}&#x0A;'
+						data-id= post.inReplyToPost.id
+						data-user-id= post.inReplyToPost.user.id)
+					+subPost(post.inReplyToPost)
 			+extract(post)
 
 mixin subPost(post)
