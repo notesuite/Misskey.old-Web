@@ -161,6 +161,9 @@ class Album
 				$file.attr \data-selected \false
 			else
 				$file.attr \data-selected \true
+		$file.dblclick ->
+			$file.attr \data-selected \true
+			alert ($file.attr \data-file-id)
 
 	load-files: ->
 		THIS = @
