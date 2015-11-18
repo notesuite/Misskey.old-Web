@@ -1,25 +1,6 @@
-function swing($elem, force)
-	t = 1
-	timer = set-interval update, 10ms
-	function update
-		t++
-		pos = ((Math.sin(t / 20) * force) / ((t / 512) / 3))
-		$elem.css \transform "perspective(1024px) rotateX(#{pos}deg)"
+$ = require 'jquery'
 
 $ ->
-	function set-features1-design-layer
-		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height! + 128}px"
-
-	function set-footer-design-layer
-		$ '#footer > .design-layer' .css \height "#{$ \#footer .outer-height! + 128}px"
-
-	set-features1-design-layer!
-	set-footer-design-layer!
-
-	$ window .resize ->
-		set-features1-design-layer!
-		set-footer-design-layer!
-
 	$ '#login-form' .submit (event) ->
 		event.prevent-default!
 		$form = $ @
@@ -68,7 +49,7 @@ function init-register-form
 			type: \post
 			data: $form.serialize!
 			data-type: \json
-			xhr-fields: {+withCredentials}}
+			xhr-fields: {+with-credentials}}
 		.done ->
 			location.href = "#{config.url}/welcome"
 		.fail ->
@@ -79,17 +60,12 @@ function init-register-form
 	function init-user-name-section
 		$column = $ '#register-form .user-name'
 		$input = $ user-name-input-query
-		right = no
 
 		$input .on \keypress (event) ->
 			if event.which == 13
-				if right then next!
-				false
-			else
-				true
+				$ '#register-form input[name="password"]' .focus!
 
 		$input .keyup ->
-			right = no
 			hide-message!
 			sn = $input .val!
 
@@ -111,16 +87,13 @@ function init-register-form
 						type: \get
 						data: {'screen-name': sn}
 						data-type: \json
-						xhr-fields: {+withCredentials}}
+						xhr-fields: {+with-credentials}}
 					.done (result) ->
 						if result.available
-							right = yes
 							show-message 'このIDは使用できますっ！' yes
 						else
-							right = no
 							show-message 'このIDは既に使用されていますっ' no
 					.fail (err) ->
-						console.error err
 						show-message '確認に失敗しました;;' null
 
 		function show-message(message, success)
@@ -130,10 +103,7 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"user-name-available\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .user-name' .animate {
-				'margin-top': 0
-				opacity: 1
-			} 500ms \easeOutCubic
+			$message.append-to '#register-form .user-name'
 
 		function hide-message
 			$ '#user-name-available' .remove!
@@ -141,14 +111,10 @@ function init-register-form
 	function init-password-section
 		$input = $ password-input-query
 		$column = $ '#register-form .password'
-		right = no
 
 		$input .on \keypress (event) ->
 			if event.which == 13
-				if right then next!
-				false
-			else
-				true
+				$ '#register-form input[name="retype-password"]' .focus!
 
 		$input .keyup ->
 			right = no
@@ -173,10 +139,7 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .password' .animate {
-				'margin-top': 0
-				opacity: 1
-			} 500ms \easeOutCubic
+			$message.append-to '#register-form .password'
 
 		function hide-message
 			$ '#passwordAvailable' .remove!
@@ -184,17 +147,8 @@ function init-register-form
 	function init-password-retype-section
 		$input = $ password-retype-input-query
 		$column = $ '#register-form .password-retype'
-		right = no
-
-		$input .on \keypress (event) ->
-			if event.which == 13
-				if right then next!
-				false
-			else
-				true
 
 		$input .keyup ->
-			right = no
 			hide-message!
 			password = $ password-input-query .val!
 			password-retype = $input .val!
@@ -203,7 +157,6 @@ function init-register-form
 					show-message '一致していませんっ！' no
 					false
 				else
-					right = yes
 					show-message 'Okay!' yes
 			else
 				false
@@ -215,10 +168,7 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordRetypeAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .password-retype' .animate {
-				'margin-top': 0
-				opacity: 1
-			} 500ms \easeOutCubic
+			$message.append-to '#register-form .password-retype'
 
 		function hide-message
 			$ '#passwordRetypeAvailable' .remove!
@@ -232,8 +182,7 @@ function show-register-form
 	$ \#register-form .animate {
 		top: 0
 		opacity: 1
-	} 1000ms \easeOutElastic
-	$ '#register-form progress' .attr \value 1
+	} 1000ms \ease
 	$ '#register-form .user-name .user-name-input' .focus!
 
 function hide-register-form
@@ -244,5 +193,5 @@ function hide-register-form
 	$ \#register-form .animate {
 		top: '-200%'
 		opacity: 0
-	} 1000ms \easeInOutQuart ->
+	} 1000ms \ease ->
 		$ \#register-form .css \display \none
