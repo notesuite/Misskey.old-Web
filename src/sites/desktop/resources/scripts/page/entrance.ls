@@ -1,4 +1,5 @@
 $ = require 'jquery'
+require 'jquery.transit'
 
 $ ->
 	$ '#login-form' .submit (event) ->
@@ -178,11 +179,13 @@ function show-register-form
 	$ \#register-form-background .animate {
 		opacity: 1
 	} 500ms \linear
+	$ \#register-form .stop!
 	$ \#register-form .css \display \block
-	$ \#register-form .animate {
-		top: 0
-		opacity: 1
-	} 1000ms \swing
+	$ \#register-form .css \transform 'scale(1.2)'
+	$ \#register-form .transition {
+		opacity: \1
+		scale: \1
+	} 1000ms 'cubic-bezier(0, 1, 0, 1)'
 	$ '#register-form .user-name .user-name-input' .focus!
 
 function hide-register-form
@@ -190,8 +193,10 @@ function hide-register-form
 		opacity: 0
 	} 500ms \linear ->
 		$ \#register-form-background .css \display \none
-	$ \#register-form .animate {
-		top: '-200%'
-		opacity: 0
-	} 1000ms \swing ->
-		$ \#register-form .css \display \none
+	$ \#misskey-post-form .stop!
+	$ \#register-form .transition {
+		opacity: \0
+		scale: \0.8
+	} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
+		if ($ \#register-form .css \opacity) === '0'
+			$ \#register-form .css \display \none
