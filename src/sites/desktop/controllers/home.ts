@@ -43,16 +43,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 			new Promise((resolve: (timeline: Post[]) => void, reject: (err: any) => void) => {
 				if (customizeMode || useWidgets.indexOf('timeline') > -1) {
 					requestApi('GET', 'posts/timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
-						resolve(tl.map((post: Post) => {
-							switch (post.type) {
-								case 'status':
-									(<any>post).text = parsePostText((<any>post).text, (<any>post).isPlain);
-									break;
-								default:
-									break;
-							}
-							return post;
-						}));
+						resolve(tl);
 					});
 				} else {
 					resolve(null);
@@ -84,6 +75,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 				unuseWidgets: unuseWidgets,
 				customizeMode: customizeMode,
 				timeline: results[0],
+				parsePostText: parsePostText,
 				recommendationUsers: results[1]
 			});
 		}, (err: any) => {

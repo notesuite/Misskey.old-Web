@@ -309,7 +309,7 @@ TIMELINE_CORE = {}
 				} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
 
 			# Init ogp preview
-			..find 'article > .main > .content > .text a' .each ->
+			..find 'article > .main > .content > .text a:not(.mention)' .each ->
 				$link = $ @
 				$.ajax "#{config.web-api-url}/web/ogp/parse" {
 					type: \get

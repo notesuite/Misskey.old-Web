@@ -1,7 +1,7 @@
 mixin content(post)
 	case post.type
 		when 'status'
-			div.text!= post.text
+			div.text!= parsePostText(post.text, post.isPlain)
 		when 'photo'
 			div.text!= post.text
 			ol.photos
