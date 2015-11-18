@@ -34,23 +34,23 @@ html#misskey(
 					button.close-button(type='button', role='button')
 						i.fa.fa-times
 					ul#misskey-post-form-tabs
-						li(data-ref='misskey-post-form-status-tab-page', title='近況')
+						li(data-ref='status', title='近況')
 							i.fa.fa-comment-o
-						li(data-ref='misskey-post-form-photo-tab-page', title='画像付き投稿')
+						li(data-ref='photo', title='画像付き投稿')
 							i.fa.fa-picture-o
-						li(data-ref='misskey-post-form-video-tab-page', title='動画付き投稿')
+						li(data-ref='video', title='動画付き投稿')
 							i.fa.fa-film
-						li(data-ref='misskey-post-form-audio-tab-page', title='音声付き投稿')
+						li(data-ref='audio', title='音声付き投稿')
 							i.fa.fa-music
-						li(data-ref='misskey-post-form-poll-tab-page', title='投票')
+						li(data-ref='poll', title='投票')
 							i.fa.fa-pie-chart
 					div#misskey-post-form-tab-pages
-						form#misskey-post-form-status-tab-page
+						form#misskey-post-form-status-tab-page(data-name='status')
 							textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 							button.submit(type='submit')
 								| Update
 								i.fa.fa-paper-plane
-						form#misskey-post-form-photo-tab-page
+						form#misskey-post-form-photo-tab-page(data-name='photo')
 							textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 							ol.photos
 							ol.uploads
@@ -64,11 +64,11 @@ html#misskey(
 							button.submit(type='submit')
 								| Update
 								i.fa.fa-paper-plane
-						form#misskey-post-form-video-tab-page
+						form#misskey-post-form-video-tab-page(data-name='video')
 							p coming soon
-						form#misskey-post-form-audio-tab-page
+						form#misskey-post-form-audio-tab-page(data-name='audio')
 							p coming soon
-						form#misskey-post-form-poll-tab-page
+						form#misskey-post-form-poll-tab-page(data-name='poll')
 							p coming soon
 					
 		header#misskey-main-header(role='banner')

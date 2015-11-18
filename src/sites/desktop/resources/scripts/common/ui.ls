@@ -196,10 +196,13 @@ class PostForm
 		THIS.photoPostForm = new PhotoPostForm THIS
 		THIS.statusPostForm = new StatusPostForm THIS
 
-		THIS.tab = Tab ($ '#misskey-post-form-tabs'), (id) ->
-			switch (id)
-			| \misskey-post-form-status-tab-page => THIS.statusPostForm.focus!
-			| \misskey-post-form-photo-tab-page => THIS.photoPostForm.focus!
+		THIS.tab = Tab do
+			$ '#misskey-post-form-tabs'
+			$ '#misskey-post-form-tab-pages'
+			(id) ->
+				switch (id)
+				| \status => THIS.statusPostForm.focus!
+				| \photo => THIS.photoPostForm.focus!
 
 		$ \#misskey-post-button .click ->
 			THIS.open!
@@ -352,7 +355,7 @@ class StatusPostForm
 
 	focus: ->
 		THIS = @
-		THIS.postForm.tab.select \misskey-post-form-status-tab-page no
+		THIS.postForm.tab.select \status no
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
 
 class PhotoPostForm
@@ -445,7 +448,7 @@ class PhotoPostForm
 
 	focus: ->
 		THIS = @
-		THIS.postForm.tab.select \misskey-post-form-photo-tab-page no
+		THIS.postForm.tab.select \photo no
 		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 $ ->

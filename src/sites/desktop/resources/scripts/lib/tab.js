@@ -5,33 +5,26 @@
 
 var $ = require('jquery');
 
-module.exports = function($tabList, onChanged) {
-	var ids = [];
-	var $tabContents = [];
-	
-	function select(id, riseChangeEvent) {
+module.exports = function($tabList, $tabPages, onChanged) {
+	function select(tabName, riseChangeEvent) {
 		riseChangeEvent = riseChangeEvent === undefined ? true : riseChangeEvent;
 
-		var num = ids.indexOf(id);
-		$tabList.find('li').removeClass('active').addClass('unactive');
-		$tabList.find('li:eq(' + num + ')').removeClass('unactive').addClass('active');
+		$tabList.children().removeClass('active').addClass('unactive');
+		$tabList.children('[data-ref="' + tabName + '"]').removeClass('unactive').addClass('active');
 
-		$.each($tabContents, function() {
+		$tabPages.children().each(function() {
 			$(this).css('display', 'none');
 		});
 
-		$tabContents[num].css('display', 'block');
+		$tabPages.children('[data-name="' + tabName + '"]').css('display', 'block');
 		
 		if (onChanged !== undefined && riseChangeEvent) {
-			onChanged(id);
+			onChanged(tabName);
 		}
 	}
 	
-	$tabList.find('li').each(function(i, elem) {
-		var $tabListItem = $(elem);
-		var id = $tabListItem.attr('data-ref');
-		ids.push(id);
-		$tabContents.push($('#' + id));
+	$tabList.children().each(function() {
+		var $tabListItem = $(this);
 		$tabListItem.addClass('unactive');
 		
 		$tabListItem.click(function() {
@@ -40,12 +33,11 @@ module.exports = function($tabList, onChanged) {
 		});
 	});
 
-	$.each($tabContents, function() {
+	$tabPages.children().each(function() {
 		$(this).css('display', 'none');
 	});
 
-	$tabList.find('li:eq(0)').removeClass('unactive').addClass('active');
-	$tabContents[0].css('display', 'block');
+	select($tabList.children(':first-child').attr('data-ref'), false);
 	
 	return {
 		select: select

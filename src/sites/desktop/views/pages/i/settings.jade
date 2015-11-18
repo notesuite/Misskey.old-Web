@@ -9,7 +9,7 @@ block assets
 
 block body
 	main(role='main')
-		nav#nav
+		nav.nav
 			ul
 				li(data-ref='profile')
 					i(class='fa fa-user')
@@ -26,15 +26,15 @@ block body
 				li(data-ref='credit')
 					i(class='fa fa-credit-card')
 					| クレジット
-				li(data-ref='mail')
+				li(data-ref='email')
 					i(class='fa fa-envelope-o')
 					| メールアドレス
 				li(data-ref='logout')
 					i(class='fa fa-power-off')
 					| ログアウト
-		div#content
-			div#profile
-				form#profile-form
+		div.contents
+			div.profile(data-tab-name='profile')
+				form
 					label
 						h2.title 名前
 						div.content
@@ -56,36 +56,17 @@ block body
 						div.content
 							textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
 					input.ui-button.submit-button(type='submit', value='アップデート')
-				
-			div#design
-				form#user-color-form
-					label
-						h2.title ユーザーカラー
-						div.content
-							input.ui-input-color(name='color', type='color', value=me.color)
-					input.ui-button.submit-button(type='submit', value='アップデート')
-				form#wallpaper-form
-					label
-						h2.title 壁紙
-						div.content
-							input(name='image', type='file', accept='image/*')
-					div.progress
-						p.status
-							i.fa.fa-spinner.fa-pulse
-							span.text
-						progress(form='wallpaper-form', value='0')
-					input.ui-button.submit-button(type='submit', value='アップデート')
-
-			div#home-layout
+			
+			div.home-layout(data-tab-name='home-layout')
 				img(src='/resources/images/home-design.svg', alt='customize')
 				p
 					a(href='/home/customize')
 						| ホームをカスタマイズする
 						i.fa.fa-chevron-right
 
-			div#application
+			div.application(data-tab-name='application')
 				if apps != null && apps.length > 0
-					ol#apps
+					ol.apps
 						each app in apps
 							li.app(data-app-id= app.id)
 								div.icon-area
@@ -102,7 +83,7 @@ block body
 					p#no-apps
 						| インストールされているアプリはありません。
 			
-			div#credit
+			div.credit(data-tab-name='credit')
 				div.main
 					p.title
 						| あなたの保有
@@ -112,8 +93,8 @@ block body
 						i.fa.fa-leaf
 						= me.credit.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 
-			div#mail
+			div.email(data-tab-name='email')
 				p coming soon....
 
-			div#logout
+			div.logout(data-tab-name='logout')
 				a(href='/logout') ログアウト
