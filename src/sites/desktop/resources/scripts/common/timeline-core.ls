@@ -62,7 +62,7 @@ TIMELINE_CORE = {}
 
 			fd = new FormData!
 			fd.append \text ($form.find \textarea .val!)
-			fd.append \in-reply-to-post-id ($post.attr \data-entity-id)
+			fd.append \in-reply-to-post-id ($post.attr \data-id)
 			fd.append \photos JSON.stringify(($form.find '.photos > li' .map ->
 				($ @).attr \data-id).get!)
 

@@ -51,7 +51,8 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 							`${__dirname}/../sites/desktop/views/lib/post/smart/render.jade`);
 
 						// 投稿の詳細を取得
-						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((post: any) => {
+						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((post: Object) => {
+							console.log(post);
 							// HTMLにしてクライアントに送信
 							socket.emit(content.type, compiler({
 								parsePostText: parsePostText,
