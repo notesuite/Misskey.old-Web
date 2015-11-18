@@ -52,9 +52,9 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 						// 投稿の詳細を取得
 						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((post: any) => {
-							post.text = parsePostText(post.text, post.isPlain);
 							// HTMLにしてクライアントに送信
 							socket.emit(content.type, compiler({
+								parsePostText: parsePostText,
 								post: post,
 								me: socket.user,
 								config: config.publicConfig

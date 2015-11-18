@@ -270,12 +270,12 @@ TIMELINE_CORE = {}
 					..attr \disabled on
 					..attr \data-reposting \true
 				$post.attr \data-is-reposted \true
-				$.ajax "#{config.web-api-url}/reposts/create" {
+				$.ajax "#{config.web-api-url}/posts/repost" {
 					type: \post
 					data:
 						'post-id': $post.attr \data-id
 					data-type: \json
-					xhr-fields: {+withCredentials}}
+					xhr-fields: {+with-credentials}}
 				.done ->
 					$submit-button
 						..attr \disabled off
