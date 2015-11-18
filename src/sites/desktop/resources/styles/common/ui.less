@@ -1,4 +1,5 @@
 @import "../common";
+@import "../common/i-settings";
 
 @header-background-color: #3a3a3a;
 @header-foreground-color: #d4d2d1;
@@ -98,6 +99,28 @@ textarea {
 
 /* UI
  * ---------------------------------------------------------------- */
+.ui-modal-dialog-container {
+	display: block;
+	position: fixed;
+	z-index: 1024;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	overflow: auto;
+}
+
+.ui-modal-dialog {
+	display: block;
+	position: absolute;
+	top: 10%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
 #misskey-post-form-back {
 	display: none;
 	position: fixed;
@@ -421,6 +444,15 @@ textarea {
 			}
 		}
 	}
+}
+
+#misskey-i-settings-form {
+	> main {
+		.i-settings;
+	}
+
+	margin: 0 auto;
+	max-width: 800px;
 }
 
 #misskey-main-header {

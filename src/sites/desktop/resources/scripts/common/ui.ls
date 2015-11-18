@@ -6,6 +6,7 @@ Sortable = require 'Sortable'
 Tab = require '../lib/tab.js'
 WavesEffect = require '../lib/waves-effect.js'
 Album = require '../common/album.js'
+init-i-settings-dialog = require '../common/i-settings.js'
 
 album = new Album
 
@@ -53,6 +54,45 @@ window.upload-file = (file, uploading, success, failed) ->
 
 window.open-select-album-file-dialog = (cb) ->
 	album.choose-file cb
+
+window.show-modal-dialog = ($content) ->
+	$container = $ '<div class="ui-modal-dialog-container" />'
+	$dialog = $ '<div class="ui-modal-dialog" />'
+	$dialog.append $content
+	$container.append $dialog
+	$ \body .append $container
+
+	$dialog.css \max-width $content.css \max-width
+
+	$container.animate {
+		opacity: 1
+	} 100ms \linear
+
+	$content.css {
+		transform: 'scale(1.2)'
+		opacity: 0
+	}
+	$content.transition {
+		opacity: \1
+		scale: \1
+	} 1000ms 'cubic-bezier(0, 1, 0, 1)'
+
+	$container.click ->
+		close!
+
+	$dialog.click (e) ->
+		e.stop-immediate-propagation!
+
+	function close
+		$container.animate {
+			opacity: 0
+		} 100ms \linear -> $container.remove!
+		$dialog.stop!
+		$dialog.transition {
+			opacity: \0
+			scale: \0.8
+		} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
+			$dialog.remove!
 
 function update-relative-times
 	now = new Date!
@@ -620,6 +660,19 @@ $ ->
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
 					window.init-waves-effects!
 			.fail ->
+
+	$ \#misskey-main-header-i-settings-anchor .click ->
+		$.ajax config.url + '/i/settings' {
+			type: \get
+			data-type: \html
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			$dialog = $ '<div id="misskey-i-settings-form" />'
+			$dialog.append ($ data).find \main
+			init-i-settings-dialog $dialog.find \main
+			window.show-modal-dialog $dialog
+		.fail (data) ->
+		false
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
