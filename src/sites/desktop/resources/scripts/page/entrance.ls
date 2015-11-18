@@ -182,7 +182,7 @@ function show-register-form
 	$ \#register-form .animate {
 		top: 0
 		opacity: 1
-	} 1000ms \ease
+	} 1000ms \swing
 	$ '#register-form .user-name .user-name-input' .focus!
 
 function hide-register-form
@@ -193,5 +193,5 @@ function hide-register-form
 	$ \#register-form .animate {
 		top: '-200%'
 		opacity: 0
-	} 1000ms \ease ->
+	} 1000ms \swing ->
 		$ \#register-form .css \display \none
