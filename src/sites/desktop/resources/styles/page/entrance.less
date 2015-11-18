@@ -258,7 +258,7 @@ main {
 		top: 5%;
 		right: 0;
 		left: 0;
-		width: 480px;
+		width: 450px;
 		margin: auto;
 		background: #FFFBF7;
 
@@ -301,45 +301,23 @@ main {
 				color: rgba(0, 0, 0, 0.6);
 			}
 
-			.column {
-				position: relative;
+			label {
+				display: block;
+				clear: both;
+				margin: 0;
+				padding: 8px 0;
 
-				&:first-child {
-					label {
-						padding: 0 0 8px 0;
-					}
-				}
-
-				label {
-					display: block;
-					clear: both;
-					margin: 0;
-					padding: 8px 0;
-
-					.field {
-						position: relative;
-						padding: 0 0 0 12px;
-
-						> i {
-							display: block;
-							position: absolute;
-							top: 0;
-							bottom: 0;
-							left: -16px;
-							height: 1em;
-							margin: auto;
-							color: #DCD5D1;
-						}
-					}
+				&.user-name {
+					padding: 0;
 				}
 			}
+		}
 
-			.agree-tou {
-				padding: 12px 0;
+		.agree-tou {
+			padding: 12px 0;
 
-				p {
-					display: inline;
-				}
+			p {
+				display: inline;
 			}
 		}
 
@@ -405,6 +383,7 @@ main {
 
 		.actions {
 			clear: both;
+			margin-top: 10px;
 			padding: 0;
 			text-align: right;
 

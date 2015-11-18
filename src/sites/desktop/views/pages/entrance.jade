@@ -68,49 +68,37 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						i.fa.fa-child
 						| Create my Misskey account
 				form
-					div.column.user-name
-						label
-							div.field
-								i.fa.fa-circle
-								input.user-name-input(
-									name='screen-name',
-									type='text',
-									placeholder='User name',
-									pattern='^[a-zA-Z0-9_]+$',
-									autocomplete='off',
-									required)
-							p.profile-page-url-preview https://misskey.xyz/
-					div.column.password
-						label
-							div.field
-								i.fa.fa-circle
-								input.password-input(
-									name='password',
-									type='password',
-									placeholder='Passcode',
-									autocomplete='off',
-									required)
-					div.column.password-retype
-						label
-							div.field
-								i.fa.fa-circle
-								input.password-retype-input(
-									name='retype-password',
-									type='password',
-									placeholder='Retype passcode',
-									autocomplete='off',
-									required)
-					div.column.agree-tou
-						label
-							div.field
-								i.fa.fa-circle
-								input(
-									name='agree-tou',
-									type='checkbox',
-									required)
-								p
-									| I agree to the 
-									a(href='') Terms of Use(Japanese)
+					label.user-name
+						input.user-name-input(
+							name='screen-name',
+							type='text',
+							placeholder='User name',
+							pattern='^[a-zA-Z0-9_]+$',
+							autocomplete='off',
+							required)
+						p.profile-page-url-preview https://misskey.xyz/
+					label.password
+						input.password-input(
+							name='password',
+							type='password',
+							placeholder='Passcode',
+							autocomplete='off',
+							required)
+					label.password-retype
+						input.password-retype-input(
+							name='retype-password',
+							type='password',
+							placeholder='Retype passcode',
+							autocomplete='off',
+							required)
+					label.agree-tou
+						input(
+							name='agree-tou',
+							type='checkbox',
+							required)
+						p
+							| I agree to the 
+							a(href='') Terms of Use(Japanese)
 					div.actions
 						button#register-cancel(type='button')
 							i.fa.fa-ban
