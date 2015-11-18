@@ -33,11 +33,6 @@ $ ->
 	init-register-form!
 
 function init-register-form
-	$progress = $ '#register-form progress'
-	user-name-input-query = '#register-form .user-name .user-name-input'
-	password-input-query = '#register-form .password .password-input'
-	password-retype-input-query = '#register-form .password-retype .password-retype-input'
-
 	init-user-name-section!
 	init-password-section!
 	init-password-retype-section!
@@ -60,7 +55,7 @@ function init-register-form
 
 	function init-user-name-section
 		$column = $ '#register-form .user-name'
-		$input = $ user-name-input-query
+		$input = $ '#register-form input[name="screen-name"]'
 
 		$input .on \keypress (event) ->
 			if event.which == 13
@@ -110,7 +105,7 @@ function init-register-form
 			$ '#user-name-available' .remove!
 
 	function init-password-section
-		$input = $ password-input-query
+		$input = $ '#register-form input[name="password"]'
 		$column = $ '#register-form .password'
 
 		$input .on \keypress (event) ->
@@ -146,7 +141,7 @@ function init-register-form
 			$ '#passwordAvailable' .remove!
 
 	function init-password-retype-section
-		$input = $ password-retype-input-query
+		$input = $ '#register-form input[name="retype-password"]'
 		$column = $ '#register-form .password-retype'
 
 		$input .keyup ->
