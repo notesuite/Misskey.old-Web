@@ -32,6 +32,7 @@
 		"src/api/endpoints/desktop/album/upload.ts",
 		"src/api/endpoints/desktop/album/files.ts",
 		"src/api/endpoints/desktop/home/posts/reply.ts",
+		"src/api/endpoints/desktop/home/posts/timeline.ts",
 		"src/streaming/index.ts",
 		"src/streaming/home.ts",
 		"src/sites/desktop/controllers/entrance.ts",
