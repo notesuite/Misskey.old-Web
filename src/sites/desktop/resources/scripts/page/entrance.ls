@@ -95,7 +95,7 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"user-name-available\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to $column
+			$message.prepend-to $column
 
 		function hide-message
 			$ '#user-name-available' .remove!
@@ -127,7 +127,7 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .password'
+			$message.prepend-to '#register-form .password'
 
 		function hide-message
 			$ '#passwordAvailable' .remove!
@@ -156,7 +156,7 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordRetypeAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .password-retype'
+			$message.prepend-to '#register-form .password-retype'
 
 		function hide-message
 			$ '#passwordRetypeAvailable' .remove!
