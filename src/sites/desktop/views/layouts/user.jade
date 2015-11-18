@@ -25,9 +25,8 @@ block meta
 	meta(property='twitter:url', content=url + '/' + user.screenName)
 
 block assets
-	link(rel='stylesheet', href='/resources/desktop/styles/page/user.css')
 	link(rel='stylesheet', href='/resources/desktop/styles/common/cropper.min.css')
-	block assets
+	block pageAssets
 
 block body
 	if isMe
@@ -71,59 +70,58 @@ block body
 				input.submit.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
 				button.cancel.ui-cancel-button(type='button') キャンセル
 
-	div#grobal-container
-		main(role='main')
-			header(role='banner')
-				div#header-data
-					if isMe
-						button#header-image-edit-button(title='ヘッダー画像を編集', role='button')
-							i.fa.fa-picture-o
-					div.bottom
-						div.main
-							div.names-area
-								h1#name-area
-									span#name(itemprop='name')= user.name
-									if user.isVerified
-										img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-								span#screen-name(itemprop='alternateName')= '@' + user.screenName
-							table.count-table
-								tr
-									th 投稿
-									th お気に入り
-									th フォロー
-									th フォロワー
-								tr
-									td: a(href='/' + user.screenName)= user.postsCount
-									td: a(href='/' + user.screenName + '/favorites')= user.favoritesCount
-									td: a(href='/' + user.screenName + '/followings')= user.followingsCount
-									td: a(href='/' + user.screenName + '/followers')= user.followersCount
-				nav#header-nav(role='navigation')
+	main(role='main')
+		header(role='banner')
+			div#header-data
+				if isMe
+					button#header-image-edit-button(title='ヘッダー画像を編集', role='button')
+						i.fa.fa-picture-o
+				div.bottom
 					div.main
-						div#icon-area
-							a.icon-anchor
-								img#icon(src=user.iconUrl, alt='icon', itemprop='image')
-							div.comment-container
-								p#comment
-									if user.comment != null && user.comment != ""
-										= user.comment
-									else
-										span.no-comment no comment
-						ul#main-nav
-							li(class= page == 'home' ? 'active' : '')
-								a(href='/' + user.screenName)
-									i.fa.fa-comment
-									| タイムライン
-							li(class= page == 'profile' ? 'active' : '')
-								a(href='/' + user.screenName + '/profile')
-									i.fa.fa-newspaper-o
-									| プロフィール
-							li(class= page == 'followings' ? 'active' : '')
-								a(href='/' + user.screenName + '/followings')
-									i.fa.fa-heart
-									| フォロー
-							li(class= page == 'followers' ? 'active' : '')
-								a(href='/' + user.screenName + '/followers')
-									i.fa.fa-users
-									| フォロワー
-			div#contents
-				block contents
+						div.names-area
+							h1#name-area
+								span#name(itemprop='name')= user.name
+								if user.isVerified
+									img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+							span#screen-name(itemprop='alternateName')= '@' + user.screenName
+						table.count-table
+							tr
+								th 投稿
+								th お気に入り
+								th フォロー
+								th フォロワー
+							tr
+								td: a(href='/' + user.screenName)= user.postsCount
+								td: a(href='/' + user.screenName + '/favorites')= user.favoritesCount
+								td: a(href='/' + user.screenName + '/followings')= user.followingsCount
+								td: a(href='/' + user.screenName + '/followers')= user.followersCount
+			nav#header-nav(role='navigation')
+				div.main
+					div#icon-area
+						a.icon-anchor
+							img#icon(src=user.iconUrl, alt='icon', itemprop='image')
+						div.comment-container
+							p#comment
+								if user.comment != null && user.comment != ""
+									= user.comment
+								else
+									span.no-comment no comment
+					ul#main-nav
+						li(class= page == 'home' ? 'active' : '')
+							a(href='/' + user.screenName)
+								i.fa.fa-comment
+								| タイムライン
+						li(class= page == 'profile' ? 'active' : '')
+							a(href='/' + user.screenName + '/profile')
+								i.fa.fa-newspaper-o
+								| プロフィール
+						li(class= page == 'followings' ? 'active' : '')
+							a(href='/' + user.screenName + '/followings')
+								i.fa.fa-heart
+								| フォロー
+						li(class= page == 'followers' ? 'active' : '')
+							a(href='/' + user.screenName + '/followers')
+								i.fa.fa-users
+								| フォロワー
+		div#contents
+			block contents

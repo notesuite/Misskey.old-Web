@@ -4,7 +4,8 @@ include ../lib/post/smart/post
 block title
 	= user.name
 
-block assets
+block pageAssets
+	link(rel='stylesheet', href='/resources/desktop/styles/page/user.css')
 	script(src='/resources/desktop/scripts/page/user-home.js')
 
 block contents
