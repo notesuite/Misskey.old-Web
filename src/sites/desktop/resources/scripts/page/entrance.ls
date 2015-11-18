@@ -57,11 +57,11 @@ function init-register-form
 		$column = $ '#register-form .user-name'
 		$input = $ '#register-form input[name="screen-name"]'
 
-		$input .on \keypress (event) ->
+		$input.on \keypress (event) ->
 			if event.which == 13
 				$ '#register-form input[name="password"]' .focus!
 
-		$input .keyup ->
+		$input.keyup ->
 			hide-message!
 			sn = $input .val!
 
@@ -99,7 +99,7 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"user-name-available\" class=\"message #{klass}\">#{message}</p>"
-			$message.append-to '#register-form .user-name'
+			$message.append-to $column
 
 		function hide-message
 			$ '#user-name-available' .remove!
