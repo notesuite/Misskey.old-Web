@@ -3,7 +3,7 @@ mixin content(post)
 		when 'status'
 			div.text!= parsePostText(post.text, post.isPlain)
 		when 'photo'
-			div.text!= post.text
+			div.text!= parsePostText(post.text, post.isPlain)
 			ol.photos
 				each photo in post.photos
 					li.photo
