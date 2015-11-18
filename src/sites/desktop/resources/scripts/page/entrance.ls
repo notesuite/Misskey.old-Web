@@ -178,7 +178,7 @@ function show-register-form
 	$ \#register-form-background .css \display \block
 	$ \#register-form-background .animate {
 		opacity: 1
-	} 500ms \linear
+	} 300ms \linear
 	$ \#register-form .stop!
 	$ \#register-form .css \display \block
 	$ \#register-form .css \transform 'scale(1.2)'
