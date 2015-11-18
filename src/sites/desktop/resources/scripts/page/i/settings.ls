@@ -1,5 +1,10 @@
+require '../../common/ui.js'
+$ = require 'jquery'
+
+Tab = require '../../lib/tab.js'
+
 $ ->
-	SYUILOUI.Tab $ '#nav > ul'
+	Tab $ '#nav > ul'
 
 	$ \#profile-form .submit (event) ->
 		event.prevent-default!
