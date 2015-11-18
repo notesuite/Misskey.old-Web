@@ -1,15 +1,16 @@
-doctype html
+extends ../layout
 
-html(lang='ja', dir='ltr')
-	head
-		include ../common/head
-		meta(name='description', content='Not found')
-		title= 'Not found'
-		link(rel='stylesheet', href='/resources/desktop/styles/page/user-not-found.css')
-	
-	body
-		include ../common/header
-		
-		main(role='main')
-			h1 Not found
-			p 見つかりません。
+block title
+	| Not found
+
+block meta
+	meta(name='description', content='Not found')
+
+block assets
+	link(rel='stylesheet', href='/resources/desktop/styles/page/user-not-found.css')
+	script(src='/resources/desktop/scripts/common/ui.js')
+
+block body
+	main(role='main')
+		h1 Not found
+		p 見つかりません。
