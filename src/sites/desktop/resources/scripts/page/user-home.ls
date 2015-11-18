@@ -1,9 +1,14 @@
+require '../common/ui.js'
+require './user.js'
+$ = require 'jquery'
+TIMELINE_CORE = require '../common/timeline-core.js'
+
 $ ->
 	$ \#left-sub-contents .css \padding-top "#{$ \#comment .outer-height! - 16px}px"
 
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUS_CORE.set-event $ @
-	
+
 	# Read more
 	$ window .scroll ->
 		me = $ @

@@ -1,3 +1,6 @@
+require '../common/ui.js'
+$ = require 'jquery'
+
 $ ->
 	is-me = $ \html .attr \data-is-me
 
