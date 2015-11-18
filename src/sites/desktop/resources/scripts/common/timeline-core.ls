@@ -205,18 +205,6 @@ TIMELINE_CORE = {}
 				event.prevent-default!
 				submit-reply!
 
-			# Preview attache image
-			..find '.image-attacher input[name=image]' .change ->
-				$input = $ @
-				file = $input.prop \files .0
-				if file.type.match 'image.*'
-					reader = new FileReader!
-						..onload = ->
-							$img = $ '<img>' .attr \src reader.result
-							$input.parent '.image-attacher' .find 'p, img' .remove!
-							$input.parent '.image-attacher' .append $img
-						..readAsDataURL file
-
 			# Init favorite button
 			..find 'article > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @

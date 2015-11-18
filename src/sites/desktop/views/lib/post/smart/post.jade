@@ -85,7 +85,7 @@ mixin post(post)
 			data-is-favorited      != login ? post.type == 'repost' ? post.post.isFavorited.toString() : post.isFavorited.toString() : null
 			data-is-reposted       != login ? post.type == 'repost' ? post.post.isReposted.toString() : post.isReposted.toString() : null
 			data-display-html-is-active='false')
-		if login
+		if login && me.id != post.userId
 			div.repost-form
 				div.background
 				form.form
