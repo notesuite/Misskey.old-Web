@@ -116,19 +116,21 @@ mixin post(post)
 				+subPost(post.inReplyToPost)(class='reply-source')
 			+extract(post)
 			footer.footer
-				ul.actions
-					li.reply
-						button.reply-button(title='返信', role='button')
-							i.fa.fa-reply
-						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
-					li.repost
-						button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
-							i.fa.fa-retweet
-						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
-					li.favorite
-						button.favorite-button(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
-							i.fa.fa-star
-						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
+				if login
+					ul.actions
+						li.reply
+							button.reply-button(title='返信', role='button')
+								i.fa.fa-reply
+							a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
+						if me.id != post.userId
+							li.repost
+								button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
+									i.fa.fa-retweet
+								a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
+						li.favorite
+							button.favorite-button(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+								i.fa.fa-star
+							a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
 				if post.stargazers != null
 					ol.stargazers
 						each stargazer in post.stargazers
