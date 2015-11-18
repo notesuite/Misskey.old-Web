@@ -29,6 +29,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		res.display(req, 'user', {
 			user: user,
 			me: me,
+			isMe: req.isLogin && user.id.toString() === me.id.toString(),
 			timeline: timeline
 		});
 	});

@@ -2,17 +2,12 @@ require '../common/ui.js'
 $ = require 'jquery'
 
 $ ->
-	is-me = $ \html .attr \data-is-me
-
 	# Init edit forms
-	if is-me
+	if window.is-me
 		init-icon-edit-form!
 		init-header-image-edit-form!
 
-	function check-follow
-		($ \html .attr \data-is-following) == \true
-
-	if is-me
+	if window.is-me
 		$ \#name .click ->
 			$ 'main > header' .attr \data-name-editing \true
 
@@ -24,21 +19,21 @@ $ ->
 
 	$ '#friend-button' .hover do
 		->
-			if check-follow!
+			if window.is-following
 				$ '#friend-button' .add-class \danger
 				$ '#friend-button' .text 'フォロー解除'
 		->
-			if check-follow!
+			if window.is-following
 				$ '#friend-button' .remove-class \danger
 				$ '#friend-button' .text 'フォロー中'
 
 	$ '#friend-button' .click ->
 		$button = $ @
 			..attr \disabled on
-		if check-follow!
+		if window.is-following
 			$.ajax "#{config.web-api-url}/users/unfollow" {
 				type: \delete
-				data: {'user-id': $ \html .attr \data-user-id}
+				data: {'user-id': window.user-id}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done ->
@@ -48,13 +43,13 @@ $ ->
 					..remove-class \following
 					..add-class \notFollowing
 					..text 'フォロー'
-				$ \html .attr \data-is-following \false
+				window.is-following = false
 			.fail ->
 				$button.attr \disabled off
 		else
 			$.ajax "#{config.web-api-url}/users/follow" {
 				type: \post
-				data: {'user-id': $ \html .attr \data-user-id}
+				data: {'user-id': window.user-id}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done ->
@@ -63,7 +58,7 @@ $ ->
 					..remove-class \notFollowing
 					..add-class \following
 					..text 'フォロー中'
-				$ \html .attr \data-is-following \true
+				window.is-following = true
 			.fail ->
 				$button.attr \disabled off
 

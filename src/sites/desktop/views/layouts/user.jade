@@ -1,5 +1,3 @@
-- var isMe = login && me.id == user.id
-
 extends ../layout
 
 block vars
@@ -25,7 +23,7 @@ block meta
 	meta(property='twitter:url', content=url + '/' + user.screenName)
 
 block assets
-	script!= 'window.isMe = ' + isMe.toString() + '; window.isFollowing = ' + user.isFollowing.toString() + '; window.userId = ' + user.id.toString()
+	script!= 'window.isMe = ' + isMe.toString() + '; window.isFollowing = ' + user.isFollowing.toString() + '; window.userId = ' + user.id
 	link(rel='stylesheet', href='/resources/desktop/styles/common/cropper.min.css')
 	block pageAssets
 
