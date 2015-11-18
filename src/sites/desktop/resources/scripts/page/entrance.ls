@@ -57,13 +57,9 @@ function init-register-form
 		$column = $ '#register-form .user-name'
 		$input = $ '#register-form input[name="screen-name"]'
 
-		$input.on \keypress (event) ->
-			if event.which == 13
-				$ '#register-form input[name="password"]' .focus!
-
 		$input.keyup ->
 			hide-message!
-			sn = $input .val!
+			sn = $input.val!
 
 			$ '.profile-page-url-preview' .text "https://misskey.xyz/#sn"
 
@@ -107,10 +103,6 @@ function init-register-form
 	function init-password-section
 		$input = $ '#register-form input[name="password"]'
 		$column = $ '#register-form .password'
-
-		$input .on \keypress (event) ->
-			if event.which == 13
-				$ '#register-form input[name="retype-password"]' .focus!
 
 		$input .keyup ->
 			right = no
