@@ -33,7 +33,7 @@ block body
 					i(class='fa fa-power-off')
 					| ログアウト
 		div.contents
-			div.profile(data-tab-name='profile')
+			div.profile(data-name='profile')
 				form
 					label
 						h2.title 名前
@@ -57,14 +57,14 @@ block body
 							textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
 					input.ui-button.submit-button(type='submit', value='アップデート')
 			
-			div.home-layout(data-tab-name='home-layout')
+			div.home-layout(data-name='home-layout')
 				img(src='/resources/images/home-design.svg', alt='customize')
 				p
 					a(href='/home/customize')
 						| ホームをカスタマイズする
 						i.fa.fa-chevron-right
 
-			div.application(data-tab-name='application')
+			div.application(data-name='application')
 				if apps != null && apps.length > 0
 					ol.apps
 						each app in apps
@@ -83,7 +83,7 @@ block body
 					p#no-apps
 						| インストールされているアプリはありません。
 			
-			div.credit(data-tab-name='credit')
+			div.credit(data-name='credit')
 				div.main
 					p.title
 						| あなたの保有
@@ -93,8 +93,8 @@ block body
 						i.fa.fa-leaf
 						= me.credit.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 
-			div.email(data-tab-name='email')
+			div.email(data-name='email')
 				p coming soon....
 
-			div.logout(data-tab-name='logout')
+			div.logout(data-name='logout')
 				a(href='/logout') ログアウト
