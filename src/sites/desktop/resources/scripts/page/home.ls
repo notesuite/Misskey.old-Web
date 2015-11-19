@@ -145,7 +145,7 @@ $ ->
 					type: \get
 					data:
 						limit: 20
-						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-timeline-cursor
+						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor
 					data-type: \text
 					xhr-fields: {+with-credentials}}
 				.done (data) ->

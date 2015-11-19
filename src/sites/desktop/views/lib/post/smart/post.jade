@@ -62,11 +62,8 @@ mixin core(post, isRepost, repost)
 			itemscope
 			itemtype                = 'http://schema.org/BlogPosting'
 			data-id                 = post.id
-			data-cursor             = post.cursor
-			data-timeline-cursor    = isRepost ? repost.cursor : post.cursor
+			data-cursor             = isRepost ? repost.cursor : post.cursor
 			data-user-id            = post.user.id
-			data-user-screen-name   = post.user.screenName
-			data-user-name          = post.user.name
 			data-is-favorited      != login ? post.isFavorited.toString() : null
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != (post.repliesCount > 0).toString()
