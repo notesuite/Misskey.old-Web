@@ -323,10 +323,11 @@ TIMELINE_CORE = {}
 	..add = ($post) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 
-		#$recent-status = ($ ($tl.children '.statuses' .children '.status')[0]) .children \.status
-		#if ($recent-status.attr \data-display-html-is-active) == \true
-		#	$status.children \.status .add-class \display-html-active-status-prev
 		TIMELINE_CORE.set-event $post
 		$post.prepend-to ((TIMELINE_CORE.tl.children '.posts')[0]) .hide!.slide-down 200ms
+
+	..add-last = ($post) ->
+		TIMELINE_CORE.set-event $post
+		$post.append-to ((TIMELINE_CORE.tl.children '.posts')[0])
 
 module.exports = TIMELINE_CORE

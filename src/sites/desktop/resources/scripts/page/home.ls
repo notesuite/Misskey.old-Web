@@ -144,6 +144,7 @@ $ ->
 				$.ajax "#{config.web-api-url}/web/desktop/home/posts/timeline" {
 					type: \get
 					data:
+						limit: 20
 						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-timeline-cursor
 					data-type: \text
 					xhr-fields: {+with-credentials}}
@@ -151,7 +152,7 @@ $ ->
 					me.data \loading no
 					$posts = $ data
 					$posts.each ->
-						TIMELINE_CORE.add $ @
+						TIMELINE_CORE.add-last $ @
 				.fail (data) ->
 					me.data \loading no
 

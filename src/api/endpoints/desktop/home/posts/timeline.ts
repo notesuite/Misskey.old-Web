@@ -2,6 +2,7 @@ const jade: any = require('jade');
 import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
 import requestApi from '../../../../../utils/requestApi';
+import parsePostText from '../../../../../utils/parsePostText';
 import config from '../../../../../config';
 
 export default function(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
@@ -14,6 +15,7 @@ export default function(req: MisskeyExpressRequest, res: MisskeyExpressResponse)
 		res.send(compiler({
 			posts: tl,
 			me: req.me,
+			parsePostText: parsePostText,
 			config: config.publicConfig
 		}));
 	}, (err: any) => {
