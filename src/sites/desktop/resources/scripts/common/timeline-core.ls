@@ -19,11 +19,11 @@ TIMELINE_CORE = {}
 
 		function activate-display-state
 			animation-speed = 200ms
-			if ($post.attr \data-display-html-is-active) == \false
+			if ($post.attr \data-is-display-active) == \false
 				reply-form-text = $post.find '.form-and-replies .reply-form textarea' .val!
 				TIMELINE_CORE.tl.find '> .posts > .post' .each ->
 					$ @
-						..attr \data-display-html-is-active \false
+						..attr \data-is-display-active \false
 						..remove-class \display-html-active-status-prev
 						..remove-class \display-html-active-status-next
 				TIMELINE_CORE.tl.find '> .posts > .post > .talk > i' .each ->
@@ -35,7 +35,7 @@ TIMELINE_CORE = {}
 				TIMELINE_CORE.tl.find '> .posts > .post > .form-and-replies' .each ->
 					$ @ .hide animation-speed
 				$post
-					..attr \data-display-html-is-active \true
+					..attr \data-is-display-active \true
 					..parent!.prev!.add-class \display-html-active-status-prev
 					..parent!.next!.add-class \display-html-active-status-next
 					..find  '.talk > i' .hide animation-speed
@@ -46,7 +46,7 @@ TIMELINE_CORE = {}
 					..find  '.form-and-replies .reply-form textarea' .focus! .val reply-form-text
 			else
 				$post
-					..attr \data-display-html-is-active \false
+					..attr \data-is-display-active \false
 					..parent!.prev!.remove-class \display-html-active-status-prev
 					..parent!.next!.remove-class \display-html-active-status-next
 					..find  '.talk > i' .show animation-speed

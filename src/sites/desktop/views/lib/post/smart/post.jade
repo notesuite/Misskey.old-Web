@@ -71,7 +71,7 @@ mixin core(post, isRepost, repost)
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != (post.repliesCount > 0).toString()
 			data-is-talk           != (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null).toString()
-			data-display-html-is-active='false')
+			data-is-display-active='false')
 		if login && me.id != post.userId
 			div.repost-form
 				div.background
