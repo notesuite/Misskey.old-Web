@@ -26,21 +26,21 @@ TIMELINE_CORE = {}
 						..attr \data-is-display-active \false
 						..remove-class \display-html-active-status-prev
 						..remove-class \display-html-active-status-next
-				TIMELINE_CORE.tl.find '> .posts > .post > .talk > i' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > .talk-ellipsis' .each ->
+					$ @ .show animation-speed
+				TIMELINE_CORE.tl.find '> .posts > .post > .replies-ellipsis' .each ->
 					$ @ .show animation-speed
 				TIMELINE_CORE.tl.find '> .posts > .post > .talk > .posts' .each ->
 					$ @ .hide animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > .reply-info' .each ->
-					$ @ .show animation-speed
 				TIMELINE_CORE.tl.find '> .posts > .post > .form-and-replies' .each ->
 					$ @ .hide animation-speed
 				$post
 					..attr \data-is-display-active \true
 					..parent!.prev!.add-class \display-html-active-status-prev
 					..parent!.next!.add-class \display-html-active-status-next
-					..find  '.talk > i' .hide animation-speed
+					..find  '> .talk-ellipsis' .hide animation-speed
+					..find  '> .replies-ellipsis' .hide animation-speed
 					..find  '.talk > .statuses' .show animation-speed
-					..find  '.reply-info' .hide animation-speed
 					..find  '.form-and-replies' .show animation-speed
 					..find  '.form-and-replies .reply-form textarea' .val ''
 					..find  '.form-and-replies .reply-form textarea' .focus! .val reply-form-text
@@ -49,9 +49,9 @@ TIMELINE_CORE = {}
 					..attr \data-is-display-active \false
 					..parent!.prev!.remove-class \display-html-active-status-prev
 					..parent!.next!.remove-class \display-html-active-status-next
-					..find  '.talk > i' .show animation-speed
+					..find  '> .talk-ellipsis' .show animation-speed
+					..find  '> .replies-ellipsis' .show animation-speed
 					..find  '.talk > .statuses' .hide animation-speed
-					..find  '.reply-info' .show animation-speed
 					..find  '.form-and-replies' .hide animation-speed
 
 		function submit-reply
