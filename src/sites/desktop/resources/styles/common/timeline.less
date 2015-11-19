@@ -381,6 +381,22 @@
 			border-top: none;
 		}
 
+		> .talk-ellipsis {
+			pointer-events: none;
+			position: absolute;
+			top: 16px;
+			left: 50%;
+			color: #EBE0D4;
+		}
+
+		> .replies-ellipsis {
+			pointer-events: none;
+			position: absolute;
+			bottom: 16px;
+			left: 50%;
+			color: #EBE0D4;
+		}
+
 		> .repost-form {
 			> .background {
 				display: none;
@@ -720,7 +736,6 @@
 				}
 			}
 		}
-
 
 		> .talk {
 			text-align: center;
@@ -1103,14 +1118,6 @@
 					}
 				}
 			}
-		}
-
-		> .reply-info {
-			pointer-events: none;
-			position: absolute;
-			bottom: 8px;
-			left: 50%;
-			color: rgba(0,0,0,0.1);
 		}
 
 		> .footer {

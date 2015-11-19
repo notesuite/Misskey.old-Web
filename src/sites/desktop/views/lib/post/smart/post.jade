@@ -54,6 +54,8 @@ mixin post(post, isRepost)
 
 mixin core(post, isRepost, repost)
 	- var login = (me != null);
+	- var isHaveReplies = (post.repliesCount > 0);
+	- var isTalk = (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null);
 	article.post(
 			class                   = isRepost ? 'repost ' + post.type : post.type
 			role                    = 'article'
@@ -66,9 +68,13 @@ mixin core(post, isRepost, repost)
 			data-user-id            = post.user.id
 			data-is-favorited      != login ? post.isFavorited.toString() : null
 			data-is-reposted       != login ? post.isReposted.toString() : null
-			data-is-have-replies   != (post.repliesCount > 0).toString()
-			data-is-talk           != (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null).toString()
+			data-is-have-replies   != isHaveReplies.toString()
+			data-is-talk           != isTalk.toString()
 			data-is-display-active='false')
+		if isTalk
+			i.fa.fa-ellipsis-v.talk-ellipsis
+		if isHaveReplies
+			i.fa.fa-ellipsis-v.replies-ellipsis
 		if login && me.id != post.userId
 			div.repost-form
 				div.background
@@ -134,8 +140,6 @@ mixin core(post, isRepost, repost)
 						li.stargazer
 							a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
 								img.icon(src=stargazer.iconUrl, alt='icon')
-		if post.repliesCount > 0
-			i.fa.fa-ellipsis-v.reply-info
 		aside.form-and-replies
 			form.reply-form(role='form')
 				img.me-icon(src=me.iconUrl, alt='icon')
