@@ -20,39 +20,39 @@ TIMELINE_CORE = {}
 		function activate-display-state
 			animation-speed = 200ms
 			if ($post.attr \data-display-html-is-active) == \false
-				reply-form-text = $post.children \article .find '.form-and-replies .reply-form textarea' .val!
+				reply-form-text = $post.find '.form-and-replies .reply-form textarea' .val!
 				TIMELINE_CORE.tl.find '> .posts > .post' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
 						..remove-class \display-html-active-status-prev
 						..remove-class \display-html-active-status-next
-				TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > i' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > .talk > i' .each ->
 					$ @ .show animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > article > .talk > .posts' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > .talk > .posts' .each ->
 					$ @ .hide animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > article > .reply-info' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > .reply-info' .each ->
 					$ @ .show animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > article > .form-and-replies' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > .form-and-replies' .each ->
 					$ @ .hide animation-speed
 				$post
 					..attr \data-display-html-is-active \true
 					..parent!.prev!.add-class \display-html-active-status-prev
 					..parent!.next!.add-class \display-html-active-status-next
-					..children \article .find  '.talk > i' .hide animation-speed
-					..children \article .find  '.talk > .statuses' .show animation-speed
-					..children \article .find  '.reply-info' .hide animation-speed
-					..children \article .find  '.form-and-replies' .show animation-speed
-					..children \article .find  '.form-and-replies .reply-form textarea' .val ''
-					..children \article .find  '.form-and-replies .reply-form textarea' .focus! .val reply-form-text
+					..find  '.talk > i' .hide animation-speed
+					..find  '.talk > .statuses' .show animation-speed
+					..find  '.reply-info' .hide animation-speed
+					..find  '.form-and-replies' .show animation-speed
+					..find  '.form-and-replies .reply-form textarea' .val ''
+					..find  '.form-and-replies .reply-form textarea' .focus! .val reply-form-text
 			else
 				$post
 					..attr \data-display-html-is-active \false
 					..parent!.prev!.remove-class \display-html-active-status-prev
 					..parent!.next!.remove-class \display-html-active-status-next
-					..children \article .find  '.talk > i' .show animation-speed
-					..children \article .find  '.talk > .statuses' .hide animation-speed
-					..children \article .find  '.reply-info' .show animation-speed
-					..children \article .find  '.form-and-replies' .hide animation-speed
+					..find  '.talk > i' .show animation-speed
+					..find  '.talk > .statuses' .hide animation-speed
+					..find  '.reply-info' .show animation-speed
+					..find  '.form-and-replies' .hide animation-speed
 
 		function submit-reply
 			$form = $post.find '.reply-form'
@@ -166,7 +166,7 @@ TIMELINE_CORE = {}
 					activate-display-state!
 
 			# Images
-			..find '.main .attached-images > .images > .image' .each ->
+			..find '> .main .attached-images > .images > .image' .each ->
 				$image = $ @
 				$img = $image.find \img
 				$button = $image.find \button
@@ -206,7 +206,7 @@ TIMELINE_CORE = {}
 				submit-reply!
 
 			# Init favorite button
-			..find 'article > .footer > .actions > .favorite > .favorite-button' .click ->
+			..find '> .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-favorited!
@@ -235,11 +235,11 @@ TIMELINE_CORE = {}
 						$status.attr \data-is-favorited \false
 
 			# Init reply button
-			..find 'article > .footer > .actions > .reply > .reply-button' .click ->
+			..find '> .footer > .actions > .reply > .reply-button' .click ->
 				activate-display-state!
 
 			# Init repost button
-			..find 'article > .footer > .actions > .repost > .repost-button' .click ->
+			..find '> .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
 					$post.attr \data-is-reposted \false
 					$.ajax "#{config.web-api-url}/post/unrepost" {
@@ -253,17 +253,17 @@ TIMELINE_CORE = {}
 						$button.attr \disabled off
 						$status.attr \data-is-reposted \true
 				else
-					$post.find '.repost-form .background' .css \display \block
-					$post.find '.repost-form .background' .animate {
+					$post.find '> .repost-form .background' .css \display \block
+					$post.find '> .repost-form .background' .animate {
 						opacity: 1
 					} 100ms \linear
-					$post.find '.repost-form .form' .css \display \block
-					$post.find '.repost-form .form' .animate {
+					$post.find '> .repost-form .form' .css \display \block
+					$post.find '> .repost-form .form' .animate {
 						opacity: 1
 					} 100ms \linear
 
 			# Init repost form
-			..find '.repost-form > .form' .submit (event) ->
+			..find '> .repost-form > .form' .submit (event) ->
 				event.prevent-default!
 				$form = $ @
 				$submit-button = $form.find \.accept
@@ -281,35 +281,35 @@ TIMELINE_CORE = {}
 						..attr \disabled off
 						..attr \data-reposting \false
 					window.display-message 'Reposted!'
-					$post.find '.repost-form .background' .animate {
+					$post.find '> .repost-form .background' .animate {
 						opacity: 0
-					} 100ms \linear -> $post.find '.repost-form .background' .css \display \none
-					$post.find '.repost-form .form' .animate {
+					} 100ms \linear -> $post.find '> .repost-form .background' .css \display \none
+					$post.find '> .repost-form .form' .animate {
 						opacity: 0
-					} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
+					} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
 				.fail ->
 					$submit-button
 						..attr \disabled off
 						..attr \data-reposting \false
 					$post.attr \data-is-reposted \false
 					window.display-message 'Repostに失敗しました。再度お試しください。'
-			..find '.repost-form > .form > .actions > .cancel' .click ->
-				$post.find '.repost-form .background' .animate {
+			..find '> .repost-form > .form > .actions > .cancel' .click ->
+				$post.find '> .repost-form .background' .animate {
 					opacity: 0
-				} 100ms \linear -> $post.find '.repost-form .background' .css \display \none
-				$post.find '.repost-form .form' .animate {
+				} 100ms \linear -> $post.find '> .repost-form .background' .css \display \none
+				$post.find '> .repost-form .form' .animate {
 					opacity: 0
-				} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
-			..find '.repost-form .background' .click ->
-				$post.find '.repost-form .background' .animate {
+				} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
+			..find '> .repost-form .background' .click ->
+				$post.find '> .repost-form .background' .animate {
 					opacity: 0
-				} 100ms \linear -> $post.find '.repost-form .background' .css \display \none
-				$post.find '.repost-form .form' .animate {
+				} 100ms \linear -> $post.find '> .repost-form .background' .css \display \none
+				$post.find '> .repost-form .form' .animate {
 					opacity: 0
-				} 100ms \linear -> $post.find '.repost-form .form' .css \display \none
+				} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
 
 			# Init ogp preview
-			..find 'article > .main > .content > .text a:not(.mention)' .each ->
+			..find '> .main > .content > .text a:not(.mention)' .each ->
 				$link = $ @
 				$.ajax "#{config.web-api-url}/web/ogp/parse" {
 					type: \get
@@ -318,7 +318,7 @@ TIMELINE_CORE = {}
 					data-type: \text
 					xhr-fields: {+with-credentials}}
 				.done (html) ->
-					$ html .append-to $post.find 'article > .main > .content' .hide!.fade-in 200ms
+					$ html .append-to $post.find '> .main > .content' .hide!.fade-in 200ms
 
 	..add = ($post) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
