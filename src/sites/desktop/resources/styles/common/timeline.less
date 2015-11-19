@@ -296,12 +296,12 @@
 		&[data-is-repostpost='true'] {
 		}
 
-		&[data-is-favorited='true'] {
-			&:hover > .main > .actions > .favorite > button {
+		&[data-is-liked='true'] {
+			&:hover > .main > .actions > .like > button {
 				color: @themeColor;
 			}
 
-			> .footer > .actions > .favorite {
+			> .footer > .actions > .like {
 				> button {
 					color: @themeColor;
 
@@ -368,7 +368,7 @@
 			}
 
 			> .footer > .actions {
-				> .reply, > .repost, > .favorite, > .delete, > .pin {
+				> .reply, > .repost, > .like, > .delete, > .pin {
 					opacity: 1;
 				}
 			}
@@ -1130,14 +1130,14 @@
 				clear: both;
 			}
 
-			> .stargazers {
+			> .likers {
 				display: block;
 				float: left;
 				margin: 0;
 				padding: 0;
 				list-style: none;
 
-				> .stargazer {
+				> .liker {
 					display: inline-block;
 					margin: 6px 2px;
 					padding: 0;
@@ -1162,7 +1162,7 @@
 				padding: 0;
 				list-style: none;
 
-				> .reply, > .repost, > .favorite, > .delete, > .pin {
+				> .reply, > .repost, > .like, > .delete, > .pin {
 					display: inline-block;
 					margin: 0;
 					padding: 0 16px;

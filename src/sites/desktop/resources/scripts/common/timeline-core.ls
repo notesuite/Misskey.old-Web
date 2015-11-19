@@ -11,8 +11,8 @@ TIMELINE_CORE = {}
 			TIMELINE_CORE.set-event $ @
 
 	..set-event = ($post) ->
-		function check-favorited
-			($post.attr \data-is-favorited) == \true
+		function check-liked
+			($post.attr \data-is-liked) == \true
 
 		function check-reposted
 			($post.attr \data-is-reposted) == \true
@@ -205,34 +205,34 @@ TIMELINE_CORE = {}
 				event.prevent-default!
 				submit-reply!
 
-			# Init favorite button
-			..find '> .footer > .actions > .favorite > .favorite-button' .click ->
+			# Init like button
+			..find '> .footer > .actions > .like > .like-button' .click ->
 				$button = $ @
 					..attr \disabled on
-				if check-favorited!
-					$status.attr \data-is-favorited \false
-					$.ajax "#{config.web-api-url}/post/unfavorite" {
+				if check-liked!
+					$status.attr \data-is-liked \false
+					$.ajax "#{config.web-api-url}/posts/unlike" {
 						type: \delete
 						data: {'post-id': $status.attr \data-id}
 						data-type: \json
-						xhr-fields: {+withCredentials}}
+						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
 						$button.attr \disabled off
-						$status.attr \data-is-favorited \true
+						$status.attr \data-is-liked \true
 				else
-					$status.attr \data-is-favorited \true
-					$.ajax "#{config.web-api-url}/status/favorite" {
+					$status.attr \data-is-liked \true
+					$.ajax "#{config.web-api-url}/posts/like" {
 						type: \post
-						data: {'status-id': $status.attr \data-id}
+						data: {'post-id': $status.attr \data-id}
 						data-type: \json
-						xhr-fields: {+withCredentials}}
+						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
 						$button.attr \disabled off
-						$status.attr \data-is-favorited \false
+						$status.attr \data-is-liked \false
 
 			# Init reply button
 			..find '> .footer > .actions > .reply > .reply-button' .click ->

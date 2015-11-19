@@ -66,7 +66,7 @@ mixin core(post, isRepost, repost)
 			data-id                 = post.id
 			data-cursor             = isRepost ? repost.cursor : post.cursor
 			data-user-id            = post.user.id
-			data-is-favorited      != login ? post.isFavorited.toString() : null
+			data-is-liked          != login ? post.isLiked.toString() : null
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != isHaveReplies.toString()
 			data-is-talk           != isTalk.toString()
@@ -124,22 +124,25 @@ mixin core(post, isRepost, repost)
 					li.reply
 						button.reply-button(title='返信', role='button')
 							i.fa.fa-reply
-						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id).count= post.repliesCount != 0 ? post.repliesCount : ''
+						a.count(href=config.url + '/' + post.user.screenName + '/status/' + post.id)
+							= post.repliesCount != 0 ? post.repliesCount : ''
 					if me.id != post.userId
 						li.repost
 							button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
 								i.fa.fa-retweet
-							a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
-					li.favorite
-						button.favorite-button(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+							a.count(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts')
+								= post.repostsCount != 0 ? post.repostsCount : ''
+					li.like
+						button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
 							i.fa.fa-star
-						a(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
-			if post.stargazers != null
-				ol.stargazers
-					each stargazer in post.stargazers
-						li.stargazer
-							a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
-								img.icon(src=stargazer.iconUrl, alt='icon')
+						a.count(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/likes')
+							= post.likesCount != 0 ? post.likesCount : ''
+			if post.likers != null
+				ol.likers
+					each liker in post.likers
+						li.liker
+							a.icon-anchor(href='/' + liker.screenName, title= '@' + liker.screenName)
+								img.icon(src=liker.iconUrl, alt='icon')
 		aside.form-and-replies
 			form.reply-form(role='form')
 				img.me-icon(src=me.iconUrl, alt='icon')
