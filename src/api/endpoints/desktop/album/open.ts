@@ -1,6 +1,5 @@
 import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
-import config from '../../../../config';
 
 const jade: any = require('jade');
 

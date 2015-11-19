@@ -138,25 +138,20 @@ $ ->
 	$ window .scroll ->
 		me = $ @
 		current = $ window .scroll-top! + window.inner-height
-		if current > $ document .height! - 50
+		if current > $ document .height! - 32
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax config.web-api-url + '/web/status/timeline-homehtml' {
+				$.ajax "#{config.web-api-url}/web/desktop/home/posts/timeline" {
 					type: \get
-					data: {
-						'max-cursor': $ '#widget-timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
-					}
-					data-type: \json
+					data:
+						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-timeline-cursor
+					data-type: \text
 					xhr-fields: {+with-credentials}}
 				.done (data) ->
 					me.data \loading no
-					$statuses = $ data
-					$statuses.each ->
-						$status = $ @
-						TIMELINE_CORE.set-event $status.children '.status.article'
-						$status.append-to $ '#widget-timeline .timeline > .statuses'
-					# Attach Wave effects
-					init-waves-effects!
+					$posts = $ data
+					$posts.each ->
+						TIMELINE_CORE.add $ @
 				.fail (data) ->
 					me.data \loading no
 
