@@ -3,6 +3,7 @@ require 'cropper'
 
 Tab = require '../lib/tab.js'
 Album = require '../common/album.js'
+show-modal-dialog = require '../common/modal-dialog.js'
 
 album = new Album
 
@@ -35,7 +36,8 @@ module.exports = ($form) ->
 	$form.find '.icon .select-from-album' .click ->
 		album.choose-file (files) ->
 			file = files.0
-			alert file
+			$crop-form = ($form.find '.icon .crop-form').clone!
+			show-modal-dialog $crop-form
 
 	$form.find '.apps > .app' .each ->
 		$app = $ @
