@@ -31,7 +31,6 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			gm(body, file.name)
 				.crop(trimW, trimH, trimX, trimY)
 				.toBuffer('png', (err: Error, buffer: Buffer) => {
-					console.log(buffer);
 					if (err !== null) {
 						console.error(err);
 						return res.status(500).send(err);
