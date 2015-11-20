@@ -34,11 +34,11 @@ export default function(app: express.Express): void {
 	app.put(`/subdomain/${domain}/web/desktop/update-icon`, require('./endpoints/desktop/update-icon'));
 	app.get(`/subdomain/${domain}/web/desktop/album/open`, require('./endpoints/desktop/album/open'));
 	app.get(`/subdomain/${domain}/web/desktop/album/files`, require('./endpoints/desktop/album/files'));
-	app.post(`/subdomain/${domain}/web/desktop/album/upload`, upload, require('./endpoints/desktop/album/upload'));
-	app.post(`/subdomain/${domain}/web/desktop/home/posts/reply`, upload, require('./endpoints/desktop/home/posts/reply').default);
-	app.get(`/subdomain/${domain}/web/desktop/home/posts/timeline`, upload, require('./endpoints/desktop/home/posts/timeline').default);
-	app.get(`/subdomain/${domain}/web/desktop/home/posts/talk`, upload, require('./endpoints/desktop/home/posts/talk').default);
-	app.get(`/subdomain/${domain}/web/desktop/home/posts/replies`, upload, require('./endpoints/desktop/home/posts/replies').default);
+	app.post(`/subdomain/${domain}/web/desktop/album/upload`, upload.single('file'), require('./endpoints/desktop/album/upload'));
+	app.post(`/subdomain/${domain}/web/desktop/home/posts/reply`, require('./endpoints/desktop/home/posts/reply').default);
+	app.get(`/subdomain/${domain}/web/desktop/home/posts/timeline`, require('./endpoints/desktop/home/posts/timeline').default);
+	app.get(`/subdomain/${domain}/web/desktop/home/posts/talk`, require('./endpoints/desktop/home/posts/talk').default);
+	app.get(`/subdomain/${domain}/web/desktop/home/posts/replies`, require('./endpoints/desktop/home/posts/replies').default);
 
 	app.get(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
@@ -50,7 +50,7 @@ export default function(app: express.Express): void {
 		});
 	});
 
-	app.post(`/subdomain/${domain}/*`, upload, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.post(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
 		requestApi('POST', req.path.replace(`/subdomain/${domain}/`, ''), req.body, userId).then((response: any) => {
 			res.json(response);
