@@ -101,8 +101,8 @@ TIMELINE_CORE = {}
 			.done (html) ->
 				$reply = $ html
 				$submit-button.attr \disabled off
-				$reply.append-to $post.find '.replies'
-				$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
+				$reply.prepend-to $post.find '> .replies'
+				$i = $ '<i class="fa fa-ellipsis-v replies-ellipsis" style="display: none;"></i>'
 				$i.append-to $post
 				$form.remove!
 				window.display-message '返信しました！'
