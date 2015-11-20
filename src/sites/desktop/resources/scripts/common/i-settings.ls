@@ -39,15 +39,15 @@ module.exports = ($form) ->
 			$crop-form = ($form.find '.icon .crop-form').clone!
 			$img = $ "<img src='#{file.url}' alt=''>"
 			$crop-form.prepend $img
-			$img.cropper {
-				aspect-ratio: 1 / 1
-				crop: (data) ->
-					$ '#icon-edit-form input[name=trim-x]' .val Math.round data.x
-					$ '#icon-edit-form input[name=trim-y]' .val Math.round data.y
-					$ '#icon-edit-form input[name=trim-w]' .val Math.round data.width
-					$ '#icon-edit-form input[name=trim-h]' .val Math.round data.height
-			}
-			show-modal-dialog $crop-form
+			show-modal-dialog $crop-form, ->
+				$img.cropper {
+					aspect-ratio: 1 / 1
+					crop: (data) ->
+						$ '#icon-edit-form input[name=trim-x]' .val Math.round data.x
+						$ '#icon-edit-form input[name=trim-y]' .val Math.round data.y
+						$ '#icon-edit-form input[name=trim-w]' .val Math.round data.width
+						$ '#icon-edit-form input[name=trim-h]' .val Math.round data.height
+				}
 
 	$form.find '.apps > .app' .each ->
 		$app = $ @

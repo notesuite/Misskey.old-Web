@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-module.exports = ($content) ->
+module.exports = ($content, shown) ->
 	$container = $ '<div class="ui-modal-dialog-container" />'
 	$dialog = $ '<div class="ui-modal-dialog" />'
 	$dialog.append $content
@@ -22,6 +22,9 @@ module.exports = ($content) ->
 		opacity: \1
 		scale: \1
 	} 1000ms 'cubic-bezier(0, 1, 0, 1)'
+
+	if shown?
+		shown!
 
 	$container.click ->
 		close!
