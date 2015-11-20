@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as request from 'request';
 // import * as gm from 'gm';
-const gm: any = require('gm').subClass({imageMagick: true});
+const gm: any = require('gm');
 import { MisskeyExpressRequest } from '../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../misskeyExpressResponse';
 import requestApi from '../../../utils/requestApi';
