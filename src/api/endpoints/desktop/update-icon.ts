@@ -39,7 +39,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 						file: {
 							value: buffer,
 							options: {
-								filename: `cropped-${file.name}`,
+								filename: `${file.name}.cropped.png`,
 								contentType: 'image/png'
 							}
 						}
