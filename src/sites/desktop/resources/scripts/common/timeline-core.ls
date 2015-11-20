@@ -51,7 +51,7 @@ TIMELINE_CORE = {}
 					$.ajax "#{config.web-api-url}/web/desktop/home/posts/talk" {
 						type: \get
 						data:
-							'post-id': $post.attr \data-id
+							'post-id': $post.children \.reply-source .attr \data-id
 						data-type: \text
 						xhr-fields: {+with-credentials}}
 					.done (html) ->
