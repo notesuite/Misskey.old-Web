@@ -59,9 +59,11 @@ block body
 			
 			div.icon(data-name='icon')
 				div.crop-form
-					button.ok.ui-button(type='button', role='button')
-						i.fa.fa-check
-						| OK
+					p アイコンに使用する部分を選択してください
+					div.container
+						button.ok.ui-button(type='button', role='button')
+							i.fa.fa-check
+							| OK
 				img.icon(src=me.iconUrl, alt='icon')
 				button.select-from-local.ui-button.ui-waves-effect(type='button', role='button')
 					i.fa.fa-upload

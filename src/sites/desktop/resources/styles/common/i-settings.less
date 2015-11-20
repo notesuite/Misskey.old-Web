@@ -277,14 +277,26 @@
 body > .ui-modal-dialog-container > .ui-modal-dialog > .crop-form {
 	margin: 0 auto;
 	max-width: 800px;
-	background: #fff;
 
-	> img {
-		width: 100%;
-		max-height: 400px;
+	> p {
+		display: block;
+		margin: 0;
+		padding: 16px;
+		color: #fff;
+		text-align: center;
+		background: #111;
 	}
 
-	.cropper-modal {
-		opacity: 0.8;
+	.container {
+		background: #fff;
+
+		> img {
+			width: 100%;
+			max-height: 400px;
+		}
+
+		.cropper-modal {
+			opacity: 0.8;
+		}
 	}
 }

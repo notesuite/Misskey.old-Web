@@ -38,8 +38,8 @@ module.exports = ($form) ->
 			file = files.0
 			$crop-form = ($form.find '.icon .crop-form').clone!
 			$img = $ "<img src='#{file.url}' alt=''>"
-			$crop-form.prepend $img
-			show-modal-dialog $crop-form, ->
+			$crop-form.find \.container .prepend $img
+			close = show-modal-dialog $crop-form, false, ->
 				$img.cropper {
 					aspect-ratio: 1 / 1
 					crop: (data) ->
@@ -48,6 +48,8 @@ module.exports = ($form) ->
 						$ '#icon-edit-form input[name=trim-w]' .val Math.round data.width
 						$ '#icon-edit-form input[name=trim-h]' .val Math.round data.height
 				}
+			$crop-form.find \.ok .click ->
+				close!
 
 	$form.find '.apps > .app' .each ->
 		$app = $ @

@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-module.exports = ($content, shown) ->
+module.exports = ($content, can-close = true, on-shown = null) ->
 	$container = $ '<div class="ui-modal-dialog-container" />'
 	$dialog = $ '<div class="ui-modal-dialog" />'
 	$dialog.append $content
@@ -23,11 +23,12 @@ module.exports = ($content, shown) ->
 		scale: \1
 	} 1000ms 'cubic-bezier(0, 1, 0, 1)'
 
-	if shown?
-		shown!
+	if on-shown?
+		on-shown!
 
-	$container.click ->
-		close!
+	if can-close
+		$container.click ->
+			close!
 
 	$dialog.click (e) ->
 		e.stop-immediate-propagation!
