@@ -57,7 +57,7 @@
     "express": "4.13.3",
     "express-minify": "0.1.6",
     "express-session": "1.11.3",
-    "gm": "1.20.0",
+    "gm": "^1.20.0",
     "jade": "1.11.0",
     "jquery": "^2.1.4",
     "jquery.transit": "^0.9.12",

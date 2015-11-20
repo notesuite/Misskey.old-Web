@@ -31,6 +31,7 @@ export default function(app: express.Express): void {
 	});
 
 	app.get(`/subdomain/${domain}/web/ogp/parse`, require('./endpoints/ogp/parse'));
+	app.put(`/subdomain/${domain}/web/desktop/update-icon`, require('./endpoints/desktop/update-icon'));
 	app.get(`/subdomain/${domain}/web/desktop/album/open`, require('./endpoints/desktop/album/open'));
 	app.get(`/subdomain/${domain}/web/desktop/album/files`, require('./endpoints/desktop/album/files'));
 	app.post(`/subdomain/${domain}/web/desktop/album/upload`, upload, require('./endpoints/desktop/album/upload'));

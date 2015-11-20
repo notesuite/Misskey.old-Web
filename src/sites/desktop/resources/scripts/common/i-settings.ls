@@ -42,31 +42,30 @@ module.exports = ($form) ->
 			close = show-modal-dialog $crop-form, false, ->
 				$img.cropper {
 					aspect-ratio: 1 / 1
-					crop: (data) ->
-						$crop-form.find 'input[name=trim-x]' .val Math.round data.x
-						$crop-form.find 'input[name=trim-y]' .val Math.round data.y
-						$crop-form.find 'input[name=trim-w]' .val Math.round data.width
-						$crop-form.find 'input[name=trim-h]' .val Math.round data.height
 				}
+
 			$crop-form.find \.cancel .click ->
 				close!
+
 			$crop-form.submit (event) ->
 				event.prevent-default!
 				$form = $ @
 				$submit-button = $form.find '[type=submit]'
 					..attr \disabled on
 					..attr \value '保存中...'
-
+				crop-data = $img.cropper \getData true
 				$.ajax "#{config.web-api-url}/web/desktop/update-icon" {
 					type: \put
-					-process-data
-					-content-type
-					data: new FormData $form.0
-					data-type: \json
+					data: {
+						'file-id': file.id
+						'trim-x': crop-data.x
+						'trim-y': crop-data.y
+						'trim-w': crop-data.width
+						'trim-h': crop-data.height
+					}
 					xhr-fields: {+with-credentials}}
 				.done (data) ->
-					$submit-button.attr \value '保存しました'
-					$submit-button.attr \disabled off
+					close!
 				.fail (data) ->
 					$submit-button.attr \disabled off
 
