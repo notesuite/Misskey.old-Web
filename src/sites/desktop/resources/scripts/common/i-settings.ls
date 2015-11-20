@@ -43,13 +43,32 @@ module.exports = ($form) ->
 				$img.cropper {
 					aspect-ratio: 1 / 1
 					crop: (data) ->
-						$ '#icon-edit-form input[name=trim-x]' .val Math.round data.x
-						$ '#icon-edit-form input[name=trim-y]' .val Math.round data.y
-						$ '#icon-edit-form input[name=trim-w]' .val Math.round data.width
-						$ '#icon-edit-form input[name=trim-h]' .val Math.round data.height
+						$crop-form.find 'input[name=trim-x]' .val Math.round data.x
+						$crop-form.find 'input[name=trim-y]' .val Math.round data.y
+						$crop-form.find 'input[name=trim-w]' .val Math.round data.width
+						$crop-form.find 'input[name=trim-h]' .val Math.round data.height
 				}
-			$crop-form.find \.ok .click ->
+			$crop-form.find \.cancel .click ->
 				close!
+			$crop-form.submit (event) ->
+				event.prevent-default!
+				$form = $ @
+				$submit-button = $form.find '[type=submit]'
+					..attr \disabled on
+					..attr \value '保存中...'
+
+				$.ajax "#{config.web-api-url}/web/desktop/update-icon" {
+					type: \put
+					-process-data
+					-content-type
+					data: new FormData $form.0
+					data-type: \json
+					xhr-fields: {+with-credentials}}
+				.done (data) ->
+					$submit-button.attr \value '保存しました'
+					$submit-button.attr \disabled off
+				.fail (data) ->
+					$submit-button.attr \disabled off
 
 	$form.find '.apps > .app' .each ->
 		$app = $ @

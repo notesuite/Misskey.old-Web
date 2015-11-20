@@ -58,12 +58,21 @@ block body
 					input.ui-button.submit-button(type='submit', value='アップデート')
 			
 			div.icon(data-name='icon')
-				div.crop-form
+				form.crop-form
 					p アイコンに使用する部分を選択してください
 					div.container
-						button.ok.ui-button(type='button', role='button')
-							i.fa.fa-check
-							| OK
+						div.buttons
+							button.cancel.ui-button(type='button', role='button')
+								i.fa.fa-ban
+								| キャンセル
+							button.ok.ui-button(type='submit', role='button')
+								i.fa.fa-check
+								| OK
+					input(type='hidden', name='trim-x')
+					input(type='hidden', name='trim-y')
+					input(type='hidden', name='trim-w')
+					input(type='hidden', name='trim-h')
+					input(type='hidden', name='file-id')
 				img.icon(src=me.iconUrl, alt='icon')
 				button.select-from-local.ui-button.ui-waves-effect(type='button', role='button')
 					i.fa.fa-upload
