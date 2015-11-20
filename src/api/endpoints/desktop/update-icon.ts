@@ -26,14 +26,14 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		}, (getFileErr: any, response: http.IncomingMessage, body: Buffer) => {
 			if (getFileErr !== null) {
 				console.error(getFileErr);
-				return res.status(500).send(getFileErr);
+				return res.status(500).send('something-happened');
 			}
 			gm(body, file.name)
 				.crop(trimW, trimH, trimX, trimY)
 				.toBuffer('png', (err: Error, buffer: Buffer) => {
 					if (err !== null) {
 						console.error(err);
-						return res.status(500).send(err);
+						return res.status(500).send('something-happened');
 					}
 					requestApi('POST', 'album/files/upload', {
 						file: {
@@ -43,8 +43,16 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 								contentType: 'image/png'
 							}
 						}
-					}, req.session.userId).then((albumFile: Object) => {
-						res.send(albumFile);
+					}, req.session.userId).then((albumFile: any) => {
+						requestApi('PUT', 'account/update-icon', {
+							'file-id': albumFile.id
+						}, req.session.userId).then((me: Object) => {
+							res.send(albumFile);
+						}, (updateErr: any) => {
+							return res.status(500).send('something-happened');
+						});
+					}, (uploadErr: any) => {
+						return res.status(500).send('something-happened');
 					});
 				});
 		});
