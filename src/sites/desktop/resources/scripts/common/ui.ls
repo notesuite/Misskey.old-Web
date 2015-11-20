@@ -332,15 +332,10 @@ class StatusPostForm
 		$submit-button.text 'Updating'
 		$form.find \textarea .attr \disabled on
 
-		fd = new FormData!
-		fd.append \text ($form.find \textarea .val!)
-
 		$.ajax config.web-api-url + '/posts/status' {
 			type: \post
-			-process-data
-			-content-type
-			data: fd
-			data-type: \json
+			data:
+				'text': ($form.find \textarea .val!)
 			xhr-fields: {+with-credentials}
 		}
 		.done (data) ->
@@ -423,17 +418,12 @@ class PhotoPostForm
 		$submit-button.text 'Updating'
 		$form.find \textarea .attr \disabled on
 
-		fd = new FormData!
-		fd.append \text ($form.find \textarea .val!)
-		fd.append \photos JSON.stringify(($form.find '.photos > li' .map ->
-			($ @).attr \data-id).get!)
-
 		$.ajax config.web-api-url + '/posts/photo' {
 			type: \post
-			-process-data
-			-content-type
-			data: fd
-			data-type: \json
+			data:
+				'text': ($form.find \textarea .val!)
+				'photos': JSON.stringify(($form.find '.photos > li' .map ->
+					($ @).attr \data-id).get!)
 			xhr-fields: {+with-credentials}
 		}
 		.done (data) ->

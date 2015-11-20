@@ -85,17 +85,13 @@ TIMELINE_CORE = {}
 				..attr \disabled on
 				..text 'Replying...'
 
-			fd = new FormData!
-			fd.append \text ($form.find \textarea .val!)
-			fd.append \in-reply-to-post-id ($post.attr \data-id)
-			fd.append \photos JSON.stringify(($form.find '.photos > li' .map ->
-				($ @).attr \data-id).get!)
-
 			$.ajax "#{config.web-api-url}/web/desktop/home/posts/reply" {
 				type: \post
-				data: fd
-				-process-data
-				-content-type
+				data:
+					'text': ($form.find \textarea .val!)
+					'in-reply-to-post-id': ($post.attr \data-id)
+					'photos': JSON.stringify(($form.find '.photos > li' .map ->
+						($ @).attr \data-id).get!)
 				data-type: \text
 				xhr-fields: {+with-credentials}}
 			.done (html) ->
@@ -239,7 +235,6 @@ TIMELINE_CORE = {}
 					$.ajax "#{config.web-api-url}/posts/unlike" {
 						type: \delete
 						data: {'post-id': $status.attr \data-id}
-						data-type: \json
 						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
@@ -251,7 +246,6 @@ TIMELINE_CORE = {}
 					$.ajax "#{config.web-api-url}/posts/like" {
 						type: \post
 						data: {'post-id': $status.attr \data-id}
-						data-type: \json
 						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
@@ -270,7 +264,6 @@ TIMELINE_CORE = {}
 					$.ajax "#{config.web-api-url}/post/unrepost" {
 						type: \delete
 						data: {'post-id': $status.attr \data-id}
-						data-type: \json
 						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
@@ -299,7 +292,6 @@ TIMELINE_CORE = {}
 					type: \post
 					data:
 						'post-id': $post.attr \data-id
-					data-type: \json
 					xhr-fields: {+with-credentials}}
 				.done ->
 					$submit-button
