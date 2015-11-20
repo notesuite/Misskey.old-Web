@@ -31,11 +31,11 @@ TIMELINE_CORE = {}
 				TIMELINE_CORE.tl.find '> .posts > .post > .replies-ellipsis' .each ->
 					$ @ .show animation-speed
 				TIMELINE_CORE.tl.find '> .posts > .post > .talk' .each ->
-					$ @ .hide animation-speed
+					$ @ .slide-up animation-speed
 				TIMELINE_CORE.tl.find '> .posts > .post > .reply-form' .each ->
 					$ @ .hide animation-speed
 				TIMELINE_CORE.tl.find '> .posts > .post > .replies' .each ->
-					$ @ .hide animation-speed
+					$ @ .slide-up animation-speed
 				$post
 					..attr \data-is-display-active \true
 					..parent!.prev!.add-class \display-html-active-status-prev
@@ -75,9 +75,9 @@ TIMELINE_CORE = {}
 					..parent!.next!.remove-class \display-html-active-status-next
 					..find  '> .talk-ellipsis' .show animation-speed
 					..find  '> .replies-ellipsis' .show animation-speed
-					..find  '> .talk' .hide animation-speed
+					..find  '> .talk' .slide-up animation-speed
 					..find  '> .reply-form' .hide animation-speed
-					..find  '> .replies' .hide animation-speed
+					..find  '> .replies' .slide-up animation-speed
 
 		function submit-reply
 			$form = $post.find '> .reply-form'
