@@ -12,25 +12,25 @@ block body
 		nav.nav
 			ul
 				li(data-ref='profile')
-					i(class='fa fa-user')
+					i.fa.fa-user
 					| プロフィール
-				li(data-ref='design')
-					i(class='fa fa-paint-brush')
-					| デザイン
+				li(data-ref='icon')
+					i.fa.fa-camera-retro
+					| アイコン
 				li(data-ref='home-layout')
-					i(class='fa fa-desktop')
+					i.fa.fa-desktop
 					| ホームデザイン
 				li(data-ref='application')
-					i(class='fa fa-puzzle-piece')
+					i.fa.fa-puzzle-piece
 					| アプリケーション
 				li(data-ref='credit')
-					i(class='fa fa-credit-card')
+					i.fa.fa-credit-card
 					| クレジット
 				li(data-ref='email')
-					i(class='fa fa-envelope-o')
+					i.fa.fa-envelope-o
 					| メールアドレス
 				li(data-ref='logout')
-					i(class='fa fa-power-off')
+					i.fa.fa-power-off
 					| ログアウト
 		div.contents
 			div.profile(data-name='profile')
@@ -56,6 +56,15 @@ block body
 						div.content
 							textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
 					input.ui-button.submit-button(type='submit', value='アップデート')
+			
+			div.icon(data-name='icon')
+				img.icon(src=me.iconUrl, alt='icon')
+				button.select-from-local.ui-button.ui-waves-effect(type='button', role='button')
+					i.fa.fa-upload
+					| PCから画像を選択
+				button.select-from-album.ui-button.ui-waves-effect(type='button', role='button')
+					i.fa.fa-folder-open
+					| アルバムから画像を選択
 			
 			div.home-layout(data-name='home-layout')
 				img(src='/resources/images/home-design.svg', alt='customize')

@@ -1,13 +1,17 @@
 $ = require 'jquery'
+require 'cropper'
 
 Tab = require '../lib/tab.js'
+Album = require '../common/album.js'
 
-module.exports = ($settings-form) ->
+album = new Album
+
+module.exports = ($form) ->
 	Tab do
-		$settings-form.find '.nav > ul'
-		$settings-form.find '.contents'
+		$form.find '.nav > ul'
+		$form.find '.contents'
 
-	$settings-form.find \.profile-form .submit (event) ->
+	$form.find \.profile-form .submit (event) ->
 		event.prevent-default!
 		$form = $ @
 		$submit-button = $form.find '[type=submit]'
@@ -28,7 +32,12 @@ module.exports = ($settings-form) ->
 		.fail (data) ->
 			$submit-button.attr \disabled off
 
-	$settings-form.find '.apps > .app' .each ->
+	$form.find '.icon .select-from-album' .click ->
+		album.choose-file (files) ->
+			file = files.0
+			alert file
+
+	$form.find '.apps > .app' .each ->
 		$app = $ @
 
 		$app.find \.remove .click ->
