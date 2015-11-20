@@ -20,7 +20,7 @@ TIMELINE_CORE = {}
 		function activate-display-state
 			animation-speed = 200ms
 			if ($post.attr \data-is-display-active) == \false
-				reply-form-text = $post.find '.form-and-replies .reply-form textarea' .val!
+				reply-form-text = $post.find '> .reply-form textarea' .val!
 				TIMELINE_CORE.tl.find '> .posts > .post' .each ->
 					$ @
 						..attr \data-is-display-active \false
@@ -30,9 +30,11 @@ TIMELINE_CORE = {}
 					$ @ .show animation-speed
 				TIMELINE_CORE.tl.find '> .posts > .post > .replies-ellipsis' .each ->
 					$ @ .show animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > .talk > .posts' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > .talk' .each ->
 					$ @ .hide animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > .form-and-replies' .each ->
+				TIMELINE_CORE.tl.find '> .posts > .post > .reply-form' .each ->
+					$ @ .hide animation-speed
+				TIMELINE_CORE.tl.find '> .posts > .post > .replies' .each ->
 					$ @ .hide animation-speed
 				$post
 					..attr \data-is-display-active \true
@@ -40,10 +42,32 @@ TIMELINE_CORE = {}
 					..parent!.next!.add-class \display-html-active-status-next
 					..find  '> .talk-ellipsis' .hide animation-speed
 					..find  '> .replies-ellipsis' .hide animation-speed
-					..find  '.talk > .statuses' .show animation-speed
-					..find  '.form-and-replies' .show animation-speed
-					..find  '.form-and-replies .reply-form textarea' .val ''
-					..find  '.form-and-replies .reply-form textarea' .focus! .val reply-form-text
+					..find  '> .talk' .slide-down animation-speed
+					..find  '> .reply-form' .show animation-speed
+					..find  '> .reply-form textarea' .val ''
+					..find  '> .reply-form textarea' .focus! .val reply-form-text
+					..find  '> .replies' .slide-down animation-speed
+				if (($post.attr \data-is-talk) == \true) and ($post.children \.talk .children!.length == 0)
+					$.ajax "#{config.web-api-url}/web/desktop/home/posts/talk" {
+						type: \get
+						data:
+							'post-id': $post.attr \data-id
+						data-type: \text
+						xhr-fields: {+with-credentials}}
+					.done (html) ->
+						$talk = $ html
+						$post.children \.talk .append $talk
+				if (($post.attr \data-is-have-replies) == \true) and ($post.children \.replies .children!.length == 0)
+					$.ajax "#{config.web-api-url}/web/desktop/home/posts/replies" {
+						type: \get
+						data:
+							'post-id': $post.attr \data-id
+						data-type: \text
+						xhr-fields: {+with-credentials}}
+					.done (html) ->
+						$replies = $ html
+						$post.children \.replies .append $replies
+
 			else
 				$post
 					..attr \data-is-display-active \false
@@ -51,11 +75,12 @@ TIMELINE_CORE = {}
 					..parent!.next!.remove-class \display-html-active-status-next
 					..find  '> .talk-ellipsis' .show animation-speed
 					..find  '> .replies-ellipsis' .show animation-speed
-					..find  '.talk > .statuses' .hide animation-speed
-					..find  '.form-and-replies' .hide animation-speed
+					..find  '> .talk' .hide animation-speed
+					..find  '> .reply-form' .hide animation-speed
+					..find  '> .replies' .hide animation-speed
 
 		function submit-reply
-			$form = $post.find '.reply-form'
+			$form = $post.find '> .reply-form'
 			$submit-button = $form.find \.submit-button
 				..attr \disabled on
 				..text 'Replying...'
@@ -94,13 +119,13 @@ TIMELINE_CORE = {}
 			$remove-button.click (e) ->
 				e.stop-immediate-propagation!
 				$thumbnail.remove!
-			$post.find '.reply-form .photos' .append $thumbnail
+			$post.find '> .reply-form .photos' .append $thumbnail
 
 		function upload-new-file(file)
 			name = if file.has-own-property \name then file.name else 'untitled'
 			$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
 			$progress-bar = $info.find \progress
-			$post.find '.reply-form .uploads' .append $info
+			$post.find '> .reply-form .uploads' .append $info
 			window.upload-file do
 				file
 				(total, uploaded, percentage) ->
@@ -118,11 +143,11 @@ TIMELINE_CORE = {}
 				->
 					$info.remove!
 
-		Sortable.create ($post.find '.reply-form .photos')[0], {
+		Sortable.create ($post.find '> .reply-form .photos')[0], {
 			animation: 150ms
 		}
 
-		$post.find '.reply-form textarea' .on \paste (event) ->
+		$post.find '> .reply-form textarea' .on \paste (event) ->
 			items = (event.clipboard-data || event.original-event.clipboard-data).items
 			for i from 0 to items.length - 1
 				item = items[i]
@@ -130,21 +155,21 @@ TIMELINE_CORE = {}
 					file = item.get-as-file!
 					upload-new-file file
 
-		$post.find '.reply-form textarea' .keypress (e) ->
+		$post.find '> .reply-form textarea' .keypress (e) ->
 			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
 				submit-reply!
 
-		$post.find '.reply-form .attach-from-album' .click ->
+		$post.find '> .reply-form .attach-from-album' .click ->
 			window.open-select-album-file-dialog (files) ->
 				files.for-each (file) ->
 					add-file file
 
-		$post.find '.reply-form .attach-from-local' .click ->
-			$post.find '.reply-form input[type=file]' .click!
+		$post.find '> .reply-form .attach-from-local' .click ->
+			$post.find '> .reply-form input[type=file]' .click!
 			false
 
-		$post.find '.reply-form input[type=file]' .change ->
-			files = ($post.find '.reply-form input[type=file]')[0].files
+		$post.find '> .reply-form input[type=file]' .change ->
+			files = ($post.find '> .reply-form input[type=file]')[0].files
 			for i from 0 to files.length - 1
 				file = files.item i
 				upload-new-file file
@@ -201,7 +226,7 @@ TIMELINE_CORE = {}
 						} 100ms \linear
 
 			# Ajax setting of reply-form
-			..find \.reply-form .submit (event) ->
+			..find '> .reply-form' .submit (event) ->
 				event.prevent-default!
 				submit-reply!
 
