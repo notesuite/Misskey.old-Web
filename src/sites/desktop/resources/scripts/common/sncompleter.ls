@@ -6,6 +6,9 @@ module.exports = ($input) ->
 		selection-end = $input[0].selection-end
 		selection-start
 
+	function complete-sn(sn)
+		alert sn
+
 	styles = <[
 		border-bottom-width
 		border-left-width
@@ -93,6 +96,9 @@ module.exports = ($input) ->
 									$ '<a class="ui-waves-effect">' .attr {
 										'href': "#{config.url}/#{user.screen-name}"
 										'title': user.comment}
+									.click ->
+										complete-sn user.screen-name
+										false
 									.append do
 										$ '<img class="icon" alt="icon">' .attr \src user.icon-url
 									.append do
