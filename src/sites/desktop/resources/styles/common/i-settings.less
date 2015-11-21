@@ -275,6 +275,7 @@
 }
 
 body > .ui-modal-dialog-container > .ui-modal-dialog > .crop-form {
+	position: relative;
 	margin: 0 auto;
 	max-width: 800px;
 
@@ -305,6 +306,17 @@ body > .ui-modal-dialog-container > .ui-modal-dialog > .crop-form {
 			max-height: 400px;
 		}
 
+		.preview {
+			position: absolute;
+			bottom: 8px;
+			left: 16px;
+			width: 128px;
+			height: 128px;
+			overflow: hidden;
+			border: solid 8px #fff;
+			background: #222;
+		}
+
 		.cropper-modal {
 			opacity: 0.8;
 		}
@@ -325,23 +337,43 @@ body > .ui-modal-dialog-container > .ui-modal-dialog > .crop-form {
 		}
 
 		@-webkit-keyframes cropper-bg {
-			0% {background-position: 0 0;}
-			100% {background-position: -8px -8px;}
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
 		}
 
 		@-moz-keyframes cropper-bg {
-			0% {background-position: 0 0;}
-			100% {background-position: -8px -8px;}
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
 		}
 
 		@-ms-keyframes cropper-bg {
-			0% {background-position: 0 0;}
-			100% {background-position: -8px -8px;}
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
 		}
 
 		@keyframes cropper-bg {
-			0% {background-position: 0 0;}
-			100% {background-position: -8px -8px;}
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
 		}
 
 		> .buttons {
