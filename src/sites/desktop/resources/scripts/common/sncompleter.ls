@@ -1,7 +1,30 @@
 $ = require 'jquery'
 
+``
+$.fn.selectRange = function(start, end) {
+    if(typeof end === 'undefined') {
+        end = start;
+    }
+    return this.each(function() {
+        if('selectionStart' in this) {
+            this.selectionStart = start;
+            this.selectionEnd = end;
+        } else if(this.setSelectionRange) {
+            this.setSelectionRange(start, end);
+        } else if(this.createTextRange) {
+            var range = this.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', end);
+            range.moveStart('character', start);
+            range.select();
+        }
+    });
+};
+``
+
 module.exports = ($input) ->
 	$opening-menu = null
+	caret = null
 
 	function get-caret
 		selection-start = $input[0].selection-start
@@ -9,7 +32,14 @@ module.exports = ($input) ->
 		selection-start
 
 	function complete-sn(sn)
-		alert sn
+		close!
+		source = $input.val!
+		before = source.substring 0 caret
+		trimed-before = before.substring 0 before.last-index-of \@
+		after = source.substring caret
+		$input.val trimed-before + \@ + sn + after
+		$input.focus!
+		$input.select-range caret + sn.length - 1
 
 	function close
 		$input.parent!.children \.ui-autocomplete .remove!
@@ -21,7 +51,11 @@ module.exports = ($input) ->
 			select = null
 		else
 			select = Number select
-		switch (e.which)
+		key = e.keyCode || e.which
+		switch (key)
+			| 10, 13 => # Key[ENTER]
+				e.prevent-default!
+				complete-sn ($opening-menu.find "ol > li:nth-child(#{$opening-menu.attr \data-select}) > a" .attr \data-sn)
 			| 27 => # Key[ESC]
 				e.prevent-default!
 				close!
@@ -32,7 +66,7 @@ module.exports = ($input) ->
 					$opening-menu.attr \data-select ($opening-menu.find \ol .children!.length)
 				else
 					$opening-menu.attr \data-select select - 1
-			| 40 => # Key[↓]
+			| 9, 40 => # Key[TAB] or Key[↓]
 				e.prevent-default!
 				if select == null or select == ($opening-menu.find \ol .children!.length)
 					$opening-menu.attr \data-select 1
@@ -86,7 +120,8 @@ module.exports = ($input) ->
 	$dummy-input.append $dummy-text-positioner
 
 	$input.bind \input ->
-		text = $input.val!.substring 0 get-caret!
+		caret := get-caret!
+		text = $input.val!.substring 0 caret
 
 		close!
 
@@ -132,7 +167,8 @@ module.exports = ($input) ->
 								$ \<li> .append do
 									$ '<a class="ui-waves-effect">' .attr {
 										'href': "#{config.url}/#{user.screen-name}"
-										'title': user.comment}
+										'title': user.comment
+										'data-sn': user.screen-name}
 									.bind \keydown autocomplate-keydown
 									.click ->
 										complete-sn user.screen-name
