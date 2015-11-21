@@ -1,6 +1,8 @@
 $ = require 'jquery'
 
 module.exports = ($input) ->
+	$opening-menu = null
+
 	function get-caret
 		selection-start = $input[0].selection-start
 		selection-end = $input[0].selection-end
@@ -8,6 +10,34 @@ module.exports = ($input) ->
 
 	function complete-sn(sn)
 		alert sn
+
+	function close
+		$input.parent!.children \.ui-autocomplete .remove!
+		$input.unbind \keydown autocomplate-keydown
+
+	function autocomplate-keydown(e)
+		select = $opening-menu.attr \data-select
+		if select == \null
+			select = null
+		else
+			select = Number select
+		switch (e.which)
+			| 27 => # Key[ESC]
+				e.prevent-default!
+				close!
+			| 38 => # Key[↑]
+				e.prevent-default!
+				if select == null or select == 1
+					$opening-menu.attr \data-select ($opening-menu.find \ol .children!.length)
+				else
+					$opening-menu.attr \data-select select - 1
+			| 40 => # Key[↓]
+				e.prevent-default!
+				if select == null or select == ($opening-menu.find \ol .children!.length)
+					$opening-menu.attr \data-select 1
+				else
+					$opening-menu.attr \data-select select + 1
+		$opening-menu.find "ol > li:nth-child(#{$opening-menu.attr \data-select}) > a" .focus!
 
 	styles = <[
 		border-bottom-width
@@ -54,7 +84,7 @@ module.exports = ($input) ->
 	$input.bind \input ->
 		text = $input.val!.substring 0 get-caret!
 
-		$input.parent!.children \.ui-autocomplete .remove!
+		close!
 
 		id-at-index = text.last-index-of \@
 
@@ -72,14 +102,17 @@ module.exports = ($input) ->
 				input-position = $input.position!
 				caret-position = $dummy-text-positioner.position!
 
-				$menu = $ '<div class="ui-autocomplete" />'
+				$menu = $ '<div class="ui-autocomplete" data-select="null" />'
 				$menu.css {
 					'position': \absolute
 					'top': (input-position.top + caret-position.top) + 'px'
 					'left': (input-position.left + caret-position.left) + 'px'
 				}
+				$opening-menu := $menu
 
 				$input.parent!.append $menu
+
+				$input.bind \keydown autocomplate-keydown
 
 				# search users
 				$.ajax "#{config.web-api-url}/users/search" {
@@ -96,6 +129,7 @@ module.exports = ($input) ->
 									$ '<a class="ui-waves-effect">' .attr {
 										'href': "#{config.url}/#{user.screen-name}"
 										'title': user.comment}
+									.bind \keydown autocomplate-keydown
 									.click ->
 										complete-sn user.screen-name
 										false
