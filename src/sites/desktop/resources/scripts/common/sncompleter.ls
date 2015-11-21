@@ -77,53 +77,53 @@ module.exports = ($input) ->
 				$input.focus!
 		$opening-menu.find "ol > li:nth-child(#{$opening-menu.attr \data-select}) > a" .focus!
 
-	styles = <[
-		border-bottom-width
-		border-left-width
-		border-right-width
-		border-top-width
-		font-family
-		font-size
-		font-style
-		font-variant
-		font-weight
-		letter-spacing
-		word-spacing
-		line-height
-		padding-bottom
-		padding-left
-		padding-right
-		padding-top
-		text-decoration
-	]>
-
-	$dummy-input = $ '<div role="presentation" />'
-		..css {
-			'position': \absolute
-			'pointer-events': \none
-			'visibility': \hidden
-			'width': $input.width! + 'px'
-			'height': $input.height! + 'px'
-		}
-
-	styles.for-each (style) ->
-		$dummy-input.css style, $input.css style
-
-	$ \body .append $dummy-input
-
-	$dummy-text = $ '<span />'
-
-	$dummy-text-positioner = $ '<span />'
-		..html '&nbsp;'
-
-	$dummy-input.append $dummy-text
-	$dummy-input.append $dummy-text-positioner
-
 	$input.bind \input ->
+		close!
+		
+		styles = <[
+			border-bottom-width
+			border-left-width
+			border-right-width
+			border-top-width
+			font-family
+			font-size
+			font-style
+			font-variant
+			font-weight
+			letter-spacing
+			word-spacing
+			line-height
+			padding-bottom
+			padding-left
+			padding-right
+			padding-top
+			text-decoration
+		]>
+
+		$dummy-input = $ '<div role="presentation" />'
+			..css {
+				'position': \absolute
+				'pointer-events': \none
+				'visibility': \hidden
+				'width': $input.width! + 'px'
+				'height': $input.height! + 'px'
+			}
+
+		styles.for-each (style) ->
+			$dummy-input.css style, $input.css style
+
+		$ \body .append $dummy-input
+
+		$dummy-text = $ '<span />'
+
+		$dummy-text-positioner = $ '<span />'
+			..html '&nbsp;'
+
+		$dummy-input.append $dummy-text
+		$dummy-input.append $dummy-text-positioner
+
 		caret := get-caret!
 		text = $input.val!.substring 0 caret
-
-		close!
 
 		id-at-index = text.last-index-of \@
 

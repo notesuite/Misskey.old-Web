@@ -1,6 +1,7 @@
 $ = require 'jquery'
 Sortable = require 'Sortable'
-Album = require '../common/album.js'
+sncompleter = require './sncompleter.js'
+Album = require './album.js'
 
 album = new Album
 
@@ -142,6 +143,8 @@ TIMELINE_CORE = {}
 		Sortable.create ($post.find '> .reply-form .photos')[0], {
 			animation: 150ms
 		}
+
+		sncompleter $post.find '> .reply-form textarea'
 
 		$post.find '> .reply-form textarea' .on \paste (event) ->
 			items = (event.clipboard-data || event.original-event.clipboard-data).items

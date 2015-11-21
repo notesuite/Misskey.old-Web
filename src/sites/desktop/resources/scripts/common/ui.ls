@@ -207,8 +207,6 @@ class PostForm
 				| \status => THIS.statusPostForm.focus!
 				| \photo => THIS.photoPostForm.focus!
 
-		sncompleter $ '#misskey-post-form-status-tab-page textarea'
-
 		$ \#misskey-post-button .click ->
 			THIS.open!
 		$ \#misskey-post-form .click (e) ->
@@ -292,6 +290,8 @@ class StatusPostForm
 		THIS = @
 		THIS.postForm = postForm
 
+		sncompleter $ '#misskey-post-form-status-tab-page textarea'
+
 		$ '#misskey-post-form-status-tab-page textarea' .bind \input ->
 			$ \#misskey-post-form .find \.submit-button .attr \disabled off
 
@@ -366,6 +366,8 @@ class PhotoPostForm
 		Sortable.create ($ '#misskey-post-form-photo-tab-page > .photos')[0], {
 			animation: 150ms
 		}
+
+		sncompleter $ '#misskey-post-form-photo-tab-page textarea'
 
 		$ '#misskey-post-form-photo-tab-page textarea' .on \paste (event) ->
 			items = (event.clipboard-data || event.original-event.clipboard-data).items
