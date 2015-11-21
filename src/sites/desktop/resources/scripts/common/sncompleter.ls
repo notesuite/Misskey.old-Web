@@ -25,6 +25,7 @@ module.exports = ($input) ->
 			| 27 => # Key[ESC]
 				e.prevent-default!
 				close!
+				$input.focus!
 			| 38 => # Key[↑]
 				e.prevent-default!
 				if select == null or select == 1
@@ -37,6 +38,9 @@ module.exports = ($input) ->
 					$opening-menu.attr \data-select 1
 				else
 					$opening-menu.attr \data-select select + 1
+			| _ =>
+				close!
+				$input.focus!
 		$opening-menu.find "ol > li:nth-child(#{$opening-menu.attr \data-select}) > a" .focus!
 
 	styles = <[
