@@ -2801,13 +2801,82 @@ input.tagit-hidden-field {
 }
 
 .ui-autocomplete {
-	border: solid 1px #eee;
+	border: solid 1px #E8D9D1;
+	border-radius: 4px;
 	margin-top: ~"calc(1em + 8px)";
+	overflow: hidden;
 
 	> ol {
 		display: block;
 		margin: 0;
-		padding: 0;
+		padding: 4px 0;
 		list-style: none;
+
+		&.users {
+			> li {
+				a {
+					display: inline-block;
+					z-index: 1;
+					box-sizing: border-box;
+					width: 100%;
+					padding: 4px 12px;
+					vertical-align: top;
+					white-space: nowrap;
+					overflow: hidden;
+					color: #735648;
+					font-size: 0.9em;
+					cursor: default;
+					transition: none;
+
+					&:hover {
+						color: #fff;
+						background: @themeColor;
+						text-decoration: none;
+
+						.name {
+							color: #fff;
+						}
+
+						.screen-name {
+							color: #fff;
+						}
+					}
+
+					&:active {
+						color: #fff;
+						background: darken(@themeColor, 10%);
+
+						.name {
+							color: #fff;
+						}
+
+						.screen-name {
+							color: #fff;
+						}
+					}
+
+					.icon {
+						vertical-align: middle;
+						min-width: 28px;
+						min-height: 28px;
+						max-width: 28px;
+						max-height: 28px;
+						margin: 0 8px 0 0;
+						border-radius: 100%;
+					}
+
+					.name {
+						margin: 0 8px 0 0;
+						/*font-weight: bold;*/
+						font-weight: normal;
+					}
+
+					.screen-name {
+						font-weight: normal;
+						opacity: 0.5;
+					}
+				}
+			}
+		}
 	}
 }

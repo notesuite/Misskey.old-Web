@@ -70,7 +70,6 @@ module.exports = ($input) ->
 				caret-position = $dummy-text-positioner.position!
 
 				$menu = $ '<div class="ui-autocomplete" />'
-				$menu.html '<ol><li><p>kyoppie</p></li></ol>'
 				$menu.css {
 					'position': \absolute
 					'top': (input-position.top + caret-position.top) + 'px'
@@ -78,3 +77,25 @@ module.exports = ($input) ->
 				}
 
 				$input.parent!.append $menu
+
+				# search users
+				$.ajax "#{config.web-api-url}/users/search" {
+					type: \get
+					data: {'screen-name': sn}
+					data-type: \json
+					xhr-fields: {+with-credentials}}
+				.done (result) ->
+					if result? and result.length > 0
+						$menu.append $ '<ol class="users">'
+						result.for-each (user) ->
+							$menu.children \ol .append do
+								$ \<li> .append do
+									$ '<a class="ui-waves-effect">' .attr {
+										'href': "#{config.url}/#{user.screen-name}"
+										'title': user.comment}
+									.append do
+										$ '<img class="icon" alt="icon">' .attr \src user.icon-url
+									.append do
+										$ '<span class="name">' .text user.name
+									.append do
+										$ '<span class="screen-name">' .text "@#{user.screen-name}"
