@@ -42,6 +42,7 @@ module.exports = ($form) ->
 			close = show-modal-dialog $crop-form, false, ->
 				$img.cropper {
 					aspect-ratio: 1 / 1
+					highlight: no
 				}
 
 			$crop-form.find \.cancel .click ->
