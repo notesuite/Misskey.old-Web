@@ -5,9 +5,10 @@ Sortable = require 'Sortable'
 
 Tab = require '../lib/tab.js'
 WavesEffect = require '../lib/waves-effect.js'
-Album = require '../common/album.js'
-show-modal-dialog = require '../common/modal-dialog.js'
-init-i-settings-dialog = require '../common/i-settings.js'
+Album = require './album.js'
+sncompleter = require './sncompleter.js'
+show-modal-dialog = require './modal-dialog.js'
+init-i-settings-dialog = require './i-settings.js'
 
 album = new Album
 
@@ -205,6 +206,8 @@ class PostForm
 				switch (id)
 				| \status => THIS.statusPostForm.focus!
 				| \photo => THIS.photoPostForm.focus!
+
+		sncompleter $ '#misskey-post-form-status-tab-page textarea'
 
 		$ \#misskey-post-button .click ->
 			THIS.open!
