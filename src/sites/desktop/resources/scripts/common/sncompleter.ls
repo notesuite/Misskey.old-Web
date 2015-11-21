@@ -37,9 +37,9 @@ module.exports = ($input) ->
 		before = source.substring 0 caret
 		trimed-before = before.substring 0 before.last-index-of \@
 		after = source.substring caret
-		$input.val trimed-before + \@ + sn + after
+		$input.val trimed-before + \@ + sn + ' ' + after
 		$input.focus!
-		$input.select-range caret + sn.length - 1
+		$input.select-range caret + sn.length
 
 	function close
 		$input.parent!.children \.ui-autocomplete .remove!
