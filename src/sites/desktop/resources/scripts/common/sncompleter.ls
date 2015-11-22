@@ -79,7 +79,7 @@ module.exports = ($input) ->
 
 	$input.bind \input ->
 		close!
-		
+
 		styles = <[
 			border-bottom-width
 			border-left-width
@@ -103,6 +103,8 @@ module.exports = ($input) ->
 		$dummy-input = $ '<div role="presentation" />'
 			..css {
 				'position': \absolute
+				'top': \0
+				'left': \0
 				'pointer-events': \none
 				'visibility': \hidden
 				'width': $input.width! + 'px'
