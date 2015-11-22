@@ -7,4 +7,5 @@ export interface MisskeyExpressRequest extends express.Request {
 	session: any;
 	renderData: any;
 	me: User;
+	parameds: any;
 }

@@ -28,9 +28,8 @@ export default function(app: express.Express): void {
 		requestApi('GET', 'users/show', {
 			'screen-name': screenName
 		}, req.isLogin ? req.me.id : null).then((user: User) => {
-			console.log(user);
 			if (user !== null) {
-				req.user = user;
+				req.parameds.user = user;
 				next();
 			} else {
 				res.status(404);
@@ -40,6 +39,25 @@ export default function(app: express.Express): void {
 			if (err.body === 'not-found') {
 				res.status(404);
 				res.display(req, 'user-not-found', {});
+			}
+		});
+	});
+
+	app.param('postId', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, postId: string) => {
+		requestApi('GET', 'posts/show', {
+			'post-id': postId
+		}, req.isLogin ? req.me.id : null).then((post: Object) => {
+			if (post !== null) {
+				req.parameds.post = post;
+				next();
+			} else {
+				res.status(404);
+				res.display(req, 'post-not-found', {});
+			}
+		}, (err: any) => {
+			if (err.body === 'not-found') {
+				res.status(404);
+				res.display(req, 'post-not-found', {});
 			}
 		});
 	});
@@ -84,5 +102,9 @@ export default function(app: express.Express): void {
 
 	app.get('/:userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'user');
+	});
+	
+	app.get('/:userScreenName/:postId', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'post');
 	});
 }

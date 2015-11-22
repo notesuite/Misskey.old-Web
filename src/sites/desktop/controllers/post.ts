@@ -10,17 +10,13 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	'use strict';
 
 	const user: User = req.parameds.user;
+	const post: Post = req.parameds.post;
 	const me: User = req.me;
 
-	requestApi('GET', 'posts/user-timeline', {
-		'user-id': user.id
-	}, me !== null ? me.id : null).then((tl: Post[]) => {
-		res.display(req, 'user', {
-			user: user,
-			me: me,
-			isMe: req.isLogin && user.id.toString() === me.id.toString(),
-			timeline: tl,
-			parsePostText: parsePostText
-		});
+	res.display(req, 'post', {
+		user: user,
+		me: me,
+		post: post,
+		parsePostText: parsePostText
 	});
 };
