@@ -109,15 +109,6 @@
 				}
 			}
 		}
-
-		> .replies {
-			padding-top: 4px;
-			padding-left: 32px;
-
-			> .sub-post {
-				.sub-article;
-			}
-		}
 	}
 
 	&.status,
@@ -1612,6 +1603,17 @@
 
 			> .sub-post {
 				.sub-article;
+
+				> .body {
+					> .replies {
+						padding-top: 4px;
+						padding-left: 32px;
+
+						> .sub-post {
+							.sub-article;
+						}
+					}
+				}
 			}
 		}
 	}
