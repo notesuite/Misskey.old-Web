@@ -335,7 +335,7 @@ class Timeline
 				} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
 
 			# Init ogp preview
-			..find '> .main > .content > .text a:not(.mention)' .each ->
+			..find '> .main > .content > .text a:not(.mention):not(.hashtag)' .each ->
 				$link = $ @
 				$.ajax "#{config.web-api-url}/web/ogp/parse" {
 					type: \get

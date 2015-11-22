@@ -9,20 +9,29 @@ export default function(text: string, isPlain: boolean): string {
 		return null;
 	}
 	if (isPlain) {
-		text = escapeHtml(text).replace(/https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+/g, (url: string) => {
+		text = analyzeHashtags(analyzeMentions(escapeHtml(text).replace(/https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+/g, (url: string) => {
 			return `<a href="${url}" target="_blank" class="url">${url}</a>`;
-		}).replace(/@([a-zA-Z0-9\-]+)/g, (arg: string, screenName: string) => {
-			return `<a href="${config.publicConfig.url}/${screenName}" class="mention">@${screenName}</a>`;
-		}).replace(/(\r\n|\r|\n)/g, '<br>');
+		}))).replace(/(\r\n|\r|\n)/g, '<br>');
 	} else {
 		marked.setOptions({
 			gfm: true,
 			breaks: true,
 			sanitize: true
 		});
-		text = marked(text).replace(/@([a-zA-Z0-9\-]+)/g, (arg: string, screenName: string) => {
-			return `<a href="${config.publicConfig.url}/${screenName}" class="mention">@${screenName}</a>`;
-		});
+		text = analyzeHashtags(analyzeMentions(marked(text)));
 	}
 	return text;
 }
+
+function analyzeMentions(text: string): string {
+	return text.replace(/@([a-zA-Z0-9\-]+)/g, (arg: string, screenName: string) => {
+		return `<a href="${config.publicConfig.url}/${screenName}" class="mention">@${screenName}</a>`;
+	});
+}
+
+function analyzeHashtags(text: string): string {
+	return text.replace(/#(\S+)/g, (arg: string, tag: string) => {
+		return `<a href="${config.publicConfig.url}/search/hashtag:${tag}" class="hashtag">#${tag}</a>`;
+	});
+}
+
