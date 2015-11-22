@@ -18,7 +18,7 @@ mixin subPost(post)
 							a(href=config.url + '/' + post.user.screenName, target='_blank')= post.user.name
 						span.screen-name= post.user.screenName
 						p.created-at
-							a.time-anchor(href=config.url + '/' + post.user.screenName + '/status/' + post.id)
+							a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id)
 								time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt
 					div.content
 						+content(post)
