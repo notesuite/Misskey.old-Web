@@ -113,6 +113,7 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 		req.session.hasOwnProperty('userId') &&
 		req.session.userId !== null;
 
+	req.data = {};
 	req.isLogin = isLogin;
 	req.ua = ua;
 	req.renderData = { // Render data

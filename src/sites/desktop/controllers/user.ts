@@ -9,7 +9,7 @@ import requestApi from '../../../utils/requestApi';
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
 
-	const user: User = req.parameds.user;
+	const user: User = req.data.user;
 	const me: User = req.me;
 
 	requestApi('GET', 'posts/user-timeline', {

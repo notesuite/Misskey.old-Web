@@ -9,8 +9,8 @@ import requestApi from '../../../utils/requestApi';
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
 
-	const user: User = req.parameds.user;
-	const post: Post = req.parameds.post;
+	const user: User = req.data.user;
+	const post: Post = req.data.post;
 	const me: User = req.me;
 
 	res.display(req, 'post', {

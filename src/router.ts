@@ -29,7 +29,7 @@ export default function(app: express.Express): void {
 			'screen-name': screenName
 		}, req.isLogin ? req.me.id : null).then((user: User) => {
 			if (user !== null) {
-				req.parameds.user = user;
+				req.data.user = user;
 				next();
 			} else {
 				res.status(404);
@@ -48,7 +48,7 @@ export default function(app: express.Express): void {
 			'post-id': postId
 		}, req.isLogin ? req.me.id : null).then((post: Object) => {
 			if (post !== null) {
-				req.parameds.post = post;
+				req.data.post = post;
 				next();
 			} else {
 				res.status(404);
