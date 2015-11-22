@@ -1,3 +1,5 @@
+$ = require 'jquery'
+
 $ ->
 	$ \h1 .animate {
 		opacity: 1
