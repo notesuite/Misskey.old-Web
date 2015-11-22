@@ -36,6 +36,8 @@ const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, conf
 const server: express.Express = express();
 server.disable('x-powered-by');
 server.locals.compileDebug = false;
+server.locals.filename = 'jade';
+server.locals.cache = true;
 // server.locals.pretty = '    ';
 server.set('view engine', 'jade');
 server.set('X-Frame-Options', 'SAMEORIGIN');
