@@ -5,13 +5,19 @@ Album = require './album.js'
 
 album = new Album
 
-TIMELINE_CORE = {}
-	..init = ($tl) ->
-		TIMELINE_CORE.tl = $tl
-		$tl.find '> .posts > .post' .each ->
-			TIMELINE_CORE.set-event $ @
+class Timeline
+	($tl) ->
+		THIS = @
 
-	..set-event = ($post) ->
+		THIS.tl = $tl.find '> .posts'
+		THIS.posts = THIS.tl.children!
+
+		THIS.posts.each ->
+			THIS.init-post $ @
+
+	init-post: ($post) ->
+		THIS = @
+
 		function check-liked
 			($post.attr \data-is-liked) == \true
 
@@ -22,25 +28,25 @@ TIMELINE_CORE = {}
 			animation-speed = 200ms
 			if ($post.attr \data-is-display-active) == \false
 				reply-form-text = $post.find '> .reply-form textarea' .val!
-				TIMELINE_CORE.tl.find '> .posts > .post' .each ->
+				THIS.posts.each ->
 					$ @
 						..attr \data-is-display-active \false
-						..remove-class \display-html-active-status-prev
-						..remove-class \display-html-active-status-next
-				TIMELINE_CORE.tl.find '> .posts > .post > .talk-ellipsis' .each ->
+						..remove-class \display-active-before
+						..remove-class \display-active-after
+				THIS.posts.find '.talk-ellipsis' .each ->
 					$ @ .show animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > .replies-ellipsis' .each ->
+				THIS.posts.find '.replies-ellipsis' .each ->
 					$ @ .show animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > .talk' .each ->
+				THIS.posts.find '.talk' .each ->
 					$ @ .slide-up animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > .reply-form' .each ->
+				THIS.posts.find '.reply-form' .each ->
 					$ @ .hide animation-speed
-				TIMELINE_CORE.tl.find '> .posts > .post > .replies' .each ->
+				THIS.posts.find '.replies' .each ->
 					$ @ .slide-up animation-speed
 				$post
 					..attr \data-is-display-active \true
-					..parent!.prev!.add-class \display-html-active-status-prev
-					..parent!.next!.add-class \display-html-active-status-next
+					..prev!.add-class \display-active-before
+					..next!.add-class \display-active-after
 					..find  '> .talk-ellipsis' .hide animation-speed
 					..find  '> .replies-ellipsis' .hide animation-speed
 					..find  '> .talk' .slide-down animation-speed
@@ -72,8 +78,8 @@ TIMELINE_CORE = {}
 			else
 				$post
 					..attr \data-is-display-active \false
-					..parent!.prev!.remove-class \display-html-active-status-prev
-					..parent!.next!.remove-class \display-html-active-status-next
+					..prev!.remove-class \display-active-before
+					..next!.remove-class \display-active-after
 					..find  '> .talk-ellipsis' .show animation-speed
 					..find  '> .replies-ellipsis' .show animation-speed
 					..find  '> .talk' .slide-up animation-speed
@@ -340,14 +346,26 @@ TIMELINE_CORE = {}
 				.done (html) ->
 					$ html .append-to $post.find '> .main > .content' .hide!.fade-in 200ms
 
-	..add = ($post) ->
+	add: ($post) ->
+		THIS = @
+
 		new Audio '/resources/sounds/pop.mp3' .play!
 
-		TIMELINE_CORE.set-event $post
-		$post.prepend-to ((TIMELINE_CORE.tl.children '.posts')[0]) .hide!.slide-down 200ms
+		$recent-post = THIS.tl.children ':first-child'
+		if ($recent-post.attr \data-is-display-active) == \true
+			$post.add-class \display-active-before
+		THIS.init-post $post
+		$post.prepend-to THIS.tl .hide!.slide-down 200ms
+		THIS.refresh-my-posts!
 
-	..add-last = ($post) ->
-		TIMELINE_CORE.set-event $post
-		$post.append-to ((TIMELINE_CORE.tl.children '.posts')[0])
+	add-last: ($post) ->
+		THIS = @
 
-module.exports = TIMELINE_CORE
+		THIS.init-post $post
+		$post.append-to THIS.tl
+		THIS.refresh-my-posts!
+
+	refresh-my-posts: ->
+		THIS.posts = THIS.tl.children!
+
+module.exports = Timeline

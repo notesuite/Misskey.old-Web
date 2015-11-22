@@ -1,6 +1,6 @@
 require '../common/ui.js'
 $ = require 'jquery'
-TIMELINE_CORE = require '../common/timeline-core.js'
+Timeline = require '../common/timeline-core.js'
 
 function post
 	$form = $ \#post-form
@@ -45,7 +45,7 @@ $ ->
 	catch
 		console.log 'oops'
 
-	TIMELINE_CORE.init $ '.timeline'
+	timeline = new Timeline $ '.timeline'
 
 	/*
 	# オートセーブがあるなら復元
@@ -86,7 +86,7 @@ $ ->
 		$notice.prepend-to ($ '#widget-notices .notices') .show 200
 
 	socket.on \post (post) ->
-		TIMELINE_CORE.add $ post
+		timeline.add $ post
 
 	socket.on \reply (status) ->
 		console.log \reply status
@@ -152,7 +152,7 @@ $ ->
 					me.data \loading no
 					$posts = $ data
 					$posts.each ->
-						TIMELINE_CORE.add-last $ @
+						timeline.add-last $ @
 				.fail (data) ->
 					me.data \loading no
 
