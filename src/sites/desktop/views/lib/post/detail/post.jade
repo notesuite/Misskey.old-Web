@@ -154,3 +154,6 @@ mixin core(post, isRepost, repost)
 						i.fa.fa-reply
 					input(name='file', type='file', accept='image/*', multiple)
 			div.replies(itemprop='comment')
+				if replies != null && replies.length > 0
+					each reply in replies
+						+subPost(reply)

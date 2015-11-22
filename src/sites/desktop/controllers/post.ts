@@ -10,15 +10,20 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	'use strict';
 
 	const user: User = req.data.user;
-	const post: Post = req.data.post;
+	const post: any = req.data.post;
 	const me: User = req.me;
 
-	res.display(req, 'post', {
-		user: user,
-		me: me,
-		post: post,
-		likes: null,
-		reposts: null,
-		parsePostText: parsePostText
+	requestApi('GET', 'posts/replies', {
+		'post-id': post.id
+	}, me !== null ? me.id : null).then((replies: Post[]) => {
+		res.display(req, 'post', {
+			user: user,
+			me: me,
+			post: post,
+			likes: null,
+			reposts: null,
+			replies: replies,
+			parsePostText: parsePostText
+		});
 	});
 };
