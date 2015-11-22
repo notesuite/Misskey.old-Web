@@ -169,21 +169,6 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 	}
 });
 
-// set request session cookie
-server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	if (req.isLogin) {
-		const userId: string = req.session.userId;
-		requestApi('GET', 'account/show', {}, userId).then((user: User) => {
-			req.session.user = user;
-			req.session.save(() => {
-				next();
-			});
-		});
-	} else {
-		next();
-	}
-});
-
 // Rooting
 router(server);
 apiRouter(server);

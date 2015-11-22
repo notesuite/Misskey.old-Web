@@ -29,6 +29,18 @@ export default function(app: express.Express): void {
 			res.send('sakuhima');
 		}
 	});
+	
+	app.post(`/subdomain/${domain}/refresh-session`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		if (req.isLogin) {
+			const userId: string = req.session.userId;
+			requestApi('GET', 'account/show', {}, userId).then((me: Object) => {
+				req.session.user = me;
+				req.session.save(() => {
+					res.json(me);
+				});
+			});
+		}
+	});
 
 	app.get(`/subdomain/${domain}/web/ogp/parse`, require('./endpoints/ogp/parse'));
 	app.put(`/subdomain/${domain}/web/desktop/update-icon`, require('./endpoints/desktop/update-icon'));
