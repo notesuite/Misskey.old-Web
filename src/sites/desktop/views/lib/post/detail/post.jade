@@ -119,28 +119,28 @@ mixin core(post, isRepost, repost)
 						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
 							= post.likesCount != 0 ? post.likesCount : ''
 			div.likes-and-reposts
-				if status.stargazers != null && status.stargazers.length > 0
-					section.stargazers
+				if likes != null && likes.length > 0
+					section.likes
 						header.caption
-							a.count= status.favoritesCount
+							a.count= post.likesCount
 							h2.title
-								| お気に入り
-						ol.stargazers
-							each stargazer in status.stargazers
-								li.stargazer
-									a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName, data-tooltip= stargazer.name)
-										img.icon(src=stargazer.iconImageUrl, alt='icon')
-				if status.reposters != null && status.reposters.length > 0
-					section.reposters
+								| Like
+						ol.users
+							each user in likes
+								li.user
+									a.icon-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
+										img.icon(src=user.iconUrl, alt='icon')
+				if reposts != null && reposts.length > 0
+					section.reposts
 						header.caption
-							a.count= status.repostsCount
+							a.count= post.repostsCount
 							h2.title
 								| Repost
-						ol.reposters
-							each reposter in status.reposters
-								li.reposter
-									a.icon-anchor(href='/' + reposter.screenName, title= '@' + reposter.screenName, data-tooltip= reposter.name)
-										img.icon(src=reposter.iconImageUrl, alt='icon')
+						ol.users
+							each user in likes
+								li.user
+									a.icon-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
+										img.icon(src=user.iconUrl, alt='icon')
 		form.reply-form(role='form')
 			img.me-icon(src=me.iconUrl, alt='icon')
 			div.form

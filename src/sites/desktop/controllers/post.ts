@@ -17,6 +17,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		user: user,
 		me: me,
 		post: post,
+		likes: null,
+		reposts: null,
 		parsePostText: parsePostText
 	});
 };
