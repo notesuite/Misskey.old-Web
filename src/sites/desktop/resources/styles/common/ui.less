@@ -2822,28 +2822,44 @@ input.tagit-hidden-field {
 		padding: 4px 0;
 		list-style: none;
 
+		> li {
+			a {
+				display: inline-block;
+				z-index: 1;
+				box-sizing: border-box;
+				width: 100%;
+				padding: 4px 12px;
+				vertical-align: top;
+				white-space: nowrap;
+				overflow: hidden;
+				color: #735648;
+				font-size: 0.9em;
+				cursor: default;
+				transition: none;
+
+				&:hover,
+				&:focus {
+					color: #fff;
+					background: @themeColor;
+					text-decoration: none;
+				}
+
+				&:active {
+					color: #fff;
+					background: darken(@themeColor, 10%);
+				}
+
+				* {
+					pointer-events: none;
+				}
+			}
+		}
+
 		&.users {
 			> li {
 				a {
-					display: inline-block;
-					z-index: 1;
-					box-sizing: border-box;
-					width: 100%;
-					padding: 4px 12px;
-					vertical-align: top;
-					white-space: nowrap;
-					overflow: hidden;
-					color: #735648;
-					font-size: 0.9em;
-					cursor: default;
-					transition: none;
-
 					&:hover,
 					&:focus {
-						color: #fff;
-						background: @themeColor;
-						text-decoration: none;
-
 						.name {
 							color: #fff;
 						}
@@ -2854,9 +2870,6 @@ input.tagit-hidden-field {
 					}
 
 					&:active {
-						color: #fff;
-						background: darken(@themeColor, 10%);
-
 						.name {
 							color: #fff;
 						}
@@ -2864,10 +2877,6 @@ input.tagit-hidden-field {
 						.screen-name {
 							color: #fff;
 						}
-					}
-
-					* {
-						pointer-events: none;
 					}
 
 					.icon {
