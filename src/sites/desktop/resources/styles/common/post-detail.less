@@ -9,15 +9,15 @@
 		border-bottom: none;
 	}
 
-	&:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
-
 	> .body {
 
 		> .main {
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
 			> .icon-container {
 				display: block;
 				float: left;
@@ -1611,6 +1611,7 @@
 
 						> .sub-post {
 							.sub-article;
+							border-bottom: none;
 						}
 					}
 				}
