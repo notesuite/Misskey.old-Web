@@ -1,7 +1,8 @@
 extends ../layout
+include ../lib/post/detail/post
 
 block title
-	= post.user.name + 'さんの' + post.displayCreatedAt + 'の投稿'
+	= post.user.name + 'さんの' + post.createdAt + 'の投稿'
 
 block meta
 	meta(name='keywords', content='Misskey')
@@ -14,6 +15,7 @@ block body
 	main(role='main')
 		button#read-after(role='button', title='これより後の投稿を読む'): i.fa.fa-chevron-up
 		aside.timeline#after-timeline
-		div#post!= statusHtml
+		div#post
+			+post(post)
 		aside.timeline#before-timeline
 		button#read-before(role='button', title='これより前の投稿を読む'): i.fa.fa-chevron-down
