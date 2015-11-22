@@ -96,48 +96,48 @@ mixin core(post, isRepost, repost)
 							p.comment= post.user.comment
 				div.content(itemprop='articleBody')
 					+content(post)
-			footer.footer
-				if login
-					ul.actions
-						li.reply
-							button.reply-button(title='返信', role='button')
-								i.fa.fa-reply
-							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
-								= post.repliesCount != 0 ? post.repliesCount : ''
-						if me.id != post.userId
-							li.repost
-								button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
-									i.fa.fa-retweet
-								a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
-									= post.repostsCount != 0 ? post.repostsCount : ''
-						li.like
-							button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
-								i.fa.fa-star
-							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
-								= post.likesCount != 0 ? post.likesCount : ''
-				div.likes-and-reposts
-					if likes != null && likes.length > 0
-						section.likes
-							header.caption
-								a.count= post.likesCount
-								h2.title
-									| Like
-							ol.users
-								each user in likes
-									li.user
-										a.icon-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
-											img.icon(src=user.iconUrl, alt='icon')
-					if reposts != null && reposts.length > 0
-						section.reposts
-							header.caption
-								a.count= post.repostsCount
-								h2.title
-									| Repost
-							ol.users
-								each user in likes
-									li.user
-										a.icon-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
-											img.icon(src=user.iconUrl, alt='icon')
+				footer.footer
+					if login
+						ul.actions
+							li.reply
+								button.reply-button(title='返信', role='button')
+									i.fa.fa-reply
+								a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
+									= post.repliesCount != 0 ? post.repliesCount : ''
+							if me.id != post.userId
+								li.repost
+									button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
+										i.fa.fa-retweet
+									a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
+										= post.repostsCount != 0 ? post.repostsCount : ''
+							li.like
+								button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
+									i.fa.fa-star
+								a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
+									= post.likesCount != 0 ? post.likesCount : ''
+			div.likes-and-reposts
+				if likes != null && likes.length > 0
+					section.likes
+						header.caption
+							a.count= post.likesCount
+							h2.title
+								| Like
+						ol.users
+							each user in likes
+								li.user
+									a.icon-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
+										img.icon(src=user.iconUrl, alt='icon')
+				if reposts != null && reposts.length > 0
+					section.reposts
+						header.caption
+							a.count= post.repostsCount
+							h2.title
+								| Repost
+						ol.users
+							each user in likes
+								li.user
+									a.icon-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
+										img.icon(src=user.iconUrl, alt='icon')
 			form.reply-form(role='form')
 				img.me-icon(src=me.iconUrl, alt='icon')
 				div.form
