@@ -127,9 +127,13 @@ module.exports = ($input) ->
 		key = e.keyCode || e.which
 		switch (key)
 			| 10, 13 => # Key[ENTER]
-				e.prevent-default!
-				$a = $opening-menu.find "ol > li:nth-child(#{$opening-menu.attr 'data-select'}) > a"
-				complete ($a.attr \data-summoner), ($a.attr \data-value)
+				if select?
+					e.prevent-default!
+					$a = $opening-menu.find "ol > li:nth-child(#{$opening-menu.attr 'data-select'}) > a"
+					complete ($a.attr \data-summoner), ($a.attr \data-value)
+				else
+					close!
+					$input.focus!
 			| 27 => # Key[ESC]
 				e.prevent-default!
 				close!
