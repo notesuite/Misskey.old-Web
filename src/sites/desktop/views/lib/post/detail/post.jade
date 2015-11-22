@@ -2,50 +2,6 @@ include ../content
 include ./subPost
 include ./repliesSubPost
 
-mixin status(status)
-	div.icon-area
-		a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
-			img.icon(src=status.user.iconUrl, alt='icon')
-	header.header
-		div.author(itemprop='author')
-			h2
-				a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
-			if status.user.isVerified
-				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-			span.screen-name= status.user.screenName
-		div.right
-			if status.app != null
-				a.via-anchor
-					p.via
-						span.caption via
-						b.app-name= status.app.name
-			a.time-anchor(href=config.url + '/' + status.user.screenName + '/' + status.id, itemprop='url')
-				time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
-	div.content(itemprop='articleBody')
-		+content(status)
-
-mixin photo(post)
-	div.icon-area
-		a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='icon')
-			img.icon(src=post.user.iconUrl, alt='icon')
-	header.header
-		div.author(itemprop='author')
-			h2
-				a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
-			if post.user.isVerified
-				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-			span.screen-name= post.user.screenName
-		div.right
-			if post.app != null
-				a.via-anchor
-					p.via
-						span.caption via
-						b.app-name= post.app.name
-			a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
-				time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
-	div.content(itemprop='articleBody')
-		+content(post)
-
 mixin post(post, isRepost)
 	if post.type == 'repost'
 		+core(post.post, true, post)
@@ -101,6 +57,10 @@ mixin core(post, isRepost, repost)
 						button.cancel(type='button')
 							i.fa.fa-ban
 							p キャンセル
+		if post.inReplyToPost
+			if post.inReplyToPost.inReplyToPost
+				button.read-talk(role='button', title='会話をもっと読む')
+					i.fa.fa-ellipsis-v
 		div.talk
 		if post.inReplyToPost
 			+subPost(post.inReplyToPost)(class='reply-source')
@@ -114,11 +74,32 @@ mixin core(post, isRepost, repost)
 						| Reposted by 
 						a.name(href=config.url + '/' + repost.user.screenName, target='_blank')= repost.user.name
 		div.main
-			case post.type
-				when 'status'
-					+status(post)
-				when 'photo'
-					+photo(post)
+			header.header
+				div.icon-area
+					a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='icon')
+						img.icon(src=post.user.iconUrl, alt='icon')
+				div.main
+					div.top
+						div.left
+							div.author
+								h1.name
+									a.user-name(href=config.url + '/' + post.user.screenName, rel='author')= post.user.name
+								if post.user.isVerified
+									img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+								p.screen-name= '@' + post.user.screenName
+						div.right
+							if post.app != null
+								p.via
+									a.via-anchor
+										span.caption via
+										b.app-name= post.app.name
+							p.created-at
+								a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
+									time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+					div.bottom
+						p.comment= post.user.comment
+			div.content(itemprop='articleBody')
+				+content(post)
 		footer.footer
 			if login
 				ul.actions
@@ -138,12 +119,29 @@ mixin core(post, isRepost, repost)
 							i.fa.fa-star
 						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
 							= post.likesCount != 0 ? post.likesCount : ''
-			if post.likers != null
-				ol.likers
-					each liker in post.likers
-						li.liker
-							a.icon-anchor(href='/' + liker.screenName, title= '@' + liker.screenName)
-								img.icon(src=liker.iconUrl, alt='icon')
+			div.likes-and-reposts
+				if status.stargazers != null && status.stargazers.length > 0
+					section.stargazers
+						header.caption
+							a.count= status.favoritesCount
+							h2.title
+								| お気に入り
+						ol.stargazers
+							each stargazer in status.stargazers
+								li.stargazer
+									a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName, data-tooltip= stargazer.name)
+										img.icon(src=stargazer.iconImageUrl, alt='icon')
+				if status.reposters != null && status.reposters.length > 0
+					section.reposters
+						header.caption
+							a.count= status.repostsCount
+							h2.title
+								| Repost
+						ol.reposters
+							each reposter in status.reposters
+								li.reposter
+									a.icon-anchor(href='/' + reposter.screenName, title= '@' + reposter.screenName, data-tooltip= reposter.name)
+										img.icon(src=reposter.iconImageUrl, alt='icon')
 		form.reply-form(role='form')
 			img.me-icon(src=me.iconUrl, alt='icon')
 			div.form
