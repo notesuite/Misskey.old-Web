@@ -366,6 +366,7 @@ class Timeline
 		THIS.refresh-my-posts!
 
 	refresh-my-posts: ->
+		THIS = @
 		THIS.posts = THIS.tl.children!
 
 module.exports = Timeline
