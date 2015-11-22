@@ -19,32 +19,32 @@ mixin status(status)
 					p.via
 						span.caption via
 						b.app-name= status.app.name
-			a.time-anchor(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url')
+			a.time-anchor(href=config.url + '/' + status.user.screenName + '/' + status.id, itemprop='url')
 				time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 	div.content(itemprop='articleBody')
 		+content(status)
 
-mixin photo(reply)
+mixin photo(post)
 	div.icon-area
-		a.icon-anchor(href=config.url + '/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName, rel='icon')
-			img.icon(src=reply.user.iconUrl, alt='icon')
+		a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='icon')
+			img.icon(src=post.user.iconUrl, alt='icon')
 	header.header
 		div.author(itemprop='author')
 			h2
-				a.user-name(href=config.url + '/' + reply.user.screenName, target='_blank', rel='author')= reply.user.name
-			if reply.user.isVerified
+				a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
+			if post.user.isVerified
 				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-			span.screen-name= reply.user.screenName
+			span.screen-name= post.user.screenName
 		div.right
-			if reply.app != null
+			if post.app != null
 				a.via-anchor
 					p.via
 						span.caption via
-						b.app-name= reply.app.name
-			a.time-anchor(href=config.url + '/' + reply.user.screenName + '/post/' + reply.id, itemprop='url')
-				time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
+						b.app-name= post.app.name
+			a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
+				time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 	div.content(itemprop='articleBody')
-		+content(reply)
+		+content(post)
 
 mixin post(post, isRepost)
 	if post.type == 'repost'
@@ -91,7 +91,7 @@ mixin core(post, isRepost, repost)
 							if post.user.isVerified
 								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 							span.screen-name= '@' + post.user.screenName
-							a(href=config.url + '/' + post.user.screenName + '/status/' + post.id, itemprop='url'): time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+							a(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url'): time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 						div.main(itemprop='articleBody')
 							+content(post)
 					div.actions
@@ -125,18 +125,18 @@ mixin core(post, isRepost, repost)
 					li.reply
 						button.reply-button(title='返信', role='button')
 							i.fa.fa-reply
-						a.count(href=config.url + '/' + post.user.screenName + '/status/' + post.id)
+						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
 							= post.repliesCount != 0 ? post.repliesCount : ''
 					if me.id != post.userId
 						li.repost
 							button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
 								i.fa.fa-retweet
-							a.count(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/reposts')
+							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
 								= post.repostsCount != 0 ? post.repostsCount : ''
 					li.like
 						button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
 							i.fa.fa-star
-						a.count(href=config.url + '/' + post.user.screenName + '/status/' + post.id + '/likes')
+						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
 							= post.likesCount != 0 ? post.likesCount : ''
 			if post.likers != null
 				ol.likers
