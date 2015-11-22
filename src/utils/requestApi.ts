@@ -5,7 +5,7 @@ import config from '../config';
 
 export default function(method: string, endpoint: string, params: any, userId?: string): Promise<any> {
 	'use strict';
-	return new Promise((resolve: (value: any) => void, reject: (err: any) => void) => {
+	return new Promise<any>((resolve, reject) => {
 		const options: request.Options = {
 			url: `http://${config.apiServerIp}:${config.apiServerPort}/${endpoint}`,
 			method: method,

@@ -16,14 +16,25 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	requestApi('GET', 'posts/replies', {
 		'post-id': post.id
 	}, me !== null ? me.id : null).then((replies: Post[]) => {
-		res.display(req, 'post', {
-			user: user,
-			me: me,
-			post: post,
-			likes: null,
-			reposts: null,
-			replies: replies,
-			parsePostText: parsePostText
+		Promise.all(replies.map((reply: any) => {
+			return new Promise<Object>((resolve, reject) => {
+				requestApi('GET', 'posts/replies', {
+					'post-id': reply.id
+				}, me !== null ? me.id : null).then((repliesOfReply: Post[]) => {
+					reply.replies = repliesOfReply;
+					resolve(reply);
+				});
+			});
+		})).then((transformedReplies: any) => {
+			res.display(req, 'post', {
+				user: user,
+				me: me,
+				post: post,
+				likes: null,
+				reposts: null,
+				replies: transformedReplies,
+				parsePostText: parsePostText
+			});
 		});
 	});
 };
