@@ -100,21 +100,28 @@ module.exports = ($input) ->
 		input-position = $input.position!
 		caret-position = $dummy-text-positioner.position!
 
-		$menu = $ '<div class="ui-autocomplete" data-select="null" />'
-		$menu.css {
-			'position': \absolute
-			'top': (input-position.top + caret-position.top) + 'px'
-			'left': (input-position.left + caret-position.left) + 'px'
-		}
-		$opening-menu := $menu
-
-		$input.parent!.append $menu
-
-		$input.bind \keydown autocomplate-keydown
-
-		$menu
+		if $opening-menu?
+			$opening-menu.css {
+				'position': \absolute
+				'top': (input-position.top + caret-position.top) + 'px'
+				'left': (input-position.left + caret-position.left) + 'px'
+			}
+			$opening-menu.attr \data-select \null
+			$opening-menu
+		else
+			$input.bind \keydown autocomplate-keydown
+			$menu = $ '<div class="ui-autocomplete" data-select="null" />'
+			$menu.css {
+				'position': \absolute
+				'top': (input-position.top + caret-position.top) + 'px'
+				'left': (input-position.left + caret-position.left) + 'px'
+			}
+			$opening-menu := $menu
+			$input.parent!.append $menu
+			$menu
 
 	function close
+		$opening-menu := null
 		$input.parent!.children \.ui-autocomplete .remove!
 		$input.unbind \keydown autocomplate-keydown
 
@@ -151,13 +158,11 @@ module.exports = ($input) ->
 				else
 					$opening-menu.attr \data-select select + 1
 			| _ =>
-				close!
 				$input.focus!
+				return
 		$opening-menu.find "ol > li:nth-child(#{$opening-menu.attr 'data-select'}) > a" .focus!
 
 	$input.bind \input ->
-		close!
-
 		caret := get-caret!
 		text = $input.val!.substring 0 caret
 
@@ -177,6 +182,7 @@ module.exports = ($input) ->
 					xhr-fields: {+with-credentials}}
 				.done (result) ->
 					if result? and result.length > 0
+						$menu.empty!
 						$menu.append $ '<ol class="users">'
 						result.for-each (user) ->
 							$menu.children \ol .append do
@@ -196,6 +202,10 @@ module.exports = ($input) ->
 										$ '<span class="name">' .text user.name
 									.append do
 										$ '<span class="screen-name">' .text "@#{user.screen-name}"
+					else
+						close!
+			else
+				close!
 
 		if hash-index != -1
 			tag = (text.substring hash-index).replace \# ''
@@ -210,6 +220,7 @@ module.exports = ($input) ->
 					xhr-fields: {+with-credentials}}
 				.done (result) ->
 					if result? and result.length > 0
+						$menu.empty!
 						$menu.append $ '<ol class="hashtags">'
 						result.for-each (hashtag) ->
 							$menu.children \ol .append do
@@ -225,3 +236,7 @@ module.exports = ($input) ->
 										false
 									.append do
 										$ '<span class="name">' .text "\##{hashtag}"
+					else
+						close!
+			else
+				close!
