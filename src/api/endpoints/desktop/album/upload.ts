@@ -8,7 +8,7 @@ import requestApi from '../../../../utils/requestApi';
 export default function upload(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 	const file: Express.Multer.File = (<any>req).file;
-	const data: any = req.body;
+	const data: any = {};
 	data.file = {
 		value: fs.readFileSync(file.path),
 		options: {
