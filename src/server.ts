@@ -156,21 +156,16 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 			req.renderData.me = user;
 			next();
 		} else {
-			try {
-				requestApi('GET', 'account/show', {}, userId).then((user: User) => {
-					req.me = user;
-					req.renderData.me = user;
-					req.session.user = user;
-					req.session.save(() => {
-						next();
-					});
-				}, (err: any) => {
-					return res.status(500).send('Sry! Failed lookup of your account. plz try again.');
+			requestApi('GET', 'account/show', {}, userId).then((user: User) => {
+				req.me = user;
+				req.renderData.me = user;
+				req.session.user = user;
+				req.session.save(() => {
+					next();
 				});
-			} catch (e) {
-				console.error(e);
+			}, (err: any) => {
 				return res.status(500).send('Sry! Failed lookup of your account. plz try again.');
-			}
+			});
 		}
 	} else {
 		req.me = null;
