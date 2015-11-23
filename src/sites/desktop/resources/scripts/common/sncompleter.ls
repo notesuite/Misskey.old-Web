@@ -203,7 +203,7 @@ module.exports = ($input) ->
 				$menu = open!
 
 				# search users
-				$.ajax "#{config.web-api-url}/search/hashtags" {
+				$.ajax "#{config.web-api-url}/hashtags/search" {
 					type: \get
 					data: {'name': tag}
 					data-type: \json
