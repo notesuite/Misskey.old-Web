@@ -24,6 +24,19 @@ import config from './config';
 import router from './router';
 import apiRouter from './api/router';
 
+function uatype(ua: string): string {
+	if (ua !== null) {
+		ua = ua.toLowerCase();
+		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
+			return 'mobile';
+		} else {
+			return 'desktop';
+		}
+	} else {
+		return 'desktop';
+	}
+}
+
 console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
 // Grobal options
@@ -94,18 +107,7 @@ server.get('/manifest.json', (req: express.Request, res: express.Response) => {
 
 // Init session
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	const uastring: string = req.headers['user-agent'];
-	const ua: string = ((): string => {
-		if (uastring !== null) {
-			if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(uastring.toLowerCase())) {
-				return 'mobile';
-			} else {
-				return 'desktop';
-			}
-		} else {
-			return 'desktop';
-		}
-	})();
+	const ua: string = uatype(req.headers['user-agent']);
 
 	const isLogin: boolean =
 		req.hasOwnProperty('session') &&
