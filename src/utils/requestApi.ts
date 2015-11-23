@@ -24,6 +24,8 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 					statusCode: response.statusCode,
 					body: JSON.parse(body).error
 				});
+			} else if (body === undefined) {
+				reject('something-happened');
 			} else {
 				try {
 					const parsed: any = JSON.parse(body);

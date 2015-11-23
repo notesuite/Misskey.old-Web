@@ -1,6 +1,8 @@
 import * as cluster from 'cluster';
 import namingWorkerId from './utils/namingWorkerId';
 
+(<any>Error).stackTraceLimit = Infinity;
+
 if (cluster.isMaster) {
 	console.log('Welcome to Misskey!');
 
