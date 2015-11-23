@@ -7,7 +7,7 @@ import requestApi from '../../../../utils/requestApi';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
-	const file: Express.Multer.File = req.files['file'];
+	const file: Express.Multer.File = (<any>req).file;
 	const data: any = req.body;
 	data.file = {
 		value: fs.readFileSync(file.path),
