@@ -150,8 +150,6 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 	// Check logged in, set user instance if logged in
 	if (isLogin) {
 		const userId: string = req.session.userId;
-		console.log('###');
-		console.log(userId);
 		if (req.session.hasOwnProperty('user')) {
 			const user: User = req.session.user;
 			req.me = user;
