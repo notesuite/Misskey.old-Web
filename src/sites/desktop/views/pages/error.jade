@@ -15,6 +15,7 @@ block body
 		h1
 			i.fa.fa-exclamation-triangle
 			| 技術的な問題が発生しています。
-		details
-			summary 詳細情報
-			pre= err
+		if err
+			details
+				summary 詳細情報
+				pre= err

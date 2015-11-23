@@ -40,11 +40,11 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 
 		Promise.all([
 			// Get timeline
-			new Promise((resolve: (timeline: Post[]) => void, reject: (err: any) => void) => {
+			new Promise<any[]>((resolve, reject) => {
 				if (customizeMode || useWidgets.indexOf('timeline') > -1) {
 					requestApi('GET', 'posts/timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
 						resolve(tl);
-					});
+					}, reject);
 				} else {
 					resolve(null);
 				}
@@ -80,6 +80,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse, optio
 			});
 		}, (err: any) => {
 			console.error(err);
+			res.display(req, 'error', {err});
 		});
 	});
 };
