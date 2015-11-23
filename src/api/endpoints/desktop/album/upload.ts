@@ -22,5 +22,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		res.send(compiler({
 			file: albumFile
 		}));
+	}, (err: any) => {
+		console.error(err);
+		res.status(500).send('something-happened');
 	});
 };

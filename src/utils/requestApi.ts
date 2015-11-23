@@ -16,24 +16,26 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 				'user-id': userId
 			}
 		};
-		request(options, (err: any, response: http.IncomingMessage, body: any) => {
-			if (err !== null) {
-				reject(err);
-			} else if (response.statusCode !== 200) {
-				reject({
-					statusCode: response.statusCode,
-					body: JSON.parse(body).error
-				});
-			} else if (body === undefined) {
-				reject('something-happened');
-			} else {
-				try {
+		console.log(options.formData.hasOwnProperty);
+		try {
+			request(options, (err: any, response: http.IncomingMessage, body: any) => {
+				if (err !== null) {
+					reject(err);
+				} else if (response.statusCode !== 200) {
+					reject({
+						statusCode: response.statusCode,
+						body: JSON.parse(body).error
+					});
+				} else if (body === undefined) {
+					reject('something-happened');
+				} else {
 					const parsed: any = JSON.parse(body);
 					resolve(parsed);
-				} catch (e) {
-					reject(e);
 				}
-			}
-		});
+			});
+		} catch (e) {
+			console.error(e);
+			reject(e);
+		}
 	});
 }
