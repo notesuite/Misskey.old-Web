@@ -163,6 +163,8 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 				req.session.save(() => {
 					next();
 				});
+			}, (err: any) => {
+				res.status(500).send('Sry! Failed lookup of your account. plz try again.');
 			});
 		}
 	} else {
