@@ -25,8 +25,12 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 					body: JSON.parse(body).error
 				});
 			} else {
-				// console.log(body);
-				resolve(JSON.parse(body));
+				try {
+					const parsed: any = JSON.parse(body);
+					resolve(parsed);
+				} catch (e) {
+					reject(e);
+				}
 			}
 		});
 	});
