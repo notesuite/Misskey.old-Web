@@ -21,9 +21,7 @@ html#misskey(
 		
 		title
 			block title
-		
-		link(rel='stylesheet', href='/resources/desktop/styles/common/ui.css')
-		
+				
 		block assets
 	
 	body
@@ -72,17 +70,6 @@ html#misskey(
 							p coming soon
 					
 		header#misskey-main-header(role='banner')
-			img(src='/resources/desktop/images/notices-loading.gif', alt='', style='display: none;')
-			if config.env == 'development'
-				p.env-development-info
-					strong
-						em 開発チャンネル
-						| を利用しています。
-					| このチャンネルでは開発中の機能・デザインなどをいち早く利用できますが、不具合が存在する場合があります。
-					em.go-production-channel
-						a(href= config.productionChannelUrl)
-							i.fa.fa-angle-right
-							| 安定チャンネル
 			div.main
 				div.main-contents-container
 					if login
