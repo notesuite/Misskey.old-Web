@@ -3,7 +3,7 @@ import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
 
 const jade: any = require('jade');
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+export default function open(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(

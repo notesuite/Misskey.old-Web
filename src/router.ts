@@ -21,7 +21,7 @@ function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 	controller(req, res, options);
 }
 
-export default function(app: express.Express): void {
+export default function router(app: express.Express): void {
 	'use strict';
 
 	app.param('userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, screenName: string) => {

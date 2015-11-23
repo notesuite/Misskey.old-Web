@@ -14,7 +14,7 @@ client.maxDataSize = 1000000; // 1MB
  * @req: MisskeyExpressRequest
  * @res: MisskeyExpressResponse
  */
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+export default function parse(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 
 	const url: string = req.query.url;

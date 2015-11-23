@@ -5,7 +5,7 @@ import parsePostText from '../../../../../utils/parsePostText';
 import mapToHtml from '../../../../../utils/mapToHtml';
 import config from '../../../../../config';
 
-export default function(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
+export default function talk(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 
 	requestApi('GET', 'posts/talk', req.query, req.session.userId).then((talk: Object[]) => {

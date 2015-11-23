@@ -3,7 +3,7 @@ import * as request from 'request';
 
 import config from '../config';
 
-export default function(method: string, endpoint: string, params: any, userId?: string): Promise<any> {
+export default function requestApi(method: string, endpoint: string, params: any, userId?: string): Promise<any> {
 	'use strict';
 	return new Promise<any>((resolve, reject) => {
 		const options: request.Options = {

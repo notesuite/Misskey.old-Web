@@ -5,7 +5,7 @@ import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
 import requestApi from '../../../../utils/requestApi';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+export default function upload(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 	const file: Express.Multer.File = (<any>req).file;
 	const data: any = req.body;

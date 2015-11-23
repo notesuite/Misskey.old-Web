@@ -5,7 +5,7 @@ import requestApi from '../../../../../utils/requestApi';
 import parsePostText from '../../../../../utils/parsePostText';
 import config from '../../../../../config';
 
-export default function(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
+export default function reply(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(

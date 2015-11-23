@@ -6,7 +6,7 @@ import { MisskeyExpressRequest } from '../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../misskeyExpressResponse';
 import requestApi from '../../../utils/requestApi';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+export default function updateIcon(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 	const avaterFileId: string = req.body['file-id'];
 	const trimX: number = Number(req.body['trim-x']);

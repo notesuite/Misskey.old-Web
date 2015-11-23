@@ -3,7 +3,7 @@ const escapeHtml: any = require('escape-html');
 
 import config from '../config';
 
-export default function(text: string, isPlain: boolean): string {
+export default function parsePostText(text: string, isPlain: boolean): string {
 	'use strict';
 	if (text === null) {
 		return null;
