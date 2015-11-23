@@ -30,9 +30,7 @@ task('build', [
 task('build:ts', () => {
 	return tsProject.src()
 		.pipe(ts(tsProject))
-		.pipe(babel({
-			modules: 'commonStrict'
-		}))
+		.pipe(babel())
 		.pipe(dest('./built'));
 });
 
