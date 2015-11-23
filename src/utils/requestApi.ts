@@ -16,7 +16,6 @@ export default function(method: string, endpoint: string, params: any, userId?: 
 				'user-id': userId
 			}
 		};
-		console.log(options.formData.hasOwnProperty);
 		try {
 			request(options, (err: any, response: http.IncomingMessage, body: any) => {
 				if (err !== null) {
