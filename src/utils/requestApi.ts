@@ -3,19 +3,34 @@ import * as request from 'request';
 
 import config from '../config';
 
-export default function requestApi(method: string, endpoint: string, params: any, userId?: string): Promise<any> {
+export default function requestApi(
+		method: string,
+		endpoint: string,
+		params: any,
+		userId?: string,
+		isFile: boolean = false): Promise<any> {
 	'use strict';
 	return new Promise<any>((resolve, reject) => {
 		const options: request.Options = {
 			url: `http://${config.apiServerIp}:${config.apiServerPort}/${endpoint}`,
 			method: method,
-			formData: method !== 'GET' ? params : null,
-			qs: method === 'GET' ? params : null,
 			headers: {
 				'passkey': config.apiPasskey,
 				'user-id': userId
 			}
 		};
+		switch (method) {
+			case 'GET':
+				options.qs = params;
+				break;
+			default:
+				if (isFile) {
+					options.formData = params;
+				} else {
+					options.form = params;
+				}
+				break;
+		}
 		try {
 			request(options, (err: any, response: http.IncomingMessage, body: any) => {
 				if (err !== null) {

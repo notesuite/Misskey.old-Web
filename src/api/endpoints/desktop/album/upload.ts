@@ -16,7 +16,7 @@ export default function upload(req: MisskeyExpressRequest, res: MisskeyExpressRe
 			contentType: file.mimetype
 		}
 	};
-	requestApi('POST', 'album/files/upload', data, req.session.userId).then((albumFile: Object) => {
+	requestApi('POST', 'album/files/upload', data, req.session.userId, true).then((albumFile: Object) => {
 		const compiler: (locals?: any) => string = jade.compileFile(
 			`${__dirname}/../../../../sites/desktop/views/lib/album/file.jade`);
 		res.send(compiler({

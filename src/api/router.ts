@@ -29,7 +29,7 @@ export default function router(app: express.Express): void {
 			res.send('sakuhima');
 		}
 	});
-	
+
 	app.post(`/subdomain/${domain}/refresh-session`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
 			const userId: string = req.session.userId;

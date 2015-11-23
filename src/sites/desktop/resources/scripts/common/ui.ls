@@ -75,6 +75,7 @@ function update-relative-times
 		$ @ .text time-text
 
 function update-header-statuses
+	/*
 	$.ajax "#{config.web-api-url}/web/get-header-statuses" {
 		type: \get
 		data-type: \json
@@ -95,6 +96,7 @@ function update-header-statuses
 			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .append do
 				$ '<span class="unreadCount">' .text unread-talk-messages-count
 	.fail ->
+	*/
 
 function update-header-clock
 	s = (new Date!).get-seconds!
