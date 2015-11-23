@@ -150,22 +150,29 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 	// Check logged in, set user instance if logged in
 	if (isLogin) {
 		const userId: string = req.session.userId;
+		console.log('###');
+		console.log(userId);
 		if (req.session.hasOwnProperty('user')) {
 			const user: User = req.session.user;
 			req.me = user;
 			req.renderData.me = user;
 			next();
 		} else {
-			requestApi('GET', 'account/show', {}, userId).then((user: User) => {
-				req.me = user;
-				req.renderData.me = user;
-				req.session.user = user;
-				req.session.save(() => {
-					next();
+			try {
+				requestApi('GET', 'account/show', {}, userId).then((user: User) => {
+					req.me = user;
+					req.renderData.me = user;
+					req.session.user = user;
+					req.session.save(() => {
+						next();
+					});
+				}, (err: any) => {
+					return res.status(500).send('Sry! Failed lookup of your account. plz try again.');
 				});
-			}, (err: any) => {
-				res.status(500).send('Sry! Failed lookup of your account. plz try again.');
-			});
+			} catch (e) {
+				console.error(e);
+				return res.status(500).send('Sry! Failed lookup of your account. plz try again.');
+			}
 		}
 	} else {
 		req.me = null;

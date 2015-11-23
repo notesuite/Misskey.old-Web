@@ -97,6 +97,8 @@ export default function(app: express.Express): void {
 			req.session.save(() => {
 				res.json(response);
 			});
+		}, (err: any) => {
+			res.status(500).json(err);
 		});
 	});
 
