@@ -53,8 +53,6 @@ server.use(expressSession({
 }));
 
 server.use((req, res, next) => {
-	console.log(req.path);
-
 	// CORS middleware
 	res.set({
 		'Access-Control-Allow-Origin': config.publicConfig.url,
@@ -74,6 +72,8 @@ server.use((req, res, next) => {
 		'Pragma': 'no-cache',
 		'Expires': '0'
 	});
+
+	next();
 });
 
 // Init session
