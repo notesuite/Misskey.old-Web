@@ -7,10 +7,10 @@ div.misskey-home-widget#widget-timeline(
 		data-widget-name='タイムライン')
 	div.timeline
 		div.posts
-			if timeline.length > 0
-				each post in timeline
+			if posts.length > 0
+				each post in posts
 					+post(post)
-		if timeline.length == 0
+		if posts.length == 0
 			p.empty
 				| タイムラインに表示するコンテンツがありません。
 				br
