@@ -1,6 +1,6 @@
 import * as URL from 'url';
 
-// import * as request from 'request';
+import * as request from 'request';
 const jade: any = require('jade');
 
 const client: any = require('cheerio-httpcli');
@@ -35,6 +35,9 @@ export default function analyze(req: MisskeyExpressRequest, res: MisskeyExpressR
 		case 'www.youtube.com':
 		case 'youtu.be':
 			analyzeYoutube(req, res, url);
+			break;
+		case 'soundcloud.com':
+			analyzeSoundcloud(req, res, url);
 			break;
 		default:
 			analyzeGeneral(req, res, url);
@@ -105,6 +108,28 @@ function analyzeYoutube(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 	});
 
 	res.send(player);
+}
+
+function analyzeSoundcloud(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+	'use strict';
+
+	request({
+		url: 'http://soundcloud.com/oembed',
+		method: 'get',
+		qs: {
+			format: 'json',
+			url: url.href
+		}
+	}, (err, response, body) => {
+		if (err !== null) {
+			return res.sendStatus(500);
+		} else if (response.statusCode !== 200) {
+			return res.sendStatus(500);
+		} else {
+			const parsed: any = JSON.parse(body);
+			res.send(parsed.html);
+		}
+	});
 }
 
 /**
