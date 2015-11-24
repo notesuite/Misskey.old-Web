@@ -104,7 +104,7 @@ class Album
 		$ \#misskey-album .stop!
 		$ \#misskey-album-background .stop!
 		$ \#misskey-album-container .remove!
-		$.ajax "#{config.web-api-url}/web/desktop/album/open" {
+		$.ajax "#{config.web-api-url}/web/sites/desktop/album/open" {
 			type: \get
 			data-type: \text
 			xhr-fields: {+with-credentials}}
@@ -180,7 +180,7 @@ class Album
 
 	load-files: ->
 		THIS = @
-		$.ajax "#{config.web-api-url}/web/desktop/album/files" {
+		$.ajax "#{config.web-api-url}/web/sites/desktop/album/files" {
 			type: \get
 			data: {}
 			-process-data
@@ -203,7 +203,7 @@ class Album
 		THIS.$album-uploads.find \ol .append $info
 		data = new FormData!
 			..append \file file
-		$.ajax "#{config.web-api-url}/web/desktop/album/upload" {
+		$.ajax "#{config.web-api-url}/web/sites/desktop/album/upload" {
 			+async
 			type: \post
 			-process-data

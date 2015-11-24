@@ -1,9 +1,9 @@
 const jade: any = require('jade');
-import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
-import requestApi from '../../../../../utils/requestApi';
-import parsePostText from '../../../../../utils/parsePostText';
-import config from '../../../../../config';
+import { MisskeyExpressRequest } from '../../../../../../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../../../../../../misskeyExpressResponse';
+import requestApi from '../../../../../../utils/requestApi';
+import parsePostText from '../../../../../../utils/parsePostText';
+import config from '../../../../../../config';
 
 export default function timeline(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';

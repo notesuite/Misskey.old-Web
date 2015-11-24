@@ -55,7 +55,7 @@ class Timeline
 					..find  '> .reply-form textarea' .focus! .val reply-form-text
 					..find  '> .replies' .slide-down animation-speed
 				if (($post.attr \data-is-talk) == \true) and ($post.children \.talk .children!.length == 0)
-					$.ajax "#{config.web-api-url}/web/desktop/home/posts/talk" {
+					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/talk" {
 						type: \get
 						data:
 							'post-id': $post.children \.reply-source .attr \data-id
@@ -65,7 +65,7 @@ class Timeline
 						$talk = $ html
 						$post.children \.talk .append $talk
 				if (($post.attr \data-is-have-replies) == \true) and ($post.children \.replies .children!.length == 0)
-					$.ajax "#{config.web-api-url}/web/desktop/home/posts/replies" {
+					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/replies" {
 						type: \get
 						data:
 							'post-id': $post.attr \data-id
@@ -92,7 +92,7 @@ class Timeline
 				..attr \disabled on
 				..text 'Replying...'
 
-			$.ajax "#{config.web-api-url}/web/desktop/home/posts/reply" {
+			$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/reply" {
 				type: \post
 				data:
 					'text': ($form.find \textarea .val!)
@@ -336,10 +336,10 @@ class Timeline
 					opacity: 0
 				} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
 
-			# Init ogp preview
+			# Init url preview
 			..find '> .main > .content > .text a:not(.mention):not(.hashtag)' .each ->
 				$link = $ @
-				$.ajax "#{config.web-api-url}/web/ogp/parse" {
+				$.ajax "#{config.web-api-url}/web/analyze-url" {
 					type: \get
 					data:
 						'url': $link.attr \href

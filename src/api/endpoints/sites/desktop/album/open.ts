@@ -1,5 +1,5 @@
-import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
+import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
 
 const jade: any = require('jade');
 
@@ -7,7 +7,7 @@ export default function open(req: MisskeyExpressRequest, res: MisskeyExpressResp
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../../../../sites/desktop/views/common/album.jade`);
+		`${__dirname}/../../../../../sites/desktop/views/common/album.jade`);
 
 	const browser: string = compiler(req.renderData);
 

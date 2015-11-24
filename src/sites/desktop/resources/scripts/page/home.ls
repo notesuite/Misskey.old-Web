@@ -88,7 +88,7 @@ $ ->
 		if current > $ document .height! - 32
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax "#{config.web-api-url}/web/desktop/home/posts/timeline" {
+				$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/timeline" {
 					type: \get
 					data:
 						limit: 20

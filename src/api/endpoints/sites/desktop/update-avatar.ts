@@ -2,9 +2,9 @@ import * as http from 'http';
 import * as request from 'request';
 // import * as gm from 'gm';
 const gm: any = require('gm');
-import { MisskeyExpressRequest } from '../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../misskeyExpressResponse';
-import requestApi from '../../../utils/requestApi';
+import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
+import requestApi from '../../../../utils/requestApi';
 
 export default function updateIcon(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';

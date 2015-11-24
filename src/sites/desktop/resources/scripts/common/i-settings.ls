@@ -57,7 +57,7 @@ module.exports = ($form) ->
 					..attr \disabled on
 					..attr \value '保存中...'
 				crop-data = $img.cropper \getData true
-				$.ajax "#{config.web-api-url}/web/desktop/update-avatar" {
+				$.ajax "#{config.web-api-url}/web/sites/desktop/update-avatar" {
 					type: \put
 					data: {
 						'file-id': file.id

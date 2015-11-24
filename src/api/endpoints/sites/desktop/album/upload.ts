@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 const jade: any = require('jade');
 
-import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
-import requestApi from '../../../../utils/requestApi';
+import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
+import requestApi from '../../../../../utils/requestApi';
 
 export default function upload(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
@@ -18,7 +18,7 @@ export default function upload(req: MisskeyExpressRequest, res: MisskeyExpressRe
 	};
 	requestApi('POST', 'album/files/upload', data, req.session.userId, true).then((albumFile: Object) => {
 		const compiler: (locals?: any) => string = jade.compileFile(
-			`${__dirname}/../../../../sites/desktop/views/lib/album/file.jade`);
+			`${__dirname}/../../../../../sites/desktop/views/lib/album/file.jade`);
 		res.send(compiler({
 			file: albumFile
 		}));

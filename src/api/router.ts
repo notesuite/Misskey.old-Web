@@ -55,15 +55,17 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.get(`/subdomain/${domain}/web/ogp/parse`, require('./endpoints/ogp/parse').default);
-	app.put(`/subdomain/${domain}/web/desktop/update-avatar`, require('./endpoints/desktop/update-avatar').default);
-	app.get(`/subdomain/${domain}/web/desktop/album/open`, require('./endpoints/desktop/album/open').default);
-	app.get(`/subdomain/${domain}/web/desktop/album/files`, require('./endpoints/desktop/album/files').default);
-	app.post(`/subdomain/${domain}/web/desktop/album/upload`, upload.single('file'), require('./endpoints/desktop/album/upload').default);
-	app.post(`/subdomain/${domain}/web/desktop/home/posts/reply`, require('./endpoints/desktop/home/posts/reply').default);
-	app.get(`/subdomain/${domain}/web/desktop/home/posts/timeline`, require('./endpoints/desktop/home/posts/timeline').default);
-	app.get(`/subdomain/${domain}/web/desktop/home/posts/talk`, require('./endpoints/desktop/home/posts/talk').default);
-	app.get(`/subdomain/${domain}/web/desktop/home/posts/replies`, require('./endpoints/desktop/home/posts/replies').default);
+	app.get(`/subdomain/${domain}/web/analyze-url`, require('./endpoints/analyze-url').default);
+	app.put(`/subdomain/${domain}/web/sites/desktop/update-avatar`, require('./endpoints/sites/desktop/update-avatar').default);
+	app.get(`/subdomain/${domain}/web/sites/desktop/album/open`, require('./endpoints/sites/desktop/album/open').default);
+	app.get(`/subdomain/${domain}/web/sites/desktop/album/files`, require('./endpoints/sites/desktop/album/files').default);
+	app.post(`/subdomain/${domain}/web/sites/desktop/album/upload`,
+		upload.single('file'),
+		require('./endpoints/sites/desktop/album/upload').default);
+	app.post(`/subdomain/${domain}/web/sites/desktop/home/posts/reply`, require('./endpoints/sites/desktop/home/posts/reply').default);
+	app.get(`/subdomain/${domain}/web/sites/desktop/home/posts/timeline`, require('./endpoints/sites/desktop/home/posts/timeline').default);
+	app.get(`/subdomain/${domain}/web/sites/desktop/home/posts/talk`, require('./endpoints/sites/desktop/home/posts/talk').default);
+	app.get(`/subdomain/${domain}/web/sites/desktop/home/posts/replies`, require('./endpoints/sites/desktop/home/posts/replies').default);
 
 	app.get(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;

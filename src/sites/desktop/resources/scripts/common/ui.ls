@@ -32,7 +32,7 @@ window.display-message = (message) ->
 window.upload-file = (file, uploading, success, failed) ->
 	data = new FormData!
 		..append \file file
-	$.ajax "#{config.web-api-url}/web/desktop/album/upload" {
+	$.ajax "#{config.web-api-url}/web/sites/desktop/album/upload" {
 		+async
 		type: \post
 		-process-data

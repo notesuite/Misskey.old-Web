@@ -1,5 +1,4 @@
-import { MisskeyExpressRequest } from '../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../misskeyExpressResponse';
+import * as URL from 'url';
 
 const jade: any = require('jade');
 
@@ -9,15 +8,70 @@ client.referer = false;
 client.timeout = 10000;
 client.maxDataSize = 1000000; // 1MB
 
+import { MisskeyExpressRequest } from '../../misskeyExpressRequest';
+import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
+
 /**
  * 指定されたURLのページのプレビューウィジェットを生成します。
- * @req: MisskeyExpressRequest
- * @res: MisskeyExpressResponse
+ * @param req MisskeyExpressRequest
+ * @param res MisskeyExpressResponse
  */
-export default function parse(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
+export default function analyze(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 
-	const url: string = req.query.url;
+	const urlStr: string = req.query.url;
+	const url: URL.Url = URL.parse(urlStr, true);
+
+	res.set({
+		'Content-Type': 'text/plain'
+	});
+
+	switch (url.hostname) {
+		case 'www.youtube.com':
+		case 'youtu.be':
+			analyzeYoutube(req, res, url);
+			break;
+		default:
+			analyzeGeneral(req, res, url);
+			break;
+	}
+}
+
+function analyzeYoutube(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+	'use strict';
+
+	function getVideoId(): string {
+		'use strict';
+
+		switch (url.hostname) {
+			case 'www.youtube.com':
+				return url.query.v;
+			case 'youtu.be':
+				return url.pathname;
+			default:
+				return null;
+		}
+	}
+
+	const videoId = getVideoId();
+
+	const compiler: (locals?: any) => string = jade.compileFile(
+		`${__dirname}/youtube.jade`);
+
+	const player: string = compiler({
+		videoId
+	});
+
+	res.send(player);
+}
+
+/**
+ * @param req MisskeyExpressRequest
+ * @param res MisskeyExpressResponse
+ * @param url url
+ */
+function analyzeGeneral(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+	'use strict';
 
 	// リクエスト送信
 	client.fetch(url).then((result: any) => {
@@ -67,11 +121,11 @@ export default function parse(req: MisskeyExpressRequest, res: MisskeyExpressRes
 		const icon: string = nullOrEmpty(shortcutIconPath)
 			? nullOrEmpty(iconPath)
 				? null
-				: getFullPath(url, iconPath)
-			: getFullPath(url, shortcutIconPath);
+				: getFullPath(url.href, iconPath)
+			: getFullPath(url.href, shortcutIconPath);
 
 		const compiler: (locals?: any) => string = jade.compileFile(
-			`${__dirname}/viewer.jade`);
+			`${__dirname}/summary.jade`);
 
 		// コンパイル
 		const viewer: string = compiler({
@@ -85,20 +139,16 @@ export default function parse(req: MisskeyExpressRequest, res: MisskeyExpressRes
 			siteName: ogSiteName
 		});
 
-		res.set({
-			'Content-Type': 'text/plain'
-		});
-
 		res.send(viewer);
 	}, (err: any) => {
 		console.error(err);
 		res.sendStatus(500);
 	});
-};
+}
 
 /**
  * 文字列が空かどうかを判定します。
- * @val: 文字列
+ * @param val: 文字列
  */
 function nullOrEmpty(val: string): boolean {
 	'use strict';
@@ -116,7 +166,7 @@ function nullOrEmpty(val: string): boolean {
 
 /**
  * URLに含まれる末尾のクエリを除去します。
- * @url: URL
+ * @param url: URL
  */
 function removeUrlQuery(url: string): string {
 	'use strict';
@@ -126,8 +176,8 @@ function removeUrlQuery(url: string): string {
 
 /**
  * 相対パスを任意のURLを元にして絶対パスに変換します。
- * @url: 元となるURL
- * @path: 元となる相対パス
+ * @param url: 元となるURL
+ * @param path: 元となる相対パス
  */
 function getFullPath(url: string, path: string): string {
 	'use strict';
