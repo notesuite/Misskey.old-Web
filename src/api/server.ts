@@ -27,7 +27,6 @@ const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, conf
 // Init server
 const server: express.Express = express();
 server.disable('x-powered-by');
-server.set('X-Frame-Options', 'DENY');
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
@@ -53,6 +52,8 @@ server.use(expressSession({
 }));
 
 server.use((req, res, next) => {
+	res.set('X-Frame-Options', 'DENY');
+
 	// CORS middleware
 	res.set({
 		'Access-Control-Allow-Origin': config.publicConfig.url,

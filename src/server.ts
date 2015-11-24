@@ -52,7 +52,6 @@ server.locals.filename = 'jade';
 server.locals.cache = true;
 // server.locals.pretty = '    ';
 server.set('view engine', 'jade');
-server.set('X-Frame-Options', 'SAMEORIGIN');
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
@@ -88,6 +87,8 @@ server.get('/manifest.json', (req: express.Request, res: express.Response) => {
 
 // Init session
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+	res.set('X-Frame-Options', 'SAMEORIGIN');
+
 	const ua: string = uatype(req.headers['user-agent']);
 
 	const isLogin: boolean =
