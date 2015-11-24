@@ -29,7 +29,7 @@ html#misskey(
 			div#misskey-post-form-back(role='presentation')
 			div#misskey-post-form-container
 				div#misskey-post-form(role='form')
-					button.close-button(type='button', role='button')
+					button.close-button(type='button')
 						i.fa.fa-times
 					ul#misskey-post-form-tabs
 						li(data-ref='status', title='近況')
@@ -44,18 +44,18 @@ html#misskey(
 							i.fa.fa-pie-chart
 					div#misskey-post-form-tab-pages
 						form#misskey-post-form-status-tab-page(data-name='status')
-							textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+							textarea(name='text', placeholder='What\'s up?', aria-multiline='true')
 							button.submit(type='submit')
 								| Update
 								i.fa.fa-paper-plane
 						form#misskey-post-form-photo-tab-page(data-name='photo')
-							textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+							textarea(name='text', placeholder='What\'s up?', aria-multiline='true')
 							ol.photos
 							ol.uploads
-							button.attach-from-local.ui-waves-effect(type='button', role='button')
+							button.attach-from-local.ui-waves-effect(type='button')
 								i.fa.fa-upload
 								| PCから画像を添付
-							button.attach-from-album.ui-waves-effect(type='button', role='button')
+							button.attach-from-album.ui-waves-effect(type='button')
 								i.fa.fa-folder-open
 								| アルバムから画像を添付
 							input(name='file', type='file', accept='image/*', multiple)
@@ -69,7 +69,7 @@ html#misskey(
 						form#misskey-post-form-poll-tab-page(data-name='poll')
 							p coming soon
 					
-		header#misskey-main-header(role='banner')
+		header#misskey-main-header
 			div.main
 				div.main-contents-container
 					if login
@@ -111,7 +111,7 @@ html#misskey(
 													| Developers Center
 													
 								div.main-nav
-									button(role='button').misskey Misskey
+									button.misskey Misskey
 									ul
 										li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href='/')
 											i.fa.fa-home
@@ -171,7 +171,7 @@ html#misskey(
 												i.fa.fa-trash-o
 										div.main
 							div.post
-								button#misskey-post-button(role='button', title='新しい投稿を作成')
+								button#misskey-post-button(title='新しい投稿を作成')
 									i.fa.fa-pencil-square-o
 							div.time
 								div.dropdown(data-active='false')
@@ -186,7 +186,7 @@ html#misskey(
 						div.left
 							nav
 								div.mainNav
-									button(role='button').misskey Misskey
+									button.misskey Misskey
 									ul
 										li.home: a.ui-waves-effect(href='/')
 											i.fa.fa-home
