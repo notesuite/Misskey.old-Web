@@ -81,23 +81,6 @@ server.use(expressSession({
 	})
 }));
 
-// CORS middleware
-server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	res.set({
-		'Access-Control-Allow-Origin': config.publicConfig.url,
-		'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-		'Access-Control-Allow-Headers': 'Content-Type',
-		'Access-Control-Allow-Credentials': 'true'
-	});
-
-	 // intercept OPTIONS method
-	if (req.method === 'OPTIONS') {
-		res.sendStatus(200);
-	} else {
-		next();
-	}
-});
-
 // Statics
 server.get('/favicon.ico', (req: express.Request, res: express.Response) => {
 	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));

@@ -12,8 +12,21 @@ const domain: string = config.publicConfig.webApiDomain;
 export default function router(app: express.Express): void {
 	'use strict';
 
-	// APIのレスポンスはキャッシュさせない
 	app.all(`/subdomain/${domain}/*`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+		// CORS middleware
+		res.set({
+			'Access-Control-Allow-Origin': config.publicConfig.url,
+			'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+			'Access-Control-Allow-Headers': 'Content-Type',
+			'Access-Control-Allow-Credentials': 'true'
+		});
+
+		 // intercept OPTIONS method
+		if (req.method === 'OPTIONS') {
+			res.sendStatus(200);
+		}
+
+		// APIのレスポンスはキャッシュさせない
 		res.set({
 			'Cache-Control': 'no-cache, no-store, must-revalidate',
 			'Pragma': 'no-cache',
