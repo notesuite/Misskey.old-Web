@@ -7,7 +7,7 @@ const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
 client.timeout = 10000;
-client.maxDataSize = 1000000; // 1MB
+client.maxDataSize = 1024 * 1024; // 1MiB
 
 import { MisskeyExpressRequest } from '../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
@@ -66,7 +66,7 @@ function analyzeWikipedia(req: MisskeyExpressRequest, res: MisskeyExpressRespons
 		const compiler: (locals?: any) => string = jade.compileFile(
 			`${__dirname}/summary.jade`);
 
-		const viewer: string = compiler({
+		const viewer = compiler({
 			url: url.href,
 			title,
 			icon,
