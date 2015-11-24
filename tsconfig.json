@@ -41,6 +41,7 @@
 		"src/streaming/home.ts",
 		"src/sites/desktop/utils/generate-homewidgets.ts",
 		"src/sites/desktop/utils/generate-homewidget-timeline.ts",
+		"src/sites/desktop/utils/generate-homewidget-donate.ts",
 		"src/sites/desktop/controllers/entrance.ts",
 		"src/sites/desktop/controllers/welcome.ts",
 		"src/sites/desktop/controllers/home.ts",

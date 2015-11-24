@@ -2,6 +2,7 @@ import { User } from '../../../models/user';
 import { UserHomeLayout, IUserHomeLayout } from '../../../models/userHomeLayout';
 
 import generateHomewidgetTimeline from './generate-homewidget-timeline';
+import generateHomewidgetDonate from './generate-homewidget-donate';
 
 export default function generateHomewidgets(me: User, tlsource: string): Promise<any> {
 	'use strict';
@@ -47,6 +48,8 @@ export default function generateHomewidgets(me: User, tlsource: string): Promise
 		switch (widget) {
 			case 'timeline':
 				return generateHomewidgetTimeline(me, tlsource);
+			case 'donate':
+				return generateHomewidgetDonate(me);
 			default:
 				return Promise.resolve(null);
 		}
