@@ -34,6 +34,7 @@ export default function requestApi(
 		try {
 			request(options, (err: any, response: http.IncomingMessage, body: any) => {
 				if (err !== null) {
+					console.log('uwaaaaaaaaaaaaaaaaaaaa');
 					reject(err);
 				} else if (response.statusCode !== 200) {
 					reject({
@@ -48,6 +49,7 @@ export default function requestApi(
 				}
 			});
 		} catch (e) {
+			console.log('hm');
 			console.error(e);
 			reject(e);
 		}

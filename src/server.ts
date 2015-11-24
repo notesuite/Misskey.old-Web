@@ -10,7 +10,6 @@ import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as moment from 'moment';
-const subdomain: any = require('subdomain');
 // import { logDone, logFailed, logInfo } from 'log-cool';
 
 import { User } from './models/user';
@@ -22,7 +21,6 @@ import requestApi from './utils/requestApi';
 import config from './config';
 
 import router from './router';
-import apiRouter from './api/router';
 
 function uatype(ua: string): string {
 	'use strict';
@@ -56,7 +54,6 @@ server.locals.cache = true;
 server.set('view engine', 'jade');
 server.set('X-Frame-Options', 'SAMEORIGIN');
 
-server.use(subdomain({ base : config.publicConfig.domain, removeWWW : true }));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cookieParser(config.cookiePass));
 server.use(compression());
@@ -162,7 +159,6 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 
 // Rooting
 router(server);
-apiRouter(server);
 
 // Not found handling
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
@@ -175,7 +171,11 @@ server.use((err: any, req: express.Request, res: express.Response, next: () => v
 	console.error(err);
 	res.status(500);
 	if (res.hasOwnProperty('display')) {
-		(<any>res).display(req, 'error', { err: err.stack });
+		try {
+			(<any>res).display(req, 'error', { err: err.stack });
+		} catch (e) {
+			res.send(err);
+		}
 	} else {
 		res.send(err);
 	}

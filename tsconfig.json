@@ -27,6 +27,7 @@
 		"src/utils/mapToHtml.ts",
 		"src/utils/parsePostText.ts",
 		"src/utils/namingWorkerId.ts",
+		"src/api/server.ts",
 		"src/api/router.ts",
 		"src/api/endpoints/analyze-url.ts",
 		"src/api/endpoints/sites/desktop/update-avatar.ts",

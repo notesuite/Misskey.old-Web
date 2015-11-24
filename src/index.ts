@@ -15,6 +15,7 @@ if (cluster.isMaster) {
 	}
 } else {
 	require('./server');
+	require('./api/server');
 }
 
 // Listen for dying workers

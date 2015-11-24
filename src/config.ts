@@ -26,6 +26,8 @@ export interface IConfig {
 	port: {
 		http: number;
 		https: number;
+		apiHttp: number;
+		apiHttps: number;
 		streaming: number;
 	};
 	apiPasskey: string;

@@ -1,3 +1,4 @@
+import * as express from 'express';
 import * as URL from 'url';
 
 import * as request from 'request';
@@ -9,15 +10,12 @@ client.referer = false;
 client.timeout = 10000;
 client.maxDataSize = 1024 * 1024; // 1MiB
 
-import { MisskeyExpressRequest } from '../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../misskeyExpressResponse';
-
 /**
  * 指定されたURLのページのプレビューウィジェットを生成します。
  * @param req MisskeyExpressRequest
  * @param res MisskeyExpressResponse
  */
-export default function analyze(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
+export default function analyze(req: express.Request, res: express.Response): void {
 	'use strict';
 
 	const urlStr: string = req.query.url;
@@ -48,7 +46,7 @@ export default function analyze(req: MisskeyExpressRequest, res: MisskeyExpressR
 	}
 }
 
-function analyzeWikipedia(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
 	const title: string = decodeURI(url.pathname.split('/')[2]);
@@ -85,7 +83,7 @@ function analyzeWikipedia(req: MisskeyExpressRequest, res: MisskeyExpressRespons
 	});
 }
 
-function analyzeYoutube(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
 	function getVideoId(): string {
@@ -113,7 +111,7 @@ function analyzeYoutube(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 	res.send(player);
 }
 
-function analyzeSoundcloud(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
 	request({
@@ -137,7 +135,7 @@ function analyzeSoundcloud(req: MisskeyExpressRequest, res: MisskeyExpressRespon
 	});
 }
 
-function analyzeGithubGist(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+function analyzeGithubGist(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
 	client.fetch(url.href).then((result: any) => {
@@ -184,7 +182,7 @@ function analyzeGithubGist(req: MisskeyExpressRequest, res: MisskeyExpressRespon
  * @param res MisskeyExpressResponse
  * @param url url
  */
-function analyzeGeneral(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Url): void {
 	'use strict';
 
 	// リクエスト送信
