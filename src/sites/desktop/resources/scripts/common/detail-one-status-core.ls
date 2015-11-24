@@ -43,12 +43,12 @@ window.STATUS_CORE = {}
 
 		# Init the profile popup of the user
 		init-user-profile-popup do
-			$status.find 'article > .main > .main > .header > .icon-area > .icon-anchor'
+			$status.find 'article > .main > .main > .header > .avatar-area > .avatar-anchor'
 			$status.attr \data-user-profile-widget-url
 
 		# Init the profile popup of the user of the reply source
 		init-user-profile-popup do
-			$status.find 'article > .main > .reply-source-and-more-talks > .reply-source > article > .main > .icon-area > .icon-anchor'
+			$status.find 'article > .main > .reply-source-and-more-talks > .reply-source > article > .main > .avatar-area > .avatar-anchor'
 			$status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-user-profile-widget-url
 
 		$status
@@ -91,12 +91,12 @@ window.STATUS_CORE = {}
 			..find '> article > .main > .replies > .statuses > .status' .each ->
 				$reply = $ @
 				init-user-profile-popup do
-					$reply.find '> article > .main > .icon-area > .icon-anchor'
+					$reply.find '> article > .main > .avatar-area > .avatar-anchor'
 					$reply.attr \data-user-profile-widget-url
 				$reply.find '> article > .replies > .statuses > .status' .each ->
 					$reply-in-reply = $ @
 					init-user-profile-popup do
-						$reply-in-reply.find '> article > .main > .icon-area > .icon-anchor'
+						$reply-in-reply.find '> article > .main > .avatar-area > .avatar-anchor'
 						$reply-in-reply.attr \data-user-profile-widget-url
 
 			# Init stargazer tooltips
@@ -146,7 +146,7 @@ window.STATUS_CORE = {}
 					$submit-button.attr \disabled off
 					$reply.prepend-to $status.find '> article > .main > .replies > .statuses'
 					init-user-profile-popup do
-						$reply.find 'article > .icon-area > .icon-anchor'
+						$reply.find 'article > .avatar-area > .avatar-anchor'
 						$reply.attr \data-user-profile-widget-url
 					$form.remove!
 					window.display-message '返信しました！'
@@ -193,7 +193,7 @@ window.STATUS_CORE = {}
 					$statuses.each ->
 						$talk-status = $ @
 						init-user-profile-popup do
-							$talk-status.find 'article > .main > .icon-area > .icon-anchor'
+							$talk-status.find 'article > .main > .avatar-area > .avatar-anchor'
 							$talk-status.attr \data-user-profile-widget-url
 						$talk-status.append-to $status.find 'article > .main > .reply-source-and-more-talks > .talk > .statuses'
 				.fail (data) ->

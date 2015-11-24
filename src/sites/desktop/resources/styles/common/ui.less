@@ -885,7 +885,7 @@ textarea {
 										}
 									}
 
-									.icon {
+									.avatar {
 										vertical-align: middle;
 										min-width: 32px;
 										min-height: 32px;
@@ -1124,7 +1124,7 @@ textarea {
 							background: #232221;
 
 							> .dropdown-header {
-								> .icon {
+								> .avatar {
 									filter: saturate(200%);
 									-webkit-filter: saturate(200%);
 									-moz-filter: saturate(200%);
@@ -1152,7 +1152,7 @@ textarea {
 									color: #fff;
 								}
 
-								> .icon {
+								> .avatar {
 									filter: saturate(150%);
 									-webkit-filter: saturate(150%);
 									-moz-filter: saturate(150%);
@@ -1168,7 +1168,7 @@ textarea {
 									color: #fff;
 								}
 
-								> .icon {
+								> .avatar {
 									filter: saturate(200%);
 									-webkit-filter: saturate(200%);
 									-moz-filter: saturate(200%);
@@ -1198,7 +1198,7 @@ textarea {
 								}
 							}
 
-							> .icon {
+							> .avatar {
 								display: block;
 								float: left;
 								box-sizing: border-box;
@@ -1588,7 +1588,7 @@ textarea {
 										}
 
 										&.follow {
-											.icon-anchor {
+											.avatar-anchor {
 												img {
 													float: left;
 													min-width: 36px;
@@ -1617,7 +1617,7 @@ textarea {
 										}
 
 										&.status-favorite, &.status-repost {
-											.icon-anchor {
+											.avatar-anchor {
 												img {
 													float: left;
 													min-width: 36px;
@@ -1681,7 +1681,7 @@ textarea {
 										}
 
 										&.bbs-thread-post {
-											.icon-anchor {
+											.avatar-anchor {
 												img {
 													float: left;
 													min-width: 36px;
@@ -1891,7 +1891,7 @@ textarea {
 									display: none;
 								}
 
-								> .icon {
+								> .avatar {
 									margin: 8px;
 								}
 							}
@@ -2087,11 +2087,11 @@ textarea {
 	}
 }
 
-.ui-user-icon {
+.ui-user-avatar {
 	display: inline-block;
 	position: relative;
 
-	.icon {
+	.avatar {
 		min-width: 32px;
 		max-width: 32px;
 		min-height: 32px;
@@ -2295,104 +2295,6 @@ textarea {
 		border-right: solid 4px transparent;
 		border-bottom: solid 4px transparent;
 		border-left: solid 4px transparent;
-	}
-}
-
-/* Tag input
- * ---------------------------------------------------------------- */
-input.tagit-hidden-field {
-	display: none;
-}
-
-.ui-taginput {
-	user-select: text;
-	-moz-user-select: text;
-	-webkit-user-select: text;
-	-ms-user-select: text;
-	display: block;
-	float: left;
-	overflow: auto;
-	padding: 1px 5px;
-	margin-left: inherit; /* usually we don't want the regular ul margins. */
-	margin-right: inherit;
-	cursor: text;
-	list-style: none;
-
-	li {
-		user-select: text;
-		-moz-user-select: text;
-		-webkit-user-select: text;
-		-ms-user-select: text;
-		display: block;
-		float: left;
-		margin: 2px 5px 2px 0;
-		cursor: text;
-	}
-
-	li.tagit-choice {
-		position: relative;
-		line-height: inherit;
-	}
-
-	li.tagit-choice-read-only {
-		padding: 0;
-	}
-
-	li.tagit-choice-editable {
-		padding: 0 18px 0 0;
-	}
-
-	li.tagit-new {
-		padding: 0;
-	}
-
-	li.tagit-choice a.tagit-label {
-		cursor: pointer;
-		text-decoration: none;
-	}
-
-	li.tagit-choice .tagit-close {
-		cursor: pointer;
-		position: absolute;
-		right: .1em;
-		top: 50%;
-		margin-top: -8px;
-		line-height: 17px;
-	}
-	/* used for some custom themes that don't need image icons */
-	li.tagit-choice .tagit-close .text-icon {
-		display: none;
-	}
-
-	li.tagit-choice input {
-		user-select: text;
-		-moz-user-select: text;
-		-webkit-user-select: text;
-		-ms-user-select: text;
-		display: block;
-		float: left;
-		margin: 2px 5px 2px 0;
-		cursor: text;
-	}
-
-	input[type="text"] {
-		user-select: text;
-		-moz-user-select: text;
-		-webkit-user-select: text;
-		-ms-user-select: text;
-		-moz-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		box-sizing: border-box;
-		-moz-box-shadow: none;
-		-webkit-box-shadow: none;
-		box-shadow: none;
-		border: none;
-		margin: 0;
-		padding: 4px;
-		width: inherit;
-		cursor: text;
-		background-color: inherit;
-		outline: none;
 	}
 }
 
@@ -2880,7 +2782,7 @@ input.tagit-hidden-field {
 						}
 					}
 
-					.icon {
+					.avatar {
 						vertical-align: middle;
 						min-width: 28px;
 						min-height: 28px;

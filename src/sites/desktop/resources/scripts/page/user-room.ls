@@ -436,29 +436,29 @@ class Room
 			THIS.scene.add object
 
 		# Label
-		icon-image-url = $ \html .attr \data-user-icon-url
+		avatar-image-url = $ \html .attr \data-user-avatar-url
 		THREE.ImageUtils.cross-origin = ''
-		icon-texture = THREE.ImageUtils.load-texture icon-image-url
+		avatar-texture = THREE.ImageUtils.load-texture avatar-image-url
 			..wrap-s = THREE.RepeatWrapping
 			..wrap-t = THREE.RepeatWrapping
 			..anisotropy = 16
 
-		icon-material = new THREE.MeshPhongMaterial {
+		avatar-material = new THREE.MeshPhongMaterial {
 			specular: 0x030303
 			emissive: 0x111111
-			map: icon-texture
+			map: avatar-texture
 			side: THREE.DoubleSide
 			alpha-test: 0.5
 		}
 
-		icon-geometry = new THREE.PlaneGeometry 1 1
+		avatar-geometry = new THREE.PlaneGeometry 1 1
 
-		icon-object = new THREE.Mesh icon-geometry, icon-material
+		avatar-object = new THREE.Mesh avatar-geometry, avatar-material
 			..position.set -3 2.5 2
 			..rotation.y = Math.PI / 2
 			..cast-shadow = off
 
-		@scene.add icon-object
+		@scene.add avatar-object
 
 		screen-name = $ \html .attr \data-user-screen-name
 		name-geometry = new THREE.TextGeometry screen-name, {

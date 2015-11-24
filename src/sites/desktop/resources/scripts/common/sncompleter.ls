@@ -197,7 +197,7 @@ module.exports = ($input) ->
 										complete \@ user.screen-name
 										false
 									.append do
-										$ '<img class="icon" alt="icon">' .attr \src user.icon-url
+										$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-url
 									.append do
 										$ '<span class="name">' .text user.name
 									.append do

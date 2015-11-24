@@ -84,11 +84,11 @@ export default function parse(req: MisskeyExpressRequest, res: MisskeyExpressRes
 			image: ogImage,
 			siteName: ogSiteName
 		});
-		
+
 		res.set({
 			'Content-Type': 'text/plain'
 		});
-		
+
 		res.send(viewer);
 	}, (err: any) => {
 		console.error(err);
@@ -121,7 +121,7 @@ function nullOrEmpty(val: string): boolean {
 function removeUrlQuery(url: string): string {
 	'use strict';
 
-	return url.replace(/\?.*$/,'');
+	return url.replace(/\?.*$/, '');
 }
 
 /**

@@ -97,7 +97,7 @@ $ ->
 	me-sn = $ \html .attr \data-me-screen-name
 	otherparty-id = $ \html .attr \data-otherparty-id
 	otherparty-sn = $ \html .attr \data-otherparty-screen-name
-	otherparty-icon-image-url = $ \html .attr \data-otherparty-icon-image-url
+	otherparty-avatar-url = $ \html .attr \data-otherparty-avatar-url
 
 	$ '.messages .message.me' .each ->
 		window.TALKSTREAM.set-event $ @
@@ -188,7 +188,7 @@ $ ->
 
 	socket.on \alive ->
 		console.log 'alive'
-		$status = $ "<img src=\"#{otherparty-icon-image-url}\" alt=\"icon\" id=\"alive\">"
+		$status = $ "<img src=\"#{otherparty-avatar-url}\" alt=\"avatar\" id=\"alive\">"
 		if ($ '#otherparty-status #alive')[0]
 			$ '#otherparty-status #alive' .remove!
 		else

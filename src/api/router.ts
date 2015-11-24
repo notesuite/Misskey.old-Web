@@ -43,7 +43,7 @@ export default function router(app: express.Express): void {
 	});
 
 	app.get(`/subdomain/${domain}/web/ogp/parse`, require('./endpoints/ogp/parse').default);
-	app.put(`/subdomain/${domain}/web/desktop/update-icon`, require('./endpoints/desktop/update-icon').default);
+	app.put(`/subdomain/${domain}/web/desktop/update-avatar`, require('./endpoints/desktop/update-avatar').default);
 	app.get(`/subdomain/${domain}/web/desktop/album/open`, require('./endpoints/desktop/album/open').default);
 	app.get(`/subdomain/${domain}/web/desktop/album/files`, require('./endpoints/desktop/album/files').default);
 	app.post(`/subdomain/${domain}/web/desktop/album/upload`, upload.single('file'), require('./endpoints/desktop/album/upload').default);

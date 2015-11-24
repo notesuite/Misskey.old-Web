@@ -105,7 +105,7 @@ export default function router(app: express.Express): void {
 	app.get('/:userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'user');
 	});
-	
+
 	app.get('/:userScreenName/:postId', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'post');
 	});

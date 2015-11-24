@@ -33,10 +33,10 @@ module.exports = ($form) ->
 		.fail (data) ->
 			$submit-button.attr \disabled off
 
-	$form.find '.icon .select-from-album' .click ->
+	$form.find '.avatar .select-from-album' .click ->
 		album.choose-file (files) ->
 			file = files.0
-			$crop-form = ($form.find '.icon .crop-form').clone!
+			$crop-form = ($form.find '.avatar .crop-form').clone!
 			$img = $ "<img src='#{file.url}' alt=''>"
 			$crop-form.find \.container .prepend $img
 			close = show-modal-dialog $crop-form, false, ->
@@ -57,7 +57,7 @@ module.exports = ($form) ->
 					..attr \disabled on
 					..attr \value '保存中...'
 				crop-data = $img.cropper \getData true
-				$.ajax "#{config.web-api-url}/web/desktop/update-icon" {
+				$.ajax "#{config.web-api-url}/web/desktop/update-avatar" {
 					type: \put
 					data: {
 						'file-id': file.id

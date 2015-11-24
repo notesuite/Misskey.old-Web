@@ -2,9 +2,9 @@ include ../content
 include ./subPost
 
 mixin status(status)
-	div.icon-area
-		a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
-			img.icon(src=status.user.iconUrl, alt='icon')
+	div.avatar-area
+		a.avatar-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='avatar')
+			img.avatar(src=status.user.avatarUrl, alt='avatar')
 	header.header
 		div.author(itemprop='author')
 			h2
@@ -24,9 +24,9 @@ mixin status(status)
 		+content(status)
 
 mixin photo(post)
-	div.icon-area
-		a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='icon')
-			img.icon(src=post.user.iconUrl, alt='icon')
+	div.avatar-area
+		a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='avatar')
+			img.avatar(src=post.user.avatarUrl, alt='avatar')
 	header.header
 		div.author(itemprop='author')
 			h2
@@ -81,8 +81,8 @@ mixin core(post, isRepost, repost)
 						i.fa.fa-retweet
 						| この投稿をRepostしますか？
 					article(role='article')
-						a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='icon')
-							img.icon(src=post.user.iconUrl, alt='icon')
+						a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='avatar')
+							img.avatar(src=post.user.avatarUrl, alt='avatar')
 						header.header
 							h3
 								a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
@@ -105,8 +105,8 @@ mixin core(post, isRepost, repost)
 		if isRepost
 			div.repost-information
 				p.info
-					a.icon-anchor(href=config.url + '/' + repost.user.screenName, title= repost.user.comment != null ? repost.user.comment : '@' + repost.user.screenName)
-						img.icon(src=repost.user.iconUrl, alt='icon')
+					a.avatar-anchor(href=config.url + '/' + repost.user.screenName, title= repost.user.comment != null ? repost.user.comment : '@' + repost.user.screenName)
+						img.avatar(src=repost.user.avatarUrl, alt='avatar')
 					span.text
 						i.fa.fa-retweet
 						| Reposted by 
@@ -140,10 +140,10 @@ mixin core(post, isRepost, repost)
 				ol.likers
 					each liker in post.likers
 						li.liker
-							a.icon-anchor(href='/' + liker.screenName, title= '@' + liker.screenName)
-								img.icon(src=liker.iconUrl, alt='icon')
+							a.avatar-anchor(href='/' + liker.screenName, title= '@' + liker.screenName)
+								img.avatar(src=liker.avatarUrl, alt='avatar')
 		form.reply-form
-			img.me-icon(src=me.iconUrl, alt='icon')
+			img.me-avatar(src=me.avatarUrl, alt='avatar')
 			div.form
 				textarea(name='text', placeholder='この投稿に返信...', aria-multiline='true')= '@' + post.user.screenName + ' '
 				div.design-allow(role='presentation')

@@ -44,7 +44,7 @@ export default function updateIcon(req: MisskeyExpressRequest, res: MisskeyExpre
 							}
 						}
 					}, req.session.userId).then((albumFile: any) => {
-						requestApi('PUT', 'account/update-icon', {
+						requestApi('PUT', 'account/update-avatar', {
 							'file-id': albumFile.id
 						}, req.session.userId).then((me: Object) => {
 							res.send(albumFile);

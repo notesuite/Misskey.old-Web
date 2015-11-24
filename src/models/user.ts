@@ -12,7 +12,7 @@ export interface User {
 	credit: number;
 	pinnedStatus: string;
 	websiteUrl: string;
-	iconUrl: string;
+	avatarUrl: string;
 	bannerUrl: string;
 	wallpaperUrl: string;
 	birthday: Date;

@@ -97,7 +97,7 @@ $ ->
 		text = status.text
 		n = new Notification name, {
 			body: text
-			icon: status.user-icon-image-url
+			icon: status.user.avatar-url
 		}
 		n.onshow = ->
 			set-timeout ->
@@ -113,7 +113,7 @@ $ ->
 			return
 		n = new Notification message.user.name, {
 			body: message.text,
-			icon: message.user.icon-image-url
+			icon: message.user.avatar-url
 		}
 		n.onshow = ->
 			set-timeout ->

@@ -25,6 +25,7 @@ import router from './router';
 import apiRouter from './api/router';
 
 function uatype(ua: string): string {
+	'use strict';
 	if (ua !== null) {
 		ua = ua.toLowerCase();
 		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {

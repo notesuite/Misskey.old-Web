@@ -4,7 +4,7 @@ $ = require 'jquery'
 $ ->
 	# Init edit forms
 	if window.is-me
-		init-icon-edit-form!
+		init-avatar-edit-form!
 		init-header-image-edit-form!
 
 	if window.is-me
@@ -68,37 +68,37 @@ $ ->
 		pos = 50 - ((top / height) * 50)
 		$ \#header-data .css \background-position "center #{pos}%"
 
-function init-icon-edit-form
-	$form = $ \#icon-edit-form
+function init-avatar-edit-form
+	$form = $ \#avatar-edit-form
 	$submit-button = $form.find '[type=submit]'
 
-	$ \#icon .click ->
-		$ \#icon-edit-form-back .css \display \block
-		$ \#icon-edit-form-back .animate {
+	$ \#avatar .click ->
+		$ \#avatar-edit-form-back .css \display \block
+		$ \#avatar-edit-form-back .animate {
 			opacity: 1
 		} 500ms \linear
-		$ \#icon-edit-form .css \visibility \visible
-		$ \#icon-edit-form .animate {
+		$ \#avatar-edit-form .css \visibility \visible
+		$ \#avatar-edit-form .animate {
 			top: 0
 			opacity: 1
 		} 1000ms \easeOutElastic
 
 	$form.find \.cancel .click ->
-		$ \#icon-edit-form-back .animate {
+		$ \#avatar-edit-form-back .animate {
 			opacity: 0
 		} 500ms \linear ->
-			$ \#icon-edit-form-back .css \display \none
-		$ \#icon-edit-form .animate {
+			$ \#avatar-edit-form-back .css \display \none
+		$ \#avatar-edit-form .animate {
 			top: '-100%'
 			opacity: 0
 		} 1000ms \easeInOutQuart ->
-			$ \#icon-edit-form .css \visibility \hidden
+			$ \#avatar-edit-form .css \visibility \hidden
 
 	$form.submit (event) ->
 		event.prevent-default!
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '更新しています...'
-		$.ajax config.web-api-url + '/account/update-icon' {
+		$.ajax config.web-api-url + '/account/update-avatar' {
 			+async
 			type: \put
 			-process-data
@@ -131,14 +131,14 @@ function init-icon-edit-form
 			reader = new FileReader!
 				..onload = ->
 					$submit-button.attr \disabled no
-					$ '#icon-edit-form .preview > .image' .attr \src reader.result
-					$ '#icon-edit-form .preview > .image' .cropper {
+					$ '#avatar-edit-form .preview > .image' .attr \src reader.result
+					$ '#avatar-edit-form .preview > .image' .cropper {
 						aspect-ratio: 1 / 1
 						crop: (data) ->
-							$ '#icon-edit-form input[name=trim-x]' .val Math.round data.x
-							$ '#icon-edit-form input[name=trim-y]' .val Math.round data.y
-							$ '#icon-edit-form input[name=trim-w]' .val Math.round data.width
-							$ '#icon-edit-form input[name=trim-h]' .val Math.round data.height
+							$ '#avatar-edit-form input[name=trim-x]' .val Math.round data.x
+							$ '#avatar-edit-form input[name=trim-y]' .val Math.round data.y
+							$ '#avatar-edit-form input[name=trim-w]' .val Math.round data.width
+							$ '#avatar-edit-form input[name=trim-h]' .val Math.round data.height
 					}
 				..read-as-dataURL file
 
