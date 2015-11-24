@@ -2,73 +2,19 @@ require '../common/ui.js'
 $ = require 'jquery'
 Timeline = require '../common/timeline-core.js'
 
-function post
-	$form = $ \#post-form
-	$submit-button = $form.find '[type=submit]'
-
-	$submit-button.attr \disabled yes
-	$submit-button.attr \value 'Updating...'
-
-	$.ajax config.web-api-url + '/posts/status' {
-		type: \post
-		-process-data
-		-content-type
-		data: new FormData $form.0
-		data-type: \json
-		xhr-fields: {+with-credentials}}
-	.done (data) ->
-		$form[0].reset!
-		$form.find \textarea .focus!
-		$form.find \.image-attacher .find 'p, img' .remove!
-		$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
-		$submit-button.attr \disabled no
-		$submit-button.attr \value 'Update \uf1d8'
-		$.remove-cookie \post-autosave {path: '/'}
-		window.display-message '投稿しました！'
-	.fail (data) ->
-		#$form[0].reset!
-		$form.find \textarea .focus!
-		$submit-button.attr \disabled no
-		$submit-button.attr \value 'Update \uf1d8'
-		error-code = JSON.parse data.response-text .error.code
-		switch error-code
-		| \empty-text => window.display-message 'テキストを入力してください。'
-		| \too-long-text => window.display-message 'テキストが長過ぎます。'
-		| \duplicate-content => window.display-message '投稿が重複しています。'
-		| \failed-attach-image => window.display-message '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
-		| \denied-gif-upload => window.display-message 'GIFを投稿可能なのはplus-accountのみです。'
-		| _ => window.display-message "不明なエラー (#error-code)"
-
 $ ->
 	try
 		Notification.request-permission!
 	catch
 		console.log 'oops'
 
-	timeline = new Timeline $ '.timeline'
+	timeline = new Timeline $ '#widget-timeline > .timeline'
 
 	/*
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
 		$ '#post-form textarea' .val $.cookie \post-autosave
 	*/
-
-	# 通知読み込み
-	$.ajax config.web-api-url + '/notice/timeline-webhtml' {
-		type: \get
-		data: {}
-		data-type: \json
-		xhr-fields: {+with-credentials}}
-	.done (data) ->
-		if data != ''
-			$notices = $ data
-			$notices.each ->
-				$notice = $ @
-				$notice.append-to $ '#widget-notices .notices'
-		else
-			$info = $ '<p class="notice-empty">通知はありません</p>'
-			$info.append-to $ '#widget-notices'
-	.fail (data) ->
 
 	socket = io.connect config.web-streaming-url + '/streaming/home'
 
@@ -87,6 +33,7 @@ $ ->
 
 	socket.on \post (post) ->
 		timeline.add $ post
+		$ '#widget-timeline > .timeline > .empty' .remove!
 
 	socket.on \reply (status) ->
 		console.log \reply status
