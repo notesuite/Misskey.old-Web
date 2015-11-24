@@ -683,8 +683,8 @@
 						color: rgba(0, 0, 0, 0.8);
 					}
 
+					a:not(.mention):not(.hashtag),
 					.url {
-						color: #1bb3b3;
 						text-decoration: none;
 
 						&:hover {
@@ -699,6 +699,14 @@
 							font-size: 0.9em;
 							font-weight: normal;
 							font-style: normal;
+						}
+
+						> .hostname {
+							font-weight: bold;
+						}
+
+						> .query {
+							opacity: 0.3;
 						}
 					}
 

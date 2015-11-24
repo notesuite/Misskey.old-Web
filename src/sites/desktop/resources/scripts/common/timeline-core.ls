@@ -1,6 +1,7 @@
 $ = require 'jquery'
 Sortable = require 'Sortable'
 sncompleter = require './sncompleter.js'
+urldecorator = require './urldecorator.js'
 Album = require './album.js'
 
 album = new Album
@@ -338,7 +339,7 @@ class Timeline
 
 			# Init url preview
 			..find '> .main > .content > .text a:not(.mention):not(.hashtag)' .each ->
-				$link = $ @
+				$link = urldecorator $ @
 				$.ajax "#{config.web-api-url}/web/analyze-url" {
 					type: \get
 					data:
