@@ -204,6 +204,7 @@ module.exports = ($input) ->
 										$ '<span class="screen-name">' .text "@#{user.screen-name}"
 					else
 						close!
+				return
 			else
 				close!
 
@@ -238,5 +239,6 @@ module.exports = ($input) ->
 										$ '<span class="name">' .text "\##{hashtag}"
 					else
 						close!
+				return
 			else
 				close!
