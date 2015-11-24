@@ -127,7 +127,9 @@ function analyzeSoundcloud(req: MisskeyExpressRequest, res: MisskeyExpressRespon
 			return res.sendStatus(500);
 		} else {
 			const parsed: any = JSON.parse(body);
-			res.send(parsed.html);
+			const html: string = parsed.html;
+			const display = html.replace('height="400"', 'height="200"');
+			res.send(display);
 		}
 	});
 }
