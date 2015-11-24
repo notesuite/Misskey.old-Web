@@ -39,6 +39,9 @@ export default function analyze(req: MisskeyExpressRequest, res: MisskeyExpressR
 		case 'soundcloud.com':
 			analyzeSoundcloud(req, res, url);
 			break;
+		case 'gist.github.com':
+			analyzeGithubGist(req, res, url);
+			break;
 		default:
 			analyzeGeneral(req, res, url);
 			break;
@@ -134,6 +137,48 @@ function analyzeSoundcloud(req: MisskeyExpressRequest, res: MisskeyExpressRespon
 	});
 }
 
+function analyzeGithubGist(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+	'use strict';
+
+	client.fetch(url.href).then((result: any) => {
+		if (result.error !== undefined && result.error !== null) {
+			console.error(result.error);
+			return res.sendStatus(500);
+		}
+
+		const $: any = result.$;
+
+		const avatarUrl: string = $('meta[property="og:image"]').attr('content');
+		const userName: string = $('meta[name="octolytics-dimension-owner_login"]').attr('content');
+		const fileName: string = $('.gist-header-title > a').text();
+		const description: string = $('meta[property="og:description"]').attr('content');
+		const $rawButton = $('#gist-pjax-container .js-gist-file-update-container > .file > .file-header > .file-actions > .btn');
+		const resolvedRawUrl = URL.resolve('https://gist.githubusercontent.com', $rawButton.attr('href'));
+
+		request(resolvedRawUrl, (getRawErr: any, getRawResponse: any, raw: any) => {
+			if (getRawErr !== null) {
+				return res.sendStatus(500);
+			} else if (getRawResponse.statusCode !== 200) {
+				return res.sendStatus(500);
+			} else {
+				const compiler: (locals?: any) => string = jade.compileFile(
+					`${__dirname}/gist.jade`);
+
+				const viewer: string = compiler({
+					url: url.href,
+					avatarUrl,
+					userName,
+					fileName,
+					description,
+					raw
+				});
+
+				res.send(viewer);
+			}
+		});
+	});
+}
+
 /**
  * @param req MisskeyExpressRequest
  * @param res MisskeyExpressResponse
@@ -143,7 +188,7 @@ function analyzeGeneral(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 	'use strict';
 
 	// リクエスト送信
-	client.fetch(url).then((result: any) => {
+	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
 			console.error(result.error);
 			return res.sendStatus(500);
