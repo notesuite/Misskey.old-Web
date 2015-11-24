@@ -7,9 +7,10 @@ export default function requestApi(
 		method: string,
 		endpoint: string,
 		params: any,
-		userId?: string,
+		user: any = null,
 		isFile: boolean = false): Promise<any> {
 	'use strict';
+	const userId: string = user !== null ? typeof user === 'string' ? user : user.id : null;
 	return new Promise<any>((resolve, reject) => {
 		const options: request.Options = {
 			url: `http://${config.apiServerIp}:${config.apiServerPort}/${endpoint}`,

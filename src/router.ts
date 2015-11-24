@@ -27,7 +27,7 @@ export default function router(app: express.Express): void {
 	app.param('userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, screenName: string) => {
 		requestApi('GET', 'users/show', {
 			'screen-name': screenName
-		}, req.isLogin ? req.me.id : null).then((user: User) => {
+		}, req.isLogin ? req.me : null).then((user: User) => {
 			if (user !== null) {
 				req.data.user = user;
 				next();
@@ -46,7 +46,7 @@ export default function router(app: express.Express): void {
 	app.param('postId', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, postId: string) => {
 		requestApi('GET', 'posts/show', {
 			'post-id': postId
-		}, req.isLogin ? req.me.id : null).then((post: Object) => {
+		}, req.isLogin ? req.me : null).then((post: Object) => {
 			if (post !== null) {
 				req.data.post = post;
 				next();
