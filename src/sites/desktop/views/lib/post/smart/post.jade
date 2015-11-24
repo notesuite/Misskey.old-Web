@@ -1,50 +1,6 @@
 include ../content
 include ./subPost
 
-mixin status(status)
-	div.avatar-area
-		a.avatar-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='avatar')
-			img.avatar(src=status.user.avatarUrl, alt='avatar')
-	header.header
-		div.author(itemprop='author')
-			h2
-				a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
-			if status.user.isVerified
-				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-			span.screen-name= status.user.screenName
-		div.right
-			if status.app != null
-				a.via-anchor
-					p.via
-						span.caption via
-						b.app-name= status.app.name
-			a.time-anchor(href=config.url + '/' + status.user.screenName + '/' + status.id, itemprop='url')
-				time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
-	div.content(itemprop='articleBody')
-		+content(status)
-
-mixin photo(post)
-	div.avatar-area
-		a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='avatar')
-			img.avatar(src=post.user.avatarUrl, alt='avatar')
-	header.header
-		div.author(itemprop='author')
-			h2
-				a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
-			if post.user.isVerified
-				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-			span.screen-name= post.user.screenName
-		div.right
-			if post.app != null
-				a.via-anchor
-					p.via
-						span.caption via
-						b.app-name= post.app.name
-			a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
-				time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
-	div.content(itemprop='articleBody')
-		+content(post)
-
 mixin post(post, isRepost)
 	if post.type == 'repost'
 		+core(post.post, true, post)
@@ -110,13 +66,28 @@ mixin core(post, isRepost, repost)
 					span.text
 						i.fa.fa-retweet
 						| Reposted by 
-						a.name(href=config.url + '/' + repost.user.screenName, target='_blank')= repost.user.name
+						a.name(href=config.url + '/' + repost.user.screenName)= repost.user.name
 		div.main
-			case post.type
-				when 'status'
-					+status(post)
-				when 'photo'
-					+photo(post)
+			div.avatar-area
+				a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='avatar')
+					img.avatar(src=post.user.avatarUrl, alt='avatar')
+			header.header
+				div.author(itemprop='author')
+					h2
+						a.user-name(href=config.url + '/' + post.user.screenName, rel='author')= post.user.name
+					if post.user.isVerified
+						img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+					span.screen-name= post.user.screenName
+				div.right
+					if post.app != null
+						a.via-anchor
+							p.via
+								span.caption via
+								b.app-name= post.app.name
+					a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
+						time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+			div.content(itemprop='articleBody')
+				+content(post)
 		footer.footer
 			if login
 				ul.actions
