@@ -146,6 +146,8 @@ class Timeline
 				->
 					$info.remove!
 
+		$post.attr \data-is-display-active \false
+
 		Sortable.create ($post.find '> .reply-form .photos')[0], {
 			animation: 150ms
 		}
