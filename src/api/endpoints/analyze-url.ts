@@ -1,5 +1,6 @@
 import * as URL from 'url';
 
+// import * as request from 'request';
 const jade: any = require('jade');
 
 const client: any = require('cheerio-httpcli');
@@ -27,6 +28,10 @@ export default function analyze(req: MisskeyExpressRequest, res: MisskeyExpressR
 	});
 
 	switch (url.hostname) {
+		case 'ja.wikipedia.org':
+		case 'en.wikipedia.org':
+			analyzeWikipedia(req, res, url);
+			break;
 		case 'www.youtube.com':
 		case 'youtu.be':
 			analyzeYoutube(req, res, url);
@@ -35,6 +40,43 @@ export default function analyze(req: MisskeyExpressRequest, res: MisskeyExpressR
 			analyzeGeneral(req, res, url);
 			break;
 	}
+}
+
+function analyzeWikipedia(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
+	'use strict';
+
+	const title: string = decodeURI(url.pathname.split('/')[2]);
+
+	client.fetch(url.href).then((result: any) => {
+		if (result.error !== undefined && result.error !== null) {
+			console.error(result.error);
+			return res.sendStatus(500);
+		}
+
+		const $: any = result.$;
+
+		const text: string = $('#mw-content-text > p:first-child').text();
+
+		// Favicon
+		const icon: string = getFullPath(url.href, $('link[rel="shortcut icon"]').attr('href'));
+
+		const compiler: (locals?: any) => string = jade.compileFile(
+			`${__dirname}/summary.jade`);
+
+		const viewer: string = compiler({
+			url: url.href,
+			title,
+			icon,
+			description: text,
+			image: 'https://ja.wikipedia.org/static/images/project-logos/enwiki.png',
+			siteName: 'Wikipedia'
+		});
+
+		res.send(viewer);
+	}, (err: any) => {
+		console.error(err);
+		res.sendStatus(500);
+	});
 }
 
 function analyzeYoutube(req: MisskeyExpressRequest, res: MisskeyExpressResponse, url: URL.Url): void {
@@ -129,7 +171,7 @@ function analyzeGeneral(req: MisskeyExpressRequest, res: MisskeyExpressResponse,
 
 		// コンパイル
 		const viewer: string = compiler({
-			url,
+			url: url.href,
 			title,
 			icon,
 			lang,
