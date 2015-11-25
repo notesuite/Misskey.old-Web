@@ -1953,6 +1953,56 @@ textarea {
 	}
 }
 
+@media (max-width: 400px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .left {
+					> nav {
+						> .main-nav {
+							> ul {
+								> .album {
+									display: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 350px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .left {
+					> nav {
+						> .misskey-menu {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 300px) {
+	#misskey-main-header {
+		> .main {
+			> .main-contents-container {
+				> .right {
+					> .account {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
 /* General UI
  * ---------------------------------------------------------------- */
 
