@@ -1,7 +1,8 @@
-import { User } from '../../../models/user';
+const jade: any = require('jade');
 
+import { User } from '../../../models/user';
 import generateHomewidgetTimeline from './generate-homewidget-timeline';
-import generateHomewidgetDonate from './generate-homewidget-donate';
+import config from '../../../config';
 
 export default function generateHomewidgets(me: User, widgets: string[], tlsource: string): Promise<any> {
 	'use strict';
@@ -16,10 +17,16 @@ export default function generateHomewidgets(me: User, widgets: string[], tlsourc
 		switch (widget) {
 			case 'timeline':
 				return generateHomewidgetTimeline(me, tlsource);
-			case 'donate':
-				return generateHomewidgetDonate(me);
 			default:
-				return Promise.resolve(null);
+				const compiler: (locals?: any) => string = jade.compileFile(
+					`${__dirname}/../views/lib/home-widgets/${widget}.jade`, {
+						filename: 'jade',
+						cache: true
+				});
+				return Promise.resolve(compiler({
+					me: me,
+					config: config.publicConfig
+				}));
 		}
 	}
 }
