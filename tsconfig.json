@@ -41,6 +41,7 @@
 		"src/api/endpoints/sites/desktop/home/posts/talk.ts",
 		"src/api/endpoints/sites/desktop/home/posts/replies.ts",
 		"src/api/endpoints/sites/desktop/post/reply.ts",
+		"src/sites/desktop/utils/generate-layouted-homewidgets.ts",
 		"src/sites/desktop/utils/generate-homewidgets.ts",
 		"src/sites/desktop/utils/generate-homewidget-timeline.ts",
 		"src/sites/desktop/utils/generate-homewidget-donate.ts",
@@ -51,7 +52,7 @@
 		"src/sites/desktop/controllers/post.ts",
 		"src/sites/desktop/controllers/i/mentions.ts",
 		"src/sites/desktop/controllers/i/settings.ts",
-		"src/sites/desktop/controllers/i/home-customize.ts",
+		"src/sites/desktop/controllers/i/home/customize.ts",
 		"src/sites/desktop/controllers/i/album.ts"
 	]
 }

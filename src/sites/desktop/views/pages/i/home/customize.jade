@@ -1,0 +1,48 @@
+extends ../../../layout
+
+block title
+	| Misskey - ホームのカスタマイズ
+
+block assets
+	script(src=webStreamingUrl + '/socket.io/socket.io.js')
+	script(src='/resources/desktop/scripts/page/i/home/customize.js')
+	link(rel='stylesheet', href='/resources/desktop/styles/page/i/home/customize.css')
+
+block body
+	div#customizer-menu
+		p
+			i.fa.fa-wrench
+			| ホームのカスタマイズ中
+	div#customizer-garbage-storage
+		+widget(unuseWidgets)
+	main
+		div#customizer-nav-container
+			div#customizer-nav
+				div.add-widget-form
+					p
+						| 利用可能な
+						b ウィジェット
+						| :
+					select#customizer-available-widgets
+					button#customizer-add-widget-button
+						i.fa.fa-check
+						| 追加
+				div.save-or-cancel
+					button#customizer-cancel-button
+						i.fa.fa-ban
+						| 変更を破棄
+					button#customizer-save-button
+						i.fa.fa-check
+						| 変更を保存
+		div#contents
+			div#left-contents
+				+widget(widgets.left)
+			div#main-contents(role='main')
+				+widget(widgets.center)
+			div#right-contents
+				+widget(widgets.right)
+
+mixin widget(widgets)
+	if widgets != null && widgets.length > 0
+		each widget in widgets
+			!= widget

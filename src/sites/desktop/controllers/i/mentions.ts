@@ -1,7 +1,7 @@
 import { User } from '../../../../models/user';
 import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
-import generateHomeWidgets from '../../utils/generate-homewidgets';
+import generateHomeWidgets from '../../utils/generate-layouted-homewidgets';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
