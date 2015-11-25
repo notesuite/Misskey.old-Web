@@ -20,6 +20,7 @@ mixin core(post, isRepost, repost)
 			itemtype                = 'http://schema.org/BlogPosting'
 			data-id                 = post.id
 			data-cursor             = isRepost ? repost.cursor : post.cursor
+			data-type               = post.type
 			data-is-liked          != login ? post.isLiked.toString() : null
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != isHaveReplies.toString()

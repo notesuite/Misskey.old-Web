@@ -1,7 +1,7 @@
 $ = require 'jquery'
 Sortable = require 'Sortable'
 sncompleter = require './sncompleter.js'
-urldecorator = require './urldecorator.js'
+post-content-initializer = require './post-content-initializer.js'
 Album = require './album.js'
 
 album = new Album
@@ -149,6 +149,8 @@ class Timeline
 
 		$post.attr \data-is-display-active \false
 
+		post-type = $post.attr \data-type
+
 		Sortable.create ($post.find '> .reply-form .photos')[0], {
 			animation: 150ms
 		}
@@ -197,41 +199,6 @@ class Timeline
 
 				if can-event
 					activate-display-state!
-
-			# Images
-			..find '> .main .attached-images > .images > .image' .each ->
-				$image = $ @
-				$img = $image.find \img
-				$button = $image.find \button
-				$back = $image.find \.background
-
-				$img.click ->
-					if ($image.attr \data-is-expanded) == \true
-						$image.attr \data-is-expanded \false
-						$back.animate {
-							opacity: 0
-						} 100ms \linear ->
-							$back.css \display \none
-				$back.click ->
-					if ($image.attr \data-is-expanded) == \true
-						$image.attr \data-is-expanded \false
-						$back.animate {
-							opacity: 0
-						} 100ms \linear ->
-							$back.css \display \none
-				$button.click ->
-					if ($image.attr \data-is-expanded) == \true
-						$image.attr \data-is-expanded \false
-						$back.animate {
-							opacity: 0
-						} 100ms \linear ->
-							$back.css \display \none
-					else
-						$image.attr \data-is-expanded \true
-						$back.css \display \block
-						$back.animate {
-							opacity: 1
-						} 100ms \linear
 
 			# Ajax setting of reply-form
 			..find '> .reply-form' .submit (event) ->
@@ -337,17 +304,7 @@ class Timeline
 					opacity: 0
 				} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
 
-			# Init url preview
-			..find '> .main > .content > .text a:not(.mention):not(.hashtag)' .each ->
-				$link = urldecorator $ @
-				$.ajax "#{config.web-api-url}/web/analyze-url" {
-					type: \get
-					data:
-						'url': $link.attr \href
-					data-type: \text
-					xhr-fields: {+with-credentials}}
-				.done (html) ->
-					$ html .append-to $post.find '> .main > .content' .hide!.fade-in 200ms
+		post-content-initializer post-type, $post.find '> .main > .content'
 
 	add: ($post) ->
 		THIS = @
