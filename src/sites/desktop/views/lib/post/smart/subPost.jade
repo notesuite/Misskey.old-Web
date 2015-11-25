@@ -5,7 +5,7 @@ mixin subPost(post)
 			title= post.createdAt
 			data-id= post.id)
 		a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
-			img.avatar(src=post.user.avatarUrl, alt='avatar')
+			img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
 		header
 			if post.user.isVerified
 				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
