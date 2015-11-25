@@ -42,6 +42,10 @@ function init-post($post)
 			file = files.item i
 			upload-new-file file
 
+	$post.find '> .main > .reply-form' .submit (event) ->
+		event.prevent-default!
+		submit-reply!
+
 	function submit-reply
 		$form = $post.find '> .main > .reply-form'
 		$submit-button = $form.find \.submit-button
@@ -60,7 +64,7 @@ function init-post($post)
 		.done (html) ->
 			$reply = $ html
 			$submit-button.attr \disabled off
-			$reply.prepend-to $post.find '> .replies'
+			$reply.prepend-to $post.find '> .main > .replies'
 			$form.remove!
 			window.display-message '返信しました！'
 		.fail ->

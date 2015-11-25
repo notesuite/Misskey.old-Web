@@ -200,7 +200,6 @@ class Timeline
 				if can-event
 					activate-display-state!
 
-			# Ajax setting of reply-form
 			..find '> .reply-form' .submit (event) ->
 				event.prevent-default!
 				submit-reply!
