@@ -21,7 +21,11 @@ html#misskey(
 		
 		title
 			block title
-				
+		
+		script.
+			console.log('%c警告:', 'background: #ff0; color: #f00; font-size: 2em;');
+			console.log('%cこのコンソールを使用すると、Self-XSS と呼ばれる攻撃を使ってあなたになりすました攻撃者によって個人情報を騙し取られることがあります。\r\nよくわからないコードは、入力したり、貼り付けたりしないでください。', 'background: #fff; color: #000; font-size: 1.5em;');
+		
 		block assets
 	
 	body
