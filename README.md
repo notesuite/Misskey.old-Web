@@ -4,6 +4,9 @@
 [![][david-dev-badge]][david-dev-link]
 [![][mit-badge]][mit]
 
+## External devDependencies
+* GraphicsMagick
+
 ## How to build
 1. `git clone git://github.com/MissKernel/Misskey-Web.git`
 2. `cd Misskey-Web`
