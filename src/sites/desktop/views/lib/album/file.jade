@@ -25,8 +25,18 @@ case file.type
 					li
 						i.fa.fa-trash-o
 						p 削除
-			div.content(style={'background-image': 'url(#{file.url}?mini)'})
-				p.name= file.name
+			case file.mimeType
+				when 'image/jpeg'
+				when 'image/png'
+				when 'image/gif'
+				when 'image/webp'
+				when 'image/tiff'
+				when 'image/bmp'
+					div.content(style={'background-image': 'url(#{file.url}?mini)'})
+						p.name= file.name
+				default
+					div.content(style={'background-image': 'url(/resources/desktop/images/album/file.svg)'})
+						p.name= file.name
 	when 'folder'
 		li.item.folder(
 				data-selected='false'

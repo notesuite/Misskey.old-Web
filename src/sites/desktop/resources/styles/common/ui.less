@@ -2609,6 +2609,9 @@ textarea {
 						//border: solid 4px #eee;
 						outline: solid 4px transparent;
 						//box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+						background-size: 50%;
+						background-position: 50%;
+						background-repeat: no-repeat;
 						transition: outline 0.1s ease;
 
 						&:hover {
@@ -2633,7 +2636,10 @@ textarea {
 
 					&.file[data-mimetype='image/png'],
 					&.file[data-mimetype='image/jpeg'],
-					&.file[data-mimetype='image/gif'] {
+					&.file[data-mimetype='image/gif'],
+					&.file[data-mimetype='image/bmp'],
+					&.file[data-mimetype='image/webp'],
+					&.file[data-mimetype='image/tiff'] {
 						> .content {
 							background-color: #fff;
 							background-repeat: no-repeat;
