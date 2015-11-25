@@ -82,6 +82,10 @@ export default function router(app: express.Express): void {
 		}
 	});
 
+	app.get('/i/mentions', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'i/mentions');
+	});
+
 	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'i/album');
 	});

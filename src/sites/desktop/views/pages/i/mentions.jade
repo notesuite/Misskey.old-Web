@@ -1,0 +1,26 @@
+extends ../../layout
+
+block title
+	| Misskey
+
+block assets
+	script(src=webStreamingUrl + '/socket.io/socket.io.js')
+	script(src='/resources/desktop/scripts/page/home.js')
+	link(rel='stylesheet', href='/resources/desktop/styles/page/home.css')
+
+block body
+	main
+		div#contents
+			if widgets.left != null && widgets.left.length > 0
+				div#left-contents
+					+widget(widgets.left)
+			div#main-contents(role='main')
+				+widget(widgets.center)
+			if widgets.right != null && widgets.right.length > 0
+				div#right-contents
+					+widget(widgets.right)
+
+mixin widget(widgets)
+	if widgets != null && widgets.length > 0
+		each widget in widgets
+			!= widget
