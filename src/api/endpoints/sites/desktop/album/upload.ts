@@ -1,5 +1,5 @@
-import * as express from 'express';
 import * as fs from 'fs';
+import * as express from 'express';
 const jade: any = require('jade');
 
 import requestApi from '../../../../../utils/requestApi';
@@ -15,6 +15,7 @@ export default function upload(req: express.Request, res: express.Response): voi
 			contentType: file.mimetype
 		}
 	};
+	fs.unlink(file.path);
 	requestApi('POST', 'album/files/upload', data, req.user, true).then((albumFile: Object) => {
 		const compiler: (locals?: any) => string = jade.compileFile(
 			`${__dirname}/../../../../../sites/desktop/views/lib/album/file.jade`);

@@ -1,5 +1,5 @@
-import * as express from 'express';
 import * as http from 'http';
+import * as express from 'express';
 import * as request from 'request';
 // import * as gm from 'gm';
 const gm: any = require('gm');
