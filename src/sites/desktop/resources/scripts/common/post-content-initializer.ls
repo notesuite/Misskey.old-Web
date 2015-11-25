@@ -25,9 +25,41 @@ module.exports = (post-type, $content) ->
 			$button = $image.find \button
 			$back = $image.find \.background
 
+			$viewer = $ '<div />'
+
+			$image.css {
+				'position': 'relative'
+			}
+
 			$img.css {
 				'cursor': 'zoom-in'
 			}
+
+			$img.hover do
+				->
+					$viewer.css {
+						'position': 'absolute'
+						'top': $img.position!.top + 'px'
+						'left': $img.position!.left + 'px'
+						'margin': $img.css \margin
+						'width': $img.outer-width! + 'px'
+						'height': $img.outer-height! + 'px'
+						'background-image': "url(#{$img.attr 'src'})"
+						'pointer-events': 'none'
+					}
+					$image.append $viewer
+				->
+					$viewer.remove!
+
+			$img.mousemove (e) ->
+				mouse-x = e.client-x - $img.offset!.left + $ window .scroll-left!
+				mouse-y = e.client-y - $img.offset!.top + $ window .scroll-top!
+				xp = mouse-x / $img.outer-width! * 100
+				yp = mouse-y / $img.outer-height! * 100
+				$viewer.css {
+					'background-position-x': xp + '%'
+					'background-position-y': yp + '%'
+				}
 
 			$img.click ->
 				if ($image.attr \data-is-expanded) == \true
