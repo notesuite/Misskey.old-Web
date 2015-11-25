@@ -42,7 +42,7 @@ export default function updateIcon(req: express.Request, res: express.Response):
 								contentType: 'image/png'
 							}
 						}
-					}, req.user).then((albumFile: any) => {
+					}, req.user, true).then((albumFile: any) => {
 						requestApi('PUT', 'account/update-avatar', {
 							'file-id': albumFile.id
 						}, req.user).then((me: Object) => {
