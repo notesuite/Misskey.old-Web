@@ -37,15 +37,15 @@ module.exports = (post-type, $content) ->
 
 			$img.hover do
 				->
+					$viewer.add-class $img.attr \class
 					$viewer.css {
 						'position': 'absolute'
-						'top': $img.position!.top + 'px'
-						'left': $img.position!.left + 'px'
-						'margin': $img.css \margin
+						'top': 0
+						'left': 0
+						'right': 0
 						'width': $img.outer-width! + 'px'
 						'height': $img.outer-height! + 'px'
 						'background-image': "url(#{$img.attr 'src'})"
-						'border-radius': $img.css \border-radius
 						'pointer-events': 'none'
 					}
 					$image.append $viewer
@@ -57,10 +57,7 @@ module.exports = (post-type, $content) ->
 				mouse-y = e.client-y - $img.offset!.top + $ window .scroll-top!
 				xp = mouse-x / $img.outer-width! * 100
 				yp = mouse-y / $img.outer-height! * 100
-				$viewer.css {
-					'background-position-x': xp + '%'
-					'background-position-y': yp + '%'
-				}
+				$viewer.css \background-position "#xp% #yp%"
 
 			$img.click (e) ->
 				e.stop-propagation!
