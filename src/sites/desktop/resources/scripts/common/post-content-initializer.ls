@@ -90,6 +90,7 @@ module.exports = (post-type, $content) ->
 					'max-height': '100%'
 					'margin': 'auto'
 					'opacity': 0
+					'cursor': 'zoom-out'
 				}
 				$image.append $raw
 				$raw.animate {
