@@ -12,16 +12,26 @@ export default function generateLayoutedHomewidgets(me: User, tlsource: string):
 		right: []
 	};
 
-	const defaultLayout: any = {
-		left: [],
-		center: ['timeline'],
-		right: ['my-status', 'notices', 'recommendation-users', 'donate']
-	};
-
 	return new Promise<string>((resolve, reject) => {
 		UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IUserHomeLayout) => {
-			const layout: any = userLayout ? userLayout.layout : defaultLayout;
-
+			if (userLayout === null) {
+				UserHomeLayout.create({
+					userId: me.id,
+					layout: {
+						left: [],
+						center: ['timeline'],
+						right: ['my-status', 'notices', 'recommendation-users', 'donate']
+					}
+				}, (err: any, created: IUserHomeLayout) => {
+					generate(created.layout);
+				});
+			} else {
+				generate(userLayout.layout);
+			}
+		});
+		
+		function generate(layout: any): void {
+			'use strict';
 			generateHomewidgets(me, layout.left, tlsource).then((lefts: string[]) => {
 				generatedWidgets.left = lefts;
 				generateHomewidgets(me, layout.center, tlsource).then((centers: string[]) => {
@@ -31,7 +41,7 @@ export default function generateLayoutedHomewidgets(me: User, tlsource: string):
 						resolve(generatedWidgets);
 					}, reject);
 				}, reject);
-			}, reject);
-		});
+			}, reject);	
+		}
 	});
 }

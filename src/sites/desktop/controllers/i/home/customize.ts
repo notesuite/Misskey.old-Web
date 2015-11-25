@@ -1,4 +1,4 @@
-import { UserHomeLayout } from '../../../../../models/userHomeLayout';
+import { UserHomeLayout, IUserHomeLayout } from '../../../../../models/userHomeLayout';
 import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
 import generateHomewidgets from '../../../utils/generate-homewidgets';
@@ -24,7 +24,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		right: []
 	};
 
-	UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, layout: any) => {
+	UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IUserHomeLayout) => {
+		const layout: any = userLayout.layout;
 		const useWidgets = layout.left.concat(layout.center.concat(layout.right));
 		const unuseWidgets = widgetCatalog.map(widgetName => {
 			if (useWidgets.indexOf(widgetName) === -1) {
