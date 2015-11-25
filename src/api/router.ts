@@ -40,6 +40,7 @@ export default function router(app: express.Express): void {
 	app.get('/web/sites/desktop/home/posts/timeline', require('./endpoints/sites/desktop/home/posts/timeline').default);
 	app.get('/web/sites/desktop/home/posts/talk', require('./endpoints/sites/desktop/home/posts/talk').default);
 	app.get('/web/sites/desktop/home/posts/replies', require('./endpoints/sites/desktop/home/posts/replies').default);
+	app.post('/web/sites/desktop/post/reply', require('./endpoints/sites/desktop/post/reply').default);
 
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		requestApi('GET', req.path.substring(1), req.query, req.user).then((response: any) => {
