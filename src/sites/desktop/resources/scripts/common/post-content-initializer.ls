@@ -62,30 +62,53 @@ module.exports = (post-type, $content) ->
 					'background-position-y': yp + '%'
 				}
 
-			$img.click ->
-				if ($image.attr \data-is-expanded) == \true
-					$image.attr \data-is-expanded \false
+			$img.click (e) ->
+				e.stop-propagation!
+				$back = $ '<div />'
+				$back.css {
+					'position': 'fixed'
+					'z-index': 1024
+					'top': 0
+					'left': 0
+					'width': '100%'
+					'height': '100%'
+					'background': 'rgba(0, 0, 0, 0.8)'
+					'opacity': 0
+				}
+				$image.append $back
+				$back.animate {
+					opacity: 1
+				} 100ms
+
+				$raw = $ '<img />'
+				$raw.attr \src $img.attr \src
+				$raw.css {
+					'position': 'fixed'
+					'z-index': 1025
+					'top': 0
+					'right': 0
+					'bottom': 0
+					'left': 0
+					'max-width': '100%'
+					'max-height': '100%'
+					'margin': 'auto'
+					'opacity': 0
+				}
+				$image.append $raw
+				$raw.animate {
+					opacity: 1
+				} 100ms
+
+				$raw.one \click close
+				$back.one \click close
+
+				function close(e)
+					e.stop-propagation!
 					$back.animate {
 						opacity: 0
 					} 100ms \linear ->
-						$back.css \display \none
-			$back.click ->
-				if ($image.attr \data-is-expanded) == \true
-					$image.attr \data-is-expanded \false
-					$back.animate {
+						$back.remove!
+					$raw.animate {
 						opacity: 0
 					} 100ms \linear ->
-						$back.css \display \none
-			$button.click ->
-				if ($image.attr \data-is-expanded) == \true
-					$image.attr \data-is-expanded \false
-					$back.animate {
-						opacity: 0
-					} 100ms \linear ->
-						$back.css \display \none
-				else
-					$image.attr \data-is-expanded \true
-					$back.css \display \block
-					$back.animate {
-						opacity: 1
-					} 100ms \linear
+						$raw.remove!
