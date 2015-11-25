@@ -62,40 +62,36 @@
 		}
 
 		&[data-is-liked='true'] {
-			&:hover > .main > .actions > .like > button {
-				color: @themeColor;
-			}
-
 			> .footer > .actions > .like {
+				opacity: 1;
+
 				> button {
 					color: @themeColor;
 
 					&:hover {
-						color: darken(@themeColor, 10%);
+						color: lighten(@themeColor, 10%);
 					}
 
 					&:active {
-						color: darken(@themeColor, 20%);
+						color: darken(@themeColor, 10%);
 					}
 				}
 			}
 		}
 
 		&[data-is-reposted='true'] {
-			&:hover > .footer > .actions > .repost > button {
-				color: @themeColor;
-			}
-
 			> .footer > .actions > .repost {
+				opacity: 1;
+
 				> button {
 					color: @themeColor;
 
 					&:hover {
-						color: darken(@themeColor, 10%);
+						color: lighten(@themeColor, 10%);
 					}
 
 					&:active {
-						color: darken(@themeColor, 20%);
+						color: darken(@themeColor, 10%);
 					}
 				}
 			}
