@@ -337,7 +337,7 @@ class StatusPostForm
 		$submit-button.text 'Updating'
 		$form.find \textarea .attr \disabled on
 
-		$.ajax config.web-api-url + '/posts/status' {
+		$.ajax "#{config.web-api-url}/posts/status" {
 			type: \post
 			data:
 				'text': ($form.find \textarea .val!)
