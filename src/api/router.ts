@@ -53,7 +53,7 @@ export default function router(app: express.Express): void {
 
 	app.post('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
-		requestApi('POST', req.path, req.body, userId).then((response: any) => {
+		requestApi('POST', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {
 			res.status(err.statusCode);
@@ -63,7 +63,7 @@ export default function router(app: express.Express): void {
 
 	app.put('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
-		requestApi('PUT', req.path, req.body, userId).then((response: any) => {
+		requestApi('PUT', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {
 			res.status(err.statusCode);
@@ -73,7 +73,7 @@ export default function router(app: express.Express): void {
 
 	app.delete('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		const userId: string = req.isLogin ? req.session.userId : null;
-		requestApi('DELETE', req.path, req.body, userId).then((response: any) => {
+		requestApi('DELETE', req.path.substring(1), req.body, userId).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {
 			res.status(err.statusCode);
