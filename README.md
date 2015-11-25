@@ -4,7 +4,7 @@
 [![][david-dev-badge]][david-dev-link]
 [![][mit-badge]][mit]
 
-## External devDependencies
+## External dependencies
 * GraphicsMagick
 
 ## How to build
