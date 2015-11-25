@@ -209,27 +209,27 @@ class Timeline
 				$button = $ @
 					..attr \disabled on
 				if check-liked!
-					$status.attr \data-is-liked \false
+					$post.attr \data-is-liked \false
 					$.ajax "#{config.web-api-url}/posts/unlike" {
 						type: \delete
-						data: {'post-id': $status.attr \data-id}
+						data: {'post-id': $post.attr \data-id}
 						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
 						$button.attr \disabled off
-						$status.attr \data-is-liked \true
+						$post.attr \data-is-liked \true
 				else
-					$status.attr \data-is-liked \true
+					$post.attr \data-is-liked \true
 					$.ajax "#{config.web-api-url}/posts/like" {
 						type: \post
-						data: {'post-id': $status.attr \data-id}
+						data: {'post-id': $post.attr \data-id}
 						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
 						$button.attr \disabled off
-						$status.attr \data-is-liked \false
+						$post.attr \data-is-liked \false
 
 			# Init reply button
 			..find '> .footer > .actions > .reply > .reply-button' .click ->
