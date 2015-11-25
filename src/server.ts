@@ -182,8 +182,6 @@ server.use((err: any, req: express.Request, res: express.Response, next: () => v
 	}
 });
 
-require('./streaming');
-
 const httpServer: http.Server = http.createServer(server);
 
 httpServer.listen(config.port.http, () => {

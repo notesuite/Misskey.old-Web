@@ -14,7 +14,10 @@ export default function generateHomewidgetTimeline(me: User, tlsource: string): 
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../views/lib/home-widgets/timeline.jade`);
+		`${__dirname}/../views/lib/home-widgets/timeline.jade`, {
+			filename: 'jade',
+			cache: true
+	});
 
 	return new Promise<string>((resolve, reject) => {
 		switch (tlsource) {

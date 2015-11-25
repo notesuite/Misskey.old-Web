@@ -5,7 +5,7 @@ import * as cookie from 'cookie';
 import * as mongoose from 'mongoose';
 import * as MongoStore from 'connect-mongo';
 const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
-import config from '../config';
+import config from '../../config';
 
 const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
 	res.writeHead(200, {

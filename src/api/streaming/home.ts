@@ -2,9 +2,9 @@ import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 const jade: any = require('jade');
-import parsePostText from '../utils/parsePostText';
-import requestApi from '../utils/requestApi';
-import config from '../config';
+import parsePostText from '../../utils/parsePostText';
+import requestApi from '../../utils/requestApi';
+import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
 	user: any;
@@ -48,7 +48,10 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 						// 投稿のHTMLコンパイラ
 						const compiler: any = jade.compileFile(
-							`${__dirname}/../sites/desktop/views/lib/post/smart/render.jade`);
+							`${__dirname}/../../sites/desktop/views/lib/post/smart/render.jade`, {
+								filename: 'jade',
+								cache: true
+						});
 
 						// 投稿の詳細を取得
 						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((post: Object) => {
