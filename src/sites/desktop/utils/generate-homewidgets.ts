@@ -14,6 +14,10 @@ export default function generateHomewidgets(me: User, widgets: string[], tlsourc
 	function generateWidget(widget: string): Promise<string> {
 		'use strict';
 
+		if (widget === undefined || widget === null) {
+			return Promise.resolve(null);
+		}
+
 		switch (widget) {
 			case 'timeline':
 				return generateHomewidgetTimeline(me, tlsource);
