@@ -1,11 +1,10 @@
+import * as express from 'express';
 const jade: any = require('jade');
-import { MisskeyExpressRequest } from '../../../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../../../misskeyExpressResponse';
 import requestApi from '../../../../../../utils/requestApi';
 import parsePostText from '../../../../../../utils/parsePostText';
 import config from '../../../../../../config';
 
-export default function reply(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
+export default function reply(req: express.Request, res: express.Response): void {
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
@@ -14,10 +13,10 @@ export default function reply(req: MisskeyExpressRequest, res: MisskeyExpressRes
 	const photos: string = req.body['photos'];
 
 	if (photos !== undefined && photos !== null && photos !== '[]') {
-		requestApi('POST', 'posts/photo', req.body, req.session.userId).then((reply: Object) => {
+		requestApi('POST', 'posts/photo', req.body, req.user).then((reply: Object) => {
 			res.send(compiler({
 				post: reply,
-				me: req.me,
+				me: req.user,
 				parsePostText: parsePostText,
 				config: config.publicConfig
 			}));
@@ -25,10 +24,10 @@ export default function reply(req: MisskeyExpressRequest, res: MisskeyExpressRes
 			res.send(err);
 		});
 	} else {
-		requestApi('POST', 'posts/status', req.body, req.session.userId).then((reply: Object) => {
+		requestApi('POST', 'posts/status', req.body, req.user).then((reply: Object) => {
 			res.send(compiler({
 				post: reply,
-				me: req.me,
+				me: req.user,
 				parsePostText: parsePostText,
 				config: config.publicConfig
 			}));

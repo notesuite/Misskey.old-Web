@@ -1,11 +1,10 @@
+import * as express from 'express';
 import * as fs from 'fs';
 const jade: any = require('jade');
 
-import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
 import requestApi from '../../../../../utils/requestApi';
 
-export default function upload(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
+export default function upload(req: express.Request, res: express.Response): void {
 	'use strict';
 	const file: Express.Multer.File = (<any>req).file;
 	const data: any = {};
@@ -16,7 +15,7 @@ export default function upload(req: MisskeyExpressRequest, res: MisskeyExpressRe
 			contentType: file.mimetype
 		}
 	};
-	requestApi('POST', 'album/files/upload', data, req.session.userId, true).then((albumFile: Object) => {
+	requestApi('POST', 'album/files/upload', data, req.user, true).then((albumFile: Object) => {
 		const compiler: (locals?: any) => string = jade.compileFile(
 			`${__dirname}/../../../../../sites/desktop/views/lib/album/file.jade`);
 		res.send(compiler({

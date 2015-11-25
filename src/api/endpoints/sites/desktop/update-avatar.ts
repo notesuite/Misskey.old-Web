@@ -1,12 +1,11 @@
+import * as express from 'express';
 import * as http from 'http';
 import * as request from 'request';
 // import * as gm from 'gm';
 const gm: any = require('gm');
-import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
 import requestApi from '../../../../utils/requestApi';
 
-export default function updateIcon(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
+export default function updateIcon(req: express.Request, res: express.Response): void {
 	'use strict';
 	const avaterFileId: string = req.body['file-id'];
 	const trimX: number = Number(req.body['trim-x']);
@@ -16,7 +15,7 @@ export default function updateIcon(req: MisskeyExpressRequest, res: MisskeyExpre
 
 	requestApi('GET', 'album/files/show', {
 		'file-id': avaterFileId
-	}, req.session.userId).then((file: any) => {
+	}, req.user).then((file: any) => {
 		if (file.dataSize > 3000000) {
 			return res.status(500).send('big-data');
 		}
@@ -43,10 +42,10 @@ export default function updateIcon(req: MisskeyExpressRequest, res: MisskeyExpre
 								contentType: 'image/png'
 							}
 						}
-					}, req.session.userId).then((albumFile: any) => {
+					}, req.user).then((albumFile: any) => {
 						requestApi('PUT', 'account/update-avatar', {
 							'file-id': albumFile.id
-						}, req.session.userId).then((me: Object) => {
+						}, req.user).then((me: Object) => {
 							res.send(albumFile);
 						}, (updateErr: any) => {
 							return res.status(500).send('something-happened');
