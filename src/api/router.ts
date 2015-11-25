@@ -42,7 +42,7 @@ export default function router(app: express.Express): void {
 	app.get('/web/sites/desktop/home/posts/replies', require('./endpoints/sites/desktop/home/posts/replies').default);
 
 	app.get('*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi('GET', req.path, req.query, req.user).then((response: any) => {
+		requestApi('GET', req.path.substring(1), req.query, req.user).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {
 			res.status(err.statusCode);
