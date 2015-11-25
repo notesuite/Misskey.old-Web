@@ -7,9 +7,9 @@ mixin subPost(post)
 			data-user-id= post.user.id)
 		div.body
 			div.main
-				div.icon-container
-					a.icon-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
-						img.icon(src=post.user.iconUrl, alt='icon')
+				div.avatar-container
+					a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
+						img.avatar(src=post.user.avatarUrl, alt='icon')
 				div.header-and-content-container
 					header
 						if post.user.isVerified
