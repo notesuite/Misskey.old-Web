@@ -45,6 +45,7 @@ module.exports = (post-type, $content) ->
 						'width': $img.outer-width! + 'px'
 						'height': $img.outer-height! + 'px'
 						'background-image': "url(#{$img.attr 'src'})"
+						'border-radius': $img.css \border-radius
 						'pointer-events': 'none'
 					}
 					$image.append $viewer
