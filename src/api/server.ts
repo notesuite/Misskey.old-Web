@@ -52,27 +52,27 @@ server.use(expressSession({
 }));
 
 server.use((req, res, next) => {
-	res.set('X-Frame-Options', 'DENY');
+	res.header('X-Frame-Options', 'DENY');
+
+	// APIのレスポンスはキャッシュさせない
+	res.header({
+		'Cache-Control': 'no-cache, no-store, must-revalidate',
+		'Pragma': 'no-cache',
+		'Expires': '0'
+	});
 
 	// CORS middleware
-	res.set({
+	res.header({
 		'Access-Control-Allow-Origin': config.publicConfig.url,
 		'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
 		'Access-Control-Allow-Headers': 'Content-Type',
 		'Access-Control-Allow-Credentials': 'true'
 	});
 
-	 // intercept OPTIONS method
+	// intercept OPTIONS method
 	if (req.method === 'OPTIONS') {
-		res.sendStatus(200);
+		return res.sendStatus(200);
 	}
-
-	// APIのレスポンスはキャッシュさせない
-	res.set({
-		'Cache-Control': 'no-cache, no-store, must-revalidate',
-		'Pragma': 'no-cache',
-		'Expires': '0'
-	});
 
 	next();
 });
