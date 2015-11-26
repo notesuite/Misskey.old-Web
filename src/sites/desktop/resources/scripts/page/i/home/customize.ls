@@ -66,7 +66,7 @@ $ ->
 		$widget = $ @
 		$widget-lapper = $ '<div>' .attr {
 			class: \misskey-home-widget-lapper
-			title: if (($widget.attr \data-widget-not-allow-move) != \true) then 'ドラッグして並び替え' else 'このウィジェットは編集できません'
+			title: 'ドラッグして並び替え'
 		}
 
 		if ($widget.attr \data-widget-not-allow-remove) != \true
