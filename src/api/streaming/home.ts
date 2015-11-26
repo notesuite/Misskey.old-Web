@@ -54,11 +54,38 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 						});
 
 						// 投稿の詳細を取得
-						requestApi('GET', 'posts/show', {'post-id': postId}, socket.user.id).then((post: Object) => {
+						requestApi('GET', 'posts/show', {
+							'post-id': postId
+						}, socket.user.id).then((post: Object) => {
 							// HTMLにしてクライアントに送信
 							socket.emit(content.type, compiler({
 								parsePostText: parsePostText,
 								post: post,
+								me: socket.user,
+								config: config.publicConfig
+							}));
+						});
+						break;
+
+					// 通知
+					case 'notification':
+						// 通知ID
+						const notificationId: any = content.value.id;
+
+						// 通知のHTMLコンパイラ
+						const notificationCompiler: any = jade.compileFile(
+							`${__dirname}/../../sites/desktop/views/lib/notification/smart/render.jade`, {
+								filename: 'jade',
+								cache: true
+						});
+
+						// 通知の詳細を取得
+						requestApi('GET', 'notification/show', {
+							'notification-id': notificationId
+						}, socket.user.id).then((notification: Object) => {
+							// HTMLにしてクライアントに送信
+							socket.emit(content.type, notificationCompiler({
+								notification: notification,
 								me: socket.user,
 								config: config.publicConfig
 							}));
