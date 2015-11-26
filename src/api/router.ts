@@ -36,6 +36,7 @@ export default function router(app: express.Express): void {
 		upload.single('file'),
 		require('./endpoints/sites/desktop/album/upload').default);
 	app.get('/web/sites/desktop/home/notifications', require('./endpoints/sites/desktop/home/notifications').default);
+	app.get('/web/sites/desktop/home/recommendation-users', require('./endpoints/sites/desktop/home/recommendation-users').default);
 	app.post('/web/sites/desktop/home/posts/reply', require('./endpoints/sites/desktop/home/posts/reply').default);
 	app.get('/web/sites/desktop/home/posts/timeline', require('./endpoints/sites/desktop/home/posts/timeline').default);
 	app.get('/web/sites/desktop/home/posts/talk', require('./endpoints/sites/desktop/home/posts/talk').default);
