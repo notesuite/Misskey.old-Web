@@ -69,6 +69,9 @@ module.exports = ($form) ->
 					xhr-fields: {+with-credentials}}
 				.done (data) ->
 					close!
+					$.ajax "#{config.web-api-url}/web/refresh-session" {
+						type: \post
+						xhr-fields: {+with-credentials}}
 				.fail (data) ->
 					$submit-button.attr \disabled off
 
