@@ -1,0 +1,48 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head(prefix='og: http://ogp.me/ns#')
+		include ../common/head
+		meta(name='description', content='A mini-blog sns.')
+		meta(name='keywords', content='Misskey')
+		meta(property='og:title', content='Misskey')
+		meta(property='og:type', content='website')
+		meta(property='og:description', content='A mini-blog sns.')
+		meta(property='og:url', content=url)
+		meta(property='og:image', content='')
+		meta(property='og:site_name', content='Misskey')
+		title Misskey
+		link(rel='stylesheet', href='/resources/mobile/styles/page/entrance.css')
+		script(src='/resources/mobile/scripts/page/entrance.js')
+	
+	body
+		main
+			header
+				h1 Misskey
+				p
+					| A mini-blog sns. find your likes!!!
+			div#trends
+				// trends area
+			div.contents
+				form#login-form(action='/login', method='post')
+					h2
+						| Account
+					label
+						i.fa.fa-at
+						input#id(name='screen-name'
+							type='text'
+							pattern='^[0-9A-Za-z_]+$'
+							placeholder='User name'
+							autocomplete='off'
+							autofocus
+							required)
+					label
+						i.fa.fa-lock
+						input(name='password'
+							type='password'
+							placeholder='Password'
+							autocomplete='off'
+							required)
+					input(type='submit', value!='SIGN IN &#xf105;')
+				p
+					| Hey there! 現在、アカウントの作成はPCから行えます。

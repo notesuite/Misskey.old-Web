@@ -64,7 +64,7 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 		// Favicon
 		const icon: string = URL.resolve(url.href, $('link[rel="shortcut icon"]').attr('href'));
 
-		const compiler: (locals?: any) => string = jade.compileFile(
+		const compiler: (locals: any) => string = jade.compileFile(
 			`${__dirname}/summary.jade`);
 
 		const viewer = compiler({
@@ -101,7 +101,7 @@ function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Ur
 
 	const videoId = getVideoId();
 
-	const compiler: (locals?: any) => string = jade.compileFile(
+	const compiler: (locals: any) => string = jade.compileFile(
 		`${__dirname}/youtube.jade`);
 
 	const player: string = compiler({
@@ -159,7 +159,7 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 			} else if (getRawResponse.statusCode !== 200) {
 				return res.sendStatus(500);
 			} else {
-				const compiler: (locals?: any) => string = jade.compileFile(
+				const compiler: (locals: any) => string = jade.compileFile(
 					`${__dirname}/gist.jade`);
 
 				const viewer: string = compiler({
@@ -236,7 +236,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 				: URL.resolve(url.href, iconPath)
 			: URL.resolve(url.href, shortcutIconPath);
 
-		const compiler: (locals?: any) => string = jade.compileFile(
+		const compiler: (locals: any) => string = jade.compileFile(
 			`${__dirname}/summary.jade`);
 
 		// コンパイル

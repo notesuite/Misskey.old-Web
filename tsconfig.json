@@ -55,6 +55,7 @@
 		"src/sites/desktop/controllers/i/mentions.ts",
 		"src/sites/desktop/controllers/i/settings.ts",
 		"src/sites/desktop/controllers/i/home/customize.ts",
-		"src/sites/desktop/controllers/i/album.ts"
+		"src/sites/desktop/controllers/i/album.ts",
+		"src/sites/mobile/controllers/entrance.ts"
 	]
 }
