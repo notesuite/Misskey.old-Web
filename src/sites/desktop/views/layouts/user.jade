@@ -85,13 +85,13 @@ block body
 							span#screen-name(itemprop='alternateName')= '@' + user.screenName
 						table.count-table
 							tr
-								th 投稿
-								th お気に入り
-								th フォロー
-								th フォロワー
+								th Posts
+								th Likes
+								th Following
+								th Followers
 							tr
 								td: a(href='/' + user.screenName)= user.postsCount
-								td: a(href='/' + user.screenName + '/favorites')= user.favoritesCount
+								td: a(href='/' + user.screenName + '/likes')= user.likesCount
 								td: a(href='/' + user.screenName + '/followings')= user.followingsCount
 								td: a(href='/' + user.screenName + '/followers')= user.followersCount
 			nav#header-nav(role='navigation')
@@ -109,18 +109,18 @@ block body
 						li(class= page == 'home' ? 'active' : '')
 							a(href='/' + user.screenName)
 								i.fa.fa-comment
-								| タイムライン
+								| Timeline
 						li(class= page == 'profile' ? 'active' : '')
 							a(href='/' + user.screenName + '/profile')
 								i.fa.fa-newspaper-o
-								| プロフィール
+								| Profile
 						li(class= page == 'followings' ? 'active' : '')
 							a(href='/' + user.screenName + '/followings')
 								i.fa.fa-heart
-								| フォロー
+								| Following
 						li(class= page == 'followers' ? 'active' : '')
 							a(href='/' + user.screenName + '/followers')
 								i.fa.fa-users
-								| フォロワー
+								| Followers
 		div#contents
 			block contents
