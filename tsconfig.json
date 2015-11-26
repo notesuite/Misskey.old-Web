@@ -38,6 +38,7 @@
 		"src/api/endpoints/sites/desktop/album/upload.ts",
 		"src/api/endpoints/sites/desktop/album/files.ts",
 		"src/api/endpoints/sites/desktop/home/notifications.ts",
+		"src/api/endpoints/sites/desktop/home/recommendation-users.ts",
 		"src/api/endpoints/sites/desktop/home/posts/reply.ts",
 		"src/api/endpoints/sites/desktop/home/posts/timeline.ts",
 		"src/api/endpoints/sites/desktop/home/posts/talk.ts",

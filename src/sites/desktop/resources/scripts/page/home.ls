@@ -151,4 +151,14 @@ $ ->
 		else
 			$info = $ '<p class="notifications-empty">通知はありません</p>'
 			$info.append-to $ '#widget-notifications'
-	.fail (data) ->
+
+	# recommendation users
+	$.ajax "#{config.web-api-url}/web/sites/desktop/home/recommendation-users" {
+		type: \get
+		data: {}
+		data-type: \text
+		xhr-fields: {+with-credentials}}
+	.done (data) ->
+		if data != ''
+			$users = $ data
+			$users.append-to $ '#widget-recommendation-users'

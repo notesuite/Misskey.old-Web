@@ -1,0 +1,12 @@
+mixin user(user)
+	div.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
+		div.avatar-area
+			a.avatar-anchor(href= '/' + user.screenName)
+				img.avatar(src= user.avatarUrl, alt='avatar')
+		div.main
+			a.name-anchor(href= '/' + user.screenName)
+				p.name= user.name
+			if user.isFollowing
+				button.follow-button フォロー解除
+			else
+				button.follow-button フォロー
