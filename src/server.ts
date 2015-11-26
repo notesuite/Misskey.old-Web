@@ -9,7 +9,6 @@ const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(expressSession);
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-import * as moment from 'moment';
 // import { logDone, logFailed, logInfo } from 'log-cool';
 
 import { User } from './models/user';
@@ -87,7 +86,7 @@ server.get('/manifest.json', (req: express.Request, res: express.Response) => {
 
 // Init session
 server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	res.set('X-Frame-Options', 'SAMEORIGIN');
+	res.header('X-Frame-Options', 'SAMEORIGIN');
 
 	const ua: string = uatype(req.headers['user-agent']);
 
@@ -103,13 +102,9 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 	req.renderData = { // Render data
 		pagePath: req.path,
 		config: config.publicConfig,
-		url: config.publicConfig.url,
-		apiUrl: config.publicConfig.apiUrl,
-		webStreamingUrl: config.publicConfig.webStreamingUrl,
 		login: isLogin,
 		ua: ua,
-		workerId: namingWorkerId(cluster.worker.id),
-		moment: moment
+		workerId: namingWorkerId(cluster.worker.id)
 	};
 
 	// Renderer function

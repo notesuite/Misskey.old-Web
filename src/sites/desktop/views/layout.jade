@@ -181,9 +181,6 @@ html#misskey(
 								div.dropdown(data-active='false')
 									div.dropdown-header(role='button')
 										time.now(datetime= Date.now())
-											= moment().format('YYYY/MM/DD')
-											br
-											= moment().format('HH:mm')
 									div.dropdown-content
 										canvas.clock#misskey-main-clock-canvas(width='256', height='256')
 					else
