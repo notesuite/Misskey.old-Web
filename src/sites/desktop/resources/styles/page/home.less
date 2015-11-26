@@ -76,6 +76,15 @@ main {
 .misskey-home-widget {
 	display: block;
 	position: relative;
+	margin: 12px 0;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
 #widget-timeline {
@@ -184,13 +193,7 @@ main {
 	box-sizing: border-box;
 	max-height: 400px;
 	overflow: auto;
-	background: #fff;
-	background-color: #fff;
-	//background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(@blurredWallpaperUrl);
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
+	background: #fffbfb;
 	border-radius: 8px;
 
 	> .notification-empty {
