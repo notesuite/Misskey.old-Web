@@ -80,7 +80,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 						});
 
 						// 通知の詳細を取得
-						requestApi('GET', 'notification/show', {
+						requestApi('GET', 'notifications/show', {
 							'notification-id': notificationId
 						}, socket.user.id).then((notification: Object) => {
 							// HTMLにしてクライアントに送信
