@@ -12,10 +12,10 @@ function update-available-widgets-list
 
 $ ->
 	$ \html .css {
-		user-select: \none
-		'-moz-user-select': \none
-		'-webkit-user-select': \none
-		'-ms-user-select': \none
+		'user-select': 'none'
+		'-moz-user-select': 'none'
+		'-webkit-user-select': 'none'
+		'-ms-user-select': 'none'
 	}
 
 	update-available-widgets-list!
