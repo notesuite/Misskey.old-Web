@@ -139,21 +139,24 @@ mixin core(post, isRepost, repost)
 								li.user
 									a.avatar-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
 										img.avatar(src=user.avatarUrl, alt='avatar')
-			form.reply-form(role='form')
-				img.me-avatar(src=me.avatarUrl, alt='avatar')
-				div.form
-					textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
-					div.design-allow(role='presentation')
-					ol.photos
-					ol.uploads
-					button.attach-from-local(type='button', role='button', title='PCから画像を添付する')
-						i.fa.fa-upload
-					button.attach-from-album(type='button', role='button', title='アルバムから画像を添付する')
-						i.fa.fa-folder-open
-					button.submit-button.ui-button(type='submit', role='button')
-						| Reply
-						i.fa.fa-reply
-					input(name='file', type='file', accept='image/*', multiple)
+			form.reply-form
+				if login
+					img.me-avatar(src=me.avatarUrl, alt='avatar')
+					div.form
+						textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + post.user.screenName + ' '
+						div.design-allow(role='presentation')
+						ol.photos
+						ol.uploads
+						button.attach-from-local(type='button', role='button', title='PCから画像を添付する')
+							i.fa.fa-upload
+						button.attach-from-album(type='button', role='button', title='アルバムから画像を添付する')
+							i.fa.fa-folder-open
+						button.submit-button.ui-button(type='submit', role='button')
+							| Reply
+							i.fa.fa-reply
+						input(name='file', type='file', accept='image/*', multiple)
+				else
+					p plz login
 			div.replies(itemprop='comment')
 				if replies != null && replies.length > 0
 					each reply in replies
