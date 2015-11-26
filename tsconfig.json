@@ -33,6 +33,7 @@
 		"src/api/streaming/home.ts",
 		"src/api/endpoints/analyze-url.ts",
 		"src/api/endpoints/sites/desktop/update-avatar.ts",
+		"src/api/endpoints/sites/desktop/update-home-layout.ts",
 		"src/api/endpoints/sites/desktop/album/open.ts",
 		"src/api/endpoints/sites/desktop/album/upload.ts",
 		"src/api/endpoints/sites/desktop/album/files.ts",

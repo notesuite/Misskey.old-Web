@@ -5,7 +5,7 @@ import * as request from 'request';
 const gm: any = require('gm');
 import requestApi from '../../../../utils/requestApi';
 
-export default function updateIcon(req: express.Request, res: express.Response): void {
+export default function updateavatar(req: express.Request, res: express.Response): void {
 	'use strict';
 	const avaterFileId: string = req.body['file-id'];
 	const trimX: number = Number(req.body['trim-x']);
@@ -28,32 +28,32 @@ export default function updateIcon(req: express.Request, res: express.Response):
 				return res.status(500).send('something-happened');
 			}
 			gm(body, file.name)
-				.crop(trimW, trimH, trimX, trimY)
-				.toBuffer('png', (err: Error, buffer: Buffer) => {
-					if (err !== null) {
-						console.error(err);
-						return res.status(500).send('something-happened');
-					}
-					requestApi('POST', 'album/files/upload', {
-						file: {
-							value: buffer,
-							options: {
-								filename: `${file.name}.cropped.png`,
-								contentType: 'image/png'
-							}
+			.crop(trimW, trimH, trimX, trimY)
+			.toBuffer('png', (err: Error, buffer: Buffer) => {
+				if (err !== null) {
+					console.error(err);
+					return res.status(500).send('something-happened');
+				}
+				requestApi('POST', 'album/files/upload', {
+					file: {
+						value: buffer,
+						options: {
+							filename: `${file.name}.cropped.png`,
+							contentType: 'image/png'
 						}
-					}, req.user, true).then((albumFile: any) => {
-						requestApi('PUT', 'account/update-avatar', {
-							'file-id': albumFile.id
-						}, req.user).then((me: Object) => {
-							res.send(albumFile);
-						}, (updateErr: any) => {
-							return res.status(500).send('something-happened');
-						});
-					}, (uploadErr: any) => {
+					}
+				}, req.user, true).then((albumFile: any) => {
+					requestApi('PUT', 'account/update-avatar', {
+						'file-id': albumFile.id
+					}, req.user).then((me: Object) => {
+						res.send(albumFile);
+					}, (updateErr: any) => {
 						return res.status(500).send('something-happened');
 					});
+				}, (uploadErr: any) => {
+					return res.status(500).send('something-happened');
 				});
+			});
 		});
 	});
 };

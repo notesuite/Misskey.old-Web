@@ -14,24 +14,11 @@ export default function generateLayoutedHomewidgets(me: User, tlsource: string):
 
 	return new Promise<string>((resolve, reject) => {
 		UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IUserHomeLayout) => {
-			if (userLayout === null) {
-				UserHomeLayout.create({
-					userId: me.id,
-					layout: {
-						left: [],
-						center: ['timeline'],
-						right: ['my-status', 'notices', 'recommendation-users', 'donate']
-					}
-				}, (err: any, created: IUserHomeLayout) => {
-					generate(created.layout);
-				});
-			} else {
-				generate(userLayout.layout);
-			}
-		});
-		
-		function generate(layout: any): void {
-			'use strict';
+			const layout: any = userLayout !== null ? userLayout.layout : {
+				left: [],
+				center: ['timeline'],
+				right: ['my-status', 'notices', 'recommendation-users', 'donate']
+			};
 			generateHomewidgets(me, layout.left, tlsource).then((lefts: string[]) => {
 				generatedWidgets.left = lefts;
 				generateHomewidgets(me, layout.center, tlsource).then((centers: string[]) => {
@@ -42,6 +29,6 @@ export default function generateLayoutedHomewidgets(me: User, tlsource: string):
 					}, reject);
 				}, reject);
 			}, reject);	
-		}
+		});
 	});
 }

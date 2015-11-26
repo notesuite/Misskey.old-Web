@@ -31,6 +31,7 @@ export default function router(app: express.Express): void {
 
 	app.get('/web/analyze-url', require('./endpoints/analyze-url').default);
 	app.put('/web/sites/desktop/update-avatar', require('./endpoints/sites/desktop/update-avatar').default);
+	app.put('/web/sites/desktop/update-home-layout', require('./endpoints/sites/desktop/update-home-layout').default);
 	app.get('/web/sites/desktop/album/open', require('./endpoints/sites/desktop/album/open').default);
 	app.get('/web/sites/desktop/album/files', require('./endpoints/sites/desktop/album/files').default);
 	app.post('/web/sites/desktop/album/upload',
