@@ -158,7 +158,7 @@ html#misskey(
 											li: a.ui-waves-effect(href='/logout')
 												i(class='fa fa-power-off')
 												| Sign out
-							div.notices
+							div.notifications
 								div.dropdown(data-active='false')
 									div.dropdown-header(role='button')
 										p
@@ -167,7 +167,7 @@ html#misskey(
 										div.nav
 											select.filter-type(title='表示を絞り込み')
 												option(value='all') すべて
-												option(value='self-notice') self-notice
+												option(value='self-notification') self-notification
 												option(value='follow') 被フォロー
 												option(value='status-favorite') つぶやきの被お気に入り
 												option(value='status-repost') つぶやきの被Repost

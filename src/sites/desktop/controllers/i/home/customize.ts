@@ -28,7 +28,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		const layout: any = userLayout !== null ? userLayout.layout : {
 			left: [],
 			center: ['timeline'],
-			right: ['my-status', 'notices', 'recommendation-users', 'donate']
+			right: ['my-status', 'notifications', 'recommendation-users', 'donate']
 		};
 		const useWidgets = layout.left.concat(layout.center.concat(layout.right));
 		const unuseWidgets = widgetCatalog.map(widgetName => {

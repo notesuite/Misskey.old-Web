@@ -81,14 +81,14 @@ function update-header-statuses
 		data-type: \json
 		xhr-fields: {+with-credentials}}
 	.done (result) ->
-		unread-notices-count = result.unread-notices-count
+		unread-notifications-count = result.unread-notifications-count
 		unread-talk-messages-count = result.unread-talk-messages-count
 
-		if $ '#misskey-main-header .notices .unread-count' .0
-			$ '#misskey-main-header .notices .unread-count' .remove!
-		if unread-notices-count != 0
-			$ '#misskey-main-header .notices .dropdown .dropdown-header p' .append do
-				$ '<span class="unread-count">' .text unread-notices-count
+		if $ '#misskey-main-header .notifications .unread-count' .0
+			$ '#misskey-main-header .notifications .unread-count' .remove!
+		if unread-notifications-count != 0
+			$ '#misskey-main-header .notifications .dropdown .dropdown-header p' .append do
+				$ '<span class="unread-count">' .text unread-notifications-count
 
 		if $ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .0
 			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .remove!
@@ -518,11 +518,11 @@ $ ->
 			open!
 
 	# 通知全削除ﾎﾞﾔﾝ
-	$ '#misskey-main-header .notices .delete-all-button' .click ->
-		$ '#misskey-main-header .notices .notice' .each (i) ->
-			$notice = $ @
+	$ '#misskey-main-header .notifications .delete-all-button' .click ->
+		$ '#misskey-main-header .notifications .notification' .each (i) ->
+			$notification = $ @
 			set-timeout ->
-				$notice.transition {
+				$notification.transition {
 					perspective: \4096px
 					rotate-x: \90
 					opacity: \0
@@ -530,25 +530,25 @@ $ ->
 					$message.remove!
 			, i * 50
 
-		$.ajax config.web-api-url + '/notice/delete-all' {
+		$.ajax config.web-api-url + '/notification/delete-all' {
 			type: \delete
 			data: {}
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$ '#misskey-main-header .notices .unread-count' .remove!
-			$list = $ '<ol class="notices" />'
-			$info = $ '<p class="notice-empty">通知はありません</p>'
-			$info.append-to $notices-container
+			$ '#misskey-main-header .notifications .unread-count' .remove!
+			$list = $ '<ol class="notifications" />'
+			$info = $ '<p class="notification-empty">通知はありません</p>'
+			$info.append-to $notifications-container
 		.fail (data) ->
 
 	# 「通知」ドロップダウン
-	$ '#misskey-main-header .notices .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-main-header .notices .dropdown'
+	$ '#misskey-main-header .notifications .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-main-header .notifications .dropdown'
 
 		function close
 			$dropdown.attr \data-active \false
-			$ '#misskey-main-header .notices .dropdown .dropdown-content .main' .empty!
+			$ '#misskey-main-header .notifications .dropdown .dropdown-content .main' .empty!
 
 		function open
 			$ document .click (e) ->
@@ -556,32 +556,32 @@ $ ->
 					close!
 			$dropdown.attr \data-active \true
 
-			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content .main'
-			$ '<img class="loading" src="/resources/images/notices-loading.gif" alt="loading..." />' .append-to $notices-container
+			$notifications-container = $ '#misskey-main-header .notifications .dropdown .dropdown-content .main'
+			$ '<img class="loading" src="/resources/images/notifications-loading.gif" alt="loading..." />' .append-to $notifications-container
 
 			# 通知読み込み
-			$.ajax config.web-api-url + '/notice/timeline-webhtml' {
+			$.ajax config.web-api-url + '/notification/timeline-webhtml' {
 				type: \get
 				data: {}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done (data) ->
-				$ '#misskey-main-header .notices .loading' .remove!
-				$ '#misskey-main-header .notices .unread-count' .remove!
-				$list = $ '<ol class="notices" />'
+				$ '#misskey-main-header .notifications .loading' .remove!
+				$ '#misskey-main-header .notifications .unread-count' .remove!
+				$list = $ '<ol class="notifications" />'
 				if data != ''
-					$ '#misskey-main-header .notices .nav' .css \display \block
-					$ '#misskey-main-header .notices .main' .css \margin-top \32px
-					$notices = $ data
-					$notices.each ->
-						$notice = $ @
-						$notice.append-to $list
-					$list.append-to $notices-container
+					$ '#misskey-main-header .notifications .nav' .css \display \block
+					$ '#misskey-main-header .notifications .main' .css \margin-top \32px
+					$notifications = $ data
+					$notifications.each ->
+						$notification = $ @
+						$notification.append-to $list
+					$list.append-to $notifications-container
 				else
-					$info = $ '<p class="notice-empty">通知はありません</p>'
-					$info.append-to $notices-container
+					$info = $ '<p class="notification-empty">通知はありません</p>'
+					$info.append-to $notifications-container
 			.fail (data) ->
-				$ '#misskey-main-header .notices .loading' .remove!
+				$ '#misskey-main-header .notifications .loading' .remove!
 
 		if ($dropdown.attr \data-active) == \true
 			close!

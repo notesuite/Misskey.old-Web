@@ -4,9 +4,9 @@ html(lang='ja', dir='ltr')
 	head
 		include ../common/head
 		title Misskey - 通知
-		link(rel='stylesheet', href='/resources/styles/page/i-notices.css')
+		link(rel='stylesheet', href='/resources/styles/page/i-notifications.css')
 		script(src='/resources/scripts/common/header.js')
-		script(src='/resources/scripts/page/i-notices.js')
+		script(src='/resources/scripts/page/i-notifications.js')
 	
 	body
 		header#misskey-main-header
@@ -17,4 +17,4 @@ html(lang='ja', dir='ltr')
 		include ../common/nav
 		
 		main#misskey-main(role='main')
-			div#notices!= timelineHtml
+			div#notifications!= timelineHtml

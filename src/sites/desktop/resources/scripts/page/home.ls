@@ -23,13 +23,13 @@ $ ->
 
 	socket.on \disconnect (client) ->
 
-	socket.on \notice (notice) ->
-		console.log \notice notice
+	socket.on \notification (notification) ->
+		console.log \notification notification
 
-		$ '#widget-notices .notice-empty' .remove!
+		$ '#widget-notifications .notification-empty' .remove!
 
-		$notice = ($ notice).hide!
-		$notice.prepend-to ($ '#widget-notices .notices') .show 200
+		$notification = ($ notification).hide!
+		$notification.prepend-to ($ '#widget-notifications .notifications') .show 200
 
 	socket.on \post (post) ->
 		timeline.add $ post
