@@ -481,132 +481,118 @@ main {
 
 #widget-recommendation-users {
 	box-sizing: border-box;
-	background: #fff;
-	background-color: #fff;
-	//background-image: url(@blurredWallpaperUrl);
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-	border-radius: 8px;
 
-	> .users {
+	> .user {
 		margin: 0;
-		padding: 0;
-		list-style: none;
+		padding: 12px 16px;
+		border-bottom: solid 1px rgba(0, 0, 0, 0.05);
 
-		> .user {
-			margin: 0;
-			padding: 12px 16px;
-			border-bottom: solid 1px rgba(0,0,0,0.05);
+		&[data-is-following='false'] {
+			.main button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				display: inline-block;
+				box-sizing: border-box;
+				padding: 4px 8px;
+				margin: 0;
+				font-size: 0.8em;
+				color: #fff;
+				background: #bbb;
+				border: none;
+				border-radius: 2px;
+				outline: none;
+				transition: background .2s ease;
 
-			&[data-is-following='false'] {
-				.main button {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					cursor: pointer;
-					display: inline-block;
-					box-sizing: border-box;
-					padding: 4px 8px;
-					margin: 0;
-					font-size: 0.8em;
-					color: #fff;
-					background: #bbb;
-					border: none;
-					border-radius: 2px;
-					outline: none;
-					transition: background .2s ease;
+				&:disabled {
+					background: #ddd !important;
+				}
 
-					&:disabled {
-						background: #ddd !important;
-					}
+				&:hover {
+					background: #ccc;
+					transition: background .1s ease;
+				}
 
-					&:hover {
-						background: #ccc;
-						transition: background .1s ease;
-					}
+				&:active {
+					background: #999;
+					transition: background 0s ease;
+				}
 
-					&:active {
-						background: #999;
-						transition: background 0s ease;
-					}
-
-					&:focus {
-						text-shadow: 0 0 8px #fff;
-					}
+				&:focus {
+					text-shadow: 0 0 8px #fff;
 				}
 			}
+		}
 
-			&[data-is-following='true'] {
-				.main button {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					cursor: pointer;
-					display: inline-block;
-					box-sizing: border-box;
-					padding: 4px 8px;
-					margin: 0;
-					font-size: 0.8em;
-					color: contrast(@themeColor, #000, #fff, 70%);
-					background: @themeColor;
-					border: none;
-					border-radius: 2px;
-					outline: none;
-					transition: background .2s ease;
+		&[data-is-following='true'] {
+			.main button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				display: inline-block;
+				box-sizing: border-box;
+				padding: 4px 8px;
+				margin: 0;
+				font-size: 0.8em;
+				color: contrast(@themeColor, #000, #fff, 70%);
+				background: @themeColor;
+				border: none;
+				border-radius: 2px;
+				outline: none;
+				transition: background .2s ease;
 
-					&:disabled {
-						background: #ddd !important;
-					}
+				&:disabled {
+					background: #ddd !important;
+				}
 
-					&:hover {
-						background: lighten(@themeColor, 10%);
-						transition: background .1s ease;
-					}
+				&:hover {
+					background: lighten(@themeColor, 10%);
+					transition: background .1s ease;
+				}
 
-					&:active {
-						background: darken(@themeColor, 10%);
-						transition: background 0s ease;
-					}
+				&:active {
+					background: darken(@themeColor, 10%);
+					transition: background 0s ease;
+				}
 
-					&:focus {
-						text-shadow: 0 0 8px #fff;
-					}
+				&:focus {
+					text-shadow: 0 0 8px #fff;
 				}
 			}
+		}
 
-			&:last-child {
-				border-bottom: none;
+		&:last-child {
+			border-bottom: none;
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		.avatar-area {
+			float: left;
+			width: 32px;
+
+			.avatar {
+				min-width: 40px;
+				min-height: 40px;
+				max-width: 40px;
+				max-height: 40px;
+				border-radius: 6px;
 			}
+		}
 
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
+		.main {
+			float: left;
+			width: ~"calc(100% - 32px)";
+			text-align: center;
 
-			.avatar-area {
-				float: left;
-				width: 32px;
-
-				.avatar {
-					min-width: 40px;
-					min-height: 40px;
-					max-width: 40px;
-					max-height: 40px;
-					border-radius: 6px;
-				}
-			}
-
-			.main {
-				float: left;
-				width: ~"calc(100% - 32px)";
-				text-align: center;
-
-				.name {
-					margin: 0;
-				}
+			.name {
+				margin: 0;
 			}
 		}
 	}
