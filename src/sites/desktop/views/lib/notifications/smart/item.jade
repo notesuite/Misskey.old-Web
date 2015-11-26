@@ -1,0 +1,67 @@
+mixin item(notification)
+	li.notification(
+			class= notification.type
+			data-id= notification.id
+			data-cursor= notification.cursor
+			data-notification-type= notification.type)
+		time(datetime=notification.createdAt, data-display-type='relative')= notification.createdAt
+		div.main
+			case notification.type
+				when 'self-notification'
+					p= notification.content.text
+				when 'application'
+					a.icon-anchor(href='/app/' + notification.app.screenName, title= notification.app.description, rel='icon')
+						img.icon(src=notification.app.iconUrl, alt='icon')
+					div.text
+						p
+							i.fa.fa-info-circle
+							span= notification.content.text
+				when 'install-app'
+					a.icon-anchor(href='/app/' + notification.content.app.screenName, title= notification.content.app.description, rel='icon')
+						img.icon(src=notification.content.app.iconUrl, alt='icon')
+					div.text
+						p
+							i.fa.fa-plug
+							| アプリがインストールされました:
+							br
+							a(href= '/app/' + notification.content.app.screenId)= notification.content.app.name
+				when 'uninstall-app'
+					a.icon-anchor(href='/app/' + notification.content.app.screenName, title= notification.content.app.description, rel='icon')
+						img.icon(src=notification.content.app.iconUrl, alt='icon')
+					div.text
+						p
+							i.fa.fa-ban
+							| アプリがアンインストールされました:
+							br
+							a(href= '/app/' + notification.content.app.screenId)= notification.content.app.name
+				when 'follow'
+					a.avatar-anchor(href='/' + notification.content.user.screenName, title= notification.content.user.comment != null ? notification.content.user.comment : '@' + notification.content.user.screenName, rel='avatar')
+						img.avatar(src=notification.content.user.avatarUrl, alt='avatar')
+					div.text
+						p
+							i.fa.fa-user-plus
+							a(href= '/' + notification.content.user.screenName)= notification.content.user.name
+				when 'status-repost'
+					a.avatar-anchor(href='/' + notification.content.user.screenName, title= notification.content.user.comment != null ? notification.content.user.comment : '@' + notification.content.user.screenName, rel='avatar')
+						img.avatar(src=notification.content.user.avatarUrl, alt='avatar')
+					div.text
+						p
+							i.fa.fa-retweet
+							a(href= '/' + notification.content.user.screenName)= notification.content.user.name
+						a.status-preview(href= '/' + me.screenName + '/status/' + notification.content.status.id)= notification.content.status.text
+				when 'status-favorite'
+					a.avatar-anchor(href='/' + notification.content.user.screenName, title= notification.content.user.comment != null ? notification.content.user.comment : '@' + notification.content.user.screenName, rel='avatar')
+						img.avatar(src=notification.content.user.avatarUrl, alt='avatar')
+					div.text
+						p
+							i.fa.fa-star
+							a(href= '/' + notification.content.user.screenName)= notification.content.user.name
+						a.status-preview(href= '/' + me.screenName + '/status/' + notification.content.status.id)= notification.content.status.text
+				when 'bbs-thread-post'
+					a.avatar-anchor(href='/' + notification.content.user.screenName, title= notification.content.user.comment != null ? notification.content.user.comment : '@' + notification.content.user.screenName, rel='avatar')
+						img.avatar(src=notification.content.user.avatarUrl, alt='avatar')
+					div.text
+						p
+							i.fa.fa-comment
+							a(href= '/bbs/thread/' + notification.content.thread.id)= notification.content.thread.title
+						a.post-preview(href= '/bbs/thread/' + notification.content.thread.id + '#post-' + notification.content.post.id)= notification.content.post.text
