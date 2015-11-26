@@ -137,3 +137,18 @@ $ ->
 					$user.attr \data-is-following \true
 				.fail ->
 					$button.attr \disabled no
+
+	# 通知読み込み
+	$.ajax "#{config.web-api-url}/web/sites/desktop/home/notifications" {
+		type: \get
+		data: {}
+		data-type: \text
+		xhr-fields: {+with-credentials}}
+	.done (data) ->
+		if data != ''
+			$notifications = $ data
+			$notifications.append-to $ '#widget-notifications .notifications'
+		else
+			$info = $ '<p class="notifications-empty">通知はありません</p>'
+			$info.append-to $ '#widget-notifications'
+	.fail (data) ->
