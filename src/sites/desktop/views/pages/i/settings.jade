@@ -14,9 +14,6 @@ block body
 				li(data-ref='profile')
 					i.fa.fa-user
 					| プロフィール
-				li(data-ref='avatar')
-					i.fa.fa-camera-retro
-					| アイコン
 				li(data-ref='home-layout')
 					i.fa.fa-desktop
 					| ホームデザイン
@@ -35,6 +32,26 @@ block body
 		div.contents
 			div.profile(data-name='profile')
 				form
+					h1 Public profile
+					label.avatar
+						form.crop-form
+							p アイコンに使用する部分を選択してください
+							div.container
+								div.preview
+								div.buttons
+									button.cancel.ui-button(type='button', role='button')
+										i.fa.fa-ban
+										| キャンセル
+									button.ok.ui-button(type='submit', role='button')
+										i.fa.fa-check
+										| OK
+						img.avatar(src=me.avatarUrl, alt='avatar')
+						button.select-from-local.ui-button.ui-waves-effect(type='button', role='button')
+							i.fa.fa-upload
+							| PCから画像を選択
+						button.select-from-album.ui-button.ui-waves-effect(type='button', role='button')
+							i.fa.fa-folder-open
+							| アルバムから画像を選択
 					label
 						h2.title 名前
 						div.content
@@ -56,26 +73,6 @@ block body
 						div.content
 							textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
 					input.ui-button.submit-button(type='submit', value='アップデート')
-			
-			div.avatar(data-name='avatar')
-				form.crop-form
-					p アイコンに使用する部分を選択してください
-					div.container
-						div.preview
-						div.buttons
-							button.cancel.ui-button(type='button', role='button')
-								i.fa.fa-ban
-								| キャンセル
-							button.ok.ui-button(type='submit', role='button')
-								i.fa.fa-check
-								| OK
-				img.avatar(src=me.avatarUrl, alt='avatar')
-				button.select-from-local.ui-button.ui-waves-effect(type='button', role='button')
-					i.fa.fa-upload
-					| PCから画像を選択
-				button.select-from-album.ui-button.ui-waves-effect(type='button', role='button')
-					i.fa.fa-folder-open
-					| アルバムから画像を選択
 			
 			div.home-layout(data-name='home-layout')
 				img(src='/resources/images/home-design.svg', alt='customize')
