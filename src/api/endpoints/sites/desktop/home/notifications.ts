@@ -11,11 +11,15 @@ export default function timeline(req: express.Request, res: express.Response): v
 		`${__dirname}/../../../../../sites/desktop/views/lib/notifications/smart/items.jade`);
 
 	requestApi('GET', 'notifications/timeline', req.query, req.user).then((tl: Object[]) => {
-		res.send(compiler({
-			items: tl,
-			me: req.user,
-			config: config.publicConfig
-		}));
+		if (tl !== null && tl.length > 0) {
+			res.send(compiler({
+				items: tl,
+				me: req.user,
+				config: config.publicConfig
+			}));
+		} else {
+			res.send('');
+		}
 	}, (err: any) => {
 		res.send(err);
 	});
