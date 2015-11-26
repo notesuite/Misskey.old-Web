@@ -31,7 +31,7 @@ block body
 					| ログアウト
 		div.contents
 			div.profile(data-name='profile')
-				form
+				.form.public-profile
 					h1 Public profile
 					label.avatar
 						form.crop-form
@@ -46,10 +46,10 @@ block body
 										i.fa.fa-check
 										| OK
 						img.avatar(src=me.avatarUrl, alt='avatar')
-						button.select-from-local.ui-button.ui-waves-effect(type='button', role='button')
+						button.select-from-local.ui-waves-effect(type='button')
 							i.fa.fa-upload
 							| PCから画像を選択
-						button.select-from-album.ui-button.ui-waves-effect(type='button', role='button')
+						button.select-from-album.ui-waves-effect(type='button')
 							i.fa.fa-folder-open
 							| アルバムから画像を選択
 					label
@@ -68,10 +68,6 @@ block body
 						h2.title 現在地
 						div.content
 							input.ui-input-text(name='location', type='text', value=me.location, placeholder=me.location)
-					label
-						h2.title BIO
-						div.content
-							textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
 					input.ui-button.submit-button(type='submit', value='アップデート')
 			
 			div.home-layout(data-name='home-layout')

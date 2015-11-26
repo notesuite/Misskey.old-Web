@@ -7,6 +7,7 @@
 	display: -o-flex;
 	display: flex;
 	justify-content: center;
+	//background: #FFFDF4;
 	background: #fff;
 
 	> nav {
@@ -54,10 +55,18 @@
 		//padding: 32px 32px 32px 16px;
 		> div {
 			margin: 32px 32px 32px 16px;
+
+			> .form {
+				> h1 {
+					margin: 0;
+					font-size: 1em;
+					color: #aaa;
+				}
+			}
 		}
 
 		.profile {
-			form {
+			.public-profile {
 				margin: 16px 0;
 				border-top: solid 1px #eee;
 
@@ -71,9 +80,57 @@
 					clear: both;
 				}
 
+				.avatar {
+					.avatar {
+						display: block;
+						margin: 0 8px 0 0;
+						width: 90px;
+						height: 90px;
+						float: left;
+					}
+
+					.crop-form {
+						display: none;
+					}
+
+					> button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: block;
+						box-sizing: border-box;
+						margin: 4px;
+						padding: 10px;
+						line-height: 1em;
+						font-size: 0.9em;
+						font-weight: 400;
+						text-decoration: none;
+						color: #95856e;
+						border: none;
+						background: 0 0;
+						outline: 0;
+						border-radius: 4px;
+						box-shadow: none;
+						cursor: pointer;
+						transition: all 250ms ease;
+
+						&:hover {
+							color: #8E7B76;
+							box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+						}
+
+						&:active {
+							color: @themeColor;
+							// background-color: #8E7B76;
+							box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+						}
+					}
+				}
+
 				label {
 					display: block;
 					padding: 16px 0;
+					clear: both;
 
 					&:first-child {
 						padding: 0 0 16px 0;
@@ -84,26 +141,13 @@
 						font-size: 1em;
 						font-weight: bold;
 						font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-						color: #444;
+						color: #777;
 					}
 				}
 
 				.submit-button {
 					float: right;
 				}
-			}
-		}
-
-		.avatar {
-			.avatar {
-				display: block;
-				margin: 0 auto;
-				width: 128px;
-				height: 128px;
-			}
-
-			.crop-form {
-				display: none;
 			}
 		}
 
