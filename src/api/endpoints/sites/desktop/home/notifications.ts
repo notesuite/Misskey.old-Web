@@ -8,7 +8,7 @@ export default function timeline(req: express.Request, res: express.Response): v
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../../../../../sites/desktop/views/lib/notifications/smart/items.jade`);
+		`${__dirname}/../../../../../sites/desktop/views/lib/notification/smart/items.jade`);
 
 	requestApi('GET', 'notifications/timeline', req.query, req.user).then((tl: Object[]) => {
 		if (tl !== null && tl.length > 0) {
