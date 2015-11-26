@@ -7,8 +7,91 @@
 	display: -o-flex;
 	display: flex;
 	justify-content: center;
-	//background: #FFFDF4;
-	background: #fff;
+	background: #4C5556;
+
+	input[type=text],
+	input[type=url],
+	input[type=email],
+	input[type=password] {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		box-sizing: border-box;
+		cursor: auto;
+		margin: 0;
+		padding: 8px 16px;
+		width: 20em;
+		font-size: 1em;
+		line-height: 24px;
+		color: #DDECE5;
+		border: none;
+		border-bottom: solid 2px #8F9C9E;
+		outline: none;
+		border-radius: 0;
+		box-shadow: none;
+		background: transparent;
+		transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+
+		&:hover {
+			border-color: @themeColor;
+			transition: border 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		&:focus {
+			color: #fff;
+			border-color: @themeColor;
+			transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
+		}
+
+		&::-webkit-input-placeholder {
+			color: #ddd;
+		}
+
+		&:-ms-input-placeholder {
+			color: #ddd;
+		}
+
+		&:-moz-placeholder {
+			color: #ddd;
+		}
+	}
+
+	button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: block;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 10px;
+		line-height: 1em;
+		font-size: 0.9em;
+		font-weight: 400;
+		text-decoration: none;
+		color: #98ACAF;
+		border: none;
+		background: 0 0;
+		outline: 0;
+		border-radius: 4px;
+		box-shadow: none;
+		cursor: pointer;
+		transition: all 250ms ease;
+
+		&:hover {
+			color: #A2BBBF;
+			box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+		}
+
+		&:active {
+			color: @themeColor;
+			background: rgba(255, 255, 255, 0.05);
+			box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+		}
+	}
 
 	> nav {
 		display: block;
@@ -60,7 +143,7 @@
 				> h1 {
 					margin: 0;
 					font-size: 1em;
-					color: #aaa;
+					color: #A6B5B2;
 				}
 			}
 		}
@@ -83,10 +166,11 @@
 				.avatar {
 					.avatar {
 						display: block;
-						margin: 0 8px 0 0;
-						width: 90px;
-						height: 90px;
+						margin: 0 16px 0 0;
+						width: 88px;
+						height: 88px;
 						float: left;
+						border-radius: 4px;
 					}
 
 					.crop-form {
@@ -94,35 +178,10 @@
 					}
 
 					> button {
-						-webkit-appearance: none;
-						-moz-appearance: none;
-						appearance: none;
-						display: block;
-						box-sizing: border-box;
 						margin: 4px;
-						padding: 10px;
-						line-height: 1em;
-						font-size: 0.9em;
-						font-weight: 400;
-						text-decoration: none;
-						color: #95856e;
-						border: none;
-						background: 0 0;
-						outline: 0;
-						border-radius: 4px;
-						box-shadow: none;
-						cursor: pointer;
-						transition: all 250ms ease;
 
-						&:hover {
-							color: #8E7B76;
-							box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-						}
-
-						&:active {
-							color: @themeColor;
-							// background-color: #8E7B76;
-							box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+						> i {
+							margin-right: 0.5em;
 						}
 					}
 				}
@@ -141,7 +200,7 @@
 						font-size: 1em;
 						font-weight: bold;
 						font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-						color: #777;
+						color: #929C9B;
 					}
 				}
 

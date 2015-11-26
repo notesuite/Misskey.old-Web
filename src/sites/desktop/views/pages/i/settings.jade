@@ -34,41 +34,43 @@ block body
 				.form.public-profile
 					h1 Public profile
 					label.avatar
+						h2.title Avatar
 						form.crop-form
 							p アイコンに使用する部分を選択してください
 							div.container
 								div.preview
 								div.buttons
-									button.cancel.ui-button(type='button', role='button')
+									button.cancel(type='button', role='button')
 										i.fa.fa-ban
 										| キャンセル
-									button.ok.ui-button(type='submit', role='button')
+									button.ok(type='submit', role='button')
 										i.fa.fa-check
 										| OK
 						img.avatar(src=me.avatarUrl, alt='avatar')
 						button.select-from-local.ui-waves-effect(type='button')
 							i.fa.fa-upload
-							| PCから画像を選択
+							| Select form your PC
 						button.select-from-album.ui-waves-effect(type='button')
 							i.fa.fa-folder-open
-							| アルバムから画像を選択
+							| Select from album
 					label
-						h2.title 名前
+						h2.title Name
 						div.content
-							input.ui-input-text(name='name', type='text', value=me.name, placeholder=me.name)
+							input(name='name', type='text', value=me.name, placeholder=me.name)
 					label
-						h2.title ひとことコメント
+						h2.title Comment
 						div.content
-							input.ui-input-text(name='comment', type='text', value=me.comment, placeholder=me.comment)
+							input(name='comment', type='text', value=me.comment, placeholder=me.comment)
 					label
-						h2.title WebサイトURL
+						h2.title Website
 						div.content
-							input.ui-input-text(name='url', type='url', value=me.url, placeholder=me.url)
+							input(name='url', type='url', value=me.url, placeholder=me.url)
 					label
-						h2.title 現在地
+						h2.title Location
 						div.content
-							input.ui-input-text(name='location', type='text', value=me.location, placeholder=me.location)
-					input.ui-button.submit-button(type='submit', value='アップデート')
+							input(name='location', type='text', value=me.location, placeholder=me.location)
+					button.submit-button(type='submit')
+						| Update
 			
 			div.home-layout(data-name='home-layout')
 				img(src='/resources/images/home-design.svg', alt='customize')
