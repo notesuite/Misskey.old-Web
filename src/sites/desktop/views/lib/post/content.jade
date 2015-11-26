@@ -7,4 +7,4 @@ mixin content(post)
 			ol.photos
 				each photo in post.photos
 					li.photo
-						img.image(src= photo.url, alt= '')
+						img.image(src= photo.url, alt= photo.name, title= photo.name)
