@@ -25,7 +25,11 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	};
 
 	UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IUserHomeLayout) => {
-		const layout: any = userLayout.layout;
+		const layout: any = userLayout !== null ? userLayout.layout : {
+			left: [],
+			center: ['timeline'],
+			right: ['my-status', 'notices', 'recommendation-users', 'donate']
+		};
 		const useWidgets = layout.left.concat(layout.center.concat(layout.right));
 		const unuseWidgets = widgetCatalog.map(widgetName => {
 			if (useWidgets.indexOf(widgetName) === -1) {
