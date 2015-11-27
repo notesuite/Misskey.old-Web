@@ -33,9 +33,10 @@ $ ->
 		, 1000ms
 
 	socket.on \disconnect (client) ->
-		$ 'body > .streaming-info' .remove!
-		$message = $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームから切断されました 再接続中...</p>'
-		$ \body .append $message
+		if $ 'body > .streaming-info.reconnecting' .length == 0
+			$ 'body > .streaming-info' .remove!
+			$message = $ '<p class="streaming-info reconnecting"><i class="fa fa-spinner fa-spin"></i>ストリームから切断されました 再接続中...</p>'
+			$ \body .append $message
 
 	socket.on \notification (notification) ->
 		console.log \notification notification
