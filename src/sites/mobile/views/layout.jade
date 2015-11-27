@@ -36,36 +36,30 @@ html#misskey(
 						p.name= me.name
 					div.links
 						ul
-							li
-								a(href='/i/status-new')
-									i.fa.fa-pencil-square-o
-									| 新規投稿
+							li: a(href='/i/status-new')
+								i.fa.fa-pencil-square-o
+								| 新規投稿
 						ul
-							li
-								a(href='/')
-									i.fa.fa-home
-									| ホーム
-							li
-								a(href='/i/mentions')
-									i.fa.fa-at
-									| メンション
-							li
-								a(href='/i/notices')
-									i.fa.fa-bell
-									| 通知
-							li
-								a(href='/i/talks')
-									i.fa.fa-comments
-									| トーク
+							li: a(href='/')
+								i.fa.fa-home
+								| ホーム
+							li: a(href='/i/mentions')
+								i.fa.fa-at
+								| メンション
+							li: a(href='/i/notices')
+								i.fa.fa-bell
+								| 通知
+							li: a(href='/i/talks')
+								i.fa.fa-comments
+								| トーク
 						ul
-							li
-								a(href='/i/settings')
-									i.fa.fa-cog
-									| 設定
+							li: a(href='/i/settings')
+								i.fa.fa-cog
+								| 設定
 					p.manager
 						| このセッションは
 						= workerId
 						| が担当しました
 
-		div.grobal-container.contents
+		div.grobal-container.contents#misskey-main
 			block body
