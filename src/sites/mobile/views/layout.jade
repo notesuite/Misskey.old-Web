@@ -1,0 +1,71 @@
+doctype html
+
+- var htmlSchema = 'http://schema.org/WebPage';
+
+block vars
+
+html#misskey(
+		lang='ja',
+		dir='ltr',
+		itemscope,
+		itemtype= htmlSchema,
+		data-is-login!= login.toString(),
+		data-me-id= login ? me.id : null)
+
+	head(prefix='og: http://ogp.me/ns#')
+		include ./common/head
+		
+		block meta
+		
+		title
+			block title
+		
+		block assets
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				block hader
+			block action
+		nav#misskey-main-nav(role='navigation')
+			div.slidemenu-body
+				div.slidemenu-content
+					a.me(href='/' + me.screenName)
+						img.icon(src=me.iconImageUrl, alt='icon')
+						p.name= me.name
+					div.links
+						ul
+							li
+								a(href='/i/status-new')
+									i.fa.fa-pencil-square-o
+									| 新規投稿
+						ul
+							li
+								a(href='/')
+									i.fa.fa-home
+									| ホーム
+							li
+								a(href='/i/mentions')
+									i.fa.fa-at
+									| メンション
+							li
+								a(href='/i/notices')
+									i.fa.fa-bell
+									| 通知
+							li
+								a(href='/i/talks')
+									i.fa.fa-comments
+									| トーク
+						ul
+							li
+								a(href='/i/settings')
+									i.fa.fa-cog
+									| 設定
+					p.manager
+						| このセッションは
+						= workerId
+						| が担当しました
+
+		div.grobal-container.contents
+			block body

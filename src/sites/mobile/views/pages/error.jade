@@ -1,23 +1,21 @@
-doctype html
+extends ../layout
 
-html(lang='ja', dir='ltr')
-	head
-		include ../common/head
-		title OOPS
-		link(rel='stylesheet', href='/resources/styles/page/error.css')
-		script(src='/resources/scripts/common/header.js')
-	
-	body
-		header#misskey-main-header
-			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
-			h1
-				| Oops!
-		include ../common/nav
-		
-		main#misskey-main(role='main')
-			h1
-				i.fa.fa-exclamation-triangle
-				| 技術的な問題が発生しています。
+block title
+	| Oops
+
+block meta
+	meta(name='description', content='Something happened')
+
+block assets
+	link(rel='stylesheet', href='/resources/mobile/styles/page/error.css')
+	script(src='/resources/mobile/scripts/common/ui.js')
+
+block body
+	main(role='main')
+		h1
+			i.fa.fa-exclamation-triangle
+			| 技術的な問題が発生しています。
+		if err
 			details
 				summary 詳細情報
 				pre= err

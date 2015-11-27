@@ -70,6 +70,30 @@ export default function router(app: express.Express): void {
 		}
 	});
 
+	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		requestApi('GET', 'login', req.body).then((response: any) => {
+			const user: User = response.user;
+			req.session.userId = user.id;
+			req.session.save(() => {
+				res.json(response);
+			});
+		}, (err: any) => {
+			res.status(500).json(err);
+		});
+	});
+
+	app.get('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		requestApi('GET', 'login', req.query).then((response: any) => {
+			const user: User = response.user;
+			req.session.userId = user.id;
+			req.session.save(() => {
+				res.redirect('/');
+			});
+		}, (err: any) => {
+			res.status(500).json(err);
+		});
+	});
+
 	app.get('/welcome', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'welcome');
 	});
@@ -93,18 +117,6 @@ export default function router(app: express.Express): void {
 	app.get('/i/settings', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/settings'));
 
 	app.get('/i/home/customize', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/home/customize'));
-
-	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi("GET", 'login', req.body).then((response: any) => {
-			const user: User = response.user;
-			req.session.userId = user.id;
-			req.session.save(() => {
-				res.json(response);
-			});
-		}, (err: any) => {
-			res.status(500).json(err);
-		});
-	});
 
 	app.get('/:userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'user');
