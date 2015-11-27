@@ -343,6 +343,7 @@ input[type=password] {
 		li {
 			display: block;
 			font-size: 1em;
+			line-height: 1em;
 			border-top: solid 0.5px rgba(0, 0, 0, 0.2);
 			background: #383C40;
 			background-clip: content-box;
@@ -353,24 +354,35 @@ input[type=password] {
 
 			a {
 				display: block;
+				position: relative;
 				padding: 13px 18px;
 				color: #fff;
 				text-decoration: none;
-				/*
-				background-image: url("/resources/common/images/arrow-white.svg");
-				background-repeat: no-repeat;
-				background-position: calc(100% - 8px) center;
-				*/
-				> i {
+
+				> .icon {
 					margin-right: 0.5em;
 				}
 
+				> .angle {
+					position: absolute;
+					line-height: ~"calc(1em + 26px)";
+					top: 0;
+					right: 0;
+					padding: 0 16px;
+				}
+
 				> .unreads-count {
-					display: inline;
+					position: absolute;
+					height: ~"calc(0.9em + 8px)";
+					line-height: ~"calc(0.9em + 8px)";
+					top: 0;
+					bottom: 0;
+					right: 12px;
 					box-sizing: border-box;
-					float: right;
+					margin: auto 0;
 					padding: 0px 8px;
 					min-width: 2em;
+					font-size: 0.9em;
 					text-align: center;
 					background: rgba(255, 255, 255, 0.1);
 					border-radius: 1em;
