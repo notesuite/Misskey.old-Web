@@ -8,4 +8,12 @@ html, #misskey-main {
 #timeline {
 	@import "../common/timeline";
 	padding: 8px;
+
+	> .posts {
+		> .post {
+			&:first-child {
+				border-radius: 6px 6px 0 0;
+			}
+		}
+	}
 }
