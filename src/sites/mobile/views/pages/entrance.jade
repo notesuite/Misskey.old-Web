@@ -21,27 +21,26 @@ html(lang='ja', dir='ltr')
 				h1 Misskey
 				p
 					| A mini-blog sns. find your likes!!!
-			div.contents
-				form#login-form(action='/login', method='post')
-					h2
-						| Account
-					label
-						i.fa.fa-at
-						input#id(name='screen-name'
-							type='text'
-							pattern='^[0-9A-Za-z_]+$'
-							placeholder='User name'
-							autocomplete='off'
-							autofocus
-							required)
-					label
-						i.fa.fa-lock
-						input(name='password'
-							type='password'
-							placeholder='Password'
-							autocomplete='off'
-							required)
-					button.ui-button(type='submit')
-						| Sign in
-				p.info
-					| Hey there! 現在、アカウントの作成はPCから行えます。
+			form#login-form(action='/login', method='post')
+				h2
+					| Account
+				label
+					i.fa.fa-at
+					input#id(name='screen-name'
+						type='text'
+						pattern='^[0-9A-Za-z_]+$'
+						placeholder='User name'
+						autocomplete='off'
+						autofocus
+						required)
+				label
+					i.fa.fa-lock
+					input(name='password'
+						type='password'
+						placeholder='Password'
+						autocomplete='off'
+						required)
+				button.ui-button(type='submit')
+					| Sign in
+			p.info
+				| Hey there! 現在、アカウントの作成はPCから行えます。
