@@ -36,24 +36,24 @@ html#misskey(
 						p.name= me.name
 					div.links
 						ul
-							li: a(href='/i/status-new')
+							li.post-new: a(href='/i/post-new')
 								i.fa.fa-pencil-square-o
 								| 新規投稿
 						ul
-							li: a(href='/')
+							li.home: a(href='/')
 								i.fa.fa-home
 								| ホーム
-							li: a(href='/i/mentions')
+							li.mentions: a(href='/i/mentions')
 								i.fa.fa-at
 								| メンション
-							li: a(href='/i/notices')
+							li.notifications: a(href='/i/notices')
 								i.fa.fa-bell
 								| 通知
-							li: a(href='/i/talks')
+							li.talks: a(href='/i/talks')
 								i.fa.fa-comments
 								| トーク
 						ul
-							li: a(href='/i/settings')
+							li.settings: a(href='/i/settings')
 								i.fa.fa-cog
 								| 設定
 					p.manager
