@@ -1,7 +1,7 @@
 include ../content
 include ./subPost
 
-mixin post(post, isRepost)
+mixin post(post)
 	if post.type == 'repost'
 		+core(post.post, true, post)
 	else
@@ -29,33 +29,6 @@ mixin core(post, isRepost, repost)
 			i.fa.fa-ellipsis-v.talk-ellipsis
 		if isHaveReplies
 			i.fa.fa-ellipsis-v.replies-ellipsis
-		if login && me.id != post.userId
-			div.repost-form
-				div.background
-				form.form
-					h2
-						i.fa.fa-retweet
-						| この投稿をRepostしますか？
-					article(role='article')
-						a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='avatar')
-							img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
-						header.header
-							h3
-								a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
-							if post.user.isVerified
-								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-							span.screen-name= '@' + post.user.screenName
-							a(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url'): time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
-						div.main(itemprop='articleBody')
-							+content(post)
-					div.actions
-						button.accept(type='submit')
-							i.fa.fa-check
-							p Repost
-						button.cancel(type='button')
-							i.fa.fa-ban
-							p キャンセル
-		div.talk
 		if post.inReplyToPost
 			+subPost(post.inReplyToPost)(class='reply-source')
 		if isRepost
@@ -113,19 +86,3 @@ mixin core(post, isRepost, repost)
 						li.liker
 							a.avatar-anchor(href='/' + liker.screenName, title= '@' + liker.screenName)
 								img.avatar(src=liker.avatarUrl + '?mini', alt='avatar')
-		form.reply-form
-			img.me-avatar(src=me.avatarUrl + '?mini', alt='avatar')
-			div.form
-				textarea(name='text', placeholder='この投稿に返信...', aria-multiline='true')= '@' + post.user.screenName + ' '
-				div.design-allow(role='presentation')
-				ol.photos
-				ol.uploads
-				button.attach-from-local(type='button', title='PCから画像を添付する')
-					i.fa.fa-upload
-				button.attach-from-album(type='button', title='アルバムから画像を添付する')
-					i.fa.fa-folder-open
-				button.submit-button.ui-button(type='submit')
-					| Reply
-					i.fa.fa-reply
-				input(name='file', type='file', accept='image/*', multiple)
-		div.replies(itemprop='comment')
