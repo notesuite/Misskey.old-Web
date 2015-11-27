@@ -1514,3 +1514,23 @@
 	background: #fff;
 	border-radius: 8px;
 }
+
+@media (max-width: 400px) {
+
+	> .posts {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		.post.status,
+		.post.photo,
+		.post.repost {
+			padding: 0 0;
+
+			> .main {
+				position: relative;
+				padding: 16px 16px 0 16px;
+			}
+		}
+	}
+}
