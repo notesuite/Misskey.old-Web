@@ -987,17 +987,44 @@ function update-relative-times
 			| _ => ''
 		$ @ .text time-text
 
+function update-statuses
+	$.ajax "#{config.web-api-url}/posts/timeline-unreads-count" {
+		type: \get
+		data: {}
+		xhr-fields: {+with-credentials}}
+	.done (data) ->
+		if data != 0
+			$ '#misskey-main-nav .home a .unreads-count' .remove!
+			$ '#misskey-main-nav .home a' .append $ "<span class=\"unreads-count\">#{data}</span>"
+
+	$.ajax "#{config.web-api-url}/posts/mentions-unreads-count" {
+		type: \get
+		data: {}
+		xhr-fields: {+with-credentials}}
+	.done (data) ->
+		if data != 0
+			$ '#misskey-main-nav .mentions a .unreads-count' .remove!
+			$ '#misskey-main-nav .mentions a' .append $ "<span class=\"unreads-count\">#{data}</span>"
+
+	$.ajax "#{config.web-api-url}/notifications/unreads-count" {
+		type: \get
+		data: {}
+		xhr-fields: {+with-credentials}}
+	.done (data) ->
+		if data != 0
+			$ '#misskey-main-nav .notifications a .unreads-count' .remove!
+			$ '#misskey-main-nav .notifications a' .append $ "<span class=\"unreads-count\">#{data}</span>"
+
 $ ->
 	SpSlidemenu \#misskey-main \#misskey-main-nav \#open-misskey-main-nav-button {direction: \left}
 
 	update-relative-times!
-
-	# Update relative times
+	update-statuses!
 	set-interval update-relative-times, 1000ms
+	set-interval update-statuses, 10000ms
 
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 	$ \#misskey-main-nav .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
-
 
 $ window .load ->
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
