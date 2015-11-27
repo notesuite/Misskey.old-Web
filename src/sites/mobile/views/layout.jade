@@ -32,7 +32,7 @@ html#misskey(
 			div.slidemenu-body
 				div.slidemenu-content
 					a.me(href='/' + me.screenName)
-						img.icon(src=me.iconImageUrl, alt='icon')
+						img.avatar(src=me.avatarUrl, alt='avatar')
 						p.name= me.name
 					div.links
 						ul
@@ -58,7 +58,7 @@ html#misskey(
 								| 設定
 					p.manager
 						| このセッションは
-						= workerId
+						b= workerId
 						| が担当しました
 
 		div.grobal-container.contents#misskey-main
