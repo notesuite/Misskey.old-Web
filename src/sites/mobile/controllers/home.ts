@@ -12,7 +12,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	requestApi('GET', 'posts/timeline', { 'limit': 10 }, me.id).then((tl: any[]) => {
 		res.display(req, 'home', {
 			timeline: tl,
-			parsePostText
+			parsePostText: parsePostText
 		});
 	});
 };
