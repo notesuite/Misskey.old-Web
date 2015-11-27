@@ -19,8 +19,8 @@ block body
 				if timeline.length > 0
 					each post in timeline
 						+post(post)
-			if posts.length == 0
-				p.empty
-					| タイムラインに表示するコンテンツがありません。
-					br
-					| フォローしている人の投稿と、自分の投稿がここに表示されます。
+				else
+					p.empty
+						| タイムラインに表示するコンテンツがありません。
+						br
+						| フォローしている人の投稿と、自分の投稿がここに表示されます。
