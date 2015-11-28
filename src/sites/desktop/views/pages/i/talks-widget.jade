@@ -1,0 +1,37 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../../common/head
+		title トーク
+		link(rel='stylesheet', href='/resources/styles/page/i/talks-widget.css')
+		script(src='/resources/scripts/page/i/talks-widget.js')
+	
+	body
+		div#search(role='search')
+			div.form
+				input(type='search', placeholder!='&#xf002; ユーザーを探してトークを開始')
+			div.result
+		main(role='main')
+			if messages != null
+				ol#talks
+					each message in messages
+						li.talk(
+								data-is-my-message!= (message.userId == me.id).toString(),
+								data-is-unread!= (message.userId != me.id && !message.isReaded).toString())
+							a(href= url + '/widget/talk/' + message.user.screenName)
+								article
+									img.avatar(src= message.user.avatarUrl, alt='avatar')
+									header
+										h2= message.user.name
+										span.screenName= '@' + message.user.screenName
+										time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
+									p.text
+										if message.userId == me.id
+											span.me あなた:
+										= message.text
+									if message.file
+										img.image(src= message.file.url, alt='image')
+			else
+				p#empty-histories
+					| 履歴はありません。

@@ -1,3 +1,5 @@
+$ = require 'jquery'
+
 $ ->
 	$ '#search input' .bind \input ->
 		$input = $ @
