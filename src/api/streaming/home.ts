@@ -12,10 +12,6 @@ interface MKSocketIOSocket extends SocketIO.Socket {
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
 	io.of('/streaming/home').on('connection', (socket: MKSocketIOSocket) => {
-
-		// Connect to Redis
-		const subscriber: redis.RedisClient = redis.createClient(6379, config.redisServerHost);
-
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
 
@@ -33,6 +29,12 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 			// Get user
 			socket.user = session.user;
+
+			// Connect to Redis
+			const subscriber: redis.RedisClient = redis.createClient(
+				6379, config.redisServerHost, <redis.ClientOpts>{
+				disable_resubscribing: true
+			});
 
 			// Subscribe Home stream channel
 			subscriber.subscribe(`misskey:userStream:${socket.user.id}`);
@@ -94,6 +96,10 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 					default:
 						break;
 				}
+			});
+
+			socket.on('disconnect', () => {
+				subscriber.end();
 			});
 		});
 	});
