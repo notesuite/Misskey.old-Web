@@ -8,6 +8,7 @@ WavesEffect = require '../lib/waves-effect.js'
 Album = require './album.js'
 sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
+ui-window = require './window.js'
 init-i-settings-dialog = require './i-settings.js'
 
 album = new Album
@@ -496,6 +497,20 @@ $ ->
 			close!
 		else
 			open!
+
+	# Talks
+	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
+		window-id = "misskey-window-talk-histories"
+		$content = $ '<iframe>' .attr {src: '/i/talks-widget', +seamless}
+		ui-window do
+			window-id
+			$content
+			"<i class=\"fa fa-comments\"></i>トーク"
+			500px
+			560px
+			yes
+			'/i/talks-widget'
+		false
 
 	# 「アカウント」ドロップダウン
 	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
