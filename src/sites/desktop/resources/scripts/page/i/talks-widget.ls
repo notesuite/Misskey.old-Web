@@ -28,4 +28,3 @@ $ ->
 									$ '<span class="name">' .text user.name
 								.append do
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
-					window.init-waves-effects!

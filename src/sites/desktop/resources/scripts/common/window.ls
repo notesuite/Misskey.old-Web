@@ -112,14 +112,6 @@ module.exports = (id, $content, title, width, height, can-popout = false, popout
 				# snap window border
 				threshold = 16px
 
-				if move-left < threshold
-					$window.add-class \snap-left
-					move-left = 0
-
-				if (move-top - page-top) < threshold
-					$window.add-class \snap-top
-					move-top = page-top
-
 				if move-left + window-width > browser-width - threshold
 					$window.add-class \snap-right
 					move-left = browser-width - window-width
@@ -127,6 +119,14 @@ module.exports = (id, $content, title, width, height, can-popout = false, popout
 				if move-top + window-height > browser-height - threshold
 					$window.add-class \snap-bottom
 					move-top = browser-height - window-height
+
+				if move-left < threshold
+					$window.add-class \snap-left
+					move-left = 0
+
+				if (move-top - page-top) < threshold
+					$window.add-class \snap-top
+					move-top = page-top
 
 				$window.css {
 					left: move-left + \px

@@ -102,6 +102,7 @@ h1 {
 
 					&:hover {
 						color: #fff;
+						transition: none;
 						background: @themeColor;
 
 						.name {
@@ -115,6 +116,7 @@ h1 {
 
 					&:active {
 						color: #fff;
+						transition: none;
 						background: darken(@themeColor, 10%);
 
 						.name {
@@ -126,7 +128,7 @@ h1 {
 						}
 					}
 
-					.icon {
+					.avatar {
 						vertical-align: middle;
 						min-width: 32px;
 						min-height: 32px;
@@ -153,126 +155,130 @@ h1 {
 	}
 }
 
-#talks {
-	margin: 0;
-	padding: 0;
+main {
+	display: block;
 	margin-top: ~"calc(1em + 16px + 20px + 2px)";
-	list-style: none;
 
-	> .talk {
-		position: relative;
+	#talks {
+		margin: 0;
 		padding: 0;
-		background: #fff;
-		border-bottom: solid 1px #eee;
-		transition: background 0s ease;
+		list-style: none;
 
-		&:hover {
-			background: #fafafa;
-			transition: background 0.2s ease;
-
-			> a > article > header > h2 {
-				color: @themeColor;
-			}
-
-			> a > article > .icon {
-				filter: saturate(200%);
-				-webkit-filter: saturate(200%);
-				-moz-filter: saturate(200%);
-				-o-filter: saturate(200%);
-				-ms-filter: saturate(200%);
-			}
-		}
-
-		&:active {
-			background: #eee;
+		> .talk {
+			position: relative;
+			padding: 0;
+			background: #fff;
+			border-bottom: solid 1px #eee;
 			transition: background 0s ease;
-		}
 
-		&[data-is-unread='false'] {
-			opacity: 0.8;
-		}
+			&:hover {
+				background: #fafafa;
+				transition: background 0.2s ease;
 
-		&[data-is-unread='true'] > a > article {
-			background-image: url("/resources/images/i-talks-item-unread.svg");
-			background-repeat: no-repeat;
-			background-position: 0 center;
-		}
-
-		> a {
-			display: block;
-			background-image: url("/resources/images/i-talks-item-arrow.svg");
-			background-repeat: no-repeat;
-			background-position: ~"calc(100% - 16px)" center;
-
-			> article {
-				position: relative;
-				padding: 20px 30px;
-
-				&:after {
-					content: "";
-					display: block;
-					clear: both;
+				> a > article > header > h2 {
+					color: @themeColor;
 				}
 
-				> header {
-					margin-bottom: 2px;
-					white-space: nowrap;
-					overflow: hidden;
+				> a > article > .icon {
+					filter: saturate(200%);
+					-webkit-filter: saturate(200%);
+					-moz-filter: saturate(200%);
+					-o-filter: saturate(200%);
+					-ms-filter: saturate(200%);
+				}
+			}
 
-					> h2 {
-						text-align: left;
-						display: inline;
-						margin: 0;
-						padding: 0;
-						font-size: 1em;
-						color: rgba(0, 0, 0, 0.9);
-						font-weight: bold;
+			&:active {
+				background: #eee;
+				transition: background 0s ease;
+			}
+
+			&[data-is-unread='false'] {
+				opacity: 0.8;
+			}
+
+			&[data-is-unread='true'] > a > article {
+				background-image: url("/resources/images/i-talks-item-unread.svg");
+				background-repeat: no-repeat;
+				background-position: 0 center;
+			}
+
+			> a {
+				display: block;
+				background-image: url("/resources/images/i-talks-item-arrow.svg");
+				background-repeat: no-repeat;
+				background-position: ~"calc(100% - 16px)" center;
+
+				> article {
+					position: relative;
+					padding: 20px 30px;
+
+					&:after {
+						content: "";
+						display: block;
+						clear: both;
+					}
+
+					> header {
+						margin-bottom: 2px;
+						white-space: nowrap;
+						overflow: hidden;
+
+						> h2 {
+							text-align: left;
+							display: inline;
+							margin: 0;
+							padding: 0;
+							font-size: 1em;
+							color: rgba(0, 0, 0, 0.9);
+							font-weight: bold;
+							transition: all 0.1s ease;
+						}
+
+						> time {
+							float: right;
+							display: inline;
+							color: rgba(0, 0, 0, 0.5);
+							font-size: small;
+						}
+
+						> .screenName {
+							text-align: left;
+							margin: 0 0 0 8px;
+							color: rgba(0, 0, 0, 0.5);
+						}
+					}
+
+					> .avatar {
+						float: left;
+						min-width: 54px;
+						min-height: 54px;
+						max-width: 54px;
+						max-height: 54px;
+						margin: 0 18px 4px 0;
+						border-radius: 8px;
 						transition: all 0.1s ease;
 					}
 
-					> time {
-						float: right;
-						display: inline;
-						color: rgba(0, 0, 0, 0.5);
-						font-size: small;
+					> .text {
+						display: block;
+						margin: 0 0 0 0;
+						padding: 0;
+						overflow: hidden;
+						word-wrap: break-word;
+						font-size: 1.1em;
+						color: rgba(0, 0, 0, 0.8);
+
+						.me {
+							color: rgba(0, 0, 0, 0.4);
+						}
 					}
 
-					> .screenName {
-						text-align: left;
-						margin: 0 0 0 8px;
-						color: rgba(0, 0, 0, 0.5);
+					> .image {
+						display: block;
+						max-width: 100%;
+						max-height: 512px;
 					}
-				}
-
-				> .avatar {
-					float: left;
-					min-width: 54px;
-					min-height: 54px;
-					max-width: 54px;
-					max-height: 54px;
-					margin: 0 18px 4px 0;
-					border-radius: 8px;
-					transition: all 0.1s ease;
-				}
-
-				> .text {
-					display: block;
-					margin: 0 0 0 0;
-					padding: 0;
-					overflow: hidden;
-					word-wrap: break-word;
-					font-size: 1.1em;
-					color: rgba(0, 0, 0, 0.8);
-
-					.me {
-						color: rgba(0, 0, 0, 0.4);
-					}
-				}
-
-				> .image {
-					display: block;
-					max-width: 100%;
-					max-height: 512px;
 				}
 			}
 		}
