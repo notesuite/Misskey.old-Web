@@ -47,8 +47,12 @@ function init-register-form
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done ->
-			location.href = "#{config.url}/welcome"
-		.fail ->
+			$.ajax "#{config.url}/login" {
+				type: \get
+				data: $form.serialize!
+				xhr-fields: {+with-credentials}}
+			.done ->
+				location.href = "#{config.url}/welcome"
 
 	$ '#register-cancel' .click (event) ->
 		hide-register-form!
