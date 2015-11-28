@@ -70,15 +70,16 @@ module.exports = ($form) ->
 					xhr-fields: {+with-credentials}}
 				.done (data) ->
 					close!
+
 					$.ajax "#{config.web-api-url}/web/refresh-session" {
 						type: \post
 						xhr-fields: {+with-credentials}}
 
-					modal-title = ''
-					modal-content = 'アイコンを更新しました。反映まで時間がかかる場合があります。'
+					modal-title = 'アイコンを更新しました'
+					modal-content = '反映まで時間がかかる場合があります。'
 					$modal-ok = $ '<button>おｋ</button>'
-					close = show-modal-dialog modal-title, modal-content, [$modal-ok]
-					$modal-ok.click -> close!
+					dialog-close = show-modal-dialog modal-title, modal-content, [$modal-ok]
+					$modal-ok.click -> dialog-close!
 				.fail (data) ->
 					$submit-button.attr \disabled off
 

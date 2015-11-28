@@ -108,7 +108,7 @@ textarea {
 /* UI
  * ---------------------------------------------------------------- */
 .ui-modal-window-container,
-ui-modal-dialog-container {
+.ui-modal-dialog-container {
 	display: block;
 	position: fixed;
 	z-index: 1024;
@@ -132,12 +132,68 @@ ui-modal-dialog-container {
 
 .ui-modal-dialog {
 	display: block;
+	box-sizing: border-box;
 	position: absolute;
-	top: 15%;
+	top: 20%;
 	left: 0;
 	right: 0;
 	margin: 0 auto;
-	max-width: 512px;
+	padding: 32px 42px;
+	max-width: 480px;
+	background: #fff;
+
+	> .title {
+		margin: 1em 0;
+		color: #74898A;
+		font-weight: bold;
+	}
+
+	> .body {
+		margin: 1em 0;
+		color: #846558;
+	}
+
+	> .buttons {
+		> button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: inline-block;
+			float: right;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 10px 10px;
+			line-height: 1.1em;
+			font-size: 1.1em;
+			font-weight: normal;
+			text-decoration: none;
+			color: #95856e;
+			background: transparent;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			cursor: pointer;
+			transition: color 0.1s ease;
+
+			* {
+				pointer-events: none;
+			}
+
+			i {
+				margin: 0 0.375em;
+			}
+
+			&:hover {
+				color: @themeColor;
+			}
+
+			&:active {
+				color: darken(@themeColor, 10%);
+				transition: color 0s ease;
+			}
+		}
+	}
 }
 
 
