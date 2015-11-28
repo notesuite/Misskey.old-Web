@@ -9,22 +9,21 @@ block title
 block meta
 	meta(name='description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 	meta(name='keywords', content='Misskey,' + user.screenName)
-	meta(property='og:title', content=user.name)
+	meta(property='og:title', content= user.name)
 	meta(property='og:type', content='article')
-	meta(property='og:description', content=user.name + 'さんのMisskeyプロフィール')
-	meta(property='og:url', content=url + '/' + user.screenName)
-	meta(property='og:image', content=user.avatarUrl)
+	meta(property='og:description', content= user.name + 'さんのMisskeyプロフィール')
+	meta(property='og:url', content= config.url + '/' + user.screenName)
+	meta(property='og:image', content= user.avatarUrl)
 	meta(property='og:site_name', content='Misskey')
 	meta(property='twitter:card', content='summary')
 	meta(property='twitter:site', content='@syuilo')
-	meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
+	meta(property='twitter:title', content= user.name + 'さんのMisskeyプロフィール')
 	meta(property='twitter:description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
-	meta(property='twitter:image', content=user.avatarUrl)
-	meta(property='twitter:url', content=url + '/' + user.screenName)
+	meta(property='twitter:image', content= user.avatarUrl)
+	meta(property='twitter:url', content= config.url + '/' + user.screenName)
 
 block assets
 	script!= 'window.isMe = ' + isMe.toString() + '; window.isFollowing = ' + user.isFollowing.toString() + '; window.userId = "' + user.id + '";'
-	link(rel='stylesheet', href='/resources/desktop/styles/common/cropper.min.css')
 	block pageAssets
 
 block body
