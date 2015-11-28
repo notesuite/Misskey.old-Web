@@ -175,7 +175,7 @@ module.exports = ($input) ->
 				$menu = open!
 
 				# search users
-				$.ajax "#{config.web-api-url}/users/search" {
+				$.ajax "#{config.web-api-url}/users/search-by-screen-name" {
 					type: \get
 					data: {'screen-name': sn}
 					data-type: \json
