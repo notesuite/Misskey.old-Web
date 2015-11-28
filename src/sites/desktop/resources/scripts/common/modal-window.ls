@@ -1,26 +1,14 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-module.exports = ($title, $content, buttons, can-close = true, on-shown = null) ->
-	$buttons = $ '<div class="buttons" />'
-	buttons.for-each ($button) ->
-		$buttons.append $button
-
-	$body = $ '<p class="body" />'
-		..append $content
-
-	$header = $ '<p class="title" />'
-		..append $title
-
-	$dialog = $ '<div class="ui-modal-dialog" />'
-		..append $header
-		..append $body
-		..append $buttons
-
-	$container = $ '<div class="ui-modal-dialog-container" />'
-		..append $dialog
-
+module.exports = ($content, can-close = true, on-shown = null) ->
+	$container = $ '<div class="ui-modal-window-container" />'
+	$dialog = $ '<div class="ui-modal-window" />'
+	$dialog.append $content
+	$container.append $dialog
 	$ \body .append $container
+
+	$dialog.css \max-width $content.css \max-width
 
 	$container.animate {
 		opacity: 1

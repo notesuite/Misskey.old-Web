@@ -7,7 +7,7 @@ Tab = require '../lib/tab.js'
 WavesEffect = require '../lib/waves-effect.js'
 Album = require './album.js'
 sncompleter = require './sncompleter.js'
-show-modal-dialog = require './modal-dialog.js'
+show-modal-window = require './modal-window.js'
 init-i-settings-dialog = require './i-settings.js'
 
 album = new Album
@@ -629,7 +629,7 @@ $ ->
 			$dialog = $ '<div id="misskey-i-settings-form" />'
 			$dialog.append ($ data).find \main
 			init-i-settings-dialog $dialog.find \main
-			show-modal-dialog $dialog
+			show-modal-window $dialog
 		.fail (data) ->
 		false
 

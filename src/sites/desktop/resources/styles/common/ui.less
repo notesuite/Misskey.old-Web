@@ -107,7 +107,8 @@ textarea {
 
 /* UI
  * ---------------------------------------------------------------- */
-.ui-modal-dialog-container {
+.ui-modal-window-container,
+ui-modal-dialog-container {
 	display: block;
 	position: fixed;
 	z-index: 1024;
@@ -120,7 +121,7 @@ textarea {
 	overflow: auto;
 }
 
-.ui-modal-dialog {
+.ui-modal-window {
 	display: block;
 	position: absolute;
 	top: 10%;
@@ -128,6 +129,17 @@ textarea {
 	right: 0;
 	margin: 0 auto;
 }
+
+.ui-modal-dialog {
+	display: block;
+	position: absolute;
+	top: 15%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	max-width: 512px;
+}
+
 
 #misskey-post-form-back {
 	display: none;
@@ -2372,7 +2384,6 @@ textarea {
 		right: 32px;
 		//height: ~"calc(100% - 128px)";
 		// border: solid 2px rgba(255, 255, 255, 0.2);
-
 		&, * {
 			user-select: none;
 			-moz-user-select: none;

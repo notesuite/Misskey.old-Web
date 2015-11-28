@@ -3,6 +3,7 @@ require 'cropper'
 
 Tab = require '../lib/tab.js'
 Album = require '../common/album.js'
+show-modal-window = require '../common/modal-window.js'
 show-modal-dialog = require '../common/modal-dialog.js'
 
 album = new Album
@@ -39,7 +40,7 @@ module.exports = ($form) ->
 			$crop-form = ($form.find '.avatar .crop-form').clone!
 			$img = $ "<img src='#{file.url}' alt=''>"
 			$crop-form.find \.container .prepend $img
-			close = show-modal-dialog $crop-form, false, ->
+			close = show-modal-window $crop-form, false, ->
 				$img.cropper {
 					aspect-ratio: 1 / 1
 					highlight: no
@@ -72,6 +73,12 @@ module.exports = ($form) ->
 					$.ajax "#{config.web-api-url}/web/refresh-session" {
 						type: \post
 						xhr-fields: {+with-credentials}}
+
+					modal-title = ''
+					modal-content = 'アイコンを更新しました。反映まで時間がかかる場合があります。'
+					$modal-ok = $ '<button>おｋ</button>'
+					close = show-modal-dialog modal-title, modal-content, [$modal-ok]
+					$modal-ok.click -> close!
 				.fail (data) ->
 					$submit-button.attr \disabled off
 
