@@ -5,6 +5,7 @@ import namingWorkerId from './utils/namingWorkerId';
 
 if (cluster.isMaster) {
 	console.log('Welcome to Misskey!');
+	console.log(`environment: ${process.env.NODE_ENV}`);
 
 	// Count the machine's CPUs
 	const cpuCount: number = require('os').cpus().length;
