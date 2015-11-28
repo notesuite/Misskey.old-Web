@@ -7,7 +7,7 @@ $ ->
 		if $input .val! == ''
 			$result.empty!
 		else
-			$.ajax "#{config.web-api-url}/search/user" {
+			$.ajax "#{config.web-api-url}/users/search" {
 				type: \get
 				data: {'query': $input .val!}
 				data-type: \json

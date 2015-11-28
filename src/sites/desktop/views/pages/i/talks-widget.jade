@@ -4,8 +4,8 @@ html(lang='ja', dir='ltr')
 	head
 		include ../../common/head
 		title トーク
-		link(rel='stylesheet', href='/resources/styles/page/i/talks-widget.css')
-		script(src='/resources/scripts/page/i/talks-widget.js')
+		link(rel='stylesheet', href='/resources/desktop/styles/page/i/talks-widget.css')
+		script(src='/resources/desktop/scripts/page/i/talks-widget.js')
 	
 	body
 		div#search(role='search')
@@ -13,7 +13,7 @@ html(lang='ja', dir='ltr')
 				input(type='search', placeholder!='&#xf002; ユーザーを探してトークを開始')
 			div.result
 		main(role='main')
-			if messages != null
+			if messages != null && messages.length > 0
 				ol#talks
 					each message in messages
 						li.talk(
