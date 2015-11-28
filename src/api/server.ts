@@ -121,5 +121,3 @@ httpServer.listen(config.port.apiHttp, () => {
 
 	console.log(`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${host}:${port} (api)\u001b[0m`);
 });
-
-require('./streaming');
