@@ -21,7 +21,7 @@ module.exports = (id, $content, title, width, height, can-popout = false, popout
 
 	function top
 		window.window-z = 0
-		$ \.window .each ->
+		$ \.ui-window .each ->
 			if ($ @ .css \z-index) > window.window-z
 				window.window-z = Number($ @ .css \z-index)
 		$window.css \z-index window.window-z + 1

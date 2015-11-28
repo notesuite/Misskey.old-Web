@@ -499,7 +499,7 @@ $ ->
 			open!
 
 	# Talks
-	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
+	$ '#misskey-main-header > .main .main-contents-container .left nav .main-nav ul .talk a' .click ->
 		window-id = "misskey-window-talk-histories"
 		$content = $ '<iframe>' .attr {src: '/i/talks-widget', +seamless}
 		ui-window do
