@@ -40,7 +40,7 @@ task('compile:frontside-scripts', () => {
 	return es.merge(
 		src(['./src/sites/*/common/**/*.ls', './src/sites/*/pages/**/*.ls'])
 			.pipe(ls()),
-		src(['./src/sites/*/common/**/*.js', './src/sites/*/pages/**/*.js'])
+		src(['./src/sites/*/common/**/*.js', './src/sites/*/pages/**/*.js', '!./src/sites/*/pages/**/controller.js'])
 	).pipe(dest('./tmp/'));
 });
 
@@ -49,7 +49,7 @@ task('build:frontside-scripts', ['compile:frontside-scripts'], done => {
 		const tasks = files.map((entry: string) => {
 			return browserify({ entries: [entry] })
 				.bundle()
-				.pipe(source(entry))
+				.pipe(source(entry.replace('tmp', 'resources')))
 				.pipe(buffer())
 				.pipe(uglify())
 				.pipe(dest('./built'));
