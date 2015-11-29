@@ -52,8 +52,8 @@ task('build:frontside-scripts', ['compile:frontside-scripts'], done => {
 			return browserify({ entries: [entry] })
 				.bundle()
 				.pipe(source(entry.replace('tmp', 'resources')))
-				.pipe(buffer())
-				.pipe(uglify())
+				//.pipe(buffer())
+				//.pipe(uglify())
 				.pipe(dest('./built'));
 		});
 		es.merge(tasks).on('end', done);

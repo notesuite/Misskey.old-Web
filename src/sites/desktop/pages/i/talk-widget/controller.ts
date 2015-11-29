@@ -7,7 +7,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	'use strict';
 
 	// const me = req.me;
-	const otherparty = req.user;
+	const otherparty = req.data.user;
 
 	requestApi('GET', 'talks/stream', {
 		'otherparty-id': otherparty.id
