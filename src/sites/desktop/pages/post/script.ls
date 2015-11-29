@@ -1,8 +1,8 @@
 $ = require 'jquery'
 Sortable = require 'Sortable'
-require '../common/ui.js'
-sncompleter = require '../common/sncompleter.js'
-post-content-initializer = require '../common/post-content-initializer.js'
+require '../../common/scripts/ui.js'
+sncompleter = require '../../common/scripts/sncompleter.js'
+post-content-initializer = require '../../common/scripts/post-content-initializer.js'
 
 function init-post($post)
 	post-type = $post.attr \data-type

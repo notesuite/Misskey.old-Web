@@ -1,7 +1,7 @@
 import { UserHomeLayout, IUserHomeLayout } from '../../../../../models/userHomeLayout';
 import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
-import generateHomewidgets from '../../../utils/generate-homewidgets';
+import generateHomewidgets from '../../../common/generate-homewidgets';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
@@ -44,7 +44,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 					widgets.center = centers;
 					generateHomewidgets(me, layout.right, 'home').then((rights: string[]) => {
 						widgets.right = rights;
-						res.display(req, 'i/home/customize', {
+						res.display({
 							widgets,
 							unuseWidgets: unuseWidgetHtmls
 						});

@@ -6,6 +6,9 @@ import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
 const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const transform = require('vinyl-transform');
+const gulpBrowser = require("gulp-browser");
 const es = require('event-stream');
 // import * as del from 'del';
 const babel = require('gulp-babel');
@@ -24,7 +27,7 @@ task('watch', ['build', 'lint'], () => {
 
 task('build', [
 	'build:ts',
-	'build-frontside-resources'
+	'build:frontside-scripts'
 ]);
 
 task('build:ts', () => {
@@ -34,59 +37,22 @@ task('build:ts', () => {
 		.pipe(dest('./built'));
 });
 
-task('build-frontside:ls', () => {
-	return src('./src/sites/*/resources/scripts/**/*.ls')
-		.pipe(ls())
-		.pipe(dest('./tmp/frontside'));
+task('build:frontside-scripts', () => {
+	return es.merge(
+		src(['./src/sites/*/common/**/*.ls', './src/sites/*/pages/**/*.ls'])
+			.pipe(ls()),
+		src(['./src/sites/*/common/**/*.js', './src/sites/*/pages/**/*.js'])
+	).pipe(gulpBrowser.browserify())
+	//.pipe(buffer())
+	//.pipe(uglify())
+	.pipe(dest('./a/'));
 });
 
-task('build-frontside:js', () => {
-	return src('./src/sites/*/resources/scripts/**/*.js')
-		.pipe(dest('./tmp/frontside'));
-});
-
-task('build-frontside-scripts', ['build-frontside:ls', 'build-frontside:js'], (done) => {
-	glob('./tmp/frontside/*/resources/scripts/**/*.js', (err: Error, files: string[]) => {
-		const tasks = files.map((entry: string) => {
-			return browserify({ entries: [entry] })
-				.bundle()
-				.pipe(source(entry.replace('/tmp/frontside/', '/sites/')))
-				.pipe(dest('./tmp'));
-		});
-		es.merge(tasks).on('end', done);
-	});
-});
-
-task('minify-frontside-scripts', ['build-frontside-scripts'], () => {
-	return src('./tmp/sites/*/resources/scripts/**/*.js')
-		.pipe(uglify())
-		.pipe(dest('./tmp/build-resources/sites'));
-});
-
-task('build-frontside-styles', () => {
+task('build:frontside-styles', () => {
 	return src('./src/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS())
 		.pipe(dest('./tmp/build-resources'));
-});
-
-task('build-frontside-resources', [
-		'build-copy',
-		'build-frontside-scripts',
-		'minify-frontside-scripts',
-		'build-frontside-styles'], () => {
-	src([
-		'./tmp/build-resources/sites/desktop/resources/**/*'
-	]).pipe(dest('./built/resources/desktop'))
-	src([
-		'./src/sites/desktop/resources/images/**/*'
-	]).pipe(dest('./built/resources/desktop/images'))
-	src([
-		'./tmp/build-resources/sites/mobile/resources/**/*'
-	]).pipe(dest('./built/resources/mobile'));
-	src([
-		'./src/sites/mobile/resources/images/**/*'
-	]).pipe(dest('./built/resources/mobile/images'))
 });
 
 task('lint', () => {

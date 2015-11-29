@@ -1,5 +1,5 @@
-require '../../common/ui.js'
-settings = require '../../common/i-settings.js'
+require '../../../common/scripts/ui.js'
+settings = require '../../../common/scripts/i-settings.js'
 $ = require 'jquery'
 
 $ ->

@@ -1,10 +1,10 @@
 $ = require 'jquery'
 require 'cropper'
 
-Tab = require '../lib/tab.js'
-Album = require '../common/album.js'
-show-modal-window = require '../common/modal-window.js'
-show-modal-dialog = require '../common/modal-dialog.js'
+Tab = require './lib/tab.js'
+Album = require './album.js'
+show-modal-window = require './modal-window.js'
+show-modal-dialog = require './modal-dialog.js'
 
 album = new Album
 

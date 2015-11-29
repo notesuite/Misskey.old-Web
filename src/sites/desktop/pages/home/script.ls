@@ -1,6 +1,6 @@
-require '../common/ui.js'
+require '../../common/scripts/ui.js'
 $ = require 'jquery'
-Timeline = require '../common/timeline-core.js'
+Timeline = require '../../common/scripts/timeline-core.js'
 
 $ ->
 	try

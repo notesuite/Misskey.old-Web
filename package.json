@@ -33,6 +33,7 @@
     "glob": "6.0.1",
     "gulp": "3.9.0",
     "gulp-babel": "6.1.1",
+    "gulp-browser": "0.0.13",
     "gulp-less": "3.0.5",
     "gulp-livescript": "2.4.0",
     "gulp-minify-css": "1.2.1",
@@ -45,7 +46,9 @@
     "tslint": "3.0.0-dev.3",
     "typescript": "1.7.0-dev.20151016",
     "typescript-require": "0.2.9-1",
-    "vinyl-source-stream": "1.1.0"
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "1.1.0",
+    "vinyl-transform": "^1.0.0"
   },
   "dependencies": {
     "body-parser": "1.14.1",
