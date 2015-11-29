@@ -51,6 +51,7 @@
 		"src/sites/desktop/pages/entrance/controller.ts",
 		"src/sites/desktop/pages/error/controller.ts",
 		"src/sites/desktop/pages/not-found/controller.ts",
+		"src/sites/desktop/pages/user-not-found/controller.ts",
 		"src/sites/desktop/pages/welcome/controller.ts",
 		"src/sites/desktop/pages/home/controller.ts",
 		"src/sites/desktop/pages/user/home/controller.ts",
