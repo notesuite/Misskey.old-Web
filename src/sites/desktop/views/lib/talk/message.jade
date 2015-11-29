@@ -1,0 +1,31 @@
+mixin message(message)
+	div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-is-modified!= message.isModified.toString()
+			data-is-read!= message.isRead.toString()
+			data-is-deleted!= message.isDeleted.toString()
+			data-user-id= message.user.id
+			data-user-color= message.user.color)
+		article
+			a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.comment)
+				img.avatar(src= message.user.avatarUrl, alt='avatar')
+			div.content-container
+				if !message.isDeleted && (message.userId == me.id)
+					if message.isRead
+						p.read 既読
+					button.delete-button(role='button', title='メッセージを削除')
+						img(src='/resources/images/destroy.png', alt='Delete')
+				div.content
+					if !message.isDeleted
+						p.text!= parsePostText(message.text, message.isPlain)
+						if message.file
+							div.image
+								img(src= message.file.url, alt='image')
+					else
+						p.is-deleted このメッセージは削除されました
+				footer
+					time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
+					if message.isModified
+						i.fa.fa-pencil.is-modified

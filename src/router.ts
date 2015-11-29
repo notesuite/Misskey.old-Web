@@ -114,6 +114,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/talks-widget');
 	});
 
+	app.get('/i/talk-widget/:userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'i/talk-widget');
+	});
+
 	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'i/album');
 	});

@@ -1,0 +1,43 @@
+include ../../lib/talk/messages
+
+doctype html
+
+html(
+		lang='ja'
+		dir='ltr'
+		data-me-id= me.id
+		data-me-screen-name= me.screenName
+		data-otherparty-id= otherparty.id
+		data-otherparty-screen-name= otherparty.screenName
+		data-otherparty-avatar-url= otherparty.avatarUrl)
+	head
+		include ../../common/head
+		title= 'トーク: ' + otherparty.name
+		link(rel='stylesheet', href='/desktop/resources/styles/page/user-talk.css')
+		script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
+		script(src='/desktop/resources/scripts/page/user-talk.js')
+		
+	body
+		main
+			div#timeline
+				div.timeline-container
+					div.timeline-main
+						div.talk-stream#stream
+							if messages != null && messages.length != 0
+								button#read-more(role='button') もっと読み込む
+							else
+								p#empty-stream
+									i.fa.fa-info-circle
+									| このユーザーとまだ会話したことはありません
+							div.messages
+								+messages(message)
+							div#otherparty-status
+				div#post-form-container
+					form#post-form(enctype='multipart/form-data')
+						textarea(name='text', placeholder='Message...')
+						input(name='otherparty-id', type='hidden', value=otherparty.id)
+						input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
+						div.image-attacher(title='メッセージに画像を添付')
+							p
+								i(class='fa fa-picture-o')
+							input(name='image', type='file', accept='image/*')

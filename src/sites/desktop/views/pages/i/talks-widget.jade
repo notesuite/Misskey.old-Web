@@ -19,7 +19,7 @@ html(lang='ja', dir='ltr')
 						li.talk(
 								data-is-my-message!= (message.userId == me.id).toString(),
 								data-is-unread!= (message.userId != me.id && !message.isReaded).toString())
-							a(href= url + '/widget/talk/' + message.user.screenName)
+							a(href= config.url + '/i/talk-widget/' + message.user.screenName)
 								article
 									img.avatar(src= message.user.avatarUrl, alt='avatar')
 									header
