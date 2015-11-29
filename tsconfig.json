@@ -65,6 +65,6 @@
 		"src/sites/mobile/pages/error/controller.ts",
 		"src/sites/mobile/pages/not-found/controller.ts",
 		"src/sites/mobile/pages/user-not-found/controller.ts",
-		"src/sites/mobile/pages/home/controller.ts",
+		"src/sites/mobile/pages/home/controller.ts"
 	]
 }
