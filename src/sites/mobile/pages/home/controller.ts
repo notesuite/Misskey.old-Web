@@ -10,7 +10,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	const me: User = req.me;
 
 	requestApi('GET', 'posts/timeline', { 'limit': 10 }, me.id).then((tl: any[]) => {
-		res.display(req, 'home', {
+		res.display({
 			timeline: tl,
 			parsePostText: parsePostText
 		});
