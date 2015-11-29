@@ -26,7 +26,9 @@ task('watch', ['build', 'lint'], () => {
 
 task('build', [
 	'build:ts',
-	'build:frontside-scripts'
+	//'build:frontside-scripts',
+	'build:frontside-styles',
+	'build-copy'
 ]);
 
 task('build:ts', () => {
@@ -59,10 +61,10 @@ task('build:frontside-scripts', ['compile:frontside-scripts'], done => {
 });
 
 task('build:frontside-styles', () => {
-	return src('./src/**/*.less')
+	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS())
-		.pipe(dest('./tmp/build-resources'));
+		.pipe(dest('./built/resources'));
 });
 
 task('lint', () => {
