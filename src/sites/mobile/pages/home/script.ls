@@ -1,2 +1,2 @@
-require '../../common/ui.js'
+require '../../common/scripts/ui.js'
 $ = require 'jquery'
