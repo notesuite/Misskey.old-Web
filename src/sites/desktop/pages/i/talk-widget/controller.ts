@@ -14,6 +14,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	}, req.me.id).then((messages: any[]) => {
 		console.log(messages);
 		res.display({
+			otherparty: otherparty,
 			messages: messages,
 			parsePostText: parsePostText
 		});

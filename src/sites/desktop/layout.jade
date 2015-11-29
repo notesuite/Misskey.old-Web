@@ -15,7 +15,7 @@ html#misskey(
 		data-me-id= login ? me.id : null)
 
 	head(prefix='og: http://ogp.me/ns#')
-		include ./common/head
+		include ./head
 		
 		block meta
 		
@@ -23,8 +23,6 @@ html#misskey(
 			block title
 		
 		block assets
-		script(src= scriptPath)
-		link(rel='stylesheet', href= stylePath)
 	
 	body
 		if login

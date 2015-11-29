@@ -1,4 +1,6 @@
 include ./message
-if messages != null && messages.length != 0
-	each message in messages
-		+message(message)
+
+mixin messages(messages)
+	if messages != null && messages.length != 0
+		each message in messages
+			+message(message)

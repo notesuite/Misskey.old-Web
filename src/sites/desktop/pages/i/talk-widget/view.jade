@@ -1,4 +1,4 @@
-include ../../lib/talk/messages
+include ../../../common/views/talk/messages
 
 doctype html
 
@@ -11,11 +11,9 @@ html(
 		data-otherparty-screen-name= otherparty.screenName
 		data-otherparty-avatar-url= otherparty.avatarUrl)
 	head
-		include ../../common/head
+		include ../../../head
 		title= 'トーク: ' + otherparty.name
-		link(rel='stylesheet', href='/desktop/resources/styles/page/user-talk.css')
 		script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
-		script(src='/desktop/resources/scripts/page/user-talk.js')
 		
 	body
 		main
