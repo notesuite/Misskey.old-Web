@@ -39,6 +39,7 @@ console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
 // Grobal options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
+const workerId: string = namingWorkerId(cluster.worker.id);
 
 // Init DB connection
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
@@ -99,34 +100,14 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 	req.data = {};
 	req.isLogin = isLogin;
 	req.ua = ua;
-	req.renderData = { // Render data
+	req.renderData = {
 		pagePath: req.path,
 		config: config.publicConfig,
 		login: isLogin,
 		ua: ua,
-		workerId: namingWorkerId(cluster.worker.id)
+		workerId: workerId
 	};
 
-	// Renderer function
-	res.display = (sessionreq: MisskeyExpressRequest, viewName: string, renderData?: any): void => {
-		const viewPath: string = `${__dirname}/sites/${sessionreq.ua}/views/pages/${viewName}`;
-		if (renderData !== null) {
-			res.render(viewPath, mix(sessionreq.renderData, renderData));
-		} else {
-			res.render(viewPath, sessionreq.renderData);
-		}
-		function mix(obj: any, src: any): any {
-			const own: (v: string) => boolean = {}.hasOwnProperty;
-			for (var key in src) {
-				if (own.call(src, key)) {
-					obj[key] = src[key];
-				}
-			}
-			return obj;
-		}
-	};
-
-	// Check logged in, set user instance if logged in
 	if (isLogin) {
 		const userId: string = req.session.userId;
 		if (req.session.hasOwnProperty('user')) {
@@ -155,27 +136,6 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 
 // Rooting
 router(server);
-
-// Not found handling
-server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-	res.status(404);
-	res.display(req, 'not-found', {});
-});
-
-// Error handling
-server.use((err: any, req: express.Request, res: express.Response, next: () => void) => {
-	console.error(err);
-	res.status(500);
-	if (res.hasOwnProperty('display')) {
-		try {
-			(<any>res).display(req, 'error', { err: err.stack });
-		} catch (e) {
-			res.send(err);
-		}
-	} else {
-		res.send(err);
-	}
-});
 
 const httpServer: http.Server = http.createServer(server);
 

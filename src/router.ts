@@ -4,22 +4,7 @@ import {User} from './models/user';
 import requestApi from './utils/requestApi';
 import { MisskeyExpressRequest } from './misskeyExpressRequest';
 import { MisskeyExpressResponse } from './misskeyExpressResponse';
-
-function callController(req: MisskeyExpressRequest, res: MisskeyExpressResponse, name: string, options?: any): void {
-	'use strict';
-	const controller: (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any) => void
-		= ((): (req: MisskeyExpressRequest, res: MisskeyExpressResponse, options: any) => void => {
-			switch (req.ua) {
-				case 'desktop':
-					return require(`./sites/desktop/controllers/${name}`);
-				case 'mobile':
-					return require(`./sites/mobile/controllers/${name}`);
-				default:
-					return require(`./sites/desktop/controllers/${name}`);
-			}
-		})();
-	controller(req, res, options);
-}
+import callController from './call-controller';
 
 export default function router(app: express.Express): void {
 	'use strict';
@@ -33,12 +18,12 @@ export default function router(app: express.Express): void {
 				next();
 			} else {
 				res.status(404);
-				res.display(req, 'user-not-found', {});
+				callController(req, res, 'user-not-found');
 			}
 		}, (err: any) => {
 			if (err.body === 'not-found') {
 				res.status(404);
-				res.display(req, 'user-not-found', {});
+				callController(req, res, 'user-not-found');
 			}
 		});
 	});
@@ -52,12 +37,12 @@ export default function router(app: express.Express): void {
 				next();
 			} else {
 				res.status(404);
-				res.display(req, 'post-not-found', {});
+				callController(req, res, 'post-not-found');
 			}
 		}, (err: any) => {
 			if (err.body === 'not-found') {
 				res.status(404);
-				res.display(req, 'post-not-found', {});
+				callController(req, res, 'post-not-found');
 			}
 		});
 	});
@@ -132,5 +117,17 @@ export default function router(app: express.Express): void {
 
 	app.get('/:userScreenName/:postId', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'post');
+	});
+
+	// Not found handling
+	app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		res.status(404);
+		callController(req, res, 'not-found');
+	});
+
+	// Error handling
+	app.use((err: any, req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+		console.error(err);
+		callController(req, res, 'error');
 	});
 }

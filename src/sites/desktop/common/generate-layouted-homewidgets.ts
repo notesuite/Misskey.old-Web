@@ -1,6 +1,5 @@
 import { User } from '../../../models/user';
 import { UserHomeLayout, IUserHomeLayout } from '../../../models/userHomeLayout';
-
 import generateHomewidgets from './generate-homewidgets';
 
 export default function generateLayoutedHomewidgets(me: User, tlsource: string): Promise<any> {
@@ -28,7 +27,7 @@ export default function generateLayoutedHomewidgets(me: User, tlsource: string):
 						resolve(generatedWidgets);
 					}, reject);
 				}, reject);
-			}, reject);	
+			}, reject);
 		});
 	});
 }

@@ -23,7 +23,7 @@ export default function generateHomewidgets(me: User, widgets: string[], tlsourc
 				return generateHomewidgetTimeline(me, tlsource);
 			default:
 				const compiler: (locals?: any) => string = jade.compileFile(
-					`${__dirname}/../views/lib/home-widgets/${widget}.jade`, {
+					`${__dirname}/../views/home-widgets/${widget}.jade`, {
 						filename: 'jade',
 						cache: true
 				});
