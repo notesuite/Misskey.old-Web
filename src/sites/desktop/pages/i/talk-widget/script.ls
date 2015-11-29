@@ -1,5 +1,5 @@
 $ = require 'jquery'
-Stream = require '../../common/talk-stream-core.js'
+Stream = require '../../../common/scripts/talk-stream-core.js'
 
 function send-message
 	$form = $ \#post-form

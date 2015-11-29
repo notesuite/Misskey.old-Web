@@ -8,7 +8,6 @@ import * as browserify from 'browserify';
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const transform = require('vinyl-transform');
-const gulpBrowser = require("gulp-browser");
 const es = require('event-stream');
 // import * as del from 'del';
 const babel = require('gulp-babel');
@@ -37,15 +36,26 @@ task('build:ts', () => {
 		.pipe(dest('./built'));
 });
 
-task('build:frontside-scripts', () => {
+task('compile:frontside-scripts', () => {
 	return es.merge(
 		src(['./src/sites/*/common/**/*.ls', './src/sites/*/pages/**/*.ls'])
 			.pipe(ls()),
 		src(['./src/sites/*/common/**/*.js', './src/sites/*/pages/**/*.js'])
-	).pipe(gulpBrowser.browserify())
-	//.pipe(buffer())
-	//.pipe(uglify())
-	.pipe(dest('./a/'));
+	).pipe(dest('./tmp/'));
+});
+
+task('build:frontside-scripts', ['compile:frontside-scripts'], done => {
+	glob('./tmp/**/*.js', (err: Error, files: string[]) => {
+		const tasks = files.map((entry: string) => {
+			return browserify({ entries: [entry] })
+				.bundle()
+				.pipe(source(entry))
+				.pipe(buffer())
+				.pipe(uglify())
+				.pipe(dest('./built'));
+		});
+		es.merge(tasks).on('end', done);
+	});
 });
 
 task('build:frontside-styles', () => {
