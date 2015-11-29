@@ -8,7 +8,7 @@ export default function reply(req: express.Request, res: express.Response): void
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../../../../../sites/desktop/views/lib/post/detail/subPostRender.jade`);
+		`${__dirname}/../../../../../sites/desktop/common/views/post/detail/subPostRender.jade`);
 
 	const photos: string = req.body['photos'];
 

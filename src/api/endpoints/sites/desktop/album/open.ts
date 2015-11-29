@@ -7,7 +7,7 @@ export default function open(req: express.Request, res: express.Response): void 
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../../../../../sites/desktop/views/common/album.jade`);
+		`${__dirname}/../../../../../sites/desktop/common/views/album.jade`);
 
 	const browser: string = compiler({
 		me: req.user,

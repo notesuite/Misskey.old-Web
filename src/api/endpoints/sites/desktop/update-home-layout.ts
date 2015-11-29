@@ -5,7 +5,7 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 	'use strict';
 	const layoutString: string = req.body['layout'];
 	const layout = JSON.parse(layoutString);
-	
+
 	const saveLayout: any = {
 		left: [],
 		center: [],
@@ -14,10 +14,10 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 	if (layout.left !== undefined) {
 		saveLayout.left = layout.left;
 	}
-	if (layout.center != null) {
+	if (layout.center !== undefined) {
 		saveLayout.center = layout.center;
 	}
-	if (layout.right != null) {
+	if (layout.right !== undefined) {
 		saveLayout.right = layout.right;
 	}
 
@@ -32,7 +32,7 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 			UserHomeLayout.create({
 				userId: req.user.id,
 				layout: saveLayout
-			}, (err: any, created: IUserHomeLayout) => {
+			}, (createErr: any, created: IUserHomeLayout) => {
 				res.send('ok');
 			});
 		}

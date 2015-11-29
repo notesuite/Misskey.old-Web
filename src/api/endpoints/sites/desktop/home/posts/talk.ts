@@ -9,7 +9,7 @@ export default function talk(req: express.Request, res: express.Response): void 
 
 	requestApi('GET', 'posts/talk', req.query, req.user).then((talk: Object[]) => {
 		res.send(mapToHtml(
-			`${__dirname}/../../../../../../sites/desktop/views/lib/post/smart/subPostRender.jade`,
+			`${__dirname}/../../../../../../sites/desktop/common/views/post/smart/subPostRender.jade`,
 			'post',
 			talk,
 			{

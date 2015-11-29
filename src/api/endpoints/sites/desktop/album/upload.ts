@@ -18,7 +18,7 @@ export default function upload(req: express.Request, res: express.Response): voi
 	fs.unlink(file.path);
 	requestApi('POST', 'album/files/upload', data, req.user, true).then((albumFile: Object) => {
 		const compiler: (locals?: any) => string = jade.compileFile(
-			`${__dirname}/../../../../../sites/desktop/views/lib/album/file.jade`);
+			`${__dirname}/../../../../../sites/desktop/common/views/album/file.jade`);
 		res.send(compiler({
 			file: albumFile
 		}));

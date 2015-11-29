@@ -50,7 +50,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 						// 投稿のHTMLコンパイラ
 						const compiler: any = jade.compileFile(
-							`${__dirname}/../../sites/desktop/views/lib/post/smart/render.jade`, {
+							`${__dirname}/../../sites/desktop/common/views/post/smart/render.jade`, {
 								filename: 'jade',
 								cache: true
 						});
@@ -76,7 +76,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 						// 通知のHTMLコンパイラ
 						const notificationCompiler: any = jade.compileFile(
-							`${__dirname}/../../sites/desktop/views/lib/notification/smart/render.jade`, {
+							`${__dirname}/../../sites/desktop/common/views/notification/smart/render.jade`, {
 								filename: 'jade',
 								cache: true
 						});

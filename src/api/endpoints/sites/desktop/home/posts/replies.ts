@@ -10,7 +10,7 @@ export default function replies(req: MisskeyExpressRequest, res: MisskeyExpressR
 
 	requestApi('GET', 'posts/replies', req.query, req.session.userId).then((replies: Object[]) => {
 		res.send(mapToHtml(
-			`${__dirname}/../../../../../../sites/desktop/views/lib/post/smart/subPostRender.jade`,
+			`${__dirname}/../../../../../../sites/desktop/common/views/post/smart/subPostRender.jade`,
 			'post',
 			replies,
 			{

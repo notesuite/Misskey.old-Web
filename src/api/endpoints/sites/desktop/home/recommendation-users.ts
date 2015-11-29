@@ -7,7 +7,7 @@ export default function timeline(req: express.Request, res: express.Response): v
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
-		`${__dirname}/../../../../../sites/desktop/views/lib/recommendation-users/users.jade`);
+		`${__dirname}/../../../../../sites/desktop/common/views/recommendation-users/users.jade`);
 
 	requestApi('GET', 'users/recommendations', req.query, req.user).then((users: Object[]) => {
 		if (users !== null && users.length > 0) {
