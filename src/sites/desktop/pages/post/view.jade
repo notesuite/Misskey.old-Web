@@ -1,15 +1,11 @@
-extends ../layout
-include ../lib/post/detail/post
+extends ../../layout
+include ../../common/views/post/detail/post
 
 block title
 	= post.user.name + 'さんの' + post.createdAt + 'の投稿'
 
 block meta
 	meta(name='keywords', content='Misskey')
-
-block assets
-	link(rel='stylesheet', href='/resources/desktop/styles/page/post.css')
-	script(src='/resources/desktop/scripts/page/post.js')
 
 block body
 	main(role='main')
