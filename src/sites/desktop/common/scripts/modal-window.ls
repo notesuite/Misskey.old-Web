@@ -26,10 +26,11 @@ module.exports = ($content, can-close = true, on-shown = null) ->
 	if on-shown?
 		on-shown!
 
-	$container.click ->
-		if can-close
+	if can-close
+		$container.click ->
 			close!
-		else
+	else
+		$container.mousedown ->
 			$content.transition {
 				scale: '1.1'
 			} 100ms \ease
@@ -37,6 +38,8 @@ module.exports = ($content, can-close = true, on-shown = null) ->
 				scale: '1'
 			} 100ms \ease
 
+	$dialog.mousedown (e) ->
+		e.stop-immediate-propagation!
 	$dialog.click (e) ->
 		e.stop-immediate-propagation!
 
