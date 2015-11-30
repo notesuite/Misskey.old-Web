@@ -32,10 +32,10 @@ module.exports = ($content, can-close = true, on-shown = null) ->
 		else
 			$content.transition {
 				scale: '1.1'
-			} 50ms \ease
+			} 100ms \ease
 			.transition {
 				scale: '1'
-			} 50ms \ease
+			} 100ms \ease
 
 	$dialog.click (e) ->
 		e.stop-immediate-propagation!
