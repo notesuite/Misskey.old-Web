@@ -27,49 +27,8 @@ block assets
 	block pageAssets
 
 block body
-	if isMe
-		div#avatar-edit-form-back(role='presentation')
-		form#avatar-edit-form
-			h1
-				i.fa.fa-picture-o
-				| アイコンを編集
-			div.main
-				div.preview
-					img.image(src=user.avatarUrl, alt='avatar')
-				label.image
-					input(name='image', type='file', accept='image/*')
-				div.progress
-					p.status
-					progress(form='avatar-edit-form', value='0')
-				input(type='hidden', name='trim-x')
-				input(type='hidden', name='trim-y')
-				input(type='hidden', name='trim-w')
-				input(type='hidden', name='trim-h')
-				input.submit.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
-				button.cancel.ui-cancel-button(type='button') キャンセル
-
-		div#header-image-edit-form-back(role='presentation')
-		form#header-image-edit-form
-			h1
-				i.fa.fa-picture-o
-				| ヘッダー画像を編集
-			div.main
-				div.preview
-					img.image(src=user.bannerUrl, alt='header')
-				label.image
-					input(name='image', type='file', accept='image/*')
-				div.progress
-					p.status
-					progress(form='header-image-edit-form', value='0')
-				input(type='hidden', name='trim-x')
-				input(type='hidden', name='trim-y')
-				input(type='hidden', name='trim-w')
-				input(type='hidden', name='trim-h')
-				input.submit.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
-				button.cancel.ui-cancel-button(type='button') キャンセル
-
 	main(role='main')
-		header(role='banner')
+		header
 			div#header-data
 				if isMe
 					button#header-image-edit-button(title='ヘッダー画像を編集', role='button')
