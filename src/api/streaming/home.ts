@@ -37,7 +37,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 			});
 
 			// Subscribe Home stream channel
-			subscriber.subscribe(`misskey:userStream:${socket.user.id}`);
+			subscriber.subscribe(`misskey:user-stream:${socket.user.id}`);
 			subscriber.on('message', (_: any, contentString: string) => {
 				// メッセージはJSONなのでパース
 				const content: any = JSON.parse(contentString);

@@ -32,6 +32,7 @@
 		"src/api/router.ts",
 		"src/api/streaming/index.ts",
 		"src/api/streaming/home.ts",
+		"src/api/streaming/talk.ts",
 		"src/api/endpoints/analyze-url.ts",
 		"src/api/endpoints/sites/desktop/update-avatar.ts",
 		"src/api/endpoints/sites/desktop/update-home-layout.ts",
