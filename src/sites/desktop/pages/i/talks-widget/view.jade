@@ -15,7 +15,7 @@ html(lang='ja', dir='ltr')
 				ol#talks
 					each message in messages
 						li.talk(
-								data-is-my-message!= (message.userId == me.id).toString(),
+								data-is-my-message!= (message.user.id == me.id).toString(),
 								data-is-unread!= (message.userId != me.id && !message.isReaded).toString())
 							a(href= config.url + '/i/talk-widget/' + message.user.screenName)
 								article
@@ -25,7 +25,7 @@ html(lang='ja', dir='ltr')
 										span.screenName= '@' + message.user.screenName
 										time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
 									p.text
-										if message.userId == me.id
+										if message.user.id == me.id
 											span.me あなた:
 										= message.text
 									if message.file

@@ -12,10 +12,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	requestApi('GET', 'talks/stream', {
 		'otherparty-id': otherparty.id
 	}, req.me.id).then((messages: any[]) => {
-		console.log(messages);
 		res.display({
 			otherparty: otherparty,
-			messages: messages,
+			messages: messages.reverse(),
 			parsePostText: parsePostText
 		});
 	});
