@@ -7,7 +7,7 @@ function send-message
 
 	$submit-button.attr \disabled yes
 
-	$.ajax "#{config.api-url}/talks/say" {
+	$.ajax "#{config.web-api-url}/talks/say" {
 		type: \post
 		data:
 			'text': ($form.find \textarea .val!)
@@ -163,7 +163,7 @@ $ ->
 		$button = $ @
 		$button.attr \disabled yes
 		$button.text '読み込み中'
-		$.ajax "#{config.api-url}/web/desktop/talks/stream" {
+		$.ajax "#{config.web-api-url}/web/desktop/talks/stream" {
 			type: \get
 			data:
 				'otherparty-id': otherparty-id
