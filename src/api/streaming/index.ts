@@ -38,4 +38,7 @@ io.use((socket: SocketIO.Socket, next: (err?: any) => void) => {
 // Home stream
 require('./home')(io, sessionStore);
 
+// Talk stream
+require('./talk')(io, sessionStore);
+
 server.listen(config.port.streaming);
