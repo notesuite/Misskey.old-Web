@@ -10,7 +10,7 @@ mixin message(message)
 			data-user-color= message.user.color)
 		article
 			a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.comment)
-				img.avatar(src= message.user.avatarUrl, alt='avatar')
+				img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
 			div.content-container
 				if !message.isDeleted && (message.userId == me.id)
 					if message.isRead
