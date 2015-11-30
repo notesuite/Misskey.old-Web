@@ -1,5 +1,5 @@
 mixin message(message)
-	div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
+	div(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
 			title= message.createdAt
 			data-id= message.id
 			data-cursor= message.cursor
