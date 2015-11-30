@@ -51,6 +51,30 @@ module.exports = ($form) ->
 			$crop-form.find \.cancel .click ->
 				close!
 
+			$crop-form.find \.no-crop .click ->
+				if file.properties.width != file.properties.height
+					$modal-ok = $ '<button>わかりました</button>'
+					dialog-close = show-modal-dialog do
+						$ '<p><i class="fa fa-exclamation-triangle"></i>この画像はそのまま使用できません</p>'
+						'この画像は正方形ではないので、アイコンに使用するためにはクロップする必要があります。'
+						[$modal-ok]
+					$modal-ok.click -> dialog-close!
+				else
+					$.ajax "#{config.web-api-url}/web/sites/desktop/update-avatar" {
+						type: \put
+						data:
+							'file-id': file.id
+						xhr-fields: {+with-credentials}}
+					.done (data) ->
+						ok!
+					.fail ->
+						$modal-ok = $ '<button>そうですか</button>'
+						dialog-close = show-modal-dialog do
+							$ '<p><i class="fa fa-exclamation-triangle"></i>更新に失敗しました</p>'
+							'申し訳ありません。何か問題が発生したようです。'
+							[$modal-ok]
+						$modal-ok.click -> dialog-close!
+
 			$crop-form.submit (event) ->
 				event.prevent-default!
 				$form = $ @
@@ -60,28 +84,37 @@ module.exports = ($form) ->
 				crop-data = $img.cropper \getData true
 				$.ajax "#{config.web-api-url}/web/sites/desktop/update-avatar" {
 					type: \put
-					data: {
+					data:
 						'file-id': file.id
 						'trim-x': crop-data.x
 						'trim-y': crop-data.y
 						'trim-w': crop-data.width
 						'trim-h': crop-data.height
-					}
 					xhr-fields: {+with-credentials}}
 				.done (data) ->
-					close!
-
-					$.ajax "#{config.web-api-url}/web/refresh-session" {
-						type: \post
-						xhr-fields: {+with-credentials}}
-
-					modal-title = $ '<p><i class="fa fa-info-circle"></i>アイコンを更新しました</p>'
-					modal-content = '反映まで時間がかかる場合があります。'
-					$modal-ok = $ '<button>おｋ</button>'
-					dialog-close = show-modal-dialog modal-title, modal-content, [$modal-ok]
-					$modal-ok.click -> dialog-close!
+					ok!
 				.fail (data) ->
 					$submit-button.attr \disabled off
+					$modal-ok = $ '<button>そうですか</button>'
+					dialog-close = show-modal-dialog do
+						$ '<p><i class="fa fa-exclamation-triangle"></i>更新に失敗しました</p>'
+						'申し訳ありません。何か問題が発生したようです。'
+						[$modal-ok]
+					$modal-ok.click -> dialog-close!
+
+			function ok
+				close!
+
+				$.ajax "#{config.web-api-url}/web/refresh-session" {
+					type: \post
+					xhr-fields: {+with-credentials}}
+
+				$modal-ok = $ '<button>おｋ</button>'
+				dialog-close = show-modal-dialog do
+					$ '<p><i class="fa fa-info-circle"></i>アイコンを更新しました</p>'
+					'反映まで時間がかかる場合があります。'
+					[$modal-ok]
+				$modal-ok.click -> dialog-close!
 
 	$form.find '.apps > .app' .each ->
 		$app = $ @
