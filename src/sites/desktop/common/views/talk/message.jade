@@ -3,7 +3,7 @@ mixin message(message)
 			title= message.createdAt
 			data-id= message.id
 			data-cursor= message.cursor
-			data-is-modified!= message.isModified.toString()
+			data-is-modified!= message.isContentModified.toString()
 			data-is-read!= message.isRead.toString()
 			data-is-deleted!= message.isDeleted.toString()
 			data-user-id= message.user.id
@@ -27,5 +27,5 @@ mixin message(message)
 						p.is-deleted このメッセージは削除されました
 				footer
 					time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
-					if message.isModified
+					if message.isContentModified
 						i.fa.fa-pencil.is-modified
