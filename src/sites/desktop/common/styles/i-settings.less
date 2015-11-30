@@ -397,7 +397,7 @@ body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 	}
 
 	.container {
-		background: #fff;
+		background: #111;
 
 		&:after {
 			content: '';
@@ -412,13 +412,74 @@ body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 
 		.preview {
 			position: absolute;
-			bottom: 8px;
-			left: 16px;
-			width: 128px;
-			height: 128px;
+			top: 16px;
+			right: 16px;
+			width: 100px;
+			height: 100px;
 			overflow: hidden;
-			border: solid 8px #fff;
 			background: #222;
+			border-radius: 8px;
+			pointer-events: none;
+		}
+
+		button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: inline-block;
+			float: right;
+			box-sizing: border-box;
+			margin: 8px;
+			padding: 12px 20px;
+			line-height: 1.1em;
+			font-size: 1.1em;
+			font-weight: normal;
+			text-decoration: none;
+			color: #999;
+			background: transparent;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			cursor: pointer;
+			transition: color 0.1s ease;
+
+			* {
+				pointer-events: none;
+			}
+
+			i {
+				margin-right: 0.375em;
+			}
+
+			&:hover {
+				color: @themeColor;
+			}
+
+			&:active {
+				color: darken(@themeColor, 10%);
+				transition: color 0s ease;
+			}
+
+			&.ok {
+				color: #fff;
+				background: @themeColor;
+
+				&:hover {
+					color: #fff;
+					background: lighten(@themeColor, 10%);
+				}
+
+				&:active {
+					color: #fff;
+					background: darken(@themeColor, 10%);
+					transition: color 0s ease;
+				}
+			}
+
+			&.no-crop {
+				float: left;
+			}
 		}
 
 		.cropper-modal {
@@ -477,14 +538,6 @@ body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 
 			100% {
 				background-position: -8px -8px;
-			}
-		}
-
-		> .buttons {
-			float: right;
-
-			> * {
-				padding: 12px 20px;
 			}
 		}
 	}

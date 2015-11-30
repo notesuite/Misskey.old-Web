@@ -26,9 +26,16 @@ module.exports = ($content, can-close = true, on-shown = null) ->
 	if on-shown?
 		on-shown!
 
-	if can-close
-		$container.click ->
+	$container.click ->
+		if can-close
 			close!
+		else
+			$content.transition {
+				scale: '1.1'
+			} 50ms \ease
+			.transition {
+				scale: '1'
+			} 50ms \ease
 
 	$dialog.click (e) ->
 		e.stop-immediate-propagation!

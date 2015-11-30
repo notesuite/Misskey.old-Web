@@ -36,12 +36,14 @@ block body
 							div.container
 								div.preview
 								div.buttons
-									button.cancel(type='button', role='button')
-										i.fa.fa-ban
-										| キャンセル
-									button.ok(type='submit', role='button')
+									button.no-crop(type='button')
+										| クロップせずに使用
+									button.ok(type='submit')
 										i.fa.fa-check
 										| OK
+									button.cancel(type='button')
+										i.fa.fa-ban
+										| キャンセル
 						img.avatar(src=me.avatarUrl, alt='avatar')
 						button.select-from-local.ui-waves-effect(type='button')
 							i.fa.fa-upload
