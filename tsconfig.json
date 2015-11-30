@@ -62,6 +62,7 @@
 		"src/sites/desktop/pages/i/home-customize/controller.ts",
 		"src/sites/desktop/pages/i/album/controller.ts",
 		"src/sites/desktop/pages/i/talk-widget/controller.ts",
+		"src/sites/desktop/pages/i/talks-widget/controller.ts",
 		"src/sites/mobile/pages/entrance/controller.ts",
 		"src/sites/mobile/pages/error/controller.ts",
 		"src/sites/mobile/pages/not-found/controller.ts",

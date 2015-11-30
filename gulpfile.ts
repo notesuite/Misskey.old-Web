@@ -75,7 +75,9 @@ task('lint', () => {
 		.pipe(tslint.report('verbose'));
 });
 
-task('build-copy', () => {
+task('build-copy', ['build:frontside-scripts'], () => {
+	src(['./src/sites/*/common/**/*', './src/sites/*/pages/**/*'])
+		.pipe(dest('./built/resources'));
 	src([
 		'./src/**/*',
 		'!./src/**/*.ts',
