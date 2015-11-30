@@ -66,7 +66,6 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 							requestApi('GET', 'talks/show', {
 								'message-id': messageId
 							}, socket.user.id).then((message: Object) => {
-								console.log(message);
 								// HTMLにしてクライアントに送信
 								socket.emit(content.type, compiler({
 									parsePostText: parsePostText,
