@@ -31,11 +31,6 @@ html(
 								+messages(message)
 							div#otherparty-status
 				div#post-form-container
-					form#post-form(enctype='multipart/form-data')
+					form#post-form
 						textarea(name='text', placeholder='Message...')
-						input(name='otherparty-id', type='hidden', value=otherparty.id)
 						input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
-						div.image-attacher(title='メッセージに画像を添付')
-							p
-								i(class='fa fa-picture-o')
-							input(name='image', type='file', accept='image/*')
