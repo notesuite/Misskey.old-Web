@@ -23,7 +23,7 @@ $ ->
 									'href': "#{config.url}/i/talk-widget/#{user.screen-name}"
 									'title': user.comment}
 								.append do
-									$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-url
+									$ '<img class="avatar" alt="avatar">' .attr \src (user.avatar-url + '?mini')
 								.append do
 									$ '<span class="name">' .text user.name
 								.append do
