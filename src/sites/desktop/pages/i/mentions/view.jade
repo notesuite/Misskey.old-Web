@@ -1,12 +1,10 @@
-extends ../../layout
+extends ../../../layout
 
 block title
 	| Misskey
 
 block assets
 	script(src=webStreamingUrl + '/socket.io/socket.io.js')
-	script(src='/resources/desktop/scripts/page/home.js')
-	link(rel='stylesheet', href='/resources/desktop/styles/page/home.css')
 
 block body
 	main
