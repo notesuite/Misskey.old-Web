@@ -12,7 +12,7 @@ mixin message(message)
 			a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.comment)
 				img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
 			div.content-container
-				if !message.isDeleted && (message.userId == me.id)
+				if !message.isDeleted && (message.user.id == me.id)
 					if message.isRead
 						p.read 既読
 					button.delete-button(role='button', title='メッセージを削除')
