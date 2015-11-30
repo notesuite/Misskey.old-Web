@@ -1,1 +1,1 @@
-require '../../home/scripts.js'
+require '../../home/script.js'
