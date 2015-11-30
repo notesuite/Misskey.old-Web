@@ -7,20 +7,16 @@ function send-message
 
 	$submit-button.attr \disabled yes
 
-	$.ajax config.api-url + '/talk/say' {
+	$.ajax "#{config.api-url}/talks/say" {
 		type: \post
-		-process-data
-		-content-type
-		data: new FormData $form[0]
-		data-type: \json
+		data:
+			'text': ($form.find \textarea .val!)
+			'otherparty-id': ($ \html .attr \data-otherparty-id)
 		xhr-fields: {+with-credentials}
 	} .done (data) ->
 		$form[0].reset!
 		$form.find \textarea .focus!
-		$form.find \.image-attacher .find 'p, img' .remove!
-		$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
 		$submit-button.attr \disabled no
-		$.remove-cookie "talk-autosave-#{otherparty-id}"
 	.fail (data) ->
 		$form[0].reset!
 		$form.find \textarea .focus!
@@ -69,18 +65,16 @@ $ ->
 		socket.emit \read message-id
 		if ($ '#otherparty-status #otherparty-typing')[0]
 			$ '#otherparty-status #otherparty-typing' .remove!
-		add-message $message
-		$.ajax config.api-url + '/talk/read' {
+		stream.add $message
+		$.ajax "#{config.api-url}/talks/read" {
 			type: \post
 			data: {'message-id': message-id}
-			data-type: \json
 			xhr-fields: {+with-credentials}
-		} .done (data) ->
-		.fail (data) ->
+		}
 
 	socket.on \me-message (message) ->
 		console.log \me-message message
-		add-message $ message
+		stream.add $ message
 
 	socket.on \otherparty-message-update (message) ->
 		console.log \otherparty-message-update message
@@ -155,26 +149,11 @@ $ ->
 
 	$ '#post-form textarea' .bind \input ->
 		text = $ '#post-form textarea' .val!
-
-		# オートセーブ
-		#$.cookie "talk-autosave-#{otherparty-id}" text, {expires: 365days}
-
 		socket.emit \type text
 
-	$ '#post-form textarea' .keydown (e) ->
-		if e.ctrl-key and e.key-code == 13
+	$ '#post-form textarea' .keypress (e) ->
+		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
 			send-message!
-
-	$ \#post-form .find '.image-attacher input[name=image]' .change ->
-		$input = $ @
-		file = ($input.prop \files)[0]
-		if file.type.match 'image.*'
-			reader = new FileReader!
-			reader.onload = ->
-				$img = $ '<img>' .attr \src reader.result
-				$input.parent \.image-attacher .find 'p, img' .remove!
-				$input.parent \.image-attacher .append $img
-			reader.readAsDataURL file
 
 	$ \#post-form .submit (event) ->
 		event.prevent-default!
@@ -184,22 +163,20 @@ $ ->
 		$button = $ @
 		$button.attr \disabled yes
 		$button.text '読み込み中'
-		$.ajax config.api-url + '/web/talk/timeline-html' {
+		$.ajax "#{config.api-url}/web/desktop/talks/stream" {
 			type: \get
-			data: {
+			data:
 				'otherparty-id': otherparty-id
 				'max-cursor': $ '#stream > .messages > .message:first-child > .message' .attr \data-cursor
-			}
-			data-type: \json
+			data-type: \text
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			$button.attr \disabled no
 			$button.text 'もっと読み込む'
 			$messages = $ data
 			$messages.each ->
-				$message = $ '<li class="message">' .append $ @
-				window.TALKSTREAM.set-event $message.children \.message
-				$message.prepend-to $ '#stream .messages'
+				$message = $ @
+				stream.add-last $message
 		.fail (data) ->
 			$button.attr \disabled no
 			$button.text '失敗'
