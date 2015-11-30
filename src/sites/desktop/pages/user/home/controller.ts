@@ -1,5 +1,4 @@
 import { User } from '../../../../../models/user';
-import { Post } from '../../../../../models/post';
 import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
 import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
 import parsePostText from '../../../../../utils/parsePostText';
@@ -11,13 +10,24 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	const user: User = req.data.user;
 	const me: User = req.me;
 
-	requestApi('GET', 'posts/user-timeline', {
-		'user-id': user.id
-	}, me !== null ? me.id : null).then((tl: Post[]) => {
+	Promise.all([
+		// タイムライン
+		requestApi('GET', 'posts/user-timeline', {
+			'user-id': user.id
+		}, me),
+		// 最近の写真
+		requestApi('GET', 'posts/user-timeline', {
+			'user-id': user.id,
+			'types': 'photo'
+		}, me)
+	]).then(results => {
+		const timeline: any = results[0];
+		const photoPosts: any = results[1];
 		res.display({
 			user: user,
 			isMe: req.isLogin && user.id.toString() === me.id.toString(),
-			timeline: tl,
+			timeline,
+			photoPosts,
 			parsePostText: parsePostText
 		});
 	});

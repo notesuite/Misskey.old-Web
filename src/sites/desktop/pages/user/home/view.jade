@@ -25,16 +25,16 @@ block contents
 				p
 					| このユーザーをフォローするにはログインしてください
 						
-		if recentPhotoStatuses != null && recentPhotoStatuses.length > 0
+		if photoPosts != null && photoPosts.length > 0
 			section#photos
 				h2
 					i.fa.fa-camera
 					| Photos
-				//
-					ol.photos
-						each status in recentPhotoStatuses
-							li.photo(style='background-image: url("' + status.imageUrls[0] + '")', title=status.displayCreatedAt)
-								a(href=config.url + '/' + user.screenName + '/status/' + status.id)
+				ol.photos
+					each post in photoPosts
+						each photo in post.photos
+							li.photo(style='background-image: url("' + photo.url + '")', title= post.createdAt)
+								a(href= config.url + '/' + user.screenName + '/' + post.id)
 	div#main-content
 		div#timeline
 			if timeline.length > 0
