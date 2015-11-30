@@ -16,8 +16,8 @@ html(lang='ja', dir='ltr')
 					each message in messages
 						li.talk(
 								data-is-my-message!= (message.user.id == me.id).toString(),
-								data-is-unread!= (message.userId != me.id && !message.isReaded).toString())
-							a(href= config.url + '/i/talk-widget/' + message.user.screenName)
+								data-is-unread!= (message.user.id != me.id && !message.isRead).toString())
+							a(href= config.url + '/i/talk-widget/' + message.otherparty.screenName)
 								article
 									img.avatar(src= message.user.avatarUrl, alt='avatar')
 									header
