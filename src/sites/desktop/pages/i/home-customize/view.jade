@@ -3,6 +3,9 @@ extends ../../../layout
 block title
 	| ホームのカスタマイズ
 
+block assets
+	script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
+
 block body
 	div#customizer-menu
 		p
