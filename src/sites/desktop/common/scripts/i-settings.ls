@@ -75,7 +75,7 @@ module.exports = ($form) ->
 						type: \post
 						xhr-fields: {+with-credentials}}
 
-					modal-title = 'アイコンを更新しました'
+					modal-title = $ '<p><i class="fa fa-info-circle"></i>アイコンを更新しました</p>'
 					modal-content = '反映まで時間がかかる場合があります。'
 					$modal-ok = $ '<button>おｋ</button>'
 					dialog-close = show-modal-dialog modal-title, modal-content, [$modal-ok]

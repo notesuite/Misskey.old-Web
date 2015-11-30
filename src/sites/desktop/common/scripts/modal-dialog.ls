@@ -9,8 +9,12 @@ module.exports = ($title, $content, buttons, can-close = true, on-shown = null) 
 	$body = $ '<p class="body" />'
 		..append $content
 
-	$header = $ '<p class="title" />'
-		..append $title
+	if typeof $title == \string
+		$header = $ '<p class="title" />'
+			..append $title
+	else
+		$title.add-class \title
+		$header = $title
 
 	$dialog = $ '<div class="ui-modal-dialog" />'
 		..append $header
