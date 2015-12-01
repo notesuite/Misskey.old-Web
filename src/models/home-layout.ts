@@ -10,9 +10,9 @@ const schema: mongoose.Schema = new Schema({
 	userId: { type: Schema.Types.ObjectId, required: true }
 });
 
-export const UserHomeLayout: mongoose.Model<mongoose.Document> = db.model('UserHomeLayout', schema);
+export const HomeLayout: mongoose.Model<mongoose.Document> = db.model('HomeLayout', schema);
 
-export interface IUserHomeLayout extends mongoose.Document {
+export interface IHomeLayout extends mongoose.Document {
 	layout: any;
 	userId: mongoose.Types.ObjectId;
 }

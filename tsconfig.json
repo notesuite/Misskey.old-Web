@@ -23,7 +23,7 @@
 		"src/misskey-express-response.ts",
 		"src/models/user.ts",
 		"src/models/post.ts",
-		"src/models/user-home-layout.ts",
+		"src/models/home-layout.ts",
 		"src/utils/request-api.ts",
 		"src/utils/map-to-html.ts",
 		"src/utils/parse-post-text.ts",
