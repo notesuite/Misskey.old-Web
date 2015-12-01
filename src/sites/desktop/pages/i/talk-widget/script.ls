@@ -1,5 +1,6 @@
 $ = require 'jquery'
 Stream = require '../../../common/scripts/talk-stream-core.js'
+require '../../../common/scripts/kronos.js'
 
 function send-message
 	$form = $ \#post-form
