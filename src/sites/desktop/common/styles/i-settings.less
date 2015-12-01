@@ -8,7 +8,7 @@
 	display: flex;
 	justify-content: center;
 	text-align: left;
-	background: #494e51;
+	background: #fff;
 
 	input[type=text],
 	input[type=url],
@@ -28,11 +28,10 @@
 		width: 20em;
 		font-size: 1em;
 		line-height: 24px;
-		color: #DDECE5;
-		border: none;
-		border-bottom: solid 2px #8F9C9E;
+		color: #777;
+		border: solid 1px #ddd;
 		outline: none;
-		border-radius: 0;
+		border-radius: 4px;
 		box-shadow: none;
 		background: transparent;
 		transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
@@ -43,7 +42,7 @@
 		}
 
 		&:focus {
-			color: #fff;
+			color: @themeColor;
 			border-color: @themeColor;
 			transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
 		}
@@ -99,7 +98,7 @@
 		flex: 1 1 230px;
 		margin: 0;
 		padding: 32px 16px 32px 32px;
-		max-width: 230px;
+		max-width: 220px;
 
 		ul {
 			display: block;
@@ -168,8 +167,8 @@
 					.avatar {
 						display: block;
 						margin: 0 16px 0 0;
-						width: 88px;
-						height: 88px;
+						width: 80px;
+						height: 80px;
 						float: left;
 						border-radius: 4px;
 					}
@@ -189,7 +188,7 @@
 
 				label {
 					display: block;
-					padding: 16px 0;
+					padding: 12px 0;
 					clear: both;
 
 					&:first-child {
@@ -197,16 +196,57 @@
 					}
 
 					h2 {
-						margin: 0;
+						margin: 0 0 8px 0;
 						font-size: 1em;
 						font-weight: bold;
-						font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 						color: #929C9B;
+
+						> i {
+							margin-right: 0.5em;
+						}
 					}
 				}
 
 				.submit-button {
-					float: right;
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					display: inline-block;
+					box-sizing: border-box;
+					margin: 8px 0 0 0;
+					padding: 12px 20px;
+					line-height: 1.1em;
+					font-size: 1.1em;
+					font-weight: normal;
+					text-decoration: none;
+					color: #fff;
+					background: @themeColor;
+					outline: none;
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+					cursor: pointer;
+					transition: color 0.1s ease;
+
+					* {
+						pointer-events: none;
+					}
+
+					i {
+						margin-right: 0.375em;
+					}
+
+
+					&:hover {
+						color: #fff;
+						background: lighten(@themeColor, 10%);
+					}
+
+					&:active {
+						color: #fff;
+						background: darken(@themeColor, 10%);
+						transition: color 0s ease;
+					}
 				}
 			}
 		}

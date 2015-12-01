@@ -30,7 +30,9 @@ block body
 				.form.public-profile
 					h1 Public profile
 					label.avatar
-						h2.title Avatar
+						h2.title
+							i.fa.fa-camera-retro
+							| Avatar
 						form.crop-form
 							p アイコンに使用する部分を選択してください
 							div.container
@@ -52,22 +54,31 @@ block body
 							i.fa.fa-folder-open
 							| Select from album
 					label
-						h2.title Name
+						h2.title
+							i.fa.fa-user
+							| Name
 						div.content
-							input(name='name', type='text', value=me.name, placeholder=me.name)
+							input(name='name', type='text', value=me.name, placeholder=me.name, required)
 					label
-						h2.title Comment
+						h2.title
+							i.fa.fa-comment
+							| Comment
 						div.content
 							input(name='comment', type='text', value=me.comment, placeholder=me.comment)
 					label
-						h2.title Website
+						h2.title
+							i.fa.fa-globe
+							| Website URL
 						div.content
 							input(name='url', type='url', value=me.url, placeholder=me.url)
 					label
-						h2.title Location
+						h2.title
+							i.fa.fa-map-marker
+							| Location
 						div.content
 							input(name='location', type='text', value=me.location, placeholder=me.location)
 					button.submit-button(type='submit')
+						i.fa.fa-check
 						| Update
 			
 			div.home-layout(data-name='home-layout')
