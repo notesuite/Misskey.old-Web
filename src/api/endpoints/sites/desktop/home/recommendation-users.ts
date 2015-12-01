@@ -1,6 +1,6 @@
 import * as express from 'express';
 const jade: any = require('jade');
-import requestApi from '../../../../../utils/requestApi';
+import requestApi from '../../../../../utils/request-api';
 import config from '../../../../../config';
 
 export default function timeline(req: express.Request, res: express.Response): void {

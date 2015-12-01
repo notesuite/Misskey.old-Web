@@ -1,7 +1,7 @@
-import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
-import requestApi from '../../../../../utils/requestApi';
-import parsePostText from '../../../../../utils/parsePostText';
+import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
+import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
+import requestApi from '../../../../../utils/request-api';
+import parsePostText from '../../../../../utils/parse-post-text';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';

@@ -1,5 +1,5 @@
-import { MisskeyExpressRequest } from './misskeyExpressRequest';
-import { MisskeyExpressResponse } from './misskeyExpressResponse';
+import { MisskeyExpressRequest } from './misskey-express-request';
+import { MisskeyExpressResponse } from './misskey-express-response';
 // import config from './config';
 
 export default function callController(

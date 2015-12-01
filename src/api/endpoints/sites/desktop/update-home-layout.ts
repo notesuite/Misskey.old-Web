@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { UserHomeLayout, IUserHomeLayout } from '../../../../models/userHomeLayout';
+import { HomeLayout, IHomeLayout } from '../../../../models/home-layout';
 
 export default function updateHomeLayout(req: express.Request, res: express.Response): void {
 	'use strict';
@@ -21,18 +21,18 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 		saveLayout.right = layout.right;
 	}
 
-	UserHomeLayout.findOne({
+	HomeLayout.findOne({
 		userId: req.user.id
-	}, (err: any, userHomeLayout: IUserHomeLayout) => {
+	}, (err: any, userHomeLayout: IHomeLayout) => {
 		if (userHomeLayout !== null) {
 			userHomeLayout.layout = saveLayout;
 			userHomeLayout.save();
 			res.send('ok');
 		} else {
-			UserHomeLayout.create({
+			HomeLayout.create({
 				userId: req.user.id,
 				layout: saveLayout
-			}, (createErr: any, created: IUserHomeLayout) => {
+			}, (createErr: any, created: IHomeLayout) => {
 				res.send('ok');
 			});
 		}

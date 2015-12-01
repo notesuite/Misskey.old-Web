@@ -1,6 +1,6 @@
-import { UserHomeLayout, IUserHomeLayout } from '../../../../../models/userHomeLayout';
-import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
+import { HomeLayout, IHomeLayout } from '../../../../../models/home-layout';
+import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
+import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
 import generateHomewidgets from '../../../common/generate-homewidgets';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
@@ -24,7 +24,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		right: []
 	};
 
-	UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IUserHomeLayout) => {
+	HomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IHomeLayout) => {
 		const layout: any = userLayout !== null ? userLayout.layout : {
 			left: [],
 			center: ['timeline'],

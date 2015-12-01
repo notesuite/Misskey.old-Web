@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as express from 'express';
 const jade: any = require('jade');
 
-import requestApi from '../../../../../utils/requestApi';
+import requestApi from '../../../../../utils/request-api';
 
 export default function upload(req: express.Request, res: express.Response): void {
 	'use strict';

@@ -1,8 +1,8 @@
-import { MisskeyExpressRequest } from '../../../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../../../misskeyExpressResponse';
-import requestApi from '../../../../../../utils/requestApi';
-import parsePostText from '../../../../../../utils/parsePostText';
-import mapToHtml from '../../../../../../utils/mapToHtml';
+import { MisskeyExpressRequest } from '../../../../../../misskey-express-request';
+import { MisskeyExpressResponse } from '../../../../../../misskey-express-response';
+import requestApi from '../../../../../../utils/request-api';
+import parsePostText from '../../../../../../utils/parse-post-text';
+import mapToHtml from '../../../../../../utils/map-to-html';
 import config from '../../../../../../config';
 
 export default function replies(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {

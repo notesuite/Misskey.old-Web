@@ -1,5 +1,5 @@
 import * as cluster from 'cluster';
-import namingWorkerId from './utils/namingWorkerId';
+import namingWorkerId from './utils/naming-worker-id';
 
 (<any>Error).stackTraceLimit = Infinity;
 

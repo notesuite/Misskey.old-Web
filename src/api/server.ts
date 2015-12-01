@@ -10,7 +10,7 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 
 import { User } from '../models/user';
-import namingWorkerId from '../utils/namingWorkerId';
+import namingWorkerId from '../utils/naming-worker-id';
 
 import config from '../config';
 

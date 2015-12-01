@@ -1,9 +1,9 @@
 import * as express from 'express';
 
 import {User} from './models/user';
-import requestApi from './utils/requestApi';
-import { MisskeyExpressRequest } from './misskeyExpressRequest';
-import { MisskeyExpressResponse } from './misskeyExpressResponse';
+import requestApi from './utils/request-api';
+import { MisskeyExpressRequest } from './misskey-express-request';
+import { MisskeyExpressResponse } from './misskey-express-response';
 import callController from './call-controller';
 
 export default function router(app: express.Express): void {

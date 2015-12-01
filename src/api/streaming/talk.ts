@@ -2,8 +2,8 @@ import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 const jade: any = require('jade');
-import parsePostText from '../../utils/parsePostText';
-import requestApi from '../../utils/requestApi';
+import parsePostText from '../../utils/parse-post-text';
+import requestApi from '../../utils/request-api';
 import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {

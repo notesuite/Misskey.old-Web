@@ -1,6 +1,6 @@
 import * as express from 'express';
-import requestApi from '../../../../../utils/requestApi';
-import mapToHtml from '../../../../../utils/mapToHtml';
+import requestApi from '../../../../../utils/request-api';
+import mapToHtml from '../../../../../utils/map-to-html';
 
 export default function file(req: express.Request, res: express.Response): void {
 	'use strict';

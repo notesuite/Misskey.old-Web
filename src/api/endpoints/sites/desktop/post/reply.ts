@@ -1,7 +1,7 @@
 import * as express from 'express';
 const jade: any = require('jade');
-import requestApi from '../../../../../utils/requestApi';
-import parsePostText from '../../../../../utils/parsePostText';
+import requestApi from '../../../../../utils/request-api';
+import parsePostText from '../../../../../utils/parse-post-text';
 import config from '../../../../../config';
 
 export default function reply(req: express.Request, res: express.Response): void {

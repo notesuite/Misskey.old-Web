@@ -1,6 +1,6 @@
 import { User } from '../../../../models/user';
-import { MisskeyExpressRequest } from '../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../misskeyExpressResponse';
+import { MisskeyExpressRequest } from '../../../../misskey-express-request';
+import { MisskeyExpressResponse } from '../../../../misskey-express-response';
 import generateLayoutedHomeWidgets from '../../common/generate-layouted-homewidgets';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {

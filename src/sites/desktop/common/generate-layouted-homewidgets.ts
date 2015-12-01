@@ -1,5 +1,5 @@
 import { User } from '../../../models/user';
-import { UserHomeLayout, IUserHomeLayout } from '../../../models/userHomeLayout';
+import { HomeLayout, IHomeLayout } from '../../../models/home-layout';
 import generateHomewidgets from './generate-homewidgets';
 
 export default function generateLayoutedHomewidgets(me: User, tlsource: string): Promise<any> {
@@ -12,7 +12,7 @@ export default function generateLayoutedHomewidgets(me: User, tlsource: string):
 	};
 
 	return new Promise<string>((resolve, reject) => {
-		UserHomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IUserHomeLayout) => {
+		HomeLayout.findOne({userId: me.id}, (homeLayoutFindErr: any, userLayout: IHomeLayout) => {
 			const layout: any = userLayout !== null ? userLayout.layout : {
 				left: [],
 				center: ['timeline'],

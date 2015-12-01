@@ -1,7 +1,7 @@
 import * as express from 'express';
-import requestApi from '../../../../../../utils/requestApi';
-import parsePostText from '../../../../../../utils/parsePostText';
-import mapToHtml from '../../../../../../utils/mapToHtml';
+import requestApi from '../../../../../../utils/request-api';
+import parsePostText from '../../../../../../utils/parse-post-text';
+import mapToHtml from '../../../../../../utils/map-to-html';
 import config from '../../../../../../config';
 
 export default function talk(req: express.Request, res: express.Response): void {

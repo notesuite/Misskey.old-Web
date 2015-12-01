@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as multer from 'multer';
 const upload: any = multer({ dest: 'uploads/' });
 
-import requestApi from '../utils/requestApi';
+import requestApi from '../utils/request-api';
 
 export default function router(app: express.Express): void {
 	'use strict';

@@ -12,10 +12,10 @@ import * as cookieParser from 'cookie-parser';
 // import { logDone, logFailed, logInfo } from 'log-cool';
 
 import { User } from './models/user';
-import { MisskeyExpressRequest } from './misskeyExpressRequest';
-import { MisskeyExpressResponse } from './misskeyExpressResponse';
-import namingWorkerId from './utils/namingWorkerId';
-import requestApi from './utils/requestApi';
+import { MisskeyExpressRequest } from './misskey-express-request';
+import { MisskeyExpressResponse } from './misskey-express-response';
+import namingWorkerId from './utils/naming-worker-id';
+import requestApi from './utils/request-api';
 
 import config from './config';
 

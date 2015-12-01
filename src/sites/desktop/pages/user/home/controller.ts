@@ -1,8 +1,8 @@
 import { User } from '../../../../../models/user';
-import { MisskeyExpressRequest } from '../../../../../misskeyExpressRequest';
-import { MisskeyExpressResponse } from '../../../../../misskeyExpressResponse';
-import parsePostText from '../../../../../utils/parsePostText';
-import requestApi from '../../../../../utils/requestApi';
+import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
+import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
+import parsePostText from '../../../../../utils/parse-post-text';
+import requestApi from '../../../../../utils/request-api';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';

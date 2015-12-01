@@ -2,8 +2,8 @@ const jade: any = require('jade');
 
 import { User } from '../../../models/user';
 import { Post } from '../../../models/post';
-import parsePostText from '../../../utils/parsePostText';
-import requestApi from '../../../utils/requestApi';
+import parsePostText from '../../../utils/parse-post-text';
+import requestApi from '../../../utils/request-api';
 
 import config from '../../../config';
 
