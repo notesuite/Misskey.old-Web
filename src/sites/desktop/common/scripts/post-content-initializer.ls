@@ -9,7 +9,6 @@ module.exports = (post-type, $content) ->
 		$content.find '> .text a:not(.mention):not(.hashtag)' .each ->
 			$link = urldecorator $ @
 			$.ajax "#{config.web-api-url}/web/analyze-url" {
-				type: \get
 				data:
 					'url': $link.attr \href
 				data-type: \text

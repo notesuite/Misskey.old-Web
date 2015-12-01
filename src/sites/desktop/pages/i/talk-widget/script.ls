@@ -165,7 +165,6 @@ $ ->
 		$button.attr \disabled yes
 		$button.text '読み込み中'
 		$.ajax "#{config.web-api-url}/web/desktop/talks/stream" {
-			type: \get
 			data:
 				'otherparty-id': otherparty-id
 				'max-cursor': $ '#stream > .messages > .message:first-child > .message' .attr \data-cursor

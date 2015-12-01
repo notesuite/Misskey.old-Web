@@ -181,7 +181,6 @@ window.STATUS_CORE = {}
 					..find \i .attr \class 'fa fa-spinner fa-pulse'
 
 				$.ajax config.web-api-url + '/web/status/get-talk-detail-one-html.plain' {
-					type: \get
 					data: {
 						'status-id': $status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-id
 					}

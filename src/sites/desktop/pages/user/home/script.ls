@@ -17,7 +17,6 @@ $ ->
 			if not me.data \loading
 				me.data \loading yes
 				$.ajax config.web-api-url + '/web/status/user-timeline-detailhtml' {
-					type: \get
 					data: {
 						'user-id': $ \html .attr \data-user-id
 						'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor

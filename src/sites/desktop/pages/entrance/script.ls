@@ -80,7 +80,6 @@ function init-register-form
 				else
 					show-message '確認中...' null
 					$.ajax "#{config.web-api-url}/screenname-available" {
-						type: \get
 						data: {'screen-name': sn}
 						data-type: \json
 						xhr-fields: {+with-credentials}}

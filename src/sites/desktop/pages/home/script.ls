@@ -93,7 +93,6 @@ $ ->
 			if not me.data \loading
 				me.data \loading yes
 				$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/timeline" {
-					type: \get
 					data:
 						limit: 20
 						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor
@@ -144,7 +143,6 @@ $ ->
 
 	# 通知読み込み
 	$.ajax "#{config.web-api-url}/web/sites/desktop/home/notifications" {
-		type: \get
 		data: {}
 		data-type: \text
 		xhr-fields: {+with-credentials}}
@@ -158,7 +156,6 @@ $ ->
 
 	# recommendation users
 	$.ajax "#{config.web-api-url}/web/sites/desktop/home/recommendation-users" {
-		type: \get
 		data: {}
 		data-type: \text
 		xhr-fields: {+with-credentials}}

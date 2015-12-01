@@ -62,7 +62,6 @@ window.open-select-album-file-dialog = (cb) ->
 function update-header-statuses
 	/*
 	$.ajax "#{config.web-api-url}/web/get-header-statuses" {
-		type: \get
 		data-type: \json
 		xhr-fields: {+with-credentials}}
 	.done (result) ->
@@ -555,7 +554,6 @@ $ ->
 
 			# 通知読み込み
 			$.ajax config.web-api-url + '/notification/timeline-webhtml' {
-				type: \get
 				data: {}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
@@ -591,7 +589,6 @@ $ ->
 		else
 			$input.attr \data-active \true
 			$.ajax "#{config.web-api-url}/users/search" {
-				type: \get
 				data: {'query': $input .val!}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
@@ -616,7 +613,6 @@ $ ->
 
 	$ \#misskey-main-header-i-settings-anchor .click ->
 		$.ajax config.url + '/i/settings' {
-			type: \get
 			data-type: \html
 			xhr-fields: {+with-credentials}}
 		.done (data) ->

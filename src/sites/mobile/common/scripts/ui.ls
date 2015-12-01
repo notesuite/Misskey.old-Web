@@ -988,8 +988,7 @@ function update-relative-times
 		$ @ .text time-text
 
 function update-statuses
-	$.ajax "#{config.web-api-url}/posts/timeline-unreads-count" {
-		type: \get
+	$.ajax "#{config.web-api-url}/posts/timeline/unread/count" {
 		data: {}
 		xhr-fields: {+with-credentials}}
 	.done (data) ->
@@ -997,8 +996,7 @@ function update-statuses
 			$ '#misskey-main-nav .home a .unreads-count' .remove!
 			$ '#misskey-main-nav .home a' .append $ "<span class=\"unreads-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/posts/mentions-unreads-count" {
-		type: \get
+	$.ajax "#{config.web-api-url}/posts/mentions/unread/count" {
 		data: {}
 		xhr-fields: {+with-credentials}}
 	.done (data) ->
@@ -1006,8 +1004,7 @@ function update-statuses
 			$ '#misskey-main-nav .mentions a .unreads-count' .remove!
 			$ '#misskey-main-nav .mentions a' .append $ "<span class=\"unreads-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/notifications/unreads-count" {
-		type: \get
+	$.ajax "#{config.web-api-url}/notifications/unread/count" {
 		data: {}
 		xhr-fields: {+with-credentials}}
 	.done (data) ->

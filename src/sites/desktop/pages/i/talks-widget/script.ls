@@ -9,7 +9,6 @@ $ ->
 			$result.empty!
 		else
 			$.ajax "#{config.web-api-url}/users/search" {
-				type: \get
 				data: {'query': $input .val!}
 				data-type: \json
 				xhr-fields: {+with-credentials}}

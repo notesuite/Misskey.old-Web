@@ -176,7 +176,6 @@ module.exports = ($input) ->
 
 				# search users
 				$.ajax "#{config.web-api-url}/users/search-by-screen-name" {
-					type: \get
 					data: {'screen-name': sn}
 					data-type: \json
 					xhr-fields: {+with-credentials}}
@@ -215,7 +214,6 @@ module.exports = ($input) ->
 
 				# search users
 				$.ajax "#{config.web-api-url}/hashtags/search" {
-					type: \get
 					data: {'name': tag}
 					data-type: \json
 					xhr-fields: {+with-credentials}}

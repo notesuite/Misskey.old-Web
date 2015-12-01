@@ -57,7 +57,6 @@ class Timeline
 					..find  '> .replies' .slide-down animation-speed
 				if (($post.attr \data-is-talk) == \true) and ($post.children \.talk .children!.length == 0)
 					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/talk" {
-						type: \get
 						data:
 							'post-id': $post.children \.reply-source .attr \data-id
 						data-type: \text
@@ -67,7 +66,6 @@ class Timeline
 						$post.children \.talk .append $talk
 				if (($post.attr \data-is-have-replies) == \true) and ($post.children \.replies .children!.length == 0)
 					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/replies" {
-						type: \get
 						data:
 							'post-id': $post.attr \data-id
 						data-type: \text
