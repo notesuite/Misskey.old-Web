@@ -19,29 +19,25 @@ module.exports = ($form) ->
 		$submit-button.attr \disabled on
 		$submit-button.text 'Updating...'
 
-		(data) <- $.ajax "#{config.web-api-url}/account/update-name" {
-			type: \put
+		(data) <- $.ajax "#{config.web-api-url}/account/name/update" {
 			data:
 				'name': $form.find '.profile.name' .val!
 			xhr-fields: {+with-credentials}}
 		.done!
 
-		(data) <- $.ajax "#{config.web-api-url}/account/update-comment" {
-			type: \put
+		(data) <- $.ajax "#{config.web-api-url}/account/comment/update" {
 			data:
 				'comment': $form.find '.profile.comment' .val!
 			xhr-fields: {+with-credentials}}
 		.done!
 
-		(data) <- $.ajax "#{config.web-api-url}/account/update-url" {
-			type: \put
+		(data) <- $.ajax "#{config.web-api-url}/account/url/update" {
 			data:
 				'url': $form.find '.profile.url' .val!
 			xhr-fields: {+with-credentials}}
 		.done!
 
-		(data) <- $.ajax "#{config.web-api-url}/account/update-location" {
-			type: \put
+		(data) <- $.ajax "#{config.web-api-url}/account/location/update" {
 			data:
 				'location': $form.find '.profile.location' .val!
 			xhr-fields: {+with-credentials}}
@@ -51,7 +47,6 @@ module.exports = ($form) ->
 		$submit-button.attr \disabled off
 
 		$.ajax "#{config.web-api-url}/web/refresh-session" {
-			type: \post
 			xhr-fields: {+with-credentials}}
 
 		$modal-ok = $ '<button>おｋ</button>'
@@ -87,8 +82,7 @@ module.exports = ($form) ->
 						[$modal-ok]
 					$modal-ok.click -> dialog-close!
 				else
-					$.ajax "#{config.web-api-url}/web/sites/desktop/update-avatar" {
-						type: \put
+					$.ajax "#{config.web-api-url}/web/sites/desktop/avatar/update" {
 						data:
 							'file-id': file.id
 						xhr-fields: {+with-credentials}}
@@ -109,8 +103,7 @@ module.exports = ($form) ->
 					..attr \disabled on
 					..attr \value '保存中...'
 				crop-data = $img.cropper \getData true
-				$.ajax "#{config.web-api-url}/web/sites/desktop/update-avatar" {
-					type: \put
+				$.ajax "#{config.web-api-url}/web/sites/desktop/avatar/update" {
 					data:
 						'file-id': file.id
 						'trim-x': crop-data.x
@@ -133,7 +126,6 @@ module.exports = ($form) ->
 				close!
 
 				$.ajax "#{config.web-api-url}/web/refresh-session" {
-					type: \post
 					xhr-fields: {+with-credentials}}
 
 				#$ \body .find \img ->
@@ -160,7 +152,6 @@ module.exports = ($form) ->
 			fd.append \app-id $app.attr \data-app-id
 
 			$.ajax "#{config.web-api-url}/account/remove-app" {
-				type: \delete
 				-process-data
 				-content-type
 				data: fd

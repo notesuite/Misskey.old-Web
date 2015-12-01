@@ -36,7 +36,6 @@ window.upload-file = (file, uploading, success, failed) ->
 		..append \file file
 	$.ajax "#{config.web-api-url}/web/sites/desktop/album/upload" {
 		+async
-		type: \post
 		-process-data
 		-content-type
 		data: data
@@ -322,7 +321,6 @@ class StatusPostForm
 		$form.find \textarea .attr \disabled on
 
 		$.ajax "#{config.web-api-url}/posts/status" {
-			type: \post
 			data:
 				'text': ($form.find \textarea .val!)
 			xhr-fields: {+with-credentials}
@@ -410,7 +408,6 @@ class PhotoPostForm
 		$form.find \textarea .attr \disabled on
 
 		$.ajax "#{config.web-api-url}/posts/photo" {
-			type: \post
 			data:
 				'text': ($form.find \textarea .val!)
 				'photos': JSON.stringify(($form.find '.photos > li' .map ->
@@ -524,7 +521,6 @@ $ ->
 			, i * 50
 
 		$.ajax config.web-api-url + '/notification/delete-all' {
-			type: \delete
 			data: {}
 			data-type: \json
 			xhr-fields: {+with-credentials}}

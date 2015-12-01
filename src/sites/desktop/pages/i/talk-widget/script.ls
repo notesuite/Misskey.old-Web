@@ -9,7 +9,6 @@ function send-message
 	$submit-button.attr \disabled yes
 
 	$.ajax "#{config.web-api-url}/talks/say" {
-		type: \post
 		data:
 			'text': ($form.find \textarea .val!)
 			'otherparty-id': ($ \html .attr \data-otherparty-id)
@@ -68,7 +67,6 @@ $ ->
 			$ '#otherparty-status #otherparty-typing' .remove!
 		stream.add $message
 		$.ajax "#{config.api-url}/talks/read" {
-			type: \post
 			data: {'message-id': message-id}
 			xhr-fields: {+with-credentials}
 		}

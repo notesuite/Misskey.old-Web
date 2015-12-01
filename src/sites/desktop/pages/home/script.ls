@@ -114,7 +114,6 @@ $ ->
 
 			if ($user.attr \data-is-following) == \true
 				$.ajax config.web-api-url + '/users/unfollow' {
-					type: \delete
 					data: { 'user-id': $user.attr \data-user-id }
 					data-type: \json
 					xhr-fields: {+with-credentials}
@@ -128,7 +127,6 @@ $ ->
 					$button.attr \disabled no
 			else
 				$.ajax config.web-api-url + '/users/follow' {
-					type: \post
 					data: { 'user-id': $user.attr \data-user-id }
 					data-type: \json
 					xhr-fields: {+with-credentials}

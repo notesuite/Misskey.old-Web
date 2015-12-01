@@ -53,7 +53,6 @@ function init-post($post)
 			..text 'Replying...'
 
 		$.ajax "#{config.web-api-url}/web/sites/desktop/post/reply" {
-			type: \post
 			data:
 				'text': ($form.find \textarea .val!)
 				'in-reply-to-post-id': ($post.attr \data-id)

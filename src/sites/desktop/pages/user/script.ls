@@ -32,7 +32,6 @@ $ ->
 			..attr \disabled on
 		if window.is-following
 			$.ajax "#{config.web-api-url}/users/unfollow" {
-				type: \delete
 				data: {'user-id': window.user-id}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
@@ -48,7 +47,6 @@ $ ->
 				$button.attr \disabled off
 		else
 			$.ajax "#{config.web-api-url}/users/follow" {
-				type: \post
 				data: {'user-id': window.user-id}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
@@ -98,9 +96,8 @@ function init-avatar-edit-form
 		event.prevent-default!
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '更新しています...'
-		$.ajax config.web-api-url + '/account/update-avatar' {
+		$.ajax config.web-api-url + '/account/avatar/update' {
 			+async
-			type: \put
 			-process-data
 			-content-type
 			data: new FormData $form.0
@@ -172,9 +169,8 @@ function init-header-image-edit-form
 		event.prevent-default!
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '更新しています...'
-		$.ajax config.web-api-url + '/account/update-banner' {
+		$.ajax config.web-api-url + '/account/banner/update' {
 			+async
-			type: \put
 			-process-data
 			-content-type
 			data: new FormData $form.0

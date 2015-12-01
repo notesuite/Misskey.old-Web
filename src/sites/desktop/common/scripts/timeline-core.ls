@@ -92,7 +92,6 @@ class Timeline
 				..text 'Replying...'
 
 			$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/reply" {
-				type: \post
 				data:
 					'text': ($form.find \textarea .val!)
 					'in-reply-to-post-id': ($post.attr \data-id)
@@ -209,7 +208,6 @@ class Timeline
 				if check-liked!
 					$post.attr \data-is-liked \false
 					$.ajax "#{config.web-api-url}/posts/unlike" {
-						type: \delete
 						data: {'post-id': $post.attr \data-id}
 						xhr-fields: {+with-credentials}}
 					.done ->
@@ -220,7 +218,6 @@ class Timeline
 				else
 					$post.attr \data-is-liked \true
 					$.ajax "#{config.web-api-url}/posts/like" {
-						type: \post
 						data: {'post-id': $post.attr \data-id}
 						xhr-fields: {+with-credentials}}
 					.done ->
@@ -238,7 +235,6 @@ class Timeline
 				if check-reposted!
 					$post.attr \data-is-reposted \false
 					$.ajax "#{config.web-api-url}/post/unrepost" {
-						type: \delete
 						data: {'post-id': $status.attr \data-id}
 						xhr-fields: {+with-credentials}}
 					.done ->
@@ -265,7 +261,6 @@ class Timeline
 					..attr \data-reposting \true
 				$post.attr \data-is-reposted \true
 				$.ajax "#{config.web-api-url}/posts/repost" {
-					type: \post
 					data:
 						'post-id': $post.attr \data-id
 					xhr-fields: {+with-credentials}}

@@ -107,7 +107,7 @@ class Album
 		$ \#misskey-album-background .stop!
 		$ \#misskey-album-container .remove!
 		$.ajax "#{config.web-api-url}/web/sites/desktop/album/open" {
-			type: \get
+			req.payload
 			data-type: \text
 			xhr-fields: {+with-credentials}}
 		.done (html) ->
@@ -184,7 +184,7 @@ class Album
 	load-files: ->
 		THIS = @
 		$.ajax "#{config.web-api-url}/web/sites/desktop/album/files" {
-			type: \get
+			req.payload
 			data: {}
 			-process-data
 			-content-type
@@ -208,7 +208,6 @@ class Album
 			..append \file file
 		$.ajax "#{config.web-api-url}/web/sites/desktop/album/upload" {
 			+async
-			type: \post
 			-process-data
 			-content-type
 			data: data

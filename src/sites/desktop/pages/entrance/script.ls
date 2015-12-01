@@ -42,7 +42,6 @@ function init-register-form
 		$form = $ @
 
 		$.ajax "#{config.web-api-url}/account/create" {
-			type: \post
 			data: $form.serialize!
 			data-type: \json
 			xhr-fields: {+with-credentials}}

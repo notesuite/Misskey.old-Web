@@ -134,8 +134,7 @@ window.STATUS_CORE = {}
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
 					..attr \value 'Replying...'
-				$.ajax "#{config.web-api-url}/web/status/reply-detail-one.plain" {
-					type: \post
+				$.ajax "#{config.web-api-url}/web/status/reply-detail-one" {
 					data: new FormData $form.0
 					-processData
 					-contentType
@@ -210,7 +209,6 @@ window.STATUS_CORE = {}
 				if check-pinned!
 					$status.attr \data-is-pinned \false
 					$.ajax "#{config.web-api-url}/account/delete-pinned-status" {
-						type: \delete
 						data: {}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
@@ -221,8 +219,7 @@ window.STATUS_CORE = {}
 						$status.attr \data-is-pinned \true
 				else
 					$status.attr \data-is-pinned \true
-					$.ajax "#{config.web-api-url}/account/update-pinned-status" {
-						type: \put
+					$.ajax "#{config.web-api-url}/account/update-pinned-post" {
 						data: {'status-id': $status.attr \data-id}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
@@ -238,11 +235,9 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 				if check-favorited!
 					$status.attr \data-is-favorited \false
-					$.ajax "#{config.web-api-url}/status/unfavorite" {
-						type: \delete
-						data: {'status-id': $status.attr \data-id}
-						data-type: \json
-						xhr-fields: {+withCredentials}}
+					$.ajax "#{config.web-api-url}/posts/unlike" {
+						data: {'post-id': $status.attr \data-id}
+						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -250,11 +245,9 @@ window.STATUS_CORE = {}
 						$status.attr \data-is-favorited \true
 				else
 					$status.attr \data-is-favorited \true
-					$.ajax "#{config.web-api-url}/status/favorite" {
-						type: \post
-						data: {'status-id': $status.attr \data-id}
-						data-type: \json
-						xhr-fields: {+withCredentials}}
+					$.ajax "#{config.web-api-url}/posts/like" {
+						data: {'post-id': $status.attr \data-id}
+						xhr-fields: {+with-credentials}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -269,9 +262,8 @@ window.STATUS_CORE = {}
 			..find 'article > .main > .main > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
 					$status.attr \data-is-reposted \false
-					$.ajax "#{config.web-api-url}/status/unrepost" {
-						type: \delete
-						data: {'status-id': $status.attr \data-id}
+					$.ajax "#{config.web-api-url}/posts/unrepost" {
+						data: {'post-id': $status.attr \data-id}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
 					.done ->
@@ -297,13 +289,12 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 					..attr \data-reposting \true
 				$status.attr \data-is-reposted \true
-				$.ajax "#{config.web-api-url}/status/repost" {
-					type: \post
+				$.ajax "#{config.web-api-url}/post/repost" {
 					data:
-						'status-id': $status.attr \data-id
+						'post-id': $status.attr \data-id
 						text: $status.find '.repost-form > form > .comment-form > input[name=text]' .val!
 					data-type: \json
-					xhr-fields: {+withCredentials}}
+					xhr-fields: {+with-credentials}}
 				.done ->
 					$submit-button
 						..attr \disabled off
