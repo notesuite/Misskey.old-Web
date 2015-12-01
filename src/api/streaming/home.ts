@@ -94,6 +94,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 						});
 						break;
 					default:
+						socket.emit(content.type, content.value);
 						break;
 				}
 			});

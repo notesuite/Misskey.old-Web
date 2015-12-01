@@ -50,23 +50,23 @@ $ ->
 		timeline.add $ post
 		$ '#widget-timeline > .timeline > .empty' .remove!
 
-	socket.on \reply (status) ->
-		console.log \reply status
+	socket.on \mention (post) ->
+		console.log \mention post
 
-		id = status.id
-		name = status.user-name
-		sn = status.user-screen-name
-		text = status.text
+		id = post.id
+		name = post.user.name
+		sn = post.user.screen-name
+		text = post.text
 		n = new Notification name, {
 			body: text
-			icon: status.user.avatar-url
+			icon: post.user.avatar-url
 		}
 		n.onshow = ->
 			set-timeout ->
 				n.close!
 			, 10000ms
 		n.onclick = ->
-			window.open "#{conf.url}/#{sn}/status/#{id}"
+			window.open "#{config.url}/#{sn}/#{id}"
 
 	socket.on \talk-message (message) ->
 		console.log \talk-message message
