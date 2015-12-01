@@ -3,6 +3,7 @@ require 'jquery.transit'
 moment = require 'moment'
 Sortable = require 'Sortable'
 
+require './main.js'
 require './kronos.js'
 Tab = require './lib/tab.js'
 WavesEffect = require './lib/waves-effect.js'
