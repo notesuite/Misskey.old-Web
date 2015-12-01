@@ -21,33 +21,28 @@ module.exports = ($form) ->
 
 		(data) <- $.ajax "#{config.web-api-url}/account/name/update" {
 			data:
-				'name': $form.find '.profile.name' .val!
-			xhr-fields: {+with-credentials}}
+				'name': $form.find '.profile.name' .val!}
 		.done!
 
 		(data) <- $.ajax "#{config.web-api-url}/account/comment/update" {
 			data:
-				'comment': $form.find '.profile.comment' .val!
-			xhr-fields: {+with-credentials}}
+				'comment': $form.find '.profile.comment' .val!}
 		.done!
 
 		(data) <- $.ajax "#{config.web-api-url}/account/url/update" {
 			data:
-				'url': $form.find '.profile.url' .val!
-			xhr-fields: {+with-credentials}}
+				'url': $form.find '.profile.url' .val!}
 		.done!
 
 		(data) <- $.ajax "#{config.web-api-url}/account/location/update" {
 			data:
-				'location': $form.find '.profile.location' .val!
-			xhr-fields: {+with-credentials}}
+				'location': $form.find '.profile.location' .val!}
 		.done!
 
 		$submit-button.text 'Update'
 		$submit-button.attr \disabled off
 
-		$.ajax "#{config.web-api-url}/web/refresh-session" {
-			xhr-fields: {+with-credentials}}
+		$.ajax "#{config.web-api-url}/web/refresh-session"
 
 		$modal-ok = $ '<button>おｋ</button>'
 		dialog-close = show-modal-dialog do
@@ -84,8 +79,7 @@ module.exports = ($form) ->
 				else
 					$.ajax "#{config.web-api-url}/web/sites/desktop/avatar/update" {
 						data:
-							'file-id': file.id
-						xhr-fields: {+with-credentials}}
+							'file-id': file.id}
 					.done (data) ->
 						ok!
 					.fail ->
@@ -109,8 +103,7 @@ module.exports = ($form) ->
 						'trim-x': crop-data.x
 						'trim-y': crop-data.y
 						'trim-w': crop-data.width
-						'trim-h': crop-data.height
-					xhr-fields: {+with-credentials}}
+						'trim-h': crop-data.height}
 				.done (data) ->
 					ok!
 				.fail (data) ->
@@ -125,8 +118,7 @@ module.exports = ($form) ->
 			function ok
 				close!
 
-				$.ajax "#{config.web-api-url}/web/refresh-session" {
-					xhr-fields: {+with-credentials}}
+				$.ajax "#{config.web-api-url}/web/refresh-session"
 
 				#$ \body .find \img ->
 				#	$img = $ @
@@ -155,8 +147,7 @@ module.exports = ($form) ->
 				-process-data
 				-content-type
 				data: fd
-				data-type: \json
-				xhr-fields: {+with-credentials}}
+				data-type: \json}
 			.done (data) ->
 				$app.remove!
 			.fail (data) ->

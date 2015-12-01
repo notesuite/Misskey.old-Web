@@ -58,8 +58,7 @@ function init-post($post)
 				'in-reply-to-post-id': ($post.attr \data-id)
 				'photos': JSON.stringify(($form.find '.photos > li' .map ->
 					($ @).attr \data-id).get!)
-			data-type: \text
-			xhr-fields: {+with-credentials}}
+			data-type: \text}
 		.done (html) ->
 			$reply = $ html
 			$submit-button.attr \disabled off

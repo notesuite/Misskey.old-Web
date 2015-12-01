@@ -988,25 +988,19 @@ function update-relative-times
 		$ @ .text time-text
 
 function update-statuses
-	$.ajax "#{config.web-api-url}/posts/timeline/unread/count" {
-		data: {}
-		xhr-fields: {+with-credentials}}
+	$.ajax "#{config.web-api-url}/posts/timeline/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-main-nav .home a .unreads-count' .remove!
 			$ '#misskey-main-nav .home a' .append $ "<span class=\"unreads-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/posts/mentions/unread/count" {
-		data: {}
-		xhr-fields: {+with-credentials}}
+	$.ajax "#{config.web-api-url}/posts/mentions/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-main-nav .mentions a .unreads-count' .remove!
 			$ '#misskey-main-nav .mentions a' .append $ "<span class=\"unreads-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/notifications/unread/count" {
-		data: {}
-		xhr-fields: {+with-credentials}}
+	$.ajax "#{config.web-api-url}/notifications/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-main-nav .notifications a .unreads-count' .remove!

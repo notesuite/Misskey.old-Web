@@ -33,8 +33,7 @@ $ ->
 		if window.is-following
 			$.ajax "#{config.web-api-url}/users/unfollow" {
 				data: {'user-id': window.user-id}
-				data-type: \json
-				xhr-fields: {+with-credentials}}
+				data-type: \json}
 			.done ->
 				$button .remove-class \danger
 				$button
@@ -48,8 +47,7 @@ $ ->
 		else
 			$.ajax "#{config.web-api-url}/users/follow" {
 				data: {'user-id': window.user-id}
-				data-type: \json
-				xhr-fields: {+with-credentials}}
+				data-type: \json}
 			.done ->
 				$button
 					..attr \disabled off
@@ -102,7 +100,6 @@ function init-avatar-edit-form
 			-content-type
 			data: new FormData $form.0
 			data-type: \json
-			xhr-fields: {+with-credentials}
 			xhr: ->
 				XHR = $.ajax-settings.xhr!
 				if XHR.upload
@@ -175,7 +172,6 @@ function init-header-image-edit-form
 			-content-type
 			data: new FormData $form.0
 			data-type: \json
-			xhr-fields: {+with-credentials}
 			xhr: ->
 				XHR = $.ajax-settings.xhr!
 				if XHR.upload

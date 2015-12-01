@@ -59,8 +59,7 @@ class Timeline
 					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/talk" {
 						data:
 							'post-id': $post.children \.reply-source .attr \data-id
-						data-type: \text
-						xhr-fields: {+with-credentials}}
+						data-type: \text}
 					.done (html) ->
 						$talk = $ html
 						$post.children \.talk .append $talk
@@ -68,8 +67,7 @@ class Timeline
 					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/replies" {
 						data:
 							'post-id': $post.attr \data-id
-						data-type: \text
-						xhr-fields: {+with-credentials}}
+						data-type: \text}
 					.done (html) ->
 						$replies = $ html
 						$post.children \.replies .append $replies
@@ -97,8 +95,7 @@ class Timeline
 					'in-reply-to-post-id': ($post.attr \data-id)
 					'photos': JSON.stringify(($form.find '.photos > li' .map ->
 						($ @).attr \data-id).get!)
-				data-type: \text
-				xhr-fields: {+with-credentials}}
+				data-type: \text}
 			.done (html) ->
 				$reply = $ html
 				$submit-button.attr \disabled off
@@ -208,8 +205,7 @@ class Timeline
 				if check-liked!
 					$post.attr \data-is-liked \false
 					$.ajax "#{config.web-api-url}/posts/unlike" {
-						data: {'post-id': $post.attr \data-id}
-						xhr-fields: {+with-credentials}}
+						data: {'post-id': $post.attr \data-id}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -218,8 +214,7 @@ class Timeline
 				else
 					$post.attr \data-is-liked \true
 					$.ajax "#{config.web-api-url}/posts/like" {
-						data: {'post-id': $post.attr \data-id}
-						xhr-fields: {+with-credentials}}
+						data: {'post-id': $post.attr \data-id}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -235,8 +230,7 @@ class Timeline
 				if check-reposted!
 					$post.attr \data-is-reposted \false
 					$.ajax "#{config.web-api-url}/post/unrepost" {
-						data: {'post-id': $status.attr \data-id}
-						xhr-fields: {+with-credentials}}
+						data: {'post-id': $status.attr \data-id}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -262,8 +256,7 @@ class Timeline
 				$post.attr \data-is-reposted \true
 				$.ajax "#{config.web-api-url}/posts/repost" {
 					data:
-						'post-id': $post.attr \data-id
-					xhr-fields: {+with-credentials}}
+						'post-id': $post.attr \data-id}
 				.done ->
 					$submit-button
 						..attr \disabled off

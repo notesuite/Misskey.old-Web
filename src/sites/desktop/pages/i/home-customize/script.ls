@@ -53,8 +53,7 @@ $ ->
 
 		$.ajax "#{config.web-api-url}/web/sites/desktop/home-layout/update" {
 			data:
-				'layout': JSON.stringify layout
-			xhr-fields: {+with-credentials}}
+				'layout': JSON.stringify layout}
 		.done (data) ->
 			document.location.href = '/'
 		.fail (data) ->

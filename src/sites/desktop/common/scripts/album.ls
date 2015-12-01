@@ -108,8 +108,7 @@ class Album
 		$ \#misskey-album-container .remove!
 		$.ajax "#{config.web-api-url}/web/sites/desktop/album/open" {
 			req.payload
-			data-type: \text
-			xhr-fields: {+with-credentials}}
+			data-type: \text}
 		.done (html) ->
 			$ 'body' .append $ html
 			THIS.init!
@@ -184,12 +183,8 @@ class Album
 	load-files: ->
 		THIS = @
 		$.ajax "#{config.web-api-url}/web/sites/desktop/album/files" {
-			req.payload
 			data: {}
-			-process-data
-			-content-type
-			data-type: \text
-			xhr-fields: {+with-credentials}}
+			data-type: \text}
 		.done (html) ->
 			$files = $ html
 			THIS.$album-files.empty!
@@ -212,7 +207,6 @@ class Album
 			-content-type
 			data: data
 			data-type: \text
-			xhr-fields: {+with-credentials}
 			xhr: ->
 				XHR = $.ajax-settings.xhr!
 				if XHR.upload

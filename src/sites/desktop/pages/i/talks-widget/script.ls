@@ -10,8 +10,7 @@ $ ->
 		else
 			$.ajax "#{config.web-api-url}/users/search" {
 				data: {'query': $input .val!}
-				data-type: \json
-				xhr-fields: {+with-credentials}}
+				data-type: \json}
 			.done (result) ->
 				$result.empty!
 				if (result.length > 0) && ($input .val! != '')

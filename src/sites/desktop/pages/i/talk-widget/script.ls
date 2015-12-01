@@ -12,7 +12,6 @@ function send-message
 		data:
 			'text': ($form.find \textarea .val!)
 			'otherparty-id': ($ \html .attr \data-otherparty-id)
-		xhr-fields: {+with-credentials}
 	} .done (data) ->
 		$form[0].reset!
 		$form.find \textarea .focus!
@@ -68,7 +67,6 @@ $ ->
 		stream.add $message
 		$.ajax "#{config.api-url}/talks/read" {
 			data: {'message-id': message-id}
-			xhr-fields: {+with-credentials}
 		}
 
 	socket.on \me-message (message) ->
@@ -166,8 +164,7 @@ $ ->
 			data:
 				'otherparty-id': otherparty-id
 				'max-cursor': $ '#stream > .messages > .message:first-child > .message' .attr \data-cursor
-			data-type: \text
-			xhr-fields: {+with-credentials}}
+			data-type: \text}
 		.done (data) ->
 			$button.attr \disabled no
 			$button.text 'もっと読み込む'

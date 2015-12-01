@@ -21,8 +21,7 @@ $ ->
 						'user-id': $ \html .attr \data-user-id
 						'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
 					}
-					data-type: \json
-					xhr-fields: {+with-credentials}}
+					data-type: \json}
 				.done (data) ->
 					me.data \loading no
 					$statuses = $ data

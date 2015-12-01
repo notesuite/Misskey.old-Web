@@ -177,8 +177,7 @@ module.exports = ($input) ->
 				# search users
 				$.ajax "#{config.web-api-url}/users/search-by-screen-name" {
 					data: {'screen-name': sn}
-					data-type: \json
-					xhr-fields: {+with-credentials}}
+					data-type: \json}
 				.done (result) ->
 					if result? and result.length > 0
 						$menu.empty!
@@ -215,8 +214,7 @@ module.exports = ($input) ->
 				# search users
 				$.ajax "#{config.web-api-url}/hashtags/search" {
 					data: {'name': tag}
-					data-type: \json
-					xhr-fields: {+with-credentials}}
+					data-type: \json}
 				.done (result) ->
 					if result? and result.length > 0
 						$menu.empty!

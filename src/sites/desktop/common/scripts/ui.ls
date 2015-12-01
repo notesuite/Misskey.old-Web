@@ -40,7 +40,6 @@ window.upload-file = (file, uploading, success, failed) ->
 		-content-type
 		data: data
 		data-type: \text
-		xhr-fields: {+with-credentials}
 		xhr: ->
 			XHR = $.ajax-settings.xhr!
 			if XHR.upload
@@ -61,8 +60,7 @@ window.open-select-album-file-dialog = (cb) ->
 function update-header-statuses
 	/*
 	$.ajax "#{config.web-api-url}/web/get-header-statuses" {
-		data-type: \json
-		xhr-fields: {+with-credentials}}
+		data-type: \json}
 	.done (result) ->
 		unread-notifications-count = result.unread-notifications-count
 		unread-talk-messages-count = result.unread-talk-messages-count
@@ -322,9 +320,7 @@ class StatusPostForm
 
 		$.ajax "#{config.web-api-url}/posts/status" {
 			data:
-				'text': ($form.find \textarea .val!)
-			xhr-fields: {+with-credentials}
-		}
+				'text': ($form.find \textarea .val!)}
 		.done (data) ->
 			window.display-message '投稿しました！'
 			$form[0].reset!
@@ -412,7 +408,6 @@ class PhotoPostForm
 				'text': ($form.find \textarea .val!)
 				'photos': JSON.stringify(($form.find '.photos > li' .map ->
 					($ @).attr \data-id).get!)
-			xhr-fields: {+with-credentials}
 		}
 		.done (data) ->
 			window.display-message '投稿しました！'
@@ -520,10 +515,7 @@ $ ->
 					$message.remove!
 			, i * 50
 
-		$.ajax config.web-api-url + '/notification/delete-all' {
-			data: {}
-			data-type: \json
-			xhr-fields: {+with-credentials}}
+		$.ajax config.web-api-url + '/notification/delete-all'
 		.done (data) ->
 			$ '#misskey-main-header .notifications .unread-count' .remove!
 			$list = $ '<ol class="notifications" />'
@@ -549,10 +541,7 @@ $ ->
 			$ '<img class="loading" src="/resources/images/notifications-loading.gif" alt="loading..." />' .append-to $notifications-container
 
 			# 通知読み込み
-			$.ajax config.web-api-url + '/notification/timeline-webhtml' {
-				data: {}
-				data-type: \json
-				xhr-fields: {+with-credentials}}
+			$.ajax config.web-api-url + '/notification/timeline-webhtml'
 			.done (data) ->
 				$ '#misskey-main-header .notifications .loading' .remove!
 				$ '#misskey-main-header .notifications .unread-count' .remove!
@@ -586,8 +575,7 @@ $ ->
 			$input.attr \data-active \true
 			$.ajax "#{config.web-api-url}/users/search" {
 				data: {'query': $input .val!}
-				data-type: \json
-				xhr-fields: {+with-credentials}}
+				data-type: \json}
 			.done (result) ->
 				$result.empty!
 				if (result.length > 0) && ($input .val! != '')
@@ -609,8 +597,7 @@ $ ->
 
 	$ \#misskey-main-header-i-settings-anchor .click ->
 		$.ajax config.url + '/i/settings' {
-			data-type: \html
-			xhr-fields: {+with-credentials}}
+			data-type: \html}
 		.done (data) ->
 			$dialog = $ '<div id="misskey-i-settings-form" />'
 			$dialog.append ($ data).find \main

@@ -43,13 +43,11 @@ function init-register-form
 
 		$.ajax "#{config.web-api-url}/account/create" {
 			data: $form.serialize!
-			data-type: \json
-			xhr-fields: {+with-credentials}}
+			data-type: \json}
 		.done ->
 			$.ajax "#{config.url}/login" {
 				type: \get
-				data: $form.serialize!
-				xhr-fields: {+with-credentials}}
+				data: $form.serialize!}
 			.done ->
 				location.href = "#{config.url}/welcome"
 
@@ -80,8 +78,7 @@ function init-register-form
 					show-message '確認中...' null
 					$.ajax "#{config.web-api-url}/screenname-available" {
 						data: {'screen-name': sn}
-						data-type: \json
-						xhr-fields: {+with-credentials}}
+						data-type: \json}
 					.done (result) ->
 						if result.available
 							show-message 'このIDは使用できますっ！' yes

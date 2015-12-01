@@ -96,8 +96,7 @@ $ ->
 					data:
 						limit: 20
 						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor
-					data-type: \text
-					xhr-fields: {+with-credentials}}
+					data-type: \text}
 				.done (data) ->
 					me.data \loading no
 					$posts = $ data
@@ -116,7 +115,6 @@ $ ->
 				$.ajax config.web-api-url + '/users/unfollow' {
 					data: { 'user-id': $user.attr \data-user-id }
 					data-type: \json
-					xhr-fields: {+with-credentials}
 				} .done ->
 					$button.attr \disabled no
 					$button.remove-class \following
@@ -129,7 +127,6 @@ $ ->
 				$.ajax config.web-api-url + '/users/follow' {
 					data: { 'user-id': $user.attr \data-user-id }
 					data-type: \json
-					xhr-fields: {+with-credentials}
 				} .done ->
 					$button.attr \disabled no
 					$button.remove-class \notFollowing
@@ -141,9 +138,7 @@ $ ->
 
 	# 通知読み込み
 	$.ajax "#{config.web-api-url}/web/sites/desktop/home/notifications" {
-		data: {}
-		data-type: \text
-		xhr-fields: {+with-credentials}}
+		data-type: \text}
 	.done (data) ->
 		if data != ''
 			$notifications = $ data
@@ -154,9 +149,7 @@ $ ->
 
 	# recommendation users
 	$.ajax "#{config.web-api-url}/web/sites/desktop/home/recommendation-users" {
-		data: {}
-		data-type: \text
-		xhr-fields: {+with-credentials}}
+		data-type: \text}
 	.done (data) ->
 		if data != ''
 			$users = $ data

@@ -136,10 +136,7 @@ window.STATUS_CORE = {}
 					..attr \value 'Replying...'
 				$.ajax "#{config.web-api-url}/web/status/reply-detail-one" {
 					data: new FormData $form.0
-					-processData
-					-contentType
-					data-type: \text
-					xhr-fields: {+with-credentials}}
+					data-type: \text}
 				.done (html) ->
 					$reply = $ html
 					$submit-button.attr \disabled off
@@ -183,8 +180,7 @@ window.STATUS_CORE = {}
 					data: {
 						'status-id': $status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-id
 					}
-					data-type: \text
-					xhr-fields: {+with-credentials}}
+					data-type: \text}
 				.done (data) ->
 					$button.remove!
 					$statuses = $ data
@@ -236,8 +232,7 @@ window.STATUS_CORE = {}
 				if check-favorited!
 					$status.attr \data-is-favorited \false
 					$.ajax "#{config.web-api-url}/posts/unlike" {
-						data: {'post-id': $status.attr \data-id}
-						xhr-fields: {+with-credentials}}
+						data: {'post-id': $status.attr \data-id}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -246,8 +241,7 @@ window.STATUS_CORE = {}
 				else
 					$status.attr \data-is-favorited \true
 					$.ajax "#{config.web-api-url}/posts/like" {
-						data: {'post-id': $status.attr \data-id}
-						xhr-fields: {+with-credentials}}
+						data: {'post-id': $status.attr \data-id}}
 					.done ->
 						$button.attr \disabled off
 					.fail ->
@@ -293,8 +287,7 @@ window.STATUS_CORE = {}
 					data:
 						'post-id': $status.attr \data-id
 						text: $status.find '.repost-form > form > .comment-form > input[name=text]' .val!
-					data-type: \json
-					xhr-fields: {+with-credentials}}
+					data-type: \json}
 				.done ->
 					$submit-button
 						..attr \disabled off

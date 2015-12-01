@@ -11,8 +11,7 @@ module.exports = (post-type, $content) ->
 			$.ajax "#{config.web-api-url}/web/analyze-url" {
 				data:
 					'url': $link.attr \href
-				data-type: \text
-				xhr-fields: {+with-credentials}}
+				data-type: \text}
 			.done (html) ->
 				$ html .append-to $content .hide!.fade-in 200ms
 
