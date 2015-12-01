@@ -775,6 +775,104 @@
 						}
 					}
 				}
+
+				> .footer {
+					display: block;
+					margin-left: 112px;
+
+					&:after {
+						content: "";
+						display: block;
+						clear: both;
+					}
+
+					> .likers {
+						display: block;
+						float: left;
+						margin: 0;
+						padding: 0;
+						list-style: none;
+
+						> .liker {
+							display: inline-block;
+							margin: 6px 2px;
+							padding: 0;
+
+							> .avatar-anchor {
+								display: inline-block;
+
+								> .avatar {
+									vertical-align: bottom;
+									width: 20px;
+									height: 20px;
+									border-radius: 4px;
+								}
+							}
+						}
+					}
+
+					> .actions {
+						display: block;
+						float: right;
+						margin: 0;
+						padding: 0;
+						list-style: none;
+
+						> .reply, > .repost, > .like, > .delete, > .pin {
+							display: inline-block;
+							margin: 0;
+							padding: 0 16px;
+							min-width: 2.5em;
+							opacity: 0.5;
+
+							> button {
+								-webkit-appearance: none;
+								-moz-appearance: none;
+								appearance: none;
+								display: inline-block;
+								box-sizing: border-box;
+								margin: 0;
+								padding: 8px;
+								cursor: pointer;
+								font-size: 1em;
+								font-weight: normal;
+								text-decoration: none;
+								color: #d8c5ad;
+								outline: none;
+								border: none;
+								border-radius: 0;
+								box-shadow: none;
+								background: transparent;
+
+								&:disabled {
+									opacity: 0.5;
+								}
+
+								&:hover {
+									color: rgba(0, 0, 0, 0.7);
+								}
+
+								&:active {
+									color: rgba(0, 0, 0, 0.9);
+								}
+
+								> i {
+									cursor: pointer;
+								}
+							}
+
+							> a {
+								color: rgba(0, 0, 0, 0.2);
+								text-decoration: none;
+								font-size: 0.8em;
+
+								&:hover {
+									text-decoration: underline;
+								}
+							}
+						}
+					}
+				}
 			}
 
 			> .reply-form {
@@ -986,104 +1084,6 @@
 
 					> input[type=file] {
 						display: none;
-					}
-				}
-			}
-		}
-
-		> .footer {
-			display: block;
-			margin-left: 112px;
-
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
-
-			> .likers {
-				display: block;
-				float: left;
-				margin: 0;
-				padding: 0;
-				list-style: none;
-
-				> .liker {
-					display: inline-block;
-					margin: 6px 2px;
-					padding: 0;
-
-					> .avatar-anchor {
-						display: inline-block;
-
-						> .avatar {
-							vertical-align: bottom;
-							width: 20px;
-							height: 20px;
-							border-radius: 4px;
-						}
-					}
-				}
-			}
-
-			> .actions {
-				display: block;
-				float: right;
-				margin: 0;
-				padding: 0;
-				list-style: none;
-
-				> .reply, > .repost, > .like, > .delete, > .pin {
-					display: inline-block;
-					margin: 0;
-					padding: 0 16px;
-					min-width: 2.5em;
-					opacity: 0.5;
-
-					> button {
-						-webkit-appearance: none;
-						-moz-appearance: none;
-						appearance: none;
-						display: inline-block;
-						box-sizing: border-box;
-						margin: 0;
-						padding: 8px;
-						cursor: pointer;
-						font-size: 1em;
-						font-weight: normal;
-						text-decoration: none;
-						color: #d8c5ad;
-						outline: none;
-						border: none;
-						border-radius: 0;
-						box-shadow: none;
-						background: transparent;
-
-						&:disabled {
-							opacity: 0.5;
-						}
-
-						&:hover {
-							color: rgba(0, 0, 0, 0.7);
-						}
-
-						&:active {
-							color: rgba(0, 0, 0, 0.9);
-						}
-
-						> i {
-							cursor: pointer;
-						}
-					}
-
-					> a {
-						color: rgba(0, 0, 0, 0.2);
-						text-decoration: none;
-						font-size: 0.8em;
-
-						&:hover {
-							text-decoration: underline;
-						}
 					}
 				}
 			}
