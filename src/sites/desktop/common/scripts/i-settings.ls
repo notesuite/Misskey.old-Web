@@ -25,7 +25,7 @@ module.exports = ($form) ->
 				'name': $form.find '.profile.name' .val!
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$submit-button.attr \value 'Updated'
+			$submit-button.text 'Updated'
 			$submit-button.attr \disabled off
 		.fail (data) ->
 			$submit-button.attr \disabled off
@@ -104,6 +104,10 @@ module.exports = ($form) ->
 				$.ajax "#{config.web-api-url}/web/refresh-session" {
 					type: \post
 					xhr-fields: {+with-credentials}}
+
+				#$ \body .find \img ->
+				#	$img = $ @
+				#	if ($img.attr \src) ==
 
 				$modal-ok = $ '<button>おｋ</button>'
 				dialog-close = show-modal-dialog do

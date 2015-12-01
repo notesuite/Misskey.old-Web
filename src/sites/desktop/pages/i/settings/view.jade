@@ -56,25 +56,25 @@ block body
 						i.fa.fa-user
 						| Name
 					div.content
-						input.name(name='name', type='text', value=me.name, placeholder=me.name, required)
+						input.profile.name(name='name', type='text', value=me.name, placeholder=me.name, required)
 				label
 					h2.title
 						i.fa.fa-comment
 						| Comment
 					div.content
-						input.comment(name='comment', type='text', value=me.comment, placeholder=me.comment)
+						input.profile.comment(name='comment', type='text', value=me.comment, placeholder=me.comment)
 				label
 					h2.title
 						i.fa.fa-globe
 						| Website URL
 					div.content
-						input.url(name='url', type='url', value=me.url, placeholder=me.url)
+						input.profile.url(name='url', type='url', value=me.url, placeholder=me.url)
 				label
 					h2.title
 						i.fa.fa-map-marker
 						| Location
 					div.content
-						input.location(name='location', type='text', value=me.location, placeholder=me.location)
+						input.profile.location(name='location', type='text', value=me.location, placeholder=me.location)
 				button.profile.submit-button(type='submit')
 					i.fa.fa-check
 					| Update
