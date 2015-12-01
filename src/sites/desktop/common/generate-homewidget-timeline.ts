@@ -22,12 +22,12 @@ export default function generateHomewidgetTimeline(me: User, tlsource: string): 
 	return new Promise<string>((resolve, reject) => {
 		switch (tlsource) {
 			case 'home':
-				requestApi('GET', 'posts/timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
+				requestApi('posts/timeline', { 'limit': 10 }, me.id).then((tl: Post[]) => {
 					resolve(compile(tl));
 				}, reject);
 				break;
 			case 'mentions':
-				requestApi('GET', 'posts/mentions', { 'limit': 10 }, me.id).then((tl: Post[]) => {
+				requestApi('posts/mentions', { 'limit': 10 }, me.id).then((tl: Post[]) => {
 					resolve(compile(tl));
 				}, reject);
 				break;

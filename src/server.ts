@@ -116,7 +116,7 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 			req.renderData.me = user;
 			next();
 		} else {
-			requestApi('GET', 'account/show', {}, userId).then((user: User) => {
+			requestApi('account/show', {}, userId).then((user: User) => {
 				req.me = user;
 				req.renderData.me = user;
 				req.session.user = user;

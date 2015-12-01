@@ -12,14 +12,14 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	const post: any = req.data.post;
 	const me: User = req.me;
 
-	requestApi('GET', 'posts/replies', {
+	requestApi('posts/replies', {
 		'post-id': post.id
 	}, me !== null ? me.id : null).then((replies: Post[]) => {
 		Promise.all(replies.map((reply: any) => {
 			return new Promise<Object>((resolve, reject) => {
-				requestApi('GET', 'posts/replies', {
+				requestApi('posts/replies', {
 					'post-id': reply.id
-				}, me !== null ? me.id : null).then((repliesOfReply: Post[]) => {
+				}, me).then((repliesOfReply: Post[]) => {
 					reply.replies = repliesOfReply;
 					resolve(reply);
 				});

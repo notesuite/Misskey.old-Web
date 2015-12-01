@@ -63,7 +63,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 							});
 
 							// メッセージの詳細を取得
-							requestApi('GET', 'talks/show', {
+							requestApi('talks/show', {
 								'message-id': messageId
 							}, socket.user.id).then((message: Object) => {
 								// HTMLにしてクライアントに送信
@@ -81,7 +81,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 				});
 			});
 			socket.on('read', (id: string) => {
-				requestApi('POST', 'talks/read', {
+				requestApi('talks/read', {
 					'message-id': id
 				}, socket.user.id);
 			});

@@ -13,7 +13,7 @@ export default function reply(req: express.Request, res: express.Response): void
 	const photos: string = req.body['photos'];
 
 	if (photos !== undefined && photos !== null && photos !== '[]') {
-		requestApi('POST', 'posts/photo', req.body, req.user).then((reply: Object) => {
+		requestApi('posts/photo', req.body, req.user).then((reply: Object) => {
 			res.send(compiler({
 				post: reply,
 				me: req.user,
@@ -24,7 +24,7 @@ export default function reply(req: express.Request, res: express.Response): void
 			res.send(err);
 		});
 	} else {
-		requestApi('POST', 'posts/status', req.body, req.user).then((reply: Object) => {
+		requestApi('posts/status', req.body, req.user).then((reply: Object) => {
 			res.send(compiler({
 				post: reply,
 				me: req.user,

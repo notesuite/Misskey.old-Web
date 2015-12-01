@@ -10,7 +10,7 @@ export default function timeline(req: express.Request, res: express.Response): v
 	const compiler: (locals?: any) => string = jade.compileFile(
 		`${__dirname}/../../../../../../sites/desktop/common/views/post/smart/posts.jade`);
 
-	requestApi('GET', 'posts/timeline', req.query, req.user).then((tl: Object[]) => {
+	requestApi('posts/timeline', req.query, req.user).then((tl: Object[]) => {
 		res.send(compiler({
 			posts: tl,
 			me: req.user,

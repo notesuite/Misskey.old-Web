@@ -14,7 +14,7 @@ export default function updateavatar(req: express.Request, res: express.Response
 	const trimH: number = Number(req.body['trim-h']);
 
 	if (trimX >= 0 && trimY >= 0 && trimW > 0 && trimH > 0) {
-		requestApi('GET', 'album/files/show', {
+		requestApi('album/files/show', {
 			'file-id': avaterFileId
 		}, req.user).then((file: any) => {
 			if (file.dataSize > ((1024 * 1024) * 10)) {
@@ -35,7 +35,7 @@ export default function updateavatar(req: express.Request, res: express.Response
 						console.error(err);
 						return res.status(500).send('something-happened');
 					}
-					requestApi('POST', 'album/files/upload', {
+					requestApi('album/files/upload', {
 						file: {
 							value: buffer,
 							options: {
@@ -44,7 +44,7 @@ export default function updateavatar(req: express.Request, res: express.Response
 							}
 						}
 					}, req.user, true).then((albumFile: any) => {
-						requestApi('PUT', 'account/update-avatar', {
+						requestApi('account/update-avatar', {
 							'file-id': albumFile.id
 						}, req.user).then((me: Object) => {
 							res.send('success');
@@ -58,7 +58,7 @@ export default function updateavatar(req: express.Request, res: express.Response
 			});
 		});
 	} else {
-		requestApi('PUT', 'account/update-avatar', {
+		requestApi('account/update-avatar', {
 			'file-id': avaterFileId
 		}, req.user).then((me: Object) => {
 			res.send('success');

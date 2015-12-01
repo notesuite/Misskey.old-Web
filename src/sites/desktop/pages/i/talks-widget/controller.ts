@@ -5,7 +5,7 @@ import requestApi from '../../../../../utils/request-api';
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
 
-	requestApi('GET', 'talks/history', {}, req.me.id).then((messages: any[]) => {
+	requestApi('talks/history', {}, req.me.id).then((messages: any[]) => {
 		res.display({
 			messages: messages
 		});

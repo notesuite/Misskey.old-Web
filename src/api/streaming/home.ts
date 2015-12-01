@@ -56,7 +56,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 						});
 
 						// 投稿の詳細を取得
-						requestApi('GET', 'posts/show', {
+						requestApi('posts/show', {
 							'post-id': postId
 						}, socket.user.id).then((post: Object) => {
 							// HTMLにしてクライアントに送信
@@ -82,7 +82,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 						});
 
 						// 通知の詳細を取得
-						requestApi('GET', 'notifications/show', {
+						requestApi('notifications/show', {
 							'notification-id': notificationId
 						}, socket.user.id).then((notification: Object) => {
 							// HTMLにしてクライアントに送信

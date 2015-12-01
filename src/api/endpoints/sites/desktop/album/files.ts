@@ -4,7 +4,7 @@ import mapToHtml from '../../../../../utils/map-to-html';
 
 export default function file(req: express.Request, res: express.Response): void {
 	'use strict';
-	requestApi('GET', 'album/files/list', req.query, req.user).then((files: Object[]) => {
+	requestApi('album/files/list', req.query, req.user).then((files: Object[]) => {
 		res.send(mapToHtml(
 			`${__dirname}/../../../../../sites/desktop/common/views/album/file.jade`,
 			'file', files));

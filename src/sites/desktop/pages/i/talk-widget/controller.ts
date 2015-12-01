@@ -9,7 +9,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	// const me = req.me;
 	const otherparty = req.data.user;
 
-	requestApi('GET', 'talks/stream', {
+	requestApi('talks/stream', {
 		'otherparty-id': otherparty.id
 	}, req.me.id).then((messages: any[]) => {
 		res.display({

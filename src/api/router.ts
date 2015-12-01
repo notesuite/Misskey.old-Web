@@ -18,7 +18,7 @@ export default function router(app: express.Express): void {
 	app.post('/web/refresh-session', (req: express.Request, res: express.Response) => {
 		if (req.user !== null) {
 			const userId: string = (<any>req.session).userId;
-			requestApi('GET', 'account/show', {}, userId).then((me: Object) => {
+			requestApi('account/show', {}, userId).then((me: Object) => {
 				(<any>req.session).user = me;
 				req.session.save(() => {
 					res.json(me);
@@ -43,35 +43,8 @@ export default function router(app: express.Express): void {
 	app.get('/web/sites/desktop/home/posts/replies', require('./endpoints/sites/desktop/home/posts/replies').default);
 	app.post('/web/sites/desktop/post/reply', require('./endpoints/sites/desktop/post/reply').default);
 
-	app.get('*', (req: express.Request, res: express.Response) => {
-		requestApi('GET', req.path.substring(1), req.query, req.user).then((response: any) => {
-			res.json(response);
-		}, (err: any) => {
-			res.status(err.statusCode);
-			res.send(err.body);
-		});
-	});
-
 	app.post('*', (req: express.Request, res: express.Response) => {
-		requestApi('POST', req.path.substring(1), req.body, req.user).then((response: any) => {
-			res.json(response);
-		}, (err: any) => {
-			res.status(err.statusCode);
-			res.send(err.body);
-		});
-	});
-
-	app.put('*', (req: express.Request, res: express.Response) => {
-		requestApi('PUT', req.path.substring(1), req.body, req.user).then((response: any) => {
-			res.json(response);
-		}, (err: any) => {
-			res.status(err.statusCode);
-			res.send(err.body);
-		});
-	});
-
-	app.delete('*', (req: express.Request, res: express.Response) => {
-		requestApi('DELETE', req.path.substring(1), req.body, req.user).then((response: any) => {
+		requestApi(req.path.substring(1), req.body, req.user).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {
 			res.status(err.statusCode);

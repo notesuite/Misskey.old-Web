@@ -8,7 +8,7 @@ import config from '../../../../../../config';
 export default function replies(req: MisskeyExpressRequest, res: MisskeyExpressResponse): void {
 	'use strict';
 
-	requestApi('GET', 'posts/replies', req.query, req.session.userId).then((replies: Object[]) => {
+	requestApi('posts/replies', req.query, req.session.userId).then((replies: Object[]) => {
 		res.send(mapToHtml(
 			`${__dirname}/../../../../../../sites/desktop/common/views/post/smart/subPostRender.jade`,
 			'post',
