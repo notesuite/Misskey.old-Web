@@ -10,18 +10,11 @@ $ ->
 
 	timeline = new Timeline $ '#widget-timeline > .timeline'
 
-	/*
-	# オートセーブがあるなら復元
-	if $.cookie \post-autosave
-		$ '#post-form textarea' .val $.cookie \post-autosave
-	*/
-
 	socket = io.connect config.web-streaming-url + '/streaming/home'
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
 
 	socket.on \connect ->
-		console.log 'Connected'
 		$ 'body > .streaming-info' .remove!
 		$message = $ '<p class="streaming-info"><i class="fa fa-check"></i>ストリームに接続しました</p>'
 		$ \body .append $message
@@ -39,8 +32,6 @@ $ ->
 			$ \body .append $message
 
 	socket.on \notification (notification) ->
-		console.log \notification notification
-
 		$ '#widget-notifications .notification-empty' .remove!
 
 		$notification = ($ notification).hide!
@@ -51,8 +42,6 @@ $ ->
 		$ '#widget-timeline > .timeline > .empty' .remove!
 
 	socket.on \mention (post) ->
-		console.log \mention post
-
 		id = post.id
 		name = post.user.name
 		sn = post.user.screen-name

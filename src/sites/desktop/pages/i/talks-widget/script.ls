@@ -1,4 +1,5 @@
 $ = require 'jquery'
+require '../../../common/scripts/kronos.js'
 
 $ ->
 	$ '#search input' .bind \input ->
