@@ -13,23 +13,19 @@ module.exports = ($form) ->
 		$form.find '.nav > ul'
 		$form.find '.contents'
 
-	$form.find \.profile-form .submit (event) ->
-		event.prevent-default!
-		$form = $ @
-		$submit-button = $form.find '[type=submit]'
+	$form.find '.profile.submit-button' .click ->
+		$submit-button = $ @
 
 		$submit-button.attr \disabled on
-		$submit-button.attr \value '保存中...'
+		$submit-button.text 'Updating...'
 
-		$.ajax "#{config.web-api-url}/account/update" {
+		$.ajax "#{config.web-api-url}/account/update-name" {
 			type: \put
-			-process-data
-			-content-type
-			data: new FormData $form.0
-			data-type: \json
+			data:
+				'name': $form.find '.profile.name' .val!
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$submit-button.attr \value '保存しました'
+			$submit-button.attr \value 'Updated'
 			$submit-button.attr \disabled off
 		.fail (data) ->
 			$submit-button.attr \disabled off

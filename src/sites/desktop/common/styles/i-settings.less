@@ -154,104 +154,91 @@
 		}
 
 		.profile {
-			.public-profile {
-				margin: 16px 0;
-				border-top: solid 1px #eee;
+			margin: 16px 0;
+
+			.avatar {
+				.avatar {
+					display: block;
+					margin: 0 16px 0 0;
+					width: 80px;
+					height: 80px;
+					float: left;
+					border-radius: 4px;
+				}
+
+				.crop-form {
+					display: none;
+				}
+
+				> button {
+					margin: 4px;
+
+					> i {
+						margin-right: 0.5em;
+					}
+				}
+			}
+
+			label {
+				display: block;
+				padding: 12px 0;
+				clear: both;
 
 				&:first-child {
-					border-top: none;
+					padding: 0 0 16px 0;
 				}
 
-				&:after {
-					content: "";
-					display: block;
-					clear: both;
-				}
+				h2 {
+					margin: 0 0 8px 0;
+					font-size: 1em;
+					font-weight: bold;
+					color: #929C9B;
 
-				.avatar {
-					.avatar {
-						display: block;
-						margin: 0 16px 0 0;
-						width: 80px;
-						height: 80px;
-						float: left;
-						border-radius: 4px;
-					}
-
-					.crop-form {
-						display: none;
-					}
-
-					> button {
-						margin: 4px;
-
-						> i {
-							margin-right: 0.5em;
-						}
+					> i {
+						margin-right: 0.5em;
 					}
 				}
+			}
 
-				label {
-					display: block;
-					padding: 12px 0;
-					clear: both;
+			.submit-button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: inline-block;
+				box-sizing: border-box;
+				margin: 8px 0 0 0;
+				padding: 12px 20px;
+				line-height: 1.1em;
+				font-size: 1.1em;
+				font-weight: normal;
+				text-decoration: none;
+				color: #fff;
+				background: @themeColor;
+				outline: none;
+				border: none;
+				border-radius: 0;
+				box-shadow: none;
+				cursor: pointer;
+				transition: color 0.1s ease;
 
-					&:first-child {
-						padding: 0 0 16px 0;
-					}
-
-					h2 {
-						margin: 0 0 8px 0;
-						font-size: 1em;
-						font-weight: bold;
-						color: #929C9B;
-
-						> i {
-							margin-right: 0.5em;
-						}
-					}
+				* {
+					pointer-events: none;
 				}
 
-				.submit-button {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					display: inline-block;
-					box-sizing: border-box;
-					margin: 8px 0 0 0;
-					padding: 12px 20px;
-					line-height: 1.1em;
-					font-size: 1.1em;
-					font-weight: normal;
-					text-decoration: none;
+				i {
+					margin-right: 0.375em;
+				}
+
+
+				&:hover {
 					color: #fff;
-					background: @themeColor;
-					outline: none;
-					border: none;
-					border-radius: 0;
-					box-shadow: none;
-					cursor: pointer;
-					transition: color 0.1s ease;
+					background: lighten(@themeColor, 10%);
+				}
 
-					* {
-						pointer-events: none;
-					}
-
-					i {
-						margin-right: 0.375em;
-					}
-
-
-					&:hover {
-						color: #fff;
-						background: lighten(@themeColor, 10%);
-					}
-
-					&:active {
-						color: #fff;
-						background: darken(@themeColor, 10%);
-						transition: color 0s ease;
-					}
+				&:active {
+					color: #fff;
+					background: darken(@themeColor, 10%);
+					transition: color 0s ease;
 				}
 			}
 		}
