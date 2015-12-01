@@ -101,6 +101,7 @@ class Album
 
 	open: (opened-callback) ->
 		THIS = @
+		THIS.default-html-overflow-state = $ \html .css \overflow
 		$ \html .css \overflow \hidden
 		$ \#misskey-album .stop!
 		$ \#misskey-album-background .stop!
@@ -131,7 +132,7 @@ class Album
 
 	close: ->
 		THIS = @
-		$ \html .css \overflow ''
+		$ \html .css \overflow THIS.default-html-overflow-state
 		$ \#misskey-album-background .css \pointer-events \none
 		$ \#misskey-album-background .animate {
 			opacity: 0

@@ -2,6 +2,9 @@ $ = require 'jquery'
 require 'jquery.transit'
 
 module.exports = ($content, can-close = true, on-shown = null) ->
+	default-html-overflow-state = $ \html .css \overflow
+	$ \html .css \overflow \hidden
+
 	$container = $ '<div class="ui-modal-window-container" />'
 	$dialog = $ '<div class="ui-modal-window" />'
 	$dialog.append $content
@@ -44,6 +47,7 @@ module.exports = ($content, can-close = true, on-shown = null) ->
 		e.stop-immediate-propagation!
 
 	function close
+		$ \html .css \overflow default-html-overflow-state
 		$container.animate {
 			opacity: 0
 		} 100ms \linear -> $container.remove!
