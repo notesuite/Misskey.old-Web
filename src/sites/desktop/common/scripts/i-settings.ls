@@ -19,16 +19,47 @@ module.exports = ($form) ->
 		$submit-button.attr \disabled on
 		$submit-button.text 'Updating...'
 
-		$.ajax "#{config.web-api-url}/account/update-name" {
+		(data) <- $.ajax "#{config.web-api-url}/account/update-name" {
 			type: \put
 			data:
 				'name': $form.find '.profile.name' .val!
 			xhr-fields: {+with-credentials}}
-		.done (data) ->
-			$submit-button.text 'Updated'
-			$submit-button.attr \disabled off
-		.fail (data) ->
-			$submit-button.attr \disabled off
+		.done!
+
+		(data) <- $.ajax "#{config.web-api-url}/account/update-comment" {
+			type: \put
+			data:
+				'comment': $form.find '.profile.comment' .val!
+			xhr-fields: {+with-credentials}}
+		.done!
+
+		(data) <- $.ajax "#{config.web-api-url}/account/update-url" {
+			type: \put
+			data:
+				'url': $form.find '.profile.url' .val!
+			xhr-fields: {+with-credentials}}
+		.done!
+
+		(data) <- $.ajax "#{config.web-api-url}/account/update-location" {
+			type: \put
+			data:
+				'location': $form.find '.profile.location' .val!
+			xhr-fields: {+with-credentials}}
+		.done!
+
+		$submit-button.text 'Update'
+		$submit-button.attr \disabled off
+
+		$.ajax "#{config.web-api-url}/web/refresh-session" {
+			type: \post
+			xhr-fields: {+with-credentials}}
+
+		$modal-ok = $ '<button>おｋ</button>'
+		dialog-close = show-modal-dialog do
+			$ '<p><i class="fa fa-info-circle"></i>プロフィールを更新しました</p>'
+			'反映まで時間がかかる場合があります。'
+			[$modal-ok]
+		$modal-ok.click -> dialog-close!
 
 	$form.find '.avatar .select-from-album' .click ->
 		album.choose-file (files) ->
