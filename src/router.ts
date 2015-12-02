@@ -68,8 +68,8 @@ export default function router(app: express.Express): void {
 	});
 
 	app.get('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi('login', req.query).then((response: any) => {
-			const user: User = response.user;
+		requestApi('login', req.query).then((result: any) => {
+			const user: User = result;
 			req.session.userId = user.id;
 			req.session.save(() => {
 				res.redirect('/');
