@@ -109,7 +109,10 @@ class Album
 		$ \#misskey-album-background .stop!
 		$ \#misskey-album-container .remove!
 
-		html = album-compiler!
+		html = album-compiler {
+			config: CONFIG
+			me: ME
+		}
 
 		$ 'body' .append $ html
 		THIS.init!
@@ -168,6 +171,8 @@ class Album
 		THIS = @
 		$file = $ file-compiler {
 			file
+			config: CONFIG
+			me: ME
 		}
 		THIS.$album-files.append $file
 		THIS.init-contextmenu $file, ($file.find '> .context-menu'), ->

@@ -145,6 +145,8 @@ $ ->
 		if notifications != []
 			$notifications = $ notification-compiler {
 				notifications
+				config: CONFIG
+				me: ME
 			}
 			$notifications.append-to $ '#widget-notifications .notifications'
 		else
@@ -157,5 +159,7 @@ $ ->
 		if users != []
 			$users = $ recommendation-users-compiler {
 				users
+				config: CONFIG
+				me: ME
 			}
 			$users.append-to $ '#widget-recommendation-users'
