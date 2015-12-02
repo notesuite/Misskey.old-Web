@@ -44,7 +44,7 @@ export default function updateavatar(req: express.Request, res: express.Response
 							}
 						}
 					}, req.user, true).then((albumFile: any) => {
-						requestApi('account/update-avatar', {
+						requestApi('account/avatar/update', {
 							'file-id': albumFile.id
 						}, req.user).then((me: Object) => {
 							res.send('success');
@@ -58,7 +58,7 @@ export default function updateavatar(req: express.Request, res: express.Response
 			});
 		});
 	} else {
-		requestApi('account/update-avatar', {
+		requestApi('account/avatar/update', {
 			'file-id': avaterFileId
 		}, req.user).then((me: Object) => {
 			res.send('success');
