@@ -144,8 +144,6 @@ module.exports = ($form) ->
 			fd.append \app-id $app.attr \data-app-id
 
 			$.ajax "#{config.web-api-url}/account/remove-app" {
-				-process-data
-				-content-type
 				data: fd
 				data-type: \json}
 			.done (data) ->
