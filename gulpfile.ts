@@ -27,9 +27,9 @@ task('watch', ['build', 'lint'], () => {
 
 task('build', [
 	'build:ts',
+	'build:frontside-templates',
 	'build:frontside-scripts',
 	'build:frontside-styles',
-	'build:frontside-templates',
 	'build-copy'
 ]);
 
@@ -48,7 +48,15 @@ task('compile:frontside-scripts', () => {
 	).pipe(dest('./tmp/'));
 });
 
-task('build:frontside-scripts', ['compile:frontside-scripts'], done => {
+task('build:frontside-templates', () => {
+	return src('./src/sites/**/common/views/**/*.jade')
+		.pipe(jade({
+			client: true
+		}))
+		.pipe(dest('./tmp/'))
+});
+
+task('build:frontside-scripts', ['build:frontside-templates', 'compile:frontside-scripts'], done => {
 	glob('./tmp/**/*.js', (err: Error, files: string[]) => {
 		const tasks = files.map((entry: string) => {
 			return browserify({ entries: [entry] })
@@ -67,14 +75,6 @@ task('build:frontside-styles', () => {
 		.pipe(less())
 		.pipe(minifyCSS())
 		.pipe(dest('./built/resources'));
-});
-
-task('build:frontside-templates', () => {
-	return src('./src/sites/**/common/views/**/*.jade')
-		.pipe(jade({
-			client: true
-		}))
-		.pipe(dest('./built/resources'))
 });
 
 task('lint', () => {
