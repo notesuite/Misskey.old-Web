@@ -48,8 +48,12 @@ task('compile:frontside-scripts', () => {
 });
 
 task('copy:frontside-templates', () => {
-	return src('./src/sites/**/common/views/**/*.jade')
-		.pipe(dest('./tmp/'))
+	return es.merge(
+		src('./src/sites/**/common/views/**/*.jade')
+			.pipe(dest('./tmp/')),
+		src('./src/sites/common/**/*.jade')
+			.pipe(dest('./tmp/common'))
+	);
 });
 
 task('build:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-scripts'], done => {

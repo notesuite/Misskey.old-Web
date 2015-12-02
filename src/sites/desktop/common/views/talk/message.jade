@@ -1,5 +1,5 @@
 mixin message(message)
-	include ../../../../text-parser.jade
+	include ../../../../common/text-parser.jade
 	div(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
 			title= message.createdAt
 			data-id= message.id

@@ -1,5 +1,5 @@
 mixin content(post)
-	include ../../../../text-parser.jade
+	include ../../../../common/text-parser.jade
 	case post.type
 		when 'status'
 			div.text!= parse(post.text)
