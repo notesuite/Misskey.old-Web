@@ -23,9 +23,6 @@
 		background: #fffbfb;
 		border-bottom: solid 1px #F2EBE8;
 
-		&[data-is-repostpost='true'] {
-		}
-
 		&[data-is-liked='true'] {
 			> .footer > .actions > .like {
 				opacity: 1;
@@ -84,73 +81,6 @@
 			bottom: 8px;
 			left: 50%;
 			color: #EBE0D4;
-		}
-
-		> .repost-information {
-			padding: 8px 32px;
-			color: #57bb00;
-
-			> .info {
-				margin: 0;
-				padding: 0;
-
-				> .avatar-anchor {
-					display: block;
-					float: left;
-
-					> .avatar {
-						vertical-align: middle;
-						min-width: 28px;
-						min-height: 28px;
-						max-width: 28px;
-						max-height: 28px;
-						margin: 0 8px 0 0;
-						border-radius: 6px;
-						transition: all 0.1s ease;
-					}
-				}
-
-				> .text {
-					display: block;
-					line-height: 28px;
-
-					i {
-						margin-right: 4px;
-					}
-
-					.name {
-						font-weight: bold;
-					}
-				}
-			}
-
-			> article {
-				position: relative;
-				padding: 8px 12px;
-				background: #fff;
-				background-clip: padding-box;
-				border-top: solid 4px transparent;
-
-				&:before {
-					content: "";
-					display: block;
-					position: absolute;
-					top: -16px;
-					left: 4px;
-					font-size: 0;
-					line-height: 0;
-					border-top: solid 8px transparent;
-					border-right: solid 8px transparent;
-					border-bottom: solid 8px #fff;
-					border-left: solid 8px transparent;
-				}
-
-				> .text {
-					> p {
-						margin: 0;
-					}
-				}
-			}
 		}
 
 		> .reply-source {
@@ -460,7 +390,6 @@
 
 		> .footer {
 			display: block;
-			margin-left: 112px;
 
 			&:after {
 				content: "";
@@ -902,6 +831,55 @@
 			}
 		}
 	}
+
+	.post.repost {
+		background: #F7FFE0;
+
+		> .repost-information {
+			padding: 12px 8px 0 16px;
+			color: #57bb00;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> .info {
+				margin: 0;
+				padding: 0;
+
+				> .avatar-anchor {
+					display: block;
+					float: left;
+
+					> .avatar {
+						vertical-align: middle;
+						min-width: 28px;
+						min-height: 28px;
+						max-width: 28px;
+						max-height: 28px;
+						margin: 0 8px 0 0;
+						border-radius: 6px;
+						transition: all 0.1s ease;
+					}
+				}
+
+				> .text {
+					display: block;
+					line-height: 28px;
+
+					i {
+						margin-right: 4px;
+					}
+
+					.name {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
 }
 
 .timeline-sub-article {
@@ -1098,7 +1076,7 @@
 	padding: 0;
 	line-height: 3.25em;
 	font-size: 1em;
-	color: #8c615a;
+	color: #A98C76;
 	cursor: pointer;
 	background: #fffbfb;
 	outline: none;
