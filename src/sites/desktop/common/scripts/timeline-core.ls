@@ -20,7 +20,7 @@ class Timeline
 	init-post: (post) ->
 		THIS = @
 
-		$post = $ postCompiler post {
+		$post = $ postCompiler {
 			config,
 			post
 		}
