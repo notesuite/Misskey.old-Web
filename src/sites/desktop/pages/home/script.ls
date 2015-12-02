@@ -1,7 +1,7 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery'
 Timeline = require '../../common/scripts/timeline-core.js'
-notification-compiler = require '../../common/views/notification/smart/render.jade'
+notification-compiler = require '../../common/views/notification/smart/items.jade'
 recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
 
 $ ->
@@ -144,7 +144,7 @@ $ ->
 	.done (notifications) ->
 		if notifications != []
 			$notifications = $ notification-compiler {
-				notifications
+				items: notifications
 				config: CONFIG
 				me: ME
 			}
