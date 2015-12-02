@@ -310,8 +310,14 @@ class Timeline
 		$post.prepend-to THIS.tl .hide!.slide-down 200ms
 		THIS.refresh-my-posts!
 
-	add-last: ($post) ->
+	add-last: (post) ->
 		THIS = @
+
+		$post = $ post-compiler {
+			config,
+			me,
+			post
+		}
 
 		THIS.init-post $post
 		$post.append-to THIS.tl

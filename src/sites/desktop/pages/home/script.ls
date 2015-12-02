@@ -1,7 +1,8 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery'
 Timeline = require '../../common/scripts/timeline-core.js'
-notification-compiler = require '../../common/views/notification/smart/items.jade'
+notification-compiler = require '../../common/views/notification/smart/render.jade'
+notifications-compiler = require '../../common/views/notification/smart/items.jade'
 recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
 
 $ ->
@@ -36,7 +37,11 @@ $ ->
 	socket.on \notification (notification) ->
 		$ '#widget-notifications .notification-empty' .remove!
 
-		$notification = ($ notification).hide!
+		$notification = $ notification-compiler {
+			notification
+			config: CONFIG
+			me: ME
+		} .hide!
 		$notification.prepend-to ($ '#widget-notifications .notifications') .show 200
 
 	socket.on \post (post) ->
@@ -141,7 +146,7 @@ $ ->
 	$.ajax "#{config.web-api-url}/notifications/timeline"
 	.done (notifications) ->
 		if notifications != []
-			$notifications = $ notification-compiler {
+			$notifications = $ notifications-compiler {
 				items: notifications
 				config: CONFIG
 				me: ME
