@@ -29,7 +29,7 @@ export default function router(app: express.Express): void {
 
 	app.post('/web/url/analyze', require('./endpoints/url/analyze').default);
 	app.post('/web/avatar/update', require('./endpoints/avatar/update').default);
-	app.post('/web/home-layout/upadate', require('./endpoints/home-layout/update').default);
+	app.post('/web/home-layout/update', require('./endpoints/home-layout/update').default);
 	app.post('/web/album/upload',
 		upload.single('file'),
 		require('./endpoints/album/upload').default);
