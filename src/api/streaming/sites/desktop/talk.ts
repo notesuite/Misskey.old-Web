@@ -1,8 +1,6 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
-const jade: any = require('jade');
-import parsePostText from '../../../../utils/parse-post-text';
 import requestApi from '../../../../utils/request-api';
 import config from '../../../../config';
 
@@ -55,24 +53,12 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 							// メッセージID
 							const messageId: any = content.value.id;
 
-							// メッセージのHTMLコンパイラ
-							const compiler: any = jade.compileFile(
-								`${__dirname}/../../../../sites/desktop/common/views/talk/render.jade`, {
-									filename: 'jade',
-									cache: true
-							});
-
 							// メッセージの詳細を取得
 							requestApi('talks/show', {
 								'message-id': messageId
 							}, socket.user.id).then((message: Object) => {
 								// HTMLにしてクライアントに送信
-								socket.emit(content.type, compiler({
-									parsePostText: parsePostText,
-									message: message,
-									me: socket.user,
-									config: config.publicConfig
-								}));
+								socket.emit(content.type, message);
 							});
 							break;
 						default:

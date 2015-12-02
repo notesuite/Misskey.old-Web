@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import * as express from 'express';
-const jade: any = require('jade');
 
-import requestApi from '../../../../../utils/request-api';
+import requestApi from '../../../utils/request-api';
 
 export default function upload(req: express.Request, res: express.Response): void {
 	'use strict';
@@ -17,11 +16,7 @@ export default function upload(req: express.Request, res: express.Response): voi
 	};
 	fs.unlink(file.path);
 	requestApi('album/files/upload', data, req.user, true).then((albumFile: Object) => {
-		const compiler: (locals?: any) => string = jade.compileFile(
-			`${__dirname}/../../../../../sites/desktop/common/views/album/file.jade`);
-		res.send(compiler({
-			file: albumFile
-		}));
+		res.send(albumFile);
 	}, (err: any) => {
 		console.error(err);
 		res.status(500).send('something-happened');

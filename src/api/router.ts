@@ -27,21 +27,13 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.post('/web/analyze-url', require('./endpoints/analyze-url').default);
-	app.post('/web/sites/desktop/avatar/update', require('./endpoints/sites/desktop/avatar/update').default);
-	app.post('/web/sites/desktop/home-layout/upadate', require('./endpoints/sites/desktop/home-layout/update').default);
-	app.post('/web/sites/desktop/album/open', require('./endpoints/sites/desktop/album/open').default);
-	app.post('/web/sites/desktop/album/files', require('./endpoints/sites/desktop/album/files').default);
-	app.post('/web/sites/desktop/album/upload',
+	app.post('/web/url/analyze', require('./endpoints/url/analyze').default);
+	app.post('/web/avatar/update', require('./endpoints/avatar/update').default);
+	app.post('/web/home-layout/upadate', require('./endpoints/home-layout/update').default);
+	app.post('/web/album/upload',
 		upload.single('file'),
-		require('./endpoints/sites/desktop/album/upload').default);
-	app.post('/web/sites/desktop/home/notifications', require('./endpoints/sites/desktop/home/notifications').default);
-	app.post('/web/sites/desktop/home/recommendation-users', require('./endpoints/sites/desktop/home/recommendation-users').default);
-	app.post('/web/sites/desktop/home/posts/reply', require('./endpoints/sites/desktop/home/posts/reply').default);
-	app.post('/web/sites/desktop/home/posts/timeline', require('./endpoints/sites/desktop/home/posts/timeline').default);
-	app.post('/web/sites/desktop/home/posts/talk', require('./endpoints/sites/desktop/home/posts/talk').default);
-	app.post('/web/sites/desktop/home/posts/replies', require('./endpoints/sites/desktop/home/posts/replies').default);
-	app.post('/web/sites/desktop/post/reply', require('./endpoints/sites/desktop/post/reply').default);
+		require('./endpoints/album/upload').default);
+	app.post('/web/posts/reply', require('./endpoints/posts/reply').default);
 
 	app.post('*', (req: express.Request, res: express.Response) => {
 		requestApi(req.path.substring(1), req.body, req.user).then((response: any) => {

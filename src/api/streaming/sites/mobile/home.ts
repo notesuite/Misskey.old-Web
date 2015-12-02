@@ -1,8 +1,6 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
-const jade: any = require('jade');
-import parsePostText from '../../../../utils/parse-post-text';
 import requestApi from '../../../../utils/request-api';
 import config from '../../../../config';
 
@@ -48,24 +46,12 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 						// 投稿ID
 						const postId: any = content.value.id;
 
-						// 投稿のHTMLコンパイラ
-						const compiler: any = jade.compileFile(
-							`${__dirname}/../../../../sites/mobile/common/views/post/smart/render.jade`, {
-								filename: 'jade',
-								cache: true
-						});
-
 						// 投稿の詳細を取得
 						requestApi('posts/show', {
 							'post-id': postId
 						}, socket.user.id).then((post: Object) => {
 							// HTMLにしてクライアントに送信
-							socket.emit(content.type, compiler({
-								parsePostText: parsePostText,
-								post: post,
-								me: socket.user,
-								config: config.publicConfig
-							}));
+							socket.emit(content.type, post);
 						});
 						break;
 
@@ -74,23 +60,12 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 						// 通知ID
 						const notificationId: any = content.value.id;
 
-						// 通知のHTMLコンパイラ
-						const notificationCompiler: any = jade.compileFile(
-							`${__dirname}/../../../../sites/mobile/common/views/notification/smart/render.jade`, {
-								filename: 'jade',
-								cache: true
-						});
-
 						// 通知の詳細を取得
 						requestApi('notifications/show', {
 							'notification-id': notificationId
 						}, socket.user.id).then((notification: Object) => {
 							// HTMLにしてクライアントに送信
-							socket.emit(content.type, notificationCompiler({
-								notification: notification,
-								me: socket.user,
-								config: config.publicConfig
-							}));
+							socket.emit(content.type, notification);
 						});
 						break;
 					default:
