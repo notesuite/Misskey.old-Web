@@ -1,12 +1,8 @@
-extends ../layout
-include ../lib/post/smart/post
+extends ../../layout
+include ../../common/views/post/smart/post
 
 block title
 	| Misskey
-
-block assets
-	link(rel='stylesheet', href='/resources/mobile/styles/page/home.css')
-	script(src='/resources/mobile/scripts/page/home.js')
 
 block header
 	i.fa.fa-home
