@@ -1,9 +1,5 @@
-include ../../../../text-parser.jade
-
-- console.log('aaaaaaaaaaaa');
-- console.log(parse);
-
 mixin content(post)
+	include ../../../../text-parser.jade
 	case post.type
 		when 'status'
 			div.text!= parse(post.text)
