@@ -107,7 +107,6 @@ class Album
 		$ \#misskey-album-background .stop!
 		$ \#misskey-album-container .remove!
 		$.ajax "#{config.web-api-url}/web/sites/desktop/album/open" {
-			req.payload
 			data-type: \text}
 		.done (html) ->
 			$ 'body' .append $ html

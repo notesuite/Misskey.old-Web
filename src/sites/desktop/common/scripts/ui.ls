@@ -598,6 +598,7 @@ $ ->
 
 	$ \#misskey-main-header-i-settings-anchor .click ->
 		$.ajax config.url + '/i/settings' {
+			type: \get
 			data-type: \html}
 		.done (data) ->
 			$dialog = $ '<div id="misskey-i-settings-form" />'
