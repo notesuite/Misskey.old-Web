@@ -1,6 +1,8 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery'
 Timeline = require '../../common/scripts/timeline-core.js'
+notification-compiler = require '../../common/views/notification/smart/render.jade'
+recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
 
 $ ->
 	try
@@ -138,20 +140,22 @@ $ ->
 					$button.attr \disabled no
 
 	# 通知読み込み
-	$.ajax "#{config.web-api-url}/web/sites/desktop/home/notifications" {
-		data-type: \text}
-	.done (data) ->
-		if data != ''
-			$notifications = $ data
+	$.ajax "#{config.web-api-url}/notifications/timeline"
+	.done (notifications) ->
+		if notifications != []
+			$notifications = $ notification-compiler {
+				notifications
+			}
 			$notifications.append-to $ '#widget-notifications .notifications'
 		else
 			$info = $ '<p class="notifications-empty">通知はありません</p>'
 			$info.append-to $ '#widget-notifications'
 
 	# recommendation users
-	$.ajax "#{config.web-api-url}/web/sites/desktop/home/recommendation-users" {
-		data-type: \text}
-	.done (data) ->
-		if data != ''
-			$users = $ data
+	$.ajax "#{config.web-api-url}/users/recommendations"
+	.done (users) ->
+		if users != []
+			$users = $ recommendation-users-compiler {
+				users
+			}
 			$users.append-to $ '#widget-recommendation-users'

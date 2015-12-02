@@ -1,5 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
+album-compiler = require '../views/album.jade'
+file-compiler = require '../views/album/file.jade'
 
 class Album
 	init: ->
@@ -106,27 +108,27 @@ class Album
 		$ \#misskey-album .stop!
 		$ \#misskey-album-background .stop!
 		$ \#misskey-album-container .remove!
-		$.ajax "#{config.web-api-url}/web/sites/desktop/album/open" {
-			data-type: \text}
-		.done (html) ->
-			$ 'body' .append $ html
-			THIS.init!
-			opened-callback!
-			$ \#misskey-album-background .animate {
-				opacity: 1
-			} 100ms \linear
 
-			$ \#misskey-album .css {
-				transform: 'scale(1.2)'
-				opacity: 0
-			}
-			$ \#misskey-album .transition {
-				opacity: \1
-				scale: \1
-			} 1000ms 'cubic-bezier(0, 1, 0, 1)'
+		html = album-compiler!
 
-			$ \#misskey-album-background .click ->
-				THIS.close!
+		$ 'body' .append $ html
+		THIS.init!
+		opened-callback!
+		$ \#misskey-album-background .animate {
+			opacity: 1
+		} 100ms \linear
+
+		$ \#misskey-album .css {
+			transform: 'scale(1.2)'
+			opacity: 0
+		}
+		$ \#misskey-album .transition {
+			opacity: \1
+			scale: \1
+		} 1000ms 'cubic-bezier(0, 1, 0, 1)'
+
+		$ \#misskey-album-background .click ->
+			THIS.close!
 
 	close: ->
 		THIS = @
@@ -162,8 +164,11 @@ class Album
 			cb [JSON.parse $file.attr \data-data]
 			THIS.close!
 
-	add-file: ($file) ->
+	add-file: (file) ->
 		THIS = @
+		$file = $ file-compiler {
+			file
+		}
 		THIS.$album-files.append $file
 		THIS.init-contextmenu $file, ($file.find '> .context-menu'), ->
 			$file.attr \data-selected \true
@@ -181,14 +186,11 @@ class Album
 
 	load-files: ->
 		THIS = @
-		$.ajax "#{config.web-api-url}/web/sites/desktop/album/files" {
-			data: {}
-			data-type: \text}
-		.done (html) ->
-			$files = $ html
+		$.ajax "#{config.web-api-url}/album/files/list"
+		.done (files) ->
 			THIS.$album-files.empty!
-			$files.each ->
-				THIS.add-file $ @
+			files.for-each (file) ->
+				THIS.add-file file
 		.fail ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
@@ -205,7 +207,6 @@ class Album
 			-process-data
 			-content-type
 			data: data
-			data-type: \text
 			xhr: ->
 				XHR = $.ajax-settings.xhr!
 				if XHR.upload
@@ -222,10 +223,10 @@ class Album
 					, false
 				XHR
 		}
-		.done (html) ->
+		.done (file) ->
 			current-location = if THIS.current-location == null then \null else THIS.current-location
 			if current-location == ($ html).attr \data-folder-id
-				THIS.add-file $ html
+				THIS.add-file file
 		.fail (data) ->
 			window.display-message 'アップロードに失敗しました。'
 

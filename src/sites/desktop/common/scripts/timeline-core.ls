@@ -2,7 +2,7 @@ $ = require 'jquery'
 Sortable = require 'Sortable'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
-postCompiler = require '../views/post/smart/render.jade'
+post-compiler = require '../views/post/smart/render.jade'
 Album = require './album.js'
 
 album = new Album
@@ -295,7 +295,7 @@ class Timeline
 	add: (post) ->
 		THIS = @
 
-		$post = $ postCompiler {
+		$post = $ post-compiler {
 			config,
 			me,
 			post
