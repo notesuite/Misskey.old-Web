@@ -15,6 +15,7 @@ const less = require('gulp-less');
 const minifyCSS = require('gulp-minify-css');
 const ls = require('gulp-livescript');
 const uglify = require('gulp-uglify');
+const jade = require('gulp-jade');
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
 	typescript: require('typescript')
@@ -28,6 +29,7 @@ task('build', [
 	'build:ts',
 	'build:frontside-scripts',
 	'build:frontside-styles',
+	'build:frontside-templates',
 	'build-copy'
 ]);
 
@@ -65,6 +67,14 @@ task('build:frontside-styles', () => {
 		.pipe(less())
 		.pipe(minifyCSS())
 		.pipe(dest('./built/resources'));
+});
+
+task('build:frontside-templates', () => {
+	return src('./src/sites/**/common/views/**/*.jade')
+		.pipe(jade({
+			client: true
+		}))
+		.pipe(dest('./built/resources'))
 });
 
 task('lint', () => {
