@@ -55,7 +55,7 @@ class Timeline
 			..find '> .footer > .actions > .reply > .reply-button' .click ->
 				reply-text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
 				if reply-text? and reply-text != ''
-					$.ajax "${config.web-api-url}/posts/status" {
+					$.ajax "#{config.web-api-url}/posts/status" {
 						data:
 							text: reply-text
 							'in-reply-to-post-id': post-id
