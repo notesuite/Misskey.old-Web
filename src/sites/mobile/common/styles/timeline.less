@@ -1087,38 +1087,31 @@
 	}
 }
 
-> .load-more {
+> .read-more {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 	display: block;
 	box-sizing: border-box;
-	margin: 0 0 0 auto;
+	width: 100%;
+	margin: 0;
 	padding: 0;
-	width: ~"calc(100% - 70px)";
-	height: 3em;
-	line-height: 3em;
-	font-size: 1.05em;
-	color: rgba(0, 0, 0, 0.7);
+	line-height: 3.25em;
+	font-size: 1em;
+	color: #8c615a;
 	cursor: pointer;
-	background: #fff;
+	background: #fffbfb;
 	outline: none;
 	border: none;
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 
-	&:hover {
-		background: #f8f8f8;
-		//color: @themeColor;
-	}
-
-	&:active {
-		background: #ddd;
-		//color: @themeColor;
-	}
-
 	&:disabled {
 		color: rgba(0, 0, 0, 0.2);
+	}
+
+	> i {
+		margin-right: 0.5em;
 	}
 }
 
