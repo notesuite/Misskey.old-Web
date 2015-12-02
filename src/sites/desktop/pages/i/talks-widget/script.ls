@@ -1,4 +1,5 @@
 $ = require 'jquery'
+require '../../../common/scripts/main.js'
 require '../../../common/scripts/kronos.js'
 
 $ ->
@@ -9,8 +10,8 @@ $ ->
 			$result.empty!
 		else
 			$.ajax "#{config.web-api-url}/users/search" {
-				data: {'query': $input .val!}
-				data-type: \json}
+				data:
+					'query': $input .val!}
 			.done (result) ->
 				$result.empty!
 				if (result.length > 0) && ($input .val! != '')
