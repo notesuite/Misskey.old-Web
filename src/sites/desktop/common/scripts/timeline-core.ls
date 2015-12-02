@@ -2,6 +2,7 @@ $ = require 'jquery'
 Sortable = require 'Sortable'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
+postCompiler = require '../views/post/smart/render.js'
 Album = require './album.js'
 
 album = new Album
@@ -16,8 +17,13 @@ class Timeline
 		THIS.posts.each ->
 			THIS.init-post $ @
 
-	init-post: ($post) ->
+	init-post: (post) ->
 		THIS = @
+
+		$post = $ postCompiler post {
+			config,
+			post
+		}
 
 		function check-liked
 			($post.attr \data-is-liked) == \true
