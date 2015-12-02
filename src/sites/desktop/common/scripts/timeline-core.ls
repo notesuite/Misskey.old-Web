@@ -2,7 +2,7 @@ $ = require 'jquery'
 Sortable = require 'Sortable'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
-postCompiler = require '../views/post/smart/render.js'
+postCompiler = require '../views/post/smart/render.jade'
 Album = require './album.js'
 
 album = new Album
@@ -17,13 +17,8 @@ class Timeline
 		THIS.posts.each ->
 			THIS.init-post $ @
 
-	init-post: (post) ->
+	init-post: ($post) ->
 		THIS = @
-
-		$post = $ postCompiler {
-			config,
-			post
-		}
 
 		function check-liked
 			($post.attr \data-is-liked) == \true
@@ -297,8 +292,14 @@ class Timeline
 
 		post-content-initializer post-type, $post.find '> .main > .content'
 
-	add: ($post) ->
+	add: (post) ->
 		THIS = @
+
+		$post = $ postCompiler {
+			config,
+			me,
+			post
+		}
 
 		new Audio '/resources/sounds/pop.mp3' .play!
 

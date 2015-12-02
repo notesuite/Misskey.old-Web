@@ -15,7 +15,6 @@ const less = require('gulp-less');
 const minifyCSS = require('gulp-minify-css');
 const ls = require('gulp-livescript');
 const uglify = require('gulp-uglify');
-const jade = require('gulp-jade');
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
 	typescript: require('typescript')
@@ -27,7 +26,7 @@ task('watch', ['build', 'lint'], () => {
 
 task('build', [
 	'build:ts',
-	'build:frontside-templates',
+	'copy:frontside-templates',
 	'build:frontside-scripts',
 	'build:frontside-styles',
 	'build-copy'
@@ -48,15 +47,12 @@ task('compile:frontside-scripts', () => {
 	).pipe(dest('./tmp/'));
 });
 
-task('build:frontside-templates', () => {
+task('copy:frontside-templates', () => {
 	return src('./src/sites/**/common/views/**/*.jade')
-		.pipe(jade({
-			client: true
-		}))
 		.pipe(dest('./tmp/'))
 });
 
-task('build:frontside-scripts', ['build:frontside-templates', 'compile:frontside-scripts'], done => {
+task('build:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-scripts'], done => {
 	glob('./tmp/**/*.js', (err: Error, files: string[]) => {
 		const tasks = files.map((entry: string) => {
 			return browserify({ entries: [entry] })
