@@ -95,16 +95,14 @@ $ ->
 		if current > $ document .height! - 32
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/timeline" {
+				$.ajax "#{config.web-api-url}/posts/timeline" {
 					data:
-						limit: 20
-						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor
-					data-type: \text}
-				.done (data) ->
+						limit: 10
+						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor}
+				.done (posts) ->
 					me.data \loading no
-					$posts = $ data
-					$posts.each ->
-						timeline.add-last $ @
+					posts.for-each (post) ->
+						timeline.add-last post
 				.fail (data) ->
 					me.data \loading no
 
