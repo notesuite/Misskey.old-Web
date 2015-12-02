@@ -2369,7 +2369,14 @@
 						color: contrast(@themeColor, #000, #fff, 70%);
 					}
 
-					> i {
+					> a {
+						text-decoration: none;
+						cursor: default;
+						color: inherit;
+						transition: none;
+					}
+
+					i {
 						width: 1em;
 						margin-right: 0.5em;
 						text-align: center;
@@ -2379,7 +2386,7 @@
 						}
 					}
 
-					> p {
+					p {
 						display: inline;
 						margin: 0;
 						margin-left: 1.5em;

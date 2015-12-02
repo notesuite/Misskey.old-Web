@@ -16,8 +16,9 @@ case file.type
 						p 開く
 				ul
 					li
-						i.fa.fa-download
-						p ダウンロード
+						a(href= file.url + '?download', download= file.name)
+							i.fa.fa-download
+							| ダウンロード
 				ul
 					li
 						i.fa.fa-i-cursor
@@ -49,8 +50,9 @@ case file.type
 						| 開く
 				ul
 					li
-						i.fa.fa-download
-						| ダウンロード
+						a(href= file.url + '?download', download= file.name)
+							i.fa.fa-download
+							| ダウンロード
 				ul
 					li
 						i.fa.fa-i-cursor
