@@ -1,5 +1,6 @@
 $ = require 'jquery'
 post-content-initializer = require './post-content-initializer.js'
+post-compiler = require '../views/post/smart/render.jade'
 
 class Timeline
 	($tl) ->
@@ -73,8 +74,14 @@ class Timeline
 
 		post-content-initializer post-type, $post.find '> .main > .content'
 
-	add: ($post) ->
+	add: (post) ->
 		THIS = @
+
+		$post = $ post-compiler {
+			post
+			config: CONFIG
+			me: ME
+		}
 
 		$recent-post = THIS.tl.children ':first-child'
 		if ($recent-post.attr \data-is-display-active) == \true
@@ -83,8 +90,14 @@ class Timeline
 		$post.prepend-to THIS.tl .hide!.slide-down 200ms
 		THIS.refresh-my-posts!
 
-	add-last: ($post) ->
+	add-last: (post) ->
 		THIS = @
+
+		$post = $ post-compiler {
+			post
+			config: CONFIG
+			me: ME
+		}
 
 		THIS.init-post $post
 		$post.append-to THIS.tl
