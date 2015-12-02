@@ -128,6 +128,6 @@ export default function router(app: express.Express): void {
 	// Error handling
 	app.use((err: any, req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		console.error(err);
-		callController(req, res, 'error');
+		callController(req, res, 'error', err);
 	});
 }

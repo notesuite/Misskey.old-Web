@@ -1,9 +1,14 @@
+include ../../../../text-parser.jade
+
+- console.log('aaaaaaaaaaaa');
+- console.log(parse);
+
 mixin content(post)
 	case post.type
 		when 'status'
-			div.text!= parsePostText(post.text, post.isPlain)
+			div.text!= parse(post.text)
 		when 'photo'
-			div.text!= parsePostText(post.text, post.isPlain)
+			div.text!= parse(post.text)
 			ol.photos
 				each photo in post.photos
 					li.photo

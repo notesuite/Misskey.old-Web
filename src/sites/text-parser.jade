@@ -1,0 +1,29 @@
+-
+	function escapeHtml(text) {
+		return text.replace(/&/g,'&amp;').replace(/>/g,'&gt;').replace(/</g,'&lt;');
+	}
+	
+	function parse(text) {
+		'use strict';
+		if (text === null) {
+			return null;
+		}
+		text = analyzeHashtags(analyzeMentions(escapeHtml(text).replace(/https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+/g, function(url) {
+			return '<a href="' + url + '" target="_blank" class="url">' + url + '</a>';
+		}))).replace(/(\r\n|\r|\n)/g, '<br>');
+		return text;
+	}
+
+	function analyzeMentions(text) {
+		'use strict';
+		return text.replace(/@([a-zA-Z0-9\-]+)/g, function(arg, screenName) {
+			return '<a href="' + config.url + '/' + screenName + '" class="mention">@' + screenName + '</a>';
+		});
+	}
+
+	function analyzeHashtags(text) {
+		'use strict';
+		return text.replace(/#(\S+)/g, function(arg, tag) {
+			return '<a href="' + config.url + '/search/hashtag:' + tag + '" class="hashtag">#' + tag + '</a>';
+		});
+	}
