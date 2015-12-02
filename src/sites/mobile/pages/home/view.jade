@@ -4,6 +4,9 @@ include ../../common/views/post/smart/post
 block title
 	| Misskey
 
+block assets
+	script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
+
 block header
 	i.fa.fa-home
 	| Home
