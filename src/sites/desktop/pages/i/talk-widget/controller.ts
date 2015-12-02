@@ -1,7 +1,6 @@
 import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
 import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
 import requestApi from '../../../../../utils/request-api';
-import parsePostText from '../../../../../utils/parse-post-text';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
@@ -14,8 +13,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	}, req.me.id).then((messages: any[]) => {
 		res.display({
 			otherparty: otherparty,
-			messages: messages.reverse(),
-			parsePostText: parsePostText
+			messages: messages.reverse()
 		});
 	});
 };

@@ -2,7 +2,6 @@ const jade: any = require('jade');
 
 import { User } from '../../../models/user';
 import { Post } from '../../../models/post';
-import parsePostText from '../../../utils/parse-post-text';
 import requestApi from '../../../utils/request-api';
 
 import config from '../../../config';
@@ -39,7 +38,6 @@ export default function generateHomewidgetTimeline(me: User, tlsource: string): 
 			return compiler({
 				posts: tl,
 				me: me,
-				parsePostText: parsePostText,
 				config: config.publicConfig
 			});
 		}

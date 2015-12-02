@@ -2,7 +2,6 @@ import { User } from '../../../../models/user';
 import { Post } from '../../../../models/post';
 import { MisskeyExpressRequest } from '../../../../misskey-express-request';
 import { MisskeyExpressResponse } from '../../../../misskey-express-response';
-import parsePostText from '../../../../utils/parse-post-text';
 import requestApi from '../../../../utils/request-api';
 
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
@@ -30,8 +29,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 				post: post,
 				likes: null,
 				reposts: null,
-				replies: transformedReplies,
-				parsePostText: parsePostText
+				replies: transformedReplies
 			});
 		});
 	});

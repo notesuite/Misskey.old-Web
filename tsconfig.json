@@ -26,7 +26,6 @@
 		"src/models/home-layout.ts",
 		"src/utils/request-api.ts",
 		"src/utils/map-to-html.ts",
-		"src/utils/parse-post-text.ts",
 		"src/utils/naming-worker-id.ts",
 		"src/api/server.ts",
 		"src/api/router.ts",
