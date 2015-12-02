@@ -14,7 +14,6 @@ mixin core(post, isRepost, repost)
 	- var userTitle = post.user.comment != null ? post.user.comment : '@' + post.user.screenName;
 	article.post(
 			class                   = isRepost ? 'repost ' + post.type : post.type
-			role                    = 'article'
 			lang                    = post.user.lang
 			title                   = post.createdAt
 			itemscope
@@ -41,12 +40,11 @@ mixin core(post, isRepost, repost)
 						a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= userTitle, rel='avatar')
 							img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
 						header.header
-							h3
-								a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
+							a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
 							if post.user.isVerified
 								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 							span.screen-name= '@' + post.user.screenName
-							a(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
+							a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
 								time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 						div.main(itemprop='articleBody')
 							+content(post)
@@ -75,8 +73,7 @@ mixin core(post, isRepost, repost)
 					img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
 			header.header
 				div.author(itemprop='author')
-					h2
-						a.user-name(href=config.url + '/' + post.user.screenName, rel='author')= post.user.name
+					a.user-name(href=config.url + '/' + post.user.screenName, rel='author')= post.user.name
 					if post.user.isVerified
 						img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 					span.screen-name= post.user.screenName

@@ -449,73 +449,6 @@
 			}
 		}
 
-		> .repost-information {
-			padding: 8px 32px;
-			color: #57bb00;
-
-			> .info {
-				margin: 0;
-				padding: 0;
-
-				> .avatar-anchor {
-					display: block;
-					float: left;
-
-					> .avatar {
-						vertical-align: middle;
-						min-width: 28px;
-						min-height: 28px;
-						max-width: 28px;
-						max-height: 28px;
-						margin: 0 8px 0 0;
-						border-radius: 6px;
-						transition: all 0.1s ease;
-					}
-				}
-
-				> .text {
-					display: block;
-					line-height: 28px;
-
-					i {
-						margin-right: 4px;
-					}
-
-					.name {
-						font-weight: bold;
-					}
-				}
-			}
-
-			> article {
-				position: relative;
-				padding: 8px 12px;
-				background: #fff;
-				background-clip: padding-box;
-				border-top: solid 4px transparent;
-
-				&:before {
-					content: "";
-					display: block;
-					position: absolute;
-					top: -16px;
-					left: 4px;
-					font-size: 0;
-					line-height: 0;
-					border-top: solid 8px transparent;
-					border-right: solid 8px transparent;
-					border-bottom: solid 8px #fff;
-					border-left: solid 8px transparent;
-				}
-
-				> .text {
-					> p {
-						margin: 0;
-					}
-				}
-			}
-		}
-
 		> .reply-source {
 			.timeline-sub-article;
 			padding-top: 16px;
@@ -552,43 +485,27 @@
 				overflow: hidden;
 
 				> .author {
-					> .badge {
-						text-align: left;
-						display: inline;
-						font-size: .7em;
-						margin-right: 4px;
-						padding: 2px 6px;
-						vertical-align: middle;
-						background-color: #1bb3b3;
-						border-radius: 2px;
-						color: #fff;
-						font-weight: bold;
-					}
 
-					> h2 {
-						text-align: left;
+					> a {
 						display: inline;
 						margin: 0;
 						padding: 0;
-						font-weight: normal;
+						color: #736060;
 						font-size: 1em;
+						font-weight: bold;
+						text-align: left;
+						text-decoration: none;
+						transition: all 0.1s ease;
 
-						> a {
-							color: #736060;
-							font-weight: bold;
-							text-decoration: none;
-							transition: all 0.1s ease;
+						&:hover {
+							text-decoration: underline;
+							transition: all 0s ease;
+						}
 
-							&:hover {
-								text-decoration: underline;
-								transition: all 0s ease;
-							}
-
-							&:active {
-								text-decoration: underline;
-								color: darken(@themeColor, 10%);
-								transition: all 0s ease;
-							}
+						&:active {
+							text-decoration: underline;
+							color: darken(@themeColor, 10%);
+							transition: all 0s ease;
 						}
 					}
 
@@ -1211,6 +1128,48 @@
 			}
 		}
 	}
+
+	.post.repost {
+
+		> .repost-information {
+			padding: 8px 32px;
+			color: #57bb00;
+
+			> .info {
+				margin: 0;
+				padding: 0;
+
+				> .avatar-anchor {
+					display: block;
+					float: left;
+
+					> .avatar {
+						vertical-align: middle;
+						min-width: 28px;
+						min-height: 28px;
+						max-width: 28px;
+						max-height: 28px;
+						margin: 0 8px 0 0;
+						border-radius: 6px;
+						transition: all 0.1s ease;
+					}
+				}
+
+				> .text {
+					display: block;
+					line-height: 28px;
+
+					i {
+						margin-right: 4px;
+					}
+
+					.name {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
 }
 
 .timeline-sub-article {
@@ -1228,28 +1187,24 @@
 		white-space: nowrap;
 		overflow: hidden;
 
-		> h2 {
-			text-align: left;
+		> .user-name {
 			display: inline;
 			margin: 0;
 			padding: 0;
-			font-weight: normal;
+			color: rgba(0, 0, 0, 0.7);
+			text-align: left;
 			font-size: 1em;
+			font-weight: normal;
+			text-decoration: none;
+			transition: all 0.1s ease;
 
-			> a {
-				color: rgba(0, 0, 0, 0.7);
-				font-weight: normal;
-				text-decoration: none;
-				transition: all 0.1s ease;
-
-				&:hover {
-					text-decoration: underline;
-					transition: all 0s ease;
-				}
+			&:hover {
+				text-decoration: underline;
+				transition: all 0s ease;
 			}
 		}
 
-		> a {
+		> .time-anchor {
 			> time {
 				position: absolute;
 				top: 8px;

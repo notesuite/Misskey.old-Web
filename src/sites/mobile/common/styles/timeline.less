@@ -119,43 +119,27 @@
 				overflow: hidden;
 
 				> .author {
-					> .badge {
-						text-align: left;
-						display: inline;
-						font-size: .7em;
-						margin-right: 4px;
-						padding: 2px 6px;
-						vertical-align: middle;
-						background-color: #1bb3b3;
-						border-radius: 2px;
-						color: #fff;
-						font-weight: bold;
-					}
 
-					> h2 {
-						text-align: left;
+					> .user-name {
 						display: inline;
 						margin: 0;
 						padding: 0;
-						font-weight: normal;
+						text-align: left;
+						color: #736060;
 						font-size: 1em;
+						font-weight: bold;
+						text-decoration: none;
+						transition: all 0.1s ease;
 
-						> a {
-							color: #736060;
-							font-weight: bold;
-							text-decoration: none;
-							transition: all 0.1s ease;
+						&:hover {
+							text-decoration: underline;
+							transition: all 0s ease;
+						}
 
-							&:hover {
-								text-decoration: underline;
-								transition: all 0s ease;
-							}
-
-							&:active {
-								text-decoration: underline;
-								color: darken(@themeColor, 10%);
-								transition: all 0s ease;
-							}
+						&:active {
+							text-decoration: underline;
+							color: darken(@themeColor, 10%);
+							transition: all 0s ease;
 						}
 					}
 
@@ -166,26 +150,24 @@
 					}
 				}
 
-				> .right {
+				> .time-anchor {
 					position: absolute;
 					top: 16px;
 					right: 16px;
 
-					> .time-anchor {
-						> time {
-							display: inline;
-							vertical-align: top;
-							color: #C3B4A1;
-							font-size: 0.7em;
+					> time {
+						display: inline;
+						vertical-align: top;
+						color: #C3B4A1;
+						font-size: 0.7em;
 
-							&:hover {
-								text-decoration: underline;
-							}
+						&:hover {
+							text-decoration: underline;
+						}
 
-							&:active {
-								color: @themeColor;
-								text-decoration: underline;
-							}
+						&:active {
+							color: @themeColor;
+							text-decoration: underline;
 						}
 					}
 				}
@@ -897,28 +879,24 @@
 		white-space: nowrap;
 		overflow: hidden;
 
-		> h2 {
-			text-align: left;
+		> a.user-name {
 			display: inline;
 			margin: 0;
 			padding: 0;
-			font-weight: normal;
+			color: rgba(0, 0, 0, 0.7);
 			font-size: 1em;
+			font-weight: normal;
+			text-align: left;
+			text-decoration: none;
+			transition: none;
 
-			> a {
-				color: rgba(0, 0, 0, 0.7);
-				font-weight: normal;
-				text-decoration: none;
-				transition: all 0.1s ease;
-
-				&:hover {
-					text-decoration: underline;
-					transition: all 0s ease;
-				}
+			&:hover {
+				text-decoration: underline;
+				transition: all 0s ease;
 			}
 		}
 
-		> a {
+		> .time-anchor {
 			> time {
 				position: absolute;
 				top: 8px;
