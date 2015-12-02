@@ -80,9 +80,3 @@ mixin core(post, isRepost, repost)
 							i.fa.fa-star
 						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
 							= post.likesCount != 0 ? post.likesCount : ''
-			if post.likers != null
-				ol.likers
-					each liker in post.likers
-						li.liker
-							a.avatar-anchor(href='/' + liker.screenName, title= '@' + liker.screenName)
-								img.avatar(src=liker.avatarUrl + '?mini', alt='avatar')
