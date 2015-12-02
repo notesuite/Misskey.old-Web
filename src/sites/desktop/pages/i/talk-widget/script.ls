@@ -1,4 +1,5 @@
 $ = require 'jquery'
+require '../../../common/scripts/main.js'
 Stream = require '../../../common/scripts/talk-stream-core.js'
 require '../../../common/scripts/kronos.js'
 
@@ -58,20 +59,16 @@ $ ->
 		console.log '相手が退室しました'
 
 	socket.on \otherparty-message (message) ->
-		console.log \otherparty-message message
-		$message = $ message
-		message-id = $message.attr \data-id
-		socket.emit \read message-id
+		socket.emit \read message.id
 		if ($ '#otherparty-status #otherparty-typing')[0]
 			$ '#otherparty-status #otherparty-typing' .remove!
-		stream.add $message
+		stream.add message
 		$.ajax "#{config.api-url}/talks/read" {
-			data: {'message-id': message-id}
+			data: {'message-id': message.id}
 		}
 
 	socket.on \me-message (message) ->
-		console.log \me-message message
-		stream.add $ message
+		stream.add message
 
 	socket.on \otherparty-message-update (message) ->
 		console.log \otherparty-message-update message

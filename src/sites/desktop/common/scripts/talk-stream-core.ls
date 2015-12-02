@@ -1,5 +1,6 @@
 $ = require 'jquery'
 imageviewer = require './image-viewer.js'
+message-compiler = require '../views/talk/render.jade'
 
 class Stream
 	($stream) ->
@@ -24,8 +25,14 @@ class Stream
 
 		height + scroll-top >= (document-height - 64px)
 
-	add: ($message) ->
+	add: (message) ->
 		THIS = @
+
+		$message = $ message-compiler {
+			config,
+			me,
+			message
+		}
 
 		new Audio '/resources/desktop/sounds/pop.mp3' .play!
 		can-scroll = THIS.check-can-scroll!
@@ -41,8 +48,14 @@ class Stream
 				clear-interval timer
 			, 300ms
 
-	add-last: ($message) ->
+	add-last: (message) ->
 		THIS = @
+
+		$message = $ message-compiler {
+			config,
+			me,
+			message
+		}
 
 		THIS.init-message $message
 		$message.append-to THIS.stream
