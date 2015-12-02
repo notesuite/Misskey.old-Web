@@ -23,6 +23,9 @@ class Timeline
 
 		post-id = $post.attr \data-id
 		post-type = $post.attr \data-type
+		user-name = $post.attr \data-user-name
+		user-screen-name = $post.attr \data-user-screen-name
+		text = $post.attr \data-text
 
 		$post
 			# Init like button
