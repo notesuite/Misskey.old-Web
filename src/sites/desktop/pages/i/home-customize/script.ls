@@ -51,7 +51,7 @@ $ ->
 			$widget = $ @
 			layout.right.push $widget.attr \data-widget-id
 
-		$.ajax "#{config.web-api-url}/web/sites/desktop/home-layout/update" {
+		$.ajax "#{config.web-api-url}/web/home-layout/update" {
 			data:
 				'layout': JSON.stringify layout}
 		.done (data) ->
