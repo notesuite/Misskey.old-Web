@@ -56,11 +56,11 @@ export default function router(app: express.Express): void {
 	});
 
 	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi('login', req.body).then((response: any) => {
-			const user: User = response.user;
+		requestApi('login', req.body).then((result: any) => {
+			const user: User = result;
 			req.session.userId = user.id;
 			req.session.save(() => {
-				res.json(response);
+				res.json(user);
 			});
 		}, (err: any) => {
 			res.status(500).json(err);
