@@ -2,16 +2,16 @@ import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 const jade: any = require('jade');
-import parsePostText from '../../utils/parse-post-text';
-import requestApi from '../../utils/request-api';
-import config from '../../config';
+import parsePostText from '../../../../utils/parse-post-text';
+import requestApi from '../../../../utils/request-api';
+import config from '../../../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
 	user: any;
 }
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
-	io.of('/streaming/home').on('connection', (socket: MKSocketIOSocket) => {
+	io.of('/streaming/sites/desktop/home').on('connection', (socket: MKSocketIOSocket) => {
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
 
@@ -50,7 +50,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 						// 投稿のHTMLコンパイラ
 						const compiler: any = jade.compileFile(
-							`${__dirname}/../../sites/desktop/common/views/post/smart/render.jade`, {
+							`${__dirname}/../../../../sites/desktop/common/views/post/smart/render.jade`, {
 								filename: 'jade',
 								cache: true
 						});
@@ -76,7 +76,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 						// 通知のHTMLコンパイラ
 						const notificationCompiler: any = jade.compileFile(
-							`${__dirname}/../../sites/desktop/common/views/notification/smart/render.jade`, {
+							`${__dirname}/../../../../sites/desktop/common/views/notification/smart/render.jade`, {
 								filename: 'jade',
 								cache: true
 						});

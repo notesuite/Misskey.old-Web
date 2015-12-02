@@ -5,7 +5,7 @@ Timeline = require '../../common/scripts/timeline-core.js'
 $ ->
 	timeline = new Timeline $ '#widget-timeline > .timeline'
 
-	socket = io.connect config.web-streaming-url + '/streaming/home'
+	socket = io.connect config.web-streaming-url + '/streaming/sites/mobile/home'
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
 

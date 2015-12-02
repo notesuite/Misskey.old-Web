@@ -2,9 +2,9 @@ import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 const jade: any = require('jade');
-import parsePostText from '../../utils/parse-post-text';
-import requestApi from '../../utils/request-api';
-import config from '../../config';
+import parsePostText from '../../../../utils/parse-post-text';
+import requestApi from '../../../../utils/request-api';
+import config from '../../../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
 	user: any;
@@ -12,7 +12,7 @@ interface MKSocketIOSocket extends SocketIO.Socket {
 }
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
-	io.of('/streaming/talk').on('connection', (socket: MKSocketIOSocket) => {
+	io.of('/streaming/sites/desktop/talk').on('connection', (socket: MKSocketIOSocket) => {
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
 
@@ -57,7 +57,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 							// メッセージのHTMLコンパイラ
 							const compiler: any = jade.compileFile(
-								`${__dirname}/../../sites/desktop/common/views/talk/render.jade`, {
+								`${__dirname}/../../../../sites/desktop/common/views/talk/render.jade`, {
 									filename: 'jade',
 									cache: true
 							});

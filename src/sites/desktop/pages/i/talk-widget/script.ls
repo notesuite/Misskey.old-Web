@@ -34,7 +34,7 @@ $ ->
 	$ \body .css \margin-bottom ($ '#post-form-container' .outer-height! + \px)
 	scroll 0, ($ \html .outer-height!)
 
-	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
+	socket = io.connect "#{config.web-streaming-url}/streaming/sites/desktop/talk"
 
 	socket.on \connected ->
 		console.log 'Connected'
