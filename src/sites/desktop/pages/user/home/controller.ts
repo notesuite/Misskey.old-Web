@@ -28,9 +28,11 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			requestApi('posts/talk/show', {
 				'post-id': post.id
 			}, me).then((talk: any[]) => {
+				console.log(talk);
 				requestApi('posts/replies/show', {
 					'post-id': post.id
 				}, me).then((replies: any[]) => {
+					console.log(replies);
 					requestApi('posts/likes/show', {
 						'post-id': post.id
 					}, me).then((likes: any[]) => {

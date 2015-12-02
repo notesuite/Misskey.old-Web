@@ -10,6 +10,7 @@ WavesEffect = require './lib/waves-effect.js'
 Album = require './album.js'
 sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
+show-modal-dialog = require './modal-dialog.js'
 ui-window = require './window.js'
 init-i-settings-dialog = require './i-settings.js'
 
@@ -435,7 +436,7 @@ $ ->
 
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
-
+	
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
 		window-id = "misskey-window-talk-histories"
 		$content = $ '<iframe>' .attr {src: '/i/talks', +seamless}

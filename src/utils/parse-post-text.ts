@@ -1,4 +1,3 @@
-const marked: any = require('marked');
 const escapeHtml: any = require('escape-html');
 
 import config from '../config';
@@ -8,18 +7,9 @@ export default function parsePostText(text: string, isPlain: boolean): string {
 	if (text === null) {
 		return null;
 	}
-	if (isPlain) {
-		text = analyzeHashtags(analyzeMentions(escapeHtml(text).replace(/https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+/g, (url: string) => {
-			return `<a href="${url}" target="_blank" class="url">${url}</a>`;
-		}))).replace(/(\r\n|\r|\n)/g, '<br>');
-	} else {
-		marked.setOptions({
-			gfm: true,
-			breaks: true,
-			sanitize: true
-		});
-		text = analyzeHashtags(analyzeMentions(marked(text)));
-	}
+	text = analyzeHashtags(analyzeMentions(escapeHtml(text).replace(/https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+/g, (url: string) => {
+		return `<a href="${url}" target="_blank" class="url">${url}</a>`;
+	}))).replace(/(\r\n|\r|\n)/g, '<br>');
 	return text;
 }
 
