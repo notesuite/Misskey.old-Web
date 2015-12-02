@@ -45,7 +45,6 @@ $ ->
 		$notification.prepend-to ($ '#widget-notifications .notifications') .show 200
 
 	socket.on \post (post) ->
-		console.log post
 		timeline.add post
 		$ '#widget-timeline > .timeline > .empty' .remove!
 

@@ -25,3 +25,7 @@ $ ->
 			$ 'body > .streaming-info' .remove!
 			$message = $ '<p class="streaming-info reconnecting"><i class="fa fa-spinner fa-spin"></i>ストリームから切断されました 再接続中...</p>'
 			$ \body .append $message
+
+	socket.on \post (post) ->
+		timeline.add post
+		$ '#timeline > .empty' .remove!

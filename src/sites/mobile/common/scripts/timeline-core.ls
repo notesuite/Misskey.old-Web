@@ -87,7 +87,7 @@ class Timeline
 		if ($recent-post.attr \data-is-display-active) == \true
 			$post.add-class \display-active-before
 		THIS.init-post $post
-		$post.prepend-to THIS.tl .hide!.slide-down 200ms
+		$post.prepend-to THIS.tl
 		THIS.refresh-my-posts!
 
 	add-last: (post) ->
