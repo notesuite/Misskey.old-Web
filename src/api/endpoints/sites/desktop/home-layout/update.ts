@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { HomeLayout, IHomeLayout } from '../../../../models/home-layout';
+import { HomeLayout, IHomeLayout } from '../../../../../models/home-layout';
 
 export default function updateHomeLayout(req: express.Request, res: express.Response): void {
 	'use strict';

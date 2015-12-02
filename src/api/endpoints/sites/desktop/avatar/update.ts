@@ -3,7 +3,7 @@ import * as express from 'express';
 import * as request from 'request';
 // import * as gm from 'gm';
 const gm: any = require('gm');
-import requestApi from '../../../../utils/request-api';
+import requestApi from '../../../../../utils/request-api';
 
 export default function updateavatar(req: express.Request, res: express.Response): void {
 	'use strict';
