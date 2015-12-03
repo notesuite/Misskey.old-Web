@@ -7,7 +7,6 @@ import * as tslint from 'gulp-tslint';
 import * as browserify from 'browserify';
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
-const transform = require('vinyl-transform');
 const es = require('event-stream');
 // import * as del from 'del';
 const babel = require('gulp-babel');
