@@ -2,6 +2,7 @@ $ = require 'jquery'
 require 'jquery.transit'
 moment = require 'moment'
 Sortable = require 'Sortable'
+require 'blockadblock'
 
 require './main.js'
 require './kronos.js'
@@ -15,6 +16,20 @@ ui-window = require './window.js'
 init-i-settings-dialog = require './i-settings.js'
 
 album = new Album
+
+if block-ad-block == undefined
+	ad-block-detected!
+else
+	block-ad-block.on-detected ad-block-detected
+
+function ad-block-detected
+	$modal-ok = $ '<button>了解</button>'
+	dialog-close = show-modal-dialog do
+		$ '<p><i class="fa fa-exclamation-triangle"></i>広告ブロッカーが有効です</p>'
+		'<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。
+		Misskeyを快適にご利用いただくためには、広告ブロッカーを無効にしてください。'
+		[$modal-ok]
+	$modal-ok.click -> dialog-close!
 
 window.display-message = (message) ->
 	$message = $ '<p class="ui-message">' .text message
@@ -436,7 +451,7 @@ $ ->
 
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
-	
+
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
 		window-id = "misskey-window-talk-histories"
 		$content = $ '<iframe>' .attr {src: '/i/talks', +seamless}
