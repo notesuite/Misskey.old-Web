@@ -91,6 +91,10 @@ export default function router(app: express.Express): void {
 		}
 	});
 
+	app.get('/i/post-new', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'i/post-new');
+	});
+
 	app.get('/i/mentions', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'i/mentions');
 	});

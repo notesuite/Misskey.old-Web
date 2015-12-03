@@ -1,0 +1,14 @@
+extends ../../../layout
+
+block title
+	| 新規投稿
+
+block header
+	| 新規投稿
+
+block body
+	main(role='main')
+		form#form(action= config.webApiUrl + '/web/post', method='post', enctype='multipart/form-data')
+			textarea.ui-textarea#textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+			input.ui-input-file(name='file', type='file', accept='image/*')
+			input.ui-button(type='submit', value!='投稿 &#xf1d8;')
