@@ -3,6 +3,7 @@ Sortable = require 'Sortable'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
+sub-post-compiler = require '../views/post/smart/sub-post-render.jade'
 Album = require './album.js'
 
 album = new Album
@@ -62,7 +63,7 @@ class Timeline
 							'post-id': $post.children \.reply-source .attr \data-id
 					} .done (posts) ->
 						$talk = posts.map (post) ->
-							THIS.render post
+							THIS.sub-render post
 						$post.children \.talk .append $talk
 				if (($post.attr \data-is-have-replies) == \true) and ($post.children \.replies .children!.length == 0)
 					$.ajax "#{config.web-api-url}/posts/replies/show" {
@@ -70,7 +71,7 @@ class Timeline
 							'post-id': $post.attr \data-id
 					} .done (posts) ->
 						$replies = posts.map (post) ->
-							THIS.render post
+							THIS.sub-render post
 						$post.children \.replies .append $replies
 
 			else
@@ -90,15 +91,14 @@ class Timeline
 				..attr \disabled on
 				..text 'Replying...'
 
-			$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/reply" {
+			$.ajax "#{config.web-api-url}/web/posts/reply" {
 				data:
 					'text': ($form.find \textarea .val!)
 					'in-reply-to-post-id': ($post.attr \data-id)
 					'photos': JSON.stringify(($form.find '.photos > li' .map ->
 						($ @).attr \data-id).get!)
-				data-type: \text}
-			.done (html) ->
-				$reply = $ html
+			} .done (post) ->
+				$reply = THIS.sub-render post
 				$submit-button.attr \disabled off
 				$reply.prepend-to $post.find '> .replies'
 				$i = $ '<i class="fa fa-ellipsis-v replies-ellipsis" style="display: none;"></i>'
@@ -294,6 +294,13 @@ class Timeline
 
 	render: (post) ->
 		$ post-compiler {
+			config: CONFIG,
+			me: ME,
+			post
+		}
+
+	sub-render: (post) ->
+		$ sub-post-compiler {
 			config: CONFIG,
 			me: ME,
 			post
