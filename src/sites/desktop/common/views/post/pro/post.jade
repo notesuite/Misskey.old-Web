@@ -13,7 +13,6 @@ mixin core(post, isRepost, repost)
 	- var isTalk = (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null);
 	article.post(
 			class                   = isRepost ? 'repost ' + post.type : post.type
-			role                    = 'article'
 			lang                    = post.user.lang
 			title                   = post.createdAt
 			itemscope
@@ -25,8 +24,7 @@ mixin core(post, isRepost, repost)
 			data-is-liked          != login ? post.isLiked.toString() : null
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != isHaveReplies.toString()
-			data-is-talk           != isTalk.toString()
-			data-is-display-active='false')
+			data-is-talk           != isTalk.toString())
 		if login && me.id != post.userId
 			div.repost-form
 				div.background
@@ -79,8 +77,7 @@ mixin core(post, isRepost, repost)
 						div.top
 							div.left
 								div.author
-									h1.name
-										a.user-name(href=config.url + '/' + post.user.screenName, rel='author')= post.user.name
+									a.name(href=config.url + '/' + post.user.screenName, rel='author')= post.user.name
 									if post.user.isVerified
 										img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 									p.screen-name= '@' + post.user.screenName

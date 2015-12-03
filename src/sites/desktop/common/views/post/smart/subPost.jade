@@ -10,7 +10,7 @@ mixin subPost(post)
 		header
 			if post.user.isVerified
 				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-			a.user-name(href=config.url + '/' + post.user.screenName)= post.user.name
+			a.name(href=config.url + '/' + post.user.screenName)= post.user.name
 			span.screen-name= post.user.screenName
 			a.time-anchor(href=config.url + '/' + post.user.screenName + '/' + post.id)
 				time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt

@@ -13,7 +13,6 @@ mixin core(post, isRepost, repost)
 	- var isTalk = (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null);
 	article.post(
 			class                   = isRepost ? 'repost ' + post.type : post.type
-			role                    = 'article'
 			lang                    = post.user.lang
 			title                   = post.createdAt
 			itemscope
@@ -25,8 +24,7 @@ mixin core(post, isRepost, repost)
 			data-is-liked          != login ? post.isLiked.toString() : null
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != isHaveReplies.toString()
-			data-is-talk           != isTalk.toString()
-			data-is-display-active='false')
+			data-is-talk           != isTalk.toString())
 		if login && me.id != post.userId
 			div.repost-form
 				div.background

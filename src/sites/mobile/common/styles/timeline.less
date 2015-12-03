@@ -120,7 +120,7 @@
 
 				> .author {
 
-					> .user-name {
+					> .name {
 						display: inline;
 						margin: 0;
 						padding: 0;
@@ -370,7 +370,7 @@
 			}
 		}
 
-		> .footer {
+		> footer {
 			display: block;
 
 			&:after {
@@ -467,228 +467,6 @@
 			}
 		}
 
-		> .reply-form {
-			display: none;
-			padding: 8px 32px 0 32px;
-
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
-
-			> .me-avatar {
-				display: block;
-				float: left;
-				width: 48px;
-				height: 48px;
-				margin: 0 16px 0 0;
-				padding: 0;
-				vertical-align: bottom;
-				border-radius: 6px;
-			}
-
-			> .form {
-				display: block;
-				position: relative;
-				float: left;
-				width: ~"calc(100% - 64px)";
-
-				> textarea {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					user-select: text;
-					-moz-user-select: text;
-					-webkit-user-select: text;
-					-ms-user-select: text;
-					box-sizing: border-box;
-					width: 100%;
-					max-width: 100%;
-					height: 64px;
-					min-height: 64px;
-					vertical-align: bottom;
-					margin: 0;
-					padding: 8px 12px;
-					outline: 0;
-					border: solid 1px #eee;
-					border-radius: 4px;
-					font-size: 1em;
-					transition: border 0.2s ease, color 0.2s ease;
-
-					&:hover {
-						border: solid 1px @themeColor;
-
-						& + .design-allow:before {
-							border-right: solid 12px @themeColor;
-						}
-					}
-
-					&:focus {
-						color: darken(@themeColor, 20%);
-						outline: none;
-						border: solid 1px @themeColor;
-
-						& + .design-allow:before {
-							border-right: solid 12px @themeColor;
-						}
-					}
-				}
-
-				> .design-allow {
-					content: "";
-					display: block;
-					position: absolute;
-					z-index: 1;
-					top: 8px;
-					left: -23px;
-
-					&:before {
-						content: "";
-						display: block;
-						position: absolute;
-						font-size: 0;
-						line-height: 0;
-						border-top: solid 12px transparent;
-						border-right: solid 12px #eee;
-						border-bottom: solid 12px transparent;
-						border-left: solid 12px transparent;
-						transition: border 0.2s ease;
-					}
-
-					&:after {
-						content: "";
-						display: block;
-						position: absolute;
-						z-index: 1;
-						top: 1px;
-						left: 2px;
-						font-size: 0;
-						line-height: 0;
-						border-top: solid 11px transparent;
-						border-right: solid 11px #fff;
-						border-bottom: solid 11px transparent;
-						border-left: solid 11px transparent;
-						transition: border 0.2s ease;
-					}
-				}
-
-				> .submit-button {
-					float: right;
-				}
-
-				.photos {
-					display: block;
-					margin: 0;
-					padding: 4px 8px 0 8px;
-					list-style: none;
-
-					&:after {
-						content: '';
-						display: block;
-						clear: both;
-					}
-
-					> li {
-						display: block;
-						position: relative;
-						float: left;
-						margin: 4px;
-						padding: 0;
-						width: 64px;
-						height: 64px;
-						background-color: #eee;
-						background-repeat: no-repeat;
-						background-position: center center;
-						//background-size: contain;
-						background-size: cover;
-						cursor: move;
-
-						&:hover {
-							> .remove {
-								display: block;
-							}
-						}
-
-						> .remove {
-							-webkit-appearance: none;
-							-moz-appearance: none;
-							appearance: none;
-							display: none;
-							position: absolute;
-							right: -6px;
-							top: -6px;
-							margin: 0;
-							padding: 0;
-							background: transparent;
-							outline: none;
-							border: none;
-							border-radius: 0;
-							box-shadow: none;
-							cursor: pointer;
-						}
-					}
-				}
-
-				.uploads {
-					display: block;
-					margin: 0;
-					padding: 0;
-					list-style: none;
-				}
-
-				.attach-from-local,
-				.attach-from-album {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					display: block;
-					float: left;
-					box-sizing: border-box;
-					margin: 0;
-					padding: 10px 14px;
-					line-height: 1em;
-					font-size: 1em;
-					font-weight: normal;
-					text-decoration: none;
-					color: #95856e;
-					background: transparent;
-					outline: none;
-					border: none;
-					border-radius: 0;
-					box-shadow: none;
-					cursor: pointer;
-					transition: color 0.1s ease;
-
-					* {
-						pointer-events: none;
-					}
-
-					&:hover {
-						color: @themeColor;
-					}
-
-					&:active {
-						color: darken(@themeColor, 10%);
-						transition: color 0s ease;
-					}
-				}
-
-				> input[type=file] {
-					display: none;
-				}
-			}
-		}
-
-		> .replies {
-			display: none;
-			margin: 0;
-			padding: 0;
-
-			> .sub-post {
-				.timeline-sub-article;
-			}
-		}
 	}
 
 	.post.photo {
@@ -879,7 +657,7 @@
 		white-space: nowrap;
 		overflow: hidden;
 
-		> a.user-name {
+		> a.name {
 			display: inline;
 			margin: 0;
 			padding: 0;

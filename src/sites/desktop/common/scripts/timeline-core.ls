@@ -57,20 +57,20 @@ class Timeline
 					..find  '> .reply-form textarea' .focus! .val reply-form-text
 					..find  '> .replies' .slide-down animation-speed
 				if (($post.attr \data-is-talk) == \true) and ($post.children \.talk .children!.length == 0)
-					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/talk" {
+					$.ajax "#{config.web-api-url}/posts/talk/show" {
 						data:
 							'post-id': $post.children \.reply-source .attr \data-id
-						data-type: \text}
-					.done (html) ->
-						$talk = $ html
+					} .done (posts) ->
+						$talk = posts.map (post) ->
+							THIS.render post
 						$post.children \.talk .append $talk
 				if (($post.attr \data-is-have-replies) == \true) and ($post.children \.replies .children!.length == 0)
-					$.ajax "#{config.web-api-url}/web/sites/desktop/home/posts/replies" {
+					$.ajax "#{config.web-api-url}/posts/replies/show" {
 						data:
 							'post-id': $post.attr \data-id
-						data-type: \text}
-					.done (html) ->
-						$replies = $ html
+					} .done (posts) ->
+						$replies = posts.map (post) ->
+							THIS.render post
 						$post.children \.replies .append $replies
 
 			else
@@ -200,7 +200,7 @@ class Timeline
 				submit-reply!
 
 			# Init like button
-			..find '> .footer > .actions > .like > .like-button' .click ->
+			..find '> footer > .actions > .like > button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-liked!
@@ -223,11 +223,11 @@ class Timeline
 						$post.attr \data-is-liked \false
 
 			# Init reply button
-			..find '> .footer > .actions > .reply > .reply-button' .click ->
+			..find '> footer > .actions > .reply > button' .click ->
 				activate-display-state!
 
 			# Init repost button
-			..find '> .footer > .actions > .repost > .repost-button' .click ->
+			..find '> footer > .actions > .repost > button' .click ->
 				if check-reposted!
 					$post.attr \data-is-reposted \false
 					$.ajax "#{config.web-api-url}/post/unrepost" {
@@ -292,14 +292,17 @@ class Timeline
 
 		post-content-initializer post-type, $post.find '> .main > .content'
 
+	render: (post) ->
+		$ post-compiler {
+			config: CONFIG,
+			me: ME,
+			post
+		}
+
 	add: (post) ->
 		THIS = @
 
-		$post = $ post-compiler {
-			config,
-			me,
-			post
-		}
+		$post = THIS.render post
 
 		new Audio '/resources/sounds/pop.mp3' .play!
 
@@ -313,11 +316,7 @@ class Timeline
 	add-last: (post) ->
 		THIS = @
 
-		$post = $ post-compiler {
-			config,
-			me,
-			post
-		}
+		$post = THIS.render post
 
 		THIS.init-post $post
 		$post.append-to THIS.tl

@@ -23,13 +23,13 @@ class Timeline
 
 		post-id = $post.attr \data-id
 		post-type = $post.attr \data-type
-		user-name = $post.find '> .main > .header > .author > .user-name' .text!
-		user-screen-name = $post.find '> .main > .header > .author > .screen-name' .text!
+		user-name = $post.find '> .main > header > .author > .name' .text!
+		user-screen-name = $post.find '> .main > header > .author > .screen-name' .text!
 		text = $post.find '> .main > .content > .text' .text!
 
 		$post
 			# Init like button
-			..find '> .footer > .actions > .like > .like-button' .click ->
+			..find '> footer > .actions > .like > button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-liked!
@@ -52,7 +52,7 @@ class Timeline
 						$post.attr \data-is-liked \false
 
 			# Init reply button
-			..find '> .footer > .actions > .reply > .reply-button' .click ->
+			..find '> footer > .actions > .reply > button' .click ->
 				reply-text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
 				if reply-text? and reply-text != ''
 					$.ajax "#{config.web-api-url}/posts/status" {
@@ -70,7 +70,7 @@ class Timeline
 						| _ => window.alert "不明なエラー (#error-code)"
 
 			# Init repost button
-			..find '> .footer > .actions > .repost > .repost-button' .click ->
+			..find '> footer > .actions > .repost > button' .click ->
 				if check-reposted!
 					$post.attr \data-is-reposted \false
 					$.ajax "#{config.web-api-url}/posts/unrepost" {
