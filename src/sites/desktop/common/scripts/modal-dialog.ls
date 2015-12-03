@@ -2,6 +2,9 @@ $ = require 'jquery'
 require 'jquery.transit'
 
 module.exports = ($title, $content, buttons, can-close = true, on-shown = null) ->
+	default-html-overflow-state = $ \html .css \overflow
+	$ \html .css \overflow \hidden
+
 	$buttons = $ '<div class="buttons" />'
 	buttons.for-each ($button) ->
 		$buttons.append $button
@@ -50,6 +53,8 @@ module.exports = ($title, $content, buttons, can-close = true, on-shown = null) 
 		e.stop-immediate-propagation!
 
 	function close
+		$ \html .css \overflow default-html-overflow-state
+
 		$container.animate {
 			opacity: 0
 		} 100ms \linear -> $container.remove!
