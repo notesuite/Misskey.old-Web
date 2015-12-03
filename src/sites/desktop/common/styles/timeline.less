@@ -62,7 +62,7 @@
 		}
 
 		&[data-is-liked='true'] {
-			> .footer > .actions > .like {
+			> footer > .actions > .like {
 				opacity: 1;
 
 				> button {
@@ -80,7 +80,7 @@
 		}
 
 		&[data-is-reposted='true'] {
-			> .footer > .actions > .repost {
+			> footer > .actions > .repost {
 				opacity: 1;
 
 				> button {
@@ -93,14 +93,6 @@
 					&:active {
 						color: darken(@themeColor, 10%);
 					}
-				}
-			}
-		}
-
-		&[data-user-verified='true'] {
-			> .main > header > h2 > a {
-				&:before {
-					/*.timeline-verified-avatar;*/
 				}
 			}
 		}

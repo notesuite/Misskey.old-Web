@@ -29,7 +29,7 @@ class Timeline
 
 		$post
 			# Init like button
-			..find '> footer > .actions > .like > button' .click ->
+			..find '> footer > .like > button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-liked!
@@ -52,7 +52,7 @@ class Timeline
 						$post.attr \data-is-liked \false
 
 			# Init reply button
-			..find '> footer > .actions > .reply > button' .click ->
+			..find '> footer > .reply > button' .click ->
 				reply-text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
 				if reply-text? and reply-text != ''
 					$.ajax "#{config.web-api-url}/posts/status" {
@@ -70,7 +70,7 @@ class Timeline
 						| _ => window.alert "不明なエラー (#error-code)"
 
 			# Init repost button
-			..find '> footer > .actions > .repost > button' .click ->
+			..find '> footer > .repost > button' .click ->
 				if check-reposted!
 					$post.attr \data-is-reposted \false
 					$.ajax "#{config.web-api-url}/posts/unrepost" {

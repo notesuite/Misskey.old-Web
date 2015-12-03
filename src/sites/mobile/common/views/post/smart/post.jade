@@ -52,22 +52,21 @@ mixin core(post, isRepost, repost)
 					time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 			div.content(itemprop='articleBody')
 				+content(post)
-		footer
-			if login
-				ul.actions
-					li.reply
-						button(title='返信')
-							i.fa.fa-reply
-						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
-							= post.repliesCount != 0 ? post.repliesCount : ''
-					if me.id != post.userId
-						li.repost
-							button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
-								i.fa.fa-retweet
-							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
-								= post.repostsCount != 0 ? post.repostsCount : ''
-					li.like
-						button(title= post.isLiked ? 'Unlike' : 'Like')
-							i.fa.fa-star
-						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
-							= post.likesCount != 0 ? post.likesCount : ''
+		if login
+			footer
+				div.like
+					button(title= post.isLiked ? 'Unlike' : 'Like')
+						i.fa.fa-star
+					a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
+						= post.likesCount != 0 ? post.likesCount : ''
+				if me.id != post.userId
+					div.repost
+						button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
+							i.fa.fa-retweet
+						a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
+							= post.repostsCount != 0 ? post.repostsCount : ''
+				div.reply
+					button(title='返信')
+						i.fa.fa-reply
+					a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
+						= post.repliesCount != 0 ? post.repliesCount : ''
