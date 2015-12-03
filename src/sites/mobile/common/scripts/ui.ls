@@ -1021,6 +1021,6 @@ $ window .load ->
 	init-view-position!
 
 function init-view-position
-	padding = $ 'body > #misskey-main-header' .outer-height!
+	padding = $ 'body > #misskey-header' .outer-height!
 	$ \#misskey-main .css \padding-top "#{padding}px"
 	$ \#misskey-nav .css \margin-top "#{padding}px"
