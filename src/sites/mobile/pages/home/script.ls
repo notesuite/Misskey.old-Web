@@ -30,7 +30,7 @@ $ ->
 		timeline.add post
 		$ '#timeline > .empty' .remove!
 
-	$ '#misskey-main-header .post' .click ->
+	$ '#misskey-header .post' .click ->
 		text = window.prompt '新規投稿'
 		if text? and text != ''
 			$.ajax "#{config.web-api-url}/posts/status" {
