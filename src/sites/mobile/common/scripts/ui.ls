@@ -1008,16 +1008,19 @@ function update-statuses
 			$ '#misskey-main-nav .notifications a' .append $ "<span class=\"unreads-count\">#{data}</span>"
 
 $ ->
-	SpSlidemenu \#misskey-main \#misskey-main-nav \#open-misskey-main-nav-button {direction: \left}
+	SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
 
 	update-relative-times!
 	update-statuses!
 	set-interval update-relative-times, 1000ms
 	set-interval update-statuses, 10000ms
 
-	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
-	$ \#misskey-main-nav .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
+	init-view-position!
 
 $ window .load ->
-	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
-	$ \#misskey-main-nav .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
+	init-view-position!
+
+function init-view-position
+	padding = $ 'body > #misskey-main-header' .outer-height!
+	$ \#misskey-main .css \padding-top "#{padding}px"
+	$ \#misskey-nav .css \margin-top "#{padding}px"

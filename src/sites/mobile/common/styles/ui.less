@@ -99,7 +99,7 @@
 
 /* UI
  * ---------------------------------------------------------------- */
-#misskey-main-header {
+#misskey-header {
 	position: fixed;
 	top: 0;
 	z-index: 1024;
@@ -194,7 +194,7 @@
 	}
 }
 
-#misskey-main-nav {
+#misskey-nav {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -325,8 +325,12 @@
 	}
 }
 
+#misskey-main {
+	box-sizing: border-box;
+}
+
 body[data-nav-open='true'] {
-	#open-misskey-main-nav-button {
+	#open-misskey-nav-button {
 		> i {
 			-webkit-transform: rotate(-90deg);
 			transform: rotate(-90deg);

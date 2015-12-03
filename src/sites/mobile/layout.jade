@@ -4,13 +4,11 @@ doctype html
 
 block vars
 
-html#misskey(
+html(
 		lang='ja',
 		dir='ltr',
 		itemscope,
-		itemtype= htmlSchema,
-		data-is-login!= login.toString(),
-		data-me-id= login ? me.id : null)
+		itemtype= htmlSchema)
 
 	head(prefix='og: http://ogp.me/ns#')
 		include ./head
@@ -23,12 +21,12 @@ html#misskey(
 		block assets
 	
 	body
-		header#misskey-main-header
-			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+		header#misskey-header
+			button#open-misskey-nav-button(role='button'): i.fa.fa-bars
 			h1
 				block header
 			block action
-		nav#misskey-main-nav(role='navigation')
+		nav#misskey-nav
 			div.slidemenu-body
 				div.slidemenu-content
 					a.me(href='/' + me.screenName)
@@ -67,5 +65,5 @@ html#misskey(
 						b= workerId
 						| が担当しました
 
-		div.grobal-container.contents#misskey-main
+		div#misskey-main
 			block body
