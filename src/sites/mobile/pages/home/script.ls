@@ -29,3 +29,18 @@ $ ->
 	socket.on \post (post) ->
 		timeline.add post
 		$ '#timeline > .empty' .remove!
+
+	$ '#misskey-main-header .post' .click ->
+		text = window.prompt '新規投稿'
+		if text? and text != ''
+			$.ajax "#{config.web-api-url}/posts/status" {
+				data: {text}
+			} .done (post) ->
+				#
+			.fail (data) ->
+				error = data.error
+				switch error
+				| \empty-text => window.alert 'テキストを入力してください。'
+				| \too-long-text => window.alert 'テキストが長過ぎます。'
+				| \duplicate-content => window.alert '投稿が重複しています。'
+				| _ => window.alert "不明なエラー (#error-code)"
