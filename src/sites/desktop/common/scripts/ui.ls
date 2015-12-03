@@ -17,10 +17,10 @@ init-i-settings-dialog = require './i-settings.js'
 
 album = new Album
 
-if block-ad-block == undefined
+if fuck-ad-block == undefined
 	ad-block-detected!
 else
-	block-ad-block.on-detected ad-block-detected
+	fuck-ad-block.on-detected ad-block-detected
 
 function ad-block-detected
 	$modal-ok = $ '<button>了解</button>'
