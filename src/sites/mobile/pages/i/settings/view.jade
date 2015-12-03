@@ -1,0 +1,35 @@
+extends ../../../layout
+
+block title
+	| Settings
+
+block header
+	| Settings
+
+block body
+	main(role='main')
+		p#message= 'Hello, ' + me.name + '!'
+		.menu
+			p.caption Profile
+			.item: a(href='/i/settings/avatar')
+				| Avatar
+				i.angle.fa.fa-angle-right
+			.item: a(href='/i/settings/name')
+				| Nickname
+				i.angle.fa.fa-angle-right
+			.item: a(href='/i/settings/comment')
+				| Comment
+				i.angle.fa.fa-angle-right
+			.item: a(href='/i/settings/website')
+				| Website
+				i.angle.fa.fa-angle-right
+			.item: a(href='/i/settings/location')
+				| Location
+				i.angle.fa.fa-angle-right
+		.menu
+			p.caption Advanced
+			.item: a(href='/i/refresh')
+				| Refresh cache of user data
+		.menu
+			.item: a(href='/logout')
+				| Logout

@@ -1,0 +1,60 @@
+@import "../../../common/styles/ui";
+
+html, #misskey-main {
+	background: #eee;
+}
+
+#message {
+	margin: 0;
+	padding: 16px;
+	text-align: center;
+}
+
+.menu {
+	display: block;
+	clear: both;
+	margin: 16px 0;
+	padding: 0;
+
+	.caption {
+		display: block;
+		margin: 0;
+		padding: 8px;
+		font-size: 0.8em;
+		color: #888;
+	}
+
+	.item {
+		display: block;
+		background: #fff;
+		border-top: solid 0.5px #bbb;
+
+		&:first-of-type {
+			border-top: solid 0.5px #bbb;
+		}
+
+		&:last-of-type {
+			border-bottom: solid 0.5px #bbb;
+		}
+
+		a {
+			display: block;
+			position: relative;
+			padding: 0 20px;
+			text-decoration: none;
+			color: #111;
+			font-size: 1em;
+			line-height: ~"calc(1rem + 28px)";
+
+			> .angle {
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 0 20px;
+				font-size: 1.2em;
+				line-height: ~"calc(1rem + 28px)";
+				color: #444;
+			}
+		}
+	}
+}
