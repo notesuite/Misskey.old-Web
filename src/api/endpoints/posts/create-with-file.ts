@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as express from 'express';
 import requestApi from '../../../utils/request-api';
+import config from '../../../config';
 
 export default function createWithFile(req: express.Request, res: express.Response): void {
 	'use strict';
@@ -32,7 +33,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 				text: req.body.text,
 				photos: JSON.stringify([photo.id])
 			}, req.user).then((reply: Object) => {
-				res.redirect('/');
+				res.redirect(config.publicConfig.url);
 			}, (err: any) => {
 				res.send(err);
 			});
@@ -40,7 +41,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			requestApi('posts/status', {
 				text: req.body.text
 			}, req.user).then((reply: Object) => {
-				res.redirect('/');
+				res.redirect(config.publicConfig.url);
 			}, (err: any) => {
 				res.send(err);
 			});
