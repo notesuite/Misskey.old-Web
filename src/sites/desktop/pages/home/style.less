@@ -503,8 +503,48 @@ body > .streaming-info {
 		padding: 12px 16px;
 		border-bottom: solid 1px rgba(0, 0, 0, 0.05);
 
-		&[data-is-following='false'] {
-			.main button {
+		&:last-child {
+			border-bottom: none;
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		.avatar-area {
+			display: block;
+			float: left;
+
+			.avatar-anchor {
+				display: block;
+
+				.avatar {
+					display: block;
+					min-width: 40px;
+					min-height: 40px;
+					max-width: 40px;
+					max-height: 40px;
+					border-radius: 6px;
+				}
+			}
+		}
+
+		.main {
+			float: left;
+			width: ~"calc(100% - 40px)";
+			text-align: center;
+
+			.name-anchor {
+				display: block;
+
+				.name {
+					margin: 0;
+				}
+			}
+
+			button {
 				-webkit-appearance: none;
 				-moz-appearance: none;
 				appearance: none;
@@ -534,81 +574,6 @@ body > .streaming-info {
 					background: #999;
 					transition: background 0s ease;
 				}
-
-				&:focus {
-					text-shadow: 0 0 8px #fff;
-				}
-			}
-		}
-
-		&[data-is-following='true'] {
-			.main button {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				cursor: pointer;
-				display: inline-block;
-				box-sizing: border-box;
-				padding: 4px 8px;
-				margin: 0;
-				font-size: 0.8em;
-				color: contrast(@themeColor, #000, #fff, 70%);
-				background: @themeColor;
-				border: none;
-				border-radius: 2px;
-				outline: none;
-				transition: background .2s ease;
-
-				&:disabled {
-					background: #ddd !important;
-				}
-
-				&:hover {
-					background: lighten(@themeColor, 10%);
-					transition: background .1s ease;
-				}
-
-				&:active {
-					background: darken(@themeColor, 10%);
-					transition: background 0s ease;
-				}
-
-				&:focus {
-					text-shadow: 0 0 8px #fff;
-				}
-			}
-		}
-
-		&:last-child {
-			border-bottom: none;
-		}
-
-		&:after {
-			content: "";
-			display: block;
-			clear: both;
-		}
-
-		.avatar-area {
-			float: left;
-			width: 32px;
-
-			.avatar {
-				min-width: 40px;
-				min-height: 40px;
-				max-width: 40px;
-				max-height: 40px;
-				border-radius: 6px;
-			}
-		}
-
-		.main {
-			float: left;
-			width: ~"calc(100% - 32px)";
-			text-align: center;
-
-			.name {
-				margin: 0;
 			}
 		}
 	}
