@@ -1,9 +1,11 @@
 @import "../../common";
 
-input[type=text],
-input[type=url],
-input[type=email],
-input[type=password] {
+.ui-input-text,
+.ui-input-url,
+.ui-input-email,
+.ui-input-password,
+.ui-textarea,
+.ui-select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -23,7 +25,6 @@ input[type=password] {
 	outline: none;
 	border: solid 2px #ddd;
 	border-radius: 4px;
-	background: transparent;
 	box-shadow: none;
 	transition: color 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
 
@@ -49,6 +50,11 @@ input[type=password] {
 	&:-moz-placeholder {
 		color: rgb(169, 169, 169);
 	}
+}
+
+.ui-textarea {
+	height: 6em;
+	max-width: 100%;
 }
 
 .ui-button {
