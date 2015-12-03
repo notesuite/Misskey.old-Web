@@ -110,37 +110,6 @@ $ ->
 				.fail (data) ->
 					me.data \loading no
 
-	$ '#recommendation-users > .users > .user' .each ->
-		$user = $ @
-		$user.find \.follow-button .click ->
-			$button = $ @
-			$button.attr \disabled yes
-
-			if ($user.attr \data-is-following) == \true
-				$.ajax config.web-api-url + '/users/unfollow' {
-					data: { 'user-id': $user.attr \data-user-id }
-					data-type: \json
-				} .done ->
-					$button.attr \disabled no
-					$button.remove-class \following
-					$button.add-class \notFollowing
-					$button.text 'フォロー'
-					$user.attr \data-is-following \false
-				.fail ->
-					$button.attr \disabled no
-			else
-				$.ajax config.web-api-url + '/users/follow' {
-					data: { 'user-id': $user.attr \data-user-id }
-					data-type: \json
-				} .done ->
-					$button.attr \disabled no
-					$button.remove-class \notFollowing
-					$button.add-class \following
-					$button.text 'フォロー解除'
-					$user.attr \data-is-following \true
-				.fail ->
-					$button.attr \disabled no
-
 	# 通知読み込み
 	$.ajax "#{config.web-api-url}/notifications/timeline"
 	.done (notifications) ->
@@ -165,3 +134,10 @@ $ ->
 				me: ME
 			}
 			$users.append-to $ '#widget-recommendation-users'
+			$users.each ->
+				$user = $ @
+				$user.find \.follow-button .click ->
+					$user.remove!
+					$.ajax "#{config.web-api-url}/users/follow" {
+						data: { 'user-id': $user.attr \data-user-id }
+					}
