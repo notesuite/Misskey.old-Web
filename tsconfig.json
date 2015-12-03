@@ -37,6 +37,7 @@
 		"src/api/endpoints/album/upload.ts",
 		"src/api/endpoints/avatar/update.ts",
 		"src/api/endpoints/home-layout/update.ts",
+		"src/api/endpoints/posts/create-with-file.ts",
 		"src/api/endpoints/posts/reply.ts",
 		"src/sites/desktop/common/generate-layouted-homewidgets.ts",
 		"src/sites/desktop/common/generate-homewidgets.ts",

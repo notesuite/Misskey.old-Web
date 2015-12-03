@@ -49,7 +49,8 @@ function init-register-form
 				type: \get
 				data: $form.serialize!}
 			.done ->
-				location.href = "#{config.url}/welcome"
+				# location.href = "#{config.url}/welcome"
+				location.href = config.url
 
 	$ '#register-cancel' .click (event) ->
 		hide-register-form!

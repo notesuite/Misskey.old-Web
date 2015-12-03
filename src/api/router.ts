@@ -33,6 +33,9 @@ export default function router(app: express.Express): void {
 	app.post('/web/album/upload',
 		upload.single('file'),
 		require('./endpoints/album/upload').default);
+	app.post('/web/posts/create-with-file',
+		upload.single('file'),
+		require('./endpoints/posts/create-with-file').default);
 	app.post('/web/posts/reply', require('./endpoints/posts/reply').default);
 
 	app.post('*', (req: express.Request, res: express.Response) => {
