@@ -30,9 +30,9 @@ export default function createWithFile(req: express.Request, res: express.Respon
 		if (photo !== null) {
 			requestApi('posts/photo', {
 				text: req.body.text,
-				photos: [photo.id]
+				photos: JSON.stringify([photo.id])
 			}, req.user).then((reply: Object) => {
-				res.send(reply);
+				res.redirect('/');
 			}, (err: any) => {
 				res.send(err);
 			});
@@ -40,7 +40,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			requestApi('posts/status', {
 				text: req.body.text
 			}, req.user).then((reply: Object) => {
-				res.send(reply);
+				res.redirect('/');
 			}, (err: any) => {
 				res.send(err);
 			});
