@@ -1,5 +1,6 @@
 $ = require 'jquery'
 require 'jquery.transit'
+require '../../common/scripts/main.js'
 
 $ ->
 	$ '#login-form' .submit (event) ->
@@ -15,7 +16,6 @@ $ ->
 			..attr \disabled on
 
 		$.ajax '/login' {
-			type: \post
 			data: $form.serialize!}
 		.done ->
 			location.reload!
@@ -43,12 +43,10 @@ function init-register-form
 
 		$.ajax "#{config.web-api-url}/account/create" {
 			data: $form.serialize!
-			data-type: \json}
-		.done ->
+		} .done ->
 			$.ajax "#{config.url}/login" {
-				type: \get
-				data: $form.serialize!}
-			.done ->
+				data: $form.serialize!
+			} .done ->
 				# location.href = "#{config.url}/welcome"
 				location.href = config.url
 
@@ -67,9 +65,8 @@ function init-register-form
 
 			if sn != ''
 				err = switch
-					| not sn.match /^[a-zA-Z0-9_]+$/ => '半角英数記号(_)のみでお願いしますっ'
-					| sn.length < 4chars             => '4文字以上でお願いしますっ'
-					| sn.match /^[0-9]+$/            => 'すべてを数字にすることはできませんっ'
+					| not sn.match /^[a-zA-Z0-9_]+$/ => '半角英数とハイフンのみでお願いします'
+					| sn.length < 4chars             => '4文字以上でお願いします'
 					| sn.length > 20chars            => '20文字以内でお願いします'
 					| _                              => null
 
@@ -77,14 +74,13 @@ function init-register-form
 					show-message err, no
 				else
 					show-message '確認中...' null
-					$.ajax "#{config.web-api-url}/screenname-available" {
+					$.ajax "#{config.web-api-url}/screenname/available" {
 						data: {'screen-name': sn}
-						data-type: \json}
-					.done (result) ->
+					} .done (result) ->
 						if result.available
-							show-message 'このIDは使用できますっ！' yes
+							show-message 'このIDは使用できます！' yes
 						else
-							show-message 'このIDは既に使用されていますっ' no
+							show-message 'このIDは既に使用されています' no
 					.fail (err) ->
 						show-message '確認に失敗しました;;' null
 
@@ -142,7 +138,7 @@ function init-register-form
 			password-retype = $input .val!
 			if password-retype.length > 0chars
 				if password-retype != password
-					show-message '一致していませんっ！' no
+					show-message '一致していません！' no
 					false
 				else
 					show-message 'Okay!' yes
