@@ -2,7 +2,7 @@ $ = require 'jquery'
 require 'jquery.transit'
 moment = require 'moment'
 Sortable = require 'Sortable'
-require 'fuckadblock'
+require 'fuck-adblock'
 
 require './main.js'
 require './kronos.js'
