@@ -18,12 +18,10 @@ client.maxDataSize = 1024 * 1024; // 1MiB
 export default function analyze(req: express.Request, res: express.Response): void {
 	'use strict';
 
-	const urlStr: string = req.query.url;
+	const urlStr: string = req.body.url;
 	const url: URL.Url = URL.parse(urlStr, true);
 
-	res.set({
-		'Content-Type': 'text/plain'
-	});
+	res.header('Content-Type', 'text/plain');
 
 	switch (url.hostname) {
 		case 'ja.wikipedia.org':
