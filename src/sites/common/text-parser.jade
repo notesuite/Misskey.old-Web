@@ -23,7 +23,7 @@
 
 	function analyzeHashtags(text) {
 		'use strict';
-		return text.replace(/#(\S+)/g, function(arg, tag) {
-			return '<a href="' + config.url + '/search/hashtag:' + tag + '" class="hashtag">#' + tag + '</a>';
+		return text.replace(/(^|\s)#(\S+)/g, function(arg, _, tag) {
+			return ' <a href="' + config.url + '/search/hashtag:' + tag + '" class="hashtag">#' + tag + '</a>';
 		});
 	}

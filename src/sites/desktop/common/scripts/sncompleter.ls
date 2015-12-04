@@ -207,34 +207,35 @@ module.exports = ($input) ->
 				close!
 
 		if hash-index != -1
-			tag = (text.substring hash-index).replace \# ''
-			if tag.length > 0 and tag.match /^\S+$/
-				$menu = open!
+			if hash-index == 0 or text[hash-index - 1] == ' ' or text[hash-index - 1] == '\n'
+				tag = (text.substring hash-index).replace \# ''
+				if tag.length > 0 and tag.match /^\S+$/
+					$menu = open!
 
-				# search users
-				$.ajax "#{config.web-api-url}/hashtags/search" {
-					data: {'name': tag}
-					data-type: \json}
-				.done (result) ->
-					if result? and result.length > 0
-						$menu.empty!
-						$menu.append $ '<ol class="hashtags">'
-						result.for-each (hashtag) ->
-							$menu.children \ol .append do
-								$ \<li> .append do
-									$ '<a class="ui-waves-effect">' .attr {
-										'href': "#{config.url}/search/hashtag:#{hashtag}"
-										'title': hashtag
-										'data-summoner': \#
-										'data-value': hashtag}
-									.bind \keydown autocomplate-keydown
-									.click ->
-										complete \# hashtag
-										false
-									.append do
-										$ '<span class="name">' .text "\##{hashtag}"
-					else
-						close!
-				return
-			else
-				close!
+					# search users
+					$.ajax "#{config.web-api-url}/hashtags/search" {
+						data: {'name': tag}
+						data-type: \json}
+					.done (result) ->
+						if result? and result.length > 0
+							$menu.empty!
+							$menu.append $ '<ol class="hashtags">'
+							result.for-each (hashtag) ->
+								$menu.children \ol .append do
+									$ \<li> .append do
+										$ '<a class="ui-waves-effect">' .attr {
+											'href': "#{config.url}/search/hashtag:#{hashtag}"
+											'title': hashtag
+											'data-summoner': \#
+											'data-value': hashtag}
+										.bind \keydown autocomplate-keydown
+										.click ->
+											complete \# hashtag
+											false
+										.append do
+											$ '<span class="name">' .text "\##{hashtag}"
+						else
+							close!
+					return
+				else
+					close!
