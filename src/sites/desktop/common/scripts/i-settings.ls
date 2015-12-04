@@ -77,10 +77,10 @@ module.exports = ($form) ->
 						[$modal-ok]
 					$modal-ok.click -> dialog-close!
 				else
-					$.ajax "#{config.web-api-url}/web/sites/desktop/avatar/update" {
+					$.ajax "#{config.web-api-url}/web/avatar/update" {
 						data:
-							'file-id': file.id}
-					.done (data) ->
+							'file-id': file.id
+					} .done (data) ->
 						ok!
 					.fail ->
 						$modal-ok = $ '<button>そうですか</button>'
@@ -97,7 +97,7 @@ module.exports = ($form) ->
 					..attr \disabled on
 					..attr \value '保存中...'
 				crop-data = $img.cropper \getData true
-				$.ajax "#{config.web-api-url}/web/sites/desktop/avatar/update" {
+				$.ajax "#{config.web-api-url}/web/avatar/update" {
 					data:
 						'file-id': file.id
 						'trim-x': crop-data.x
