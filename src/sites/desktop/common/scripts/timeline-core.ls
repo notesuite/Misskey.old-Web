@@ -311,7 +311,7 @@ class Timeline
 
 		$post = THIS.render post
 
-		new Audio '/resources/sounds/pop.mp3' .play!
+		new Audio '/resources/desktop/common/sounds/post.mp3' .play!
 
 		$recent-post = THIS.tl.children ':first-child'
 		if ($recent-post.attr \data-is-display-active) == \true

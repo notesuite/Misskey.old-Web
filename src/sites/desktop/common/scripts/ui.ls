@@ -591,8 +591,7 @@ $ ->
 			$input.attr \data-active \true
 			$.ajax "#{config.web-api-url}/users/search" {
 				data: {'query': $input .val!}
-				data-type: \json}
-			.done (result) ->
+			} .done (result) ->
 				$result.empty!
 				if (result.length > 0) && ($input .val! != '')
 					$result.append $ '<ol class="users">'
@@ -603,7 +602,7 @@ $ ->
 									'href': "#{config.url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
-									$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-url
+									$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-url + '?mini'
 								.append do
 									$ '<span class="name">' .text user.name
 								.append do
