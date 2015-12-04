@@ -46,18 +46,23 @@ module.exports = ($title, $content, buttons, can-close = true, on-shown = null, 
 	if on-shown?
 		on-shown!
 
+	function keydown(e)
+		if e.which == 13 or e.which == 27
+			e.prevent-default!
+			e.stop-immediate-propagation!
+			close!
+
 	if can-close
 		$container.click ->
 			close!
-		$ document .one \keydown (e) ->
-			if e.which == 13 or e.which == 27
-				e.prevent-default!
-				close!
+		$ document .on \keydown keydown
 
 	$dialog.click (e) ->
 		e.stop-immediate-propagation!
 
 	function close
+		$ document .off \keydown keydown
+
 		$ \html .css \overflow default-html-overflow-state
 
 		$container.animate {
