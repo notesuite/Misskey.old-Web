@@ -13,6 +13,11 @@ $ ->
 
 	timeline = new Timeline $ '#widget-timeline > .timeline'
 
+	$ document .keydown (e) ->
+		console.log e.which
+		if e.which == 87
+			$ '#widget-timeline > .timeline > .posts > .post:first-child' .focus!
+
 	socket = io.connect config.web-streaming-url + '/streaming/sites/desktop/home'
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'

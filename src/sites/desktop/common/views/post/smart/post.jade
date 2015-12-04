@@ -14,6 +14,7 @@ mixin core(post, isRepost, repost)
 	- var userTitle = post.user.comment != null ? post.user.comment : '@' + post.user.screenName;
 	article.post(
 			class                   = isRepost ? 'repost ' + post.type : post.type
+			tabindex                = '-1'
 			lang                    = post.user.lang
 			title                   = post.createdAt
 			itemscope

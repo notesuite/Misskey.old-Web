@@ -152,6 +152,21 @@ class Timeline
 
 		sncompleter $post.find '> .reply-form textarea'
 
+		$post.keydown (e) ->
+			console.log e.which
+			tag = e.target.tag-name.to-lower-case!
+			if tag != \input and tag != \textarea
+				if e.which == 38 # ↑
+					$post.prev!.focus!
+				if e.which == 40 # ↓
+					$post.next!.focus!
+				if e.which == 13 # Enter
+					e.prevent-default!
+					activate-display-state!
+				if e.which == 82 # r
+					# activate-display-state!
+					# $post.find '> .reply-form textarea' .focus!
+
 		$post.find '> .reply-form textarea' .on \paste (event) ->
 			items = (event.clipboard-data || event.original-event.clipboard-data).items
 			for i from 0 to items.length - 1
