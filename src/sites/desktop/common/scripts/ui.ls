@@ -195,6 +195,8 @@ class PostForm
 	->
 		THIS = @
 
+		THIS.is-open = no
+
 		THIS.photoPostForm = new PhotoPostForm THIS
 		THIS.statusPostForm = new StatusPostForm THIS
 
@@ -217,11 +219,23 @@ class PostForm
 
 	open: ->
 		THIS = @
-		$ \#misskey-post-form-back .css \display \block
+
+		if THIS.is-open
+			return
+
+		THIS.is-open = yes
+
+		$ \#misskey-post-form-back .css {
+			'display': \block
+			'pointer-events': ''
+		}
 		$ \#misskey-post-form-back .animate {
 			opacity: 1
 		} 100ms \linear
-		$ \#misskey-post-form-container .css \display \block
+		$ \#misskey-post-form-container .css {
+			'display': \block
+			'pointer-events': ''
+		}
 		$ \#misskey-post-form .stop!
 		$ \#misskey-post-form .css \transform 'scale(1.2)'
 		$ \#misskey-post-form .transition {
@@ -251,9 +265,14 @@ class PostForm
 		THIS.statusPostForm.focus!
 
 	close: ->
+		THIS = @
+		THIS.is-open = no
+
+		$ \#misskey-post-form-back .css \pointer-events \none
 		$ \#misskey-post-form-back .animate {
 			opacity: 0
 		} 100ms \linear -> $ \#misskey-post-form-back .css \display \none
+		$ \#misskey-post-form-container .css \pointer-events \none
 		$ \#misskey-post-form .stop!
 		$ \#misskey-post-form .transition {
 			opacity: \0
@@ -285,9 +304,9 @@ class PostForm
 				$info.remove!
 
 class StatusPostForm
-	(postForm) ->
+	(post-form) ->
 		THIS = @
-		THIS.postForm = postForm
+		THIS.post-form = post-form
 
 		sncompleter $ '#misskey-post-form-status-tab-page textarea'
 
@@ -304,8 +323,8 @@ class StatusPostForm
 				item = items[i]
 				if item.kind == \file && item.type.index-of \image != -1
 					file = item.get-as-file!
-					THIS.postForm.photoPostForm.focus!
-					THIS.postForm.photoPostForm.upload-new-file file
+					THIS.post-form.photoPostForm.focus!
+					THIS.post-form.photoPostForm.upload-new-file file
 
 		$ \#misskey-post-form-status-tab-page .find '.image-attacher input[name=image]' .change ->
 			$input = $ @
@@ -342,7 +361,7 @@ class StatusPostForm
 			$form[0].reset!
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
-			THIS.postForm.close!
+			THIS.post-form.close!
 		.fail (data) ->
 			window.display-message '投稿に失敗しました。'
 			$submit-button.attr \disabled off
@@ -351,13 +370,13 @@ class StatusPostForm
 
 	focus: ->
 		THIS = @
-		THIS.postForm.tab.select \status no
+		THIS.post-form.tab.select \status no
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
 
 class PhotoPostForm
-	(postForm) ->
+	(post-form) ->
 		THIS = @
-		THIS.postForm = postForm
+		THIS.post-form = post-form
 
 		Sortable.create ($ '#misskey-post-form-photo-tab-page > .photos')[0], {
 			animation: 150ms
@@ -371,7 +390,7 @@ class PhotoPostForm
 				item = items[i]
 				if item.kind == \file && item.type.index-of \image != -1
 					file = item.get-as-file!
-					THIS.postForm.photoPostForm.upload-new-file file
+					THIS.post-form.photoPostForm.upload-new-file file
 
 		$ '#misskey-post-form-photo-tab-page textarea' .keypress (e) ->
 			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
@@ -406,7 +425,7 @@ class PhotoPostForm
 
 	upload-new-file: (file) ->
 		THIS = @
-		THIS.postForm.upload-file file, ($ '#misskey-post-form-photo-tab-page'), (file) ->
+		THIS.post-form.upload-file file, ($ '#misskey-post-form-photo-tab-page'), (file) ->
 			THIS.add-file file
 
 	submit: ->
@@ -430,7 +449,7 @@ class PhotoPostForm
 			$form[0].reset!
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
-			THIS.postForm.close!
+			THIS.post-form.close!
 		.fail (data) ->
 			window.display-message '投稿に失敗しました。'
 			$submit-button.attr \disabled off
@@ -439,11 +458,11 @@ class PhotoPostForm
 
 	focus: ->
 		THIS = @
-		THIS.postForm.tab.select \photo no
+		THIS.post-form.tab.select \photo no
 		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 $ ->
-	postForm = new PostForm
+	post-form = new PostForm
 
 	update-header-statuses!
 	set-interval update-header-statuses, 10000ms
@@ -451,18 +470,12 @@ $ ->
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
 
-	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
-		window-id = "misskey-window-talk-histories"
-		$content = $ '<iframe>' .attr {src: '/i/talks', +seamless}
-		window.open-window do
-			window-id
-			$content
-			"<i class=\"fa fa-comments\"></i>トーク"
-			500px
-			560px
-			yes
-			'/i/talks'
-		false
+	$ document .keypress (e) ->
+		tag = e.target.tag-name.to-lower-case!
+		if tag != \input and tag != \textarea
+			if e.which == 110 or e.which == 112
+				e.prevent-default!
+				post-form.open!
 
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 
