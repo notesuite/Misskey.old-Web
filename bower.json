@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
+    "cropper": "2.1.0",
     "jquery.transit": "~0.9.12",
     "moment": "~2.10.6",
     "Sortable": "~1.4.2",

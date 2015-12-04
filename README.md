@@ -12,7 +12,7 @@
 2. `cd Misskey-Web`
 3. `npm install`
 4. `npm run dtsm`
-4. `bower install`
+4. `sudo ./node_modules/.bin/bower install --allow-root`
 5. `npm run build`
 
 ## How to start Misskey Web server
