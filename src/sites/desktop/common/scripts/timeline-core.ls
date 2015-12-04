@@ -27,10 +27,14 @@ class Timeline
 		function check-reposted
 			($post.attr \data-is-reposted) == \true
 
-		function activate-display-state
+		function focus-reply-form
+			reply-form-text = $post.find '> .reply-form textarea' .val!
+			$post.find  '> .reply-form textarea' .val ''
+			$post.find  '> .reply-form textarea' .focus! .val reply-form-text
+
+		function toggle-display-state
 			animation-speed = 200ms
 			if ($post.attr \data-is-display-active) == \false
-				reply-form-text = $post.find '> .reply-form textarea' .val!
 				THIS.posts.each ->
 					$ @
 						..attr \data-is-display-active \false
@@ -54,8 +58,6 @@ class Timeline
 					..find  '> .replies-ellipsis' .hide animation-speed
 					..find  '> .talk' .slide-down animation-speed
 					..find  '> .reply-form' .show animation-speed
-					..find  '> .reply-form textarea' .val ''
-					..find  '> .reply-form textarea' .focus! .val reply-form-text
 					..find  '> .replies' .slide-down animation-speed
 				if (($post.attr \data-is-talk) == \true) and ($post.children \.talk .children!.length == 0)
 					$.ajax "#{config.web-api-url}/posts/talk/show" {
@@ -142,6 +144,39 @@ class Timeline
 				->
 					$info.remove!
 
+		function like
+			$button = $post.find '> footer > .actions > .like > button'
+				..attr \disabled on
+			if check-liked!
+				$post.attr \data-is-liked \false
+				$.ajax "#{config.web-api-url}/posts/unlike" {
+					data: {'post-id': $post.attr \data-id}}
+				.done ->
+					$button.attr \disabled off
+				.fail ->
+					$button.attr \disabled off
+					$post.attr \data-is-liked \true
+			else
+				$post.attr \data-is-liked \true
+				$.ajax "#{config.web-api-url}/posts/like" {
+					data: {'post-id': $post.attr \data-id}}
+				.done ->
+					$button.attr \disabled off
+				.fail ->
+					$button.attr \disabled off
+					$post.attr \data-is-liked \false
+
+		function repost(done, fail)
+			$post.attr \data-is-reposted \true
+			$.ajax "#{config.web-api-url}/posts/repost" {
+				data:
+					'post-id': $post.attr \data-id}
+			.done ->
+				done!
+			.fail ->
+				$post.attr \data-is-reposted \false
+				fail!
+
 		$post.attr \data-is-display-active \false
 
 		post-type = $post.attr \data-type
@@ -153,7 +188,6 @@ class Timeline
 		sncompleter $post.find '> .reply-form textarea'
 
 		$post.keydown (e) ->
-			console.log e.which
 			tag = e.target.tag-name.to-lower-case!
 			if tag != \input and tag != \textarea
 				if e.which == 38 # ↑
@@ -162,10 +196,23 @@ class Timeline
 					$post.next!.focus!
 				if e.which == 13 # Enter
 					e.prevent-default!
-					activate-display-state!
+					toggle-display-state!
 				if e.which == 82 # r
-					# activate-display-state!
-					# $post.find '> .reply-form textarea' .focus!
+					e.prevent-default!
+					if ($post.attr \data-is-display-active) == \false
+						toggle-display-state!
+						focus-reply-form!
+					else
+						focus-reply-form!
+				if e.which == 70 or e.which == 76 # f or l
+					like!
+				if e.which == 69 # e
+					repost!
+
+		$post.find '> .reply-form textarea' .keydown (e) ->
+			if e.which == 27
+				e.prevent-default!
+				$post.focus!
 
 		$post.find '> .reply-form textarea' .on \paste (event) ->
 			items = (event.clipboard-data || event.original-event.clipboard-data).items
@@ -208,7 +255,8 @@ class Timeline
 					can-event = no
 
 				if can-event
-					activate-display-state!
+					toggle-display-state!
+					focus-reply-form!
 
 			..find '> .reply-form' .submit (event) ->
 				event.prevent-default!
@@ -216,30 +264,11 @@ class Timeline
 
 			# Init like button
 			..find '> footer > .actions > .like > button' .click ->
-				$button = $ @
-					..attr \disabled on
-				if check-liked!
-					$post.attr \data-is-liked \false
-					$.ajax "#{config.web-api-url}/posts/unlike" {
-						data: {'post-id': $post.attr \data-id}}
-					.done ->
-						$button.attr \disabled off
-					.fail ->
-						$button.attr \disabled off
-						$post.attr \data-is-liked \true
-				else
-					$post.attr \data-is-liked \true
-					$.ajax "#{config.web-api-url}/posts/like" {
-						data: {'post-id': $post.attr \data-id}}
-					.done ->
-						$button.attr \disabled off
-					.fail ->
-						$button.attr \disabled off
-						$post.attr \data-is-liked \false
+				like!
 
 			# Init reply button
 			..find '> footer > .actions > .reply > button' .click ->
-				activate-display-state!
+				toggle-display-state!
 
 			# Init repost button
 			..find '> footer > .actions > .repost > button' .click ->
@@ -269,27 +298,24 @@ class Timeline
 				$submit-button = $form.find \.accept
 					..attr \disabled on
 					..attr \data-reposting \true
-				$post.attr \data-is-reposted \true
-				$.ajax "#{config.web-api-url}/posts/repost" {
-					data:
-						'post-id': $post.attr \data-id}
-				.done ->
-					$submit-button
-						..attr \disabled off
-						..attr \data-reposting \false
-					window.display-message 'Reposted!'
-					$post.find '> .repost-form .background' .animate {
-						opacity: 0
-					} 100ms \linear -> $post.find '> .repost-form .background' .css \display \none
-					$post.find '> .repost-form .form' .animate {
-						opacity: 0
-					} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
-				.fail ->
-					$submit-button
-						..attr \disabled off
-						..attr \data-reposting \false
-					$post.attr \data-is-reposted \false
-					window.display-message 'Repostに失敗しました。再度お試しください。'
+				repost do
+					->
+						$submit-button
+							..attr \disabled off
+							..attr \data-reposting \false
+						window.display-message 'Reposted!'
+						$post.find '> .repost-form .background' .animate {
+							opacity: 0
+						} 100ms \linear -> $post.find '> .repost-form .background' .css \display \none
+						$post.find '> .repost-form .form' .animate {
+							opacity: 0
+						} 100ms \linear -> $post.find '> .repost-form .form' .css \display \none
+					->
+						$submit-button
+							..attr \disabled off
+							..attr \data-reposting \false
+						window.display-message 'Repostに失敗しました。再度お試しください。'
+
 			..find '> .repost-form > .form > .actions > .cancel' .click ->
 				$post.find '> .repost-form .background' .animate {
 					opacity: 0

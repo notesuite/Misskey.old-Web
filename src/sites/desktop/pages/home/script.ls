@@ -14,9 +14,10 @@ $ ->
 	timeline = new Timeline $ '#widget-timeline > .timeline'
 
 	$ document .keydown (e) ->
-		console.log e.which
-		if e.which == 87
-			$ '#widget-timeline > .timeline > .posts > .post:first-child' .focus!
+		tag = e.target.tag-name.to-lower-case!
+		if tag != \input and tag != \textarea
+			if e.which == 87 or e.which == 75
+				$ '#widget-timeline > .timeline > .posts > .post:first-child' .focus!
 
 	socket = io.connect config.web-streaming-url + '/streaming/sites/desktop/home'
 
