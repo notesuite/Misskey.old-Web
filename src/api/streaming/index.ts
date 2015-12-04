@@ -26,8 +26,13 @@ const sessionStore: any = new _MongoStore({
 // Authorization
 io.use((socket: SocketIO.Socket, next: (err?: any) => void) => {
 	const rawCookie: string = socket.request.headers.cookie;
-	const parsedCookie: { [key: string]: string } = cookie.parse(rawCookie);
-	const isAuthorized: boolean = /s:(.+?)\./.test(parsedCookie[config.sessionKey]);
+	let isAuthorized: boolean;
+	if (rawCookie !== undefined && rawCookie !== null) {
+		const parsedCookie: { [key: string]: string } = cookie.parse(rawCookie);
+		isAuthorized = /s:(.+?)\./.test(parsedCookie[config.sessionKey]);
+	} else {
+		isAuthorized = false;
+	}
 	if (isAuthorized) {
 		next();
 	} else {
