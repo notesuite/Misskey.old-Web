@@ -1,0 +1,24 @@
+extends ../../../layout
+include ../../../common/views/post/smart/post
+
+block title
+	| あなた宛て
+
+block header
+	i.fa.fa-at
+	| あなた宛て
+
+block body
+	main(role='main')
+		div#stream
+			div.posts
+				if mentions.length > 0
+					each post in mentions
+						+post(post)
+				else
+					p.empty
+						| あなた宛ての投稿はありません。
+			if mentions.length > 0
+				button.read-more
+					i.fa.fa-sort-amount-desc
+					| Read more...?
