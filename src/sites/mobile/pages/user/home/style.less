@@ -1,0 +1,19 @@
+@import "../../../common/styles/ui";
+
+html, #misskey-main {
+	color: #000;
+	background: #F1E9E2;
+}
+
+#timeline {
+	@import "../../../common/styles/timeline";
+	padding: 8px;
+
+	> .posts {
+		> .post {
+			&:first-child {
+				border-radius: 6px 6px 0 0;
+			}
+		}
+	}
+}

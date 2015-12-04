@@ -1,0 +1,30 @@
+extends ../../../layout
+include ../../../common/views/post/smart/post
+
+block title
+	= user.name
+
+block header
+	i.fa.fa-at
+	= user.name
+
+block body
+	main
+		div#user
+			div.banner
+			div.body
+				a.avatr-anchor(href=user.avatarUrl)
+					img.avatar(src=user.avatarUrl + '?mini', alt='avatar')
+				p.comment= user.comment
+		div#timeline
+			div.posts
+				if timeline.length > 0
+					each post in timeline
+						+post(post)
+				else
+					p.empty
+						| このユーザーはまだ何も投稿していません。
+			if timeline.length > 0
+				button.read-more
+					i.fa.fa-sort-amount-desc
+					| Read more...?

@@ -63,6 +63,7 @@
 		"src/sites/mobile/pages/home/controller.ts",
 		"src/sites/mobile/pages/i/mentions/controller.ts",
 		"src/sites/mobile/pages/i/post-new/controller.ts",
-		"src/sites/mobile/pages/i/settings/controller.ts"
+		"src/sites/mobile/pages/i/settings/controller.ts",
+		"src/sites/mobile/pages/user/home/controller.ts"
 	]
 }
