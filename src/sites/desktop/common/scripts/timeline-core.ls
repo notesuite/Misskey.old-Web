@@ -189,7 +189,7 @@ class Timeline
 
 		$post.keydown (e) ->
 			tag = e.target.tag-name.to-lower-case!
-			if tag != \input and tag != \textarea
+			if tag != \input and tag != \textarea and tag != \button
 				if e.which == 38 # ↑
 					$post.prev!.focus!
 				if e.which == 40 # ↓
