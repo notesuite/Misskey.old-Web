@@ -143,6 +143,7 @@ module.exports = ($input) ->
 					$input.focus!
 			| 27 => # Key[ESC]
 				e.prevent-default!
+				e.stop-propagation!
 				close!
 				$input.focus!
 			| 38 => # Key[↑]
@@ -160,7 +161,8 @@ module.exports = ($input) ->
 			| _ =>
 				$input.focus!
 				return
-		$opening-menu.find "ol > li:nth-child(#{$opening-menu.attr 'data-select'}) > a" .focus!
+		if $opening-menu?
+			$opening-menu.find "ol > li:nth-child(#{$opening-menu.attr 'data-select'}) > a" .focus!
 
 	$input.bind \input ->
 		caret := get-caret!

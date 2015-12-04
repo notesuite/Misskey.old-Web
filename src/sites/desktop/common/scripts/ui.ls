@@ -477,6 +477,11 @@ $ ->
 				e.prevent-default!
 				post-form.open!
 
+	$ document .keydown (e) ->
+		if e.which == 27
+			e.prevent-default!
+			post-form.close!
+
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 
 	# 「Misskey Menu」ドロップダウン
