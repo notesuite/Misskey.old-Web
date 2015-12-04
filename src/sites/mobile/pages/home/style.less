@@ -9,7 +9,7 @@ html, #misskey-main {
 	@import "../../common/styles/timeline";
 	margin: 0 auto;
 	padding: 8px;
-	max-width: 600px;
+	max-width: 500px;
 
 	> .posts {
 		> .post {
@@ -17,6 +17,12 @@ html, #misskey-main {
 				border-radius: 6px 6px 0 0;
 			}
 		}
+	}
+}
+
+@media (min-width: 600px) {
+	#timeline {
+		padding: 16px 8px;
 	}
 }
 
