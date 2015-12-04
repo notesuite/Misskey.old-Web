@@ -49,6 +49,10 @@ module.exports = ($title, $content, buttons, can-close = true, on-shown = null, 
 	if can-close
 		$container.click ->
 			close!
+		$ document .one \keydown (e) ->
+			if e.which == 13 or e.which == 27
+				e.prevent-default!
+				close!
 
 	$dialog.click (e) ->
 		e.stop-immediate-propagation!

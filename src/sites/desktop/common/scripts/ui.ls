@@ -473,7 +473,6 @@ $ ->
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!
 		if tag != \input and tag != \textarea
-			console.log e.which
 			# Short cut Help
 			if e.which == 47 or e.which == 104
 				$modal-ok = $ '<button>Close</button>'
