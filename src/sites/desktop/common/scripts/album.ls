@@ -207,7 +207,7 @@ class Album
 		THIS.$album-uploads.find \ol .append $info
 		data = new FormData!
 			..append \file file
-		$.ajax "#{config.web-api-url}/web/sites/desktop/album/upload" {
+		$.ajax "#{config.web-api-url}/web/album/upload" {
 			+async
 			-process-data
 			-content-type

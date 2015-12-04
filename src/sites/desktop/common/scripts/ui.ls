@@ -51,12 +51,11 @@ window.display-message = (message) ->
 window.upload-file = (file, uploading, success, failed) ->
 	data = new FormData!
 		..append \file file
-	$.ajax "#{config.web-api-url}/web/sites/desktop/album/upload" {
+	$.ajax "#{config.web-api-url}/web/album/upload" {
 		+async
 		-process-data
 		-content-type
 		data: data
-		data-type: \text
 		xhr: ->
 			XHR = $.ajax-settings.xhr!
 			if XHR.upload
@@ -66,8 +65,8 @@ window.upload-file = (file, uploading, success, failed) ->
 				, false
 			XHR
 	}
-	.done (html) ->
-		success html
+	.done (file) ->
+		success file
 	.fail (data) ->
 		failed!
 
@@ -279,9 +278,9 @@ class PostForm
 					$progress-bar
 						..attr \max total
 						..attr \value uploaded
-			(html) ->
+			(file) ->
 				$info.remove!
-				complete html
+				complete file
 			->
 				$info.remove!
 
@@ -407,8 +406,8 @@ class PhotoPostForm
 
 	upload-new-file: (file) ->
 		THIS = @
-		THIS.postForm.upload-file file, ($ '#misskey-post-form-photo-tab-page'), (html) ->
-			THIS.add-file JSON.parse ($ html).attr \data-data
+		THIS.postForm.upload-file file, ($ '#misskey-post-form-photo-tab-page'), (file) ->
+			THIS.add-file file
 
 	submit: ->
 		THIS = @
