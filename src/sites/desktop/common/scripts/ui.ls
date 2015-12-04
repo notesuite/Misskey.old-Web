@@ -473,6 +473,49 @@ $ ->
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!
 		if tag != \input and tag != \textarea
+			console.log e.which
+			# Short cut Help
+			if e.which == 47 or e.which == 104
+				$modal-ok = $ '<button>Close</button>'
+				dialog-close = show-modal-dialog do
+					$ '<p><i class="fa fa-keyboard-o"></i>Keyboard shortcuts</p>'
+					'<dl>
+						<dt><kbd>?</kbd>または<kbd>h</kbd></dt>
+						<dd>このダイアログを表示する</dd>
+
+						<dt><kbd>p</kbd>または<kbd>n</kbd></dt>
+						<dd>投稿フォームを開く</dd>
+
+						<dt>投稿フォームを開いた状態で<kbd>Esc</kbd></dt>
+						<dd>投稿フォームを閉じる</dd>
+
+						<dt><kbd>w</kbd>または<kbd>k</kbd></dt>
+						<dd>タイムラインの最新の投稿にフォーカス</dd>
+
+						<dt>投稿にフォーカスした状態で<kbd>↑</kbd><kbd>↓</kbd></dt>
+						<dd>その方向の投稿にフォーカス</dd>
+
+						<dt>投稿にフォーカスした状態で<kbd>Enter</kbd></dt>
+						<dd>投稿を開く/閉じる</dd>
+
+						<dt>投稿にフォーカスした状態で<kbd>r</kbd></dt>
+						<dd>返信フォームにフォーカス</dd>
+
+						<dt>返信フォームにフォーカスした状態で<kbd>Esc</kbd></dt>
+						<dd>投稿にフォーカスをもどす</dd>
+
+						<dt>投稿フォームにフォーカスした状態で<kbd>f</kbd>または<kbd>l</kbd></dt>
+						<dd>Likeする</dd>
+
+						<dt>投稿フォームにフォーカスした状態で<kbd>e</kbd></dt>
+						<dd>Repostする</dd>
+					</dl>'
+					[$modal-ok]
+					true
+					null
+					\misskey-keyboard-shortcuts
+				$modal-ok.click -> dialog-close!
+			# Open post form
 			if e.which == 110 or e.which == 112
 				e.prevent-default!
 				post-form.open!

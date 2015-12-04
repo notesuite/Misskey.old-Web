@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-module.exports = ($title, $content, buttons, can-close = true, on-shown = null) ->
+module.exports = ($title, $content, buttons, can-close = true, on-shown = null, klass = null) ->
 	default-html-overflow-state = $ \html .css \overflow
 	$ \html .css \overflow \hidden
 
@@ -23,6 +23,7 @@ module.exports = ($title, $content, buttons, can-close = true, on-shown = null) 
 		..append $header
 		..append $body
 		..append $buttons
+		..add-class klass
 
 	$container = $ '<div class="ui-modal-dialog-container" />'
 		..append $dialog
