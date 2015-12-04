@@ -229,8 +229,7 @@ class Album
 				XHR
 		}
 		.done (file) ->
-			current-location = if THIS.current-location == null then \null else THIS.current-location
-			if current-location == file.folder
+			if THIS.current-location == file.folder
 				THIS.add-file file
 		.fail (data) ->
 			window.display-message 'アップロードに失敗しました。'
