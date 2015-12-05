@@ -590,12 +590,16 @@
 							font-style: normal;
 						}
 
+						> .protocol {
+							opacity: 0.5;
+						}
+
 						> .hostname {
-							font-weight: bold;
+							font-weight: normal;
 						}
 
 						> .query {
-							opacity: 0.3;
+							opacity: 0.5;
 						}
 					}
 
@@ -690,6 +694,7 @@
 					> iframe {
 						display: block;
 						margin: 0 auto;
+						max-width: 100%;
 					}
 				}
 
@@ -1280,6 +1285,18 @@
 					&:hover {
 						text-decoration: underline;
 					}
+
+					> .protocol {
+						opacity: 0.5;
+					}
+
+					> .hostname {
+						font-weight: normal;
+					}
+
+					> .query {
+						opacity: 0.5;
+					}
 				}
 
 				.screen-name {
@@ -1336,7 +1353,7 @@
 	}
 }
 
-> .load-more {
+> .read-more {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -1344,7 +1361,7 @@
 	box-sizing: border-box;
 	margin: 0 0 0 auto;
 	padding: 0;
-	width: ~"calc(100% - 70px)";
+	width: 100%;
 	height: 3em;
 	line-height: 3em;
 	font-size: 1.05em;

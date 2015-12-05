@@ -1,5 +1,5 @@
 $ = require 'jquery'
-# urldecorator = require './urldecorator.js'
+urldecorator = require './urldecorator.js'
 imageviewer = require './image-viewer.js'
 
 module.exports = (post-type, $content) ->
@@ -7,7 +7,7 @@ module.exports = (post-type, $content) ->
 	| \status, \photo =>
 		# Init url preview
 		$content.find '> .text a:not(.mention):not(.hashtag)' .each ->
-			$link = $ @
+			$link = urldecorator $ @
 			$.ajax "#{config.web-api-url}/web/url/analyze" {
 				data:
 					'url': $link.attr \href
