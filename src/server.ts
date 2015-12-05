@@ -23,7 +23,7 @@ import router from './router';
 
 function uatype(ua: string): string {
 	'use strict';
-	if (ua !== null) {
+	if (ua !== undefined && ua !== null) {
 		ua = ua.toLowerCase();
 		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
 			return 'mobile';
