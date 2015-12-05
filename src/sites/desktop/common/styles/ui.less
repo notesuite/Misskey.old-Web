@@ -296,6 +296,31 @@
 				}
 			}
 
+			progress {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: block;
+				margin: 0;
+				width: 100%;
+				height: 8px;
+				border: none;
+				border-radius: 0;
+				overflow: hidden;
+
+				&::-webkit-progress-value {
+					background-color: @themeColor;
+				}
+
+				&::-webkit-progress-bar {
+					background-color: #000;
+				}
+
+				&:not([value])::-webkit-progress-bar {
+					background-image: url('/resources/desktop/common/images/indeter.gif');
+				}
+			}
+
 			button.submit {
 				-webkit-appearance: none;
 				-moz-appearance: none;
@@ -2325,6 +2350,8 @@
 	}
 }
 
+/* Album
+ * ---------------------------------------------------------------- */
 #misskey-album-container {
 
 	#misskey-album-background {
