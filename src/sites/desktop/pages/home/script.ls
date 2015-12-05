@@ -1,5 +1,6 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery'
+moment = require 'moment'
 Timeline = require '../../common/scripts/timeline-core.js'
 notification-compiler = require '../../common/views/notification/smart/render.jade'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
@@ -133,34 +134,43 @@ $ ->
 				.fail (data) ->
 					me.data \loading no
 
-	# 通知読み込み
-	$.ajax "#{config.web-api-url}/notifications/timeline"
-	.done (notifications) ->
-		if notifications != []
-			$notifications = $ notifications-compiler {
-				items: notifications
-				config: CONFIG
-				me: ME
-			}
-			$notifications.append-to $ '#widget-notifications .notifications'
-		else
-			$info = $ '<p class="notifications-empty">通知はありません</p>'
-			$info.append-to $ '#widget-notifications'
+	if $ \#widget-notifications .length != 0
+		# 通知読み込み
+		$.ajax "#{config.web-api-url}/notifications/timeline"
+		.done (notifications) ->
+			if notifications != []
+				$notifications = $ notifications-compiler {
+					items: notifications
+					config: CONFIG
+					me: ME
+				}
+				$notifications.append-to $ '#widget-notifications .notifications'
+			else
+				$info = $ '<p class="notifications-empty">通知はありません</p>'
+				$info.append-to $ '#widget-notifications'
 
-	# recommendation users
-	$.ajax "#{config.web-api-url}/users/recommendations"
-	.done (users) ->
-		if users != []
-			$users = $ recommendation-users-compiler {
-				users
-				config: CONFIG
-				me: ME
-			}
-			$users.append-to $ '#widget-recommendation-users'
-			$users.each ->
-				$user = $ @
-				$user.find \.follow-button .click ->
-					$user.remove!
-					$.ajax "#{config.web-api-url}/users/follow" {
-						data: { 'user-id': $user.attr \data-user-id }
-					}
+	if $ \#widget-recommendation-users .length != 0
+		# recommendation users
+		$.ajax "#{config.web-api-url}/users/recommendations"
+		.done (users) ->
+			if users != []
+				$users = $ recommendation-users-compiler {
+					users
+					config: CONFIG
+					me: ME
+				}
+				$users.append-to $ '#widget-recommendation-users'
+				$users.each ->
+					$user = $ @
+					$user.find \.follow-button .click ->
+						$user.remove!
+						$.ajax "#{config.web-api-url}/users/follow" {
+							data: { 'user-id': $user.attr \data-user-id }
+						}
+
+	if $ \#widget-big-calendar .length != 0
+		moment.locale \ja
+		$ \#widget-big-calendar .find \.day-of-the-week .text  moment!.format 'dddd'
+		$ \#widget-big-calendar .find \.day .text  moment!.format 'Do'
+		$ \#widget-big-calendar .find \.month .text  moment!.format 'MMMM'
+		$ \#widget-big-calendar .find \.year .text  moment!.format 'YYYY年'
