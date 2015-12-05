@@ -5,11 +5,16 @@ notification-compiler = require '../../common/views/notification/smart/render.ja
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
 recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
 
+is-active = yes
+unread-count = 0
+
 $ ->
 	try
 		Notification.request-permission!
 	catch
 		console.log 'oops'
+
+	default-title = document.title
 
 	timeline = new Timeline $ '#widget-timeline > .timeline'
 
@@ -18,6 +23,15 @@ $ ->
 		if tag != \input and tag != \textarea
 			if e.which == 87 or e.which == 75
 				$ '#widget-timeline > .timeline > .posts > .post:first-child' .focus!
+
+	$ window .focus ->
+		is-active := yes
+		unread-count := 0
+		document.title = default-title
+
+	$ window .blur ->
+		is-active := no
+		document.title = $ '#widget-timeline > .timeline > .posts > .post:first-child > .main > .content > .text' .text!
 
 	socket = io.connect config.web-streaming-url + '/streaming/sites/desktop/home'
 
@@ -53,6 +67,10 @@ $ ->
 	socket.on \post (post) ->
 		timeline.add post
 		$ '#widget-timeline > .timeline > .empty' .remove!
+
+		if not is-active
+			unread-count++
+			document.title = "(#{unread-count}) " + $ '#widget-timeline > .timeline > .posts > .post:first-child > .main > .content > .text' .text!
 
 	socket.on \mention (post) ->
 		id = post.id
