@@ -173,3 +173,9 @@ $ ->
 		$ \#widget-big-calendar .find \.day .text  moment!.format 'Do'
 		$ \#widget-big-calendar .find \.month .text  moment!.format 'MMMM'
 		$ \#widget-big-calendar .find \.year .text  moment!.format 'YYYY'
+
+	if $ \#widget-small-calendar .length != 0
+		$ \#widget-small-calendar .find \.yyyy .text  moment!.format 'YYYY'
+		$ \#widget-small-calendar .find \.m .text  moment!.format 'M'
+		$ \#widget-small-calendar .find \.d .text  moment!.format 'D'
+		$ \#widget-small-calendar .find \.week .text  moment!.format '(dddd)'
