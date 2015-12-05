@@ -52,7 +52,6 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			console.error(result.error);
 			return res.sendStatus(500);
 		}
 
@@ -140,7 +139,6 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			console.error(result.error);
 			return res.sendStatus(500);
 		}
 
@@ -188,7 +186,6 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 	// リクエスト送信
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			console.error(result.error);
 			return res.sendStatus(500);
 		}
 
