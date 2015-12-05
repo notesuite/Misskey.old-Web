@@ -20,7 +20,7 @@ module.exports = (file) ->
 	$crop-form.find \.container .prepend $img
 	close = show-modal-window $crop-form, false, ->
 		$img.cropper {
-			aspect-ratio: 1 / 1
+			aspect-ratio: 16 / 9
 			highlight: no
 			view-mode: 1
 			preview: $crop-form.find \.preview
