@@ -169,8 +169,7 @@ $ ->
 						}
 
 	if $ \#widget-big-calendar .length != 0
-		moment.locale \ja
 		$ \#widget-big-calendar .find \.day-of-the-week .text  moment!.format 'dddd'
 		$ \#widget-big-calendar .find \.day .text  moment!.format 'Do'
 		$ \#widget-big-calendar .find \.month .text  moment!.format 'MMMM'
-		$ \#widget-big-calendar .find \.year .text  moment!.format 'YYYY年'
+		$ \#widget-big-calendar .find \.year .text  moment!.format 'YYYY'
