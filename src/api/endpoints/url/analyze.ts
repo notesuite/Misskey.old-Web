@@ -90,6 +90,7 @@ function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Ur
 
 		switch (url.hostname) {
 			case 'www.youtube.com':
+			case 'youtube.com':
 				return url.query.v;
 			case 'youtu.be':
 				return url.pathname;
