@@ -5,6 +5,21 @@ Timeline = require '../../common/scripts/timeline-core.js'
 $ ->
 	timeline = new Timeline $ '#timeline'
 
+	$ '#timeline > .read-more' .click ->
+		$button = $ @
+		$button.attr \disabled on
+		$button.find \p .text 'Loading...'
+		$.ajax "#{config.web-api-url}/posts/timeline" {
+			data:
+				limit: 10
+				'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor
+		} .done (posts) ->
+			posts.for-each (post) ->
+				timeline.add-last post
+		.always ->
+			$button.attr \disabled off
+			$button.find \p .text 'Read more...?'
+
 	socket = io.connect config.web-streaming-url + '/streaming/sites/mobile/home'
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
