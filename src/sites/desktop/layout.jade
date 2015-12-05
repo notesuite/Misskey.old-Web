@@ -6,13 +6,11 @@ block vars
 
 != '<!-- このセッションは ' + workerId + ' が担当しました -->'
 
-html#misskey(
+html(
 		lang='ja',
 		dir='ltr',
 		itemscope,
-		itemtype= htmlSchema,
-		data-is-login!= login.toString(),
-		data-me-id= login ? me.id : null)
+		itemtype= htmlSchema)
 
 	head(prefix='og: http://ogp.me/ns#')
 		include ./head
