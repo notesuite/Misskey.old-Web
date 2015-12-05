@@ -34,7 +34,7 @@ block body
 	
 	main(role='main')
 		header
-			div#header-data(style={'background-image': user.bannerUrl})
+			div#header-data(style={'background-image': "url(#{user.bannerUrl})"})
 				if isMe
 					button#banner-edit(title='ヘッダー画像を編集')
 						i.fa.fa-picture-o
