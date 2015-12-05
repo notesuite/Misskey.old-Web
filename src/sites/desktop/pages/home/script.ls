@@ -31,7 +31,6 @@ $ ->
 
 	$ window .blur ->
 		is-active := no
-		document.title = $ '#widget-timeline > .timeline > .posts > .post:first-child > .main > .content > .text' .text!
 
 	socket = io.connect config.web-streaming-url + '/streaming/sites/desktop/home'
 
