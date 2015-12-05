@@ -27,31 +27,37 @@ block assets
 	block pageAssets
 
 block body
+	-
+		function comma(str) {
+			return String(str).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+		}
+	
 	main(role='main')
 		header
-			div#header-data
+			div#header-data(style={'background-image': user.bannerUrl})
 				if isMe
-					button#header-image-edit-button(title='ヘッダー画像を編集', role='button')
+					button#banner-edit(title='ヘッダー画像を編集')
 						i.fa.fa-picture-o
 				div.bottom
-					div.main
-						div.names-area
-							h1#name-area
-								span#name(itemprop='name')= user.name
+					div.body
+						div.main
+							h1#name-container
+								p#name(itemprop='name')= user.name
 								if user.isVerified
 									img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-							span#screen-name(itemprop='alternateName')= '@' + user.screenName
+							p#screen-name(itemprop='alternateName')= '@' + user.screenName
+							p#liked-count
+								i.fa.fa-star
+								= comma(user.likedCount)
 						table.count-table
 							tr
 								th Posts
-								th Likes
 								th Following
 								th Followers
 							tr
-								td: a(href='/' + user.screenName)= user.postsCount
-								td: a(href='/' + user.screenName + '/likes')= user.likesCount
-								td: a(href='/' + user.screenName + '/followings')= user.followingsCount
-								td: a(href='/' + user.screenName + '/followers')= user.followersCount
+								td: a(href='/' + user.screenName)= comma(user.postsCount)
+								td: a(href='/' + user.screenName + '/followings')= comma(user.followingsCount)
+								td: a(href='/' + user.screenName + '/followers')= comma(user.followersCount)
 			nav#header-nav(role='navigation')
 				div.main
 					div#avatar-area

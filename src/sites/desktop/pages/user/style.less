@@ -42,7 +42,6 @@ main {
 			position: relative;
 			height: 300px;
 			background-color: #222;
-			//background-image: url(@headerImageUrl);
 			background-repeat: no-repeat;
 			background-position: center 50%;
 			background-size: cover;
@@ -95,7 +94,7 @@ main {
 				background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
 				transition: background 1s ease;
 
-				> .main {
+				> .body {
 					max-width: 1334px;
 					margin: 0 auto;
 					color: #fff;
@@ -106,12 +105,12 @@ main {
 						clear: both;
 					}
 
-					.names-area {
+					.main {
 						float: left;
 						margin-left: 267px;
 						padding: 16px 0 16px 24px;
 
-						#name-area {
+						#name-container {
 							margin: 0;
 							padding: 0;
 							font-size: 1em;
@@ -158,12 +157,19 @@ main {
 						}
 
 						#screen-name {
-							user-select: text;
-							-moz-user-select: text;
-							-webkit-user-select: text;
-							-ms-user-select: text;
-							cursor: default;
+							display: inline;
+							margin: 0;
 							color: rgba(255, 255, 255, 0.8);
+						}
+
+						#liked-count {
+							display: inline;
+							margin: 0;
+							margin-left: 16px;
+
+							> i {
+								margin-right: 0.5em;
+							}
 						}
 					}
 
