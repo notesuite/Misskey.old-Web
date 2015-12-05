@@ -1,4 +1,5 @@
 $ = require 'jquery'
+require 'jquery.transit'
 Sortable = require 'Sortable'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
@@ -147,6 +148,10 @@ class Timeline
 		function like
 			$button = $post.find '> footer > .actions > .like > button'
 				..attr \disabled on
+			$button.find \i .transition {
+				perspective: '100px'
+				rotate-x: '-360deg'
+			} 500ms
 			if check-liked!
 				$post.attr \data-is-liked \false
 				$.ajax "#{config.web-api-url}/posts/unlike" {
