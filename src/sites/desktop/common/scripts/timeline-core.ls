@@ -269,6 +269,7 @@ class Timeline
 			# Init reply button
 			..find '> footer > .actions > .reply > button' .click ->
 				toggle-display-state!
+				focus-reply-form!
 
 			# Init repost button
 			..find '> footer > .actions > .repost > button' .click ->
