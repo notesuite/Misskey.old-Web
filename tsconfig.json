@@ -36,6 +36,7 @@
 		"src/api/endpoints/url/analyze.ts",
 		"src/api/endpoints/album/upload.ts",
 		"src/api/endpoints/avatar/update.ts",
+		"src/api/endpoints/banner/update.ts",
 		"src/api/endpoints/home-layout/update.ts",
 		"src/api/endpoints/posts/create-with-file.ts",
 		"src/api/endpoints/posts/reply.ts",
