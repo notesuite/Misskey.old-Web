@@ -29,6 +29,7 @@ export default function analyze(req: express.Request, res: express.Response): vo
 			analyzeWikipedia(req, res, url);
 			break;
 		case 'www.youtube.com':
+		case 'youtube.com':
 		case 'youtu.be':
 			analyzeYoutube(req, res, url);
 			break;
