@@ -81,7 +81,7 @@ export default function router(app: express.Express): void {
 
 	app.post('/logout', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
-			req.session.destroy(function() {
+			req.session.destroy(() => {
 				res.redirect('/');
 			});
 		}
