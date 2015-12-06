@@ -43,9 +43,6 @@ html(
 					div#misskey-post-form-tab-pages
 						form#misskey-post-form-status-tab-page(data-name='status')
 							textarea(name='text', placeholder='What\'s up?', aria-multiline='true', required)
-							button.submit(type='submit')
-								| Update
-								i.fa.fa-paper-plane
 						form#misskey-post-form-photo-tab-page(data-name='photo')
 							textarea(name='text', placeholder='What\'s up?', aria-multiline='true')
 							ol.photos
@@ -57,15 +54,15 @@ html(
 								i.fa.fa-folder-open
 								| アルバムから画像を添付
 							input(name='file', type='file', accept='image/*', multiple)
-							button.submit(type='submit')
-								| Update
-								i.fa.fa-paper-plane
 						form#misskey-post-form-video-tab-page(data-name='video')
 							p coming soon
 						form#misskey-post-form-audio-tab-page(data-name='audio')
 							p coming soon
 						form#misskey-post-form-poll-tab-page(data-name='poll')
 							p coming soon
+					button.submit(type='submit')
+						p Update
+						i.fa.fa-paper-plane
 					
 		header#misskey-main-header
 			div.main

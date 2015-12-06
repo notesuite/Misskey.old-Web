@@ -2,7 +2,7 @@
 
 case file.type
 	when 'file'
-		li.item.file(
+		div.item.file(
 				data-selected='false'
 				data-file-id= file.id
 				data-mimetype= file.mimeType,
@@ -39,7 +39,7 @@ case file.type
 					div.content(style={'background-image': 'url(/resources/desktop/images/album/file.svg)'})
 						p.name= file.name
 	when 'folder'
-		li.item.folder(
+		div.item.folder(
 				data-selected='false'
 				data-folder-id= file.id)
 			div.context-menu

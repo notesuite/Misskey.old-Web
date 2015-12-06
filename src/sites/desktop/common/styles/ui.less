@@ -255,7 +255,7 @@
 	}
 
 	> #misskey-post-form-tab-pages {
-		padding: 4px 16px 16px 16px;
+		padding: 4px 16px 0 16px;
 
 		> form {
 
@@ -318,50 +318,6 @@
 
 				&:not([value])::-webkit-progress-bar {
 					background-image: url('/resources/desktop/common/images/indeter.gif');
-				}
-			}
-
-			button.submit {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				display: block;
-				float: right;
-				box-sizing: border-box;
-				margin: 8px 0 0 0;
-				padding: 10px 18px;
-				line-height: 1em;
-				font-size: 1em;
-				font-weight: normal;
-				text-decoration: none;
-				color: #fff;
-				background: @themeColor;
-				outline: none;
-				border: none;
-				border-radius: 0;
-				box-shadow: none;
-				cursor: pointer;
-				transition: color 0.1s ease;
-
-				* {
-					pointer-events: none;
-				}
-
-				i {
-					margin-left: 0.375em;
-				}
-
-				&:hover {
-					background: lighten(@themeColor, 10%);
-				}
-
-				&:active {
-					background: darken(@themeColor, 10%);
-					transition: background 0s ease;
-				}
-
-				&:focus {
-					outline: solid 2px fade(@themeColor, 50%);
 				}
 			}
 
@@ -476,6 +432,55 @@
 					}
 				}
 			}
+		}
+	}
+
+	button.submit {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: block;
+		float: right;
+		box-sizing: border-box;
+		margin: 8px 16px 16px 16px;
+		padding: 10px 18px;
+		line-height: 1em;
+		font-size: 1em;
+		font-weight: normal;
+		text-decoration: none;
+		color: #fff;
+		background: @themeColor;
+		outline: none;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		cursor: pointer;
+		transition: color 0.1s ease;
+
+		* {
+			pointer-events: none;
+		}
+
+		p {
+			display: inline;
+			margin: 0;
+		}
+
+		i {
+			margin-left: 0.375em;
+		}
+
+		&:hover {
+			background: lighten(@themeColor, 10%);
+		}
+
+		&:active {
+			background: darken(@themeColor, 10%);
+			transition: background 0s ease;
+		}
+
+		&:focus {
+			outline: solid 2px fade(@themeColor, 50%);
 		}
 	}
 }
