@@ -79,6 +79,22 @@ export default function router(app: express.Express): void {
 		});
 	});
 
+	app.post('/logout', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		if (req.isLogin) {
+			req.session.destroy(function() {
+				res.redirect('/');
+			});
+		}
+	}
+
+	app.get('/logout', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		if (req.isLogin) {
+			req.session.destroy(function() {
+				res.redirect('/');
+			});
+		}
+	}
+
 	app.get('/welcome', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'welcome');
 	});
