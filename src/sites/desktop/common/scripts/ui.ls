@@ -273,7 +273,9 @@ class PostForm
 					}
 				, 300ms
 			, i * 50
+
 		THIS.statusPostForm.focus!
+		THIS.active-tab = \status
 
 	close: ->
 		THIS = @
