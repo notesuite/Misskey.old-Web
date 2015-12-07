@@ -617,13 +617,17 @@ body > .streaming-info {
 #widget-big-analog-clock {
 	display: block;
 	box-sizing: border-box;
-	margin: 8px;
+
+	canvas {
+		display: block;
+		margin: 0 auto;
+		max-width: 270px;
+	}
 }
 
 #widget-small-analog-clock {
 	display: block;
 	box-sizing: border-box;
-	margin: 8px;
 
 	canvas {
 		display: block;
@@ -635,7 +639,6 @@ body > .streaming-info {
 #widget-big-calendar {
 	display: block;
 	box-sizing: border-box;
-	margin: 8px;
 	text-align: center;
 
 	p {
@@ -655,11 +658,11 @@ body > .streaming-info {
 #widget-small-calendar {
 	display: block;
 	box-sizing: border-box;
-	overflow: auto;
-	margin: 8px;
 	text-align: center;
 
 	> p {
+		margin: 0;
+
 		> span {
 			margin: 0 4px;
 		}
