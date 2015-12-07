@@ -1,4 +1,6 @@
+import * as fs from 'fs';
 import * as http from 'http';
+import * as https from 'https';
 import * as session from 'express-session';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
@@ -7,12 +9,16 @@ import * as MongoStore from 'connect-mongo';
 const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(session);
 import config from '../../config';
 
-const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
-	res.writeHead(200, {
-		'Content-Type': 'text/plain'
+let server: http.Server | https.Server;
+
+if (config.https.enable) {
+	server = https.createServer({
+		key: fs.readFileSync(config.https.keyPath),
+		cert: fs.readFileSync(config.https.certPath)
 	});
-	res.end('kyoppie');
-});
+} else {
+	server = http.createServer();
+}
 
 const io: SocketIO.Server = SocketIO.listen(server);
 
