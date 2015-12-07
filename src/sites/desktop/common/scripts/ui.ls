@@ -316,6 +316,34 @@ class PostForm
 			->
 				$info.remove!
 
+	submit: (endpoint, data, always = null, done = null, fail = null) ->
+		THIS = @
+
+		THIS.$submit-button.attr \disabled on
+		THIS.$submit-button.add-class \updating
+		THIS.$submit-button.find \p .text 'Updating'
+		THIS.$submit-button.find \i .attr \class 'fa fa-spinner fa-pulse'
+
+		$.ajax endpoint, {data}
+		.done (data) ->
+			window.display-message '投稿しました！'
+			THIS.$submit-button.find \p .text 'Update'
+			THIS.$submit-button.find \i .attr \class 'fa fa-paper-plane'
+			THIS.close!
+			if done?
+				done!
+		.fail (data) ->
+			window.display-message '投稿に失敗しました。'
+			THIS.$submit-button.find \p .text 'Re Update'
+			THIS.$submit-button.find \i .attr \class 'fa fa-repeat'
+			if fail?
+				fail!
+		.always ->
+			THIS.$submit-button.attr \disabled off
+			THIS.$submit-button.remove-class \updating
+			if always?
+				always!
+
 class StatusPostForm
 	(post-form) ->
 		THIS = @
@@ -360,29 +388,15 @@ class StatusPostForm
 		THIS = @
 
 		$form = $ \#misskey-post-form-status-tab-page
-		$submit-button = THIS.post-form.$submit-button
-
-		$submit-button.attr \disabled on
-		$submit-button.find \p .text 'Updating'
-		$submit-button.find \i .attr \class 'fa fa-spinner fa-pulse'
 		$form.find \textarea .attr \disabled on
 
-		$.ajax "#{config.web-api-url}/posts/status" {
-			data:
-				'text': ($form.find \textarea .val!)}
-		.done (data) ->
-			window.display-message '投稿しました！'
-			$form[0].reset!
-			$submit-button.find \p .text 'Update'
-			$submit-button.find \i .attr \class 'fa fa-paper-plane'
-			THIS.post-form.close!
-		.fail (data) ->
-			window.display-message '投稿に失敗しました。'
-			$submit-button.find \p .text 'Re Update'
-			$submit-button.find \i .attr \class 'fa fa-repeat'
-		.always ->
-			$submit-button.attr \disabled off
-			$form.find \textarea .attr \disabled off
+		THIS.post-form.submit do
+			"#{config.web-api-url}/posts/status"
+			{'text': ($form.find \textarea .val!)}
+			->
+				$form.find \textarea .attr \disabled off
+			->
+				$form[0].reset!
 
 	focus: ->
 		THIS = @
@@ -448,33 +462,20 @@ class PhotoPostForm
 		THIS = @
 
 		$form = $ \#misskey-post-form-photo-tab-page
-		$submit-button = THIS.post-form.$submit-button
-
-		$submit-button.attr \disabled on
-		$submit-button.find \p .text 'Updating'
-		$submit-button.find \i .attr \class 'fa fa-spinner fa-pulse'
 		$form.find \textarea .attr \disabled on
 
-		$.ajax "#{config.web-api-url}/posts/photo" {
-			data:
+		THIS.post-form.submit do
+			"#{config.web-api-url}/posts/photo"
+			{
 				'text': ($form.find \textarea .val!)
 				'photos': JSON.stringify(($form.find '.photos > li' .map ->
 					($ @).attr \data-id).get!)
-		}
-		.done (data) ->
-			window.display-message '投稿しました！'
-			$form[0].reset!
-			$ '#misskey-post-form-photo-tab-page > .photos' .empty!
-			$submit-button.find \p .text 'Update'
-			$submit-button.find \i .attr \class 'fa fa-paper-plane'
-			THIS.post-form.close!
-		.fail (data) ->
-			window.display-message '投稿に失敗しました。'
-			$submit-button.find \p .text 'Re Update'
-			$submit-button.find \i .attr \class 'fa fa-repeat'
-		.always ->
-			$submit-button.attr \disabled off
-			$form.find \textarea .attr \disabled off
+			}
+			->
+				$form.find \textarea .attr \disabled off
+			->
+				$form[0].reset!
+				$ '#misskey-post-form-photo-tab-page > .photos' .empty!
 
 	focus: ->
 		THIS = @
