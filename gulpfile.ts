@@ -32,7 +32,7 @@ task('build-develop', [
 	'copy:frontside-templates',
 	'build-develop:frontside-scripts',
 	'build-develop:frontside-styles',
-	'build-copy'
+	'build-develop-copy'
 ]);
 
 task('build:ts', () => {
@@ -107,6 +107,18 @@ task('lint', () => {
 });
 
 task('build-copy', ['build:frontside-scripts'], () => {
+	src(['./src/sites/*/common/**/*', './src/sites/*/pages/**/*'])
+		.pipe(dest('./built/resources'));
+	src([
+		'./src/**/*',
+		'!./src/**/*.ts',
+		'!./src/**/*.ls',
+		'!./src/**/*.js'
+	]).pipe(dest('./built'));
+	src('./resources/**/*').pipe(dest('./built/resources/common/'));
+});
+
+task('build-develop-copy', ['build-develop:frontside-scripts'], () => {
 	src(['./src/sites/*/common/**/*', './src/sites/*/pages/**/*'])
 		.pipe(dest('./built/resources'));
 	src([
