@@ -74,26 +74,29 @@ window.open-select-album-file-dialog = (cb) ->
 	album.choose-file cb
 
 function update-header-statuses
-	/*
-	$.ajax "#{config.web-api-url}/web/get-header-statuses" {
-		data-type: \json}
-	.done (result) ->
-		unread-notifications-count = result.unread-notifications-count
-		unread-talk-messages-count = result.unread-talk-messages-count
+	$.ajax "#{config.web-api-url}/posts/timeline/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-header .home a .unread-count' .remove!
+			$ '#misskey-header .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-		if $ '#misskey-main-header .notifications .unread-count' .0
-			$ '#misskey-main-header .notifications .unread-count' .remove!
-		if unread-notifications-count != 0
-			$ '#misskey-main-header .notifications .dropdown .dropdown-header p' .append do
-				$ '<span class="unread-count">' .text unread-notifications-count
+	$.ajax "#{config.web-api-url}/posts/mentions/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-header .mentions a .unread-count' .remove!
+			$ '#misskey-header .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-		if $ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .0
-			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .remove!
-		if unread-talk-messages-count != 0
-			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .append do
-				$ '<span class="unreadCount">' .text unread-talk-messages-count
-	.fail ->
-	*/
+	$.ajax "#{config.web-api-url}/talks/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-header .talks a .unread-count' .remove!
+			$ '#misskey-header .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
+
+	$.ajax "#{config.web-api-url}/notifications/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-header .notifications .dropdown .dropdown-header p .unread-count' .remove!
+			$ '#misskey-header .notifications .dropdown .dropdown-header p' .append $ "<span class=\"unread-count\">#{data}</span>"
 
 function update-header-clock
 	s = (new Date!).get-seconds!
@@ -106,7 +109,7 @@ function update-header-clock
 		hhmm .= replace \: '<span style=\'visibility:visible\'>:</span>'
 	else
 		hhmm .= replace \: '<span style=\'visibility:hidden\'>:</span>'
-	clock = $ '#misskey-main-header .time .now'
+	clock = $ '#misskey-header .time .now'
 	clock.html "#yyyymmdd<br>#hhmm"
 
 	# DRAW CLOCK
@@ -539,11 +542,11 @@ $ ->
 			e.prevent-default!
 			post-form.close!
 
-	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
+	$ \body .css \margin-top "#{$ 'body > #misskey-header' .outer-height!}px"
 
 	# 「Misskey Menu」ドロップダウン
-	$ '#misskey-main-header .misskey-menu .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-main-header .misskey-menu .dropdown'
+	$ '#misskey-header .misskey-menu .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-header .misskey-menu .dropdown'
 
 		function close
 			$dropdown.attr \data-active \false
@@ -560,7 +563,7 @@ $ ->
 			open!
 
 	# Talks
-	$ '#misskey-main-header > .main .main-contents-container .left nav .main-nav ul .talk a' .click ->
+	$ '#misskey-header > .main .main-contents-container .left nav .main-nav ul .talk a' .click ->
 		window-id = "misskey-window-talk-histories"
 		$content = $ '<iframe>' .attr {src: '/i/talks-widget', +seamless}
 		ui-window do
@@ -574,8 +577,8 @@ $ ->
 		false
 
 	# 「アカウント」ドロップダウン
-	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-main-header .account .dropdown'
+	$ '#misskey-header .account .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-header .account .dropdown'
 
 		function close
 			$dropdown.attr \data-active \false
@@ -594,8 +597,8 @@ $ ->
 			open!
 
 	# 通知全削除ﾎﾞﾔﾝ
-	$ '#misskey-main-header .notifications .delete-all-button' .click ->
-		$ '#misskey-main-header .notifications .notification' .each (i) ->
+	$ '#misskey-header .notifications .delete-all-button' .click ->
+		$ '#misskey-header .notifications .notification' .each (i) ->
 			$notification = $ @
 			set-timeout ->
 				$notification.transition {
@@ -608,19 +611,19 @@ $ ->
 
 		$.ajax config.web-api-url + '/notification/delete-all'
 		.done (data) ->
-			$ '#misskey-main-header .notifications .unread-count' .remove!
+			$ '#misskey-header .notifications .unread-count' .remove!
 			$list = $ '<ol class="notifications" />'
 			$info = $ '<p class="notification-empty">通知はありません</p>'
 			$info.append-to $notifications-container
 		.fail (data) ->
 
 	# 「通知」ドロップダウン
-	$ '#misskey-main-header .notifications .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-main-header .notifications .dropdown'
+	$ '#misskey-header .notifications .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-header .notifications .dropdown'
 
 		function close
 			$dropdown.attr \data-active \false
-			$ '#misskey-main-header .notifications .dropdown .dropdown-content .main' .empty!
+			$ '#misskey-header .notifications .dropdown .dropdown-content .main' .empty!
 
 		function open
 			$ document .click (e) ->
@@ -628,18 +631,18 @@ $ ->
 					close!
 			$dropdown.attr \data-active \true
 
-			$notifications-container = $ '#misskey-main-header .notifications .dropdown .dropdown-content .main'
+			$notifications-container = $ '#misskey-header .notifications .dropdown .dropdown-content .main'
 			$ '<img class="loading" src="/resources/images/notifications-loading.gif" alt="loading..." />' .append-to $notifications-container
 
 			# 通知読み込み
 			$.ajax config.web-api-url + '/notification/timeline-webhtml'
 			.done (data) ->
-				$ '#misskey-main-header .notifications .loading' .remove!
-				$ '#misskey-main-header .notifications .unread-count' .remove!
+				$ '#misskey-header .notifications .loading' .remove!
+				$ '#misskey-header .notifications .unread-count' .remove!
 				$list = $ '<ol class="notifications" />'
 				if data != ''
-					$ '#misskey-main-header .notifications .nav' .css \display \block
-					$ '#misskey-main-header .notifications .main' .css \margin-top \32px
+					$ '#misskey-header .notifications .nav' .css \display \block
+					$ '#misskey-header .notifications .main' .css \margin-top \32px
 					$notifications = $ data
 					$notifications.each ->
 						$notification = $ @
@@ -649,16 +652,16 @@ $ ->
 					$info = $ '<p class="notification-empty">通知はありません</p>'
 					$info.append-to $notifications-container
 			.fail (data) ->
-				$ '#misskey-main-header .notifications .loading' .remove!
+				$ '#misskey-header .notifications .loading' .remove!
 
 		if ($dropdown.attr \data-active) == \true
 			close!
 		else
 			open!
 
-	$ '#misskey-main-header .search input' .bind \input ->
+	$ '#misskey-header .search input' .bind \input ->
 		$input = $ @
-		$result = $ '#misskey-main-header .search .result'
+		$result = $ '#misskey-header .search .result'
 		if $input .val! == ''
 			$input.attr \data-active \false
 			$result.empty!
@@ -685,7 +688,7 @@ $ ->
 					window.init-waves-effects!
 			.fail ->
 
-	$ \#misskey-main-header-i-settings-anchor .click ->
+	$ \#misskey-header-i-settings-anchor .click ->
 		$.ajax config.url + '/i/settings' {
 			type: \get
 			data-type: \html}
@@ -698,7 +701,7 @@ $ ->
 		false
 
 $ window .load ->
-	header-height = $ 'body > #misskey-main-header' .outer-height!
+	header-height = $ 'body > #misskey-header' .outer-height!
 	$ \body .css \margin-top "#{header-height}px"
 
 	WavesEffect.attach-to-class \ui-waves-effect

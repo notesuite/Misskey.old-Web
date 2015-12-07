@@ -984,7 +984,7 @@ function update-relative-times
 			| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
 			| ago >= 60s       => ~~(ago / 60s) + '分前'
 			| ago >= 5s        => ~~(ago % 60s) + '秒前'
-			| ago <  5s        => 'いま'
+			| ago <  5s        => 'たった今'
 			| _ => ''
 		$ @ .text time-text
 
@@ -992,20 +992,26 @@ function update-statuses
 	$.ajax "#{config.web-api-url}/posts/timeline/unread/count"
 	.done (data) ->
 		if data != 0
-			$ '#misskey-main-nav .home a .unreads-count' .remove!
-			$ '#misskey-main-nav .home a' .append $ "<span class=\"unreads-count\">#{data}</span>"
+			$ '#misskey-nav .home a .unread-count' .remove!
+			$ '#misskey-nav .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
 	$.ajax "#{config.web-api-url}/posts/mentions/unread/count"
 	.done (data) ->
 		if data != 0
-			$ '#misskey-main-nav .mentions a .unreads-count' .remove!
-			$ '#misskey-main-nav .mentions a' .append $ "<span class=\"unreads-count\">#{data}</span>"
+			$ '#misskey-nav .mentions a .unread-count' .remove!
+			$ '#misskey-nav .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
 	$.ajax "#{config.web-api-url}/notifications/unread/count"
 	.done (data) ->
 		if data != 0
-			$ '#misskey-main-nav .notifications a .unreads-count' .remove!
-			$ '#misskey-main-nav .notifications a' .append $ "<span class=\"unreads-count\">#{data}</span>"
+			$ '#misskey-nav .notifications a .unread-count' .remove!
+			$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{data}</span>"
+
+	$.ajax "#{config.web-api-url}/talks/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-nav .talks a .unread-count' .remove!
+			$ '#misskey-nav .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
 $ ->
 	SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
