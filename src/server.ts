@@ -160,7 +160,7 @@ if (config.https.enable) {
 	server = http.createServer(app);
 }
 
-server.listen(config.port.http, () => {
+server.listen(port, () => {
 	const listenhost: string = server.address().address;
 	const listenport: number = server.address().port;
 
