@@ -19,15 +19,19 @@ const tsProject = ts.createProject('tsconfig.json', <any>{
 	typescript: require('typescript')
 });
 
-task('watch', ['build', 'lint'], () => {
-	watch('./src/**/*.ts', ['build:ts', 'lint']);
-});
-
 task('build', [
 	'build:ts',
 	'copy:frontside-templates',
 	'build:frontside-scripts',
 	'build:frontside-styles',
+	'build-copy'
+]);
+
+task('build-develop', [
+	'build:ts',
+	'copy:frontside-templates',
+	'build-develop:frontside-scripts',
+	'build-develop:frontside-styles',
 	'build-copy'
 ]);
 
@@ -69,10 +73,28 @@ task('build:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-
 	});
 });
 
+task('build-develop:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-scripts'], done => {
+	glob('./tmp/**/*.js', (err: Error, files: string[]) => {
+		const tasks = files.map((entry: string) => {
+			return browserify({ entries: [entry] })
+				.bundle()
+				.pipe(source(entry.replace('tmp', 'resources')))
+				.pipe(dest('./built'));
+		});
+		es.merge(tasks).on('end', done);
+	});
+});
+
 task('build:frontside-styles', () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS())
+		.pipe(dest('./built/resources'));
+});
+
+task('build-develop:frontside-styles', () => {
+	return src('./src/sites/**/*.less')
+		.pipe(less())
 		.pipe(dest('./built/resources'));
 });
 
@@ -96,15 +118,4 @@ task('build-copy', ['build:frontside-scripts'], () => {
 	src('./resources/**/*').pipe(dest('./built/resources/common/'));
 });
 
-
-/*
-task('clean', cb => {
-	del(['./built', './tmp'], cb);
-});
-
-task('clean-all', ['clean'], cb => {
-	del(['./node_modules', './typings'], cb);
-});
-*/
-
-task('test', ['build', 'lint']);
+task('test', ['lint']);

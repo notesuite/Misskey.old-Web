@@ -11,6 +11,7 @@
     "start": "node ./built/index.js",
     "dtsm": "dtsm --insight false install",
     "build": "gulp build",
+    "build-develop": "gulp build-develop",
     "watch": "gulp watch",
     "lint": "gulp lint",
     "clean": "gulp clean",
