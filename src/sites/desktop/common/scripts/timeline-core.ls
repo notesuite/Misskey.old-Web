@@ -107,6 +107,7 @@ class Timeline
 				$i = $ '<i class="fa fa-ellipsis-v replies-ellipsis" style="display: none;"></i>'
 				$i.append-to $post
 				$form.remove!
+				$post.focus!
 				window.display-message '返信しました！'
 			.fail ->
 				window.display-message '返信に失敗しました。再度お試しください。'
