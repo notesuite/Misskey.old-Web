@@ -30,6 +30,11 @@ export interface IConfig {
 		apiHttps: number;
 		streaming: number;
 	};
+	https: {
+		enable: boolean;
+		keyPath: string;
+		certPath: string;
+	};
 	apiPasskey: string;
 	apiServerIp: string;
 	apiServerPort: number;

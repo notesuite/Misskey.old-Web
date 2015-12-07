@@ -1,5 +1,7 @@
 import * as cluster from 'cluster';
+import * as fs from 'fs';
 import * as http from 'http';
+import * as https from 'https';
 import * as express from 'express';
 import * as expressSession from 'express-session';
 import * as mongoose from 'mongoose';
@@ -25,15 +27,15 @@ const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 // Init server
-const server: express.Express = express();
-server.disable('x-powered-by');
+const app: express.Express = express();
+app.disable('x-powered-by');
 
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(cookieParser(config.cookiePass));
-server.use(compression());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(config.cookiePass));
+app.use(compression());
 
 // Session settings
-server.use(expressSession({
+app.use(expressSession({
 	name: config.sessionKey,
 	secret: config.sessionSecret,
 	resave: false,
@@ -51,7 +53,7 @@ server.use(expressSession({
 	})
 }));
 
-server.use((req, res, next) => {
+app.use((req, res, next) => {
 	res.header('X-Frame-Options', 'DENY');
 
 	// APIのレスポンスはキャッシュさせない
@@ -78,7 +80,7 @@ server.use((req, res, next) => {
 });
 
 // Init session
-server.use((req, res, next) => {
+app.use((req, res, next) => {
 	const isLogin: boolean =
 		req.hasOwnProperty('session') &&
 		req.session !== null &&
@@ -100,24 +102,37 @@ server.use((req, res, next) => {
 });
 
 // Rooting
-router(server);
+router(app);
 
 // Not found handling
-server.use((req, res) => {
+app.use((req, res) => {
 	res.sendStatus(404);
 });
 
 // Error handling
-server.use((err: any, req: express.Request, res: express.Response) => {
+app.use((err: any, req: express.Request, res: express.Response) => {
 	console.error(err);
 	res.status(500).send(err);
 });
 
-const httpServer: http.Server = http.createServer(server);
+let server: http.Server | https.Server;
+let port: number;
 
-httpServer.listen(config.port.apiHttp, () => {
-	const host: string = httpServer.address().address;
-	const port: number = httpServer.address().port;
+if (config.https.enable) {
+	port = config.port.apiHttps;
+	server = https.createServer({
+		key: fs.readFileSync(config.https.keyPath),
+		cert: fs.readFileSync(config.https.certPath)
+	}, app);
+} else {
+	port = config.port.apiHttp;
+	server = http.createServer(app);
+}
 
-	console.log(`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${host}:${port} (api)\u001b[0m`);
+server.listen(port, () => {
+	const listenhost: string = server.address().address;
+	const listenport: number = server.address().port;
+
+	console.log(
+		`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${listenhost}:${listenport} (api)\u001b[0m`);
 });

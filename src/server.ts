@@ -1,5 +1,7 @@
 import * as cluster from 'cluster';
+import * as fs from 'fs';
 import * as http from 'http';
+import * as https from 'https';
 import * as path from 'path';
 import * as express from 'express';
 import * as expressSession from 'express-session';
@@ -45,21 +47,21 @@ const workerId: string = namingWorkerId(cluster.worker.id);
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 // Init server
-const server: express.Express = express();
-server.disable('x-powered-by');
-server.locals.compileDebug = false;
-server.locals.filename = 'jade';
-server.locals.cache = true;
-// server.locals.pretty = '    ';
-server.set('view engine', 'jade');
+const app: express.Express = express();
+app.disable('x-powered-by');
+app.locals.compileDebug = false;
+app.locals.filename = 'jade';
+app.locals.cache = true;
+// app.locals.pretty = '    ';
+app.set('view engine', 'jade');
 
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(cookieParser(config.cookiePass));
-server.use(compression());
-server.use('/resources', express.static(`${__dirname}/resources`));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(config.cookiePass));
+app.use(compression());
+app.use('/resources', express.static(`${__dirname}/resources`));
 
 // Session settings
-server.use(expressSession({
+app.use(expressSession({
 	name: config.sessionKey,
 	secret: config.sessionSecret,
 	resave: false,
@@ -78,15 +80,15 @@ server.use(expressSession({
 }));
 
 // Statics
-server.get('/favicon.ico', (req: express.Request, res: express.Response) => {
+app.get('/favicon.ico', (req: express.Request, res: express.Response) => {
 	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
 });
-server.get('/manifest.json', (req: express.Request, res: express.Response) => {
+app.get('/manifest.json', (req: express.Request, res: express.Response) => {
 	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
 
 // Init session
-server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	res.header('X-Frame-Options', 'SAMEORIGIN');
 
 	const ua: string = uatype(req.headers['user-agent']);
@@ -135,13 +137,33 @@ server.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () =>
 });
 
 // Rooting
-router(server);
+router(app);
 
-const httpServer: http.Server = http.createServer(server);
+let server: http.Server | https.Server;
+let port: number;
 
-httpServer.listen(config.port.http, () => {
-	const host: string = httpServer.address().address;
-	const port: number = httpServer.address().port;
+if (config.https.enable) {
+	port = config.port.https;
+	server = https.createServer({
+		key: fs.readFileSync(config.https.keyPath),
+		cert: fs.readFileSync(config.https.certPath)
+	}, app);
 
-	console.log(`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${host}:${port}\u001b[0m`);
+	http.createServer((req, res) => {
+		res.writeHead(301, {
+			Location: config.publicConfig.url + req.url
+		});
+		res.end();
+	}).listen(config.port.http);
+} else {
+	port = config.port.http;
+	server = http.createServer(app);
+}
+
+server.listen(config.port.http, () => {
+	const listenhost: string = server.address().address;
+	const listenport: number = server.address().port;
+
+	console.log(
+		`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${listenhost}:${listenport}\u001b[0m`);
 });
