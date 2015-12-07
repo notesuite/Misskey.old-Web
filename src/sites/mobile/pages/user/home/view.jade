@@ -10,9 +10,9 @@ block header
 block body
 	main
 		div#user
-			div.banner
+			div.banner(style={'background-image': "url(#{user.bannerUrl})"})
 			div.body
-				a.avatr-anchor(href=user.avatarUrl)
+				a.avatar-anchor(href=user.avatarUrl)
 					img.avatar(src=user.avatarUrl + '?mini', alt='avatar')
 				p.comment= user.comment
 		div#timeline
