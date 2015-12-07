@@ -59,12 +59,11 @@ mixin core(post, isRepost, repost)
 						i.fa.fa-star
 					a.count(href='/' + post.user.screenName + '/' + post.id + '/likes')
 						= post.likesCount != 0 ? post.likesCount : ''
-				if me.id != post.userId
-					div.repost
-						button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
-							i.fa.fa-retweet
-						a.count(href='/' + post.user.screenName + '/' + post.id + '/reposts')
-							= post.repostsCount != 0 ? post.repostsCount : ''
+				div.repost
+					button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
+						i.fa.fa-retweet
+					a.count(href='/' + post.user.screenName + '/' + post.id + '/reposts')
+						= post.repostsCount != 0 ? post.repostsCount : ''
 				div.reply
 					button(title='返信')
 						i.fa.fa-reply
