@@ -9,10 +9,7 @@ div.misskey-home-widget#widget-recommendation-users(data-widget-id='recommendati
 					div.main
 						a.name-anchor(href='/' + user.screenName)
 							p.name= user.name
-						if user.isFollowing
-							button.follow-button(role='button') フォロー解除
-						else
-							button.follow-button(role='button') フォロー
+						button.follow-button(role='button') フォロー
 	else
 		p.empty
 			i.fa.fa-lightbulb-o
