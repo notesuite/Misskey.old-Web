@@ -56,6 +56,40 @@ html, #misskey-main {
 				color: #888;
 			}
 		}
+
+		.comment {
+			display: block;
+			margin: 0;
+			padding: 8px 16px;
+			color: #444;
+		}
+
+		.followers-and-following {
+			padding: 0 16px 12px 16px;
+			font-size: 0.9em;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> div {
+				float: left;
+				margin-right: 16px;
+
+				p {
+					display: block;
+					margin: 0;
+					color: #999;
+					font-weight: bold;
+				}
+
+				a {
+					display: inline;
+				}
+			}
+		}
 	}
 }
 

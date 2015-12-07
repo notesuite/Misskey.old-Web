@@ -8,6 +8,11 @@ block header
 	= user.name
 
 block body
+	-
+		function comma(str) {
+			return String(str).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+		}
+
 	main
 		div#user
 			div.banner(style={'background-image': "url(#{user.bannerUrl})"})
@@ -18,6 +23,13 @@ block body
 					h1.name= user.name
 					p.screen-name= user.screenName
 				p.comment= user.comment
+				div.followers-and-following
+					div
+						p.caption Following
+						a.count= comma(user.followingsCount)
+					div
+						p.caption Followers
+						a.count= comma(user.followingsCount)
 		div#timeline
 			div.posts
 				if timeline.length > 0
