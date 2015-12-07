@@ -44,7 +44,7 @@ module.exports = ($image) ->
 		$back = $ '<div />'
 		$back.css {
 			'position': 'fixed'
-			'z-index': 1024
+			'z-index': 1536
 			'top': 0
 			'left': 0
 			'width': '100%'
@@ -52,7 +52,7 @@ module.exports = ($image) ->
 			'background': 'rgba(0, 0, 0, 0.8)'
 			'opacity': 0
 		}
-		$image.append $back
+		$ \body .append $back
 		$back.animate {
 			opacity: 1
 		} 100ms
@@ -61,7 +61,7 @@ module.exports = ($image) ->
 		$raw.attr \src $img.attr \src
 		$raw.css {
 			'position': 'fixed'
-			'z-index': 1025
+			'z-index': 1537
 			'top': 0
 			'right': 0
 			'bottom': 0
@@ -72,7 +72,7 @@ module.exports = ($image) ->
 			'opacity': 0
 			'cursor': 'zoom-out'
 		}
-		$image.append $raw
+		$ \body .append $raw
 		$raw.animate {
 			opacity: 1
 		} 100ms
