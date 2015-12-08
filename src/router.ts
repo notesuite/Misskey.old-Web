@@ -87,6 +87,10 @@ export default function router(app: express.Express): void {
 		}
 	});
 
+	app.get('/terms-of-use', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'terms-of-use');
+	});
+
 	app.get('/welcome', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'welcome');
 	});
