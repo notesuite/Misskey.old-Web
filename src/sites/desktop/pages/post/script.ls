@@ -2,6 +2,7 @@ $ = require 'jquery'
 Sortable = require 'Sortable'
 require '../../common/scripts/ui.js'
 sncompleter = require '../../common/scripts/sncompleter.js'
+tooltiper = require '../../common/scripts/tooltiper.js'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
 
 function init-post($post)
@@ -45,6 +46,9 @@ function init-post($post)
 	$post.find '> .main > .reply-form' .submit (event) ->
 		event.prevent-default!
 		submit-reply!
+
+	$post.find '> .main > .likes-and-reposts .users > .user > a' .each ->
+		tooltiper $ @
 
 	function submit-reply
 		$form = $post.find '> .main > .reply-form'
