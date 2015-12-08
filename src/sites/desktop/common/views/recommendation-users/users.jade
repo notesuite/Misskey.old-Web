@@ -1,3 +1,9 @@
 include ./user
-each user in users
-	+user(user)
+
+if users.length > 0
+	each user in users
+		+user(user)
+else
+	p.empty
+		i.fa.fa-lightbulb-o
+		| おすすめユーザーはいません

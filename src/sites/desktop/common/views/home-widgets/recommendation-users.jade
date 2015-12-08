@@ -1,16 +1,1 @@
 div.misskey-home-widget#widget-recommendation-users(data-widget-id='recommendation-users', data-widget-name='おすすめユーザー')
-	if recommendationUsers != null && recommendationUsers.length > 0
-		ol.users
-			each user in recommendationUsers
-				li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
-					div.avatar-area
-						a.avatar-anchor(href='/' + user.screenName)
-							img.avatar(src=user.avatarUrl, alt='avatar')
-					div.main
-						a.name-anchor(href='/' + user.screenName)
-							p.name= user.name
-						button.follow-button(role='button') フォロー
-	else
-		p.empty
-			i.fa.fa-lightbulb-o
-			| おすすめユーザーはいません
