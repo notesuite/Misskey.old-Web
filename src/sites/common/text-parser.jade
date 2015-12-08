@@ -15,7 +15,7 @@
 	function analyzeUrl(text) {
 		'use strict';
 		return text.replace(/https?:\/\/[\w\/:%#\$&\?\(\)~\.=\+\-]+/g, function(url) {
-			return '<a href="' + url + '" target="_blank" class="url">' + url + '</a>';
+			return '<a href="' + url + '" title="' + url + '" target="_blank" class="url">' + url + '</a>';
 		});
 	}
 
