@@ -28,7 +28,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 							resolve2(reply);
 						});
 					});
-				}));
+				})).then((replies2: any[]) => {
+					resolve(replies2);
+				});
 			});
 		}),
 		new Promise<any>((resolve, reject) => {
