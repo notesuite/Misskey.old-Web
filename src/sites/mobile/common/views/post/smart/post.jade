@@ -56,15 +56,15 @@ mixin core(post, isRepost, repost)
 				div.like
 					button(title= post.isLiked ? 'Unlike' : 'Like')
 						i.fa.fa-star
-					a.count(href='/' + post.user.screenName + '/' + post.id + '/likes')
+					p.count
 						= post.likesCount != 0 ? post.likesCount : ''
 				div.repost
 					button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
 						i.fa.fa-retweet
-					a.count(href='/' + post.user.screenName + '/' + post.id + '/reposts')
+					p.count
 						= post.repostsCount != 0 ? post.repostsCount : ''
 				div.reply
 					button(title='返信')
 						i.fa.fa-reply
-					a.count(href='/' + post.user.screenName + '/' + post.id)
+					p.count
 						= post.repliesCount != 0 ? post.repliesCount : ''
