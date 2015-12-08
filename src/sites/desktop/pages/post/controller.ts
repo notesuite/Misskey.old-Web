@@ -11,26 +11,44 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	const post: any = req.data.post;
 	const me: User = req.me;
 
-	requestApi('posts/replies', {
-		'post-id': post.id
-	}, me !== null ? me.id : null).then((replies: Post[]) => {
-		Promise.all(replies.map((reply: any) => {
-			return new Promise<Object>((resolve, reject) => {
-				requestApi('posts/replies', {
-					'post-id': reply.id
-				}, me).then((repliesOfReply: Post[]) => {
-					reply.replies = repliesOfReply;
-					resolve(reply);
-				});
+	Promise.all([
+		new Promise<Object>((resolve, reject) => {
+			requestApi('posts/replies/show', {
+				'post-id': post.id
+			}, me !== null ? me.id : null).then((replies: Post[]) => {
+				Promise.all(replies.map((reply: any) => {
+					return new Promise<Object>((resolve2, reject2) => {
+						requestApi('posts/replies/show', {
+							'post-id': reply.id
+						}, me).then((repliesOfReply: Post[]) => {
+							reply.replies = repliesOfReply;
+							resolve2(reply);
+						});
+					});
+				}));
 			});
-		})).then((transformedReplies: any) => {
-			res.display({
-				user: user,
-				post: post,
-				likes: null,
-				reposts: null,
-				replies: transformedReplies
+		}),
+		new Promise<Object>((resolve, reject) => {
+			requestApi('posts/likes/show', {
+				'post-id': post.id
+			}, me !== null ? me.id : null).then((likes: any[]) => {
+				resolve(likes);
 			});
+		}),
+		new Promise<Object>((resolve, reject) => {
+			requestApi('posts/reposts/show', {
+				'post-id': post.id
+			}, me !== null ? me.id : null).then((reposts: any[]) => {
+				resolve(reposts);
+			});
+		})
+	]).then((results: any[]) => {
+		res.display({
+			user: user,
+			post: post,
+			replies: results[0],
+			likes: results[1],
+			reposts: results[2]
 		});
 	});
 };
