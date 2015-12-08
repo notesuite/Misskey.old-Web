@@ -1,4 +1,5 @@
 include ../content
+include ../repost-form
 include ./sub-post
 
 mixin post(post)
@@ -31,31 +32,7 @@ mixin core(post, isRepost, repost)
 		if isHaveReplies
 			i.fa.fa-ellipsis-v.replies-ellipsis
 		if login && me.id != post.userId
-			div.repost-form
-				div.background
-				form.form
-					h2
-						i.fa.fa-retweet
-						| この投稿をRepostしますか？
-					article(role='article')
-						a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
-							img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
-						header.header
-							a.name(href='/' + post.user.screenName, target='_blank', rel='author')= post.user.name
-							if post.user.isVerified
-								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-							span.screen-name= '@' + post.user.screenName
-							a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
-								time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
-						div.main(itemprop='articleBody')
-							+content(post)
-					div.actions
-						button.accept(type='submit')
-							i.fa.fa-check
-							p Repost
-						button.cancel(type='button')
-							i.fa.fa-ban
-							p キャンセル
+			+repost-form(post)
 		div.talk
 		if post.inReplyToPost
 			+subPost(post.inReplyToPost)(class='reply-source')
