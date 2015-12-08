@@ -199,20 +199,18 @@ class PostForm
 		THIS = @
 
 		THIS.is-open = no
-		THIS.active-tab = \status
 
 		THIS.$submit-button = $ '#misskey-post-form > [type=submit]'
-		THIS.photoPostForm = new PhotoPostForm THIS
-		THIS.statusPostForm = new StatusPostForm THIS
+		THIS.photo-post-form = new PhotoPostForm THIS
+		THIS.status-post-form = new StatusPostForm THIS
 
 		THIS.tab = Tab do
 			$ '#misskey-post-form-tabs'
 			$ '#misskey-post-form-tab-pages'
 			(id) ->
-				THIS.active-tab = id
 				switch (id)
-				| \status => THIS.statusPostForm.focus!
-				| \photo => THIS.photoPostForm.focus!
+				| \status => THIS.status-post-form.focus!
+				| \photo => THIS.photo-post-form.focus!
 
 		$ \#misskey-post-button .click ->
 			THIS.open!
@@ -224,8 +222,8 @@ class PostForm
 			THIS.close!
 		THIS.$submit-button.click ->
 			switch (THIS.active-tab)
-			| \status => THIS.statusPostForm.submit!
-			| \photo => THIS.photoPostForm.submit!
+			| \status => THIS.status-post-form.submit!
+			| \photo => THIS.photo-post-form.submit!
 			return false
 
 	open: ->
@@ -274,7 +272,7 @@ class PostForm
 				, 300ms
 			, i * 50
 
-		THIS.statusPostForm.focus!
+		THIS.status-post-form.focus!
 		THIS.active-tab = \status
 
 	close: ->
@@ -364,8 +362,8 @@ class StatusPostForm
 				item = items[i]
 				if item.kind == \file && item.type.index-of \image != -1
 					file = item.get-as-file!
-					THIS.post-form.photoPostForm.focus!
-					THIS.post-form.photoPostForm.upload-new-file file
+					THIS.post-form.photo-post-form.focus!
+					THIS.post-form.photo-post-form.upload-new-file file
 
 		$ \#misskey-post-form-status-tab-page .find '.image-attacher input[name=image]' .change ->
 			$input = $ @
@@ -401,6 +399,7 @@ class StatusPostForm
 	focus: ->
 		THIS = @
 		THIS.post-form.tab.select \status no
+		THIS.post-form.active-tab = \status
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
 
 class PhotoPostForm
@@ -420,7 +419,7 @@ class PhotoPostForm
 				item = items[i]
 				if item.kind == \file && item.type.index-of \image != -1
 					file = item.get-as-file!
-					THIS.post-form.photoPostForm.upload-new-file file
+					THIS.post-form.photo-post-form.upload-new-file file
 
 		$ '#misskey-post-form-photo-tab-page textarea' .keypress (e) ->
 			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
@@ -480,6 +479,7 @@ class PhotoPostForm
 	focus: ->
 		THIS = @
 		THIS.post-form.tab.select \photo no
+		THIS.post-form.active-tab = \photo
 		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 $ ->
