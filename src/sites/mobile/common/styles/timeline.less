@@ -452,8 +452,11 @@
 	.post.repost {
 		background: #F7FFE0;
 
-		> .repost-information {
+		> .repost-info {
+			display: block;
+			margin: 0;
 			padding: 12px 8px 0 16px;
+			line-height: 28px;
 			color: #57bb00;
 
 			&:after {
@@ -467,7 +470,7 @@
 				float: left;
 
 				> .avatar {
-					vertical-align: middle;
+					vertical-align: bottom;
 					min-width: 28px;
 					min-height: 28px;
 					max-width: 28px;
@@ -478,17 +481,12 @@
 				}
 			}
 
-			> .text {
-				display: block;
-				line-height: 28px;
+			i {
+				margin-right: 4px;
+			}
 
-				i {
-					margin-right: 4px;
-				}
-
-				.name {
-					font-weight: bold;
-				}
+			.name {
+				font-weight: bold;
 			}
 		}
 	}

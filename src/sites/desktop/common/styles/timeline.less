@@ -1131,42 +1131,35 @@
 
 	.post.repost {
 
-		> .repost-information {
+		> .repost-info {
+			display: block;
+			margin: 0;
 			padding: 8px 32px;
+			line-height: 28px;
 			color: #57bb00;
 
-			> .info {
-				margin: 0;
-				padding: 0;
+			> .avatar-anchor {
+				display: block;
+				float: left;
 
-				> .avatar-anchor {
-					display: block;
-					float: left;
-
-					> .avatar {
-						vertical-align: middle;
-						min-width: 28px;
-						min-height: 28px;
-						max-width: 28px;
-						max-height: 28px;
-						margin: 0 8px 0 0;
-						border-radius: 6px;
-						transition: all 0.1s ease;
-					}
+				> .avatar {
+					vertical-align: bottom;
+					min-width: 28px;
+					min-height: 28px;
+					max-width: 28px;
+					max-height: 28px;
+					margin: 0 8px 0 0;
+					border-radius: 6px;
+					transition: all 0.1s ease;
 				}
+			}
 
-				> .text {
-					display: block;
-					line-height: 28px;
+			i {
+				margin-right: 4px;
+			}
 
-					i {
-						margin-right: 4px;
-					}
-
-					.name {
-						font-weight: bold;
-					}
-				}
+			.name {
+				font-weight: bold;
 			}
 		}
 	}

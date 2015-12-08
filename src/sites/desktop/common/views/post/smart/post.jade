@@ -37,14 +37,12 @@ mixin core(post, isRepost, repost)
 		if post.inReplyToPost
 			+subPost(post.inReplyToPost)(class='reply-source')
 		if isRepost
-			div.repost-information
-				p.info
-					a.avatar-anchor(href='/' + repost.user.screenName, title= userTitle)
-						img.avatar(src=repost.user.avatarUrl + '?mini', alt='avatar')
-					span.text
-						i.fa.fa-retweet
-						| Reposted by 
-						a.name(href='/' + repost.user.screenName)= repost.user.name
+			p.repost-info
+				a.avatar-anchor(href='/' + repost.user.screenName, title= userTitle)
+					img.avatar(src=repost.user.avatarUrl + '?mini', alt='avatar')
+				i.fa.fa-retweet
+				| Reposted by 
+				a.name(href='/' + repost.user.screenName)= repost.user.name
 		div.main
 			div.avatar-area
 				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')

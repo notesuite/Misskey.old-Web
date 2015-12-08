@@ -1,5 +1,6 @@
 include ../content
-include ./subPost
+include ../repost-form
+include ./sub-post
 
 mixin post(post, isRepost)
 	if post.type == 'repost'
@@ -26,32 +27,8 @@ mixin core(post, isRepost, repost)
 			data-is-have-replies   != isHaveReplies.toString()
 			data-is-talk           != isTalk.toString())
 		if login && me.id != post.userId
-			div.repost-form
-				div.background
-				form.form
-					h2
-						i.fa.fa-retweet
-						| この投稿をRepostしますか？
-					article(role='article')
-						a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='avatar')
-							img.avatar(src=post.user.avatarUrl, alt='avatar')
-						header.header
-							h3
-								a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
-							if post.user.isVerified
-								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-							span.screen-name= '@' + post.user.screenName
-							a(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url'): time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
-						div.main(itemprop='articleBody')
-							+content(post)
-					div.actions
-						button.accept(type='submit')
-							i.fa.fa-check
-							p Repost
-						button.cancel(type='button')
-							i.fa.fa-ban
-							p キャンセル
-		
+			+repost-form(post)
+
 		div.main
 			if isTalk
 				button.read-talk(role='button', title='会話をもっと読む')
@@ -60,14 +37,12 @@ mixin core(post, isRepost, repost)
 				div.talk
 					+subPost(post.inReplyToPost)(class='reply-source')
 			if isRepost
-				div.repost-information
-					p.info
-						a.avatar-anchor(href=config.url + '/' + repost.user.screenName, title= repost.user.comment != null ? repost.user.comment : '@' + repost.user.screenName)
-							img.avatar(src=repost.user.avatarUrl, alt='avatar')
-						span.text
-							i.fa.fa-retweet
-							| Reposted by 
-							a.name(href=config.url + '/' + repost.user.screenName, target='_blank')= repost.user.name
+				p.repost-info
+					a.avatar-anchor(href=config.url + '/' + repost.user.screenName, title= repost.user.comment != null ? repost.user.comment : '@' + repost.user.screenName)
+						img.avatar(src=repost.user.avatarUrl + '?mini', alt='avatar')
+					i.fa.fa-retweet
+					| Reposted by 
+					a.name(href=config.url + '/' + repost.user.screenName, target='_blank')= repost.user.name
 			div.body
 				header.header
 					div.avatar-area

@@ -30,13 +30,12 @@ mixin core(post, isRepost, repost)
 		if post.inReplyToPost
 			+subPost(post.inReplyToPost)(class='reply-source')
 		if isRepost
-			div.repost-information
+			p.repost-info
 				a.avatar-anchor(href='/' + repost.user.screenName)
 					img.avatar(src=repost.user.avatarUrl + '?mini', alt='avatar')
-				p.text
-					i.fa.fa-retweet
-					| Reposted by 
-					a.name(href='/' + repost.user.screenName)= repost.user.name
+				i.fa.fa-retweet
+				| Reposted by 
+				a.name(href='/' + repost.user.screenName)= repost.user.name
 		div.main
 			div.avatar-area
 				a.avatar-anchor(href='/' + post.user.screenName)
