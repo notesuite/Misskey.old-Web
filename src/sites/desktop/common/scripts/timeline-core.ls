@@ -140,9 +140,9 @@ class Timeline
 						$progress-bar
 							..attr \max total
 							..attr \value uploaded
-				(html) ->
+				(file) ->
 					$info.remove!
-					add-file JSON.parse ($ html).attr \data-data
+					add-file file
 				->
 					$info.remove!
 
