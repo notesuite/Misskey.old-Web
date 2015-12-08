@@ -20,7 +20,9 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 				p
 					| A mini-blog sns. find your likes!!!
 			div#trends
-				// trends area
+				if trends.length > 0
+					each trend in trends
+						a= trend
 			div.contents
 				form#login-form(action='/login', method='post')
 					h2
