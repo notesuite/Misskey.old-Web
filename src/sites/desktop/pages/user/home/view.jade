@@ -36,6 +36,13 @@ block contents
 							li.photo(style='background-image: url("' + photo.url + '")', title= post.createdAt)
 								a(href= config.url + '/' + user.screenName + '/' + post.id)
 	div#main-content
+		ul#timeline-types
+			li
+				| 投稿
+			li
+				| 返信と投稿
+			li
+				| 写真付き投稿
 		div#timeline
 			if timeline.length > 0
 				div.posts
