@@ -1,5 +1,6 @@
 include ../content
-include ./subPost
+include ../repost-form
+include ./sub-post
 
 mixin post(post, isRepost)
 	if post.type == 'repost'
@@ -26,32 +27,7 @@ mixin core(post, isRepost, repost)
 			data-is-have-replies   != isHaveReplies.toString()
 			data-is-talk           != isTalk.toString())
 		if login && me.id != post.userId
-			div.repost-form
-				div.background
-				form.form
-					h2
-						i.fa.fa-retweet
-						| この投稿をRepostしますか？
-					article(role='article')
-						a.avatar-anchor(href=config.url + '/' + post.user.screenName, title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName, rel='avatar')
-							img.avatar(src=post.user.avatarUrl, alt='avatar')
-						header.header
-							h3
-								a.user-name(href=config.url + '/' + post.user.screenName, target='_blank', rel='author')= post.user.name
-							if post.user.isVerified
-								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-							span.screen-name= '@' + post.user.screenName
-							a(href=config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url'): time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
-						div.main(itemprop='articleBody')
-							+content(post)
-					div.actions
-						button.accept(type='submit')
-							i.fa.fa-check
-							p Repost
-						button.cancel(type='button')
-							i.fa.fa-ban
-							p キャンセル
-		
+			+repost-form(post)
 		div.main
 			if isTalk
 				button.read-talk(role='button', title='会話をもっと読む')
@@ -122,10 +98,10 @@ mixin core(post, isRepost, repost)
 							h2.title
 								| Like
 						ol.users
-							each user in likes
+							each like in likes
 								li.user
-									a.avatar-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
-										img.avatar(src=user.avatarUrl, alt='avatar')
+									a.avatar-anchor(href='/' + like.user.screenName, title= '@' + like.user.screenName, data-tooltip= user.name)
+										img.avatar(src=like.user.avatarUrl, alt='avatar')
 				if reposts != null && reposts.length > 0
 					section.reposts
 						header.caption
@@ -133,10 +109,10 @@ mixin core(post, isRepost, repost)
 							h2.title
 								| Repost
 						ol.users
-							each user in likes
+							each repost in reposts
 								li.user
-									a.avatar-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
-										img.avatar(src=user.avatarUrl, alt='avatar')
+									a.avatar-anchor(href='/' + repost.user.screenName, title= '@' + repost.user.screenName, data-tooltip= user.name)
+										img.avatar(src=repost.user.avatarUrl, alt='avatar')
 			form.reply-form
 				if login
 					img.me-avatar(src=me.avatarUrl, alt='avatar')
