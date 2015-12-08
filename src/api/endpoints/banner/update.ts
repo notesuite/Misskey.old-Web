@@ -30,7 +30,9 @@ export default function updatebanner(req: express.Request, res: express.Response
 				}
 				gm(body, file.name)
 				.crop(trimW, trimH, trimX, trimY)
-				.toBuffer('png', (err: Error, buffer: Buffer) => {
+				.compress('jpeg')
+				.quality('80')
+				.toBuffer('jpeg', (err: Error, buffer: Buffer) => {
 					if (err !== null) {
 						console.error(err);
 						return res.status(500).send('something-happened');
@@ -39,8 +41,8 @@ export default function updatebanner(req: express.Request, res: express.Response
 						file: {
 							value: buffer,
 							options: {
-								filename: `${file.name}.cropped.png`,
-								contentType: 'image/png'
+								filename: `${file.name}.cropped.jpg`,
+								contentType: 'image/jpeg'
 							}
 						}
 					}, req.user, true).then((albumFile: any) => {
