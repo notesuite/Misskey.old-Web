@@ -12,10 +12,13 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	const me: User = req.me;
 
 	Promise.all([
-		new Promise<Object>((resolve, reject) => {
+		new Promise<any>((resolve, reject) => {
 			requestApi('posts/replies/show', {
 				'post-id': post.id
-			}, me !== null ? me.id : null).then((replies: Post[]) => {
+			}, me).then((replies: Post[]) => {
+				if (replies.length === 0) {
+					return resolve([]);
+				}
 				Promise.all(replies.map((reply: any) => {
 					return new Promise<Object>((resolve2, reject2) => {
 						requestApi('posts/replies/show', {
@@ -28,17 +31,17 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 				}));
 			});
 		}),
-		new Promise<Object>((resolve, reject) => {
+		new Promise<any>((resolve, reject) => {
 			requestApi('posts/likes/show', {
 				'post-id': post.id
-			}, me !== null ? me.id : null).then((likes: any[]) => {
+			}, me).then((likes: any[]) => {
 				resolve(likes);
 			});
 		}),
-		new Promise<Object>((resolve, reject) => {
+		new Promise<any>((resolve, reject) => {
 			requestApi('posts/reposts/show', {
 				'post-id': post.id
-			}, me !== null ? me.id : null).then((reposts: any[]) => {
+			}, me).then((reposts: any[]) => {
 				resolve(reposts);
 			});
 		})
