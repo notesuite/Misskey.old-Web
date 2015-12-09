@@ -167,6 +167,7 @@ class Post
 				THIS.$repost-form.find '.form' .css \display \none
 
 		THIS.$post.find '> footer > .actions > .repost > button' .click ->
+			$button = $ @
 			if THIS.check-reposted!
 				THIS.$post.attr \data-is-reposted \false
 				$.ajax "#{config.web-api-url}/post/unrepost" {
