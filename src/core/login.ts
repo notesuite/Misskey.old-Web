@@ -40,6 +40,7 @@ export default function login(screenName: string, password: string, session: any
 		});
 
 		function saveSession(user: any, settings: IUserSettings): void {
+			session.user = user;
 			session.userId = user.id;
 			session.userSettings = settings.toObject();
 			session.save(() => {

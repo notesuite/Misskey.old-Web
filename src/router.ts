@@ -24,7 +24,7 @@ export default function router(app: express.Express): void {
 					if (settingsFindErr !== null) {
 						throw settingsFindErr;
 					}
-					req.data.userSetting = settings;
+					req.data.userSettings = settings;
 					next();
 				});
 			} else {
