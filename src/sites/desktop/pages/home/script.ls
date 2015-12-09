@@ -22,7 +22,7 @@ $ ->
 	$ document .keydown (e) ->
 		tag = e.target.tag-name.to-lower-case!
 		if tag != \input and tag != \textarea
-			if e.which == 87 or e.which == 75
+			if e.which == 84 # t
 				$ '#widget-timeline > .timeline > .posts > .post:first-child' .focus!
 
 	$ window .focus ->

@@ -509,7 +509,7 @@ $ ->
 						<dt>投稿フォームを開いた状態で<kbd>Esc</kbd></dt>
 						<dd>投稿フォームを閉じる</dd>
 
-						<dt><kbd>w</kbd>または<kbd>k</kbd></dt>
+						<dt><kbd>t</kbd></dt>
 						<dd>タイムラインの最新の投稿にフォーカス</dd>
 
 						<dt>投稿にフォーカスした状態で<kbd>↑</kbd><kbd>↓</kbd></dt>
