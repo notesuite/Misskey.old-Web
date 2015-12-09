@@ -1,6 +1,7 @@
 import * as express from 'express';
 
-import {User} from './models/user';
+import { User } from './models/user';
+import { UserSettings, IUserSettings } from './models/user-settings';
 import requestApi from './utils/request-api';
 import login from './core/login';
 import refresh from './core/refresh-session';
@@ -17,7 +18,15 @@ export default function router(app: express.Express): void {
 		}, req.isLogin ? req.me : null).then((user: User) => {
 			if (user !== null) {
 				req.data.user = user;
-				next();
+				UserSettings.findOne({
+					userId: user.id
+				}, (settingsFindErr: any, settings: IUserSettings) => {
+					if (settingsFindErr !== null) {
+						throw settingsFindErr;
+					}
+					req.data.userSetting = settings;
+					next();
+				});
 			} else {
 				res.status(404);
 				callController(req, res, 'user-not-found');
