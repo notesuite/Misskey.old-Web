@@ -24,6 +24,7 @@
 		"src/models/user.ts",
 		"src/models/post.ts",
 		"src/models/home-layout.ts",
+		"src/models/user-settings.ts",
 		"src/utils/request-api.ts",
 		"src/utils/map-to-html.ts",
 		"src/utils/naming-worker-id.ts",
