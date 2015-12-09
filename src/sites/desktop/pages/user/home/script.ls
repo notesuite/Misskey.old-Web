@@ -1,13 +1,12 @@
 require '../../../common/scripts/ui.js'
 require '../script.js'
 $ = require 'jquery'
-TIMELINE_CORE = require '../../../common/scripts/timeline-core.js'
+Timeline = require '../../../common/scripts/pro-timeline-core.js'
 
 $ ->
 	$ \#left-sub-contents .css \padding-top "#{$ \#comment .outer-height! - 16px}px"
 
-	$ '#timeline .statuses .status .status.article' .each ->
-		window.STATUS_CORE.set-event $ @
+	timeline = new Timeline $ '#timeline'
 
 	# Read more
 	$ window .scroll ->
@@ -16,18 +15,13 @@ $ ->
 		if current > $ document .height! - 32
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax config.web-api-url + '/web/status/user-timeline-detailhtml' {
-					data: {
-						'user-id': $ \html .attr \data-user-id
-						'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
-					}
-					data-type: \json}
-				.done (data) ->
+				$.ajax "#{config.web-api-url}/posts/user-timeline" {
+					data:
+						limit: 10
+						'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor}
+				.done (posts) ->
 					me.data \loading no
-					$statuses = $ data
-					$statuses.each ->
-						$status = $ '<li class="status">' .append $ @
-						window.STATUS_CORE.set-event $status.children '.status.article'
-						$status.append-to $ '#timeline .timeline > .statuses'
+					posts.for-each (post) ->
+						timeline.add-last post
 				.fail (data) ->
 					me.data \loading no
