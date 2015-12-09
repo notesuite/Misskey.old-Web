@@ -87,7 +87,7 @@ class Post
 			THIS.toggle-display-state!
 			THIS.focus-reply-form!
 
-		post-content-initializer THIS.post-type, THIS.$post.find '> .main > .content'
+		post-content-initializer THIS.type, THIS.$post.find '> .main > .content'
 
 		THIS.init-repost-form!
 
