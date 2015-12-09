@@ -17,7 +17,6 @@ import { User } from './models/user';
 import { MisskeyExpressRequest } from './misskey-express-request';
 import { MisskeyExpressResponse } from './misskey-express-response';
 import namingWorkerId from './utils/naming-worker-id';
-import requestApi from './utils/request-api';
 
 import config from './config';
 

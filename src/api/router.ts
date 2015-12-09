@@ -3,6 +3,7 @@ import * as multer from 'multer';
 const upload: any = multer({ dest: 'uploads/' });
 
 import requestApi from '../utils/request-api';
+import refresh from '../core/refresh-session';
 
 export default function router(app: express.Express): void {
 	'use strict';
@@ -17,12 +18,8 @@ export default function router(app: express.Express): void {
 
 	app.post('/web/refresh-session', (req: express.Request, res: express.Response) => {
 		if (req.user !== null) {
-			const userId: string = (<any>req.session).userId;
-			requestApi('account/show', {}, userId).then((me: Object) => {
-				(<any>req.session).user = me;
-				req.session.save(() => {
-					res.json(me);
-				});
+			refresh(req.session).then(() => {
+				res.sendStatus(200);
 			});
 		}
 	});
