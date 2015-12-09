@@ -1,8 +1,9 @@
 import * as express from 'express';
-import { HomeLayout, IHomeLayout } from '../../../models/home-layout';
+import { UserSettings, IUserSettings } from '../../../models/user-settings';
 
 export default function updateHomeLayout(req: express.Request, res: express.Response): void {
 	'use strict';
+
 	const layoutString: string = req.body['layout'];
 	const layout = JSON.parse(layoutString);
 
@@ -11,6 +12,7 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 		center: [],
 		right: []
 	};
+
 	if (layout.left !== undefined) {
 		saveLayout.left = layout.left;
 	}
@@ -21,20 +23,21 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 		saveLayout.right = layout.right;
 	}
 
-	HomeLayout.findOne({
+	UserSettings.findOne({
 		userId: req.user.id
-	}, (err: any, userHomeLayout: IHomeLayout) => {
-		if (userHomeLayout !== null) {
-			userHomeLayout.layout = saveLayout;
-			userHomeLayout.save();
-			res.send('ok');
-		} else {
-			HomeLayout.create({
-				userId: req.user.id,
-				layout: saveLayout
-			}, (createErr: any, created: IHomeLayout) => {
-				res.send('ok');
-			});
+	}, (findErr: any, settings: IUserSettings) => {
+		if (findErr !== null) {
+			return res.sendStatus(500);
 		}
+		settings.homeLayout = saveLayout;
+		settings.save((saveErr: any, savedSettings: IUserSettings) => {
+			if (saveErr !== null) {
+				return res.sendStatus(500);
+			}
+			(<any>req.session).userSettings = savedSettings.toObject();
+			req.session.save(() => {
+				res.sendStatus(200);
+			});
+		});
 	});
 };

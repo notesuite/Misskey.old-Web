@@ -4,12 +4,15 @@ import * as request from 'request';
 import config from '../config';
 
 export default function requestApi(
-		endpoint: string,
-		params: any,
-		user: any = null,
-		withFile: boolean = false): Promise<any> {
+	endpoint: string,
+	params: any,
+	user: any = null,
+	withFile: boolean = false
+): Promise<any> {
 	'use strict';
+
 	const userId: string = user !== null ? typeof user === 'string' ? user : user.id : null;
+
 	return new Promise<any>((resolve, reject) => {
 		const options: request.Options = {
 			url: `http://${config.apiServerIp}:${config.apiServerPort}/${endpoint}`,

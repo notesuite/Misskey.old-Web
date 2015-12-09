@@ -2,6 +2,8 @@ import * as express from 'express';
 
 import {User} from './models/user';
 import requestApi from './utils/request-api';
+import login from './core/login';
+import refresh from './core/refresh-session';
 import { MisskeyExpressRequest } from './misskey-express-request';
 import { MisskeyExpressResponse } from './misskey-express-response';
 import callController from './call-controller';
@@ -55,27 +57,29 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi('login', req.body).then((result: any) => {
-			const user: User = result;
-			req.session.userId = user.id;
-			req.session.save(() => {
-				res.json(user);
+	app.get('/!', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		if (req.isLogin) {
+			refresh(req.session).then(() => {
+				res.redirect('/');
 			});
+		} else {
+			res.redirect('/');
+		}
+	});
+
+	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
+			res.sendStatus(200);
 		}, (err: any) => {
-			res.status(500).json(err);
+			res.sendStatus(500);
 		});
 	});
 
 	app.get('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		requestApi('login', req.query).then((result: any) => {
-			const user: User = result;
-			req.session.userId = user.id;
-			req.session.save(() => {
-				res.redirect('/');
-			});
+		login(req.query['screen-name'], req.query['password'], req.session).then(() => {
+			res.redirect('/');
 		}, (err: any) => {
-			res.status(500).json(err);
+			res.sendStatus(500);
 		});
 	});
 

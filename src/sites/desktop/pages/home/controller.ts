@@ -8,7 +8,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 
 	const me: User = req.me;
 
-	generateLayoutedHomeWidgets(me, 'home').then((widgets: any) => {
+	generateLayoutedHomeWidgets(me, req.session.userSettings.homeLayout, 'home').then((widgets: any) => {
 		res.display({
 			widgets
 		});

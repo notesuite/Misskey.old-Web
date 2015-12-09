@@ -111,27 +111,15 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 	};
 
 	if (isLogin) {
-		const userId: string = req.session.userId;
-		if (req.session.hasOwnProperty('user')) {
-			const user: User = req.session.user;
-			req.me = user;
-			req.renderData.me = user;
-			next();
-		} else {
-			requestApi('account/show', {}, userId).then((user: User) => {
-				req.me = user;
-				req.renderData.me = user;
-				req.session.user = user;
-				req.session.save(() => {
-					next();
-				});
-			}, (err: any) => {
-				return res.status(500).send('Sry! Failed lookup of your account. plz try again.');
-			});
-		}
+		const user: User = req.session.user;
+		req.me = user;
+		req.renderData.me = user;
+		req.renderData.userSettings = req.session.userSettings;
+		next();
 	} else {
 		req.me = null;
 		req.renderData.me = null;
+		req.renderData.userSettings = null;
 		next();
 	}
 });
