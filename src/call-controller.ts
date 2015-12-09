@@ -12,7 +12,7 @@ export default function callController(
 
 	res.display = (data: any = {}): void => {
 		const viewPath: string = `${__dirname}/sites/${req.ua}/pages/${name}/view`;
-		if (data.overrideTheme !== null) {
+		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
 			data.stylePath = `/resources/${req.ua}/pages/${name}/style.${data.overrideTheme}.css`;
 		} else if (req.isLogin && req.session.userSettings.theme !== null) {
 			data.stylePath = `/resources/${req.ua}/pages/${name}/style.${req.session.userSettings.theme}.css`;
