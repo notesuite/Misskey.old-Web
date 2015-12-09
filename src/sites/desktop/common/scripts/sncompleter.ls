@@ -136,6 +136,7 @@ module.exports = ($input) ->
 			| 10, 13 => # Key[ENTER]
 				if select?
 					e.prevent-default!
+					e.stop-propagation!
 					$a = $opening-menu.find "ol > li:nth-child(#{$opening-menu.attr 'data-select'}) > a"
 					complete ($a.attr \data-summoner), ($a.attr \data-value)
 				else
@@ -148,12 +149,14 @@ module.exports = ($input) ->
 				$input.focus!
 			| 38 => # Key[↑]
 				e.prevent-default!
+				e.stop-propagation!
 				if select == null or select == 1
 					$opening-menu.attr \data-select ($opening-menu.find \ol .children!.length)
 				else
 					$opening-menu.attr \data-select select - 1
 			| 9, 40 => # Key[TAB] or Key[↓]
 				e.prevent-default!
+				e.stop-propagation!
 				if select == null or select == ($opening-menu.find \ol .children!.length)
 					$opening-menu.attr \data-select 1
 				else
