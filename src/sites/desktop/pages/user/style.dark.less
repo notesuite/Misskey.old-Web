@@ -1,0 +1,73 @@
+@import "./style";
+
+html {
+	color: #fff;
+	background-color: #191919;
+}
+
+main {
+
+	> header {
+		> #header-nav {
+			background: #292929;
+
+			> .main {
+
+				> #avatar-area {
+					> .avatar-anchor {
+
+						> #avatar {
+							border: solid 4px #fff;
+						}
+					}
+
+					> .comment-container {
+
+						> #comment {
+							background: #fff;
+							border: solid 2px #dde;
+
+							&:before {
+								border-top: solid 12px transparent;
+								border-right: solid 12px transparent;
+								border-bottom: solid 12px #dde;
+								border-left: solid 12px transparent;
+							}
+
+							&:after {
+								border-top: solid 12px transparent;
+								border-right: solid 12px transparent;
+								border-bottom: solid 12px #fff;
+								border-left: solid 12px transparent;
+							}
+
+							.no-comment {
+								color: rgba(0, 0, 0, 0.35);
+							}
+						}
+					}
+				}
+
+				#main-nav {
+
+					li {
+						color: #aaa;
+
+						&.active {
+							color: @themeColor;
+
+							&:hover {
+								color: @themeColor;
+							}
+						}
+
+
+						&:hover {
+							color: @themeColor;
+						}
+					}
+				}
+			}
+		}
+	}
+}
