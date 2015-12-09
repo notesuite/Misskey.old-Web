@@ -320,34 +320,28 @@ main {
 					li {
 						display: inline-block;
 						margin: 0;
-						padding: 0;
+						padding: 12px 24px;
+						color: #aaa;
+						border-top: solid 3px transparent;
+						border-bottom: solid 3px transparent;
+						cursor: pointer;
 
 						&.active {
-							a {
-								color: darken(@themeColor, 20%);
-								border-bottom: solid 3px @themeColor;
-
-								&:hover {
-									color: darken(@themeColor, 20%);
-								}
-							}
-						}
-
-						a {
-							display: inline-block;
-							padding: 12px 24px;
-							color: #aaa;
-							text-decoration: none;
-							border-top: solid 3px transparent;
-							border-bottom: solid 3px transparent;
+							color: @themeColor;
+							border-bottom: solid 3px @themeColor;
 
 							&:hover {
 								color: @themeColor;
 							}
+						}
 
-							i {
-								margin-right: 8px;
-							}
+
+						&:hover {
+							color: @themeColor;
+						}
+
+						i {
+							margin-right: 8px;
 						}
 					}
 				}
@@ -368,7 +362,7 @@ main {
 
 		#main-content {
 			flex: 1 1;
-			padding: 16px 0;
+			padding: 16px;
 		}
 
 		#sub-contents {

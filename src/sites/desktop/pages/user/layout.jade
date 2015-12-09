@@ -70,21 +70,17 @@ block body
 								else
 									span.no-comment no comment
 					ul#main-nav
-						li(class= page == 'home' ? 'active' : '')
-							a(href='/' + user.screenName)
-								i.fa.fa-comment
-								| Timeline
-						li(class= page == 'profile' ? 'active' : '')
-							a(href='/' + user.screenName + '/profile')
-								i.fa.fa-newspaper-o
-								| Profile
-						li(class= page == 'followings' ? 'active' : '')
-							a(href='/' + user.screenName + '/followings')
-								i.fa.fa-heart
-								| Following
-						li(class= page == 'followers' ? 'active' : '')
-							a(href='/' + user.screenName + '/followers')
-								i.fa.fa-users
-								| Followers
+						li.active
+							i.fa.fa-comment
+							| タイムライン
+						li
+							i.fa.fa-comments-o
+							| すべて
+						li
+							i.fa.fa-picture-o
+							| 写真付き
+						li
+							i.fa.fa-fire
+							| 人気
 		div#contents
 			block contents
