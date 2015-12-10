@@ -38,6 +38,9 @@ export default function analyze(req: express.Request, res: express.Response): vo
 		case 'soundcloud.com':
 			analyzeSoundcloud(req, res, url);
 			break;
+		case 'gyazo.com':
+			analyzeGyazo(req, res, url);
+			break;
 		case 'gist.github.com':
 			analyzeGithubGist(req, res, url);
 			break;
@@ -177,6 +180,22 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 	});
 }
 
+function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url): void {
+	'use strict';
+
+	const imageId: string = url.pathname.substring(1);
+	const src: string = `https://i.gyazo.com/${imageId}.png`;
+
+	const compiler: (locals: any) => string = jade.compileFile(
+		`${__dirname}/gyazo.jade`);
+
+	const image: string = compiler({
+		src
+	});
+
+	res.send(image);
+}
+
 /**
  * @param req MisskeyExpressRequest
  * @param res MisskeyExpressResponse
@@ -266,7 +285,6 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 
 		res.send(viewer);
 	}, (err: any) => {
-		console.error(err);
 		res.sendStatus(500);
 	});
 }
