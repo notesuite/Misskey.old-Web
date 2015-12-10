@@ -59,10 +59,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
 
+// CORS middleware
+app.use((req, res, next) => {
+	res.header({
+		'Access-Control-Allow-Origin': config.publicConfig.url,
+		'Access-Control-Allow-Credentials': 'true'
+	});
+
+	next();
+});
+
 const vhost: any = require('vhost');
 app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
 	fallthrough: false
 })));
+
+// Statics
+app.get('/favicon.ico', (req: express.Request, res: express.Response) => {
+	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
+});
+app.get('/manifest.json', (req: express.Request, res: express.Response) => {
+	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
+});
 
 // Session settings
 app.use(expressSession({
@@ -83,29 +101,9 @@ app.use(expressSession({
 	})
 }));
 
-const subdomainOptions = {
-	base: config.publicConfig.host
-};
-
-app.use(require('subdomain')(subdomainOptions));
-
-// Statics
-app.get('/favicon.ico', (req: express.Request, res: express.Response) => {
-	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
-});
-app.get('/manifest.json', (req: express.Request, res: express.Response) => {
-	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
-});
-
 // Init session
 app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	res.header('X-Frame-Options', 'SAMEORIGIN');
-
-	// CORS middleware
-	res.header({
-		'Access-Control-Allow-Origin': config.publicConfig.url,
-		'Access-Control-Allow-Credentials': 'true'
-	});
 
 	const ua: string = uatype(req.headers['user-agent']);
 
@@ -141,6 +139,12 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 		next();
 	}
 });
+
+const subdomainOptions = {
+	base: config.publicConfig.host
+};
+
+app.use(require('subdomain')(subdomainOptions));
 
 // Rooting
 apiRouter(app);
