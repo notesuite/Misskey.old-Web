@@ -70,6 +70,7 @@
     "express-minify": "0.1.6",
     "express-session": "1.12.1",
     "gm": "1.21.1",
+    "html-entities": "^1.2.0",
     "jade": "1.11.0",
     "jquery": "2.1.4",
     "jquery.transit": "0.9.12",

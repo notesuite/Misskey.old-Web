@@ -1,6 +1,5 @@
 import * as express from 'express';
 import * as URL from 'url';
-
 import * as request from 'request';
 const jade: any = require('jade');
 
@@ -9,6 +8,9 @@ client.headers['User-Agent'] = 'MisskeyBot';
 client.referer = false;
 client.timeout = 10000;
 client.maxDataSize = 1024 * 1024; // 1MiB
+
+const Entities: any = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
 
 /**
  * 指定されたURLのページのプレビューウィジェットを生成します。
@@ -208,18 +210,32 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 		const ogSiteName = getOGPdata('site_name');
 
 		// OGPで失敗したらtitleから拝借
-		const title: string = nullOrEmpty(ogTitle)
+		let title: string = nullOrEmpty(ogTitle)
 			? $('title').text()
 			: ogTitle;
 
 		if (nullOrEmpty(title)) {
 			return res.sendStatus(500);
+		} else {
+			title = entities.decode(title);
 		}
 
 		// OGPで失敗したらmetaタグのdescriptionから拝借
-		const description: string = nullOrEmpty(ogDescription)
+		let description: string = nullOrEmpty(ogDescription)
 			? $('meta[name="description"]').attr('content')
 			: ogDescription;
+
+		if (!nullOrEmpty(description)) {
+			description = entities.decode(description);
+		}
+
+		let siteName: string = nullOrEmpty(ogSiteName)
+			? null
+			: ogSiteName;
+
+		if (!nullOrEmpty(siteName)) {
+			siteName = entities.decode(siteName);
+		}
 
 		// Language
 		const lang: string = $('html').attr('lang');
@@ -239,13 +255,13 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 		// コンパイル
 		const viewer: string = compiler({
 			url: url.href,
-			title,
-			icon,
-			lang,
-			description,
+			title: title,
+			icon: icon,
+			lang: lang,
+			description: description,
 			type: ogType,
 			image: ogImage,
-			siteName: ogSiteName
+			siteName: siteName
 		});
 
 		res.send(viewer);
