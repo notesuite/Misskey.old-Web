@@ -44,7 +44,7 @@ mixin core(post, isRepost, repost)
 				div.author(itemprop='author')
 					a.name(href='/' + post.user.screenName)= post.user.name
 					if post.user.isVerified
-						img.verified-icon(src='/resources/common/verified.png', alt='verified', title='認証済み')
+						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
 					p.screen-name= post.user.screenName
 				a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
 					time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
