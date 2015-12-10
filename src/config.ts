@@ -49,6 +49,7 @@ export interface IConfig {
 		signinUrl: string;
 		signoutDomain: string;
 		signoutUrl: string;
+		resourcesDomain: string;
 		resourcesHost: string;
 		resourcesUrl: string;
 		apiHost: string;

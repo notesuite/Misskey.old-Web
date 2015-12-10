@@ -27,6 +27,7 @@
 		"src/utils/request-api.ts",
 		"src/utils/map-to-html.ts",
 		"src/utils/naming-worker-id.ts",
+		"src/utils/musics.ts",
 		"src/core/refresh-session.ts",
 		"src/core/login.ts",
 		"src/api/router.ts",

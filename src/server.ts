@@ -11,12 +11,14 @@ const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(expressSession);
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+const vhost: any = require('vhost');
 // import { logDone, logFailed, logInfo } from 'log-cool';
 
 import { User } from './models/user';
 import { MisskeyExpressRequest } from './misskey-express-request';
 import { MisskeyExpressResponse } from './misskey-express-response';
 import namingWorkerId from './utils/naming-worker-id';
+import musics from './utils/musics';
 
 import config from './config';
 
@@ -42,6 +44,9 @@ console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 // Grobal options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
 const workerId: string = namingWorkerId(cluster.worker.id);
+const subdomainOptions = {
+	base: config.publicConfig.host
+};
 
 // Init DB connection
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
@@ -69,16 +74,22 @@ app.use((req, res, next) => {
 	next();
 });
 
-const vhost: any = require('vhost');
+// Statics
 app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
-	fallthrough: false
+	fallthrough: true
 })));
 
+app.use(require('subdomain')(subdomainOptions));
+
+app.get(`/subdomain/${config.publicConfig.resourcesDomain}/`, (req, res) => {
+	res.send(musics());
+});
+
 // Statics
-app.get('/favicon.ico', (req: express.Request, res: express.Response) => {
+app.get('/favicon.ico', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
 });
-app.get('/manifest.json', (req: express.Request, res: express.Response) => {
+app.get('/manifest.json', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
 
@@ -139,12 +150,6 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 		next();
 	}
 });
-
-const subdomainOptions = {
-	base: config.publicConfig.host
-};
-
-app.use(require('subdomain')(subdomainOptions));
 
 // Rooting
 apiRouter(app);
