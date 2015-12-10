@@ -1,11 +1,11 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery'
 
-Album = require '../../common/scripts/album.js'
+AlbumWindow = require '../../common/scripts/album-window.js'
 avatar-form = require '../../common/scripts/avatar-form.js'
 banner-form = require '../../common/scripts/banner-form.js'
 
-album = new Album
+album = new AlbumWindow
 
 $ ->
 	if is-me
