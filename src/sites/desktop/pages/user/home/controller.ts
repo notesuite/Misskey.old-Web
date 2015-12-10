@@ -14,7 +14,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	Promise.all([
 		// タイムライン
 		requestApi('posts/user-timeline', {
-			'user-id': user.id
+			'user-id': user.id,
+			'include-replies': false
 		}, me),
 		// 最近の写真
 		requestApi('posts/user-timeline', {
