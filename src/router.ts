@@ -12,51 +12,9 @@ import callController from './call-controller';
 export default function router(app: express.Express): void {
 	'use strict';
 
-	app.param('userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, screenName: string) => {
-		requestApi('users/show', {
-			'screen-name': screenName
-		}, req.isLogin ? req.me : null).then((user: User) => {
-			if (user !== null) {
-				req.data.user = user;
-				UserSettings.findOne({
-					userId: user.id
-				}, (settingsFindErr: any, settings: IUserSettings) => {
-					if (settingsFindErr !== null) {
-						throw settingsFindErr;
-					}
-					req.data.userSettings = settings;
-					next();
-				});
-			} else {
-				res.status(404);
-				callController(req, res, 'user-not-found');
-			}
-		}, (err: any) => {
-			if (err.body === 'not-found') {
-				res.status(404);
-				callController(req, res, 'user-not-found');
-			}
-		});
-	});
+	app.param('userScreenName', paramUserScreenName);
 
-	app.param('postId', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void, postId: string) => {
-		requestApi('posts/show', {
-			'post-id': postId
-		}, req.isLogin ? req.me : null).then((post: Object) => {
-			if (post !== null) {
-				req.data.post = post;
-				next();
-			} else {
-				res.status(404);
-				callController(req, res, 'post-not-found');
-			}
-		}, (err: any) => {
-			if (err.body === 'not-found') {
-				res.status(404);
-				callController(req, res, 'post-not-found');
-			}
-		});
-	});
+	app.param('postId', paramPostId);
 
 	app.get('/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
@@ -76,7 +34,7 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.post('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.post('/subdomain/login/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
 			res.sendStatus(200);
 		}, (err: any) => {
@@ -84,15 +42,19 @@ export default function router(app: express.Express): void {
 		});
 	});
 
-	app.get('/login', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		login(req.query['screen-name'], req.query['password'], req.session).then(() => {
-			res.redirect('/');
-		}, (err: any) => {
-			res.sendStatus(500);
-		});
+	app.get('/subdomain/login/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		if (req.query.hasOwnProperty('screen-name') && req.query.hasOwnProperty('password')) {
+			login(req.query['screen-name'], req.query['password'], req.session).then(() => {
+				res.redirect('/');
+			}, (err: any) => {
+				res.sendStatus(500);
+			});
+		} else {
+			callController(req, res, 'login');
+		}
 	});
 
-	app.post('/logout', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.post('/subdomain/logout', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
 			req.session.destroy(() => {
 				res.redirect('/');
@@ -158,5 +120,65 @@ export default function router(app: express.Express): void {
 	app.use((err: any, req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		console.error(err);
 		callController(req, res, 'error', err);
+	});
+}
+
+function paramUserScreenName(
+	req: MisskeyExpressRequest,
+	res: MisskeyExpressResponse,
+	next: () => void,
+	screenName: string
+): void {
+	'use strict';
+
+	requestApi('users/show', {
+		'screen-name': screenName
+	}, req.isLogin ? req.me : null).then((user: User) => {
+		if (user !== null) {
+			req.data.user = user;
+			UserSettings.findOne({
+				userId: user.id
+			}, (settingsFindErr: any, settings: IUserSettings) => {
+				if (settingsFindErr !== null) {
+					throw settingsFindErr;
+				}
+				req.data.userSettings = settings;
+				next();
+			});
+		} else {
+			res.status(404);
+			callController(req, res, 'user-not-found');
+		}
+	}, (err: any) => {
+		if (err.body === 'not-found') {
+			res.status(404);
+			callController(req, res, 'user-not-found');
+		}
+	});
+}
+
+function paramPostId(
+	req: MisskeyExpressRequest,
+	res: MisskeyExpressResponse,
+	next: () => void,
+	postId: string
+): void {
+	'use strict';
+
+	requestApi('posts/show', {
+		'post-id': postId
+	}, req.isLogin ? req.me : null).then((post: Object) => {
+		if (post !== null) {
+			req.data.post = post;
+			next();
+		} else {
+			res.status(404);
+			callController(req, res, 'post-not-found');
+		}
+	}, (err: any) => {
+		if (err.body === 'not-found') {
+			res.status(404);
+			callController(req, res, 'post-not-found');
+		}
 	});
 }

@@ -47,6 +47,8 @@ export interface IConfig {
 		domain: string;
 		host: string;
 		url: string;
+		resourcesHost: string;
+		resourcesUrl: string;
 		apiHost: string;
 		apiUrl: string;
 		webApiDomain: string;

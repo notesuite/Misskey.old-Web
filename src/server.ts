@@ -57,7 +57,11 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
-app.use('/resources', express.static(`${__dirname}/resources`));
+
+const vhost: any = require('vhost');
+app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
+	fallthrough: false
+})));
 
 // Session settings
 app.use(expressSession({
@@ -77,6 +81,12 @@ app.use(expressSession({
 		mongooseConnection: db
 	})
 }));
+
+const subdomainOptions = {
+	base: config.publicConfig.host
+};
+
+app.use(require('subdomain')(subdomainOptions));
 
 // Statics
 app.get('/favicon.ico', (req: express.Request, res: express.Response) => {
