@@ -190,7 +190,8 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 		`${__dirname}/gyazo.jade`);
 
 	const image: string = compiler({
-		src
+		src,
+		href: url.href
 	});
 
 	res.send(image);
