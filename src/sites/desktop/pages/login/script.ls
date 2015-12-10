@@ -3,6 +3,13 @@ require 'jquery.transit'
 require '../../common/scripts/main.js'
 
 $ ->
+	$ '#id' .change ->
+		$.ajax "#{config.api-url}/users/show", {
+			data: {'screen-name': $ '#id' .val!}
+			xhr-fields: {-with-credentials}}
+		.done (user) ->
+			$ '#avatar' .attr \src user.avatar-url
+
 	$ '#form' .submit (event) ->
 		event.prevent-default!
 		$form = $ @

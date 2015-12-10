@@ -73,7 +73,7 @@ app.use(expressSession({
 		path: '/',
 		domain: `.${config.publicConfig.host}`,
 		httpOnly: false,
-		secure: false,
+		secure: config.https.enable,
 		expires: new Date(Date.now() + sessionExpires),
 		maxAge: sessionExpires
 	},
