@@ -100,6 +100,14 @@ app.get('/manifest.json', (req: express.Request, res: express.Response) => {
 app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	res.header('X-Frame-Options', 'SAMEORIGIN');
 
+	// CORS middleware
+	res.header({
+		'Access-Control-Allow-Origin': config.publicConfig.url,
+		'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+		'Access-Control-Allow-Headers': 'Content-Type',
+		'Access-Control-Allow-Credentials': 'true'
+	});
+
 	const ua: string = uatype(req.headers['user-agent']);
 
 	const isLogin: boolean =

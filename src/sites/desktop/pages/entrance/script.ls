@@ -15,7 +15,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 
-		$.ajax '/login' {
+		$.ajax config.signin-url, {
 			data: $form.serialize!}
 		.done ->
 			location.reload!
@@ -44,7 +44,7 @@ function init-register-form
 		$.ajax "#{config.web-api-url}/account/create" {
 			data: $form.serialize!
 		} .done ->
-			$.ajax "#{config.url}/login" {
+			$.ajax config.signin-url, {
 				data: $form.serialize!
 			} .done ->
 				# location.href = "#{config.url}/welcome"

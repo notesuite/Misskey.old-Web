@@ -8,6 +8,7 @@ import refresh from './core/refresh-session';
 import { MisskeyExpressRequest } from './misskey-express-request';
 import { MisskeyExpressResponse } from './misskey-express-response';
 import callController from './call-controller';
+import config from './config';
 
 export default function router(app: express.Express): void {
 	'use strict';
@@ -34,7 +35,7 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.post('/subdomain/login/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.post(`/subdomain/${config.publicConfig.signinHost}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
 			res.sendStatus(200);
 		}, (err: any) => {
@@ -42,7 +43,7 @@ export default function router(app: express.Express): void {
 		});
 	});
 
-	app.get('/subdomain/login/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.get(`/subdomain/${config.publicConfig.signinHost}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.query.hasOwnProperty('screen-name') && req.query.hasOwnProperty('password')) {
 			login(req.query['screen-name'], req.query['password'], req.session).then(() => {
 				res.redirect('/');
@@ -54,7 +55,7 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.post('/subdomain/logout', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+	app.post(`/subdomain/${config.publicConfig.signoutHost}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
 			req.session.destroy(() => {
 				res.redirect('/');
