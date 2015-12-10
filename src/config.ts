@@ -26,8 +26,6 @@ export interface IConfig {
 	port: {
 		http: number;
 		https: number;
-		apiHttp: number;
-		apiHttps: number;
 		streaming: number;
 	};
 	https: {
@@ -47,9 +45,9 @@ export interface IConfig {
 		domain: string;
 		host: string;
 		url: string;
-		signinHost: string;
+		signinDomain: string;
 		signinUrl: string;
-		signoutHost: string;
+		signoutDomain: string;
 		signoutUrl: string;
 		resourcesHost: string;
 		resourcesUrl: string;
@@ -58,8 +56,8 @@ export interface IConfig {
 		webApiDomain: string;
 		webApiHost: string;
 		webApiUrl: string;
+		webStreamingUrl: string;
 		developerCenterHost: string;
 		developerCenterUrl: string;
-		webStreamingUrl: string;
 	};
 }

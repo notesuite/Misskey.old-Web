@@ -18,7 +18,6 @@ if (cluster.isMaster) {
 	require('./api/streaming');
 } else {
 	require('./server');
-	require('./api/server');
 }
 
 // Listen for dying workers

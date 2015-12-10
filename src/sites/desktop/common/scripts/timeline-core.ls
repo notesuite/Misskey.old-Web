@@ -412,7 +412,7 @@ class Timeline
 	add: (post-data) ->
 		THIS = @
 
-		new Audio '/resources/desktop/common/sounds/post.mp3' .play!
+		new Audio config.resources-url + '/desktop/common/sounds/post.mp3' .play!
 
 		post = new Post post-data
 			..set-parent-timeline THIS

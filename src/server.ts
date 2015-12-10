@@ -21,6 +21,7 @@ import namingWorkerId from './utils/naming-worker-id';
 import config from './config';
 
 import router from './router';
+import apiRouter from './api/router';
 
 function uatype(ua: string): string {
 	'use strict';
@@ -103,8 +104,6 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 	// CORS middleware
 	res.header({
 		'Access-Control-Allow-Origin': config.publicConfig.url,
-		'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-		'Access-Control-Allow-Headers': 'Content-Type',
 		'Access-Control-Allow-Credentials': 'true'
 	});
 
@@ -129,11 +128,13 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 
 	if (isLogin) {
 		const user: User = req.session.user;
+		req.user = user;
 		req.me = user;
 		req.renderData.me = user;
 		req.renderData.userSettings = req.session.userSettings;
 		next();
 	} else {
+		req.user = null;
 		req.me = null;
 		req.renderData.me = null;
 		req.renderData.userSettings = null;
@@ -142,6 +143,7 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 });
 
 // Rooting
+apiRouter(app);
 router(app);
 
 let server: http.Server | https.Server;

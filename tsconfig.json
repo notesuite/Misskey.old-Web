@@ -29,7 +29,6 @@
 		"src/utils/naming-worker-id.ts",
 		"src/core/refresh-session.ts",
 		"src/core/login.ts",
-		"src/api/server.ts",
 		"src/api/router.ts",
 		"src/api/streaming/index.ts",
 		"src/api/streaming/sites/desktop/home.ts",
