@@ -10,7 +10,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 			header
 				h1 おかえりなさいませご主人様
 			form#form(action='/login', method='get')
-				img(src= config.resourcesUrl + '/common/avatar.jpg', alt='')
+				img#avatar(src= config.resourcesUrl + '/common/avatar.jpg', alt='')
 				label
 					i.fa.fa-at
 					input#id(name='screen-name'
@@ -27,8 +27,5 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						placeholder='Password'
 						autocomplete='off'
 						required)
-				input(type='submit', value!='SIGN IN &#xf105;')
-			button.ui-waves-effect#new
-				i.fa.fa-pencil-square-o
-				| Create account
-		
+				button(type='submit')
+					| ログイン
