@@ -24,14 +24,14 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					each trend in trends
 						a= trend
 			div.contents
-				form#login-form(action='/login', method='post')
+				form#login-form
 					h2
 						| Account
 					label
 						i.fa.fa-at
 						input#id(name='screen-name'
 							type='text'
-							pattern='^[0-9A-Za-z_]+$'
+							pattern='^[0-9A-Za-z\-]+$'
 							placeholder='User name'
 							autocomplete='off'
 							autofocus

@@ -1,0 +1,34 @@
+doctype html
+
+html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
+	head
+		include ../../head
+		title Signin to Misskey
+	
+	body
+		main
+			header
+				h1 おかえりなさいませご主人様
+			form#form(action='/login', method='get')
+				img(src= config.resourcesUrl + '/common/avatar.jpg', alt='')
+				label
+					i.fa.fa-at
+					input#id(name='screen-name'
+						type='text'
+						pattern='^[0-9A-Za-z\-]+$'
+						placeholder='User name'
+						autocomplete='off'
+						autofocus
+						required)
+				label
+					i.fa.fa-lock
+					input(name='password'
+						type='password'
+						placeholder='Password'
+						autocomplete='off'
+						required)
+				input(type='submit', value!='SIGN IN &#xf105;')
+			button.ui-waves-effect#new
+				i.fa.fa-pencil-square-o
+				| Create account
+		
