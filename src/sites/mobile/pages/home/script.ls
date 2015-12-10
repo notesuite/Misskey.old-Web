@@ -11,7 +11,7 @@ $ ->
 		$button.find \p .text 'Loading...'
 		$.ajax "#{config.web-api-url}/posts/timeline" {
 			data:
-				limit: 10
+				limit: 20
 				'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor
 		} .done (posts) ->
 			posts.for-each (post) ->
