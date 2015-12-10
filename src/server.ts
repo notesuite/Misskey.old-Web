@@ -71,6 +71,11 @@ app.use((req, res, next) => {
 		'Access-Control-Allow-Credentials': 'true'
 	});
 
+	 // intercept OPTIONS method
+	if (req.method === 'OPTIONS') {
+		return res.sendStatus(200);
+	}
+
 	next();
 });
 

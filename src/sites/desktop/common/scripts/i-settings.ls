@@ -1,12 +1,12 @@
 $ = require 'jquery'
 
 Tab = require './lib/tab.js'
-Album = require './album.js'
+AlbumWindow = require './album-window.js'
 show-modal-window = require './modal-window.js'
 show-modal-dialog = require './modal-dialog.js'
 avatar-form = require './avatar-form.js'
 
-album = new Album
+album = new AlbumWindow
 
 module.exports = ($form) ->
 	Tab do

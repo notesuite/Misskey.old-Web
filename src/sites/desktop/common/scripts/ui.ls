@@ -8,14 +8,14 @@ require './main.js'
 require './kronos.js'
 Tab = require './lib/tab.js'
 WavesEffect = require './lib/waves-effect.js'
-Album = require './album.js'
+AlbumWindow = require './album-window.js'
 sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
 show-modal-dialog = require './modal-dialog.js'
 ui-window = require './window.js'
 init-i-settings-dialog = require './i-settings.js'
 
-album = new Album
+album = new AlbumWindow
 
 if fuck-ad-block == undefined
 	ad-block-detected!
@@ -446,7 +446,7 @@ class PhotoPostForm
 
 	add-file: (file-data) ->
 		$thumbnail = $ "<li style='background-image: url(#{file-data.url}?mini);' data-id='#{file-data.id}' />"
-		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="/resources/desktop/common/images/delete.png" alt="remove"></button>'
+		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + config.resourcesUrl + '/desktop/common/images/delete.png" alt="remove"></button>'
 		$thumbnail.append $remove-button
 		$remove-button.click ->
 			$thumbnail.remove!

@@ -5,9 +5,9 @@ sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
 sub-post-compiler = require '../views/post/smart/sub-post-render.jade'
-Album = require './album.js'
+AlbumWindow = require './album-window.js'
 
-album = new Album
+album = new AlbumWindow
 
 class Post
 	(post = null) ->
@@ -325,7 +325,7 @@ class Post
 	attach-file: (file) ->
 		THIS = @
 		$thumbnail = $ "<li style='background-image: url(#{file.url}?mini);' data-id='#{file.id}' />"
-		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="/resources/desktop/common/images/delete.png" alt="remove"></button>'
+		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + config.resourcesUrl + '/desktop/common/images/delete.png" alt="remove"></button>'
 		$thumbnail.append $remove-button
 		$remove-button.click (e) ->
 			e.stop-immediate-propagation!
