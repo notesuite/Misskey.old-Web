@@ -6,5 +6,67 @@
 	.post.repost {
 		background: #212121;
 		border-bottom: solid 1px #191919;
+
+		> .main {
+			> header {
+				> .author {
+
+					> a {
+						color: #fff;
+					}
+
+					> .screen-name {
+						text-align: left;
+						margin: 0 0 0 8px;
+						color: #e2d1c1;
+					}
+				}
+
+				> .right {
+					> .via-anchor {
+						> .via {
+						}
+					}
+
+					> .time-anchor {
+						> time {
+							color: #B7A793;
+						}
+					}
+				}
+			}
+
+			> .content {
+				overflow: hidden;
+
+				> .text {
+					color: #F9F9F9;
+				}
+
+				> .url-preview {
+					border: solid 1px #464646;
+
+					&:hover {
+						border: solid 1px #666;
+					}
+
+					&:active {
+						border: solid 1px #565656;
+					}
+
+					> .title {
+						color: #A07A6D;
+					}
+
+					> .description {
+						color: #AF7C65;
+					}
+
+					> .site-name {
+						color: #DECAC1;
+					}
+				}
+			}
+		}
 	}
 }
