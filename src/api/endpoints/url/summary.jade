@@ -7,7 +7,6 @@ a.url-preview(title= url.href, href= url.href, target='_blank', lang= lang)
 			p.description= description
 		footer
 			p.hostname
-				- console.log(url.protocol);
 				if url.protocol == 'https:'
 					i.fa.fa-lock.secure
 				= url.hostname
