@@ -1,4 +1,4 @@
-a.url-preview(title= url, href= url, target='_blank', lang= lang)
+a.url-preview(title= url.href, href= url.href, target='_blank', lang= lang)
 	aside
 		if image
 			div.thumbnail(style= 'background-image: url(' + image + ');')
@@ -6,6 +6,11 @@ a.url-preview(title= url, href= url, target='_blank', lang= lang)
 		if description
 			p.description= description
 		footer
+			p.hostname
+				- console.log(url.protocol);
+				if url.protocol == 'https:'
+					i.fa.fa-lock.secure
+				= url.hostname
 			if icon
 				img.icon(src= icon)
 			if siteName

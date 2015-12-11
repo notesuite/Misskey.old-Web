@@ -142,11 +142,10 @@
 		}
 
 		> footer {
-			position: absolute;
-			bottom: -4px;
-			right: 0;
-			box-shadow: 0 0 16px 4px #FFFBFB;
-			background: #FFFBFB;
+			display: block;
+			font-size: 0.8em;
+			line-height: 16px;
+			color: #DECAC1;
 
 			&:after {
 				content: '';
@@ -154,18 +153,26 @@
 				clear: both;
 			}
 
+			> .hostname {
+				float: left;
+				margin: 0;
+				font-style: oblique;
+
+				> .secure {
+					margin-right: 0.25em;
+					color: #86D400;
+				}
+			}
+
 			> .site-name {
 				float: right;
 				margin: 0;
-				font-size: 0.8em;
 				font-style: oblique;
-				line-height: 16px;
-				color: #DECAC1;
 			}
 
 			> .icon {
 				float: right;
-				margin-left: 4px;
+				margin-left: 6px;
 				width: 16px;
 				height: 16px;
 			}

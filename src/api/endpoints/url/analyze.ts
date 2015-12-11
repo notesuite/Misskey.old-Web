@@ -273,7 +273,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 
 		// コンパイル
 		const viewer: string = compiler({
-			url: url.href,
+			url: url,
 			title: title,
 			icon: icon,
 			lang: lang,
