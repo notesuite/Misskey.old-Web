@@ -64,19 +64,19 @@ class Post
 					THIS.repost!
 
 		THIS.$post.click (event) ->
-			can-event = ! (((<[ input textarea button i time a ]>
-				.map (element) -> $ event.target .is element)
-				.index-of yes) >= 0)
-
 			if document.get-selection!.to-string! != ''
-				can-event = no
+			or $ event.target .closest \.repost-form .length > 0
+			or $ event.target .is \input
+			or $ event.target .is \textarea
+			or $ event.target .is \button
+			or $ event.target .is \i
+			or $ event.target .is \time
+			or $ event.target .is \a
+			or $ event.target .closest \a .length > 0
+				return
 
-			if $ event.target .closest \.repost-form .length > 0
-				can-event = no
-
-			if can-event
-				THIS.toggle-display-state!
-				THIS.focus-reply-form!
+			THIS.toggle-display-state!
+			THIS.focus-reply-form!
 
 		# Init like button
 		THIS.$post.find '> footer > .actions > .like > button' .click ->
