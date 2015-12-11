@@ -6,6 +6,7 @@ require 'fuck-adblock'
 
 require './main.js'
 require './kronos.js'
+spa = require './spa.js'
 Tab = require './lib/tab.js'
 WavesEffect = require './lib/waves-effect.js'
 AlbumWindow = require './album-window.js'
@@ -490,6 +491,15 @@ $ ->
 
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
+
+	/*
+	mo = new MutationObserver spa
+	mo.observe document.body, {
+		-character-data
+		+child-list
+		+subtree
+	}
+	*/
 
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!

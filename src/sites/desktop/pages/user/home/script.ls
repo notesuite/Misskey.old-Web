@@ -1,7 +1,7 @@
 require '../../../common/scripts/ui.js'
 require '../script.js'
 $ = require 'jquery'
-Timeline = require '../../../common/scripts/timeline-core.js'
+Timeline = require '../../../common/scripts/timeline-core-pro.js'
 
 $ ->
 	$ \#left-sub-contents .css \padding-top "#{$ \#comment .outer-height! - 16px}px"

@@ -1273,7 +1273,10 @@
 									display: inline-block;
 									width: 100%;
 
-									> a {
+									> button, a {
+										-webkit-appearance: none;
+										-moz-appearance: none;
+										appearance: none;
 										display: inline-block;
 										z-index: 1;
 										box-sizing: border-box;
@@ -1281,20 +1284,21 @@
 										width: 100%;
 										padding: 12px 20px;
 										text-decoration: none;
+										text-align: left;
 										color: @header-foreground-color;
-										// background-image: url("/resources/common/images/arrow-white.svg");
-										background-repeat: no-repeat;
-										background-position: calc(100% - 8px) center;
+										background: transparent;
+										box-shadow: none;
+										border: none;
 										transition: none;
 
 										&:hover {
 											color: #fff;
-											background-color: @themeColor;
+											background: @themeColor;
 										}
 
 										&:active {
 											color: #fff;
-											background-color: darken(@themeColor, 10%);
+											background: @themeColor;
 										}
 
 										> i {
