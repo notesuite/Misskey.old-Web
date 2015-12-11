@@ -81,8 +81,7 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 
 		res.send(viewer);
 	}, (err: any) => {
-		console.error(err);
-		res.sendStatus(500);
+		res.sendStatus(204);
 	});
 }
 
@@ -127,9 +126,9 @@ function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL
 		}
 	}, (err, response, body) => {
 		if (err !== null) {
-			return res.sendStatus(500);
+			return res.sendStatus(204);
 		} else if (response.statusCode !== 200) {
-			return res.sendStatus(500);
+			return res.sendStatus(204);
 		} else {
 			const parsed: any = JSON.parse(body);
 			const html: string = parsed.html;
@@ -144,7 +143,7 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			return res.sendStatus(500);
+			return res.sendStatus(204);
 		}
 
 		const $: any = result.$;
@@ -158,9 +157,9 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 
 		request(resolvedRawUrl, (getRawErr: any, getRawResponse: any, raw: any) => {
 			if (getRawErr !== null) {
-				return res.sendStatus(500);
+				return res.sendStatus(204);
 			} else if (getRawResponse.statusCode !== 200) {
-				return res.sendStatus(500);
+				return res.sendStatus(204);
 			} else {
 				const compiler: (locals: any) => string = jade.compileFile(
 					`${__dirname}/gist.jade`);
@@ -208,14 +207,14 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 	// リクエスト送信
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			return res.sendStatus(500);
+			return res.sendStatus(204);
 		}
 
 		const contentType: string = result.response.headers['content-type'];
 
 		// HTMLじゃなかった場合は中止
 		if (contentType.indexOf('text/html') === -1) {
-			return res.sendStatus(500);
+			return res.sendStatus(204);
 		}
 
 		const $: any = result.$;
@@ -235,7 +234,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			: ogTitle;
 
 		if (nullOrEmpty(title)) {
-			return res.sendStatus(500);
+			return res.sendStatus(204);
 		} else {
 			title = entities.decode(title);
 		}
@@ -286,7 +285,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 
 		res.send(viewer);
 	}, (err: any) => {
-		res.sendStatus(500);
+		res.sendStatus(204);
 	});
 }
 
