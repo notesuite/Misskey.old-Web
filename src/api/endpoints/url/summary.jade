@@ -1,10 +1,12 @@
 a.url-preview(title= url, href= url, target='_blank', lang= lang)
-	if image
-		div.thumbnail(style= 'background-image: url(' + image + ');')
-	h1.title= title
-	if description
-		p.description= description
-	if icon
-		img.icon(src= icon)
-	if siteName
-		p.site-name= siteName
+	aside
+		if image
+			div.thumbnail(style= 'background-image: url(' + image + ');')
+		h1.title= title
+		if description
+			p.description= description
+		footer
+			if icon
+				img.icon(src= icon)
+			if siteName
+				p.site-name= siteName

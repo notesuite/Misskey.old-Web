@@ -87,6 +87,7 @@
 	position: relative;
 	padding: 12px;
 	margin: 16px 0 0 0;
+	overflow: hidden;
 	word-wrap: break-word;
 	border: solid 1px #EFE4DF;
 	border-radius: 4px;
@@ -95,7 +96,7 @@
 	&:hover {
 		border: solid 1px #cFc4bF;
 
-		> .title {
+		> aside > .title {
 			text-decoration: underline;
 		}
 	}
@@ -103,7 +104,7 @@
 	&:active {
 		border: solid 1px #aFa49F;
 
-		> .title {
+		> aside > .title {
 			text-decoration: underline;
 		}
 	}
@@ -114,42 +115,60 @@
 		clear: both;
 	}
 
-	> .thumbnail {
+	> aside {
 		display: block;
-		float: left;
-		width: 58px;
-		height: 58px;
-		margin-right: 12px;
-		background-size: cover;
-	}
+		position: relative;
 
-	> .title {
-		display: block;
-		margin: 0;
-		font-size: 1em;
-		color: #A07A6D;
-	}
+		> .thumbnail {
+			display: block;
+			float: left;
+			width: 58px;
+			height: 58px;
+			margin-right: 12px;
+			background-size: cover;
+		}
 
-	> .description {
-		margin: 4px;
-		font-size: 0.9em;
-		color: #AF7C65;
-	}
+		> .title {
+			display: block;
+			margin: 0;
+			font-size: 1em;
+			color: #A07A6D;
+		}
 
-	> .site-name {
-		float: right;
-		margin: 0;
-		font-size: 0.8em;
-		font-style: oblique;
-		line-height: 16px;
-		color: #DECAC1;
-	}
+		> .description {
+			margin: 4px;
+			font-size: 0.9em;
+			color: #AF7C65;
+		}
 
-	> .icon {
-		float: right;
-		margin-left: 4px;
-		width: 16px;
-		height: 16px;
+		> footer {
+			position: absolute;
+			bottom: -4px;
+			right: 0;
+			box-shadow: 0 0 16px 4px #FFFBFB;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> .site-name {
+				float: right;
+				margin: 0;
+				font-size: 0.8em;
+				font-style: oblique;
+				line-height: 16px;
+				color: #DECAC1;
+			}
+
+			> .icon {
+				float: right;
+				margin-left: 4px;
+				width: 16px;
+				height: 16px;
+			}
+		}
 	}
 }
 
