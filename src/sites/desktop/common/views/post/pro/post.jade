@@ -54,7 +54,7 @@ mixin core(post, isRepost, repost)
 								div.author
 									a.name(href=config.url + '/' + post.user.screenName, rel='author')= post.user.name
 									if post.user.isVerified
-										img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+										img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
 									p.screen-name= '@' + post.user.screenName
 							div.right
 								if post.app != null
@@ -70,46 +70,22 @@ mixin core(post, isRepost, repost)
 				div.content(itemprop='articleBody')
 					+content(post)
 				footer.footer
-					if login
-						ul.actions
-							li.reply
-								button.reply-button(title='返信', role='button')
-									i.fa.fa-reply
-								a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
-									= post.repliesCount != 0 ? post.repliesCount : ''
-							li.repost
-								button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
-									i.fa.fa-retweet
-								a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
-									= post.repostsCount != 0 ? post.repostsCount : ''
-							li.like
-								button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
-									i.fa.fa-star
-								a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
-									= post.likesCount != 0 ? post.likesCount : ''
-			div.likes-and-reposts
-				if likes != null && likes.length > 0
-					section.likes
-						header.caption
-							a.count= post.likesCount
-							h2.title
-								| Like
-						ol.users
-							each user in likes
-								li.user
-									a.avatar-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
-										img.avatar(src=user.avatarUrl, alt='avatar')
-				if reposts != null && reposts.length > 0
-					section.reposts
-						header.caption
-							a.count= post.repostsCount
-							h2.title
-								| Repost
-						ol.users
-							each user in likes
-								li.user
-									a.avatar-anchor(href='/' + user.screenName, title= '@' + user.screenName, data-tooltip= user.name)
-										img.avatar(src=user.avatarUrl, alt='avatar')
+					ul.actions
+						li.reply
+							button.reply-button(title='返信', role='button')
+								i.fa.fa-reply
+							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
+								= post.repliesCount != 0 ? post.repliesCount : ''
+						li.repost
+							button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
+								i.fa.fa-retweet
+							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
+								= post.repostsCount != 0 ? post.repostsCount : ''
+						li.like
+							button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
+								i.fa.fa-star
+							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
+								= post.likesCount != 0 ? post.likesCount : ''
 			form.reply-form
 				if login
 					img.me-avatar(src=me.avatarUrl, alt='avatar')
