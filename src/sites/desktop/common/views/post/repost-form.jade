@@ -7,7 +7,7 @@ mixin repost-form(post)
 			h2
 				i.fa.fa-retweet
 				| この投稿をRepostしますか？
-			article(role='article')
+			article(class=post.type)
 				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
 					img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
 				header.header
@@ -17,7 +17,7 @@ mixin repost-form(post)
 					span.screen-name= '@' + post.user.screenName
 					a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
 						time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
-				div.main(itemprop='articleBody')
+				div.content(itemprop='articleBody')
 					+content(post)
 			div.actions
 				button.accept(type='submit')
