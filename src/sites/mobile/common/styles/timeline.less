@@ -5,9 +5,7 @@
 	padding: 0;
 	list-style: none;
 
-	.post.status,
-	.post.photo,
-	.post.repost {
+	.post {
 		position: relative;
 		margin: 0;
 		padding: 0;
@@ -442,73 +440,73 @@
 				}
 			}
 		}
-	}
 
-	.post.photo {
-		> .main {
-			> .content {
-				> .photos {
-					margin: 0;
-					padding: 0;
-					list-style: none;
+		&.photo {
+			> .main {
+				> .content {
+					> .photos {
+						margin: 0;
+						padding: 0;
+						list-style: none;
 
-					> .photo {
-						display: block;
-						position: relative;
-						margin-top: 16px;
-
-						> .image {
+						> .photo {
 							display: block;
 							position: relative;
-							max-width: 100%;
-							max-height: 256px;
-							margin: 0 auto;
-							border-radius: 4px;
+							margin-top: 16px;
+
+							> .image {
+								display: block;
+								position: relative;
+								max-width: 100%;
+								max-height: 256px;
+								margin: 0 auto;
+								border-radius: 4px;
+							}
 						}
 					}
 				}
 			}
 		}
-	}
 
-	.post.repost {
-		background: #F7FFE0;
+		&.repost {
+			background: #F7FFE0;
 
-		> .repost-info {
-			display: block;
-			margin: 0;
-			padding: 12px 8px 0 16px;
-			line-height: 28px;
-			color: #57bb00;
-
-			&:after {
-				content: '';
+			> .repost-info {
 				display: block;
-				clear: both;
-			}
+				margin: 0;
+				padding: 12px 8px 0 16px;
+				line-height: 28px;
+				color: #57bb00;
 
-			> .avatar-anchor {
-				display: block;
-				float: left;
-
-				> .avatar {
-					vertical-align: bottom;
-					min-width: 28px;
-					min-height: 28px;
-					max-width: 28px;
-					max-height: 28px;
-					margin: 0 8px 0 0;
-					border-radius: 6px;
-					transition: all 0.1s ease;
+				&:after {
+					content: '';
+					display: block;
+					clear: both;
 				}
-			}
 
-			i {
-				margin-right: 4px;
-			}
+				> .avatar-anchor {
+					display: block;
+					float: left;
 
-			.name {
-				font-weight: bold;
+					> .avatar {
+						vertical-align: bottom;
+						min-width: 28px;
+						min-height: 28px;
+						max-width: 28px;
+						max-height: 28px;
+						margin: 0 8px 0 0;
+						border-radius: 6px;
+						transition: all 0.1s ease;
+					}
+				}
+
+				i {
+					margin-right: 4px;
+				}
+
+				.name {
+					font-weight: bold;
+				}
 			}
 		}
 	}
