@@ -50,7 +50,7 @@
 		}
 
 		> .repost-form {
-			@import "../../repost-form";
+			@import (multiple) "../../repost-form";
 		}
 
 		> .talk {
@@ -541,63 +541,55 @@
 				.timeline-sub-article;
 			}
 		}
-	}
 
-	.post.status {
-		> .repost-form {
-			.main {
-				@import "../../post-text-content";
-			}
-		}
-
-		> .main {
-			> .content {
-				@import "../../post-text-content";
-			}
-		}
-	}
-
-	.post.photo {
-		> .repost-form {
-			.main {
-				@import "../../post-photo-content";
-			}
-		}
-
-		> .main {
-			> .content {
-				@import "../../post-photo-content";
-			}
-		}
-	}
-
-	.post.repost {
-		> .main {
-			> .repost-info {
-				display: block;
-				margin: 0;
-				padding: 8px 32px;
-				line-height: 28px;
-				color: #57bb00;
-
-				> .avatar-anchor {
-					display: block;
-					float: left;
-
-					> .avatar {
-						vertical-align: bottom;
-						width: 28px;
-						height: 28px;
-						margin: 0 8px 0 0;
+		&.status {
+			> .main {
+				> .body {
+					> .content {
+						@import (multiple) "../../post-text-content";
 					}
 				}
+			}
+		}
 
-				i {
-					margin-right: 4px;
+		&.photo {
+			> .main {
+				> .body {
+					> .content {
+						@import (multiple) "../../post-photo-content";
+					}
 				}
+			}
+		}
 
-				.name {
-					font-weight: bold;
+		&.repost {
+			> .main {
+				> .repost-info {
+					display: block;
+					margin: 0;
+					padding: 8px 32px;
+					line-height: 28px;
+					color: #57bb00;
+
+					> .avatar-anchor {
+						display: block;
+						float: left;
+
+						> .avatar {
+							vertical-align: bottom;
+							width: 28px;
+							height: 28px;
+							margin: 0 8px 0 0;
+						}
+					}
+
+					i {
+						margin-right: 4px;
+					}
+
+					.name {
+						font-weight: bold;
+					}
 				}
 			}
 		}
