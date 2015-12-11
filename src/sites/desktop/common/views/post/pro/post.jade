@@ -72,17 +72,17 @@ mixin core(post, isRepost, repost)
 				footer.footer
 					ul.actions
 						li.reply
-							button.reply-button(title='返信', role='button')
+							button.reply-button(title='返信')
 								i.fa.fa-reply
 							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id)
 								= post.repliesCount != 0 ? post.repliesCount : ''
 						li.repost
-							button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア', role='button')
+							button.repost-button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
 								i.fa.fa-retweet
 							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
 								= post.repostsCount != 0 ? post.repostsCount : ''
 						li.like
-							button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
+							button.like-button(title= post.isLiked ? 'Unlike' : 'Like')
 								i.fa.fa-star
 							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
 								= post.likesCount != 0 ? post.likesCount : ''
