@@ -417,6 +417,7 @@ main {
 	bottom: 0;
 	width: 100%;
 	background: #fff;
+	border-top: solid 1px #eee;
 
 	&:after {
 		content: '';
@@ -474,5 +475,46 @@ main {
 		&:active {
 			background: darken(@themeColor, 10%);
 		}
+	}
+
+	.attach-from-local,
+	.attach-from-album {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: block;
+		float: left;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 10px 14px;
+		line-height: 1em;
+		font-size: 1em;
+		font-weight: normal;
+		text-decoration: none;
+		color: #95856e;
+		background: transparent;
+		outline: none;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		cursor: pointer;
+		transition: color 0.1s ease;
+
+		* {
+			pointer-events: none;
+		}
+
+		&:hover {
+			color: @themeColor;
+		}
+
+		&:active {
+			color: darken(@themeColor, 10%);
+			transition: color 0s ease;
+		}
+	}
+
+	input[type=file] {
+		display: none;
 	}
 }

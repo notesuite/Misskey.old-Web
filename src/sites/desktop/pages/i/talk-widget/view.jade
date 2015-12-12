@@ -29,3 +29,8 @@ html(
 				textarea(name='text', placeholder='ここにメッセージを入力')
 				button(type='submit', title='メッセージを送信')
 					i.fa.fa-paper-plane
+				button.attach-from-local(type='button', title='PCから画像を添付する')
+					i.fa.fa-upload
+				button.attach-from-album(type='button', title='アルバムから画像を添付する')
+					i.fa.fa-folder-open
+				input(name='file', type='file', accept='image/*', multiple)
