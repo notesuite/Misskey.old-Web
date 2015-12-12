@@ -13,7 +13,7 @@ main {
 
 #stream {
 
-	#empty-stream {
+	> #empty-stream {
 		box-sizing: border-box;
 		width: 100%;
 		margin: 0;
@@ -27,7 +27,7 @@ main {
 		}
 	}
 
-	> .messages {
+	> #messages {
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -344,7 +344,7 @@ main {
 		}
 	}
 
-	#otherparty-status {
+	> #otherparty-status {
 		text-align: center;
 		margin: 0;
 		padding: 0 0 4px 0;
@@ -444,7 +444,7 @@ main {
 		transition: all .2s ease;
 	}
 
-	input[type=submit] {
+	[type=submit] {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
@@ -465,7 +465,7 @@ main {
 		border: none;
 		border-radius: 0;
 		box-shadow: none;
-		transition: background 0.1s ease;
+		transition: background 0.05s ease;
 
 		&:hover {
 			background: lighten(@themeColor, 10%);
