@@ -2,16 +2,10 @@ include ../../../common/views/talk/messages
 
 doctype html
 
-html(
-		lang='ja'
-		dir='ltr'
-		data-me-id= me.id
-		data-me-screen-name= me.screenName
-		data-otherparty-id= otherparty.id
-		data-otherparty-screen-name= otherparty.screenName
-		data-otherparty-avatar-url= otherparty.avatarUrl)
+html
 	head
 		include ../../../head
+		script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
 		title= 'トーク: ' + otherparty.name
 		script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
 		
@@ -33,4 +27,4 @@ html(
 					i.fa.fa-upload
 				button.attach-from-album(type='button', title='アルバムから画像を添付する')
 					i.fa.fa-folder-open
-				input(name='file', type='file', accept='image/*', multiple)
+				input(name='file', type='file', accept='image/*')

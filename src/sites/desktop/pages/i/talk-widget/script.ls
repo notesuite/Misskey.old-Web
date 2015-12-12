@@ -12,24 +12,17 @@ function send-message
 	$.ajax "#{config.web-api-url}/talks/say" {
 		data:
 			'text': ($form.find \textarea .val!)
-			'otherparty-id': ($ \html .attr \data-otherparty-id)
-	} .done (data) ->
+			'otherparty-id': OTHERPARTY.id
+	}
+	.done (data) ->
 		$form[0].reset!
-		$form.find \textarea .focus!
-		$submit-button.attr \disabled no
 	.fail (data) ->
-		$form[0].reset!
-		$form.find \textarea .focus!
 		/*alert('error');*/
+	.always ->
+		$form.find \textarea .focus!
 		$submit-button.attr \disabled no
 
 $ ->
-	me-id = $ \html .attr \data-me-id
-	me-sn = $ \html .attr \data-me-screen-name
-	otherparty-id = $ \html .attr \data-otherparty-id
-	otherparty-sn = $ \html .attr \data-otherparty-screen-name
-	otherparty-icon-image-url = $ \html .attr \data-otherparty-icon-image-url
-
 	stream = new Stream $ '#stream'
 
 	$ \body .css \margin-bottom ($ '#post-form-container' .outer-height! + \px)
@@ -38,13 +31,11 @@ $ ->
 	socket = io.connect "#{config.web-streaming-url}/streaming/sites/desktop/talk"
 
 	socket.on \connected ->
-		console.log 'Connected'
 		socket.json.emit \init {
-			'otherparty-id': otherparty-id
+			'otherparty-id': OTHERPARTY.id
 		}
 
 	socket.on \inited ->
-		console.log 'Inited'
 		socket.emit \alive
 		$ '.messages .message.otherparty' .each ->
 			socket.emit \read ($ @ .attr \data-id)
@@ -52,16 +43,10 @@ $ ->
 	socket.on \disconnect (client) ->
 		console.log 'Disconnected'
 
-	socket.on \otherparty-enter-the-talk (client) ->
-		console.log '相手が入室しました'
-
-	socket.on \otherparty-left-the-talk (client) ->
-		console.log '相手が退室しました'
-
 	socket.on \otherparty-message (message) ->
 		socket.emit \read message.id
-		if ($ '#otherparty-status #otherparty-typing')[0]
-			$ '#otherparty-status #otherparty-typing' .remove!
+		if ($ '#otherparty-status .now-typing')[0]
+			$ '#otherparty-status .now-typing' .remove!
 		stream.add message
 		$.ajax "#{config.api-url}/talks/read" {
 			data: {'message-id': message.id}
@@ -71,33 +56,28 @@ $ ->
 		stream.add message
 
 	socket.on \otherparty-message-update (message) ->
-		console.log \otherparty-message-update message
 		$message = $ '#stream > .messages' .find ".message[data-id=#{message.id}]"
 		if $message?
 			$message.find \.text .text message.text
 
 	socket.on \me-message-update (message) ->
-		console.log \me-message-update message
 		$message = $ '#stream > .messages' .find ".message[data-id=#{message.id}]"
 		if $message?
 			$message.find \.text .text message.text
 
 	socket.on \otherparty-message-delete (id) ->
-		console.log \otherparty-message-delete id
 		$message = $ '#stream > .messages' .find ".message[data-id=#{id}]"
 		if $message?
 			$message.find \.content .empty!
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \me-message-delete (id) ->
-		console.log \me-message-delete id
 		$message = $ '#stream > .messages' .find ".message[data-id=#{id}]"
 		if $message?
 			$message.find \.content .empty!
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \read (id) ->
-		console.log \read id
 		$message = $ '#stream > .messages' .find ".message[data-id=#{id}]"
 		if $message?
 			if ($message.attr \data-is-readed) == \false
@@ -105,8 +85,7 @@ $ ->
 				$message.find \.content-container .prepend ($ '<p class="readed">' .text '既読')
 
 	socket.on \alive ->
-		console.log 'alive'
-		$status = $ "<img src=\"#{otherparty-icon-image-url}\" alt=\"icon\" id=\"alive\">"
+		$status = $ "<img src=\"#{OTHERPARTY.avatar-url}\" alt=\"icon\" id=\"alive\">"
 		if ($ '#otherparty-status #alive')[0]
 			$ '#otherparty-status #alive' .remove!
 		else
@@ -125,8 +104,8 @@ $ ->
 
 	socket.on \type (type) ->
 		console.log \type type
-		if ($ '#otherparty-status #otherparty-typing')[0]
-			$ '#otherparty-status #otherparty-typing' .remove!
+		if ($ '#otherparty-status .now-typing')[0]
+			$ '#otherparty-status .now-typing' .remove!
 		if type != ''
 			$typing = $ "<p id=\"otherparty-typing\">#{window.escapeHTML type}</p>"
 			$typing.append-to $ \#otherparty-status .animate {
