@@ -48,7 +48,7 @@ $ ->
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
 		stream.add message
-		$.ajax "#{config.api-url}/talks/read" {
+		$.ajax "#{config.web-api-url}/talks/read" {
 			data: {'message-id': message.id}
 		}
 
