@@ -103,7 +103,6 @@ $ ->
 		, 3000ms
 
 	socket.on \type (type) ->
-		console.log \type type
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
 		if type != ''
@@ -153,8 +152,8 @@ $ ->
 			$button.text '失敗'
 
 $ window .load ->
-	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
+	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
 	scroll 0, document.body.client-height
 
 $ window .resize ->
-	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
+	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
