@@ -15,7 +15,7 @@ if (!(<any>schema).options.toObject) {
 	(<any>schema).options.toObject = {};
 }
 (<any>schema).options.toObject.transform = (doc: any, ret: any) => {
-	delete ret.id;
+	delete ret.userId;
 	delete ret._id;
 	delete ret.__v;
 };
