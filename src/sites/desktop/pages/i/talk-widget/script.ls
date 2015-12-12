@@ -48,9 +48,6 @@ $ ->
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
 		stream.add message
-		$.ajax "#{config.web-api-url}/talks/read" {
-			data: {'message-id': message.id}
-		}
 
 	socket.on \me-message (message) ->
 		stream.add message
@@ -78,12 +75,13 @@ $ ->
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \read (id) ->
-		console.log id
-		$message = $ '#messages' .find ".message[data-id=#{id}]"
-		if $message?
-			if ($message.attr \data-is-read) == \false
-				$message.attr \data-is-read \true
-				$message.find \.balloon .prepend ($ '<p class="read">' .text '既読')
+		set-timeout ->
+			$message = $ '#messages' .children ".message[data-id='#{id}']"
+			if $message?
+				if ($message.attr \data-is-read) == \false
+					$message.attr \data-is-read \true
+					$message.find \.balloon .prepend ($ '<p class="read">' .text '既読')
+		, 100ms
 
 	socket.on \alive ->
 		$status = $ "<img src=\"#{OTHERPARTY.avatar-url}\" alt=\"avatar\" id=\"alive\">"
