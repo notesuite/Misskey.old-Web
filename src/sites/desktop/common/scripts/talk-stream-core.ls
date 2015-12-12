@@ -7,9 +7,9 @@ class Stream
 		THIS = @
 
 		THIS.$stream = $stream.find '> #messages'
-		THIS.messages = THIS.stream.children!
+		THIS.$messages = THIS.$stream.children!
 
-		THIS.messages.each ->
+		THIS.$messages.each ->
 			THIS.init-message $ @
 
 	init-message: ($message) ->
