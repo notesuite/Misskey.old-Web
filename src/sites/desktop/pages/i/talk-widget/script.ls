@@ -80,9 +80,9 @@ $ ->
 	socket.on \read (id) ->
 		$message = $ '#messages' .find ".message[data-id=#{id}]"
 		if $message?
-			if ($message.attr \data-is-readed) == \false
-				$message.attr \data-is-readed \true
-				$message.find \.content-container .prepend ($ '<p class="readed">' .text '既読')
+			if ($message.attr \data-is-read) == \false
+				$message.attr \data-is-read \true
+				$message.find \.content-container .prepend ($ '<p class="read">' .text '既読')
 
 	socket.on \alive ->
 		$status = $ "<img src=\"#{OTHERPARTY.avatar-url}\" alt=\"avatar\" id=\"alive\">"
