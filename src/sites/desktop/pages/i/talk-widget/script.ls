@@ -37,7 +37,7 @@ $ ->
 
 	socket.on \inited ->
 		socket.emit \alive
-		$ '.messages .message.otherparty' .each ->
+		$ '#messages .message.otherparty' .each ->
 			socket.emit \read ($ @ .attr \data-id)
 
 	socket.on \disconnect (client) ->
@@ -56,36 +56,36 @@ $ ->
 		stream.add message
 
 	socket.on \otherparty-message-update (message) ->
-		$message = $ '#stream > .messages' .find ".message[data-id=#{message.id}]"
+		$message = $ '#messages' .find ".message[data-id=#{message.id}]"
 		if $message?
 			$message.find \.text .text message.text
 
 	socket.on \me-message-update (message) ->
-		$message = $ '#stream > .messages' .find ".message[data-id=#{message.id}]"
+		$message = $ '#messages' .find ".message[data-id=#{message.id}]"
 		if $message?
 			$message.find \.text .text message.text
 
 	socket.on \otherparty-message-delete (id) ->
-		$message = $ '#stream > .messages' .find ".message[data-id=#{id}]"
+		$message = $ '#messages' .find ".message[data-id=#{id}]"
 		if $message?
 			$message.find \.content .empty!
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \me-message-delete (id) ->
-		$message = $ '#stream > .messages' .find ".message[data-id=#{id}]"
+		$message = $ '#messages' .find ".message[data-id=#{id}]"
 		if $message?
 			$message.find \.content .empty!
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \read (id) ->
-		$message = $ '#stream > .messages' .find ".message[data-id=#{id}]"
+		$message = $ '#messages' .find ".message[data-id=#{id}]"
 		if $message?
 			if ($message.attr \data-is-readed) == \false
 				$message.attr \data-is-readed \true
 				$message.find \.content-container .prepend ($ '<p class="readed">' .text '既読')
 
 	socket.on \alive ->
-		$status = $ "<img src=\"#{OTHERPARTY.avatar-url}\" alt=\"icon\" id=\"alive\">"
+		$status = $ "<img src=\"#{OTHERPARTY.avatar-url}\" alt=\"avatar\" id=\"alive\">"
 		if ($ '#otherparty-status #alive')[0]
 			$ '#otherparty-status #alive' .remove!
 		else
@@ -139,7 +139,7 @@ $ ->
 		$.ajax "#{config.web-api-url}/web/desktop/talks/stream" {
 			data:
 				'otherparty-id': otherparty-id
-				'max-cursor': $ '#stream > .messages > .message:first-child > .message' .attr \data-cursor
+				'max-cursor': $ '#messages > .message:first-child > .message' .attr \data-cursor
 			data-type: \text}
 		.done (data) ->
 			$button.attr \disabled no
