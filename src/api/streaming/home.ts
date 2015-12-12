@@ -1,15 +1,15 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
-import requestApi from '../../../../utils/request-api';
-import config from '../../../../config';
+import requestApi from '../../utils/request-api';
+import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
 	user: any;
 }
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
-	io.of('/streaming/sites/desktop/home').on('connection', (socket: MKSocketIOSocket) => {
+	io.of('/streaming/home').on('connection', (socket: MKSocketIOSocket) => {
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
 
@@ -41,30 +41,22 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 				const content: any = JSON.parse(contentString);
 
 				switch (content.type) {
-					// 投稿
 					case 'post':
-						// 投稿ID
 						const postId: any = content.value.id;
 
-						// 投稿の詳細を取得
 						requestApi('posts/show', {
 							'post-id': postId
 						}, socket.user.id).then((post: Object) => {
-							// HTMLにしてクライアントに送信
 							socket.emit(content.type, post);
 						});
 						break;
 
-					// 通知
 					case 'notification':
-						// 通知ID
 						const notificationId: any = content.value.id;
 
-						// 通知の詳細を取得
 						requestApi('notifications/show', {
 							'notification-id': notificationId
 						}, socket.user.id).then((notification: Object) => {
-							// HTMLにしてクライアントに送信
 							socket.emit(content.type, notification);
 						});
 						break;

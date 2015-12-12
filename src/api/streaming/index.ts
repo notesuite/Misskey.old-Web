@@ -46,8 +46,7 @@ io.use((socket: SocketIO.Socket, next: (err?: any) => void) => {
 	}
 });
 
-require('./sites/desktop/home')(io, sessionStore);
-require('./sites/desktop/talk')(io, sessionStore);
-require('./sites/mobile/home')(io, sessionStore);
+require('./home')(io, sessionStore);
+require('./talk')(io, sessionStore);
 
 server.listen(config.port.streaming);

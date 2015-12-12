@@ -28,7 +28,7 @@ $ ->
 	$ \body .css \margin-bottom ($ '#post-form-container' .outer-height! + \px)
 	scroll 0, ($ \html .outer-height!)
 
-	socket = io.connect "#{config.web-streaming-url}/streaming/sites/desktop/talk"
+	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
 
 	socket.on \connected ->
 		socket.json.emit \init {
@@ -78,11 +78,12 @@ $ ->
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \read (id) ->
+		console.log id
 		$message = $ '#messages' .find ".message[data-id=#{id}]"
 		if $message?
 			if ($message.attr \data-is-read) == \false
 				$message.attr \data-is-read \true
-				$message.find \.content-container .prepend ($ '<p class="read">' .text '既読')
+				$message.find \.balloon .prepend ($ '<p class="read">' .text '既読')
 
 	socket.on \alive ->
 		$status = $ "<img src=\"#{OTHERPARTY.avatar-url}\" alt=\"avatar\" id=\"alive\">"

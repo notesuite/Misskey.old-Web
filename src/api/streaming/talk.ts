@@ -1,8 +1,8 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
-import requestApi from '../../../../utils/request-api';
-import config from '../../../../config';
+import requestApi from '../../utils/request-api';
+import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
 	user: any;
@@ -10,7 +10,7 @@ interface MKSocketIOSocket extends SocketIO.Socket {
 }
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
-	io.of('/streaming/sites/desktop/talk').on('connection', (socket: MKSocketIOSocket) => {
+	io.of('/streaming/talk').on('connection', (socket: MKSocketIOSocket) => {
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
 
@@ -47,17 +47,13 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 					const content: any = JSON.parse(contentString);
 
 					switch (content.type) {
-						// メッセージ
 						case 'me-message':
 						case 'otherparty-message':
-							// メッセージID
 							const messageId: any = content.value.id;
 
-							// メッセージの詳細を取得
 							requestApi('talks/show', {
 								'message-id': messageId
 							}, socket.user.id).then((message: Object) => {
-								// HTMLにしてクライアントに送信
 								socket.emit(content.type, message);
 							});
 							break;
@@ -66,6 +62,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 					}
 				});
 			});
+
 			socket.on('read', (id: string) => {
 				requestApi('talks/read', {
 					'message-id': id
