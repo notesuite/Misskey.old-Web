@@ -20,7 +20,7 @@ $ ->
 			$button.attr \disabled off
 			$button.find \p .text 'Read more...?'
 
-	socket = io.connect config.web-streaming-url + '/streaming/sites/mobile/home'
+	socket = io.connect config.web-streaming-url + '/streaming/home'
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
 
