@@ -34,7 +34,8 @@ class Stream
 			message
 		}
 
-		new Audio '/resources/desktop/sounds/pop.mp3' .play!
+		new Audio config.resources-url + '/desktop/common/sounds/message.mp3' .play!
+
 		can-scroll = THIS.check-can-scroll!
 		THIS.init-message $message
 		$message.append-to THIS.stream .hide!.show 200ms

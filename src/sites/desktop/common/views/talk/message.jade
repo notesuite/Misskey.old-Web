@@ -4,7 +4,7 @@ mixin message(message)
 			title= message.createdAt
 			data-id= message.id
 			data-cursor= message.cursor
-			data-is-modified!= message.isContentModified.toString()
+			data-is-modified!= message.isModified.toString()
 			data-is-read!= message.isRead.toString()
 			data-is-deleted!= message.isDeleted.toString()
 			data-user-id= message.user.id
@@ -18,7 +18,7 @@ mixin message(message)
 						if message.isRead
 							p.read 既読
 						button.delete-button(role='button', title='メッセージを削除')
-							img(src='/resources/desktop/pages/i/talk-widget/delete.png', alt='Delete')
+							img(src=config.resourcesUrl + '/desktop/pages/i/talk-widget/delete.png', alt='Delete')
 					div.content
 						if !message.isDeleted
 							p.text!= parse(message.text)
@@ -29,5 +29,5 @@ mixin message(message)
 							p.is-deleted このメッセージは削除されました
 				footer
 					time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
-					if message.isContentModified
+					if message.isModified
 						i.fa.fa-pencil.is-modified
