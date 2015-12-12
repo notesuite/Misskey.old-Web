@@ -33,7 +33,7 @@ $ ->
 	$ window .blur ->
 		is-active := no
 
-	socket = io.connect config.web-streaming-url + '/streaming/sites/desktop/home'
+	socket = io.connect config.web-streaming-url + '/streaming/home'
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
 
