@@ -17,20 +17,15 @@ html(
 		
 	body
 		main
-			div#timeline
-				div.timeline-container
-					div.timeline-main
-						div.talk-stream#stream
-							if messages != null && messages.length != 0
-								button#read-more(role='button') もっと読み込む
-							else
-								p#empty-stream
-									i.fa.fa-info-circle
-									| このユーザーとまだ会話したことはありません
-							div.messages
-								+messages(messages)
-							div#otherparty-status
-				div#post-form-container
-					form#post-form
-						textarea(name='text', placeholder='Message...')
-						input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
+			div#stream
+				if messages.length == 0
+					p#empty-stream
+						i.fa.fa-info-circle
+						| このユーザーとまだ会話したことはありません
+				div.messages
+					+messages(messages)
+				div#otherparty-status
+			form#post-form
+				textarea(name='text', placeholder='ここにメッセージを入力')
+				button(type='submit', title='メッセージを送信')
+					i.fa.fa-paper-plane
