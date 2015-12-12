@@ -6,7 +6,7 @@ class Stream
 	($stream) ->
 		THIS = @
 
-		THIS.stream = $stream.find '> .messages'
+		THIS.$stream = $stream.find '> #messages'
 		THIS.messages = THIS.stream.children!
 
 		THIS.messages.each ->
@@ -38,7 +38,7 @@ class Stream
 
 		can-scroll = THIS.check-can-scroll!
 		THIS.init-message $message
-		$message.append-to THIS.stream .hide!.show 200ms
+		$message.append-to THIS.$stream .hide!.show 200ms
 		THIS.refresh-my-messages!
 		if can-scroll
 			scroll 0, ($ document .height!)
@@ -59,11 +59,11 @@ class Stream
 		}
 
 		THIS.init-message $message
-		$message.append-to THIS.stream
+		$message.append-to THIS.$stream
 		THIS.refresh-my-messages!
 
 	refresh-my-messages: ->
 		THIS = @
-		THIS.messages = THIS.stream.children!
+		THIS.messages = THIS.$stream.children!
 
 module.exports = Stream
