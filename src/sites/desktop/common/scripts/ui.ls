@@ -10,6 +10,7 @@ spa = require './spa.js'
 Tab = require './lib/tab.js'
 WavesEffect = require './lib/waves-effect.js'
 AlbumWindow = require './album-window.js'
+upload-file = require './upload-file.js'
 sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
 show-modal-dialog = require './modal-dialog.js'
@@ -48,28 +49,6 @@ window.display-message = (message) ->
 		} 200ms \ease ->
 			$message.remove!
 	, 5000ms
-
-window.upload-file = (file, uploading, success, failed) ->
-	data = new FormData!
-		..append \file file
-	$.ajax "#{config.web-api-url}/web/album/upload" {
-		+async
-		-process-data
-		-content-type
-		data: data
-		xhr: ->
-			XHR = $.ajax-settings.xhr!
-			if XHR.upload
-				XHR.upload.add-event-listener \progress (e) ->
-					percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
-					uploading e.total, e.loaded, percentage
-				, false
-			XHR
-	}
-	.done (file) ->
-		success file
-	.fail (data) ->
-		failed!
 
 window.open-select-album-file-dialog = (cb) ->
 	album.choose-file cb
@@ -298,7 +277,7 @@ class PostForm
 		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
 		$form.find '> .uploads' .append $info
-		window.upload-file do
+		upload-file do
 			file
 			(total, uploaded, percentage) ->
 				if percentage == 100
