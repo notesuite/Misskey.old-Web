@@ -44,6 +44,16 @@ function upload-new-file(file)
 				$thumbnail.remove!
 			$ '#post-form > .files' .append $thumbnail
 
+function set-body-margin-bottom
+	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
+
+$ window .load ->
+	set-body-margin-bottom!
+	scroll 0, document.body.client-height
+
+$ window .resize ->
+	set-body-margin-bottom!
+
 $ ->
 	stream = new Stream $ '#stream'
 
@@ -175,32 +185,25 @@ $ ->
 		event.prevent-default!
 		send-message!
 
-	$ '#read-more' .click ->
-		$button = $ @
-		$button.attr \disabled yes
-		$button.text '読み込み中'
-		$.ajax "#{config.web-api-url}/web/desktop/talks/stream" {
-			data:
-				'otherparty-id': otherparty-id
-				'max-cursor': $ '#messages > .message:first-child > .message' .attr \data-cursor
-			data-type: \text}
-		.done (data) ->
-			$button.attr \disabled no
-			$button.text 'もっと読み込む'
-			$messages = $ data
-			$messages.each ->
-				$message = $ @
-				stream.add-last $message
-		.fail (data) ->
-			$button.attr \disabled no
-			$button.text '失敗'
+	$ window .scroll ->
+		me = $ @
+		if $ window .scroll-top! == 0
+			if not me.data \loading
+				me.data \loading yes
+				$.ajax "#{config.web-api-url}/talks/stream" {
+					data:
+						'otherparty-id': OTHERPARTY.id
+						'limit': 10
+						'max-cursor': $ '#messages > .message:first-child' .attr \data-cursor}
+				.done (messages) ->
+					me.data \loading no
+					old-height = $ document .height!
+					old-scroll = $ window .scroll-top!
 
-$ window .load ->
-	set-body-margin-bottom!
-	scroll 0, document.body.client-height
+					messages.for-each (message) ->
+						stream.add-last message
 
-$ window .resize ->
-	set-body-margin-bottom!
+					$ document .scroll-top old-scroll + ($ document .height!) - old-height
 
-function set-body-margin-bottom
-	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
+				.fail (data) ->
+					me.data \loading no

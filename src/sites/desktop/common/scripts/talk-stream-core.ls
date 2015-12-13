@@ -59,7 +59,7 @@ class Stream
 		}
 
 		THIS.init-message $message
-		$message.append-to THIS.$stream
+		$message.prepend-to THIS.$stream
 		THIS.refresh-my-messages!
 
 	refresh-my-messages: ->
