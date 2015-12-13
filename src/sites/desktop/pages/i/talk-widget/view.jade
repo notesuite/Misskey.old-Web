@@ -1,32 +1,33 @@
+extends ../../../base
 include ../../../common/views/talk/messages
 
-doctype html
+block meta
+	script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
 
-html
-	head
-		include ../../../head
-		script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
-		title= 'トーク: ' + otherparty.name
-		script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
+block assets
+	script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
+
+block title
+	= 'トーク: ' + otherparty.name
 		
-	body
-		main
-			div#stream
-				if messages.length == 0
-					p#empty-stream
-						i.fa.fa-info-circle
-						| このユーザーとまだ会話したことはありません
-				div#messages
-					+messages(messages)
-				div#otherparty-status
-			form#post-form
-				textarea(name='text', placeholder='ここにメッセージを入力')
-				div.uploads
-				div.files
-				button(type='submit', title='メッセージを送信')
-					i.fa.fa-paper-plane
-				button.attach-from-local(type='button', title='PCから画像を添付する')
-					i.fa.fa-upload
-				button.attach-from-album(type='button', title='アルバムから画像を添付する')
-					i.fa.fa-folder-open
-				input(name='file', type='file', accept='image/*')
+block body
+	main
+		div#stream
+			if messages.length == 0
+				p#empty-stream
+					i.fa.fa-info-circle
+					| このユーザーとまだ会話したことはありません
+			div#messages
+				+messages(messages)
+			div#otherparty-status
+		form#post-form
+			textarea(name='text', placeholder='ここにメッセージを入力')
+			div.uploads
+			div.files
+			button(type='submit', title='メッセージを送信')
+				i.fa.fa-paper-plane
+			button.attach-from-local(type='button', title='PCから画像を添付する')
+				i.fa.fa-upload
+			button.attach-from-album(type='button', title='アルバムから画像を添付する')
+				i.fa.fa-folder-open
+			input(name='file', type='file', accept='image/*')

@@ -26,7 +26,7 @@ block assets
 	script!= 'window.isMe = ' + isMe.toString() + '; window.isFollowing = ' + user.isFollowing.toString() + '; window.userId = "' + user.id + '";'
 	block pageAssets
 
-block body
+block content
 	-
 		function comma(str) {
 			return String(str).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')

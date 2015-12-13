@@ -1,191 +1,169 @@
-doctype html
+extends ./base
 
-- var htmlSchema = 'http://schema.org/WebPage';
-
-block vars
-
-!= '<!-- このセッションは ' + workerId + ' が担当しました -->'
-
-html(
-		lang='ja',
-		dir='ltr',
-		itemscope,
-		itemtype= htmlSchema)
-
-	head(prefix='og: http://ogp.me/ns#')
-		include ./head
-		
-		block meta
-		
-		title
-			block title
-		
-		block assets
-	
-	body
-		if login
-			div#misskey-post-form-back(role='presentation')
-			div#misskey-post-form-container
-				div#misskey-post-form(role='form')
-					button.close-button(type='button')
-						i.fa.fa-times
-					ul#misskey-post-form-tabs
-						li(data-ref='status', title='近況')
-							i.fa.fa-comment-o
-						li(data-ref='photo', title='画像付き投稿')
-							i.fa.fa-picture-o
-						li(data-ref='video', title='動画付き投稿')
-							i.fa.fa-film
-						li(data-ref='audio', title='音声付き投稿')
-							i.fa.fa-music
-						li(data-ref='poll', title='投票')
-							i.fa.fa-pie-chart
-					div#misskey-post-form-tab-pages
-						form#misskey-post-form-status-tab-page(data-name='status')
-							textarea(name='text', placeholder='What\'s up?', aria-multiline='true', required)
-						form#misskey-post-form-photo-tab-page(data-name='photo')
-							textarea(name='text', placeholder='What\'s up?', aria-multiline='true')
-							ol.photos
-							ol.uploads
-							button.attach-from-local.ui-waves-effect(type='button')
-								i.fa.fa-upload
-								| PCから画像を添付
-							button.attach-from-album.ui-waves-effect(type='button')
-								i.fa.fa-folder-open
-								| アルバムから画像を添付
-							input(name='file', type='file', accept='image/*', multiple)
-						form#misskey-post-form-video-tab-page(data-name='video')
-							p coming soon
-						form#misskey-post-form-audio-tab-page(data-name='audio')
-							p coming soon
-						form#misskey-post-form-poll-tab-page(data-name='poll')
-							p coming soon
-					button.submit(type='submit')
-						p Update
-						i.fa.fa-paper-plane
-					
-		header#misskey-header
-			div.main
-				div.main-contents-container
-					if login
-						div.left
-							nav
-								div.misskey-menu
-									div.dropdown(data-active='false')
-										div.dropdown-header(role='button')
-											p
-												i.fa.fa-headphones
-										div.dropdown-content
-											ul
-												li: a.ui-waves-effect(href= '/about')
-													i.fa.fa-info-circle
-													| About Misskey
-												li: a.ui-waves-effect(href= '/help')
-													i.fa.fa-question-circle
-													| Help
-											ul
-												li: a.ui-waves-effect(href= '/syuilo')
-													i.fa.fa-check-circle
-													| @syuilo
-												li: a.ui-waves-effect(href= '/misskey')
-													i.fa.fa-check-circle
-													| @misskey
-											ul
-												li: a.ui-waves-effect(href= '/about/donate')
-													i.fa.fa-heart
-													| Donate
-											ul
-												li: a.ui-waves-effect(href= 'https://github.com/syuilo/Misskey')
-													i.fa.fa-github
-													| Github repository
-												li: a.ui-waves-effect(href= config.developmentChannelUrl)
-													i.fa.fa-wrench
-													| Development Channel
-												li: a.ui-waves-effect(href= 'http://dev.misskey.xyz')
-													i.fa.fa-terminal
-													| Developers Center
-													
-								div.main-nav
-									button.misskey Misskey
-									ul
-										li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href='/')
-											i.fa.fa-home
-											p Home
-										li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href='/i/mentions')
-											i.fa.fa-at
-											p Mentions
-										li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href=config.talkUrl)
-											i.fa.fa-comments
-											p Talks
-										li.album(class= pagePath == '/i/album' ? 'active' : ''): a.ui-waves-effect(href='/i/album')
-											i.fa.fa-cloud
-											p Album
-						div.right
-							form.search(action='/search', method='get', role='search')
-								input(type='search', name='q', placeholder!='&#xf002; Search')
-								input(type='hidden', name='type', value='general')
-								input(type='hidden', name='ref', value='header')
-								div.result
-							div.account
-								div.dropdown(data-active='false')
-									div.dropdown-header(role='button')
-										span.screen-name
-											=me.screenName
-											i.fa.fa-angle-down
-										img.avatar(src= me.avatarUrl, alt='avatar')
-									div.dropdown-content
-										ul
-											li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
-												i.fa.fa-laptop
-												| My page
-										ul
-											li: a.ui-waves-effect(href='/i/apps')
-												i.fa.fa-plug
-												| Plugins
-											li: button.ui-waves-effect#misskey-header-i-settings-anchor
-												i.fa.fa-cog
-												| Settings
-										ul
-											li: a.ui-waves-effect(href='/logout')
-												i(class='fa fa-power-off')
-												| Sign out
-							div.notifications
+block body
+	if login
+		div#misskey-post-form-back(role='presentation')
+		div#misskey-post-form-container
+			div#misskey-post-form(role='form')
+				button.close-button(type='button')
+					i.fa.fa-times
+				ul#misskey-post-form-tabs
+					li(data-ref='status', title='近況')
+						i.fa.fa-comment-o
+					li(data-ref='photo', title='画像付き投稿')
+						i.fa.fa-picture-o
+					li(data-ref='video', title='動画付き投稿')
+						i.fa.fa-film
+					li(data-ref='audio', title='音声付き投稿')
+						i.fa.fa-music
+					li(data-ref='poll', title='投票')
+						i.fa.fa-pie-chart
+				div#misskey-post-form-tab-pages
+					form#misskey-post-form-status-tab-page(data-name='status')
+						textarea(name='text', placeholder='What\'s up?', aria-multiline='true', required)
+					form#misskey-post-form-photo-tab-page(data-name='photo')
+						textarea(name='text', placeholder='What\'s up?', aria-multiline='true')
+						ol.photos
+						ol.uploads
+						button.attach-from-local.ui-waves-effect(type='button')
+							i.fa.fa-upload
+							| PCから画像を添付
+						button.attach-from-album.ui-waves-effect(type='button')
+							i.fa.fa-folder-open
+							| アルバムから画像を添付
+						input(name='file', type='file', accept='image/*', multiple)
+					form#misskey-post-form-video-tab-page(data-name='video')
+						p coming soon
+					form#misskey-post-form-audio-tab-page(data-name='audio')
+						p coming soon
+					form#misskey-post-form-poll-tab-page(data-name='poll')
+						p coming soon
+				button.submit(type='submit')
+					p Update
+					i.fa.fa-paper-plane
+				
+	header#misskey-header
+		div.main
+			div.main-contents-container
+				if login
+					div.left
+						nav
+							div.misskey-menu
 								div.dropdown(data-active='false')
 									div.dropdown-header(role='button')
 										p
-											i.fa.fa-envelope
+											i.fa.fa-headphones
 									div.dropdown-content
-										div.nav
-											select.filter-type(title='表示を絞り込み')
-												option(value='all') すべて
-												option(value='self-notification') self-notification
-												option(value='follow') 被フォロー
-												option(value='status-favorite') つぶやきの被お気に入り
-												option(value='status-repost') つぶやきの被Repost
-											button.delete-all-button(title='全ての通知を削除')
-												i.fa.fa-trash-o
-										div.main
-							div.post
-								button#misskey-post-button(title='新しい投稿を作成')
-									i.fa.fa-pencil-square-o
-							div.time
-								div.dropdown(data-active='false')
-									div.dropdown-header(role='button')
-										time.now(datetime= Date.now())
-									div.dropdown-content
-										canvas.clock#misskey-main-clock-canvas(width='256', height='256')
-					else
-						div.left
-							nav
-								div.mainNav
-									button.misskey Misskey
+										ul
+											li: a.ui-waves-effect(href= '/about')
+												i.fa.fa-info-circle
+												| About Misskey
+											li: a.ui-waves-effect(href= '/help')
+												i.fa.fa-question-circle
+												| Help
+										ul
+											li: a.ui-waves-effect(href= '/syuilo')
+												i.fa.fa-check-circle
+												| @syuilo
+											li: a.ui-waves-effect(href= '/misskey')
+												i.fa.fa-check-circle
+												| @misskey
+										ul
+											li: a.ui-waves-effect(href= '/about/donate')
+												i.fa.fa-heart
+												| Donate
+										ul
+											li: a.ui-waves-effect(href= 'https://github.com/syuilo/Misskey')
+												i.fa.fa-github
+												| Github repository
+											li: a.ui-waves-effect(href= config.developmentChannelUrl)
+												i.fa.fa-wrench
+												| Development Channel
+											li: a.ui-waves-effect(href= 'http://dev.misskey.xyz')
+												i.fa.fa-terminal
+												| Developers Center
+												
+							div.main-nav
+								button.misskey Misskey
+								ul
+									li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href='/')
+										i.fa.fa-home
+										p Home
+									li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href='/i/mentions')
+										i.fa.fa-at
+										p Mentions
+									li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href=config.talkUrl)
+										i.fa.fa-comments
+										p Talks
+									li.album(class= pagePath == '/i/album' ? 'active' : ''): a.ui-waves-effect(href='/i/album')
+										i.fa.fa-cloud
+										p Album
+					div.right
+						form.search(action='/search', method='get', role='search')
+							input(type='search', name='q', placeholder!='&#xf002; Search')
+							input(type='hidden', name='type', value='general')
+							input(type='hidden', name='ref', value='header')
+							div.result
+						div.account
+							div.dropdown(data-active='false')
+								div.dropdown-header(role='button')
+									span.screen-name
+										=me.screenName
+										i.fa.fa-angle-down
+									img.avatar(src= me.avatarUrl, alt='avatar')
+								div.dropdown-content
 									ul
-										li.home: a.ui-waves-effect(href='/')
-											i.fa.fa-home
-											| エントランス
-										li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
-											i.fa.fa-users
-											| Boards
+										li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
+											i.fa.fa-laptop
+											| My page
+									ul
+										li: a.ui-waves-effect(href='/i/apps')
+											i.fa.fa-plug
+											| Plugins
+										li: button.ui-waves-effect#misskey-header-i-settings-anchor
+											i.fa.fa-cog
+											| Settings
+									ul
+										li: a.ui-waves-effect(href='/logout')
+											i(class='fa fa-power-off')
+											| Sign out
+						div.notifications
+							div.dropdown(data-active='false')
+								div.dropdown-header(role='button')
+									p
+										i.fa.fa-envelope
+								div.dropdown-content
+									div.nav
+										select.filter-type(title='表示を絞り込み')
+											option(value='all') すべて
+											option(value='self-notification') self-notification
+											option(value='follow') 被フォロー
+											option(value='status-favorite') つぶやきの被お気に入り
+											option(value='status-repost') つぶやきの被Repost
+										button.delete-all-button(title='全ての通知を削除')
+											i.fa.fa-trash-o
+									div.main
+						div.post
+							button#misskey-post-button(title='新しい投稿を作成')
+								i.fa.fa-pencil-square-o
+						div.time
+							div.dropdown(data-active='false')
+								div.dropdown-header(role='button')
+									time.now(datetime= Date.now())
+								div.dropdown-content
+									canvas.clock#misskey-main-clock-canvas(width='256', height='256')
+				else
+					div.left
+						nav
+							div.mainNav
+								button.misskey Misskey
+								ul
+									li.home: a.ui-waves-effect(href='/')
+										i.fa.fa-home
+										| エントランス
+									li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
+										i.fa.fa-users
+										| Boards
 
-		div.grobal-container.contents
-			block body
+	div.grobal-container.contents
+		block content

@@ -6,7 +6,7 @@ block title
 block header
 	| 新規投稿
 
-block body
+block content
 	main(role='main')
 		form#form(action= config.webApiUrl + '/web/posts/create-with-file', method='post', enctype='multipart/form-data')
 			textarea.ui-textarea#textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
