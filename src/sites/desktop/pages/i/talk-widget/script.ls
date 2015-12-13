@@ -151,6 +151,14 @@ $ ->
 		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
 			send-message!
 
+	$ '#post-form textarea' .on \paste (event) ->
+		items = (event.clipboard-data || event.original-event.clipboard-data).items
+		for i from 0 to items.length - 1
+			item = items[i]
+			if item.kind == \file && item.type.index-of \image != -1
+				file = item.get-as-file!
+				upload-new-file file
+
 	$ '#post-form > .attach-from-local' .click ->
 		$ '#post-form > input[type=file]' .click!
 		false
