@@ -2,6 +2,7 @@ $ = require 'jquery'
 require '../../../common/scripts/main.js'
 Stream = require '../../../common/scripts/talk-stream-core.js'
 require '../../../common/scripts/kronos.js'
+upload-file = require '../../../common/scripts/upload-file.js'
 
 function send-message
 	$form = $ \#post-form
@@ -21,6 +22,28 @@ function send-message
 	.always ->
 		$form.find \textarea .focus!
 		$submit-button.attr \disabled no
+
+function upload-new-file(file)
+	name = if file.has-own-property \name then file.name else 'untitled'
+	$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
+	$progress-bar = $info.find \progress
+	$ '#post-form' .append $info
+	upload-file do
+		file
+		(total, uploaded, percentage) ->
+			if percentage == 100
+				$progress-bar
+					..remove-attr \value
+					..remove-attr \max
+			else
+				$progress-bar
+					..attr \max total
+					..attr \value uploaded
+		(file) ->
+			$info.remove!
+			complete file
+		->
+			$info.remove!
 
 $ ->
 	stream = new Stream $ '#stream'
@@ -125,6 +148,14 @@ $ ->
 	$ '#post-form textarea' .keypress (e) ->
 		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
 			send-message!
+
+	$ '#post-form > .attach-from-local' .click ->
+		$ '#misskey-post-form-photo-tab-page > input[type=file]' .click!
+		false
+
+	$ '#post-form > input[type=file]' .change ->
+		file = ($ '#post-form > input[type=file]')[0].files.item.0
+		upload-new-file file
 
 	$ \#post-form .submit (event) ->
 		event.prevent-default!
