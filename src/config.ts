@@ -52,6 +52,8 @@ export interface IConfig {
 		resourcesDomain: string;
 		resourcesHost: string;
 		resourcesUrl: string;
+		talkDomain: string;
+		talkUrl: string;
 		apiHost: string;
 		apiUrl: string;
 		webApiDomain: string;

@@ -16,7 +16,7 @@ html(lang='ja', dir='ltr')
 					each message in messages
 						if message.user.id == me.id
 							li.talk(data-is-my-message='true')
-								a(href= config.url + '/i/talk-widget/' + message.otherparty.screenName)
+								a(href= config.talkUrl + '/' + message.otherparty.screenName)
 									article
 										img.avatar(src= message.otherparty.avatarUrl + '?mini', alt='avatar')
 										header
@@ -32,7 +32,7 @@ html(lang='ja', dir='ltr')
 							li.talk(
 									data-is-my-message='false',
 									data-is-unread!= (message.user.id != me.id && !message.isRead).toString())
-								a(href= config.url + '/i/talk-widget/' + message.user.screenName)
+								a(href= config.talkUrl + '/' + message.user.screenName)
 									article
 										img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
 										header
