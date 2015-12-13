@@ -7,17 +7,16 @@ mixin message(message)
 			data-is-modified!= message.isModified.toString()
 			data-is-read!= message.isRead.toString()
 			data-is-deleted!= message.isDeleted.toString()
-			data-user-id= message.user.id
-			data-user-color= message.user.color)
+			data-user-id= message.user.id)
 		article
-			a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.comment)
+			a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
 				img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
 			div.content-container
 				div.balloon
 					if !message.isDeleted && (message.user.id == me.id)
 						if message.isRead
 							p.read 既読
-						button.delete-button(role='button', title='メッセージを削除')
+						button.delete-button(title='メッセージを削除')
 							img(src=config.resourcesUrl + '/desktop/pages/i/talk-widget/delete.png', alt='Delete')
 					div.content
 						if !message.isDeleted
