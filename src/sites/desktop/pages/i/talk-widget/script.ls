@@ -14,9 +14,13 @@ function send-message
 		data:
 			'text': ($form.find \textarea .val!)
 			'otherparty-id': OTHERPARTY.id
+			#'files': JSON.stringify(($form.find '.files > li' .map ->
+			#	($ @).attr \data-id).get!)
+			'file': ($form.find '.files > li:first-child' .attr \data-id)
 	}
 	.done (data) ->
 		$form[0].reset!
+		$form.find \.files .empty!
 	.fail (data) ->
 		/*alert('error');*/
 	.always ->
