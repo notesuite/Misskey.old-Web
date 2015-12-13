@@ -62,9 +62,10 @@ $ ->
 
 	mo = new MutationObserver set-body-margin-bottom
 	mo.observe ($ \#post-form).0, {
-		-character-data
+		+character-data
 		+child-list
 		+subtree
+		+attributes
 	}
 
 	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
@@ -207,3 +208,24 @@ $ ->
 
 				.fail (data) ->
 					me.data \loading no
+
+	$ '#post-form > .grippie' .mousedown (e) ->
+		click-y = e.client-y
+		$textarea = $ '#post-form textarea'
+		current-height = $textarea.outer-height!
+
+		$ \html .mousemove (me) ->
+			height = current-height + (click-y - me.client-y)
+			$textarea.css \height "#{height}px"
+
+		$ \html .mouseleave ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
+
+		$ \html .mouseup ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
+
+		$ \html .bind \dragstart (e) ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
+
+		$ \html .bind \dragend (e) ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
