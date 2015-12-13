@@ -43,8 +43,15 @@ function upload-new-file(file)
 $ ->
 	stream = new Stream $ '#stream'
 
-	$ \body .css \margin-bottom ($ '#post-form-container' .outer-height! + \px)
+	set-body-margin-bottom!
 	scroll 0, ($ \html .outer-height!)
+
+	mo = new MutationObserver set-body-margin-bottom
+	mo.observe ($ \#post-form).0, {
+		-character-data
+		+child-list
+		+subtree
+	}
 
 	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
 
@@ -177,8 +184,11 @@ $ ->
 			$button.text '失敗'
 
 $ window .load ->
-	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
+	set-body-margin-bottom!
 	scroll 0, document.body.client-height
 
 $ window .resize ->
+	set-body-margin-bottom!
+
+function set-body-margin-bottom
 	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
