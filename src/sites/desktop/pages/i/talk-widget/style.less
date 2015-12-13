@@ -482,6 +482,59 @@ main {
 		}
 	}
 
+	.files {
+		display: block;
+		margin: 0;
+		padding: 0 8px;
+		list-style: none;
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		> li {
+			display: block;
+			position: relative;
+			float: left;
+			margin: 4px;
+			padding: 0;
+			width: 64px;
+			height: 64px;
+			background-color: #eee;
+			background-repeat: no-repeat;
+			background-position: center center;
+			//background-size: contain;
+			background-size: cover;
+			cursor: move;
+
+			&:hover {
+				> .remove {
+					display: block;
+				}
+			}
+
+			> .remove {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: none;
+				position: absolute;
+				right: -6px;
+				top: -6px;
+				margin: 0;
+				padding: 0;
+				background: transparent;
+				outline: none;
+				border: none;
+				border-radius: 0;
+				box-shadow: none;
+				cursor: pointer;
+			}
+		}
+	}
+
 	.attach-from-local,
 	.attach-from-album {
 		-webkit-appearance: none;
