@@ -24,7 +24,7 @@ mixin message(message)
 								p.text!= parse(message.text)
 							if message.file
 								div.file.image
-									img(src= message.file.url, alt='image')
+									img(src= message.file.url, alt='image', title= message.file.name)
 						else
 							p.is-deleted このメッセージは削除されました
 				footer
