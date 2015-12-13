@@ -1,6 +1,6 @@
 $ = require 'jquery'
 
-module.exports = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
+module.exports = (id, $content, title, width, height, can-popout = false) ->
 	$window = $ '''
 		<div class="ui-window" id="''' + id + '''">
 			<header>
@@ -27,10 +27,20 @@ module.exports = (id, $content, title, width, height, can-popout = false, popout
 		$window.css \z-index window.window-z + 1
 
 	function popout
+		console.log ($content.contents!.get 0 .location.href)
+		url = $content.contents!.get 0 .location.href
+		title = $content.contents!.get 0 .title
 		opened-window = window.open do
-			popout-url
-			popout-url
-			"width=#{width},height=#{height},menubar=no,toolbar=no,location=no,status=no"
+			url
+			title
+			"
+				width=#{width},
+				height=#{height},
+				menubar=no,
+				toolbar=no,
+				location=no,
+				status=no
+			"
 		close!
 
 	function close

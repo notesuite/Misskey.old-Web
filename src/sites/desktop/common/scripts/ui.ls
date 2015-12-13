@@ -558,7 +558,6 @@ $ ->
 			500px
 			560px
 			yes
-			config.talk-url
 		false
 
 	# 「アカウント」ドロップダウン
