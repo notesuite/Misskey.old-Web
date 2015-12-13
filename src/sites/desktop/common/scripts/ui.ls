@@ -578,7 +578,7 @@ $ ->
 	# Talks
 	$ '#misskey-header > .main .main-contents-container .left nav .main-nav ul .talks a' .click ->
 		window-id = "misskey-window-talk-histories"
-		$content = $ '<iframe>' .attr {src: '/i/talks-widget', +seamless}
+		$content = $ '<iframe>' .attr {src: config.talk-url, +seamless}
 		ui-window do
 			window-id
 			$content

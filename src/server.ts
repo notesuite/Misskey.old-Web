@@ -119,7 +119,8 @@ app.use(expressSession({
 
 // Init session
 app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	res.header('X-Frame-Options', 'SAMEORIGIN');
+	// Chromeでは ALLOW-FROM をサポートしていないらしい
+	// res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
 
 	const ua: string = uatype(req.headers['user-agent']);
 
