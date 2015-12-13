@@ -20,9 +20,10 @@ mixin message(message)
 							img(src=config.resourcesUrl + '/desktop/pages/i/talk-widget/delete.png', alt='Delete')
 					div.content
 						if !message.isDeleted
-							p.text!= parse(message.text)
+							if message.text != ''
+								p.text!= parse(message.text)
 							if message.file
-								div.image
+								div.file.image
 									img(src= message.file.url, alt='image')
 						else
 							p.is-deleted このメッセージは削除されました
