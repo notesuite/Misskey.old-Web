@@ -12,7 +12,7 @@ import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 const vhost: any = require('vhost');
-// import { logDone, logFailed, logInfo } from 'log-cool';
+const cors: any = require('cors');
 
 import { User } from './models/user';
 import { MisskeyExpressRequest } from './misskey-express-request';
@@ -63,21 +63,10 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
-
-// CORS middleware
-app.use((req, res, next) => {
-	res.header({
-		'Access-Control-Allow-Origin': config.publicConfig.url,
-		'Access-Control-Allow-Credentials': 'true'
-	});
-
-	 // intercept OPTIONS method
-	if (req.method === 'OPTIONS') {
-		return res.sendStatus(200);
-	}
-
-	next();
-});
+app.use(cors({
+	origin: true,
+	credentials: true
+}));
 
 // Statics
 app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
