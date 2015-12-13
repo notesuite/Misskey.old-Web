@@ -275,19 +275,12 @@ class PostForm
 	upload-file: (file, $form, complete) ->
 		name = if file.has-own-property \name then file.name else 'untitled'
 		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
-		$progress-bar = $info.find \progress
+		$progress = $info.find \progress
 		$form.find '> .uploads' .append $info
 		upload-file do
 			file
+			$progress
 			(total, uploaded, percentage) ->
-				if percentage == 100
-					$progress-bar
-						..remove-attr \value
-						..remove-attr \max
-				else
-					$progress-bar
-						..attr \max total
-						..attr \value uploaded
 			(file) ->
 				$info.remove!
 				complete file

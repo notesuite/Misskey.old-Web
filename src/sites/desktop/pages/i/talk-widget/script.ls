@@ -25,25 +25,20 @@ function send-message
 
 function upload-new-file(file)
 	name = if file.has-own-property \name then file.name else 'untitled'
-	$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
-	$progress-bar = $info.find \progress
-	$ '#post-form' .append $info
+	$progress = $ "<progress></progress>"
+	$ '#post-form > uploads' .append $progress
 	upload-file do
 		file
+		$progress
 		(total, uploaded, percentage) ->
-			if percentage == 100
-				$progress-bar
-					..remove-attr \value
-					..remove-attr \max
-			else
-				$progress-bar
-					..attr \max total
-					..attr \value uploaded
 		(file) ->
-			$info.remove!
-			complete file
-		->
-			$info.remove!
+			$progress.remove!
+			$thumbnail = $ "<li style='background-image: url(#{file.url}?mini);' data-id='#{file.id}' />"
+			$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + config.resourcesUrl + '/desktop/common/images/delete.png" alt="remove"></button>'
+			$thumbnail.append $remove-button
+			$remove-button.click ->
+				$thumbnail.remove!
+			$ '#post-form > .files' .append $thumbnail
 
 $ ->
 	stream = new Stream $ '#stream'
@@ -150,11 +145,11 @@ $ ->
 			send-message!
 
 	$ '#post-form > .attach-from-local' .click ->
-		$ '#misskey-post-form-photo-tab-page > input[type=file]' .click!
+		$ '#post-form > input[type=file]' .click!
 		false
 
 	$ '#post-form > input[type=file]' .change ->
-		file = ($ '#post-form > input[type=file]')[0].files.item.0
+		file = ($ @).0.files.0
 		upload-new-file file
 
 	$ \#post-form .submit (event) ->

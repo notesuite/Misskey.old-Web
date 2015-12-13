@@ -1,6 +1,6 @@
 $ = require 'jquery'
 
-module.exports = (file, uploading, success, failed) ->
+module.exports = (file, $progress, uploading, success, failed) ->
 	data = new FormData!
 		..append \file file
 	$.ajax "#{config.web-api-url}/web/album/upload" {
@@ -13,6 +13,15 @@ module.exports = (file, uploading, success, failed) ->
 			if XHR.upload
 				XHR.upload.add-event-listener \progress (e) ->
 					percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
+					if $progress?
+						if percentage == 100
+							$progress
+								..remove-attr \value
+								..remove-attr \max
+						else
+							$progress
+								..attr \max e.total
+								..attr \value e.loaded
 					uploading e.total, e.loaded, percentage
 				, false
 			XHR

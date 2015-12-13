@@ -1,6 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 Sortable = require 'Sortable'
+upload-file = require './upload-file.js'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
@@ -336,19 +337,12 @@ class Post
 		THIS = @
 		name = if file.has-own-property \name then file.name else 'untitled'
 		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
-		$progress-bar = $info.find \progress
+		$progress = $info.find \progress
 		THIS.$reply-form.find '.uploads' .append $info
-		window.upload-file do
+		upload-file do
 			file
+			$progress
 			(total, uploaded, percentage) ->
-				if percentage == 100
-					$progress-bar
-						..remove-attr \value
-						..remove-attr \max
-				else
-					$progress-bar
-						..attr \max total
-						..attr \value uploaded
 			(file) ->
 				$info.remove!
 				THIS.attach-file file
