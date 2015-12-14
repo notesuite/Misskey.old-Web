@@ -1,6 +1,6 @@
 mixin message(message)
 	include ../../../../common/text-parser.jade
-	div(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
+	article(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
 			title= message.createdAt
 			data-id= message.id
 			data-cursor= message.cursor
@@ -9,26 +9,25 @@ mixin message(message)
 			data-is-deleted!= message.isDeleted.toString()
 			data-user-id= message.user.id
 			data-created-at= message.createdAt)
-		article
-			a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
-				img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
-			div.content-container
-				div.balloon
-					if !message.isDeleted && (message.user.id == me.id)
-						if message.isRead
-							p.read 既読
-						button.delete-button(title='メッセージを削除')
-							img(src=config.resourcesUrl + '/desktop/pages/i/talk-widget/delete.png', alt='Delete')
-					div.content
-						if !message.isDeleted
-							if message.text != ''
-								p.text!= parse(message.text)
-							if message.file
-								div.file.image
-									img(src= message.file.url, alt='image', title= message.file.name)
-						else
-							p.is-deleted このメッセージは削除されました
-				footer
-					time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
-					if message.isModified
-						i.fa.fa-pencil.is-modified
+		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
+			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
+		div.content-container
+			div.balloon
+				if !message.isDeleted && (message.user.id == me.id)
+					if message.isRead
+						p.read 既読
+					button.delete-button(title='メッセージを削除')
+						img(src=config.resourcesUrl + '/desktop/pages/i/talk-widget/delete.png', alt='Delete')
+				div.content
+					if !message.isDeleted
+						if message.text != ''
+							p.text!= parse(message.text)
+						if message.file
+							div.file.image
+								img(src= message.file.url, alt='image', title= message.file.name)
+					else
+						p.is-deleted このメッセージは削除されました
+			footer
+				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
+				if message.isModified
+					i.fa.fa-pencil.is-modified
