@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 Sortable = require 'Sortable'
-upload-file = require './upload-file.js'
+upload-file = require '../../../common/upload-file.js'
 sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
