@@ -82,7 +82,7 @@ $ ->
 
 	socket.on \inited ->
 		socket.emit \alive
-		$ '#messages .message.otherparty' .each ->
+		$ '#stream .message.otherparty' .each ->
 			socket.emit \read ($ @ .attr \data-id)
 
 	socket.on \disconnect (client) ->
@@ -98,30 +98,30 @@ $ ->
 		stream.add message
 
 	socket.on \otherparty-message-update (message) ->
-		$message = $ '#messages' .find ".message[data-id=#{message.id}]"
+		$message = $ '#stream' .find ".message[data-id=#{message.id}]"
 		if $message?
 			$message.find \.text .text message.text
 
 	socket.on \me-message-update (message) ->
-		$message = $ '#messages' .find ".message[data-id=#{message.id}]"
+		$message = $ '#stream' .find ".message[data-id=#{message.id}]"
 		if $message?
 			$message.find \.text .text message.text
 
 	socket.on \otherparty-message-delete (id) ->
-		$message = $ '#messages' .find ".message[data-id=#{id}]"
+		$message = $ '#stream' .find ".message[data-id=#{id}]"
 		if $message?
 			$message.find \.content .empty!
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \me-message-delete (id) ->
-		$message = $ '#messages' .find ".message[data-id=#{id}]"
+		$message = $ '#stream' .find ".message[data-id=#{id}]"
 		if $message?
 			$message.find \.content .empty!
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \read (id) ->
 		set-timeout ->
-			$message = $ '#messages' .children ".message[data-id='#{id}']"
+			$message = $ '#stream' .children ".message[data-id='#{id}']"
 			if $message?
 				if ($message.attr \data-is-read) == \false
 					$message.attr \data-is-read \true
