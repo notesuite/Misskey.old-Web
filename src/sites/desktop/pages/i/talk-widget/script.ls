@@ -5,6 +5,7 @@ require '../../../common/scripts/kronos.js'
 upload-file = require '../../../common/scripts/upload-file.js'
 
 no-history = no
+now-loading = no
 
 function send-message
 	$form = $ \#post-form
@@ -45,28 +46,6 @@ function upload-new-file(file)
 			$remove-button.click ->
 				$thumbnail.remove!
 			$ '#post-form > .files' .append $thumbnail
-
-function read-more
-	if not me.data \loading and not no-history
-		me.data \loading yes
-		$.ajax "#{config.web-api-url}/talks/stream" {
-			data:
-				'otherparty-id': OTHERPARTY.id
-				'limit': 10
-				'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor}
-		.done (messages) ->
-			me.data \loading no
-			if messages.length > 0
-				old-height = $ document .height!
-				old-scroll = $ window .scroll-top!
-				messages.for-each (message) ->
-					stream.add-last message
-				$ document .scroll-top old-scroll + ($ document .height!) - old-height
-			else
-				no-history := yes
-				$ '#stream' .prepend $ '<p id="no-history"><i class="fa fa-flag"></i>これより過去の履歴はありません</p>'
-		.fail (data) ->
-			me.data \loading no
 
 function set-body-margin-bottom
 	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
@@ -213,7 +192,6 @@ $ ->
 		send-message!
 
 	$ window .scroll ->
-		me = $ @
 		if $ window .scroll-top! == 0
 			read-more!
 
@@ -237,3 +215,25 @@ $ ->
 
 		$ \html .bind \dragend (e) ->
 			$ @ .unbind 'mouseup mousemove mouseleave'
+
+	function read-more
+		if not now-loading and not no-history
+			now-loading := yes
+			$.ajax "#{config.web-api-url}/talks/stream" {
+				data:
+					'otherparty-id': OTHERPARTY.id
+					'limit': 10
+					'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor}
+			.done (messages) ->
+				if messages.length > 0
+					old-height = $ document .height!
+					old-scroll = $ window .scroll-top!
+					messages.for-each (message) ->
+						stream.add-last message
+					$ document .scroll-top old-scroll + ($ document .height!) - old-height
+				else
+					no-history := yes
+					$ '#stream' .prepend $ '<p id="no-history"><i class="fa fa-flag"></i>これより過去の履歴はありません</p>'
+			.fail (data) ->
+			.always ->
+				now-loading := no
