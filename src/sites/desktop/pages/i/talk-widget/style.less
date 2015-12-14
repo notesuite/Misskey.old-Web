@@ -4,6 +4,14 @@ html {
 	background: #fff;
 }
 
+* {
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
+}
+
 main {
 	width: 600px;
 	max-width: 100%;
@@ -153,11 +161,6 @@ main {
 					}
 
 					> .text {
-						user-select: text;
-						-moz-user-select: text;
-						-webkit-user-select: text;
-						-ms-user-select: text;
-						cursor: default;
 						display: block;
 						margin: 0;
 						padding: 8px 16px;
@@ -165,6 +168,14 @@ main {
 						word-wrap: break-word;
 						font-size: 1em;
 						color: rgba(0, 0, 0, 0.8);
+
+						&, * {
+							user-select: text;
+							-moz-user-select: text;
+							-webkit-user-select: text;
+							-ms-user-select: text;
+							cursor: auto;
+						}
 
 						.url {
 							color: #1bb3b3;
@@ -455,6 +466,11 @@ main {
 	}
 
 	textarea {
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		cursor: auto;
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
