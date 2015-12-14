@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require '../../../common/scripts/main.js'
+require '../../../common/scripts/ui.js'
 require '../../../../common/kronos.js'
 
 $ ->
