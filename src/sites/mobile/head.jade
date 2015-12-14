@@ -7,6 +7,7 @@ meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scal
 link(rel='shortcut icon', href='/favicon.ico')
 link(rel='icon', href='/favicon.ico')
 link(rel='stylesheet', href= stylePath)
+script!= 'document.domain = \'' + config.host + '\';'
 script!= 'var CONFIG = config = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
 script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
 script!= 'var ME = me = ' + JSON.stringify(me) + '; Object.freeze(ME);'

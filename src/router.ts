@@ -88,11 +88,11 @@ export default function router(app: express.Express): void {
 	});
 
 	app.get(`/subdomain/${config.publicConfig.talkDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		callController(req, res, 'i/talks-widget');
+		callController(req, res, 'i/talks');
 	});
 
 	app.get(`/subdomain/${config.publicConfig.talkDomain}/:userScreenName`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		callController(req, res, 'i/talk-widget');
+		callController(req, res, 'i/talk');
 	});
 
 	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {

@@ -1,8 +1,8 @@
 $ = require 'jquery'
 require '../../../common/scripts/main.js'
 Stream = require '../../../common/scripts/talk-stream-core.js'
-require '../../../common/scripts/kronos.js'
-upload-file = require '../../../common/scripts/upload-file.js'
+require '../../../../common/kronos.js'
+upload-file = require '../../../../common/upload-file.js'
 
 no-history = no
 now-loading = no

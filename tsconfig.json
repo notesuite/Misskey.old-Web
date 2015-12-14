@@ -58,8 +58,8 @@
 		"src/sites/desktop/pages/i/settings/controller.ts",
 		"src/sites/desktop/pages/i/home-customize/controller.ts",
 		"src/sites/desktop/pages/i/album/controller.ts",
-		"src/sites/desktop/pages/i/talk-widget/controller.ts",
-		"src/sites/desktop/pages/i/talks-widget/controller.ts",
+		"src/sites/desktop/pages/i/talk/controller.ts",
+		"src/sites/desktop/pages/i/talks/controller.ts",
 		"src/sites/mobile/pages/entrance/controller.ts",
 		"src/sites/mobile/pages/error/controller.ts",
 		"src/sites/mobile/pages/not-found/controller.ts",
@@ -68,6 +68,8 @@
 		"src/sites/mobile/pages/i/mentions/controller.ts",
 		"src/sites/mobile/pages/i/post-new/controller.ts",
 		"src/sites/mobile/pages/i/settings/controller.ts",
+		"src/sites/mobile/pages/i/talks/controller.ts",
+		"src/sites/mobile/pages/i/talk/controller.ts",
 		"src/sites/mobile/pages/user/home/controller.ts"
 	]
 }

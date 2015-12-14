@@ -44,7 +44,7 @@ task('build:ts', () => {
 
 task('compile:frontside-scripts', () => {
 	return es.merge(
-		src(['./src/sites/*/common/**/*.ls', './src/sites/*/pages/**/*.ls'])
+		src('./src/sites/**/*.ls')
 			.pipe(ls()),
 		src(['./src/sites/*/common/**/*.js', './src/sites/*/pages/**/*.js', '!./src/sites/*/pages/**/controller.js'])
 	).pipe(dest('./tmp/'));

@@ -1,0 +1,31 @@
+mixin message(message)
+	include ../../../../common/text-parser.jade
+	article(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-is-modified!= message.isModified.toString()
+			data-is-read!= message.isRead.toString()
+			data-is-deleted!= message.isDeleted.toString()
+			data-user-id= message.user.id
+			data-created-at= message.createdAt)
+		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
+			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
+		div.content-container
+			div.balloon
+				if !message.isDeleted && (message.user.id == me.id)
+					if message.isRead
+						p.read 既読
+				div.content
+					if !message.isDeleted
+						if message.text != ''
+							p.text!= parse(message.text)
+						if message.file
+							div.file.image
+								img(src= message.file.url, alt='image', title= message.file.name)
+					else
+						p.is-deleted このメッセージは削除されました
+			footer
+				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
+				if message.isModified
+					i.fa.fa-pencil.is-modified
