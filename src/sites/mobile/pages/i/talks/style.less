@@ -135,7 +135,6 @@ html, #misskey-main {
 
 main {
 	display: block;
-	margin-top: ~"calc(1em + 16px + 20px + 2px)";
 
 	#talks {
 		margin: 0;
@@ -147,26 +146,6 @@ main {
 			padding: 0;
 			background: #fff;
 			border-bottom: solid 1px #eee;
-
-			&:hover {
-				background: #fafafa;
-
-				> a > article > header > h2 {
-					color: @themeColor;
-				}
-
-				> a > article > .avatar {
-					filter: saturate(200%);
-					-webkit-filter: saturate(200%);
-					-moz-filter: saturate(200%);
-					-o-filter: saturate(200%);
-					-ms-filter: saturate(200%);
-				}
-			}
-
-			&:active {
-				background: #eee;
-			}
 
 			&[data-is-unread='false'],
 			&[data-is-my-message='true'] {
@@ -185,7 +164,7 @@ main {
 
 				> article {
 					position: relative;
-					padding: 20px 30px;
+					padding: 12px;
 
 					&:after {
 						content: "";
