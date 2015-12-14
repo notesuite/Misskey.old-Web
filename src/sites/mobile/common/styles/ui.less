@@ -99,6 +99,8 @@
 
 /* UI
  * ---------------------------------------------------------------- */
+@header-background: #424A4C;
+
 #misskey-header {
 	position: fixed;
 	top: 0;
@@ -106,13 +108,13 @@
 	width: 100%;
 	//color: #fff;
 	//background: #006f87;
-	color: contrast(@themeColor, #000, #fff, 70%);
-	background: @themeColor;
-	background-color: @themeColor;
+	color: contrast(@header-background, #000, #fff, 70%);
+	background: @header-background;
+	background-color: @header-background;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
-	box-shadow: 0 -3px 2px 4px rgba(0, 0, 0, 0.3);
+	//box-shadow: 0 -3px 2px 4px rgba(0, 0, 0, 0.3);
 
 	&:after {
 		content: "";
