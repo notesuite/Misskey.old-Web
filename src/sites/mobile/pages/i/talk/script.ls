@@ -45,29 +45,13 @@ function upload-new-file(file)
 				$thumbnail.remove!
 			$ '#post-form > .files' .append $thumbnail
 
-function set-body-margin-bottom
-	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
-
 $ window .load ->
-	set-body-margin-bottom!
 	scroll 0, document.body.client-height
-
-$ window .resize ->
-	set-body-margin-bottom!
 
 $ ->
 	stream = new Stream $ \#stream
 
-	set-body-margin-bottom!
 	scroll 0, ($ \html .outer-height!)
-
-	mo = new MutationObserver set-body-margin-bottom
-	mo.observe ($ \#post-form).0, {
-		+character-data
-		+child-list
-		+subtree
-		+attributes
-	}
 
 	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
 
