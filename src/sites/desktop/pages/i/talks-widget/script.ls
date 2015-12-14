@@ -20,7 +20,7 @@ $ ->
 						$result.find \ol .append do
 							$ \<li> .append do
 								$ '<a class="ui-waves-effect">' .attr {
-									'href': "#{config.url}/i/talk-widget/#{user.screen-name}"
+									'href': "#{config.talk-url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
 									$ '<img class="avatar" alt="avatar">' .attr \src (user.avatar-url + '?mini')
