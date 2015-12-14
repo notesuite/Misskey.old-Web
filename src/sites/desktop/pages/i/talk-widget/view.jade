@@ -17,9 +17,8 @@ block body
 				p#empty-stream
 					i.fa.fa-info-circle
 					| このユーザーとまだ会話したことはありません
-			div#messages
-				+messages(messages)
-			div#otherparty-status
+			+messages(messages)
+		div#otherparty-status
 		form#post-form
 			div.grippie
 			textarea(name='text', placeholder='ここにメッセージを入力')

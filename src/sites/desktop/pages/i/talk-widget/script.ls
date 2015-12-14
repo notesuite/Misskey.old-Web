@@ -4,6 +4,8 @@ Stream = require '../../../common/scripts/talk-stream-core.js'
 require '../../../common/scripts/kronos.js'
 upload-file = require '../../../common/scripts/upload-file.js'
 
+no-history = no
+
 function send-message
 	$form = $ \#post-form
 	$submit-button = $form.find '[type=submit]'
@@ -55,7 +57,7 @@ $ window .resize ->
 	set-body-margin-bottom!
 
 $ ->
-	stream = new Stream $ '#stream'
+	stream = new Stream $ \#stream
 
 	set-body-margin-bottom!
 	scroll 0, ($ \html .outer-height!)
@@ -189,7 +191,7 @@ $ ->
 	$ window .scroll ->
 		me = $ @
 		if $ window .scroll-top! == 0
-			if not me.data \loading
+			if not me.data \loading and not no-history
 				me.data \loading yes
 				$.ajax "#{config.web-api-url}/talks/stream" {
 					data:
@@ -198,13 +200,15 @@ $ ->
 						'max-cursor': $ '#messages > .message:first-child' .attr \data-cursor}
 				.done (messages) ->
 					me.data \loading no
-					old-height = $ document .height!
-					old-scroll = $ window .scroll-top!
-
-					messages.for-each (message) ->
-						stream.add-last message
-
-					$ document .scroll-top old-scroll + ($ document .height!) - old-height
+					if messages.length > 0
+						old-height = $ document .height!
+						old-scroll = $ window .scroll-top!
+						messages.for-each (message) ->
+							stream.add-last message
+						$ document .scroll-top old-scroll + ($ document .height!) - old-height
+					else
+						no-history := yes
+						$ '#stream' .prepend $ '<p id="no-history"><i class="fa fa-flag"></i>これより過去の履歴はありません</p>'
 
 				.fail (data) ->
 					me.data \loading no

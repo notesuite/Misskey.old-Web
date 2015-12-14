@@ -6,7 +6,7 @@ class Stream
 	($stream) ->
 		THIS = @
 
-		THIS.$stream = $stream.find '> #messages'
+		THIS.$stream = $stream
 		THIS.$messages = THIS.$stream.children!
 
 		THIS.$messages.each ->
