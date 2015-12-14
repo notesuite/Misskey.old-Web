@@ -71,7 +71,7 @@ $ ->
 		+attributes
 	}
 
-	read-more!
+	# read-more!
 
 	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
 
