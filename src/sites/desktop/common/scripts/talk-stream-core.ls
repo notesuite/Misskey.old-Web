@@ -10,12 +10,32 @@ class Stream
 		THIS.$messages = THIS.$stream.children!
 
 		THIS.$messages.each ->
-			THIS.init-message $ @
+			$message = $ @
+			THIS.init-message $message
+			THIS.init-date-info $message
 
 	init-message: ($message) ->
 		THIS = @
 
 		imageviewer $message.find '.content > .image'
+
+	init-date-info: ($message, reverse = no) ->
+		$compare-message =
+			if reverse
+			then $message.next \.message
+			else $message.prev \.message
+		if $compare-message.length == 0
+			return
+		compare-date = new Date $compare-message.attr \data-created-at
+		current-date = new Date $message.attr \data-created-at
+		if compare-date.get-date! != current-date.get-date!
+			date-info-str = "#{current-date.get-full-year!} / #{current-date.get-month! + 1} / #{current-date.get-date!}"
+			$date-info = $ '<div class="date"><p>' + date-info-str + '</p></div>'
+			if reverse
+				$message.after $date-info
+			else
+				$message.before $date-info
+
 
 	check-can-scroll: ->
 		$window = $ window
@@ -39,6 +59,7 @@ class Stream
 		can-scroll = THIS.check-can-scroll!
 		THIS.init-message $message
 		$message.append-to THIS.$stream .hide!.show 200ms
+		THIS.init-date-info $message
 		THIS.refresh-my-messages!
 		if can-scroll
 			scroll 0, ($ document .height!)
@@ -60,6 +81,7 @@ class Stream
 
 		THIS.init-message $message
 		$message.prepend-to THIS.$stream
+		THIS.init-date-info $message, yes
 		THIS.refresh-my-messages!
 
 	refresh-my-messages: ->

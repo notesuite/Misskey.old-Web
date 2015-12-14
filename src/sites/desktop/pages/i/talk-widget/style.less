@@ -332,6 +332,37 @@ main {
 				}
 			}
 		}
+
+		> .date {
+			display: block;
+			position: relative;
+			margin: 0;
+			text-align: center;
+
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				height: 1px;
+				width: 90%;
+				top: 16px;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+				background: rgba(0, 0, 0, 0.1);
+			}
+
+			> p {
+				display: inline-block;
+				position: relative;
+				margin: 0;
+				padding: 0 16px;
+				font-weight: bold;
+				line-height: 32px;
+				color: rgba(0, 0, 0, 0.3);
+				background: #fff;
+			}
+		}
 	}
 
 	> #otherparty-status {

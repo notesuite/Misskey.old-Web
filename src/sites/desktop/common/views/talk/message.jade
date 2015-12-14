@@ -7,7 +7,8 @@ mixin message(message)
 			data-is-modified!= message.isModified.toString()
 			data-is-read!= message.isRead.toString()
 			data-is-deleted!= message.isDeleted.toString()
-			data-user-id= message.user.id)
+			data-user-id= message.user.id
+			data-created-at= message.createdAt)
 		article
 			a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
 				img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
