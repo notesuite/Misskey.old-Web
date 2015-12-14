@@ -46,6 +46,28 @@ function upload-new-file(file)
 				$thumbnail.remove!
 			$ '#post-form > .files' .append $thumbnail
 
+function read-more
+	if not me.data \loading and not no-history
+		me.data \loading yes
+		$.ajax "#{config.web-api-url}/talks/stream" {
+			data:
+				'otherparty-id': OTHERPARTY.id
+				'limit': 10
+				'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor}
+		.done (messages) ->
+			me.data \loading no
+			if messages.length > 0
+				old-height = $ document .height!
+				old-scroll = $ window .scroll-top!
+				messages.for-each (message) ->
+					stream.add-last message
+				$ document .scroll-top old-scroll + ($ document .height!) - old-height
+			else
+				no-history := yes
+				$ '#stream' .prepend $ '<p id="no-history"><i class="fa fa-flag"></i>これより過去の履歴はありません</p>'
+		.fail (data) ->
+			me.data \loading no
+
 function set-body-margin-bottom
 	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
 
@@ -69,6 +91,8 @@ $ ->
 		+subtree
 		+attributes
 	}
+
+	read-more!
 
 	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
 
@@ -191,27 +215,7 @@ $ ->
 	$ window .scroll ->
 		me = $ @
 		if $ window .scroll-top! == 0
-			if not me.data \loading and not no-history
-				me.data \loading yes
-				$.ajax "#{config.web-api-url}/talks/stream" {
-					data:
-						'otherparty-id': OTHERPARTY.id
-						'limit': 10
-						'max-cursor': $ '#messages > .message:first-child' .attr \data-cursor}
-				.done (messages) ->
-					me.data \loading no
-					if messages.length > 0
-						old-height = $ document .height!
-						old-scroll = $ window .scroll-top!
-						messages.for-each (message) ->
-							stream.add-last message
-						$ document .scroll-top old-scroll + ($ document .height!) - old-height
-					else
-						no-history := yes
-						$ '#stream' .prepend $ '<p id="no-history"><i class="fa fa-flag"></i>これより過去の履歴はありません</p>'
-
-				.fail (data) ->
-					me.data \loading no
+			read-more!
 
 	$ '#post-form > .grippie' .mousedown (e) ->
 		click-y = e.client-y
