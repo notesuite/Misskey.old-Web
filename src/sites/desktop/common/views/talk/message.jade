@@ -17,7 +17,7 @@ mixin message(message)
 					if message.isRead
 						p.read 既読
 					button.delete-button(title='メッセージを削除')
-						img(src=config.resourcesUrl + '/desktop/pages/i/talk-widget/delete.png', alt='Delete')
+						img(src=config.resourcesUrl + '/desktop/pages/i/talk/delete.png', alt='Delete')
 				div.content
 					if !message.isDeleted
 						if message.text != ''

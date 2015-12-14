@@ -33,7 +33,7 @@ block content
 									data-is-my-message='false',
 									data-is-unread!= unread.toString())
 								a(href= config.talkUrl + '/' + message.user.screenName)
-									article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks-widget/unread.svg")'} : {})
+									article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/mobile/pages/i/talks/unread.svg")'} : {})
 										img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
 										header
 											h2= message.user.name
