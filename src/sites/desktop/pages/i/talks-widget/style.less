@@ -189,12 +189,13 @@ main {
 				background: #eee;
 			}
 
-			&[data-is-unread='false'] {
+			&[data-is-unread='false'],
+			&[data-is-my-message='true'] {
 				opacity: 0.8;
 			}
 
 			&[data-is-unread='true'] > a > article {
-				background-image: url("/resources/desktop/pages/i/talks-widget/unread.svg");
+				//background-image: url("/resources/desktop/pages/i/talks-widget/unread.svg");
 				background-repeat: no-repeat;
 				background-position: 0 center;
 			}
