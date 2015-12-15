@@ -167,3 +167,27 @@ block body
 
 	div.grobal-container.contents
 		block content
+
+	article#misskey-keyboard-shortcuts
+		h1
+			i.fa.fa-keyboard-o
+			| Keyboard shortcuts
+		dl
+			dt
+				kbd: kbd ?
+				| または
+				kbd: kbd h
+			dd このダイアログを表示する
+
+			dt
+				kbd: kbd p
+				| または
+				kbd: kbd n
+			dd 投稿フォームを開く
+
+			dt
+				| 投稿フォームを開いた状態で
+				kbd: kbd Esc
+			dd 投稿フォームを閉じる
+			
+			block shortcuts

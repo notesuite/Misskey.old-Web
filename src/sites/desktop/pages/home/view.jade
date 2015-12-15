@@ -1,4 +1,9 @@
-extends ../../layout
+extends ../../ui
+
+mixin widget(widgets)
+	if widgets != null && widgets.length > 0
+		each widget in widgets
+			!= widget
 
 block title
 	| Misskey
@@ -18,7 +23,40 @@ block content
 				div#right-contents
 					+widget(widgets.right)
 
-mixin widget(widgets)
-	if widgets != null && widgets.length > 0
-		each widget in widgets
-			!= widget
+block shortcuts
+	dt
+		kbd: kbd t
+	dd タイムラインの最新の投稿にフォーカス
+
+	dt
+		| 投稿にフォーカスした状態で
+		kbd: kbd ↑
+		kbd: kbd ↓
+	dd その方向の投稿にフォーカス
+
+	dt
+		| 投稿にフォーカスした状態で
+		kbd: kbd Enter
+	dd 投稿を開く/閉じる
+
+	dt
+		| 投稿にフォーカスした状態で
+		kbd: kbd r
+	dd 返信フォームにフォーカス
+
+	dt
+		| 返信フォームにフォーカスした状態で
+		kbd: kbd Esc
+	dd 投稿にフォーカスをもどす
+
+	dt
+		| 投稿フォームにフォーカスした状態で
+		kbd: kbd f
+		| または
+		kbd: kbd l
+	dd Likeする
+
+	dt
+		| 投稿フォームにフォーカスした状態で
+		kbd: kbd e
+	dd Repostする
