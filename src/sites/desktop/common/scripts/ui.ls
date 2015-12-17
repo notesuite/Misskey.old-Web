@@ -28,7 +28,7 @@ function ad-block-detected
 	$modal-ok = $ '<button>了解</button>'
 	dialog-close = show-modal-dialog do
 		$ '<p><i class="fa fa-exclamation-triangle"></i>広告ブロッカーが有効です</p>'
-		'<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。
+		'広告ブロッカー、もしくはリソースの読み込みを妨げる何らかの機能がはたらいています。<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。
 		Misskeyを快適にご利用いただくためには、広告ブロッカーを無効にしてください。'
 		[$modal-ok]
 	$modal-ok.click -> dialog-close!
