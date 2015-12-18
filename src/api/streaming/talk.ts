@@ -42,26 +42,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 				// Subscribe Talk stream channel
 				subscriber.subscribe(`misskey:talk-user-stream:${socket.user.id}-${socket.otherpartyId}`);
-				subscriber.on('message', (_: any, contentString: string) => {
-					// メッセージはJSONなのでパース
-					const content: any = JSON.parse(contentString);
-
-					switch (content.type) {
-						case 'me-message':
-						case 'otherparty-message':
-							const messageId: any = content.value.id;
-
-							requestApi('talks/show', {
-								'message-id': messageId
-							}, socket.user.id).then((message: Object) => {
-								socket.emit(content.type, message);
-							});
-							break;
-						default:
-							socket.emit(content.type, content.value);
-							break;
-					}
-				});
+				subscriber.on('message', onStreamMessage);
 			});
 
 			socket.on('read', (id: string) => {
@@ -74,5 +55,28 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 				subscriber.end();
 			});
 		});
+
+		function onStreamMessage(_: any, contentString: string): void {
+			'use strict';
+
+			// メッセージはJSONなのでパース
+			const content: any = JSON.parse(contentString);
+
+			switch (content.type) {
+				case 'me-message':
+				case 'otherparty-message':
+					const messageId: any = content.value.id;
+
+					requestApi('talks/show', {
+						'message-id': messageId
+					}, socket.user.id).then((message: Object) => {
+						socket.emit(content.type, message);
+					});
+					break;
+				default:
+					socket.emit(content.type, content.value);
+					break;
+			}
+		}
 	});
 };
