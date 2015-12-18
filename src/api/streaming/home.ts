@@ -36,39 +36,43 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 			// Subscribe Home stream channel
 			subscriber.subscribe(`misskey:user-stream:${socket.user.id}`);
-			subscriber.on('message', (_: any, contentString: string) => {
-				// メッセージはJSONなのでパース
-				const content: any = JSON.parse(contentString);
-
-				switch (content.type) {
-					case 'post':
-						const postId: any = content.value.id;
-
-						requestApi('posts/show', {
-							'post-id': postId
-						}, socket.user.id).then((post: Object) => {
-							socket.emit(content.type, post);
-						});
-						break;
-
-					case 'notification':
-						const notificationId: any = content.value.id;
-
-						requestApi('notifications/show', {
-							'notification-id': notificationId
-						}, socket.user.id).then((notification: Object) => {
-							socket.emit(content.type, notification);
-						});
-						break;
-					default:
-						socket.emit(content.type, content.value);
-						break;
-				}
-			});
+			subscriber.on('message', onMessage);
 
 			socket.on('disconnect', () => {
 				subscriber.end();
 			});
 		});
+
+		function onMessage(_: any, contentString: string): void {
+			'use strict';
+
+			// メッセージはJSONなのでパース
+			const content: any = JSON.parse(contentString);
+
+			switch (content.type) {
+				case 'post':
+					const postId: any = content.value.id;
+
+					requestApi('posts/show', {
+						'post-id': postId
+					}, socket.user.id).then((post: Object) => {
+						socket.emit(content.type, post);
+					});
+					break;
+
+				case 'notification':
+					const notificationId: any = content.value.id;
+
+					requestApi('notifications/show', {
+						'notification-id': notificationId
+					}, socket.user.id).then((notification: Object) => {
+						socket.emit(content.type, notification);
+					});
+					break;
+				default:
+					socket.emit(content.type, content.value);
+					break;
+			}
+		}
 	});
 };
