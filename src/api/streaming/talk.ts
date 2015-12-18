@@ -41,7 +41,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 				socket.otherpartyId = otherpartyId;
 
 				// Subscribe Talk stream channel
-				subscriber.subscribe(`misskey:talk-stream:${socket.user.id}-${socket.otherpartyId}`);
+				subscriber.subscribe(`misskey:talk-user-stream:${socket.user.id}-${socket.otherpartyId}`);
 				subscriber.on('message', (_: any, contentString: string) => {
 					// メッセージはJSONなのでパース
 					const content: any = JSON.parse(contentString);
