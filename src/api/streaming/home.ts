@@ -36,14 +36,14 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 			// Subscribe Home stream channel
 			subscriber.subscribe(`misskey:user-stream:${socket.user.id}`);
-			subscriber.on('message', onMessage);
+			subscriber.on('message', onStreamMessage);
 
 			socket.on('disconnect', () => {
 				subscriber.end();
 			});
 		});
 
-		function onMessage(_: any, contentString: string): void {
+		function onStreamMessage(_: any, contentString: string): void {
 			'use strict';
 
 			// メッセージはJSONなのでパース
