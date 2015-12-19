@@ -16,7 +16,7 @@ function send-message
 	$.ajax "#{config.web-api-url}/talks/messages/say" {
 		data:
 			'text': ($form.find \textarea .val!)
-			'otherparty-id': OTHERPARTY.id
+			'user-id': OTHERPARTY.id
 			#'files': JSON.stringify(($form.find '.files > li' .map ->
 			#	($ @).attr \data-id).get!)
 			'file': ($form.find '.files > li:first-child' .attr \data-id)
