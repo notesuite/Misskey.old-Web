@@ -13,7 +13,7 @@ function send-message
 
 	$submit-button.attr \disabled yes
 
-	$.ajax "#{config.web-api-url}/talks/say" {
+	$.ajax "#{config.web-api-url}/talks/messages/say" {
 		data:
 			'text': ($form.find \textarea .val!)
 			'otherparty-id': OTHERPARTY.id
