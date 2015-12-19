@@ -320,6 +320,14 @@ main {
 	background: #F7F7F7;
 	border-top: solid 1px rgba(0, 0, 0, 0.075);
 
+	&, * {
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		cursor: default;
+	}
+
 	> ul {
 		display: -webkit-flex;
 		display: -moz-flex;
@@ -337,15 +345,38 @@ main {
 			flex: 1 1;
 			text-align: center;
 
+			&.active {
+				> a {
+					border-top: solid 2px @themeColor;
+				}
+			}
+
 			> a {
 				display: block;
+				padding: 6px 8px 8px 8px;
+				color: rgba(0, 0, 0, 0.5);
+				cursor: pointer;
+				border-top: solid 2px transparent;
+				transition: none;
+
+				&:hover {
+					text-decoration: none;
+					background: #fff;
+				}
+
+				&:active {
+					background: #ECECEC;
+				}
+
+
 
 				> i {
-					font-size: 1.8em;
+					font-size: 1.5em;
 				}
 
 				> p {
 					margin: 0;
+					font-size: 0.7em;
 				}
 			}
 		}
