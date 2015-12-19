@@ -1007,7 +1007,7 @@ function update-statuses
 			$ '#misskey-nav .notifications a .unread-count' .remove!
 			$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/talks/unread/count"
+	$.ajax "#{config.web-api-url}/talks/messages/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-nav .talks a .unread-count' .remove!

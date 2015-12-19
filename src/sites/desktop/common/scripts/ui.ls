@@ -67,7 +67,7 @@ function update-header-statuses
 			$ '#misskey-header .mentions a .unread-count' .remove!
 			$ '#misskey-header .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/talks/unread/count"
+	$.ajax "#{config.web-api-url}/talks/messages/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-header .talks a .unread-count' .remove!
