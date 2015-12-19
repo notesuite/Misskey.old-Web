@@ -19,7 +19,6 @@ h1 {
 	}
 }
 
-
 #search {
 	display: block;
 	box-sizing: border-box;
@@ -309,5 +308,46 @@ main {
 		color: #999;
 		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 		font-weight: 500;
+	}
+}
+
+#nav {
+	display: block;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #F7F7F7;
+	border-top: solid 1px rgba(0, 0, 0, 0.075);
+
+	> ul {
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		> li {
+			display: block;
+			flex: 1 1;
+			text-align: center;
+
+			> a {
+				display: block;
+
+				> i {
+					font-size: 1.8em;
+				}
+
+				> p {
+					margin: 0;
+				}
+			}
+		}
 	}
 }
