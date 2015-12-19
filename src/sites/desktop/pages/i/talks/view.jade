@@ -6,7 +6,9 @@ block title
 block body
 	div#search(role='search')
 		div.form
-			input(type='search', placeholder!='&#xf002; ユーザーを探してトークを開始')
+			label(for='search-input')
+				i.fa.fa-search
+			input#search-input(type='search', placeholder='ユーザーを探してトークを開始')
 		div.result
 	main(role='main')
 		if messages != null && messages.length > 0
