@@ -355,8 +355,8 @@ main {
 				display: block;
 				padding: 6px 8px 8px 8px;
 				color: rgba(0, 0, 0, 0.5);
-				cursor: pointer;
 				border-top: solid 2px transparent;
+				cursor: pointer;
 				transition: none;
 
 				&:hover {
@@ -368,7 +368,9 @@ main {
 					background: #ECECEC;
 				}
 
-
+				* {
+					pointer-events: none;
+				}
 
 				> i {
 					font-size: 1.5em;
