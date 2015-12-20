@@ -16,12 +16,12 @@ block body
 				each message in messages
 					if message.user.id == me.id
 						li.talk(data-is-my-message='true')
-							a(href= config.talkUrl + '/' + message.otherparty.screenName)
+							a(href= config.talkUrl + '/' + message.recipient.screenName)
 								article
-									img.avatar(src= message.otherparty.avatarUrl + '?mini', alt='avatar')
+									img.avatar(src= message.recipient.avatarUrl + '?mini', alt='avatar')
 									header
-										h2= message.otherparty.name
-										span.screenName= '@' + message.otherparty.screenName
+										h2= message.recipient.name
+										span.screenName= '@' + message.recipient.screenName
 										time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
 									p.text
 										span.me あなた:
