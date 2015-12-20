@@ -30,17 +30,22 @@ module.exports = (id, $content, title, width, height, can-popout = false) ->
 		console.log ($content.contents!.get 0 .location.href)
 		url = $content.contents!.get 0 .location.href
 		title = $content.contents!.get 0 .title
+		left = ($window.position!.left) + window.screen-x
+		top = ($window.position!.top) + window.screen-y
 		opened-window = window.open do
 			url
 			title
 			"
 				width=#{width},
 				height=#{height},
+				left=#{left},
+				top=#{top},
 				menubar=no,
 				toolbar=no,
 				location=no,
 				status=no
 			"
+		opened-window.move-to left, top
 		close!
 
 	function close
