@@ -46,7 +46,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 			});
 
 			socket.on('read', (id: string) => {
-				requestApi('talks/read', {
+				requestApi('talks/messages/read', {
 					'message-id': id
 				}, socket.user.id);
 			});
@@ -67,7 +67,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 				case 'otherparty-message':
 					const messageId: any = content.value.id;
 
-					requestApi('talks/show', {
+					requestApi('talks/messages/show', {
 						'message-id': messageId
 					}, socket.user.id).then((message: Object) => {
 						socket.emit(content.type, message);
