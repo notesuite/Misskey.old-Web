@@ -1,6 +1,13 @@
 $ = require 'jquery'
+marked = require 'marked'
 imageviewer = require './image-viewer.js'
 message-compiler = require '../views/talk/render.jade'
+
+marked.set-options {
+	+gfm
+	+breaks
+	+sanitize
+}
 
 class Stream
 	($stream) ->
@@ -17,6 +24,7 @@ class Stream
 	init-message: ($message) ->
 		THIS = @
 
+		$message.find '.content > .text' .html marked ($message.find '.content > .text' .html!)
 		imageviewer $message.find '.content > .image'
 
 	init-date-info: ($message, reverse = no) ->

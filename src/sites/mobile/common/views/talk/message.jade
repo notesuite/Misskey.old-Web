@@ -1,5 +1,4 @@
 mixin message(message)
-	include ../../../../common/text-parser.jade
 	article(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
 			title= message.createdAt
 			data-id= message.id
@@ -19,7 +18,7 @@ mixin message(message)
 				div.content
 					if !message.isDeleted
 						if message.text != ''
-							p.text!= parse(message.text)
+							div.text= message.text
 						if message.file
 							div.file.image
 								img(src= message.file.url, alt='image', title= message.file.name)

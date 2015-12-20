@@ -22,6 +22,7 @@
     "moment": "~2.10.6",
     "Sortable": "~1.4.2",
     "fuck-adblock": "fuckadblock#~3.2.0",
-    "fastclick": "~1.0.6"
+    "fastclick": "~1.0.6",
+    "marked": "~0.3.5"
   }
 }
