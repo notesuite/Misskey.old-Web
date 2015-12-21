@@ -48,23 +48,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 		function onStreamMessage(_: any, contentString: string): void {
 			'use strict';
-
-			const content: any = JSON.parse(contentString);
-
-			switch (content.type) {
-				case 'message':
-					const messageId: any = content.value.id;
-
-					requestApi('talks/messages/show', {
-						'message-id': messageId
-					}, socket.user.id).then((message: Object) => {
-						socket.emit(content.type, message);
-					});
-					break;
-				default:
-					socket.emit(content.type, content.value);
-					break;
-			}
+			streamingMessageHandler(socket, contentString);
 		}
 	});
 
@@ -90,23 +74,28 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 		function onStreamMessage(_: any, contentString: string): void {
 			'use strict';
-
-			const content: any = JSON.parse(contentString);
-
-			switch (content.type) {
-				case 'message':
-					const messageId: any = content.value.id;
-
-					requestApi('talks/messages/show', {
-						'message-id': messageId
-					}, socket.user.id).then((message: Object) => {
-						socket.emit(content.type, message);
-					});
-					break;
-				default:
-					socket.emit(content.type, content.value);
-					break;
-			}
+			streamingMessageHandler(socket, contentString);
 		}
 	});
 };
+
+function streamingMessageHandler(socket: MKSocket, contentString: string): void {
+	'use strict';
+
+	const content: any = JSON.parse(contentString);
+
+	switch (content.type) {
+		case 'message':
+			const messageId: any = content.value.id;
+
+			requestApi('talks/messages/show', {
+				'message-id': messageId
+			}, socket.user.id).then((message: Object) => {
+				socket.emit(content.type, message);
+			});
+			break;
+		default:
+			socket.emit(content.type, content.value);
+			break;
+	}
+}
