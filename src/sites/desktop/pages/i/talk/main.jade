@@ -1,22 +1,16 @@
 extends ../../../base
 include ../../../common/views/talk/messages
 
-block meta
-	script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
-
 block assets
 	script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
 
-block title
-	= 'トーク: ' + otherparty.name
-		
 block body
 	main
 		div#stream
 			if messages.length == 0
 				p#empty-stream
 					i.fa.fa-info-circle
-					| このユーザーとまだ会話したことはありません
+					block empty-stream-message
 			+messages(messages)
 		div#otherparty-status
 		form#post-form

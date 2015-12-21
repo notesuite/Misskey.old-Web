@@ -1,0 +1,11 @@
+extends ../main
+
+block meta
+	script!= 'var TALK_TYPE = "group";'
+	script!= 'var GROUP = ' + JSON.stringify(group) + ';'
+
+block title
+	= 'トーク: ' + group.name
+
+block empty-stream-message
+	| このグループにまだ投稿はありません

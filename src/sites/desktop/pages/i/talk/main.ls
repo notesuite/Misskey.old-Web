@@ -1,8 +1,8 @@
 $ = require 'jquery'
 require '../../../common/scripts/main.js'
-Stream = require '../../../common/scripts/talk-stream-core.js'
 require '../../../../common/kronos.js'
 upload-file = require '../../../../common/upload-file.js'
+Stream = require '../../../common/scripts/talk-stream-core.js'
 
 no-history = no
 now-loading = no
@@ -58,7 +58,7 @@ $ window .resize ->
 	set-body-margin-bottom!
 
 $ ->
-	stream = new Stream $ \#stream
+	window.stream = new Stream $ \#stream
 
 	set-body-margin-bottom!
 	scroll 0, ($ \html .outer-height!)
@@ -71,19 +71,99 @@ $ ->
 		+attributes
 	}
 
+	init-streaming!
+
 	# read-more!
 
-	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
+	$ '#post-form textarea' .bind \input ->
+		text = $ '#post-form textarea' .val!
+		socket.emit \type text
+
+	$ '#post-form textarea' .keypress (e) ->
+		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+			send-message!
+
+	$ '#post-form textarea' .on \paste (event) ->
+		items = (event.clipboard-data || event.original-event.clipboard-data).items
+		for i from 0 to items.length - 1
+			item = items[i]
+			if item.kind == \file && item.type.index-of \image != -1
+				file = item.get-as-file!
+				upload-new-file file
+
+	$ '#post-form > .attach-from-local' .click ->
+		$ '#post-form > input[type=file]' .click!
+		false
+
+	$ '#post-form > input[type=file]' .change ->
+		file = ($ @).0.files.0
+		upload-new-file file
+
+	$ \#post-form .submit (event) ->
+		event.prevent-default!
+		send-message!
+
+	$ '#post-form > .grippie' .mousedown (e) ->
+		click-y = e.client-y
+		$textarea = $ '#post-form textarea'
+		current-height = $textarea.outer-height!
+
+		$ \html .mousemove (me) ->
+			height = current-height + (click-y - me.client-y)
+			$textarea.css \height "#{height}px"
+
+		$ \html .mouseleave ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
+
+		$ \html .mouseup ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
+
+		$ \html .bind \dragstart (e) ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
+
+		$ \html .bind \dragend (e) ->
+			$ @ .unbind 'mouseup mousemove mouseleave'
+
+	$ window .scroll ->
+		if $ window .scroll-top! == 0
+			read-more!
+
+	function read-more
+		if not now-loading and not no-history
+			now-loading := yes
+			$.ajax "#{config.web-api-url}/talks/messages/stream" {
+				data:
+					'user-id': OTHERPARTY.id
+					'limit': 10
+					'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor}
+			.done (messages) ->
+				if messages.length > 0
+					old-height = $ document .height!
+					old-scroll = $ window .scroll-top!
+					messages.for-each (message) ->
+						stream.add-last message
+					$ document .scroll-top old-scroll + ($ document .height!) - old-height
+				else
+					no-history := yes
+					$ '#stream' .prepend $ '<p id="no-history"><i class="fa fa-flag"></i>これより過去の履歴はありません</p>'
+			.fail (data) ->
+			.always ->
+				now-loading := no
+
+function init-streaming
+	endpoint = switch (TALK_TYPE)
+		| \user => "#{config.web-streaming-url}/streaming/talk"
+		| \group => "#{config.web-streaming-url}/streaming/group-talk"
+	socket = io.connect endpoint
 
 	socket.on \connected ->
-		socket.json.emit \init {
-			'otherparty-id': OTHERPARTY.id
-		}
+		sign = switch (TALK_TYPE)
+			| \user => {'otherparty-id': OTHERPARTY.id}
+			| \group => {'group-id': GROUP.id}
+		socket.json.emit \init sign
 
 	socket.on \inited ->
-		socket.emit \alive
-		$ '#stream .message.otherparty' .each ->
-			socket.emit \read ($ @ .attr \data-id)
+		# something
 
 	socket.on \disconnect (client) ->
 		console.log 'Disconnected'
@@ -92,10 +172,10 @@ $ ->
 		socket.emit \read message.id
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
-		stream.add message
+		window.stream.add message
 
 	socket.on \me-message (message) ->
-		stream.add message
+		window.stream.add message
 
 	socket.on \otherparty-message-update (message) ->
 		$message = $ '#stream' .find ".message[data-id=#{message.id}]"
@@ -128,24 +208,6 @@ $ ->
 					$message.find \.balloon .prepend ($ '<p class="read">' .text '既読')
 		, 100ms
 
-	socket.on \alive ->
-		$status = $ "<img src=\"#{OTHERPARTY.avatar-url}\" alt=\"avatar\" id=\"alive\">"
-		if ($ '#otherparty-status #alive')[0]
-			$ '#otherparty-status #alive' .remove!
-		else
-			$status.add-class \opening
-		$ \#otherparty-status .prepend $status
-		set-timeout ->
-			$status.add-class \normal
-			$status.remove-class \opening
-		, 500ms
-		set-timeout ->
-			$status.add-class \closing
-			set-timeout ->
-				$status.remove!
-			, 1000ms
-		, 3000ms
-
 	socket.on \type (type) ->
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
@@ -157,83 +219,3 @@ $ ->
 			set-timeout ->
 				$typing.remove!
 			, 5000ms
-
-	# Send alive signal
-	set-interval ->
-		socket.emit \alive
-	, 2000ms
-
-	$ '#post-form textarea' .bind \input ->
-		text = $ '#post-form textarea' .val!
-		socket.emit \type text
-
-	$ '#post-form textarea' .keypress (e) ->
-		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
-			send-message!
-
-	$ '#post-form textarea' .on \paste (event) ->
-		items = (event.clipboard-data || event.original-event.clipboard-data).items
-		for i from 0 to items.length - 1
-			item = items[i]
-			if item.kind == \file && item.type.index-of \image != -1
-				file = item.get-as-file!
-				upload-new-file file
-
-	$ '#post-form > .attach-from-local' .click ->
-		$ '#post-form > input[type=file]' .click!
-		false
-
-	$ '#post-form > input[type=file]' .change ->
-		file = ($ @).0.files.0
-		upload-new-file file
-
-	$ \#post-form .submit (event) ->
-		event.prevent-default!
-		send-message!
-
-	$ window .scroll ->
-		if $ window .scroll-top! == 0
-			read-more!
-
-	$ '#post-form > .grippie' .mousedown (e) ->
-		click-y = e.client-y
-		$textarea = $ '#post-form textarea'
-		current-height = $textarea.outer-height!
-
-		$ \html .mousemove (me) ->
-			height = current-height + (click-y - me.client-y)
-			$textarea.css \height "#{height}px"
-
-		$ \html .mouseleave ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
-
-		$ \html .mouseup ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
-
-		$ \html .bind \dragstart (e) ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
-
-		$ \html .bind \dragend (e) ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
-
-	function read-more
-		if not now-loading and not no-history
-			now-loading := yes
-			$.ajax "#{config.web-api-url}/talks/stream" {
-				data:
-					'otherparty-id': OTHERPARTY.id
-					'limit': 10
-					'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor}
-			.done (messages) ->
-				if messages.length > 0
-					old-height = $ document .height!
-					old-scroll = $ window .scroll-top!
-					messages.for-each (message) ->
-						stream.add-last message
-					$ document .scroll-top old-scroll + ($ document .height!) - old-height
-				else
-					no-history := yes
-					$ '#stream' .prepend $ '<p id="no-history"><i class="fa fa-flag"></i>これより過去の履歴はありません</p>'
-			.fail (data) ->
-			.always ->
-				now-loading := no

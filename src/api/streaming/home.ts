@@ -1,7 +1,7 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
-import * as cookie from 'cookie';
 import requestApi from '../../utils/request-api';
+import getSession from './get-session';
 import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
@@ -10,21 +10,7 @@ interface MKSocketIOSocket extends SocketIO.Socket {
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
 	io.of('/streaming/home').on('connection', (socket: MKSocketIOSocket) => {
-		// Get cookies
-		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
-
-		// Get sesson key
-		const sid: string = cookies[config.sessionKey];
-		const sidkey: string = sid.match(/s:(.+?)\./)[1];
-
-		// Resolve session
-		sessionStore.get(sidkey, (err: any, session: any) => {
-			if (err !== null) {
-				return console.error(err);
-			} else if (session === null) {
-				return;
-			}
-
+		getSession(socket, sessionStore).then((session: any) => {
 			// Get user
 			socket.user = session.user;
 

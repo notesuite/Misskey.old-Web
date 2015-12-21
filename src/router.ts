@@ -14,8 +14,8 @@ export default function router(app: express.Express): void {
 	'use strict';
 
 	app.param('userScreenName', paramUserScreenName);
-
 	app.param('postId', paramPostId);
+	app.param('talkGroupId', paramTalkGroupId);
 
 	app.get('/', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.isLogin) {
@@ -96,12 +96,12 @@ export default function router(app: express.Express): void {
 	});
 
 	app.get(`/subdomain/${config.publicConfig.talkDomain}/:userScreenName`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		callController(req, res, 'i/talk');
+		callController(req, res, 'i/talk/user');
 	});
 
 	app.get(`/subdomain/${config.publicConfig.talkDomain}/\:group/:talkGroupId`,
 		(req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		callController(req, res, 'i/talk');
+		callController(req, res, 'i/talk/group');
 	});
 
 	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
@@ -190,5 +190,23 @@ function paramPostId(
 			res.status(404);
 			callController(req, res, 'post-not-found');
 		}
+	});
+}
+
+function paramTalkGroupId(
+	req: MisskeyExpressRequest,
+	res: MisskeyExpressResponse,
+	next: () => void,
+	groupId: string
+): void {
+	'use strict';
+
+	requestApi('talks/group/show', {
+		'group-id': groupId
+	}, req.me).then((group: Object) => {
+		req.data.talkGroup = group;
+		next();
+	}, (err: any) => {
+		res.sendStatus(500);
 	});
 }
