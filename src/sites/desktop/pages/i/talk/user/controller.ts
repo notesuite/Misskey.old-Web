@@ -11,7 +11,6 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	requestApi('talks/messages/stream', {
 		'user-id': otherparty.id
 	}, req.me.id).then((messages: any[]) => {
-		console.log(messages);
 		res.display({
 			otherparty: otherparty,
 			messages: messages.reverse()

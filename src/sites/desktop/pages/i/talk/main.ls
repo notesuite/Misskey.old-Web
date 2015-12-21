@@ -193,6 +193,9 @@ function init-streaming(stream)
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
 		stream.add message
+		$.ajax "#{config.web-api-url}/talks/messages/read" {
+			data: {'message-id': message.id}
+		}
 
 	socket.on \message-update (message) ->
 		$message = $ '#stream' .find ".message[data-id=#{message.id}]"
@@ -206,6 +209,7 @@ function init-streaming(stream)
 			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
 
 	socket.on \read (id) ->
+		console.log id
 		set-timeout ->
 			$message = $ '#stream' .children ".message[data-id='#{id}']"
 			if $message?
