@@ -99,6 +99,11 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/talk');
 	});
 
+	app.get(`/subdomain/${config.publicConfig.talkDomain}/\:group/:talkGroupId`,
+		(req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'i/talk');
+	});
+
 	app.get('/i/album', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'i/album');
 	});
