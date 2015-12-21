@@ -1,0 +1,16 @@
+extends ../../../../../base
+
+block title
+	| グループの作成
+		
+block body
+	main(role='main')
+		form#form
+			h1
+				i.fa.fa-users
+				| グループの作成
+			label
+				h2 グループ名
+				input#name(type='text', required)
+			button(type='submit')
+				| 作成
