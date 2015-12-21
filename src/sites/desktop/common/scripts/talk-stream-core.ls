@@ -24,8 +24,12 @@ class Stream
 	init-message: ($message) ->
 		THIS = @
 
-		$message.find '.content > .text' .html marked ($message.find '.content > .text' .html!)
-		imageviewer $message.find '.content > .image'
+		message-type = $message.attr \data-type
+
+		switch (message-type)
+		| \user-message, \group-message =>
+			$message.find '.content > .text' .html marked ($message.find '.content > .text' .html!)
+			imageviewer $message.find '.content > .image'
 
 	init-date-info: ($message, reverse = no) ->
 		$compare-message =

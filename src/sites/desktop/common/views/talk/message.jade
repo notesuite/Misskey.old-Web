@@ -1,8 +1,16 @@
 mixin message(message)
-	article(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
+	case message.type
+		when 'user-message'
+			user-message(message)
+		when 'group'
+			group-message(message)
+
+mixin user-message(message)
+	article(class= 'message user ' + (message.user.id == me.id ? 'me' : 'otherparty')
 			title= message.createdAt
 			data-id= message.id
 			data-cursor= message.cursor
+			data-type= 'user'
 			data-is-modified!= message.isModified.toString()
 			data-is-read!= message.isRead.toString()
 			data-is-deleted!= message.isDeleted.toString()
@@ -15,6 +23,41 @@ mixin message(message)
 				if !message.isDeleted && (message.user.id == me.id)
 					if message.isRead
 						p.read 既読
+					button.delete-button(title='メッセージを削除')
+						img(src=config.resourcesUrl + '/desktop/pages/i/talk/delete.png', alt='Delete')
+				div.content
+					if !message.isDeleted
+						if message.text != ''
+							div.text= message.text
+						if message.file
+							div.file.image
+								img(src= message.file.url, alt='image', title= message.file.name)
+					else
+						p.is-deleted このメッセージは削除されました
+			footer
+				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
+				if message.isModified
+					i.fa.fa-pencil.is-modified
+
+mixin group-message(message)
+	article(class= 'message group ' + (message.user.id == me.id ? 'me' : 'otherparty')
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-type= 'group'
+			data-is-modified!= message.isModified.toString()
+			data-is-deleted!= message.isDeleted.toString()
+			data-user-id= message.user.id
+			data-created-at= message.createdAt)
+		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
+			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
+		div.content-container
+			div.balloon
+				if !message.isDeleted && (message.user.id == me.id)
+					if message.reads.length > 0
+						p.read
+							| 既読
+							= message.reads.length
 					button.delete-button(title='メッセージを削除')
 						img(src=config.resourcesUrl + '/desktop/pages/i/talk/delete.png', alt='Delete')
 				div.content

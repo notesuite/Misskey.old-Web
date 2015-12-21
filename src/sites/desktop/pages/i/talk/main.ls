@@ -58,7 +58,7 @@ $ window .resize ->
 	set-body-margin-bottom!
 
 $ ->
-	window.stream = new Stream $ \#stream
+	stream = new Stream $ \#stream
 
 	set-body-margin-bottom!
 	scroll 0, ($ \html .outer-height!)
@@ -71,7 +71,7 @@ $ ->
 		+attributes
 	}
 
-	init-streaming!
+	socket = init-streaming stream
 
 	# read-more!
 
@@ -150,7 +150,7 @@ $ ->
 			.always ->
 				now-loading := no
 
-function init-streaming
+function init-streaming(stream)
 	endpoint = switch (TALK_TYPE)
 		| \user => "#{config.web-streaming-url}/streaming/talk"
 		| \group => "#{config.web-streaming-url}/streaming/group-talk"
@@ -168,32 +168,18 @@ function init-streaming
 	socket.on \disconnect (client) ->
 		console.log 'Disconnected'
 
-	socket.on \otherparty-message (message) ->
-		socket.emit \read message.id
+	socket.on \message (message) ->
+		# TODO
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
-		window.stream.add message
+		stream.add message
 
-	socket.on \me-message (message) ->
-		window.stream.add message
-
-	socket.on \otherparty-message-update (message) ->
+	socket.on \message-update (message) ->
 		$message = $ '#stream' .find ".message[data-id=#{message.id}]"
 		if $message?
 			$message.find \.text .text message.text
 
-	socket.on \me-message-update (message) ->
-		$message = $ '#stream' .find ".message[data-id=#{message.id}]"
-		if $message?
-			$message.find \.text .text message.text
-
-	socket.on \otherparty-message-delete (id) ->
-		$message = $ '#stream' .find ".message[data-id=#{id}]"
-		if $message?
-			$message.find \.content .empty!
-			$message.find \.content .append '<p class="is-deleted">このメッセージは削除されました</p>'
-
-	socket.on \me-message-delete (id) ->
+	socket.on \message-delete (id) ->
 		$message = $ '#stream' .find ".message[data-id=#{id}]"
 		if $message?
 			$message.find \.content .empty!
@@ -219,3 +205,5 @@ function init-streaming
 			set-timeout ->
 				$typing.remove!
 			, 5000ms
+
+	return socket
