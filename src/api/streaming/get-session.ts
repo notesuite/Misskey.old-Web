@@ -2,7 +2,7 @@ import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 import config from '../../config';
 
-export default function(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
+export default function getSession(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
 	'use strict';
 	return new Promise<Object>((resolve, reject) => {
 		// Get cookies
