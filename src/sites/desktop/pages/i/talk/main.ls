@@ -142,11 +142,20 @@ $ ->
 	function read-more
 		if not now-loading and not no-history
 			now-loading := yes
-			$.ajax "#{config.web-api-url}/talks/messages/stream" {
-				data:
-					'user-id': OTHERPARTY.id
-					'limit': 10
-					'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor}
+			data = switch (TALK_TYPE)
+				| \user =>
+					{
+						'user-id': OTHERPARTY.id
+						'limit': 10
+						'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor
+					}
+				| \group =>
+					{
+						'group-id': GROUP.id
+						'limit': 10
+						'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor
+					}
+			$.ajax "#{config.web-api-url}/talks/messages/stream" {data}
 			.done (messages) ->
 				if messages.length > 0
 					old-height = $ document .height!
