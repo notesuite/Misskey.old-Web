@@ -47,7 +47,7 @@ mixin user-message(message)
 					img.avatar(src= message.recipient.avatarUrl + '?mini', alt='avatar')
 					header
 						h2= message.recipient.name
-						span.screenName= '@' + message.recipient.screenName
+						span.screen-name= '@' + message.recipient.screenName
 						time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
 					p.text
 						span.me あなた:
@@ -75,7 +75,7 @@ mixin group-message(message)
 	li.talk.group(
 			data-is-my-message='false',
 			data-is-unread!= unread.toString())
-		a(href= config.talkUrl + '/' + message.user.screenName)
+		a(href= config.talkUrl + '/:group/' + message.group.id)
 			article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks/unread.svg")'} : {})
 				img.icon(src= message.user.avatarUrl + '?mini', alt='icon')
 				header
