@@ -4,15 +4,15 @@ import requestApi from '../../utils/request-api';
 import getSession from './get-session';
 import config from '../../config';
 
-interface MKSocketIOSocket extends SocketIO.Socket {
+interface MKSocket extends SocketIO.Socket {
 	user: any;
 }
 
-interface MKUserSocketIOSocket extends MKSocketIOSocket {
+interface MKUserSocket extends MKSocket {
 	otherpartyId: string;
 }
 
-interface MKGroupSocketIOSocket extends MKSocketIOSocket {
+interface MKGroupSocket extends MKSocket {
 	groupId: string;
 }
 
@@ -26,7 +26,7 @@ function createRedisClient(): redis.RedisClient {
 }
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
-	io.of('/streaming/talk').on('connection', (socket: MKUserSocketIOSocket) => {
+	io.of('/streaming/talk').on('connection', (socket: MKUserSocket) => {
 		getSession(socket, sessionStore).then((session: any) => {
 			socket.user = session.user;
 			const subscriber = createRedisClient();
@@ -68,7 +68,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 		}
 	});
 
-	io.of('/streaming/group-talk').on('connection', (socket: MKGroupSocketIOSocket) => {
+	io.of('/streaming/group-talk').on('connection', (socket: MKGroupSocket) => {
 		getSession(socket, sessionStore).then((session: any) => {
 			socket.user = session.user;
 			const subscriber = createRedisClient();
