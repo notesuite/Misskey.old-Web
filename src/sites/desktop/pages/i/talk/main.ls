@@ -13,14 +13,25 @@ function send-message
 
 	$submit-button.attr \disabled yes
 
-	$.ajax "#{config.web-api-url}/talks/messages/say" {
-		data:
-			'text': ($form.find \textarea .val!)
-			'user-id': OTHERPARTY.id
-			#'files': JSON.stringify(($form.find '.files > li' .map ->
-			#	($ @).attr \data-id).get!)
-			'file': ($form.find '.files > li:first-child' .attr \data-id)
-	}
+	data = switch (TALK_TYPE)
+		| \user =>
+			{
+				'text': ($form.find \textarea .val!)
+				'user-id': OTHERPARTY.id
+				#'files': JSON.stringify(($form.find '.files > li' .map ->
+				#	($ @).attr \data-id).get!)
+				'file': ($form.find '.files > li:first-child' .attr \data-id)
+			}
+		| \group =>
+			{
+				'text': ($form.find \textarea .val!)
+				'group-id': GROUP.id
+				#'files': JSON.stringify(($form.find '.files > li' .map ->
+				#	($ @).attr \data-id).get!)
+				'file': ($form.find '.files > li:first-child' .attr \data-id)
+			}
+
+	$.ajax "#{config.web-api-url}/talks/messages/say" {data}
 	.done (data) ->
 		$form[0].reset!
 		$form.find \.files .empty!
