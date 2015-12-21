@@ -13,6 +13,7 @@ $ ->
 			data:
 				'name': ($form.find \#name .val!)
 		}
-		.done (data) ->
+		.done (group) ->
+			location.href = "/:group/#{group.id}"
 		.fail (data) ->
 			$submit-button.attr \disabled no
