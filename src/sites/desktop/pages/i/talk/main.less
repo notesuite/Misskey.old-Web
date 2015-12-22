@@ -15,8 +15,8 @@ html {
 }
 
 main {
-	width: 600px;
-	max-width: 100%;
+	max-width: 600px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 0;
 
@@ -29,116 +29,123 @@ main {
 		width: 100%;
 		background: #fff;
 
-		> h1 {
-			display: block;
-			float: left;
-			margin: 0;
-			padding: 0 16px;
-			line-height: 48px;
-			font-size: 1em;
-			color: #444;
-		}
+		.body {
+			max-width: 600px;
+			width: 100%;
+			margin: 0 auto;
+			padding: 0;
 
-		> .dropdown {
-			display: inline-block;
-			position: relative;
-			overflow: visible;
-			float: right;
+			> h1 {
+				display: block;
+				float: left;
+				margin: 0;
+				padding: 0 16px;
+				line-height: 48px;
+				font-size: 1em;
+				color: #444;
+			}
 
-			&[data-active='true'] {
-				background: #eee;
+			> .dropdown {
+				display: inline-block;
+				position: relative;
+				overflow: visible;
+				float: right;
+
+				&[data-active='true'] {
+					background: #eee;
+
+					> button {
+						color: #111 !important;
+					}
+
+					> .dropdown-content {
+						visibility: visible;
+					}
+				}
 
 				> button {
-					color: #111 !important;
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					display: block;
+					margin: 0;
+					padding: 0;
+					width: 48px;
+					line-height: 48px;
+					font-size: 1.5em;
+					font-weight: normal;
+					text-decoration: none;
+					color: #888;
+					background: transparent;
+					outline: none;
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+					cursor: pointer;
+					transition: color 0.1s ease;
+
+					* {
+						pointer-events: none;
+					}
+
+					&:hover {
+						color: #444;
+					}
 				}
 
 				> .dropdown-content {
-					visibility: visible;
-				}
-			}
-
-			> button {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				display: block;
-				margin: 0;
-				padding: 0;
-				width: 48px;
-				line-height: 48px;
-				font-size: 1.5em;
-				font-weight: normal;
-				text-decoration: none;
-				color: #888;
-				background: transparent;
-				outline: none;
-				border: none;
-				border-radius: 0;
-				box-shadow: none;
-				cursor: pointer;
-				transition: color 0.1s ease;
-
-				* {
-					pointer-events: none;
-				}
-
-				&:hover {
-					color: #444;
-				}
-			}
-
-			> .dropdown-content {
-				visibility: hidden;
-				display: block;
-				position: absolute;
-				top: auto;
-				right: 0;
-				z-index: 3;
-				width: 270px;
-				margin: 0;
-				padding: 0;
-				background: #eee;
-
-				> ul {
+					visibility: hidden;
+					display: block;
+					position: absolute;
+					top: auto;
+					right: 0;
+					z-index: 3;
+					width: 270px;
 					margin: 0;
 					padding: 0;
-					list-style: none;
-					font-size: 1em;
-					border-bottom: solid 1px #ddd;
+					background: #eee;
 
-					&:last-child {
-						border-bottom: none;
-					}
+					> ul {
+						margin: 0;
+						padding: 0;
+						list-style: none;
+						font-size: 1em;
+						border-bottom: solid 1px #ddd;
 
-					> li {
-						display: inline-block;
-						width: 100%;
+						&:last-child {
+							border-bottom: none;
+						}
 
-						> * {
+						> li {
 							display: inline-block;
-							z-index: 1;
-							box-sizing: border-box;
-							vertical-align: top;
 							width: 100%;
-							margin: 0;
-							padding: 12px 20px;
-							text-decoration: none;
-							color: #444;
-							transition: none;
 
-							&:hover {
-								color: #fff;
-								background-color: @themeColor;
-							}
+							> * {
+								display: inline-block;
+								z-index: 1;
+								box-sizing: border-box;
+								vertical-align: top;
+								width: 100%;
+								margin: 0;
+								padding: 12px 20px;
+								text-decoration: none;
+								color: #444;
+								transition: none;
 
-							&:active {
-								color: #fff;
-								background-color: darken(@themeColor, 10%);
-							}
+								&:hover {
+									color: #fff;
+									background-color: @themeColor;
+								}
 
-							> i {
-								width: 2em;
-								text-align: center;
+								&:active {
+									color: #fff;
+									background-color: darken(@themeColor, 10%);
+								}
+
+								> i {
+									width: 2em;
+									text-align: center;
+								}
 							}
 						}
 					}

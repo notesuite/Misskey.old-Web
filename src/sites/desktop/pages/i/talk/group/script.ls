@@ -2,8 +2,8 @@ $ = require 'jquery'
 require '../main.js'
 
 $ ->
-	$ 'main > header > .nav > button' .click ->
-		$dropdown = $ 'main > header > .nav'
+	$ 'main > header > .body > .nav > button' .click ->
+		$dropdown = $ 'main > header > .body > .nav'
 
 		function close
 			$dropdown.attr \data-active \false
