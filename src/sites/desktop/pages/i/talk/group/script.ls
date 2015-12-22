@@ -60,9 +60,9 @@ $ ->
 										$ '<span class="screen-name">' .text "@#{user.screen-name}"
 									.append do
 										$ '<button class="invite">'
-											..text "招待"
-											..click ->
-												send-invitetion user, dialog-close
+										.text "招待"
+										.click ->
+											send-invitetion user, dialog-close
 
 function send-invitetion(user, dialog-close)
 	dialog-close!
