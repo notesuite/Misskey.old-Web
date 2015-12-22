@@ -69,6 +69,7 @@ function send-invitetion(user, dialog-close)
 
 	$.ajax "#{config.web-api-url}/talks/group/members/invite" {
 		data:
+			'group-id': GROUP.id
 			'user-id': user.id}
 
 	$modal-ok = $ '<button>Okay</button>'

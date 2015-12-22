@@ -4,6 +4,8 @@ mixin message(message)
 			+user-message(message)
 		when 'group-message'
 			+group-message(message)
+		when 'group-send-invitation-activity'
+			+group-send-invitation-activity(message)
 
 mixin user-message(message)
 	article(class= 'message user-message ' + (message.user.id == me.id ? 'me' : 'otherparty')
@@ -73,3 +75,14 @@ mixin group-message(message)
 				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
 				if message.isModified
 					i.fa.fa-pencil.is-modified
+
+mixin group-send-invitation-activity(message)
+	article(class= 'message group-send-invitation-activity'
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-type= 'group-send-invitation-activity'
+			data-created-at= message.createdAt)
+		p
+			b.invitee= message.invitee.name
+			| を招待しました
