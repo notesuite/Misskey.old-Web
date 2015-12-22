@@ -231,3 +231,7 @@ function init-streaming(stream)
 			, 5000ms
 
 	return socket
+
+$ window .load ->
+	header-height = $ 'main > header' .outer-height!
+	$ \body .css \margin-top "#{header-height}px"

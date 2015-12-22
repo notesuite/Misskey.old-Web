@@ -9,3 +9,26 @@ block title
 
 block empty-stream-message
 	| このグループにまだ投稿はありません
+
+block header
+	h1
+		= group.name
+	div.nav.dropdown
+		button
+			i.fa.fa-bars
+		nav.dropdown-content
+			if group.owner.id == me.id
+				ul.menu
+					li: p
+						i.fa.fa-cog
+						| グループの設定
+					li: p
+						i.fa.fa-users
+						| メンバーの管理
+			ul.menu
+				li: p
+					i.fa.fa-user-plus
+					| 招待
+				li: p
+					i.fa.fa-minus-circle
+					| グループを離脱
