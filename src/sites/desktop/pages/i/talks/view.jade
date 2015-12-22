@@ -77,6 +77,7 @@ mixin group-message(message)
 			data-is-unread!= unread.toString())
 		a(href= config.talkUrl + '/:group/' + message.group.id)
 			article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks/unread.svg")'} : {})
+				i.fa.fa-users.mark
 				img.icon(src= message.user.avatarUrl + '?mini', alt='icon')
 				header
 					h2= message.group.name
