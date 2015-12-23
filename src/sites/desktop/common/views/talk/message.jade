@@ -84,5 +84,5 @@ mixin group-send-invitation-activity(message)
 			data-type= 'group-send-invitation-activity'
 			data-created-at= message.createdAt)
 		p
-			b.invitee= message.invitee.name
+			a.invitee(href= config.url + '/' + message.invitee.screenName, target='_blank')= message.invitee.name
 			| を招待しました
