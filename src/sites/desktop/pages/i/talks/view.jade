@@ -19,6 +19,8 @@ block body
 							+user-message(message)
 						when 'group-message'
 							+group-message(message)
+						when 'group-send-invitation-activity'
+							+group-send-invitation-activity(message)
 		else
 			p#empty-histories
 				| 履歴はありません。
@@ -49,11 +51,12 @@ mixin user-message(message)
 						h2= message.recipient.name
 						span.screen-name= '@' + message.recipient.screenName
 						time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
-					p.text
-						span.me あなた:
-						= message.text
-					if message.file
-						img.image(src= message.file.url, alt='image')
+					div.body
+						p.text
+							span.me あなた:
+							= message.text
+						if message.file
+							img.image(src= message.file.url, alt='image')
 	else
 		- var unread = (message.user.id != me.id && !message.isRead);
 		li.talk.user(
@@ -66,9 +69,10 @@ mixin user-message(message)
 						h2= message.user.name
 						span.screen-name= '@' + message.user.screenName
 						time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
-					p.text= message.text
-					if message.file
-						img.image(src= message.file.url, alt='image')
+					div.body
+						p.text= message.text
+						if message.file
+							img.image(src= message.file.url, alt='image')
 
 mixin group-message(message)
 	- var unread = (message.user.id != me.id && message.reads.indexOf(me.id) == -1);
@@ -83,6 +87,25 @@ mixin group-message(message)
 					h2= message.group.name
 					span.members-count= message.group.members.length + '人の参加者'
 					time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
-				p.text= message.text
-				if message.file
-					img.image(src= message.file.url, alt='image')
+				div.body
+					p.text= message.text
+					if message.file
+						img.image(src= message.file.url, alt='image')
+
+mixin group-send-invitation-activity(message)
+	- var unread = message.reads.indexOf(me.id) == -1;
+	li.talk.group(
+			data-is-my-message='false',
+			data-is-unread!= unread.toString())
+		a(href= config.talkUrl + '/:group/' + message.group.id)
+			article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks/unread.svg")'} : {})
+				i.fa.fa-users.mark
+				img.icon(src= message.inviter.avatarUrl + '?mini', alt='icon')
+				header
+					h2= message.group.name
+					span.members-count= message.group.members.length + '人の参加者'
+					time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
+				div.body
+					p.text
+						b.invitee= message.invitee.name
+						| を招待しました
