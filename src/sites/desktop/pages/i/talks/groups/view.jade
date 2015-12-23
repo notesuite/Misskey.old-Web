@@ -1,16 +1,10 @@
 extends ../../../base
-include ./common
+include ../common
 
 block title
 	| トーク
 		
 block body
-	div#search(role='search')
-		div.form
-			label(for='search-input')
-				i.fa.fa-search
-			input#search-input(type='search', placeholder='ユーザーを探してトークを開始', title='ユーザー名を入力してユーザーを探します')
-		div.result
 	main(role='main')
 		if messages != null && messages.length > 0
 			ol#talks

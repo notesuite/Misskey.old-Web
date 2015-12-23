@@ -62,6 +62,8 @@
 		"src/sites/desktop/pages/i/talk/user/controller.ts",
 		"src/sites/desktop/pages/i/talk/group/controller.ts",
 		"src/sites/desktop/pages/i/talks/controller.ts",
+		"src/sites/desktop/pages/i/talks/users/controller.ts",
+		"src/sites/desktop/pages/i/talks/groups/controller.ts",
 		"src/sites/desktop/pages/i/talks/group/create/controller.ts",
 		"src/sites/mobile/pages/entrance/controller.ts",
 		"src/sites/mobile/pages/error/controller.ts",
