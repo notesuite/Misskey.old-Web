@@ -32,6 +32,9 @@ $ ->
 			$ '<p><i class="fa fa-search"></i>ユーザーを検索してグループに招待</p>'
 			$search
 			[$modal-ok]
+			true
+			->
+				$search.find 'input' .focus!
 		$modal-ok.click -> dialog-close!
 
 		$search.find 'input' .bind \input ->
@@ -71,11 +74,19 @@ function send-invitetion(user, dialog-close)
 		data:
 			'group-id': GROUP.id
 			'user-id': user.id}
-
-	$modal-ok = $ '<button>Okay</button>'
-	dialog-close2 = show-modal-dialog do
-		$ '<p><i class="fa fa-info-circle"></i>招待しました</p>'
-		$ "<p />" .text "#{user.name}さんを招待しました。"
-		[$modal-ok]
-	$modal-ok.click ->
-		dialog-close2!
+	.done ->
+		$modal-ok = $ '<button>Okay</button>'
+		dialog-close2 = show-modal-dialog do
+			$ '<p><i class="fa fa-info-circle"></i>招待しました</p>'
+			$ "<p />" .text "#{user.name}さんを招待しました。"
+			[$modal-ok]
+		$modal-ok.click ->
+			dialog-close2!
+	.fail (err) ->
+		$modal-ok = $ '<button>おｋ</button>'
+		dialog-close2 = show-modal-dialog do
+			$ '<p><i class="fa fa-exclamation-triangle"></i>招待できませんでした</p>'
+			$ "<p />" .text "エラー: #{err.response-text}"
+			[$modal-ok]
+		$modal-ok.click ->
+			dialog-close2!
