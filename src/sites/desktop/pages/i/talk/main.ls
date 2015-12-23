@@ -189,7 +189,6 @@ function init-streaming(stream)
 		console.log 'Disconnected'
 
 	socket.on \message (message) ->
-		console.log message
 		# TODO
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
