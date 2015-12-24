@@ -6,6 +6,8 @@ mixin message(message)
 			+group-message(message)
 		when 'group-send-invitation-activity'
 			+group-send-invitation-activity(message)
+		when 'group-member-join-activity'
+			+group-member-join-activity(message)
 
 mixin user-message(message)
 	article(class= 'message user-message ' + (message.user.id == me.id ? 'me' : 'otherparty')
@@ -86,3 +88,14 @@ mixin group-send-invitation-activity(message)
 		p
 			a.invitee(href= config.url + '/' + message.invitee.screenName, target='_blank')= message.invitee.name
 			| を招待しました
+
+mixin group-member-join-activity(message)
+	article(class= 'message group-member-join-activity'
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-type= 'group-member-join-activity'
+			data-created-at= message.createdAt)
+		p
+			a.joiner(href= config.url + '/' + message.joiner.screenName, target='_blank')= message.joiner.name
+			| が参加しました

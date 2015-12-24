@@ -35,7 +35,7 @@ block body
 					| グループへの招待
 					span.count= invitations.length
 				each invitation in invitations
-					div.invitation
+					div.invitation(data-id= invitation.id, data-group-id= invitation.group.id)
 						article
 							img.icon(src= invitation.group.iconUrl + '?mini', alt='icon')
 							header

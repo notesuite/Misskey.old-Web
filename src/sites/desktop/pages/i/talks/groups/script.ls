@@ -34,3 +34,18 @@ $ ->
 									$ '<span class="name">' .text user.name
 								.append do
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
+
+	$ '#invitations > invitation' .each ->
+		$invitation = $ @
+		$invitation.find 'button.accept' .click ->
+			$.ajax "#{config.web-api-url}/talks/invitations/accept" {
+				data:
+					'invitation-id': $invitation.attr 'data-id'}
+			.done (result) ->
+				location.href = config.talk-url + '/:group/' + $invitation.attr 'data-group-id'
+
+		$invitation.find 'button.decline' .click ->
+			$.ajax "#{config.web-api-url}/talks/invitations/decline" {
+				data:
+					'invitation-id': $invitation.attr 'data-id'}
+			$invitation.remove!
