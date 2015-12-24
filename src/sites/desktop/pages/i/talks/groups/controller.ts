@@ -5,7 +5,9 @@ import requestApi from '../../../../../../utils/request-api';
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
 
-	requestApi('talks/group/history/show', {}, req.me.id).then((messages: any[]) => {
+	requestApi('talks/history/show', {
+		type: 'group'
+	}, req.me.id).then((messages: any[]) => {
 		console.log(messages);
 		requestApi('talks/group/invitations/show', {}, req.me.id).then((invitations: any[]) => {
 			console.log(invitations);
