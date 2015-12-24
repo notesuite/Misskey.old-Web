@@ -74,7 +74,8 @@
 		"src/sites/mobile/pages/i/post-new/controller.ts",
 		"src/sites/mobile/pages/i/settings/controller.ts",
 		"src/sites/mobile/pages/i/talks/controller.ts",
-		"src/sites/mobile/pages/i/talk/controller.ts",
+		"src/sites/mobile/pages/i/talk/group/controller.ts",
+		"src/sites/mobile/pages/i/talk/user/controller.ts",
 		"src/sites/mobile/pages/user/home/controller.ts"
 	]
 }

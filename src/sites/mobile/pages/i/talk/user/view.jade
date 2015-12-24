@@ -1,0 +1,14 @@
+extends ../main
+
+block meta
+	script!= 'var TALK_TYPE = "user";'
+	script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
+
+block title
+	= 'トーク: ' + otherparty.name
+
+block header
+	= 'トーク: ' + otherparty.name
+
+block empty-stream-message
+	| このユーザーとまだ会話したことはありません

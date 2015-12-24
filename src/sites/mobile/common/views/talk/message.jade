@@ -1,8 +1,20 @@
 mixin message(message)
-	article(class= 'message ' + (message.user.id == me.id ? 'me' : 'otherparty')
+	case message.type
+		when 'user-message'
+			+user-message(message)
+		when 'group-message'
+			+group-message(message)
+		when 'group-send-invitation-activity'
+			+group-send-invitation-activity(message)
+		when 'group-member-join-activity'
+			+group-member-join-activity(message)
+
+mixin user-message(message)
+	article(class= 'message user-message ' + (message.user.id == me.id ? 'me' : 'otherparty')
 			title= message.createdAt
 			data-id= message.id
 			data-cursor= message.cursor
+			data-type= 'user-message'
 			data-is-modified!= message.isModified.toString()
 			data-is-read!= message.isRead.toString()
 			data-is-deleted!= message.isDeleted.toString()
@@ -28,3 +40,58 @@ mixin message(message)
 				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
 				if message.isModified
 					i.fa.fa-pencil.is-modified
+
+mixin group-message(message)
+	article(class= 'message group-message ' + (message.user.id == me.id ? 'me' : 'otherparty')
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-type= 'group-message'
+			data-is-modified!= message.isModified.toString()
+			data-is-deleted!= message.isDeleted.toString()
+			data-user-id= message.user.id
+			data-created-at= message.createdAt)
+		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
+			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
+		div.content-container
+			div.balloon
+				if !message.isDeleted && (message.user.id == me.id)
+					if message.reads.length > 0
+						p.read
+							| 既読
+							= message.reads.length
+				div.content
+					if !message.isDeleted
+						if message.text != ''
+							div.text= message.text
+						if message.file
+							div.file.image
+								img(src= message.file.url, alt='image', title= message.file.name)
+					else
+						p.is-deleted このメッセージは削除されました
+			footer
+				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
+				if message.isModified
+					i.fa.fa-pencil.is-modified
+
+mixin group-send-invitation-activity(message)
+	article(class= 'message group-send-invitation-activity'
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-type= 'group-send-invitation-activity'
+			data-created-at= message.createdAt)
+		p
+			a.invitee(href= config.url + '/' + message.invitee.screenName, target='_blank')= message.invitee.name
+			| を招待しました
+
+mixin group-member-join-activity(message)
+	article(class= 'message group-member-join-activity'
+			title= message.createdAt
+			data-id= message.id
+			data-cursor= message.cursor
+			data-type= 'group-member-join-activity'
+			data-created-at= message.createdAt)
+		p
+			a.joiner(href= config.url + '/' + message.joiner.screenName, target='_blank')= message.joiner.name
+			| が参加しました

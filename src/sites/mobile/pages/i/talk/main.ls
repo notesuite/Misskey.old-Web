@@ -18,16 +18,12 @@ function send-message
 			{
 				'text': ($form.find \textarea .val!)
 				'user-id': OTHERPARTY.id
-				#'files': JSON.stringify(($form.find '.files > li' .map ->
-				#	($ @).attr \data-id).get!)
 				'file': ($form.find '.files > li:first-child' .attr \data-id)
 			}
 		| \group =>
 			{
 				'text': ($form.find \textarea .val!)
 				'group-id': GROUP.id
-				#'files': JSON.stringify(($form.find '.files > li' .map ->
-				#	($ @).attr \data-id).get!)
 				'file': ($form.find '.files > li:first-child' .attr \data-id)
 			}
 
@@ -113,27 +109,6 @@ $ ->
 	$ \#post-form .submit (event) ->
 		event.prevent-default!
 		send-message!
-
-	$ '#post-form > .grippie' .mousedown (e) ->
-		click-y = e.client-y
-		$textarea = $ '#post-form textarea'
-		current-height = $textarea.outer-height!
-
-		$ \html .mousemove (me) ->
-			height = current-height + (click-y - me.client-y)
-			$textarea.css \height "#{height}px"
-
-		$ \html .mouseleave ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
-
-		$ \html .mouseup ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
-
-		$ \html .bind \dragstart (e) ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
-
-		$ \html .bind \dragend (e) ->
-			$ @ .unbind 'mouseup mousemove mouseleave'
 
 	$ window .scroll ->
 		if $ window .scroll-top! == 0
@@ -230,7 +205,3 @@ function init-streaming(stream)
 			, 5000ms
 
 	return socket
-
-$ window .load ->
-	header-height = $ 'main > header' .outer-height!
-	$ \body .css \margin-top "#{header-height}px"

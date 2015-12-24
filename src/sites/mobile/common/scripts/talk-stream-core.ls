@@ -1,5 +1,12 @@
 $ = require 'jquery'
+marked = require 'marked'
 message-compiler = require '../views/talk/render.jade'
+
+marked.set-options {
+	+gfm
+	+breaks
+	+sanitize
+}
 
 class Stream
 	($stream) ->
@@ -15,7 +22,12 @@ class Stream
 
 	init-message: ($message) ->
 		THIS = @
-		# something
+
+		message-type = $message.attr \data-type
+
+		switch (message-type)
+		| \user-message, \group-message =>
+			$message.find '.content > .text' .html marked ($message.find '.content > .text' .html!)
 
 	init-date-info: ($message, reverse = no) ->
 		$compare-message =
@@ -33,7 +45,6 @@ class Stream
 				$message.after $date-info
 			else
 				$message.before $date-info
-
 
 	check-can-scroll: ->
 		$window = $ window
@@ -54,7 +65,7 @@ class Stream
 
 		can-scroll = THIS.check-can-scroll!
 		THIS.init-message $message
-		$message.append-to THIS.$stream
+		$message.append-to THIS.$stream .hide!.show 200ms
 		THIS.init-date-info $message
 		THIS.refresh-my-messages!
 		if can-scroll
