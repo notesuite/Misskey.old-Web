@@ -6,6 +6,9 @@ $ ->
 	header-height = $ '#search' .outer-height!
 	$ \main .css \margin-top "#{header-height}px"
 
+	footer-height = $ '#nav' .outer-height!
+	$ \main .css \margin-bottom "#{footer-height}px"
+
 	$ '#search input' .bind \input ->
 		$input = $ @
 		$result = $ '#search .result'
