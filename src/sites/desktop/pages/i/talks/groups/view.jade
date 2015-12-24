@@ -5,6 +5,12 @@ block title
 	| トーク
 		
 block body
+	div#search(role='search')
+		div.form
+			label(for='search-input')
+				i.fa.fa-search
+			input#search-input(type='search', placeholder='グループを検索', title='グループ名を入力してグループを探します')
+		div.result
 	main(role='main')
 		if messages != null && messages.length > 0
 			ol#talks
@@ -20,18 +26,18 @@ block body
 			p#empty-histories
 				| 履歴はありません。
 				br
-				| ユーザーを検索して、いつでもトークを開始できます。
+				| グループを検索して、トークに参加できます。
 	nav#nav
 		ul
-			li.active: a
+			li: a(href='/')
 				i.fa.fa-clock-o
 				p 履歴
-			li: a(href='i/users')
+			li: a(href='/i/users')
 				i.fa.fa-user
 				p ユーザー
-			li: a(href='i/groups')
+			li.active: a
 				i.fa.fa-users
 				p グループ
-			li: a(href='i/group/create')
+			li: a(href='/i/group/create')
 				i.fa.fa-plus
 				p グループを作成

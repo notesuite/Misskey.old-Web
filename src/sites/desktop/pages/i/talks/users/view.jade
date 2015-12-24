@@ -29,15 +29,15 @@ block body
 				| ユーザーを検索して、いつでもトークを開始できます。
 	nav#nav
 		ul
-			li.active: a
+			li: a(href='/')
 				i.fa.fa-clock-o
 				p 履歴
-			li: a(href='i/users')
+			li.active: a
 				i.fa.fa-user
 				p ユーザー
-			li: a(href='i/groups')
+			li: a(href='/i/groups')
 				i.fa.fa-users
 				p グループ
-			li: a(href='i/group/create')
+			li: a(href='/i/group/create')
 				i.fa.fa-plus
 				p グループを作成
