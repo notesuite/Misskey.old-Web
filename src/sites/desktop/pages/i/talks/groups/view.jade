@@ -37,7 +37,7 @@ block body
 				each invitation in invitations
 					div.invitation
 						article
-							img.icon(src= invitation.inviter.avatarUrl + '?mini', alt='icon')
+							img.icon(src= invitation.group.iconUrl + '?mini', alt='icon')
 							header
 								h2= invitation.group.name
 								span.members-count= invitation.group.members.length + '人の参加者'
