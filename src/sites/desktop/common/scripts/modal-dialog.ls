@@ -6,10 +6,11 @@ module.exports = ($title, $content, buttons, can-close = true, on-shown = null, 
 	$ \html .css \overflow \hidden
 
 	$buttons = $ '<div class="buttons" />'
+	buttons = buttons.reverse!
 	buttons.for-each ($button) ->
 		$buttons.append $button
 
-	$body = $ '<p class="body" />'
+	$body = $ '<div class="body" />'
 		..append $content
 
 	if typeof $title == \string
@@ -56,7 +57,17 @@ module.exports = ($title, $content, buttons, can-close = true, on-shown = null, 
 		$container.click ->
 			close!
 		$ document .on \keydown keydown
+	else
+		$container.mousedown ->
+			$dialog.transition {
+				scale: '1.1'
+			} 100ms \ease
+			.transition {
+				scale: '1'
+			} 100ms \ease
 
+	$dialog.mousedown (e) ->
+		e.stop-immediate-propagation!
 	$dialog.click (e) ->
 		e.stop-immediate-propagation!
 
