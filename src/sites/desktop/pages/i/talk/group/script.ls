@@ -65,28 +65,46 @@ $ ->
 										$ '<button class="invite">'
 										.text "招待"
 										.click ->
-											send-invitetion user, dialog-close
+											dialog-close!
+											send-invitetion user
 
-function send-invitetion(user, dialog-close)
-	dialog-close!
+function send-invitetion(user)
+	$modal-ok = $ '<button>招待する</button>'
+	$modal-cancel = $ '<button>キャンセル</button>'
+	$textarea = $ '<textarea placeholder="招待状のメッセージを記入できます(オプション)"></textarea>'
+		.val "こんにちは、#{user.name}さん。#{GROUP.name}に参加しませんか？"
+	dialog-close = show-modal-dialog do
+		$ '<p>招待状のメッセージを記入できます</p>'
+		$textarea
+		[$modal-cancel, $modal-ok]
+		false
+		->
+			$textarea.focus!
+		'invite-form'
+	$modal-cancel.click ->
+		dialog-close!
+		return
+	$modal-ok.click ->
+		dialog-close!
 
-	$.ajax "#{config.web-api-url}/talks/group/members/invite" {
-		data:
-			'group-id': GROUP.id
-			'user-id': user.id}
-	.done ->
-		$modal-ok = $ '<button>Okay</button>'
-		dialog-close2 = show-modal-dialog do
-			$ '<p><i class="fa fa-info-circle"></i>招待しました</p>'
-			$ "<p />" .text "#{user.name}さんを招待しました。"
-			[$modal-ok]
-		$modal-ok.click ->
-			dialog-close2!
-	.fail (err) ->
-		$modal-ok = $ '<button>おｋ</button>'
-		dialog-close2 = show-modal-dialog do
-			$ '<p><i class="fa fa-exclamation-triangle"></i>招待できませんでした</p>'
-			$ "<p />" .text "エラー: #{err.response-text}"
-			[$modal-ok]
-		$modal-ok.click ->
-			dialog-close2!
+		$.ajax "#{config.web-api-url}/talks/group/members/invite" {
+			data:
+				'group-id': GROUP.id
+				'user-id': user.id
+				'text': $textarea.val!}
+		.done ->
+			$modal-ok = $ '<button>Okay</button>'
+			dialog-close2 = show-modal-dialog do
+				$ '<p><i class="fa fa-info-circle"></i>招待しました</p>'
+				$ "<p />" .text "#{user.name}さんを招待しました。"
+				[$modal-ok]
+			$modal-ok.click ->
+				dialog-close2!
+		.fail (err) ->
+			$modal-ok = $ '<button>おｋ</button>'
+			dialog-close2 = show-modal-dialog do
+				$ '<p><i class="fa fa-exclamation-triangle"></i>招待できませんでした</p>'
+				$ "<p />" .text "エラー: #{err.response-text}"
+				[$modal-ok]
+			$modal-ok.click ->
+				dialog-close2!

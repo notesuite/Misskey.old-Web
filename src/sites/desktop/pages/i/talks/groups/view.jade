@@ -30,9 +30,12 @@ block body
 				br
 				| もしくは、自分でグループを作成することもできます。
 		if invitations != null && invitations.length > 0
-			ol#invitations
+			div#invitations
+				h1
+					| グループへの招待
+					span.count= invitations.length
 				each invitation in invitations
-					li.invitation
+					div.invitation
 						article
 							img.icon(src= invitation.inviter.avatarUrl + '?mini', alt='icon')
 							header
@@ -45,6 +48,13 @@ block body
 								else
 									p.text.empty
 										| 招待についてのメッセージはありません。
+							footer
+								button.accept
+									i.fa.fa-check
+									| 承諾
+								button.refuse
+									i.fa.fa-ban
+									| 拒否
 
 		else
 			p#empty-invitations
