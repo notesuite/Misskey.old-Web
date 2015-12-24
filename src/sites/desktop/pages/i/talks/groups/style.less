@@ -1,2 +1,113 @@
 @import "../../../../common";
 @import "../style";
+
+#invitations {
+	h1 {
+		margin: 0;
+		padding: 0;
+		font-size: 1em;
+
+		.count {
+			margin: 0 0.5em;
+
+			&:before {
+				content: '(';
+			}
+
+			&:after {
+				content: ')';
+			}
+		}
+	}
+
+	> .invitation {
+		position: relative;
+		padding: 0;
+		background: #fff;
+		border-bottom: solid 1px #eee;
+
+		> article {
+			position: relative;
+			padding: 20px 30px;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			> header {
+				margin-bottom: 2px;
+				white-space: nowrap;
+				overflow: hidden;
+
+				> h2 {
+					text-align: left;
+					display: inline;
+					margin: 0;
+					padding: 0;
+					font-size: 1em;
+					color: rgba(0, 0, 0, 0.9);
+					font-weight: bold;
+					transition: all 0.1s ease;
+				}
+
+				> .members-count {
+					text-align: left;
+					margin: 0 0 0 8px;
+					color: rgba(0, 0, 0, 0.5);
+				}
+
+				> time {
+					float: right;
+					display: inline;
+					color: rgba(0, 0, 0, 0.5);
+					font-size: small;
+				}
+			}
+
+			> .icon {
+				float: left;
+				min-width: 54px;
+				min-height: 54px;
+				max-width: 54px;
+				max-height: 54px;
+				margin: 0 18px 4px 0;
+				border-radius: 8px;
+				transition: all 0.1s ease;
+			}
+
+			> .body {
+
+				> .text {
+					display: block;
+					margin: 0 0 0 0;
+					padding: 0;
+					overflow: hidden;
+					word-wrap: break-word;
+					font-size: 1.1em;
+					color: rgba(0, 0, 0, 0.8);
+
+					.me {
+						color: rgba(0, 0, 0, 0.4);
+					}
+				}
+
+				> .image {
+					display: block;
+					max-width: 100%;
+					max-height: 512px;
+				}
+			}
+		}
+	}
+}
+
+#empty-invitations {
+	margin: 0;
+	padding: 2em 1em;
+	text-align: center;
+	color: #999;
+	font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+	font-weight: 500;
+}
