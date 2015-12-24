@@ -26,7 +26,29 @@ block body
 			p#empty-histories
 				| 履歴はありません。
 				br
-				| グループを検索して、トークに参加できます。
+				| グループを検索、またはグループへの招待を承諾して、トークに参加しましょう！
+				br
+				| もしくは、自分でグループを作成することもできます。
+		if invitations != null && invitations.length > 0
+			ol#invitations
+				each invitation in invitations
+					li.invitation
+						article
+							img.icon(src= invitation.inviter.avatarUrl + '?mini', alt='icon')
+							header
+								h2= invitation.group.name
+								span.members-count= invitation.group.members.length + '人の参加者'
+								time(datetime=invitation.createdAt, data-display-type='relative')= invitation.createdAt
+							div.body
+								if invitation.text != null
+									p.text= invitation.text
+								else
+									p.text.empty
+										| 招待についてのメッセージはありません。
+
+		else
+			p#empty-invitations
+				| 現在、あなた宛てのグループへの招待はありません。
 	nav#nav
 		ul
 			li: a(href='/')
