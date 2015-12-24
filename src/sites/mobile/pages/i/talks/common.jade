@@ -49,7 +49,7 @@ mixin group-message(message)
 					if message.file
 						img.image(src= message.file.url, alt='image')
 
-mixin group-send-invitation-activity(message)
+mixin group-activity-base(message)
 	- var unread = message.reads.indexOf(me.id) == -1;
 	li.talk.group(
 			data-is-my-message='false',
@@ -63,6 +63,18 @@ mixin group-send-invitation-activity(message)
 					span.members-count= message.group.members.length + '人の参加者'
 					time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
 				div.body
-					p.text
-						b.invitee= message.invitee.name
-						| を招待しました
+					case message.type
+						when 'group-send-invitation-activity'
+							p.text
+								b.invitee= message.invitee.name
+								| を招待しました
+						when 'group-member-join-activity'
+							p.text
+								b.joiner= message.joiner.name
+								| が参加しました
+
+mixin group-send-invitation-activity(message)
+	+group-activity-base(message)
+
+mixin group-member-join-activity(message)
+	+group-activity-base(message)

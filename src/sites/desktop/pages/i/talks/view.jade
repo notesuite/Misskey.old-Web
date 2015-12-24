@@ -22,6 +22,8 @@ block body
 							+group-message(message)
 						when 'group-send-invitation-activity'
 							+group-send-invitation-activity(message)
+						when 'group-member-join-activity'
+							+group-member-join-activity(message)
 		else
 			p#empty-histories
 				| 履歴はありません。
