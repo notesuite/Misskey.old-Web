@@ -28,7 +28,8 @@ class Stream
 
 		switch (message-type)
 		| \user-message, \group-message =>
-			$message.find '.content > .text' .html marked ($message.find '.content > .text' .html!)
+			if ($message.find '.content > .text').length != 0
+				$message.find '.content > .text' .html marked ($message.find '.content > .text' .html!)
 			imageviewer $message.find '.content > .image'
 
 	init-date-info: ($message, reverse = no) ->
