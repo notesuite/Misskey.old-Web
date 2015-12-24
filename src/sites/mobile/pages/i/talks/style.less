@@ -9,9 +9,10 @@ html, #misskey-main {
 	box-sizing: border-box;
 	width: 100%;
 	background: #fff;
+	border-bottom: solid 1px #eee;
 
 	> .form {
-		padding: 8px 16px;
+		padding: 8px;
 		background: #f7f7f7;
 
 		> input {
@@ -164,7 +165,8 @@ main {
 
 				> article {
 					position: relative;
-					padding: 12px;
+					padding: 16px 16px;
+					font-size: 0.9em;
 
 					&:after {
 						content: "";
@@ -194,43 +196,113 @@ main {
 							color: rgba(0, 0, 0, 0.5);
 							font-size: small;
 						}
+					}
+				}
+			}
 
-						> .screenName {
-							text-align: left;
-							margin: 0 0 0 8px;
-							color: rgba(0, 0, 0, 0.5);
+			&.user {
+				> a {
+					> article {
+
+						> header {
+
+							> .screen-name {
+								text-align: left;
+								margin: 0 0 0 8px;
+								color: rgba(0, 0, 0, 0.5);
+							}
+						}
+
+						> .avatar {
+							float: left;
+							width: 54px;
+							height: 54px;
+							margin: 0 12px 0 0;
+							border-radius: 8px;
+							transition: all 0.1s ease;
+						}
+
+						> .body {
+
+							> .text {
+								display: block;
+								margin: 0 0 0 0;
+								padding: 0;
+								overflow: hidden;
+								word-wrap: break-word;
+								font-size: 1.1em;
+								color: rgba(0, 0, 0, 0.8);
+
+								.me {
+									color: rgba(0, 0, 0, 0.4);
+								}
+							}
+
+							> .image {
+								display: block;
+								max-width: 100%;
+								max-height: 512px;
+							}
 						}
 					}
+				}
+			}
 
-					> .avatar {
-						float: left;
-						min-width: 54px;
-						min-height: 54px;
-						max-width: 54px;
-						max-height: 54px;
-						margin: 0 18px 4px 0;
-						border-radius: 8px;
-						transition: all 0.1s ease;
-					}
+			&.group {
+				> a {
+					> article {
 
-					> .text {
-						display: block;
-						margin: 0 0 0 0;
-						padding: 0;
-						overflow: hidden;
-						word-wrap: break-word;
-						font-size: 1.1em;
-						color: rgba(0, 0, 0, 0.8);
+						> header {
 
-						.me {
-							color: rgba(0, 0, 0, 0.4);
+							> .members-count {
+								text-align: left;
+								margin: 0 0 0 8px;
+								color: rgba(0, 0, 0, 0.5);
+								font-size: 0.8em;
+							}
 						}
-					}
 
-					> .image {
-						display: block;
-						max-width: 100%;
-						max-height: 512px;
+						> .mark {
+							@stroke: 2px;
+							position: absolute;
+							top: 13px;
+							left: 10px;
+							text-shadow: 0 @stroke 0 #fff, @stroke 0 0 #fff, 0 -@stroke 0 #fff, -@stroke 0 0 #fff, -@stroke -@stroke 0 #fff, @stroke -@stroke 0 #fff, -@stroke @stroke 0 #fff, @stroke @stroke 0 #fff;
+							color: #9FA7A6;
+							font-size: 1rem;
+						}
+
+						> .icon {
+							float: left;
+							width: 54px;
+							height: 54px;
+							margin: 0 12px 0 0;
+							border-radius: 8px;
+							transition: all 0.1s ease;
+						}
+
+						> .body {
+
+							> .text {
+								display: block;
+								margin: 0 0 0 0;
+								padding: 0;
+								overflow: hidden;
+								word-wrap: break-word;
+								font-size: 1.1em;
+								color: rgba(0, 0, 0, 0.8);
+
+								.me {
+									color: rgba(0, 0, 0, 0.4);
+								}
+							}
+
+							> .image {
+								display: block;
+								max-width: 100%;
+								max-height: 512px;
+							}
+						}
 					}
 				}
 			}

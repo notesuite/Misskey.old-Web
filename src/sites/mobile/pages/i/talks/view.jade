@@ -1,4 +1,5 @@
 extends ../../../layout
+include ./common
 
 block title
 	| トーク
@@ -16,35 +17,13 @@ block content
 			if messages != null && messages.length > 0
 				ol#talks
 					each message in messages
-						if message.user.id == me.id
-							li.talk(data-is-my-message='true')
-								a(href= config.talkUrl + '/' + message.otherparty.screenName)
-									article
-										img.avatar(src= message.otherparty.avatarUrl + '?mini', alt='avatar')
-										header
-											h2= message.otherparty.name
-											span.screenName= '@' + message.otherparty.screenName
-											time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
-										p.text
-											span.me あなた:
-											= message.text
-										if message.file
-											img.image(src= message.file.url, alt='image')
-						else
-							- var unread = (message.user.id != me.id && !message.isRead);
-							li.talk(
-									data-is-my-message='false',
-									data-is-unread!= unread.toString())
-								a(href= config.talkUrl + '/' + message.user.screenName)
-									article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/mobile/pages/i/talks/unread.svg")'} : {})
-										img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
-										header
-											h2= message.user.name
-											span.screenName= '@' + message.user.screenName
-											time(datetime=message.createdAt, data-display-type='relative')= message.createdAt
-										p.text= message.text
-										if message.file
-											img.image(src= message.file.url, alt='image')
+						case message.type
+							when 'user-message'
+								+user-message(message)
+							when 'group-message'
+								+group-message(message)
+							when 'group-send-invitation-activity'
+								+group-send-invitation-activity(message)
 			else
 				p#empty-histories
 					| 履歴はありません。
