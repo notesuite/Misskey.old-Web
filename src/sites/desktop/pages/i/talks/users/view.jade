@@ -13,15 +13,7 @@ block body
 		div.result
 	main(role='main')
 		if messages != null && messages.length > 0
-			ol#talks
-				each message in messages
-					case message.type
-						when 'user-message'
-							+user-message(message)
-						when 'group-message'
-							+group-message(message)
-						when 'group-send-invitation-activity'
-							+group-send-invitation-activity(message)
+			+talks(messages)
 		else
 			p#empty-histories
 				| 履歴はありません。

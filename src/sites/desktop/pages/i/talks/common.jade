@@ -1,3 +1,16 @@
+mixin talks(messages)
+	ol#talks
+		each message in messages
+			case message.type
+				when 'user-message'
+					+user-message(message)
+				when 'group-message'
+					+group-message(message)
+				when 'group-send-invitation-activity'
+					+group-send-invitation-activity(message)
+				when 'group-member-join-activity'
+					+group-member-join-activity(message)
+
 mixin user-message(message)
 	if message.user.id == me.id
 		li.talk.user(data-is-my-message='true')
@@ -57,7 +70,7 @@ mixin group-activity-base(message)
 		a(href= config.talkUrl + '/:group/' + message.group.id)
 			article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks/unread.svg")'} : {})
 				i.fa.fa-users.mark
-				img.icon(src= message.inviter.avatarUrl + '?mini', alt='icon')
+				img.icon(src= message.group.iconUrl + '?mini', alt='icon')
 				header
 					h2= message.group.name
 					span.members-count= message.group.members.length + '人の参加者'
