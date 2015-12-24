@@ -54,7 +54,8 @@ mixin core(post, isRepost, repost)
 			footer
 				div.like
 					button(title= post.isLiked ? 'Unlike' : 'Like')
-						i.fa.fa-star
+						i.fa
+							| 🍣
 					p.count
 						= post.likesCount != 0 ? post.likesCount : ''
 				div.repost
