@@ -84,15 +84,15 @@ $ ->
 
 	Sortable.create ($ '#left-contents')[0], {
 		group: \contents
-		animation: 150ms
+		animation: 300ms
 	}
 
 	Sortable.create ($ '#main-contents')[0], {
 		group: \contents
-		animation: 150ms
+		animation: 300ms
 	}
 
 	Sortable.create ($ '#right-contents')[0], {
 		group: \contents
-		animation: 150ms
+		animation: 300ms
 	}
