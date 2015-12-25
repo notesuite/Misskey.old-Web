@@ -37,40 +37,40 @@ main {
 
 			> .kyoppie {
 				display: block;
-				float: left;
+				width: ~"calc(100% - 48px)";
+				white-space: nowrap;
 
 				> h1 {
-					display: block;
-					float: left;
+					display: inline-block;
 					margin: 0;
 					padding: 0 16px;
 					line-height: 48px;
 					font-size: 1em;
-					color: #444;
+					color: #67747D;
+					vertical-align: top;
 				}
 
 				> .members {
-					display: block;
-					float: left;
+					display: inline-block;
 					margin: 0;
 					padding: 0;
 					list-style: none;
 
 					> .member {
-						display: block;
+						display: inline-block;
 						margin: 0;
 						padding: 0;
-						float: left;
 
 						> a {
-							display: block;
+							display: inline-block;
 							padding: 8px 4px;
 
 							> .avatar {
-								display: block;
+								display: inline-block;
 								width: 32px;
 								height: 32px;
 								border-radius: 100%;
+								vertical-align: top;
 							}
 						}
 					}
@@ -78,10 +78,11 @@ main {
 			}
 
 			> .dropdown {
-				display: inline-block;
-				position: relative;
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
 				overflow: visible;
-				float: right;
 
 				&[data-active='true'] {
 					background: #eee;
