@@ -15,7 +15,6 @@ sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
 show-modal-dialog = require './modal-dialog.js'
 ui-window = require './window.js'
-init-i-settings-dialog = require './i-settings.js'
 
 album = new AlbumWindow
 
@@ -479,45 +478,11 @@ $ ->
 		if tag != \input and tag != \textarea
 			# Short cut Help
 			if e.which == 47 or e.which == 104
-				$modal-ok = $ '<button>Close</button>'
-				dialog-close = show-modal-dialog do
-					$ '<p><i class="fa fa-keyboard-o"></i>Keyboard shortcuts</p>'
-					'<dl>
-						<dt><kbd>?</kbd>または<kbd>h</kbd></dt>
-						<dd>このダイアログを表示する</dd>
-
-						<dt><kbd>p</kbd>または<kbd>n</kbd></dt>
-						<dd>投稿フォームを開く</dd>
-
-						<dt>投稿フォームを開いた状態で<kbd>Esc</kbd></dt>
-						<dd>投稿フォームを閉じる</dd>
-
-						<dt><kbd>t</kbd></dt>
-						<dd>タイムラインの最新の投稿にフォーカス</dd>
-
-						<dt>投稿にフォーカスした状態で<kbd>↑</kbd><kbd>↓</kbd></dt>
-						<dd>その方向の投稿にフォーカス</dd>
-
-						<dt>投稿にフォーカスした状態で<kbd>Enter</kbd></dt>
-						<dd>投稿を開く/閉じる</dd>
-
-						<dt>投稿にフォーカスした状態で<kbd>r</kbd></dt>
-						<dd>返信フォームにフォーカス</dd>
-
-						<dt>返信フォームにフォーカスした状態で<kbd>Esc</kbd></dt>
-						<dd>投稿にフォーカスをもどす</dd>
-
-						<dt>投稿フォームにフォーカスした状態で<kbd>f</kbd>または<kbd>l</kbd></dt>
-						<dd>Likeする</dd>
-
-						<dt>投稿フォームにフォーカスした状態で<kbd>e</kbd></dt>
-						<dd>Repostする</dd>
-					</dl>'
-					[$modal-ok]
+				window-close = show-modal-window do
+					$ \#misskey-keyboard-shortcuts .clone!
 					true
 					null
 					\misskey-keyboard-shortcuts
-				$modal-ok.click -> dialog-close!
 			# Open post form
 			if e.which == 110 or e.which == 112
 				e.prevent-default!
@@ -672,18 +637,6 @@ $ ->
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
 					window.init-waves-effects!
 			.fail ->
-
-	$ \#misskey-header-i-settings-anchor .click ->
-		$.ajax config.url + '/i/settings' {
-			type: \get
-			data-type: \html}
-		.done (data) ->
-			$dialog = $ '<div id="misskey-i-settings-form" />'
-			$dialog.append ($ data).find \main
-			init-i-settings-dialog $dialog.find \main
-			show-modal-window $dialog
-		.fail (data) ->
-		false
 
 $ window .load ->
 	header-height = $ 'body > #misskey-header' .outer-height!

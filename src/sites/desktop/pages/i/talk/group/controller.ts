@@ -10,7 +10,6 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	requestApi('talks/messages/stream', {
 		'group-id': group.id
 	}, req.me.id).then((messages: any[]) => {
-		console.log(messages);
 		res.display({
 			group: group,
 			messages: messages.reverse()

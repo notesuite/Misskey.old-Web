@@ -1,5 +1,5 @@
 $ = require 'jquery'
-urldecorator = require './urldecorator.js'
+urldecorator = require '../../../common/urldecorator.js'
 imageviewer = require './image-viewer.js'
 
 module.exports = (post-type, $content) ->

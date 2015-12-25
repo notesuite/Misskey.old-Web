@@ -1,17 +1,19 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-module.exports = ($content, can-close = true, on-shown = null) ->
+module.exports = ($content, can-close = true, on-shown = null, klass = null) ->
 	default-html-overflow-state = $ \html .css \overflow
 	$ \html .css \overflow \hidden
 
-	$container = $ '<div class="ui-modal-window-container" />'
 	$dialog = $ '<div class="ui-modal-window" />'
-	$dialog.append $content
-	$container.append $dialog
-	$ \body .append $container
+		..add-class klass
+		..css \max-width $content.css \max-width
+		..append $content
 
-	$dialog.css \max-width $content.css \max-width
+	$container = $ '<div class="ui-modal-window-container" />'
+		..append $dialog
+
+	$ \body .append $container
 
 	$container.animate {
 		opacity: 1

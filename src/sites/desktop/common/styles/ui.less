@@ -1,5 +1,4 @@
 @import "../../common";
-@import "./i-settings";
 // @import "../../../../../../bower_components/cropper/dist/cropper.min.css";
 
 @header-background-color: #494e51;
@@ -105,10 +104,14 @@
 	}
 }
 
+#misskey-keyboard-shortcuts {
+	display: none;
+}
+
 .misskey-keyboard-shortcuts {
 	top: 32px;
 
-	kbd {
+	kbd > kbd {
 		display: inline;
 		margin: 0 4px;
 		padding: 0 8px;
@@ -487,16 +490,6 @@
 			cursor: wait;
 		}
 	}
-}
-
-#misskey-i-settings-form {
-	> main {
-		.i-settings;
-		padding: 16px;
-	}
-
-	margin: 0 auto;
-	max-width: 770px;
 }
 
 #misskey-header {
