@@ -479,7 +479,7 @@ $ ->
 			# Short cut Help
 			if e.which == 47 or e.which == 104
 				window-close = show-modal-window do
-					$ \#misskey-keyboard-shortcuts .clone!
+					$ '#misskey-keyboard-shortcuts > *' .clone!
 					true
 					null
 					\misskey-keyboard-shortcuts
