@@ -109,7 +109,32 @@
 }
 
 .misskey-keyboard-shortcuts {
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
 	top: 32px;
+	left: 0;
+	right: 0;
+	margin: 0 auto 32px auto;
+	padding: 32px 42px;
+	max-width: 480px;
+	background: #fff;
+	color: #888;
+
+	*:not(i) {
+		font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+	}
+
+	> h1 {
+		margin: 1em 0;
+		color: @themeColor;
+		font-size: 1em;
+		font-weight: bold;
+
+		> i {
+			margin-right: 0.5em;
+		}
+	}
 
 	kbd > kbd {
 		display: inline;

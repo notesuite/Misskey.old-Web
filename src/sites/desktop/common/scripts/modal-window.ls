@@ -31,9 +31,16 @@ module.exports = ($content, can-close = true, on-shown = null, klass = null) ->
 	if on-shown?
 		on-shown!
 
+	function keydown(e)
+		if e.which == 13 or e.which == 27
+			e.prevent-default!
+			e.stop-immediate-propagation!
+			close!
+
 	if can-close
 		$container.click ->
 			close!
+		$ document .on \keydown keydown
 	else
 		$container.mousedown ->
 			$content.transition {
