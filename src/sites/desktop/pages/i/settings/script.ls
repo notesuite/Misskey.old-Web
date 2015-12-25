@@ -1,3 +1,5 @@
+require '../../../common/scripts/ui.js'
+
 $ = require 'jquery'
 
 Tab = require '../../../common/scripts/lib/tab.js'
