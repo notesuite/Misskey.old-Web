@@ -46,7 +46,9 @@ class Stream
 		compare-date = new Date $compare-message.attr \data-created-at
 		current-date = new Date $message.attr \data-created-at
 		if compare-date.get-date! != current-date.get-date!
-			date-info-str = "#{current-date.get-full-year!} / #{current-date.get-month! + 1} / #{current-date.get-date!}"
+			date-info-str = if reverse
+				then "#{compare-date.get-full-year!} / #{compare-date.get-month! + 1} / #{compare-date.get-date!}"
+				else "#{current-date.get-full-year!} / #{current-date.get-month! + 1} / #{current-date.get-date!}"
 			$date-info = $ '<div class="date"><p>' + date-info-str + '</p></div>'
 			if reverse
 				$message.after $date-info
