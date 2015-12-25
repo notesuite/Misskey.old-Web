@@ -56,6 +56,8 @@ module.exports = ($content, can-close = true, on-shown = null, klass = null) ->
 		e.stop-immediate-propagation!
 
 	function close
+		$ document .off \keydown keydown
+
 		$ \html .css \overflow default-html-overflow-state
 		$container.animate {
 			opacity: 0
