@@ -11,6 +11,8 @@ avatar-form = require '../../../common/scripts/avatar-form.js'
 album = new AlbumWindow
 
 $ ->
+	$form = $ \main
+
 	Tab do
 		$form.find '.nav > ul'
 		$form.find '.contents'
