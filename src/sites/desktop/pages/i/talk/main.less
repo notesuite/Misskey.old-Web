@@ -512,6 +512,20 @@ main {
 			text-align: center;
 			color: #888;
 
+			.icon {
+				display: inline-block;
+				width: 32px;
+				height: 32px;
+				margin-right: 8px;
+				color: #fff;
+				background: #ddd;
+				border-radius: 100%;
+
+				> i {
+					line-height: 32px;
+				}
+			}
+
 			.invitee {
 				font-weight: bold;
 				color: #888;
@@ -522,9 +536,23 @@ main {
 			text-align: center;
 			color: #888;
 
-			.joiner {
-				font-weight: bold;
-				color: #888;
+			.avatar {
+				width: 32px;
+				height: 32px;
+				margin-right: 8px;
+				vertical-align: top;
+				border-radius: 100%;
+			}
+
+			.text {
+				display: inline-block;
+				line-height: 32px;
+				vertical-align: top;
+
+				.joiner {
+					font-weight: bold;
+					color: #888;
+				}
 			}
 		}
 	}

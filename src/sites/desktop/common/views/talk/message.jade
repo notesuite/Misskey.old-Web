@@ -86,6 +86,7 @@ mixin group-send-invitation-activity(message)
 			data-type= 'group-send-invitation-activity'
 			data-created-at= message.createdAt)
 		p
+			span.icon: i.fa.fa-paper-plane
 			a.invitee(href= config.url + '/' + message.invitee.screenName, target='_blank')= message.invitee.name
 			| を招待しました
 
@@ -97,5 +98,7 @@ mixin group-member-join-activity(message)
 			data-type= 'group-member-join-activity'
 			data-created-at= message.createdAt)
 		p
-			a.joiner(href= config.url + '/' + message.joiner.screenName, target='_blank')= message.joiner.name
-			| が参加しました
+			img.avatar(src= message.joiner.avatarUrl + '?mini', alt='avatar')
+			span.text
+				a.joiner(href= config.url + '/' + message.joiner.screenName, target='_blank')= message.joiner.name
+				| が参加しました
