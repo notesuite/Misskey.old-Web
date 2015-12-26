@@ -12,8 +12,8 @@ link(rel='stylesheet', href= stylePath)
 script!= 'document.domain = \'' + config.host + '\';'
 script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
 script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
-script!= 'var USER_SETTINGS = ' + JSON.stringify(userSettings) + '; Object.freeze(USER_SETTINGS);'
-script!= 'var ME = ' + JSON.stringify(me) + '; ME._settings = USER_SETTINGS; Object.freeze(ME);'
+script!= 'var ME = ' + JSON.stringify(me) + '; Object.freeze(ME);'
+script!= 'var USER_SETTINGS = ME._settings; Object.freeze(USER_SETTINGS);'
 script(src= scriptPath)
 script.
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
