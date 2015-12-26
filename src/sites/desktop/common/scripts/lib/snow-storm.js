@@ -95,7 +95,6 @@ $(function() {
 			
 			function removeCrystal(pile) {
 				object.splice(index, 1);
-				console.log((crystal.size / 2) + 'px');
 				
 				if (pile) {
 					$snow.css('transition', 'opacity 30s linear, width 30s linear, bottom 30s linear, left 30s linear');
