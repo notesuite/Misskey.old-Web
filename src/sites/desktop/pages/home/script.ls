@@ -33,7 +33,7 @@ $ ->
 	$ window .blur ->
 		is-active := no
 
-	socket = io.connect config.web-streaming-url + '/streaming/home'
+	socket = io.connect CONFIG.web-streaming-url + '/streaming/home'
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
 
@@ -86,7 +86,7 @@ $ ->
 				n.close!
 			, 10000ms
 		n.onclick = ->
-			window.open "#{config.url}/#{sn}/#{id}"
+			window.open "#{CONFIG.url}/#{sn}/#{id}"
 
 	socket.on \talk-message (message) ->
 		console.log \talk-message message
@@ -102,7 +102,7 @@ $ ->
 				n.close!
 			, 10000ms
 		n.onclick = ->
-			url = config.url + '/widget/talk/' + message.user.screen-name
+			url = CONFIG.url + '/widget/talk/' + message.user.screen-name
 			$content = $ '<iframe>' .attr {
 				src: url
 				+seamless
@@ -123,7 +123,7 @@ $ ->
 		if current > $ document .height! - 32
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax "#{config.web-api-url}/posts/timeline" {
+				$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
 					data:
 						limit: 10
 						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor}
@@ -136,7 +136,7 @@ $ ->
 
 	if $ \#widget-notifications .length != 0
 		# 通知読み込み
-		$.ajax "#{config.web-api-url}/notifications/timeline"
+		$.ajax "#{CONFIG.web-api-url}/notifications/timeline"
 		.done (notifications) ->
 			if notifications != []
 				$notifications = $ notifications-compiler {
@@ -151,7 +151,7 @@ $ ->
 
 	if $ \#widget-recommendation-users .length != 0
 		# recommendation users
-		$.ajax "#{config.web-api-url}/users/recommendations"
+		$.ajax "#{CONFIG.web-api-url}/users/recommendations"
 		.done (users) ->
 			if users != []
 				$users = $ recommendation-users-compiler {
@@ -164,7 +164,7 @@ $ ->
 					$user = $ @
 					$user.find \.follow-button .click ->
 						$user.remove!
-						$.ajax "#{config.web-api-url}/users/follow" {
+						$.ajax "#{CONFIG.web-api-url}/users/follow" {
 							data: { 'user-id': $user.attr \data-user-id }
 						}
 

@@ -131,7 +131,7 @@ class Album
 
 	load-files: ->
 		THIS = @
-		$.ajax "#{config.web-api-url}/album/files/stream"
+		$.ajax "#{CONFIG.web-api-url}/album/files/stream"
 		.done (files) ->
 			THIS.$album-files.empty!
 			files.for-each (file) ->
@@ -147,7 +147,7 @@ class Album
 		THIS.$album-uploads.find \ol .append $info
 		data = new FormData!
 			..append \file file
-		$.ajax "#{config.web-api-url}/web/album/upload" {
+		$.ajax "#{CONFIG.web-api-url}/web/album/upload" {
 			+async
 			-process-data
 			-content-type

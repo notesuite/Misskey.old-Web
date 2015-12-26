@@ -15,8 +15,8 @@ class Post
 
 		if post?
 			$post = $ post-compiler {
-				config: CONFIG,
-				me: ME,
+				config: CONFIG
+				me: ME
 				post
 			}
 
@@ -165,7 +165,7 @@ class Post
 			$button = $ @
 			if THIS.check-reposted!
 				THIS.$post.attr \data-is-reposted \false
-				$.ajax "#{config.web-api-url}/post/unrepost" {
+				$.ajax "#{CONFIG.web-api-url}/post/unrepost" {
 					data: {'post-id': THIS.id}}
 				.done ->
 					$button.attr \disabled off
@@ -204,8 +204,8 @@ class Post
 
 	sub-render: (post) ->
 		$ sub-post-compiler {
-			config: CONFIG,
-			me: ME,
+			config: CONFIG
+			me: ME
 			post
 		}
 
@@ -227,7 +227,7 @@ class Post
 		THIS = @
 		if THIS.is-talk and not THIS.is-talk-loaded
 			THIS.is-talk-loaded = true
-			$.ajax "#{config.web-api-url}/posts/talk/show" {
+			$.ajax "#{CONFIG.web-api-url}/posts/talk/show" {
 				data: {'post-id': THIS.destination-id}}
 			.done (posts) ->
 				THIS.$talk.append posts.map (post) ->
@@ -239,7 +239,7 @@ class Post
 		THIS = @
 		if THIS.is-have-replies and not THIS.is-replies-loaded
 			THIS.is-replies-loaded = true
-			$.ajax "#{config.web-api-url}/posts/replies/show" {
+			$.ajax "#{CONFIG.web-api-url}/posts/replies/show" {
 				data: {'post-id':THIS.id}}
 			.done (posts) ->
 				THIS.$replies .append posts.map (post) ->
@@ -297,7 +297,7 @@ class Post
 			..attr \disabled on
 			..text 'Replying...'
 
-		$.ajax "#{config.web-api-url}/web/posts/reply" {
+		$.ajax "#{CONFIG.web-api-url}/web/posts/reply" {
 			data:
 				'text': (THIS.$reply-form.find \textarea .val!)
 				'in-reply-to-post-id': THIS.id
@@ -320,7 +320,7 @@ class Post
 	attach-file: (file) ->
 		THIS = @
 		$thumbnail = $ "<li style='background-image: url(#{file.url}?mini);' data-id='#{file.id}' />"
-		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + config.resourcesUrl + '/desktop/common/images/delete.png" alt="remove"></button>'
+		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
 		$thumbnail.append $remove-button
 		$remove-button.click (e) ->
 			e.stop-immediate-propagation!
@@ -360,7 +360,7 @@ class Post
 		} 500ms
 		if THIS.check-liked!
 			THIS.$post.attr \data-is-liked \false
-			$.ajax "#{config.web-api-url}/posts/unlike" {
+			$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				$button.attr \disabled off
@@ -369,7 +369,7 @@ class Post
 				THIS.$post.attr \data-is-liked \true
 		else
 			THIS.$post.attr \data-is-liked \true
-			$.ajax "#{config.web-api-url}/posts/like" {
+			$.ajax "#{CONFIG.web-api-url}/posts/like" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				$button.attr \disabled off
@@ -380,7 +380,7 @@ class Post
 	repost: (always, done, fail) ->
 		THIS = @
 		THIS.$post.attr \data-is-reposted \true
-		$.ajax "#{config.web-api-url}/posts/repost" {
+		$.ajax "#{CONFIG.web-api-url}/posts/repost" {
 			data: {'post-id': THIS.id}}
 		.done ->
 			done!
@@ -407,7 +407,7 @@ class Timeline
 	add: (post-data) ->
 		THIS = @
 
-		new Audio config.resources-url + '/desktop/common/sounds/post.mp3' .play!
+		new Audio CONFIG.resources-url + '/desktop/common/sounds/post.mp3' .play!
 
 		post = new Post post-data
 			..set-parent-timeline THIS

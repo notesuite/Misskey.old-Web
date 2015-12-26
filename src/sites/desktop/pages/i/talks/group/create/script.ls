@@ -9,7 +9,7 @@ $ ->
 
 		$submit-button.attr \disabled yes
 
-		$.ajax "#{config.web-api-url}/talks/group/create" {
+		$.ajax "#{CONFIG.web-api-url}/talks/group/create" {
 			data:
 				'name': ($form.find \#name .val!)
 		}

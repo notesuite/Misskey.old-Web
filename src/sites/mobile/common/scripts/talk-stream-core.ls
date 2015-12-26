@@ -67,8 +67,8 @@ class Stream
 		THIS = @
 
 		$message = $ message-compiler {
-			config,
-			me,
+			config: CONFIG
+			me: ME
 			message
 		}
 
@@ -90,8 +90,8 @@ class Stream
 		THIS = @
 
 		$message = $ message-compiler {
-			config,
-			me,
+			config: CONFIG
+			me: ME
 			message
 		}
 

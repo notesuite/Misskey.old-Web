@@ -989,25 +989,25 @@ function update-relative-times
 		$ @ .text time-text
 
 function update-statuses
-	$.ajax "#{config.web-api-url}/posts/timeline/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-nav .home a .unread-count' .remove!
 			$ '#misskey-nav .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/posts/mentions/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-nav .mentions a .unread-count' .remove!
 			$ '#misskey-nav .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/notifications/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-nav .notifications a .unread-count' .remove!
 			$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/talks/messages/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-nav .talks a .unread-count' .remove!

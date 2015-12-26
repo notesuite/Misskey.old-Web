@@ -3,7 +3,7 @@ $ = require 'jquery'
 module.exports = (file, $progress, uploading, success, failed) ->
 	data = new FormData!
 		..append \file file
-	$.ajax "#{config.web-api-url}/web/album/upload" {
+	$.ajax "#{CONFIG.web-api-url}/web/album/upload" {
 		+async
 		-process-data
 		-content-type

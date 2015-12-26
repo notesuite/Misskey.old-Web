@@ -6,7 +6,7 @@ module.exports = ->
 		href = $a.attr \href
 		if !href?
 			return
-		if (href.0 == \/) or (href.substring 0, config.url.length) == config.url
+		if (href.0 == \/) or (href.substring 0, CONFIG.url.length) == CONFIG.url
 			if ($a.attr \data-spalize) == \true
 				return
 			$a.attr \data-spalize \true

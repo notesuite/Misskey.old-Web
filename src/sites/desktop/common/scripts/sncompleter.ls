@@ -180,7 +180,7 @@ module.exports = ($input) ->
 				$menu = open!
 
 				# search users
-				$.ajax "#{config.web-api-url}/users/search-by-screen-name" {
+				$.ajax "#{CONFIG.web-api-url}/users/search-by-screen-name" {
 					data: {'screen-name': sn}
 					data-type: \json}
 				.done (result) ->
@@ -191,7 +191,7 @@ module.exports = ($input) ->
 							$menu.children \ol .append do
 								$ \<li> .append do
 									$ '<a class="ui-waves-effect">' .attr {
-										'href': "#{config.url}/#{user.screen-name}"
+										'href': "#{CONFIG.url}/#{user.screen-name}"
 										'title': user.comment
 										'data-summoner': \@
 										'data-value': user.screen-name}
@@ -218,7 +218,7 @@ module.exports = ($input) ->
 					$menu = open!
 
 					# search users
-					$.ajax "#{config.web-api-url}/hashtags/search" {
+					$.ajax "#{CONFIG.web-api-url}/hashtags/search" {
 						data: {'name': tag}
 						data-type: \json}
 					.done (result) ->
@@ -229,7 +229,7 @@ module.exports = ($input) ->
 								$menu.children \ol .append do
 									$ \<li> .append do
 										$ '<a class="ui-waves-effect">' .attr {
-											'href': "#{config.url}/search/hashtag:#{hashtag}"
+											'href': "#{CONFIG.url}/search/hashtag:#{hashtag}"
 											'title': hashtag
 											'data-summoner': \#
 											'data-value': hashtag}

@@ -15,7 +15,7 @@ $ ->
 		if current > $ document .height! - 32
 			if not me.data \loading
 				me.data \loading yes
-				$.ajax "#{config.web-api-url}/posts/user-timeline" {
+				$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
 					data:
 						limit: 10
 						'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor}

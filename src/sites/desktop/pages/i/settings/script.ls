@@ -26,22 +26,22 @@ $ ->
 		$submit-button.attr \disabled on
 		$submit-button.text 'Updating...'
 
-		(data) <- $.ajax "#{config.web-api-url}/account/name/update" {
+		(data) <- $.ajax "#{CONFIG.web-api-url}/account/name/update" {
 			data:
 				'name': $form.find '.profile.name' .val!}
 		.done!
 
-		(data) <- $.ajax "#{config.web-api-url}/account/comment/update" {
+		(data) <- $.ajax "#{CONFIG.web-api-url}/account/comment/update" {
 			data:
 				'comment': $form.find '.profile.comment' .val!}
 		.done!
 
-		(data) <- $.ajax "#{config.web-api-url}/account/url/update" {
+		(data) <- $.ajax "#{CONFIG.web-api-url}/account/url/update" {
 			data:
 				'url': $form.find '.profile.url' .val!}
 		.done!
 
-		(data) <- $.ajax "#{config.web-api-url}/account/location/update" {
+		(data) <- $.ajax "#{CONFIG.web-api-url}/account/location/update" {
 			data:
 				'location': $form.find '.profile.location' .val!}
 		.done!
@@ -49,7 +49,7 @@ $ ->
 		$submit-button.text 'Update'
 		$submit-button.attr \disabled off
 
-		$.ajax "#{config.web-api-url}/web/refresh-session"
+		$.ajax "#{CONFIG.web-api-url}/web/refresh-session"
 
 		$modal-ok = $ '<button>おｋ</button>'
 		dialog-close = show-modal-dialog do
@@ -75,7 +75,7 @@ $ ->
 			fd = new FormData!
 			fd.append \app-id $app.attr \data-app-id
 
-			$.ajax "#{config.web-api-url}/account/remove-app" {
+			$.ajax "#{CONFIG.web-api-url}/account/remove-app" {
 				data: fd
 				data-type: \json}
 			.done (data) ->
@@ -93,6 +93,6 @@ $ ->
 			value: $check.is \:checked
 		}
 
-		$.ajax "#{config.web-api-url}/web/user-settings/update" {data}
+		$.ajax "#{CONFIG.web-api-url}/web/user-settings/update" {data}
 		.always ->
 			$check.attr \disabled off

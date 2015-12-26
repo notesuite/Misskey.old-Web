@@ -34,7 +34,7 @@ class Timeline
 					..attr \disabled on
 				if check-liked!
 					$post.attr \data-is-liked \false
-					$.ajax "#{config.web-api-url}/posts/unlike" {
+					$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
 						data: {'post-id': post-id}}
 					.done ->
 						$button.attr \disabled off
@@ -43,7 +43,7 @@ class Timeline
 						$post.attr \data-is-liked \true
 				else
 					$post.attr \data-is-liked \true
-					$.ajax "#{config.web-api-url}/posts/like" {
+					$.ajax "#{CONFIG.web-api-url}/posts/like" {
 						data: {'post-id': post-id}}
 					.done ->
 						$button.attr \disabled off
@@ -55,7 +55,7 @@ class Timeline
 			..find '> footer > .reply > button' .click ->
 				reply-text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
 				if reply-text? and reply-text != ''
-					$.ajax "#{config.web-api-url}/posts/status" {
+					$.ajax "#{CONFIG.web-api-url}/posts/status" {
 						data:
 							text: reply-text
 							'in-reply-to-post-id': post-id
@@ -73,7 +73,7 @@ class Timeline
 			..find '> footer > .repost > button' .click ->
 				if check-reposted!
 					$post.attr \data-is-reposted \false
-					$.ajax "#{config.web-api-url}/posts/unrepost" {
+					$.ajax "#{CONFIG.web-api-url}/posts/unrepost" {
 						data: {'post-id': post-id}}
 					.done ->
 						$button.attr \disabled off
@@ -83,7 +83,7 @@ class Timeline
 				else
 					if window.confirm "#{user-name}「#{text}」\nを Repost しますか？"
 						$post.attr \data-is-reposted \true
-						$.ajax "#{config.web-api-url}/posts/repost" {
+						$.ajax "#{CONFIG.web-api-url}/posts/repost" {
 							data: {'post-id': post-id}}
 						.done ->
 							$button.attr \disabled off

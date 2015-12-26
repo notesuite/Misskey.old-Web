@@ -31,7 +31,7 @@ function send-message
 				'file': ($form.find '.files > li:first-child' .attr \data-id)
 			}
 
-	$.ajax "#{config.web-api-url}/talks/messages/say" {data}
+	$.ajax "#{CONFIG.web-api-url}/talks/messages/say" {data}
 	.done (data) ->
 		$form[0].reset!
 		$form.find \.files .empty!
@@ -52,7 +52,7 @@ function upload-new-file(file)
 		(file) ->
 			$progress.remove!
 			$thumbnail = $ "<li style='background-image: url(#{file.url}?mini);' data-id='#{file.id}' />"
-			$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + config.resourcesUrl + '/desktop/common/images/delete.png" alt="remove"></button>'
+			$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
 			$thumbnail.append $remove-button
 			$remove-button.click ->
 				$thumbnail.remove!
@@ -155,7 +155,7 @@ $ ->
 						'limit': 10
 						'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor
 					}
-			$.ajax "#{config.web-api-url}/talks/messages/stream" {data}
+			$.ajax "#{CONFIG.web-api-url}/talks/messages/stream" {data}
 			.done (messages) ->
 				if messages.length > 0
 					old-height = $ document .height!
@@ -172,8 +172,8 @@ $ ->
 
 function init-streaming(stream)
 	endpoint = switch (TALK_TYPE)
-		| \user => "#{config.web-streaming-url}/streaming/talk"
-		| \group => "#{config.web-streaming-url}/streaming/group-talk"
+		| \user => "#{CONFIG.web-streaming-url}/streaming/talk"
+		| \group => "#{CONFIG.web-streaming-url}/streaming/group-talk"
 	socket = io.connect endpoint
 
 	socket.on \connected ->
@@ -193,7 +193,7 @@ function init-streaming(stream)
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
 		stream.add message
-		$.ajax "#{config.web-api-url}/talks/messages/read" {
+		$.ajax "#{CONFIG.web-api-url}/talks/messages/read" {
 			data: {'message-id': message.id}
 		}
 

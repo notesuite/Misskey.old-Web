@@ -15,7 +15,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 
-		$.ajax config.signin-url, {
+		$.ajax CONFIG.signin-url, {
 			data: $form.serialize!}
 		.done ->
 			location.reload!
@@ -41,14 +41,14 @@ function init-register-form
 		event.prevent-default!
 		$form = $ @
 
-		$.ajax "#{config.web-api-url}/account/create" {
+		$.ajax "#{CONFIG.web-api-url}/account/create" {
 			data: $form.serialize!
 		} .done ->
-			$.ajax config.signin-url, {
+			$.ajax CONFIG.signin-url, {
 				data: $form.serialize!
 			} .done ->
-				# location.href = "#{config.url}/welcome"
-				location.href = config.url
+				# location.href = "#{CONFIG.url}/welcome"
+				location.href = CONFIG.url
 
 	$ '#register-cancel' .click (event) ->
 		hide-register-form!
@@ -74,7 +74,7 @@ function init-register-form
 					show-message err, no
 				else
 					show-message '確認中...' null
-					$.ajax "#{config.web-api-url}/screenname/available" {
+					$.ajax "#{CONFIG.web-api-url}/screenname/available" {
 						data: {'screen-name': sn}
 					} .done (result) ->
 						if result.available

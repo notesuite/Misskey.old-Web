@@ -8,7 +8,7 @@ link(rel='shortcut icon', href='/favicon.ico')
 link(rel='icon', href='/favicon.ico')
 link(rel='stylesheet', href= stylePath)
 script!= 'document.domain = \'' + config.host + '\';'
-script!= 'var CONFIG = config = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
+script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
 script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
 script!= 'var USER_SETTINGS = ' + JSON.stringify(userSettings) + '; Object.freeze(USER_SETTINGS);'
 script!= 'var ME = ' + JSON.stringify(me) + '; ME._settings = USER_SETTINGS; Object.freeze(ME);'

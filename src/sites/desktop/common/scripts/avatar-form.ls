@@ -39,7 +39,7 @@ module.exports = (file) ->
 				[$modal-ok]
 			$modal-ok.click -> dialog-close!
 		else
-			$.ajax "#{config.web-api-url}/web/avatar/update" {
+			$.ajax "#{CONFIG.web-api-url}/web/avatar/update" {
 				data:
 					'file-id': file.id
 			} .done (data) ->
@@ -59,7 +59,7 @@ module.exports = (file) ->
 			..attr \disabled on
 			..attr \value '保存中...'
 		crop-data = $img.cropper \getData true
-		$.ajax "#{config.web-api-url}/web/avatar/update" {
+		$.ajax "#{CONFIG.web-api-url}/web/avatar/update" {
 			data:
 				'file-id': file.id
 				'trim-x': crop-data.x
@@ -80,7 +80,7 @@ module.exports = (file) ->
 	function ok
 		close!
 
-		$.ajax "#{config.web-api-url}/web/refresh-session"
+		$.ajax "#{CONFIG.web-api-url}/web/refresh-session"
 
 		#$ \body .find \img ->
 		#	$img = $ @

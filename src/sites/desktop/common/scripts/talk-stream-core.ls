@@ -69,12 +69,12 @@ class Stream
 		THIS = @
 
 		$message = $ message-compiler {
-			config,
-			me,
+			config: CONFIG
+			me: ME
 			message
 		}
 
-		new Audio config.resources-url + '/desktop/common/sounds/message.mp3' .play!
+		new Audio CONFIG.resources-url + '/desktop/common/sounds/message.mp3' .play!
 
 		can-scroll = THIS.check-can-scroll!
 		THIS.init-message $message
@@ -94,8 +94,8 @@ class Stream
 		THIS = @
 
 		$message = $ message-compiler {
-			config,
-			me,
+			config: CONFIG
+			me: ME
 			message
 		}
 

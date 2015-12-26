@@ -4,7 +4,7 @@ require '../../common/scripts/main.js'
 
 $ ->
 	$ '#id' .change ->
-		$.ajax "#{config.api-url}/users/show", {
+		$.ajax "#{CONFIG.api-url}/users/show", {
 			data: {'screen-name': $ '#id' .val!}
 			xhr-fields: {-with-credentials}}
 		.done (user) ->
@@ -22,7 +22,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 
-		$.ajax config.signin-url, {
+		$.ajax CONFIG.signin-url, {
 			data: $form.serialize!}
 		.done ->
 			location.reload!

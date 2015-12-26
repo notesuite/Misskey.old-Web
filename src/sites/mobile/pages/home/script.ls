@@ -9,7 +9,7 @@ $ ->
 		$button = $ @
 		$button.attr \disabled on
 		$button.find \p .text 'Loading...'
-		$.ajax "#{config.web-api-url}/posts/timeline" {
+		$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
 			data:
 				limit: 20
 				'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor
@@ -20,7 +20,7 @@ $ ->
 			$button.attr \disabled off
 			$button.find \p .text 'Read more...?'
 
-	socket = io.connect config.web-streaming-url + '/streaming/home'
+	socket = io.connect "#{CONFIG.web-streaming-url}/streaming/home"
 
 	$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
 
@@ -48,7 +48,7 @@ $ ->
 	$ '#misskey-header .post' .click ->
 		text = window.prompt '新規投稿'
 		if text? and text != ''
-			$.ajax "#{config.web-api-url}/posts/status" {
+			$.ajax "#{CONFIG.web-api-url}/posts/status" {
 				data: {text}
 			} .done (post) ->
 				#

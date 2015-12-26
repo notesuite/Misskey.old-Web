@@ -54,25 +54,25 @@ window.open-select-album-file-dialog = (cb) ->
 	album.choose-file cb
 
 function update-header-statuses
-	$.ajax "#{config.web-api-url}/posts/timeline/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-header .home a .unread-count' .remove!
 			$ '#misskey-header .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/posts/mentions/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-header .mentions a .unread-count' .remove!
 			$ '#misskey-header .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/talks/messages/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-header .talks a .unread-count' .remove!
 			$ '#misskey-header .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
-	$.ajax "#{config.web-api-url}/notifications/unread/count"
+	$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
 	.done (data) ->
 		if data != 0
 			$ '#misskey-header .notifications .dropdown .dropdown-header p .unread-count' .remove!
@@ -149,7 +149,7 @@ function update-header-clock
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.begin-path!
 	#ctx.stroke-style = \#ffffff
-	ctx.stroke-style = config.themeColor
+	ctx.stroke-style = CONFIG.theme-color
 	ctx.line-width = 2
 	ctx.move-to do
 		(canv-w / 2) - uv.x * length / 5
@@ -362,7 +362,7 @@ class StatusPostForm
 		$form.find \textarea .attr \disabled on
 
 		THIS.post-form.submit do
-			"#{config.web-api-url}/posts/status"
+			"#{CONFIG.web-api-url}/posts/status"
 			{'text': ($form.find \textarea .val!)}
 			->
 				$form.find \textarea .attr \disabled off
@@ -419,7 +419,7 @@ class PhotoPostForm
 
 	add-file: (file-data) ->
 		$thumbnail = $ "<li style='background-image: url(#{file-data.url}?mini);' data-id='#{file-data.id}' />"
-		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + config.resourcesUrl + '/desktop/common/images/delete.png" alt="remove"></button>'
+		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
 		$thumbnail.append $remove-button
 		$remove-button.click ->
 			$thumbnail.remove!
@@ -437,7 +437,7 @@ class PhotoPostForm
 		$form.find \textarea .attr \disabled on
 
 		THIS.post-form.submit do
-			"#{config.web-api-url}/posts/photo"
+			"#{CONFIG.web-api-url}/posts/photo"
 			{
 				'text': ($form.find \textarea .val!)
 				'photos': JSON.stringify(($form.find '.photos > li' .map ->
@@ -516,7 +516,7 @@ $ ->
 	# Talks
 	$ '#misskey-header > .main .main-contents-container .left nav .main-nav ul .talks a' .click ->
 		window-id = "misskey-window-talk-histories"
-		$content = $ '<iframe>' .attr {src: config.talk-url, +seamless}
+		$content = $ '<iframe>' .attr {src: CONFIG.talk-url, +seamless}
 		ui-window do
 			window-id
 			$content
@@ -559,7 +559,7 @@ $ ->
 					$message.remove!
 			, i * 50
 
-		$.ajax config.web-api-url + '/notification/delete-all'
+		$.ajax CONFIG.web-api-url + '/notification/delete-all'
 		.done (data) ->
 			$ '#misskey-header .notifications .unread-count' .remove!
 			$list = $ '<ol class="notifications" />'
@@ -585,7 +585,7 @@ $ ->
 			$ '<img class="loading" src="/resources/images/notifications-loading.gif" alt="loading..." />' .append-to $notifications-container
 
 			# 通知読み込み
-			$.ajax config.web-api-url + '/notification/timeline-webhtml'
+			$.ajax CONFIG.web-api-url + '/notification/timeline-webhtml'
 			.done (data) ->
 				$ '#misskey-header .notifications .loading' .remove!
 				$ '#misskey-header .notifications .unread-count' .remove!
@@ -617,7 +617,7 @@ $ ->
 			$result.empty!
 		else
 			$input.attr \data-active \true
-			$.ajax "#{config.web-api-url}/users/search" {
+			$.ajax "#{CONFIG.web-api-url}/users/search" {
 				data: {'query': $input .val!}
 			} .done (result) ->
 				$result.empty!
@@ -627,7 +627,7 @@ $ ->
 						$result.find \ol .append do
 							$ \<li> .append do
 								$ '<a class="ui-waves-effect">' .attr {
-									'href': "#{config.url}/#{user.screen-name}"
+									'href': "#{CONFIG.url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
 									$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-url + '?mini'

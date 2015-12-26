@@ -9,7 +9,7 @@ $ ->
 		if $input .val! == ''
 			$result.empty!
 		else
-			$.ajax "#{config.web-api-url}/users/search" {
+			$.ajax "#{CONFIG.web-api-url}/users/search" {
 				data:
 					'query': $input .val!}
 			.done (result) ->
@@ -20,7 +20,7 @@ $ ->
 						$result.find \ol .append do
 							$ \<li> .append do
 								$ '<a class="ui-waves-effect">' .attr {
-									'href': "#{config.talk-url}/#{user.screen-name}"
+									'href': "#{CONFIG.talk-url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
 									$ '<img class="avatar" alt="avatar">' .attr \src (user.avatar-url + '?mini')

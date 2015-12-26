@@ -56,7 +56,7 @@ function init-post($post)
 			..attr \disabled on
 			..text 'Replying...'
 
-		$.ajax "#{config.web-api-url}/web/sites/desktop/post/reply" {
+		$.ajax "#{CONFIG.web-api-url}/web/sites/desktop/post/reply" {
 			data:
 				'text': ($form.find \textarea .val!)
 				'in-reply-to-post-id': ($post.attr \data-id)
