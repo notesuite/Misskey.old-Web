@@ -8,7 +8,7 @@
 		if (text === null) {
 			return null;
 		}
-		text = analyzeHashtags(analyzeMentions(analyzeUrl(escapeHtml(text)))).replace(/(\r\n|\r|\n)/g, '<br>');
+		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeBold(escapeHtml(text))))).replace(/(\r\n|\r|\n)/g, '<br>');
 		return text;
 	}
 	
@@ -23,6 +23,13 @@
 		'use strict';
 		return text.replace(/@([a-zA-Z0-9\-]+)/g, function(arg, screenName) {
 			return '<a href="' + config.url + '/' + screenName + '" class="mention">@' + screenName + '</a>';
+		});
+	}
+	
+	function analyzeBold(text) {
+		'use strict';
+		return text.replace(/\*\*(.+)\*\*/g, function(arg, boldee) {
+			return '<strong>' + boldee + '</strong>';
 		});
 	}
 
