@@ -84,6 +84,32 @@ $ ->
 				$submit-button.attr \disabled off
 				$submit-button.text '再度お試しください'
 
+	$form.find '.web [name="enable-url-preview-in-post"]' .change ->
+		$check = $ @
+			..attr \disabled on
+
+		data = {
+			key: chain-case-to-camel-case $check.attr \name
+			value: $check.is \:checked
+		}
+
+		$.ajax "#{CONFIG.web-api-url}/web/user-settings/update" {data}
+		.always ->
+			$check.attr \disabled off
+
+	$form.find '.web [name="enable-notification-sound-when-receiving-new-post"]' .change ->
+		$check = $ @
+			..attr \disabled on
+
+		data = {
+			key: chain-case-to-camel-case $check.attr \name
+			value: $check.is \:checked
+		}
+
+		$.ajax "#{CONFIG.web-api-url}/web/user-settings/update" {data}
+		.always ->
+			$check.attr \disabled off
+
 	$form.find '.web [name="enable-sushi"]' .change ->
 		$check = $ @
 			..attr \disabled on

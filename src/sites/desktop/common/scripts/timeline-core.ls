@@ -408,7 +408,8 @@ class Timeline
 	add: (post-data) ->
 		THIS = @
 
-		new Audio CONFIG.resources-url + '/desktop/common/sounds/post.mp3' .play!
+		if USER_SETTINGS.enable-notification-sound-when-receiving-new-post
+			new Audio CONFIG.resources-url + '/desktop/common/sounds/post.mp3' .play!
 
 		post = new Post post-data
 			..set-parent-timeline THIS
