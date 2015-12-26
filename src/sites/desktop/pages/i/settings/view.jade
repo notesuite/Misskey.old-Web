@@ -10,9 +10,9 @@ block content
 				li(data-ref='profile')
 					i.fa.fa-user
 					| Profile
-				li(data-ref='home-layout')
+				li(data-ref='web')
 					i.fa.fa-desktop
-					| Home design
+					| Web
 				li(data-ref='application')
 					i.fa.fa-puzzle-piece
 					| Applications
@@ -66,12 +66,28 @@ block content
 					i.fa.fa-check
 					| Update
 			
-			div.home-layout(data-name='home-layout')
-				img(src= config.resourcesUrl + '/desktop/pages/i/settings/home-design.svg', alt='customize')
-				p
-					a(href='/i/home-customize')
-						| ホームをカスタマイズする
-						i.fa.fa-chevron-right
+			div.web(data-name='web')
+				section
+					h1 General
+					label.checkbox
+						input(type='checkbox', name='enable-url-preview-in-post', checked= userSettings.enableUrlPreviewInPost)
+						p Enable URL preview in a post
+					label.checkbox
+						input(type='checkbox', name='enable-snowstorm-when-winter', checked= userSettings.enableSnowstormWhenWinter)
+						p Enable snowstorm when the winter
+				section
+					h1 Home
+					a.home-customize(href='/i/home-customize')
+						| Customize home
+						i.fa.fa-cog
+					label.checkbox
+						input(type='checkbox', name='enable-notification-sound-when-receiving-new-post', checked= userSettings.enableNotificationSoundWhenReceivingNewPost)
+						p Enable the notification sound when receiving a new post
+				section
+					h1 Advanced
+					label.checkbox
+						input(type='checkbox', name='enable-sushi', checked= userSettings.enableSushi)
+						p Enable Sushi (Environment-dependent)
 
 			div.application(data-name='application')
 				if apps != null && apps.length > 0

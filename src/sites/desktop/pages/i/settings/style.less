@@ -9,6 +9,109 @@ html {
 	background-size: cover;
 }
 
+.checkbox {
+	@checkbox-size: 28px;
+
+	display: block;
+
+	&, * {
+		cursor: pointer;
+	}
+
+	&:hover {
+		> p {
+			color: #111 !important;
+
+			&:before {
+				border: solid 2px #ccc;
+			}
+		}
+
+		> input[type=checkbox]:checked + p {
+			&:before {
+				border: solid 2px darken(@themeColor, 5%);
+			}
+		}
+	}
+
+	&:active {
+		> p {
+			color: #000 !important;
+
+			&:before {
+				border: solid 2px #bbb;
+			}
+		}
+
+		> input[type=checkbox]:checked + p {
+			&:before {
+				border: solid 2px darken(@themeColor, 10%);
+			}
+		}
+	}
+
+	> input[type=checkbox] {
+		display: none;
+
+		&:checked + p {
+			color: #555;
+
+			&:before {
+				border: solid 2px @themeColor;
+				box-shadow: 0 0 0 (@checkbox-size / 2) @themeColor inset;
+			}
+
+			&:after {
+				width: @checkbox-size;
+				opacity: 1;
+			}
+		}
+	}
+
+	> p {
+		display: block;
+		position: relative;
+		margin: 0;
+		padding: 16px 0 16px (@checkbox-size + 8px);
+		color: #777;
+
+		&:before {
+			content: '';
+			display: block;
+			box-sizing: border-box;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto 0;
+			width: @checkbox-size;
+			height: @checkbox-size;
+			border: solid 2px #ddd;
+			box-shadow: 0 0 0 0 @themeColor inset;
+			transition: border 1s cubic-bezier(0,1,0,1), box-shadow 1s cubic-bezier(0,1,0,1);
+		}
+
+		&:after {
+			content: '\f00c';
+			font-family: FontAwesome;
+			display: block;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto 0;
+			width: 0;
+			height: @checkbox-size;
+			line-height: @checkbox-size;
+			text-align: center;
+			color: contrast(@themeColor, #000, #fff, 70%);
+			opacity: 0;
+			transition: opacity 0.5s ease, width 0.5s ease;
+		}
+	}
+}
+
 body > .contents {
 	width: 100%;
 	max-width: 750px;
@@ -248,22 +351,28 @@ body > .contents {
 				}
 			}
 
-			.home-layout {
-				img {
-					display: block;
-					max-height: 256px;
-					margin: 0 auto;
+			.web {
+				section {
+					margin: 16px 0;
+
+					h1 {
+						margin: 0;
+						padding: 0 0 8px 0;
+						font-size: 1.3em;
+						font-weight: normal;
+						color: #444;
+					}
+
+					label {
+						padding: 0 0 0 8px;
+					}
 				}
 
-				p {
-					text-align: center;
-					font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-					font-size: 1.2em;
+				.home-customize {
+					padding: 0 0 8px 0;
 
-					a {
-						> i {
-							margin-left: 0.5em;
-						}
+					> i {
+						margin-left: 0.25em;
 					}
 				}
 			}

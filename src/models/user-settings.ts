@@ -6,6 +6,10 @@ const Schema: typeof mongoose.Schema = mongoose.Schema;
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 const schema: mongoose.Schema = new Schema({
+	enableSushi: { type: Boolean, required: false, default: true },
+	enableUrlPreviewInPost: { type: Boolean, required: false, default: true },
+	enableSnowstormWhenWinter: { type: Boolean, required: false, default: true },
+	enableNotificationSoundWhenReceivingNewPost: { type: Boolean, required: false, default: true },
 	theme: { type: String, required: false, default: null },
 	homeLayout: { type: Schema.Types.Mixed, required: true },
 	userId: { type: Schema.Types.ObjectId, required: true }
