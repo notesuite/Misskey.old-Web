@@ -25,6 +25,9 @@ block content
 				p.comment= user.comment
 				div.followers-and-following
 					div
+						p.caption Posts
+						a.count= comma(user.postsCount)
+					div
 						p.caption Following
 						a.count= comma(user.followingsCount)
 					div
