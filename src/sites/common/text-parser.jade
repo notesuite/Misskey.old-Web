@@ -28,7 +28,7 @@
 	
 	function analyzeBold(text) {
 		'use strict';
-		return text.replace(/\*\*(.+)\*\*/g, function(arg, boldee) {
+		return text.replace(/\*\*(.+?)\*\*/g, function(arg, boldee) {
 			return '<strong>' + boldee + '</strong>';
 		});
 	}
