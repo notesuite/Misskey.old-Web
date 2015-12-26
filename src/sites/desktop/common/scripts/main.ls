@@ -1,5 +1,4 @@
 $ = require 'jquery'
-require './lib/snow-storm.js'
 
 $.ajax-setup {
 	type: \post
