@@ -98,7 +98,7 @@ $(function() {
 				console.log((crystal.size / 2) + 'px');
 				
 				if (pile) {
-					$snow.css('transition', 'opacity 10s linear, width 10s linear, bottom 10s linear, left 10s linear');
+					$snow.css('transition', 'opacity 30s linear, width 30s linear, bottom 30s linear, left 30s linear');
 					
 					$snow.css({
 						'position': 'fixed',
@@ -111,7 +111,7 @@ $(function() {
 					
 					setTimeout(function() {
 						$snow.remove();
-					}, 10000);
+					}, 30000);
 				} else {
 					$snow.remove();
 				}
