@@ -85,7 +85,7 @@ $(function() {
 			} else if (top < $(window).scrollTop()) { // 上にはみ出した時
 				removeCrystal(false);
 			} else if ((top + $snow.height()) > $(window).scrollTop() + windowHeight) { // 地面についた時
-				removeCrystal(true);
+				removeCrystal(false);
 			} else {
 				$snow.css({
 					'top' : top + 'px',
@@ -117,5 +117,5 @@ $(function() {
 				}
 			}
 		});
-	}, 30);
+	}, 50);
 });
