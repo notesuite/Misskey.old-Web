@@ -20,7 +20,7 @@ mixin user-message(message)
 			data-is-deleted!= message.isDeleted.toString()
 			data-user-id= message.user.id
 			data-created-at= message.createdAt)
-		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
+		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName, target='_blank')
 			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
 		div.content-container
 			div.balloon
@@ -51,7 +51,7 @@ mixin group-message(message)
 			data-is-deleted!= message.isDeleted.toString()
 			data-user-id= message.user.id
 			data-created-at= message.createdAt)
-		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName)
+		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName, target='_blank')
 			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
 		div.content-container
 			div.balloon
