@@ -100,6 +100,7 @@ class Timeline
 			post
 			config: CONFIG
 			me: ME
+			user-settings: USER_SETTINGS
 		}
 
 		$recent-post = THIS.tl.children ':first-child'
@@ -116,6 +117,7 @@ class Timeline
 			post
 			config: CONFIG
 			me: ME
+			user-settings: USER_SETTINGS
 		}
 
 		THIS.init-post $post

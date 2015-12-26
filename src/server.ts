@@ -132,6 +132,7 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 
 	if (isLogin) {
 		const user: User = req.session.user;
+		user._settings = req.session.userSettings;
 		req.user = user;
 		req.me = user;
 		req.renderData.me = user;

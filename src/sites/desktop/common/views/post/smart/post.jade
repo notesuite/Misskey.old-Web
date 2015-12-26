@@ -78,8 +78,11 @@ mixin core(post, isRepost, repost)
 							= post.repostsCount != 0 ? post.repostsCount : ''
 					li.like
 						button(title= post.isLiked ? 'Unlike' : 'Like')
-							i.fa
-								| 🍣
+							if login && me._settings.enableSushi
+								i.fa
+									| 🍣
+							else
+								i.fa.fa-star
 						a.count(href='/' + post.user.screenName + '/' + post.id + '/likes')
 							= post.likesCount != 0 ? post.likesCount : ''
 		form.reply-form

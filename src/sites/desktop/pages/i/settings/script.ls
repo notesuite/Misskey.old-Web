@@ -10,6 +10,9 @@ avatar-form = require '../../../common/scripts/avatar-form.js'
 
 album = new AlbumWindow
 
+function chain-case-to-camel-case p
+	p.replace /-./g (s) -> s.char-at 1 .to-upper-case!
+
 $ ->
 	$form = $ \main
 
@@ -80,3 +83,16 @@ $ ->
 			.fail (data) ->
 				$submit-button.attr \disabled off
 				$submit-button.text '再度お試しください'
+
+	$form.find '.web [name="enable-sushi"]' .change ->
+		$check = $ @
+			..attr \disabled on
+
+		data = {
+			key: chain-case-to-camel-case $check.attr \name
+			value: $check.is \:checked
+		}
+
+		$.ajax "#{config.web-api-url}/web/user-settings/update" {data}
+		.always ->
+			$check.attr \disabled off

@@ -29,6 +29,7 @@ export default function router(app: express.Express): void {
 	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/avatar/update`, require('./endpoints/avatar/update').default);
 	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/banner/update`, require('./endpoints/banner/update').default);
 	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/home-layout/update`, require('./endpoints/home-layout/update').default);
+	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/user-settings/update`, require('./endpoints/user-settings/update').default);
 	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/album/upload`,
 		upload.single('file'),
 		require('./endpoints/album/upload').default);

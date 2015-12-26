@@ -22,4 +22,5 @@ export interface User {
 	isPrivate: boolean;
 	isSuspended: boolean;
 	isDeleted: boolean;
+	_settings: any;
 }

@@ -20,9 +20,10 @@ class Post
 
 		if post?
 			$post = $ post-compiler {
-				config: CONFIG,
-				me: ME,
 				post
+				config: CONFIG
+				me: ME
+				user-settings: USER_SETTINGS
 			}
 
 			THIS.init-element $post
@@ -210,9 +211,10 @@ class Post
 
 	sub-render: (post) ->
 		$ sub-post-compiler {
-			config: CONFIG,
-			me: ME,
 			post
+			config: CONFIG
+			me: ME
+			user-settings: USER_SETTINGS
 		}
 
 	check-liked: ->
