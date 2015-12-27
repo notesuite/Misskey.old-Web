@@ -1176,6 +1176,18 @@
 							background: #232221;
 
 							> .dropdown-header {
+								&:hover {
+									> .screen-name {
+										color: #fff;
+									}
+								}
+
+								&:active {
+									> .screen-name {
+										color: #fff;
+									}
+								}
+
 								> .avatar {
 									filter: saturate(200%);
 									-webkit-filter: saturate(200%);
@@ -1190,43 +1202,39 @@
 							}
 						}
 
+						&:not([data-active='true']) {
+							> .dropdown-header {
+								&:hover {
+									background: rgba(0, 0, 0, 0.1);
+
+									> .screen-name {
+										color: #fff;
+									}
+
+									> .avatar {
+										filter: saturate(150%);
+										-webkit-filter: saturate(150%);
+										-moz-filter: saturate(150%);
+										-o-filter: saturate(150%);
+										-ms-filter: saturate(150%);
+									}
+								}
+
+								&:active {
+									background: rgba(0, 0, 0, 0.2);
+
+									> .screen-name {
+										color: #fff;
+									}
+								}
+							}
+						}
+
 						> .dropdown-header {
 							cursor: pointer;
 
 							* {
 								cursor: pointer;
-							}
-
-							&:hover {
-								background: rgba(0, 0, 0, 0.1);
-
-								> .screen-name {
-									color: #fff;
-								}
-
-								> .avatar {
-									filter: saturate(150%);
-									-webkit-filter: saturate(150%);
-									-moz-filter: saturate(150%);
-									-o-filter: saturate(150%);
-									-ms-filter: saturate(150%);
-								}
-							}
-
-							&:active {
-								background: rgba(0, 0, 0, 0.2);
-
-								> .screen-name {
-									color: #fff;
-								}
-
-								> .avatar {
-									filter: saturate(200%);
-									-webkit-filter: saturate(200%);
-									-moz-filter: saturate(200%);
-									-o-filter: saturate(200%);
-									-ms-filter: saturate(200%);
-								}
 							}
 
 							&:after {
