@@ -24,7 +24,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		right: []
 	};
 
-	const layout: any = req.session.userSettings.homeLayout;
+	const layout: any = req.user._settings.homeLayout;
 	const useWidgets = layout.left.concat(layout.center.concat(layout.right));
 	const unuseWidgets = widgetCatalog.map(widgetName => {
 		if (useWidgets.indexOf(widgetName) === -1) {
