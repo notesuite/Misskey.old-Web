@@ -664,20 +664,18 @@
 									font-variant: small-caps;
 									color: @header-foreground-color;
 									text-decoration: none;
-									border-bottom: solid 0px rgba(255, 255, 255, 0.3);
-									transition: all 0.1s linear;
+									transition: none;
+									cursor: pointer;
 
 									* {
 										pointer-events: none;
 									}
 
 									&:hover {
-										color: @themeColor;
-										border-bottom: solid 4px rgba(255, 255, 255, 0.3);
+										color: #fff;
 									}
 
 									&:active {
-										color: darken(@themeColor, 10%);
 									}
 
 									> i {
