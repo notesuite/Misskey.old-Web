@@ -58,10 +58,14 @@ function upload-new-file(file)
 				$thumbnail.remove!
 			$ '#post-form > .files' .append $thumbnail
 
+function set-body-margin-top
+	$ \body .css \margin-top ($ 'main > header' .outer-height! + \px)
+
 function set-body-margin-bottom
 	$ \body .css \margin-bottom ($ \#post-form .outer-height! + \px)
 
 $ window .load ->
+	set-body-margin-top!
 	set-body-margin-bottom!
 	scroll 0, document.body.client-height
 
@@ -230,7 +234,3 @@ function init-streaming(stream)
 			, 5000ms
 
 	return socket
-
-$ window .load ->
-	header-height = $ 'main > header' .outer-height!
-	$ \body .css \margin-top "#{header-height}px"
