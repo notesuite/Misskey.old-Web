@@ -1,6 +1,6 @@
 /// <reference path="./typings/bundle.d.ts" />
 
-import { task, src, dest, watch } from 'gulp';
+import { task, src, dest } from 'gulp';
 import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
 import * as tslint from 'gulp-tslint';
@@ -88,7 +88,9 @@ task('build-develop:frontside-scripts', ['copy:frontside-templates', 'compile:fr
 task('build:frontside-styles', () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
-		.pipe(minifyCSS())
+		.pipe(minifyCSS({
+			keepSpecialComments: 0
+		}))
 		.pipe(dest('./built/resources'));
 });
 
