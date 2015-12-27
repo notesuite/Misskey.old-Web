@@ -8,7 +8,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	requestApi('posts/user-timeline', {
 		'user-id': req.data.user.id,
 		'limit': 10
-	}, req.me).then((timeline: any[]) => {
+	}, req.user).then((timeline: any[]) => {
 		res.display({
 			user: req.data.user,
 			timeline: timeline

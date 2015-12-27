@@ -14,7 +14,7 @@ export default function callController(
 		const viewPath: string = `${__dirname}/sites/${req.ua}/pages/${name}/view`;
 		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
 			data.stylePath = `${config.publicConfig.resourcesUrl}/${req.ua}/pages/${name}/style.${data.overrideTheme}.css`;
-		} else if (req.isLogin && req.session.userSettings.theme !== null) {
+		} else if (req.isLogin && req.user._settings.theme !== null) {
 			data.stylePath = `${config.publicConfig.resourcesUrl}/${req.ua}/pages/${name}/style.${req.session.userSettings.theme}.css`;
 		} else {
 			data.stylePath = `${config.publicConfig.resourcesUrl}/${req.ua}/pages/${name}/style.css`;

@@ -1,7 +1,7 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import requestApi from '../../utils/request-api';
-import getSession from './get-session';
+import getSessionUser from './get-session-user';
 import config from '../../config';
 
 interface MKSocket extends SocketIO.Socket {
@@ -27,8 +27,8 @@ function createRedisClient(): redis.RedisClient {
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
 	io.of('/streaming/talk').on('connection', (socket: MKUserSocket) => {
-		getSession(socket, sessionStore).then((session: any) => {
-			socket.user = session.user;
+		getSessionUser(socket, sessionStore).then((user: any) => {
+			socket.user = user;
 			const subscriber = createRedisClient();
 
 			socket.emit('connected');
@@ -53,8 +53,8 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 	});
 
 	io.of('/streaming/group-talk').on('connection', (socket: MKGroupSocket) => {
-		getSession(socket, sessionStore).then((session: any) => {
-			socket.user = session.user;
+		getSessionUser(socket, sessionStore).then((user: any) => {
+			socket.user = user;
 			const subscriber = createRedisClient();
 
 			socket.emit('connected');

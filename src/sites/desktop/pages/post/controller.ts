@@ -9,7 +9,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 
 	const user: User = req.data.user;
 	const post: any = req.data.post;
-	const me: User = req.me;
+	const me: User = req.user;
 
 	Promise.all([
 		new Promise<any>((resolve, reject) => {

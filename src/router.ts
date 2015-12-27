@@ -140,7 +140,7 @@ function paramUserScreenName(
 
 	requestApi('users/show', {
 		'screen-name': screenName
-	}, req.isLogin ? req.me : null).then((user: User) => {
+	}, req.isLogin ? req.user : null).then((user: User) => {
 		if (user !== null) {
 			req.data.user = user;
 			UserSettings.findOne({
@@ -174,7 +174,7 @@ function paramPostId(
 
 	requestApi('posts/show', {
 		'post-id': postId
-	}, req.isLogin ? req.me : null).then((post: Object) => {
+	}, req.isLogin ? req.user : null).then((post: Object) => {
 		if (post !== null) {
 			req.data.post = post;
 			next();
@@ -200,7 +200,7 @@ function paramTalkGroupId(
 
 	requestApi('talks/group/show', {
 		'group-id': groupId
-	}, req.me).then((group: Object) => {
+	}, req.user).then((group: Object) => {
 		req.data.talkGroup = group;
 		next();
 	}, (err: any) => {

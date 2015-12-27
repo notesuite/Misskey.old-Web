@@ -31,7 +31,7 @@
 		"src/core/login.ts",
 		"src/api/router.ts",
 		"src/api/streaming/index.ts",
-		"src/api/streaming/get-session.ts",
+		"src/api/streaming/get-session-user.ts",
 		"src/api/streaming/home.ts",
 		"src/api/streaming/talk.ts",
 		"src/api/endpoints/url/analyze.ts",

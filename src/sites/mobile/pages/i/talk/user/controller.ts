@@ -5,12 +5,12 @@ import requestApi from '../../../../../../utils/request-api';
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
 
-	// const me = req.me;
+	// const me = req.user;
 	const otherparty = req.data.user;
 
 	requestApi('talks/messages/stream', {
 		'user-id': otherparty.id
-	}, req.me.id).then((messages: any[]) => {
+	}, req.user.id).then((messages: any[]) => {
 		res.display({
 			otherparty: otherparty,
 			messages: messages.reverse()

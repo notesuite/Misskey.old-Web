@@ -1,7 +1,7 @@
 import * as redis from 'redis';
 import * as SocketIO from 'socket.io';
 import requestApi from '../../utils/request-api';
-import getSession from './get-session';
+import getSessionUser from './get-session-user';
 import config from '../../config';
 
 interface MKSocketIOSocket extends SocketIO.Socket {
@@ -10,9 +10,8 @@ interface MKSocketIOSocket extends SocketIO.Socket {
 
 module.exports = (io: SocketIO.Server, sessionStore: any) => {
 	io.of('/streaming/home').on('connection', (socket: MKSocketIOSocket) => {
-		getSession(socket, sessionStore).then((session: any) => {
-			// Get user
-			socket.user = session.user;
+		getSessionUser(socket, sessionStore).then((user: any) => {
+			socket.user = user;
 
 			// Connect to Redis
 			const subscriber: redis.RedisClient = redis.createClient(

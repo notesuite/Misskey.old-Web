@@ -7,7 +7,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 
 	requestApi('talks/history/show', {
 		type: 'user'
-	}, req.me.id).then((messages: any[]) => {
+	}, req.user.id).then((messages: any[]) => {
 		res.display({
 			messages: messages
 		});

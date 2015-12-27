@@ -7,8 +7,8 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 
 	requestApi('talks/history/show', {
 		type: 'group'
-	}, req.me.id).then((messages: any[]) => {
-		requestApi('talks/group/invitations/show', {}, req.me.id).then((invitations: any[]) => {
+	}, req.user.id).then((messages: any[]) => {
+		requestApi('talks/group/invitations/show', {}, req.user.id).then((invitations: any[]) => {
 			res.display({
 				messages: messages,
 				invitations: invitations

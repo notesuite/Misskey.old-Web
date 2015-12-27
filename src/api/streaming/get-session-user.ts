@@ -1,8 +1,12 @@
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
+
+import { User } from '../../models/user';
+import { UserSettings, IUserSettings } from '../../models/user-settings';
+import requestApi from '../../utils/request-api';
 import config from '../../config';
 
-export default function getSession(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
+export default function getSessionUser(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
 	'use strict';
 	return new Promise<Object>((resolve, reject) => {
 		// Get cookies
@@ -20,7 +24,15 @@ export default function getSession(socket: SocketIO.Socket, sessionStore: any): 
 				return;
 			}
 
-			resolve(session);
+			const userId: string = session.userId;
+			requestApi('account/show', {}, userId).then((user: User) => {
+				UserSettings.findOne({
+					userId: userId
+				}, (_: any, settings: IUserSettings) => {
+					user._settings = settings;
+					resolve(user);
+				});
+			});
 		});
 	});
 }

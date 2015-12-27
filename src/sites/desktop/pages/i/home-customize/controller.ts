@@ -17,7 +17,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		'big-calendar',
 		'small-calendar'];
 
-	const me: any = req.me;
+	const me: any = req.user;
 	const widgets: any = {
 		left: [],
 		center: [],

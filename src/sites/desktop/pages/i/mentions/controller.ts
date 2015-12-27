@@ -6,9 +6,9 @@ import generateHomeWidgets from '../../../common/generate-layouted-homewidgets';
 module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
 	'use strict';
 
-	const me: User = req.me;
+	const me: User = req.user;
 
-	generateHomeWidgets(me, req.session.userSettings.homeLayout, 'mentions').then((widgets: any) => {
+	generateHomeWidgets(me, 'mentions').then((widgets: any) => {
 		res.display({
 			widgets
 		});

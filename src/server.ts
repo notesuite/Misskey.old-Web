@@ -140,7 +140,6 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 			}, (err: any, settings: IUserSettings) => {
 				user._settings = settings;
 				req.user = user;
-				req.me = user;
 				req.renderData.me = user;
 				req.renderData.userSettings = settings;
 				next();
@@ -148,7 +147,6 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 		});
 	} else {
 		req.user = null;
-		req.me = null;
 		req.renderData.me = null;
 		req.renderData.userSettings = null;
 		next();

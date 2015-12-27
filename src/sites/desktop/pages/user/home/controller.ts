@@ -9,7 +9,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 
 	const user: User = req.data.user;
 	const userSettings: IUserSettings = req.data.userSettings;
-	const me: User = req.me;
+	const me: User = req.user;
 
 	Promise.all([
 		// タイムライン
