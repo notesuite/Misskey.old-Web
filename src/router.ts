@@ -46,7 +46,7 @@ export default function router(app: express.Express): void {
 	app.get(`/subdomain/${config.publicConfig.signinDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		if (req.query.hasOwnProperty('screen-name') && req.query.hasOwnProperty('password')) {
 			login(req.query['screen-name'], req.query['password'], req.session).then(() => {
-				res.redirect('/');
+				res.redirect(config.publicConfig.url);
 			}, (err: any) => {
 				res.sendStatus(500);
 			});
