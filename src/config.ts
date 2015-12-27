@@ -54,6 +54,8 @@ export interface IConfig {
 		resourcesUrl: string;
 		searchDomain: string;
 		searchUrl: string;
+		helpUrl: string;
+		helpDomain: string;
 		talkDomain: string;
 		talkUrl: string;
 		apiHost: string;

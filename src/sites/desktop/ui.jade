@@ -55,47 +55,44 @@ block body
 											i.fa.fa-headphones
 									div.dropdown-content
 										ul
-											li: a.ui-waves-effect(href= '/about')
+											li: a.ui-waves-effect(href= '/')
 												i.fa.fa-info-circle
 												| About Misskey
-											li: a.ui-waves-effect(href= '/help')
+											li: a.ui-waves-effect(href= config.helpUrl)
 												i.fa.fa-question-circle
 												| Help
 										ul
-											li: a.ui-waves-effect(href= '/syuilo')
+											li: a.ui-waves-effect(href= config.url + '/syuilo')
 												i.fa.fa-check-circle
 												| @syuilo
-											li: a.ui-waves-effect(href= '/misskey')
+											li: a.ui-waves-effect(href= config.url + '/misskey')
 												i.fa.fa-check-circle
 												| @misskey
 										ul
-											li: a.ui-waves-effect(href= '/about/donate')
+											li: a.ui-waves-effect(href= config.url + '/about/donate')
 												i.fa.fa-heart
 												| Donate
 										ul
-											li: a.ui-waves-effect(href= 'https://github.com/syuilo/Misskey')
+											li: a.ui-waves-effect(href='https://github.com/syuilo/Misskey')
 												i.fa.fa-github
 												| Github repository
-											li: a.ui-waves-effect(href= config.developmentChannelUrl)
-												i.fa.fa-wrench
-												| Development Channel
-											li: a.ui-waves-effect(href= 'http://dev.misskey.xyz')
+											li: a.ui-waves-effect(href= config.developerCenterUrl)
 												i.fa.fa-terminal
 												| Developers Center
 												
 							div.main-nav
 								button.misskey Misskey
 								ul
-									li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href='/')
+									li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href= config.url)
 										i.fa.fa-home
 										p Home
-									li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href='/i/mentions')
+									li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href= config.url + '/i/mentions')
 										i.fa.fa-at
 										p Mentions
-									li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href=config.talkUrl)
+									li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href= config.talkUrl)
 										i.fa.fa-comments
 										p Talks
-									li.album(class= pagePath == '/i/album' ? 'active' : ''): a.ui-waves-effect(href='/i/album')
+									li.album(class= pagePath == '/i/album' ? 'active' : ''): a.ui-waves-effect(href= config.url + '/i/album')
 										i.fa.fa-cloud
 										p Album
 					div.right
