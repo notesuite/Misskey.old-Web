@@ -8,6 +8,10 @@ banner-form = require '../../common/scripts/banner-form.js'
 album = new AlbumWindow
 
 $ ->
+	is-me = LOGIN and ME.id == USER.id
+
+	window.is-following = if LOGIN then USER.is-following else null
+
 	if is-me
 		$ \#banner-edit .click ->
 			album.choose-file (files) ->
@@ -18,14 +22,6 @@ $ ->
 			album.choose-file (files) ->
 				file = files.0
 				avatar-form file
-
-	/*
-	$ \#screen-name .click ->
-		element= document.get-element-by-id \screen-name
-		rng = document.create-range!
-		rng.select-node-contents element
-		window.get-selection!.add-range rng
-	*/
 
 	$ '#friend-button' .hover do
 		->
@@ -42,7 +38,7 @@ $ ->
 			..attr \disabled on
 		if window.is-following
 			$.ajax "#{CONFIG.web-api-url}/users/unfollow" {
-				data: {'user-id': window.user-id}
+				data: {'user-id': USER.id}
 				data-type: \json}
 			.done ->
 				$button .remove-class \danger
@@ -56,7 +52,7 @@ $ ->
 				$button.attr \disabled off
 		else
 			$.ajax "#{CONFIG.web-api-url}/users/follow" {
-				data: {'user-id': window.user-id}
+				data: {'user-id': USER.id}
 				data-type: \json}
 			.done ->
 				$button

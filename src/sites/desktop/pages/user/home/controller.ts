@@ -27,7 +27,6 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		const photoPosts: any = results[1];
 		res.display({
 			user: user,
-			isMe: req.isLogin && user.id.toString() === me.id.toString(),
 			timeline: timeline,
 			overrideTheme: userSettings !== null ? userSettings.theme : null,
 			photoPosts
