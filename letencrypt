@@ -1,0 +1,21 @@
+# GET CERTS FLOW
+# SEE: https://letsencrypt.org/howitworks/
+
+# STOP ALL WEB SERVERS
+forever stopall
+
+cd /var/misskey-web/letsencrypt
+
+# GET CERTS
+./letencrypt-auto certonly --standalone \
+-d misskey.xyz \
+-d himasaku.misskey.xyz \
+-d resources.misskey.xyz \
+-d login.misskey.xyz \
+-d logout.misskey.xyz \
+-d help.misskey.xyz \
+-d search.misskey.xyz \
+-d talk.misskey.xyz \
+-d bbs.misskey.xyz \
+-d dev.misskey.xyz \
+--server https://acme-v01.api.letsencrypt.org/directory
