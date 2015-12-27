@@ -9,10 +9,13 @@
 		position: relative;
 		margin: 0;
 		padding: 12px 0;
-		font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
 		background: #fffbfb;
 		border-bottom: solid 1px #F2EBE8;
 		transition: margin 0.2s ease, border-radius 0.2s ease, border-bottom-left-radius 0.2s ease, border-bottom-right-radius 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease;
+
+		&, *:not(.fa) {
+			font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+		}
 
 		&:focus {
 			z-index: 1;
