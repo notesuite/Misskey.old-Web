@@ -23,7 +23,7 @@ block meta
 	meta(property='twitter:url', content= config.url + '/' + user.screenName)
 
 block assets
-	script!= 'window.isMe = ' + isMe.toString() + '; window.isFollowing = ' + user.isFollowing.toString() + '; window.userId = "' + user.id + '";'
+	script!= 'var USER = ' + JSON.stringify(user) + ';'
 	block pageAssets
 
 block content
