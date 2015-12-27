@@ -3,7 +3,6 @@ import * as multer from 'multer';
 const upload: any = multer({ dest: 'uploads/' });
 
 import requestApi from '../utils/request-api';
-import refresh from '../core/refresh-session';
 import config from '../config';
 
 export default function router(app: express.Express): void {
@@ -14,14 +13,6 @@ export default function router(app: express.Express): void {
 			res.send(req.user.id);
 		} else {
 			res.send('sakuhima');
-		}
-	});
-
-	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/refresh-session`, (req: express.Request, res: express.Response) => {
-		if (req.user !== null) {
-			refresh(req.session).then(() => {
-				res.sendStatus(200);
-			});
 		}
 	});
 

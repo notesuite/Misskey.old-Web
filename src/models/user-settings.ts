@@ -10,7 +10,11 @@ const schema: mongoose.Schema = new Schema({
 	enableUrlPreviewInPost: { type: Boolean, required: false, default: true },
 	enableNotificationSoundWhenReceivingNewPost: { type: Boolean, required: false, default: true },
 	theme: { type: String, required: false, default: null },
-	homeLayout: { type: Schema.Types.Mixed, required: true },
+	homeLayout: { type: Schema.Types.Mixed, required: false, default: {
+		left: [],
+		center: ['timeline'],
+		right: ['my-status', 'notifications', 'recommendation-users', 'donate', 'ad']
+	}},
 	userId: { type: Schema.Types.ObjectId, required: true }
 });
 

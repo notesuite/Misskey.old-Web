@@ -15,8 +15,10 @@ const vhost: any = require('vhost');
 const cors: any = require('cors');
 
 import { User } from './models/user';
+import { UserSettings, IUserSettings } from './models/user-settings';
 import { MisskeyExpressRequest } from './misskey-express-request';
 import { MisskeyExpressResponse } from './misskey-express-response';
+import requestApi from './utils/request-api';
 import namingWorkerId from './utils/naming-worker-id';
 import musics from './utils/musics';
 
@@ -131,13 +133,19 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 	};
 
 	if (isLogin) {
-		const user: User = req.session.user;
-		user._settings = req.session.userSettings;
-		req.user = user;
-		req.me = user;
-		req.renderData.me = user;
-		req.renderData.userSettings = req.session.userSettings;
-		next();
+		const userId: string = req.session.userId;
+		requestApi('account/show', {}, userId).then((user: User) => {
+			UserSettings.findOne({
+				userId: userId
+			}, (err: any, settings: IUserSettings) => {
+				user._settings = settings;
+				req.user = user;
+				req.me = user;
+				req.renderData.me = user;
+				req.renderData.userSettings = settings;
+				next();
+			});
+		});
 	} else {
 		req.user = null;
 		req.me = null;

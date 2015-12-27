@@ -80,8 +80,6 @@ module.exports = (file) ->
 	function ok
 		close!
 
-		$.ajax "#{CONFIG.web-api-url}/web/refresh-session"
-
 		#$ \body .find \img ->
 		#	$img = $ @
 		#	if ($img.attr \src) ==

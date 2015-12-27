@@ -4,7 +4,6 @@ import { User } from './models/user';
 import { UserSettings, IUserSettings } from './models/user-settings';
 import requestApi from './utils/request-api';
 import login from './core/login';
-import refresh from './core/refresh-session';
 import { MisskeyExpressRequest } from './misskey-express-request';
 import { MisskeyExpressResponse } from './misskey-express-response';
 import callController from './call-controller';
@@ -22,16 +21,6 @@ export default function router(app: express.Express): void {
 			callController(req, res, 'home');
 		} else {
 			callController(req, res, 'entrance');
-		}
-	});
-
-	app.get('/!', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		if (req.isLogin) {
-			refresh(req.session).then(() => {
-				res.redirect('/');
-			});
-		} else {
-			res.redirect('/');
 		}
 	});
 

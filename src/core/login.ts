@@ -1,12 +1,6 @@
 import requestApi from '../utils/request-api';
 import { UserSettings, IUserSettings } from '../models/user-settings';
 
-const defaultHomeLayout: any = {
-	left: [],
-	center: ['timeline'],
-	right: ['my-status', 'notifications', 'recommendation-users', 'donate', 'ad']
-};
-
 export default function login(screenName: string, password: string, session: any): Promise<void> {
 	'use strict';
 
@@ -25,24 +19,20 @@ export default function login(screenName: string, password: string, session: any
 				if (settings === null) {
 					// ユーザー設定が無ければ作成
 					UserSettings.create({
-						userId: user.id,
-						theme: null,
-						homeLayout: defaultHomeLayout
+						userId: user.id
 					}, (createErr: any, created: IUserSettings) => {
-						saveSession(user, created);
+						saveSession(user);
 					});
 				} else {
-					saveSession(user, settings);
+					saveSession(user);
 				}
 			});
 		}, (err: any) => {
 			reject();
 		});
 
-		function saveSession(user: any, settings: IUserSettings): void {
-			session.user = user;
+		function saveSession(user: any): void {
 			session.userId = user.id;
-			session.userSettings = settings.toObject();
 			session.save(() => {
 				resove();
 			});

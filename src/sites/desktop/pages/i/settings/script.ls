@@ -49,8 +49,6 @@ $ ->
 		$submit-button.text 'Update'
 		$submit-button.attr \disabled off
 
-		$.ajax "#{CONFIG.web-api-url}/web/refresh-session"
-
 		$modal-ok = $ '<button>おｋ</button>'
 		dialog-close = show-modal-dialog do
 			$ '<p><i class="fa fa-info-circle"></i>プロフィールを更新しました</p>'

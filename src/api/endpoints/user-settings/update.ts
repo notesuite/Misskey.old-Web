@@ -30,11 +30,9 @@ export default function updateHomeLayout(
 		settings.save((saveErr: any, savedSettings: IUserSettings) => {
 			if (saveErr !== null) {
 				return res.sendStatus(500);
-			}
-			(<any>req.session).userSettings = savedSettings.toObject();
-			req.session.save(() => {
+			} else {
 				res.sendStatus(200);
-			});
+			}
 		});
 	});
 };
