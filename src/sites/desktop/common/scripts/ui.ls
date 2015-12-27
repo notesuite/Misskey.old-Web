@@ -464,15 +464,6 @@ $ ->
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
 
-	/*
-	mo = new MutationObserver spa
-	mo.observe document.body, {
-		-character-data
-		+child-list
-		+subtree
-	}
-	*/
-
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!
 		if tag != \input and tag != \textarea
@@ -635,8 +626,6 @@ $ ->
 									$ '<span class="name">' .text user.name
 								.append do
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
-					window.init-waves-effects!
-			.fail ->
 
 $ window .load ->
 	header-height = $ 'body > #misskey-header' .outer-height!

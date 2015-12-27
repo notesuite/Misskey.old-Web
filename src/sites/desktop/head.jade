@@ -8,7 +8,7 @@ link(rel='shortcut icon', href='/favicon.ico')
 link(rel='icon', href='/favicon.ico')
 link(rel='manifest', href='/manifest.json')
 link(rel='help', href='/help')
-link(rel='search', href='/search')
+link(rel='search', href= config.searchUrl)
 link(rel='stylesheet', href= stylePath)
 script!= 'document.domain = \'' + config.host + '\';'
 script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
