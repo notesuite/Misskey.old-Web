@@ -504,3 +504,169 @@ main {
 		}
 	}
 }
+
+
+body > .ui-modal-window-container > .ui-modal-window > .crop-form {
+	position: relative;
+	margin: 0 auto;
+	max-width: 800px;
+
+	*:not(i) {
+		font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+	}
+
+	> p {
+		display: block;
+		margin: 0;
+		padding: 16px;
+		color: #fff;
+		text-align: center;
+		background: #111;
+	}
+
+	.container {
+		background: #111;
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		> img {
+			width: 100%;
+			max-height: 400px;
+		}
+
+		.preview {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			width: 100px;
+			height: 100px;
+			overflow: hidden;
+			background: #222;
+			border-radius: 8px;
+			pointer-events: none;
+		}
+
+		button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: inline-block;
+			float: right;
+			box-sizing: border-box;
+			margin: 8px;
+			padding: 12px 20px;
+			line-height: 1.1em;
+			font-size: 1.1em;
+			font-weight: normal;
+			text-decoration: none;
+			color: #999;
+			background: transparent;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			cursor: pointer;
+			transition: color 0.1s ease;
+
+			* {
+				pointer-events: none;
+			}
+
+			i {
+				margin-right: 0.375em;
+			}
+
+			&:hover {
+				color: @themeColor;
+			}
+
+			&:active {
+				color: darken(@themeColor, 10%);
+				transition: color 0s ease;
+			}
+
+			&.ok {
+				color: #fff;
+				background: @themeColor;
+
+				&:hover {
+					color: #fff;
+					background: lighten(@themeColor, 10%);
+				}
+
+				&:active {
+					color: #fff;
+					background: darken(@themeColor, 10%);
+					transition: color 0s ease;
+				}
+			}
+
+			&.no-crop {
+				float: left;
+			}
+		}
+
+		.cropper-modal {
+			opacity: 0.8;
+		}
+
+		.cropper-view-box {
+			outline-color: @themeColor;
+		}
+
+		.cropper-line, .cropper-point {
+			background-color: @themeColor;
+		}
+
+		.cropper-bg {
+			-webkit-animation: cropper-bg 0.5s linear infinite;
+			-moz-animation: cropper-bg 0.5s linear infinite;
+			-ms-animation: cropper-bg 0.5s linear infinite;
+			animation: cropper-bg 0.5s linear infinite;
+		}
+
+		@-webkit-keyframes cropper-bg {
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
+		}
+
+		@-moz-keyframes cropper-bg {
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
+		}
+
+		@-ms-keyframes cropper-bg {
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
+		}
+
+		@keyframes cropper-bg {
+			0% {
+				background-position: 0 0;
+			}
+
+			100% {
+				background-position: -8px -8px;
+			}
+		}
+	}
+}

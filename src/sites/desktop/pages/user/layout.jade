@@ -35,7 +35,7 @@ block content
 	main(role='main')
 		header
 			div#header-data(style={'background-image': "url(#{user.bannerUrl})"})
-				if isMe
+				if login && me.id == user.id
 					button#banner-edit(title='ヘッダー画像を編集')
 						i.fa.fa-picture-o
 				div.bottom
