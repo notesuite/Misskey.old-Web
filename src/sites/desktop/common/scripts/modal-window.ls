@@ -19,11 +19,11 @@ module.exports = ($content, can-close = true, on-shown = null, klass = null) ->
 		opacity: 1
 	} 100ms \linear
 
-	$content.css {
+	$dialog.css {
 		transform: 'scale(1.2)'
 		opacity: 0
 	}
-	$content.transition {
+	$dialog.transition {
 		opacity: \1
 		scale: \1
 	} 1000ms 'cubic-bezier(0, 1, 0, 1)'
