@@ -49,7 +49,7 @@ block body
 					div.left
 						nav
 							div.misskey-menu
-								div.dropdown(data-active='false')
+								div.dropdown.right(data-active='false')
 									div.dropdown-header(role='button')
 										p
 											i.fa.fa-headphones
@@ -100,12 +100,12 @@ block body
 							input(type='search', name='q', placeholder!='&#xf002; Search')
 							div.result
 						div.account
-							div.dropdown(data-active='false')
+							div.dropdown.left(data-active='false')
 								div.dropdown-header(role='button')
 									span.screen-name
 										=me.screenName
 										i.fa.fa-angle-down
-									img.avatar(src= me.avatarUrl, alt='avatar')
+									img.avatar(src= me.avatarUrl + '?mini', alt='avatar')
 								div.dropdown-content
 									ul
 										li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
