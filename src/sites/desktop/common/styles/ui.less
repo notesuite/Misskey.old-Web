@@ -997,7 +997,6 @@
 						float: right;
 
 						&[data-active='true'] {
-
 							> .dropdown-header {
 								> .avatar {
 									filter: saturate(200%);
@@ -1005,18 +1004,6 @@
 									-moz-filter: saturate(200%);
 									-o-filter: saturate(200%);
 									-ms-filter: saturate(200%);
-								}
-							}
-						}
-
-						&:not([data-active='true']) {
-							> .dropdown-header {
-								> .avatar {
-									filter: saturate(150%);
-									-webkit-filter: saturate(150%);
-									-moz-filter: saturate(150%);
-									-o-filter: saturate(150%);
-									-ms-filter: saturate(150%);
 								}
 							}
 						}
@@ -1113,9 +1100,10 @@
 						border-radius: 2px;
 						box-shadow: none;
 						transition: background 0.1s ease;
+						cursor: pointer;
 
-						&, * {
-							cursor: pointer;
+						* {
+							pointer-events: none;
 						}
 
 						&:hover {
