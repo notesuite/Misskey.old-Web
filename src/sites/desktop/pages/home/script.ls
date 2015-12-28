@@ -116,23 +116,13 @@ $ ->
 				true
 				url
 
-	# Read more
-	$ window .scroll ->
-		me = $ @
-		current = $ window .scroll-top! + window.inner-height
-		if current > $ document .height! - 32
-			if not me.data \loading
-				me.data \loading yes
-				$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
-					data:
-						limit: 10
-						'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor}
-				.done (posts) ->
-					me.data \loading no
-					posts.for-each (post) ->
-						timeline.add-last post
-				.fail (data) ->
-					me.data \loading no
+	if USER_SETTINGS.enable-automatic-reading-of-timeline
+		# Read more
+		$ window .scroll ->
+			me = $ @
+			current = $ window .scroll-top! + window.inner-height
+			if current > $ document .height! - 32
+				read-more!
 
 	if $ \#widget-notifications .length != 0
 		# 通知読み込み
@@ -325,3 +315,17 @@ $ ->
 
 		update-clock!
 		set-interval update-clock, 1000ms
+
+function read-more
+	if not me.data \loading
+		me.data \loading yes
+		$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
+			data:
+				limit: 10
+				'max-cursor': $ '#widget-timeline .timeline > .posts > .post:last-child' .attr \data-cursor}
+		.done (posts) ->
+			me.data \loading no
+			posts.for-each (post) ->
+				timeline.add-last post
+		.fail (data) ->
+			me.data \loading no
