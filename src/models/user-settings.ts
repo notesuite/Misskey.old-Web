@@ -9,6 +9,7 @@ const schema: mongoose.Schema = new Schema({
 	enableSushi: { type: Boolean, required: false, default: true },
 	enableUrlPreviewInPost: { type: Boolean, required: false, default: true },
 	enableNotificationSoundWhenReceivingNewPost: { type: Boolean, required: false, default: true },
+	enableAutomaticReadingOfTimeline: { type: Boolean, required: false, default: true },
 	theme: { type: String, required: false, default: null },
 	homeLayout: { type: Schema.Types.Mixed, required: false, default: {
 		left: [],

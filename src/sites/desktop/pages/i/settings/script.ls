@@ -82,50 +82,24 @@ $ ->
 				$submit-button.attr \disabled off
 				$submit-button.text '再度お試しください'
 
-	$form.find '.web [name="enable-url-preview-in-post"]' .change ->
-		$check = $ @
+	init-checkbox-controll $form.find '.web [name="enable-url-preview-in-post"]'
+	init-checkbox-controll $form.find '.web [name="enable-notification-sound-when-receiving-new-post"]'
+	init-checkbox-controll $form.find '.web [name="enable-automatic-reading-of-timeline"]'
+	init-checkbox-controll $form.find '.web [name="enable-sushi"]'
+
+function init-checkbox-controll $checkbox
+	$checkbox.change ->
+		$checkbox
 			..attr \disabled on
 			..add-class \updating
 
 		data = {
-			key: chain-case-to-camel-case $check.attr \name
-			value: $check.is \:checked
+			key: chain-case-to-camel-case $checkbox.attr \name
+			value: $checkbox.is \:checked
 		}
 
 		$.ajax "#{CONFIG.web-api-url}/web/user-settings/update" {data}
 		.always ->
-			$check
-				..attr \disabled off
-				..remove-class \updating
-
-	$form.find '.web [name="enable-notification-sound-when-receiving-new-post"]' .change ->
-		$check = $ @
-			..attr \disabled on
-			..add-class \updating
-
-		data = {
-			key: chain-case-to-camel-case $check.attr \name
-			value: $check.is \:checked
-		}
-
-		$.ajax "#{CONFIG.web-api-url}/web/user-settings/update" {data}
-		.always ->
-			$check
-				..attr \disabled off
-				..remove-class \updating
-
-	$form.find '.web [name="enable-sushi"]' .change ->
-		$check = $ @
-			..attr \disabled on
-			..add-class \updating
-
-		data = {
-			key: chain-case-to-camel-case $check.attr \name
-			value: $check.is \:checked
-		}
-
-		$.ajax "#{CONFIG.web-api-url}/web/user-settings/update" {data}
-		.always ->
-			$check
+			$checkbox
 				..attr \disabled off
 				..remove-class \updating
