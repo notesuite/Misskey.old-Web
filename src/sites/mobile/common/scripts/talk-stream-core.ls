@@ -29,7 +29,7 @@ class Stream
 		switch (message-type)
 		| \user-message, \group-message =>
 			if ($message.find '.content > .text').length != 0
-				$message.find '.content > .text' .html marked ($message.find '.content > .text' .html!)
+				$message.find '.content > .text' .html marked ($message.find '.content > .text' .text!)
 				$message.find '.content > .text a' .each ->
 					$a = $ @
 					$a.add-class \url
