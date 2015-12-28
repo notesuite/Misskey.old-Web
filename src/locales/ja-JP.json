@@ -1,0 +1,13 @@
+{
+	"common": {
+		"headerHome": "ホーム",
+		"headerMentions": "自分宛て",
+		"headerTalks": "トーク",
+		"headerAlbum": "アルバム",
+		"headerSearchPlaceholder": "検索",
+		"headerAccountProfilePage": "自分のページ",
+	},
+	"pages": {
+		""
+	}
+}
