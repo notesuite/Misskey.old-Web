@@ -7,5 +7,7 @@ $.ajax-setup {
 	xhr-fields: {+with-credentials}
 }
 
+window.add-event-listener \unload ->
+
 $ ->
 	attach-fast-click document.body
