@@ -6,8 +6,11 @@ meta(name='google-site-verification', content='0KUjKH7EJj28VnWKm0p_Uo1bc6i3ldPNQ
 meta(name='coverage', content='worldwide')
 meta(name='canonical', content= config.url + pagePath)
 meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no')
-link(rel='shortcut icon', href='/favicon.ico')
-link(rel='icon', href='/favicon.ico')
+link(rel='shortcut icon', href= config.url + '/favicon.ico')
+link(rel='icon', href= config.url + '/favicon.ico')
+link(rel='manifest', href= config.url + '/manifest.json')
+link(rel='help', href= config.helpUrl)
+link(rel='search', href= config.searchUrl)
 link(rel='stylesheet', href= stylePath)
 script!= 'document.domain = \'' + config.host + '\';'
 script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
