@@ -6,4 +6,4 @@ $.ajax-setup {
 	xhr-fields: {+with-credentials}
 }
 
-window.addEventListener 'unload', ->
+window.add-event-listener \unload ->
