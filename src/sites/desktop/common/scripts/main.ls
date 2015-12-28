@@ -5,3 +5,5 @@ $.ajax-setup {
 	-cache
 	xhr-fields: {+with-credentials}
 }
+
+window.add-event-listener \unload ->
