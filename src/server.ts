@@ -108,6 +108,22 @@ app.use(expressSession({
 	})
 }));
 
+app.use((req, res, next) => {
+	(<MisskeyExpressRequest>req).isLogin =
+		req.hasOwnProperty('session') &&
+		req.session !== null &&
+		req.session.hasOwnProperty('userId') &&
+		(<any>req.session).userId !== null;
+
+	if ((<MisskeyExpressRequest>req).isLogin) {
+		req.user = (<any>req.session).userId;
+	}
+
+	next();
+});
+
+apiRouter(app);
+
 // Init session
 app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	// Chromeでは ALLOW-FROM をサポートしていないらしい
@@ -115,24 +131,17 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 
 	const ua: string = uatype(req.headers['user-agent']);
 
-	const isLogin: boolean =
-		req.hasOwnProperty('session') &&
-		req.session !== null &&
-		req.session.hasOwnProperty('userId') &&
-		req.session.userId !== null;
-
 	req.data = {};
-	req.isLogin = isLogin;
 	req.ua = ua;
 	req.renderData = {
 		pagePath: req.path,
 		config: config.publicConfig,
-		login: isLogin,
+		login: req.isLogin,
 		ua: ua,
 		workerId: workerId
 	};
 
-	if (isLogin) {
+	if (req.isLogin) {
 		const userId: string = req.session.userId;
 		requestApi('account/show', {}, userId).then((user: User) => {
 			UserSettings.findOne({
@@ -154,7 +163,6 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 });
 
 // Rooting
-apiRouter(app);
 router(app);
 
 let server: http.Server | https.Server;

@@ -8,12 +8,8 @@ import config from '../config';
 export default function router(app: express.Express): void {
 	'use strict';
 
-	app.get(`/subdomain/${config.publicConfig.webApiDomain}/`, (req: express.Request, res: express.Response) => {
-		if (req.user !== null) {
-			res.send(req.user.id);
-		} else {
-			res.send('sakuhima');
-		}
+	app.get(`/subdomain/${config.publicConfig.webApiDomain}/`, (req, res) => {
+		res.send('sakuhima');
 	});
 
 	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/url/analyze`, require('./endpoints/url/analyze').default);
@@ -29,8 +25,12 @@ export default function router(app: express.Express): void {
 		require('./endpoints/posts/create-with-file').default);
 	app.post(`/subdomain/${config.publicConfig.webApiDomain}/web/posts/reply`, require('./endpoints/posts/reply').default);
 
-	app.post(`/subdomain/${config.publicConfig.webApiDomain}/*`, (req: express.Request, res: express.Response) => {
-		requestApi(req.path.substring(`/subdomain/${config.publicConfig.webApiDomain}/`.length), req.body, req.user).then((response: any) => {
+	app.post(`/subdomain/${config.publicConfig.webApiDomain}/*`, (req, res) => {
+		requestApi(
+			req.path.substring(`/subdomain/${config.publicConfig.webApiDomain}/`.length),
+			req.body,
+			req.user
+		).then((response: any) => {
 			res.json(response);
 		}, (err: any) => {
 			res.status(err.statusCode);
