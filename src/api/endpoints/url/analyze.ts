@@ -30,6 +30,10 @@ export default function analyze(req: express.Request, res: express.Response): vo
 		case 'en.wikipedia.org':
 			analyzeWikipedia(req, res, url);
 			break;
+		case 'ja.m.wikipedia.org':
+		case 'en.m.wikipedia.org':
+			analyzeMobileWikipedia(req, res, url);
+			break;
 		case 'www.youtube.com':
 		case 'youtube.com':
 		case 'youtu.be':
@@ -62,7 +66,7 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 
 		const $: any = result.$;
 
-		const text: string = $('#mw-content-text > p:first-child').text();
+		const text: string = $('#mw-content-text > p:first-of-type').text();
 
 		// Favicon
 		const icon: string = URL.resolve(url.href, $('link[rel="shortcut icon"]').attr('href'));
@@ -71,7 +75,42 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 			`${__dirname}/summary.jade`);
 
 		const viewer = compiler({
-			url: url.href,
+			url: url,
+			title,
+			icon,
+			description: text,
+			image: 'https://ja.wikipedia.org/static/images/project-logos/enwiki.png',
+			siteName: 'Wikipedia'
+		});
+
+		res.send(viewer);
+	}, (err: any) => {
+		res.sendStatus(204);
+	});
+}
+
+function analyzeMobileWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
+	'use strict';
+
+	const title: string = decodeURI(url.pathname.split('/')[2]);
+
+	client.fetch(url.href).then((result: any) => {
+		if (result.error !== undefined && result.error !== null) {
+			return res.sendStatus(500);
+		}
+
+		const $: any = result.$;
+
+		const text: string = $('#bodyContent > div:first-of-type > p:first-of-type').text();
+
+		// Favicon
+		const icon: string = URL.resolve(url.href, $('link[rel="shortcut icon"]').attr('href'));
+
+		const compiler: (locals: any) => string = jade.compileFile(
+			`${__dirname}/summary.jade`);
+
+		const viewer = compiler({
+			url: url,
 			title,
 			icon,
 			description: text,
