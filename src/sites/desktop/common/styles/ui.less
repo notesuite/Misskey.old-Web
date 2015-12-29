@@ -734,27 +734,6 @@
 						line-height: 3rem;
 						vertical-align: top;
 
-						> .misskey {
-							-webkit-appearance: none;
-							-moz-appearance: none;
-							appearance: none;
-							display: none;
-							vertical-align: top;
-							margin: 0 10px;
-							padding: 0;
-							line-height: 3rem;
-							font-size: 1.5em;
-							color: rgba(0, 0, 0, 0.5);
-							border: none;
-							outline: none;
-							background: transparent;
-							transition: all 0.2s ease;
-
-							&:hover {
-								color: @themeColor;
-							}
-						}
-
 						> ul {
 							display: inline-block;
 							margin: 0;
@@ -836,13 +815,46 @@
 
 						> .dropdown {
 							> .dropdown-header {
-								> p {
+								.hamburger {
 									display: block;
-									margin: 0 16px;
-									line-height: 48px;
+									box-sizing: border-box;
+									width: 48px;
+									padding: 19px 15px 14px 15px;
 
-									> i {
-										color: @header-foreground-color;
+									.bar {
+										display: block;
+										width: 100%;
+										height: 2px;
+										margin-bottom: 3px;
+										border-radius: 4px;
+										background: @header-foreground-color;
+										transition: opacity 0.3s ease, transform 0.3s ease;
+									}
+								}
+
+								&:hover {
+									.hamburger {
+										.bar {
+											background: #fff;
+										}
+									}
+								}
+							}
+
+							&[data-active=true] {
+								> .dropdown-header {
+									.hamburger {
+										.bar:nth-child(1) {
+											transform: translateY(5px) rotateZ(45deg);
+										}
+
+										.bar:nth-child(2) {
+											opacity: 0;
+										}
+
+										.bar:nth-child(3) {
+											transform: translateY(-5px) rotateZ(-45deg);
+										}
 									}
 								}
 							}
