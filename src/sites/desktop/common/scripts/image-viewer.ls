@@ -59,7 +59,7 @@ module.exports = ($image) ->
 		} 100ms
 
 		$raw = $ '<img />'
-		$raw.attr \src $img.attr \src
+		$raw.attr \src src
 		$raw.css {
 			'position': 'fixed'
 			'z-index': 1537

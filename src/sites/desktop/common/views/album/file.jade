@@ -33,7 +33,7 @@ case file.type
 				when 'image/webp'
 				when 'image/tiff'
 				when 'image/bmp'
-					div.content(style={'background-image': 'url(#{file.thumbnail-url})'})
+					div.content(style={'background-image': 'url(#{file.thumbnailUrl})'})
 						p.name= file.name
 				default
 					div.content(style={'background-image': 'url(/resources/desktop/images/album/file.svg)'})
