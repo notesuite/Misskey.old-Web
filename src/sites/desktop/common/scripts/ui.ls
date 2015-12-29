@@ -456,13 +456,14 @@ class PhotoPostForm
 		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 $ ->
-	post-form = new PostForm
-
-	update-header-statuses!
-	set-interval update-header-statuses, 10000ms
-
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
+
+	if LOGIN
+		post-form = new PostForm
+
+		update-header-statuses!
+		set-interval update-header-statuses, 10000ms
 
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!

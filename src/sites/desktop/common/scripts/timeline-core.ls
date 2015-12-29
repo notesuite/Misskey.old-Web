@@ -93,7 +93,7 @@ class Post
 
 		THIS.init-repost-form!
 
-		if window.LOGIN
+		if LOGIN
 			THIS.init-reply-form!
 
 	init-reply-form: ->

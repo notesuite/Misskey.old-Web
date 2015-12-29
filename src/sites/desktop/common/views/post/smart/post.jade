@@ -38,18 +38,18 @@ mixin core(post, isRepost, repost)
 			+subPost(post.inReplyToPost)(class='reply-source')
 		if isRepost
 			p.repost-info
-				a.avatar-anchor(href='/' + repost.user.screenName, title= userTitle)
-					img.avatar(src=repost.user.avatarUrl + '?mini', alt='avatar')
+				a.avatar-anchor(href= config.url + '/' + repost.user.screenName, title= userTitle)
+					img.avatar(src= repost.user.avatarUrl + '?mini', alt='avatar')
 				i.fa.fa-retweet
 				| Reposted by 
-				a.name(href='/' + repost.user.screenName)= repost.user.name
+				a.name(href= config.url + '/' + repost.user.screenName)= repost.user.name
 		div.main
 			div.avatar-area
-				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
-					img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
+				a.avatar-anchor(href= config.url + '/' + post.user.screenName, title= userTitle, rel='avatar')
+					img.avatar(src= post.user.avatarUrl + '?mini', alt='avatar')
 			header
 				div.author(itemprop='author')
-					a.name(href='/' + post.user.screenName, rel='author')= post.user.name
+					a.name(href= config.url + '/' + post.user.screenName, rel='author')= post.user.name
 					if post.user.isVerified
 						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
 					span.screen-name= post.user.screenName
@@ -59,34 +59,33 @@ mixin core(post, isRepost, repost)
 							p.via
 								span.caption via
 								b.app-name= post.app.name
-					a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
-						time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+					a.time-anchor(href= config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
+						time(datetime= post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 			div.content(itemprop='articleBody')
 				+content(post)
 		footer
-			if login
-				ul.actions
-					li.reply
-						button(title='返信')
-							i.fa.fa-reply
-						a.count(href='/' + post.user.screenName + '/' + post.id)
-							= post.repliesCount != 0 ? post.repliesCount : ''
-					li.repost
-						button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
-							i.fa.fa-retweet
-						a.count(href='/' + post.user.screenName + '/' + post.id + '/reposts')
-							= post.repostsCount != 0 ? post.repostsCount : ''
-					li.like
-						button(title= post.isLiked ? 'Unlike' : 'Like')
-							if login && me._settings.enableSushi
-								i.fa
-									| 🍣
-							else
-								i.fa.fa-star
-						a.count(href='/' + post.user.screenName + '/' + post.id + '/likes')
-							= post.likesCount != 0 ? post.likesCount : ''
-		form.reply-form
-			if login
+			ul.actions
+				li.reply
+					button(title='返信')
+						i.fa.fa-reply
+					a.count(href= config.url + '/' + post.user.screenName + '/' + post.id)
+						= post.repliesCount != 0 ? post.repliesCount : ''
+				li.repost
+					button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
+						i.fa.fa-retweet
+					a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
+						= post.repostsCount != 0 ? post.repostsCount : ''
+				li.like
+					button(title= post.isLiked ? 'Unlike' : 'Like')
+						if login && me._settings.enableSushi
+							i.fa
+								| 🍣
+						else
+							i.fa.fa-star
+					a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
+						= post.likesCount != 0 ? post.likesCount : ''
+		if login
+			form.reply-form
 				img.me-avatar(src= me.avatarUrl + '?mini', alt='avatar')
 				div.form
 					textarea(name='text', placeholder='この投稿に返信...', aria-multiline='true')= '@' + post.user.screenName + ' '

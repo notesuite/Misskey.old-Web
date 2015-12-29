@@ -45,44 +45,43 @@ block body
 	header#misskey-header
 		div.main
 			div.main-contents-container
-				if login
-					div.left
-						nav
-							div.misskey-menu
-								div.dropdown.right(data-active='false')
-									div.dropdown-header(role='button')
-										p
-											i.fa.fa-headphones
-									div.dropdown-content
-										ul
-											li: a.ui-waves-effect(href= '/')
-												i.fa.fa-info-circle
-												| About Misskey
-											li: a.ui-waves-effect(href= config.helpUrl)
-												i.fa.fa-question-circle
-												| Help
-										ul
-											li: a.ui-waves-effect(href= config.url + '/syuilo')
-												i.fa.fa-check-circle
-												| @syuilo
-											li: a.ui-waves-effect(href= config.url + '/misskey')
-												i.fa.fa-check-circle
-												| @misskey
-										ul
-											li: a.ui-waves-effect(href= config.url + '/about/donate')
-												i.fa.fa-heart
-												| Donate
-										ul
-											li: a.ui-waves-effect(href='https://github.com/syuilo/Misskey')
-												i.fa.fa-github
-												| Github repository
-											li: a.ui-waves-effect(href= config.developerCenterUrl)
-												i.fa.fa-terminal
-												| Developers Center
-												
-							div.main-nav
-								button.misskey Misskey
-								ul
+				div.left
+					nav
+						div.misskey-menu
+							div.dropdown.right(data-active='false')
+								div.dropdown-header(role='button')
+									p
+										i.fa.fa-headphones
+								div.dropdown-content
+									ul
+										li: a.ui-waves-effect(href= '/')
+											i.fa.fa-info-circle
+											| About Misskey
+										li: a.ui-waves-effect(href= config.helpUrl)
+											i.fa.fa-question-circle
+											| Help
+									ul
+										li: a.ui-waves-effect(href= config.url + '/syuilo')
+											i.fa.fa-check-circle
+											| @syuilo
+										li: a.ui-waves-effect(href= config.url + '/misskey')
+											i.fa.fa-check-circle
+											| @misskey
+									ul
+										li: a.ui-waves-effect(href= config.url + '/about/donate')
+											i.fa.fa-heart
+											| Donate
+									ul
+										li: a.ui-waves-effect(href='https://github.com/syuilo/Misskey')
+											i.fa.fa-github
+											| Github repository
+										li: a.ui-waves-effect(href= config.developerCenterUrl)
+											i.fa.fa-terminal
+											| Developers Center
+
+						div.main-nav
+							ul
+								if login
 									li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href= config.url)
 										i.fa.fa-home
 										p Home
@@ -95,10 +94,11 @@ block body
 									li.album(class= pagePath == '/i/album' ? 'active' : ''): a.ui-waves-effect(href= config.url + '/i/album')
 										i.fa.fa-cloud
 										p Album
-					div.right
-						form.search(action= config.searchUrl, method='get', role='search')
-							input(type='search', name='q', placeholder!='&#xf002; Search')
-							div.result
+				div.right
+					form.search(action= config.searchUrl, method='get', role='search')
+						input(type='search', name='q', placeholder!='&#xf002; Search')
+						div.result
+					if login
 						div.account
 							div.dropdown.left(data-active='false')
 								div.dropdown-header(role='button')
@@ -141,24 +141,12 @@ block body
 						div.post
 							button#misskey-post-button(title='新しい投稿を作成')
 								i.fa.fa-pencil-square-o
-						div.time
-							div.dropdown(data-active='false')
-								div.dropdown-header(role='button')
-									time.now(datetime= Date.now())
-								div.dropdown-content
-									canvas.clock#misskey-main-clock-canvas(width='256', height='256')
-				else
-					div.left
-						nav
-							div.mainNav
-								button.misskey Misskey
-								ul
-									li.home: a.ui-waves-effect(href='/')
-										i.fa.fa-home
-										| エントランス
-									li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
-										i.fa.fa-users
-										| Boards
+					div.time
+						div.dropdown(data-active='false')
+							div.dropdown-header(role='button')
+								time.now(datetime= Date.now())
+							div.dropdown-content
+								canvas.clock#misskey-main-clock-canvas(width='256', height='256')
 
 	div.grobal-container.contents
 		block content

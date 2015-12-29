@@ -5,14 +5,14 @@ mixin subPost(post)
 	aside.sub-post(class!= attributes.class !== undefined ? attributes.class + ' ' + post.type : post.type
 			title= post.createdAt
 			data-id= post.id)
-		a.avatar-anchor(href='/' + post.user.screenName, title= userTitle)
+		a.avatar-anchor(href= config.url + '/' + post.user.screenName, title= userTitle)
 			img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
 		header
-			a.name(href='/' + post.user.screenName)= post.user.name
+			a.name(href= config.url + '/' + post.user.screenName)= post.user.name
 			if post.user.isVerified
 				img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
 			span.screen-name= post.user.screenName
-			a.time-anchor(href='/' + post.user.screenName + '/' + post.id)
-				time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt
+			a.time-anchor(href= config.url + '/' + post.user.screenName + '/' + post.id)
+				time(datetime= post.createdAt, pubdate, data-display-type='relative')= post.createdAt
 		div.main
 			+content(post)
