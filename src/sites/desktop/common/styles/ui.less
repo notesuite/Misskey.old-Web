@@ -600,11 +600,15 @@
 
 				> .dropdown-header {
 					&:hover {
-						color: #fff;
+						&, * {
+							color: #fff !important;
+						}
 					}
 
 					&:active {
-						color: #fff;
+						&, * {
+							color: #fff !important;
+						}
 					}
 				}
 
@@ -617,12 +621,18 @@
 				> .dropdown-header {
 					&:hover {
 						background: rgba(0, 0, 0, 0.1);
-						color: #fff;
+
+						&, * {
+							color: #fff !important;
+						}
 					}
 
 					&:active {
 						background: rgba(0, 0, 0, 0.2);
-						color: #fff;
+
+						&, * {
+							color: #fff !important;
+						}
 					}
 				}
 			}
