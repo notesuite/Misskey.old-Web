@@ -577,7 +577,7 @@ $ ->
 			$ '<img class="loading" src="/resources/images/notifications-loading.gif" alt="loading..." />' .append-to $notifications-container
 
 			# 通知読み込み
-			$.ajax CONFIG.web-api-url + '/notification/timeline-webhtml'
+			$.ajax "#{CONFIG.web-api-url}/notifications/timeline"
 			.done (data) ->
 				$ '#misskey-header .notifications .loading' .remove!
 				$ '#misskey-header .notifications .unread-count' .remove!
@@ -591,7 +591,7 @@ $ ->
 						$notification.append-to $list
 					$list.append-to $notifications-container
 				else
-					$info = $ '<p class="notification-empty">通知はありません</p>'
+					$info = $ '<p class="notifications-empty">通知はありません</p>'
 					$info.append-to $notifications-container
 			.fail (data) ->
 				$ '#misskey-header .notifications .loading' .remove!
