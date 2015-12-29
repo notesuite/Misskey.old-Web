@@ -16,7 +16,7 @@ mixin user-message(message)
 		li.talk.user(data-is-my-message='true')
 			a(href= config.talkUrl + '/' + message.recipient.screenName)
 				article
-					img.avatar(src= message.recipient.avatarUrl + '?mini', alt='avatar')
+					img.avatar(src= message.recipient.avatarThumbnailUrl, alt='avatar')
 					header
 						h2= message.recipient.name
 						span.screen-name= '@' + message.recipient.screenName
@@ -34,7 +34,7 @@ mixin user-message(message)
 				data-is-unread!= unread.toString())
 			a(href= config.talkUrl + '/' + message.user.screenName)
 				article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks/unread.svg")'} : {})
-					img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
+					img.avatar(src= message.user.avatarThumbnailUrl, alt='avatar')
 					header
 						h2= message.user.name
 						span.screen-name= '@' + message.user.screenName
@@ -52,7 +52,7 @@ mixin group-message(message)
 		a(href= config.talkUrl + '/:group/' + message.group.id)
 			article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks/unread.svg")'} : {})
 				i.fa.fa-users.mark
-				img.icon(src= message.user.avatarUrl + '?mini', alt='icon')
+				img.icon(src= message.user.avatarThumbnailUrl, alt='icon')
 				header
 					h2= message.group.name
 					span.members-count= message.group.members.length + '人の参加者'
@@ -70,7 +70,7 @@ mixin group-activity-base(message)
 		a(href= config.talkUrl + '/:group/' + message.group.id)
 			article(style= unread ? {'background-image': 'url("' + config.resourcesUrl + '/desktop/pages/i/talks/unread.svg")'} : {})
 				i.fa.fa-users.mark
-				img.icon(src= message.group.iconUrl + '?mini', alt='icon')
+				img.icon(src= message.group.iconThumbnailUrl, alt='icon')
 				header
 					h2= message.group.name
 					span.members-count= message.group.members.length + '人の参加者'

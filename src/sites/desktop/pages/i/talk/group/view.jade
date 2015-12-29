@@ -17,7 +17,7 @@ block header
 		ol.members
 			each member in group.members
 				li.member(title= member.name): a(href= config.url + '/' + member.screenName, target='_blank')
-					img.avatar(src= member.avatarUrl + '?mini', alt= member.screenName)
+					img.avatar(src= member.avatarThumbnailUrl, alt= member.screenName)
 	div.nav.dropdown
 		button
 			i.fa.fa-bars

@@ -4,6 +4,7 @@ module.exports = ($image) ->
 	$img = $image.find \img
 	$button = $image.find \button
 	$back = $image.find \.background
+	src = $img.attr \data-original-url
 
 	$viewer = $ '<div />'
 
@@ -25,7 +26,7 @@ module.exports = ($image) ->
 				'right': 0
 				'width': $img.outer-width! + 'px'
 				'height': $img.outer-height! + 'px'
-				'background-image': "url(#{$img.attr 'src'})"
+				'background-image': "url(#{src})"
 				'pointer-events': 'none'
 			}
 			$image.append $viewer

@@ -51,7 +51,7 @@ function upload-new-file(file)
 		(total, uploaded, percentage) ->
 		(file) ->
 			$progress.remove!
-			$thumbnail = $ "<li style='background-image: url(#{file.url}?mini);' data-id='#{file.id}' />"
+			$thumbnail = $ "<li style='background-image: url(#{file.thumbnail-url});' data-id='#{file.id}' />"
 			$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
 			$thumbnail.append $remove-button
 			$remove-button.click ->

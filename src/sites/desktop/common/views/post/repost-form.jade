@@ -9,7 +9,7 @@ mixin repost-form(post)
 				| この投稿をRepostしますか？
 			article(class=post.type)
 				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
-					img.avatar(src=post.user.avatarUrl + '?mini', alt='avatar')
+					img.avatar(src=post.user.avatarThumbnailUrl, alt='avatar')
 				header.header
 					a.name(href='/' + post.user.screenName, target='_blank', rel='author')= post.user.name
 					if post.user.isVerified

@@ -21,7 +21,7 @@ mixin user-message(message)
 			data-user-id= message.user.id
 			data-created-at= message.createdAt)
 		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName, target='_blank')
-			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
+			img.avatar(src= message.user.avatarThumbnailUrl, alt='avatar')
 		div.content-container
 			div.balloon
 				if !message.isDeleted && (message.user.id == me.id)
@@ -54,7 +54,7 @@ mixin group-message(message)
 			data-user-id= message.user.id
 			data-created-at= message.createdAt)
 		a.avatar-anchor(href= config.url + '/' + message.user.screenName, title= message.user.screenName, target='_blank')
-			img.avatar(src= message.user.avatarUrl + '?mini', alt='avatar')
+			img.avatar(src= message.user.avatarThumbnailUrl, alt='avatar')
 		div.content-container
 			div.balloon
 				if !message.isDeleted && (message.user.id == me.id)
@@ -98,7 +98,7 @@ mixin group-member-join-activity(message)
 			data-type= 'group-member-join-activity'
 			data-created-at= message.createdAt)
 		p
-			img.avatar(src= message.joiner.avatarUrl + '?mini', alt='avatar')
+			img.avatar(src= message.joiner.avatarThumbnailUrl, alt='avatar')
 			span.text
 				a.joiner(href= config.url + '/' + message.joiner.screenName, target='_blank')= message.joiner.name
 				| が参加しました

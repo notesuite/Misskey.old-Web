@@ -418,7 +418,7 @@ class PhotoPostForm
 			THIS.submit!
 
 	add-file: (file-data) ->
-		$thumbnail = $ "<li style='background-image: url(#{file-data.url}?mini);' data-id='#{file-data.id}' />"
+		$thumbnail = $ "<li style='background-image: url(#{file-data.thumbnail-url});' data-id='#{file-data.id}' />"
 		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
 		$thumbnail.append $remove-button
 		$remove-button.click ->
@@ -622,7 +622,7 @@ $ ->
 									'href': "#{CONFIG.url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
-									$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-url + '?mini'
+									$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-thumbnail-url
 								.append do
 									$ '<span class="name">' .text user.name
 								.append do

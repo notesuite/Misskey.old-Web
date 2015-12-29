@@ -1,7 +1,7 @@
 div.misskey-home-widget#widget-my-status(data-widget-id='my-status', data-widget-name='ステータス')
 	header
 		a.avatar-anchor(href='/' + me.screenName)
-			img.avatar(src=me.avatarUrl + '?mini', alt='avatar')
+			img.avatar(src=me.avatarThumbnailUrl, alt='avatar')
 		h1= me.name
 	nav(role='navigation')
 		table.status

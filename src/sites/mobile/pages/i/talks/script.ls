@@ -23,7 +23,7 @@ $ ->
 									'href': "#{CONFIG.talk-url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
-									$ '<img class="avatar" alt="avatar">' .attr \src (user.avatar-url + '?mini')
+									$ '<img class="avatar" alt="avatar">' .attr \src user.avatar-thumbnail-url
 								.append do
 									$ '<span class="name">' .text user.name
 								.append do

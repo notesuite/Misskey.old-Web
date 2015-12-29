@@ -8,4 +8,14 @@ mixin content(post)
 			ol.photos
 				each photo in post.photos
 					li.photo
-						img.image(src= photo.url, alt= photo.name, title= photo.name)
+						if me !== null && me._settings.thumbnailyzeAttachedImageOfPost
+							img.image.thumbnail(
+								src= photo.thumbnailUrl,
+								data-original-url= photo.url,
+								alt= photo.name,
+								title= photo.name)
+						else
+							img.image(src= photo.url,
+								data-original-url= photo.url,
+								alt= photo.name,
+								title= photo.name)
