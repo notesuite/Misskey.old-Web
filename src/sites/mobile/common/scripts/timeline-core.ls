@@ -23,8 +23,8 @@ class Timeline
 
 		post-id = $post.attr \data-id
 		post-type = $post.attr \data-type
-		user-name = $post.find '> .main > header > .author > .name' .text!
-		user-screen-name = $post.find '> .main > header > .author > .screen-name' .text!
+		user-name = $post.attr \data-user-name
+		user-screen-name = $post.attr \data-user-screen-name
 		text = $post.find '> .main > .content > .text' .text!
 
 		$post
