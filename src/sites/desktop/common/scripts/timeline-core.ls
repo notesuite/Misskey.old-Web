@@ -84,14 +84,16 @@ class Post
 		THIS.$post.find '> footer > .actions > .like > button' .click ->
 			THIS.like!
 
+		# Init repost button
+		THIS.$post.find '> footer > .actions > .repost > button' .click ->
+			THIS.repost!
+
 		# Init reply button
 		THIS.$post.find '> footer > .actions > .reply > button' .click ->
 			THIS.toggle-display-state!
 			THIS.focus-reply-form!
 
 		post-content-initializer THIS.type, THIS.$post.find '> .main > .content'
-
-		THIS.init-repost-form!
 
 		if LOGIN
 			THIS.init-reply-form!
@@ -142,68 +144,6 @@ class Post
 		THIS.$reply-form.submit (event) ->
 			event.prevent-default!
 			THIS.submit-reply!
-
-	init-repost-form: ->
-		THIS = @
-
-		function open
-			THIS.$repost-form.find '.background' .css \display \block
-			THIS.$repost-form.find '.background' .animate {
-				opacity: 1
-			} 100ms \linear
-
-			THIS.$repost-form.find '.form' .css \display \block
-			THIS.$repost-form.find '.form' .animate {
-				opacity: 1
-			} 100ms \linear
-
-		function close
-			THIS.$repost-form.find '.background' .animate {
-				opacity: 0
-			} 100ms \linear ->
-				THIS.$repost-form.find '.background' .css \display \none
-
-			THIS.$repost-form.find '.form' .animate {
-				opacity: 0
-			} 100ms \linear ->
-				THIS.$repost-form.find '.form' .css \display \none
-
-		THIS.$post.find '> footer > .actions > .repost > button' .click ->
-			$button = $ @
-			if THIS.check-reposted!
-				THIS.$post.attr \data-is-reposted \false
-				$.ajax "#{CONFIG.web-api-url}/post/unrepost" {
-					data: {'post-id': THIS.id}}
-				.done ->
-					$button.attr \disabled off
-				.fail ->
-					$button.attr \disabled off
-					THIS.$post.attr \data-is-reposted \true
-			else
-				open!
-
-		THIS.$repost-form.find '.form' .submit (event) ->
-			event.prevent-default!
-			$form = $ @
-			$submit-button = $form.find \.accept
-				..attr \disabled on
-				..attr \data-reposting \true
-			THIS.repost do
-				->
-					$submit-button
-						..attr \disabled off
-						..attr \data-reposting \false
-				->
-					window.display-message 'Reposted!'
-					close!
-				->
-					window.display-message 'Repostに失敗しました。再度お試しください。'
-
-		THIS.$repost-form.find '.form > .actions > .cancel' .click ->
-			close!
-
-		THIS.$repost-form.find '.background' .click ->
-			close!
 
 	set-parent-timeline: (parent-timeline) ->
 		THIS = @
@@ -378,18 +318,72 @@ class Post
 				$button.attr \disabled off
 				THIS.$post.attr \data-is-liked \false
 
-	repost: (always, done, fail) ->
+	repost: ->
 		THIS = @
-		THIS.$post.attr \data-is-reposted \true
-		$.ajax "#{CONFIG.web-api-url}/posts/repost" {
-			data: {'post-id': THIS.id}}
-		.done ->
-			done!
-		.fail ->
-			THIS.$post.attr \data-is-reposted \false
-			fail!
-		.always ->
-			always!
+
+		function repost(always, done, fail)
+			THIS.$post.attr \data-is-reposted \true
+			$.ajax "#{CONFIG.web-api-url}/posts/repost" {
+				data: {'post-id': THIS.id}}
+			.done ->
+				window.display-message 'Reposted!'
+				done!
+			.fail ->
+				THIS.$post.attr \data-is-reposted \false
+				window.display-message 'Repostに失敗しました。再度お試しください。'
+				fail!
+			.always ->
+				always!
+
+		function open
+			THIS.$repost-form.find '.background' .css \display \block
+			THIS.$repost-form.find '.background' .animate {
+				opacity: 1
+			} 100ms \linear
+
+			THIS.$repost-form.find '.form' .css \display \block
+			THIS.$repost-form.find '.form' .animate {
+				opacity: 1
+			} 100ms \linear
+
+		function close
+			THIS.$repost-form.find '.background' .animate {
+				opacity: 0
+			} 100ms \linear ->
+				THIS.$repost-form.find '.background' .css \display \none
+
+			THIS.$repost-form.find '.form' .animate {
+				opacity: 0
+			} 100ms \linear ->
+				THIS.$repost-form.find '.form' .css \display \none
+
+		if USER_SETTINGS.show-confirmation-when-repost
+			open!
+
+			THIS.$repost-form.find '.form' .unbind \submit
+			THIS.$repost-form.find '.form' .one \submit (event) ->
+				event.prevent-default!
+				$form = $ @
+				$submit-button = $form.find \.accept
+					..attr \disabled on
+					..attr \data-reposting \true
+				repost do
+					->
+						$submit-button
+							..attr \disabled off
+							..attr \data-reposting \false
+					->
+						close!
+
+			THIS.$repost-form.find '.form > .actions > .cancel' .unbind \click
+			THIS.$repost-form.find '.form > .actions > .cancel' .one \click ->
+				close!
+
+			THIS.$repost-form.find '.background' .unbind \click
+			THIS.$repost-form.find '.background' .one \click ->
+				close!
+		else
+			repost!
 
 class Timeline
 	($tl) ->

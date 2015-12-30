@@ -71,6 +71,16 @@ class Timeline
 
 			# Init repost button
 			..find '> footer > .repost > button' .click ->
+				function repost
+					$post.attr \data-is-reposted \true
+					$.ajax "#{CONFIG.web-api-url}/posts/repost" {
+						data: {'post-id': post-id}}
+					.done ->
+						$button.attr \disabled off
+					.fail ->
+						$button.attr \disabled off
+						$status.attr \data-is-reposted \false
+
 				if check-reposted!
 					$post.attr \data-is-reposted \false
 					$.ajax "#{CONFIG.web-api-url}/posts/unrepost" {
@@ -81,15 +91,11 @@ class Timeline
 						$button.attr \disabled off
 						$status.attr \data-is-reposted \true
 				else
-					if window.confirm "#{user-name}「#{text}」\nを Repost しますか？"
-						$post.attr \data-is-reposted \true
-						$.ajax "#{CONFIG.web-api-url}/posts/repost" {
-							data: {'post-id': post-id}}
-						.done ->
-							$button.attr \disabled off
-						.fail ->
-							$button.attr \disabled off
-							$status.attr \data-is-reposted \false
+					if USER_SETTINGS.show-confirmation-when-repost
+						if window.confirm "#{user-name}「#{text}」\nを Repost しますか？"
+							repost!
+					else
+						repost!
 
 		post-content-initializer post-type, $post.find '> .main > .content'
 
