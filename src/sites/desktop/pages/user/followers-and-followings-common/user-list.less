@@ -1,32 +1,47 @@
 @import "../../../common";
 
 .user-list {
-	.user {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	> .user {
 		display: block;
+		position: relative;
 		box-sizing: border-box;
 		margin: 0;
-		padding: 20px;
+		padding: 16px;
+		background: #fff;
 		border-bottom: solid 1px #eee;
 
-		.avatar-anchor {
+		> .avatar-anchor {
 			display: block;
 
-			.avatar {
+			> .avatar {
 				display: block;
-				float: left;
+				position: absolute;
+				top: 16px;
+				left: 16px;
 				width: 64px;
 				height: 64px;
 			}
 		}
 
-		.friend-form {
+		> header {
 			display: block;
+		}
+
+		> .friend-form {
+			display: block;
+			position: absolute;
+			top: 16px;
+			right: 16px;
 
 			.friend-button {
 				-webkit-appearance: none;
 				-moz-appearance: none;
 				appearance: none;
-				cursor: pointer;
 				display: inline;
 				box-sizing: border-box;
 				padding: 4px 0;
@@ -38,7 +53,7 @@
 				border: none;
 				border-radius: 4px 0 0 4px;
 				box-shadow: none;
-				transition: all .5s ease;
+				transition: none;
 				cursor: pointer;
 
 				&.following {
@@ -56,14 +71,15 @@
 
 				&.not-following {
 					color: #fff;
-					background: #aaa;
+					@backgroundColor: #aaa;
+					background: @backgroundColor;
 
 					&:hover {
-						background: #ddd;
+						background: lighten(@backgroundColor, 10%);
 					}
 
 					&:active {
-						background: #999;
+						background: darken(@backgroundColor, 10%);
 					}
 				}
 
@@ -74,14 +90,6 @@
 				&:disabled {
 					opacity: 0.5;
 					cursor: wait;
-				}
-
-				&:hover {
-					transition: all .1s ease;
-				}
-
-				&:active {
-					transition: all .1s ease;
 				}
 
 				i {
