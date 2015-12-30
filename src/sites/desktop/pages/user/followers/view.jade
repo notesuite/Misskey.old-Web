@@ -1,0 +1,20 @@
+extends ../../../ui
+
+block title
+	= user.name + 'さんをフォローしているユーザー'
+
+block meta
+	meta(name='description', content= user.name + 'さんをフォローしているユーザー')
+	meta(name='keywords', content='Misskey,' + user.screenName)
+
+block assets
+	script!= 'var USER = ' + JSON.stringify(user) + ';'
+
+block content
+	-
+		function comma(str) {
+			return String(str).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+		}
+	
+	main(role='main')
+		p a
