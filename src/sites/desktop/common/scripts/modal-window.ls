@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-module.exports = ($content, can-close = true, on-shown = null, klass = null) ->
+module.exports = ($content, can-close = true, on-shown = null, klass = null, on-closed = null) ->
 	default-html-overflow-state = $ \html .css \overflow
 	$ \html .css \overflow \hidden
 
@@ -68,3 +68,6 @@ module.exports = ($content, can-close = true, on-shown = null, klass = null) ->
 			scale: \0.8
 		} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
 			$dialog.remove!
+
+		if on-closed?
+			on-closed!
