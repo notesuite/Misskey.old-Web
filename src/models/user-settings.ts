@@ -6,7 +6,7 @@ const Schema: typeof mongoose.Schema = mongoose.Schema;
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 const schema: any = {
-	enableSushi: { type: Boolean, required: false, default: true },
+	enableSushi: { type: Boolean, required: false, default: false },
 	displayScreenNameInPost: { type: Boolean, required: false, default: false },
 	displayCreatedAtInPost: { type: Boolean, required: false, default: true },
 	displayActionsInPost: { type: Boolean, required: false, default: true },
