@@ -18,29 +18,44 @@
 		> .avatar-anchor {
 			display: block;
 
-			> .avatar {
-				display: block;
+			&, > .avatar {
 				width: 64px;
 				height: 64px;
 			}
+
+			> .avatar {
+				display: block;
+				border-radius: 8px;
+			}
 		}
 
-		> header {
+		> .body {
 			display: block;
 			position: absolute;
 			top: 16px;
-			left: 92px;
+			left: 80px;
+			padding: 4px 16px;
 
-			> .name {
-				display: inline;
-				margin: 0;
-				color: #444;
+			> header {
+
+				> .name {
+					display: inline;
+					margin: 0;
+					font-weight: bold;
+					color: #555;
+				}
+
+				> .screen-name {
+					display: inline;
+					margin: 0;
+					color: #888;
+				}
 			}
 
-			> .screen-name {
-				display: inline;
+			> .comment {
+				display: block;
 				margin: 0;
-				color: #888;
+				color: #444;
 			}
 		}
 

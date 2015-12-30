@@ -2,10 +2,11 @@ mixin user(user)
 	li.user(data-id= user.id)
 		a.avatar-anchor(href= config.url + '/' + user.screenName)
 			img.avatar(src= user.avatarThumbnailUrl)
-		header
-			p.name= user.name
-			p.screen-name= user.screenname
-		p.comment= user.comment
+		div.body
+			header
+				p.name= user.name
+				p.screen-name= user.screenName
+			p.comment= user.comment
 		if login
 			div.friend-form
 				if me.id != user.id
