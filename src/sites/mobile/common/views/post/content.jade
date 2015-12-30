@@ -8,7 +8,7 @@ mixin content(post)
 			ol.photos
 				each photo in post.photos
 					li.photo
-						if me !== null && me._settings.thumbnailyzeAttachedImageOfPost
+						if me !== null && userSettings.thumbnailyzeAttachedImageOfPost
 							img.image.thumbnail(
 								src= photo.thumbnailUrl,
 								data-original-url= photo.url,

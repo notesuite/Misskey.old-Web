@@ -41,12 +41,15 @@ export interface IUserSettings extends mongoose.Document {
 	userId: mongoose.Types.ObjectId;
 }
 
-let guestUserSettings0: any;
+let guestUserSettings0: any = {};
 
-schema.forIn((key: any, value: any) => {
-	if (!value.required) {
-		guestUserSettings0[key] = value.default;
+for (var key in schema) {
+	if (schema.hasOwnProperty(key)) {
+		const value = schema[key];
+		if (!value.required) {
+			guestUserSettings0[key] = value.default;
+		}
 	}
-});
+}
 
 export const guestUserSettings = guestUserSettings0;

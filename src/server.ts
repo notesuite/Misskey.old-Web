@@ -140,8 +140,7 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 		config: config.publicConfig,
 		login: req.isLogin,
 		ua: ua,
-		workerId: workerId,
-		guestUserSettings: guestUserSettings
+		workerId: workerId
 	};
 
 	if (req.isLogin) {
@@ -150,15 +149,16 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 			UserSettings.findOne({
 				userId: userId
 			}, (err: any, settings: IUserSettings) => {
-				user._settings = settings;
-				req.user = user;
+				req.user = Object.assign({}, user, {_settings: settings});
 				req.renderData.me = user;
+				req.renderData.userSettings = settings;
 				next();
 			});
 		});
 	} else {
 		req.user = null;
 		req.renderData.me = null;
+		req.renderData.userSettings = guestUserSettings;
 		next();
 	}
 });

@@ -45,7 +45,7 @@ mixin core(post, isRepost, repost)
 					a.name(href='/' + post.user.screenName)= post.user.name
 					if post.user.isVerified
 						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
-					if login && me._settings.displayScreenNameInPost
+					if login && userSettings.displayScreenNameInPost
 						p.screen-name= post.user.screenName
 				a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
 					time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
@@ -55,7 +55,7 @@ mixin core(post, isRepost, repost)
 			footer
 				div.like
 					button(title= post.isLiked ? 'Unlike' : 'Like')
-						if login && me._settings.enableSushi
+						if login && userSettings.enableSushi
 							i.fa
 								| 🍣
 						else
