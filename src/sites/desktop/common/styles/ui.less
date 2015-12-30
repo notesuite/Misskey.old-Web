@@ -686,19 +686,21 @@
 					}
 
 					> li {
-						display: inline-block;
+						display: block;
 						width: 100%;
 
-						> button, a {
+						> a {
 							-webkit-appearance: none;
 							-moz-appearance: none;
 							appearance: none;
 							display: inline-block;
+							position: relative;
 							z-index: 1;
 							box-sizing: border-box;
 							vertical-align: top;
 							width: 100%;
-							padding: 12px 20px;
+							padding: 14px 20px;
+							line-height: 1em;
 							text-decoration: none;
 							text-align: left;
 							color: @header-foreground-color;
@@ -717,9 +719,23 @@
 								background: @themeColor;
 							}
 
-							> i {
+							* {
+								pointer-events: none;
+							}
+
+							> i:first-child {
 								width: 2em;
 								text-align: center;
+							}
+
+							> i.fa-angle-right {
+								display: block;
+								position: absolute;
+								top: 0;
+								right: 0;
+								z-index: 1;
+								padding: 0 24px;
+								line-height: ~"calc(1em + (14px * 2))";
 							}
 						}
 					}

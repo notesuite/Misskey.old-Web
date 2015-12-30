@@ -60,27 +60,34 @@ block body
 											li: a.ui-waves-effect(href= '/')
 												i.fa.fa-info-circle
 												| About Misskey
+												i.fa.fa-angle-right
 											li: a.ui-waves-effect(href= config.helpUrl)
 												i.fa.fa-question-circle
 												| Help
+												i.fa.fa-angle-right
 										ul
 											li: a.ui-waves-effect(href= config.url + '/syuilo')
 												i.fa.fa-check-circle
 												| @syuilo
+												i.fa.fa-angle-right
 											li: a.ui-waves-effect(href= config.url + '/misskey')
 												i.fa.fa-check-circle
 												| @misskey
+												i.fa.fa-angle-right
 										ul
 											li: a.ui-waves-effect(href= config.url + '/about/donate')
 												i.fa.fa-heart
 												| Donate
+												i.fa.fa-angle-right
 										ul
 											li: a.ui-waves-effect(href='https://github.com/syuilo/Misskey')
 												i.fa.fa-github
 												| Github repository
+												i.fa.fa-angle-right
 											li: a.ui-waves-effect(href= config.developerCenterUrl)
 												i.fa.fa-terminal
 												| Developers Center
+												i.fa.fa-angle-right
 
 							div.main-nav
 								ul
@@ -112,19 +119,23 @@ block body
 									div.dropdown-content
 										ul
 											li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
-												i.fa.fa-laptop
-												| My page
+												i.fa.fa-user
+												| Profile
+												i.fa.fa-angle-right
+											li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
+												i.fa.fa-star
+												| Likes
+												i.fa.fa-angle-right
 										ul
-											li: a.ui-waves-effect(href='/i/apps')
-												i.fa.fa-plug
-												| Plugins
 											li: a.ui-waves-effect(href='/i/settings')
 												i.fa.fa-cog
 												| Settings
+												i.fa.fa-angle-right
 										ul
 											li: a.ui-waves-effect(href='/logout')
 												i(class='fa fa-power-off')
 												| Sign out
+												i.fa.fa-angle-right
 							div.notifications
 								div.dropdown.left(data-active='false')
 									div.dropdown-header(role='button')
