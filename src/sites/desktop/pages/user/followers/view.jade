@@ -1,4 +1,5 @@
 extends ../../../ui
+include ../followers-and-followings-common/user-of-list
 
 block title
 	= user.name + 'さんをフォローしているユーザー'
@@ -17,4 +18,6 @@ block content
 		}
 	
 	main(role='main')
-		p a
+		ol.users
+			each user in followers
+				+user(user)
