@@ -3,7 +3,7 @@ $ = require 'jquery'
 $ ->
 	$ '.users > .user' .each ->
 		$user = $ @
-		user-id = $user.attr \data-user-id
+		user-id = $user.attr \data-id
 
 		function check-follow
 			($user.attr \data-is-following) == \true
