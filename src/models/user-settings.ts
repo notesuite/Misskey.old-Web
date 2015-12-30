@@ -5,8 +5,10 @@ const Schema: typeof mongoose.Schema = mongoose.Schema;
 
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
-const schema: mongoose.Schema = new Schema({
+const schema: any = {
 	enableSushi: { type: Boolean, required: false, default: true },
+	displayScreenNameInPost: { type: Boolean, required: false, default: false },
+	showConfirmationWhenRepost: { type: Boolean, required: false, default: true },
 	enableUrlPreviewInPost: { type: Boolean, required: false, default: true },
 	thumbnailyzeAttachedImageOfPost: { type: Boolean, required: false, default: false },
 	enableNotificationSoundWhenReceivingNewPost: { type: Boolean, required: false, default: true },
@@ -18,21 +20,33 @@ const schema: mongoose.Schema = new Schema({
 		right: ['my-status', 'notifications', 'recommendation-users', 'donate', 'ad']
 	}},
 	userId: { type: Schema.Types.ObjectId, required: true }
-});
+};
 
-if (!(<any>schema).options.toObject) {
-	(<any>schema).options.toObject = {};
+const schemaObj: mongoose.Schema = new Schema(schema);
+
+if (!(<any>schemaObj).options.toObject) {
+	(<any>schemaObj).options.toObject = {};
 }
-(<any>schema).options.toObject.transform = (doc: any, ret: any) => {
+(<any>schemaObj).options.toObject.transform = (doc: any, ret: any) => {
 	delete ret.userId;
 	delete ret._id;
 	delete ret.__v;
 };
 
-export const UserSettings: mongoose.Model<mongoose.Document> = db.model('UserSettings', schema);
+export const UserSettings: mongoose.Model<mongoose.Document> = db.model('UserSettings', schemaObj);
 
 export interface IUserSettings extends mongoose.Document {
 	theme: string;
 	homeLayout: any;
 	userId: mongoose.Types.ObjectId;
 }
+
+let guestUserSettings0: any;
+
+schema.forIn((key: any, value: any) => {
+	if (!value.required) {
+		guestUserSettings0[key] = value.default;
+	}
+});
+
+export const guestUserSettings = guestUserSettings0;

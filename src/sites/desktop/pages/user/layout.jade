@@ -53,8 +53,8 @@ block content
 								th Followers
 							tr
 								td: a(href='/' + user.screenName)= comma(user.postsCount)
-								td: a(href='/' + user.screenName + '/followings')= comma(user.followingsCount)
-								td: a(href='/' + user.screenName + '/followers')= comma(user.followersCount)
+								td: a#followings(href='/' + user.screenName + '/followings')= comma(user.followingsCount)
+								td: a#followers(href='/' + user.screenName + '/followers')= comma(user.followersCount)
 			nav#header-nav(role='navigation')
 				div.main
 					div#avatar-area

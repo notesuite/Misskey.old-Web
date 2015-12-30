@@ -11,7 +11,8 @@ mixin subPost(post)
 			a.name(href= config.url + '/' + post.user.screenName)= post.user.name
 			if post.user.isVerified
 				img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
-			span.screen-name= post.user.screenName
+			if login && me._settings.displayScreenNameInPost
+				span.screen-name= post.user.screenName
 			a.time-anchor(href= config.url + '/' + post.user.screenName + '/' + post.id)
 				time(datetime= post.createdAt, pubdate, data-display-type='relative')= post.createdAt
 		div.main

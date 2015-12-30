@@ -1,3 +1,5 @@
 $ = require 'jquery'
 require '../../../common/scripts/ui.js'
-require '../followers-and-followings-common/script.js'
+UsersList = require '../../../common/widgets/users-list/script.js'
+
+users-list = new UsersList $ '.users'

@@ -15,7 +15,7 @@ const vhost: any = require('vhost');
 const cors: any = require('cors');
 
 import { User } from './models/user';
-import { UserSettings, IUserSettings } from './models/user-settings';
+import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
 import { MisskeyExpressRequest } from './misskey-express-request';
 import { MisskeyExpressResponse } from './misskey-express-response';
 import requestApi from './utils/request-api';
@@ -140,7 +140,8 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 		config: config.publicConfig,
 		login: req.isLogin,
 		ua: ua,
-		workerId: workerId
+		workerId: workerId,
+		guestUserSettings: guestUserSettings
 	};
 
 	if (req.isLogin) {
@@ -152,14 +153,12 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 				user._settings = settings;
 				req.user = user;
 				req.renderData.me = user;
-				req.renderData.userSettings = settings;
 				next();
 			});
 		});
 	} else {
 		req.user = null;
 		req.renderData.me = null;
-		req.renderData.userSettings = null;
 		next();
 	}
 });

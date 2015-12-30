@@ -70,11 +70,17 @@ block content
 				section
 					h1 General
 					label.checkbox
+						input(type='checkbox', name='display-screen-name-in-post', checked= userSettings.displayScreenNameInPost)
+						p Display screen name of user in a post
+					label.checkbox
+						input(type='checkbox', name='show-confirmation-when-repost', checked= userSettings.showConfirmationWhenRepost)
+						p Show confirmation when you Repost
+					label.checkbox
 						input(type='checkbox', name='enable-url-preview-in-post', checked= userSettings.enableUrlPreviewInPost)
 						p Enable URL preview in a post
 					label.checkbox
 						input(type='checkbox', name='thumbnailyze-attached-image-of-post', checked= userSettings.thumbnailyzeAttachedImageOfPost)
-						p Show the attached image of the post in the thumbnail instead of raw
+						p Show the attached image of a post in the thumbnail instead of raw
 				section
 					h1 Home
 					a.home-customize(href='/i/home-customize')

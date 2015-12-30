@@ -52,7 +52,8 @@ mixin core(post, isRepost, repost)
 					a.name(href= config.url + '/' + post.user.screenName, rel='author')= post.user.name
 					if post.user.isVerified
 						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
-					span.screen-name= post.user.screenName
+					if me._settings.displayScreenNameInPost
+						span.screen-name= post.user.screenName
 				div.right
 					if post.app != null
 						a.via-anchor
@@ -77,7 +78,7 @@ mixin core(post, isRepost, repost)
 						= post.repostsCount != 0 ? post.repostsCount : ''
 				li.like
 					button(title= post.isLiked ? 'Unlike' : 'Like')
-						if login && me._settings.enableSushi
+						if me._settings.enableSushi
 							i.fa
 								| 🍣
 						else

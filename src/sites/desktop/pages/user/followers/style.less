@@ -1,6 +1,6 @@
 @import "../../../common";
 @import "../../../common/styles/ui";
-@import "../followers-and-followings-common/user-list";
+@import "../../../common/widgets/users-list/style";
 
 html {
 	color: #000;
@@ -16,5 +16,11 @@ main {
 
 	> .users {
 		.user-list;
+	}
+}
+
+@media (max-width: 500px) {
+	main {
+		padding: 0;
 	}
 }

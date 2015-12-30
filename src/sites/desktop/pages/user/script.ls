@@ -1,6 +1,8 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery'
 
+users-compiler = require '../../common/widgets/users-list/users.jade'
+show-modal-window = require '../../common/scripts/modal-window.js'
 AlbumWindow = require '../../common/scripts/album-window.js'
 avatar-form = require '../../common/scripts/avatar-form.js'
 banner-form = require '../../common/scripts/banner-form.js'
@@ -38,8 +40,7 @@ $ ->
 			..attr \disabled on
 		if window.is-following
 			$.ajax "#{CONFIG.web-api-url}/users/unfollow" {
-				data: {'user-id': USER.id}
-				data-type: \json}
+				data: {'user-id': USER.id}}
 			.done ->
 				$button .remove-class \danger
 				$button
@@ -52,8 +53,7 @@ $ ->
 				$button.attr \disabled off
 		else
 			$.ajax "#{CONFIG.web-api-url}/users/follow" {
-				data: {'user-id': USER.id}
-				data-type: \json}
+				data: {'user-id': USER.id}}
 			.done ->
 				$button
 					..attr \disabled off
@@ -63,6 +63,27 @@ $ ->
 				window.is-following = true
 			.fail ->
 				$button.attr \disabled off
+
+	$ \#followings .click ->
+		$.ajax "#{CONFIG.web-api-url}/users/followings" {
+			data: {'user-id': USER.id}}
+		.done (users) ->
+			close = show-modal-window do
+				users-compiler {
+					users
+				}
+				true
+				null
+				\followings-window
+		return false
+
+	$ \#followers .click ->
+		close = show-modal-window do
+			$ '<iframe>' .attr \src "#{CONFIG.url}/#{USER.screen-name}/followers?noui"
+			true
+			null
+			\followers-window
+		return false
 
 	$ window .scroll ->
 		top = $ @ .scroll-top!
