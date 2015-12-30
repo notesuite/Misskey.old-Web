@@ -14,6 +14,7 @@ link(rel='search', href= config.searchUrl)
 link(rel='stylesheet', href= stylePath)
 script!= 'document.domain = \'' + config.host + '\';'
 script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
+script!= 'var NOUI = ' + noui.toString() + '; Object.freeze(NOUI);'
 script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
 script!= 'var ME = ' + JSON.stringify(me) + '; Object.freeze(ME);'
 script!= 'var USER_SETTINGS = ME._settings; Object.freeze(USER_SETTINGS);'

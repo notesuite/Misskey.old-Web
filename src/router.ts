@@ -113,6 +113,14 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'user/home');
 	});
 
+	app.get('/:userScreenName/followings', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'user/followings');
+	});
+
+	app.get('/:userScreenName/followers', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'user/followers');
+	});
+
 	app.get('/:userScreenName/:postId', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'post');
 	});

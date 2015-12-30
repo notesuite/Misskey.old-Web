@@ -455,37 +455,9 @@ class PhotoPostForm
 		THIS.post-form.active-tab = \photo
 		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
-$ ->
+function init-header
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
-
-	if LOGIN
-		post-form = new PostForm
-
-		update-header-statuses!
-		set-interval update-header-statuses, 10000ms
-
-	$ document .keypress (e) ->
-		tag = e.target.tag-name.to-lower-case!
-		if tag != \input and tag != \textarea
-			# Short cut Help
-			if e.which == 47 or e.which == 104
-				window-close = show-modal-window do
-					$ '#misskey-keyboard-shortcuts > *' .clone!
-					true
-					null
-					\misskey-keyboard-shortcuts
-			# Open post form
-			if e.which == 110 or e.which == 112
-				e.prevent-default!
-				post-form.open!
-
-	$ document .keydown (e) ->
-		if e.which == 27
-			e.prevent-default!
-			post-form.close!
-
-	$ \body .css \margin-top "#{$ 'body > #misskey-header' .outer-height!}px"
 
 	# 「Misskey Menu」ドロップダウン
 	$ '#misskey-header .misskey-menu .dropdown .dropdown-header' .click ->
@@ -628,8 +600,39 @@ $ ->
 								.append do
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
 
+$ ->
+	if not NOUI
+		init-header!
+		$ \body .css \margin-top "#{$ 'body > #misskey-header' .outer-height!}px"
+
+	if LOGIN
+		post-form = new PostForm
+
+		update-header-statuses!
+		set-interval update-header-statuses, 10000ms
+
+	$ document .keypress (e) ->
+		tag = e.target.tag-name.to-lower-case!
+		if tag != \input and tag != \textarea
+			# Short cut Help
+			if e.which == 47 or e.which == 104
+				window-close = show-modal-window do
+					$ '#misskey-keyboard-shortcuts > *' .clone!
+					true
+					null
+					\misskey-keyboard-shortcuts
+			# Open post form
+			if e.which == 110 or e.which == 112
+				e.prevent-default!
+				post-form.open!
+
+	$ document .keydown (e) ->
+		if e.which == 27
+			e.prevent-default!
+			post-form.close!
+
 $ window .load ->
-	header-height = $ 'body > #misskey-header' .outer-height!
-	$ \body .css \margin-top "#{header-height}px"
+	if not NOUI
+		$ \body .css \margin-top "#{$ 'body > #misskey-header' .outer-height!}px"
 
 	WavesEffect.attach-to-class \ui-waves-effect

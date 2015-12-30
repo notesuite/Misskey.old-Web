@@ -130,11 +130,13 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 	// res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
 
 	const ua: string = uatype(req.headers['user-agent']);
+	const noui: boolean = req.query.hasOwnProperty('noui');
 
 	req.data = {};
 	req.ua = ua;
 	req.renderData = {
 		pagePath: req.path,
+		noui: noui,
 		config: config.publicConfig,
 		login: req.isLogin,
 		ua: ua,
