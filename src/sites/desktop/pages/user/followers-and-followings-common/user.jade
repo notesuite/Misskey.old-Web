@@ -1,0 +1,23 @@
+mixin user(user)
+	li.user(data-id= user.id)
+		a.avatar-anchor(href= config.url + '/' + user.screenName)
+			img.avatar(src= user.avatarThumbnailUrl)
+		p.name= user.name
+		p.comment= user.comment
+		if login
+			div.friend-form
+				if me.id != user.id
+					if user.isFollowing
+						button.friend-button.following(title='フォローを解除する') Following
+					else
+						button.friend-button.not-following(title='フォローする') Follow
+					if user.isFollowed
+						p.friend-status.followed(data-is-friend='true', data-tooltip='フォローされています')
+							i.fa.fa-heart
+					else
+						p.friend-status.not-followed(data-is-friend='false', data-tooltip='フォローされていません')
+							i.fa.fa-heart-o
+				else
+					p.is-me
+						i.fa.fa-smile-o
+						| You
