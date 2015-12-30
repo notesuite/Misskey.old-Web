@@ -1,3 +1,8 @@
+mixin users(users)
+	ol.users
+		each user in users
+			+user(user)
+
 mixin user(user)
 	li.user(data-id= user.id)
 		a.avatar-anchor(href= config.url + '/' + user.screenName)
