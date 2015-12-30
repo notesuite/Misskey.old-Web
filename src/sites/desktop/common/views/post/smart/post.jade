@@ -60,31 +60,33 @@ mixin core(post, isRepost, repost)
 							p.via
 								span.caption via
 								b.app-name= post.app.name
-					a.time-anchor(href= config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
-						time(datetime= post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+					if userSettings.displayCreatedAtInPost
+						a.time-anchor(href= config.url + '/' + post.user.screenName + '/' + post.id, itemprop='url')
+							time(datetime= post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 			div.content(itemprop='articleBody')
 				+content(post)
 		footer
-			ul.actions
-				li.reply
-					button(title='返信')
-						i.fa.fa-reply
-					a.count(href= config.url + '/' + post.user.screenName + '/' + post.id)
-						= post.repliesCount != 0 ? post.repliesCount : ''
-				li.repost
-					button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
-						i.fa.fa-retweet
-					a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
-						= post.repostsCount != 0 ? post.repostsCount : ''
-				li.like
-					button(title= post.isLiked ? 'Unlike' : 'Like')
-						if userSettings.enableSushi
-							i.fa
-								| 🍣
-						else
-							i.fa.fa-star
-					a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
-						= post.likesCount != 0 ? post.likesCount : ''
+			if userSettings.displayActionsInPost
+				ul.actions
+					li.reply
+						button(title='返信')
+							i.fa.fa-reply
+						a.count(href= config.url + '/' + post.user.screenName + '/' + post.id)
+							= post.repliesCount != 0 ? post.repliesCount : ''
+					li.repost
+						button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
+							i.fa.fa-retweet
+						a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
+							= post.repostsCount != 0 ? post.repostsCount : ''
+					li.like
+						button(title= post.isLiked ? 'Unlike' : 'Like')
+							if userSettings.enableSushi
+								i.fa
+									| 🍣
+							else
+								i.fa.fa-star
+						a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
+							= post.likesCount != 0 ? post.likesCount : ''
 		if login
 			form.reply-form
 				img.me-avatar(src= me.avatarThumbnailUrl, alt='avatar')

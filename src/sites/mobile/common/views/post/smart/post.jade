@@ -47,15 +47,16 @@ mixin core(post, isRepost, repost)
 						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
 					if login && userSettings.displayScreenNameInPost
 						p.screen-name= post.user.screenName
-				a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
-					time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+				if userSettings.displayCreatedAtInPost
+					a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
+						time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 			div.content(itemprop='articleBody')
 				+content(post)
 		if login
 			footer
 				div.like
 					button(title= post.isLiked ? 'Unlike' : 'Like')
-						if login && userSettings.enableSushi
+						if userSettings.enableSushi
 							i.fa
 								| 🍣
 						else

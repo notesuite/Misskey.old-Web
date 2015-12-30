@@ -91,7 +91,7 @@ class Timeline
 						$button.attr \disabled off
 						$status.attr \data-is-reposted \true
 				else
-					if USER_SETTINGS.show-confirmation-when-repost
+					if USER_SETTINGS.confirmation-when-repost
 						if window.confirm "#{user-name}「#{text}」\nを Repost しますか？"
 							repost!
 					else

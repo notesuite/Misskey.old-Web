@@ -357,7 +357,7 @@ class Post
 			} 100ms \linear ->
 				THIS.$repost-form.find '.form' .css \display \none
 
-		if USER_SETTINGS.show-confirmation-when-repost
+		if USER_SETTINGS.confirmation-when-repost
 			open!
 
 			THIS.$repost-form.find '.form' .unbind \submit

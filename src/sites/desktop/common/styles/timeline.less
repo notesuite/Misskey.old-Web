@@ -143,7 +143,13 @@
 
 		> .main {
 			position: relative;
-			padding: 16px 32px 4px 32px;
+			padding: 16px 32px 16px 32px;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
 
 			> .avatar-area {
 				float: left;
@@ -263,6 +269,10 @@
 				content: "";
 				display: block;
 				clear: both;
+			}
+
+			&:not(:empty) {
+				margin-top: -12px;
 			}
 
 			> .likers {

@@ -83,7 +83,9 @@ $ ->
 				$submit-button.text '再度お試しください'
 
 	init-checkbox-controll $form.find '.web [name="display-screen-name-in-post"]'
-	init-checkbox-controll $form.find '.web [name="show-confirmation-when-repost"]'
+	init-checkbox-controll $form.find '.web [name="display-created-at-in-post"]'
+	init-checkbox-controll $form.find '.web [name="display-actions-in-post"]'
+	init-checkbox-controll $form.find '.web [name="confirmation-when-repost"]'
 	init-checkbox-controll $form.find '.web [name="enable-url-preview-in-post"]'
 	init-checkbox-controll $form.find '.web [name="thumbnailyze-attached-image-of-post"]'
 	init-checkbox-controll $form.find '.web [name="enable-notification-sound-when-receiving-new-post"]'

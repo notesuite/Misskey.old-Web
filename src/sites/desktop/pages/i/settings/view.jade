@@ -71,10 +71,16 @@ block content
 					h1 General
 					label.checkbox
 						input(type='checkbox', name='display-screen-name-in-post', checked= userSettings.displayScreenNameInPost)
-						p Display screen name of user in a post
+						p Display a screen name of user in a post
 					label.checkbox
-						input(type='checkbox', name='show-confirmation-when-repost', checked= userSettings.showConfirmationWhenRepost)
-						p Show confirmation when you Repost
+						input(type='checkbox', name='display-created-at-in-post', checked= userSettings.displayCreatedAtInPost)
+						p Display created at in a post
+					label.checkbox
+						input(type='checkbox', name='display-actions-in-post', checked= userSettings.displayActionsInPost)
+						p Display an actions in a post
+					label.checkbox
+						input(type='checkbox', name='confirmation-when-repost', checked= userSettings.confirmationWhenRepost)
+						p Confirmation when Repost
 					label.checkbox
 						input(type='checkbox', name='enable-url-preview-in-post', checked= userSettings.enableUrlPreviewInPost)
 						p Enable URL preview in a post

@@ -8,7 +8,9 @@ const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, conf
 const schema: any = {
 	enableSushi: { type: Boolean, required: false, default: true },
 	displayScreenNameInPost: { type: Boolean, required: false, default: false },
-	showConfirmationWhenRepost: { type: Boolean, required: false, default: true },
+	displayCreatedAtInPost: { type: Boolean, required: false, default: true },
+	displayActionsInPost: { type: Boolean, required: false, default: true },
+	confirmationWhenRepost: { type: Boolean, required: false, default: true },
 	enableUrlPreviewInPost: { type: Boolean, required: false, default: true },
 	thumbnailyzeAttachedImageOfPost: { type: Boolean, required: false, default: false },
 	enableNotificationSoundWhenReceivingNewPost: { type: Boolean, required: false, default: true },

@@ -9,9 +9,10 @@ mixin subPost(post)
 			a.name(href='/' + post.user.screenName)= post.user.name
 			if post.user.isVerified
 				img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
-			if login && userSettings.displayScreenNameInPost
+			if userSettings.displayScreenNameInPost
 				p.screen-name= post.user.screenName
-			a.time-anchor(href='/' + post.user.screenName + '/' + post.id)
-				time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt
+			if userSettings.displayCreatedAtInPost
+				a.time-anchor(href='/' + post.user.screenName + '/' + post.id)
+					time(datetime=post.createdAt, pubdate, data-display-type='relative')= post.createdAt
 		div.main
 			+content(post)
