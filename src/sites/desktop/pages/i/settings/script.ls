@@ -82,7 +82,8 @@ $ ->
 				$submit-button.attr \disabled off
 				$submit-button.text '再度お試しください'
 
-	init-checkbox-controll $form.find '.web [name="display-screen-name-in-post"]'
+	init-checkbox-controll $form.find '.web [name="display-user-name-in-post"]'
+	init-checkbox-controll $form.find '.web [name="display-user-screen-name-in-post"]'
 	init-checkbox-controll $form.find '.web [name="display-created-at-in-post"]'
 	init-checkbox-controll $form.find '.web [name="display-actions-in-post"]'
 	init-checkbox-controll $form.find '.web [name="confirmation-when-repost"]'

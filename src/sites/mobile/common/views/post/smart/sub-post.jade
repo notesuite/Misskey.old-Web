@@ -6,10 +6,11 @@ mixin subPost(post)
 		a.avatar-anchor(href='/' + post.user.screenName)
 			img.avatar(src=post.user.avatarThumbnailUrl, alt='avatar')
 		header
-			a.name(href='/' + post.user.screenName)= post.user.name
-			if post.user.isVerified
-				img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
-			if userSettings.displayScreenNameInPost
+			if userSettings.displayUserNameInPost
+				a.name(href='/' + post.user.screenName)= post.user.name
+				if post.user.isVerified
+					img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+			if userSettings.displayUserScreenNameInPost
 				p.screen-name= post.user.screenName
 			if userSettings.displayCreatedAtInPost
 				a.time-anchor(href='/' + post.user.screenName + '/' + post.id)

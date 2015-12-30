@@ -49,10 +49,11 @@ mixin core(post, isRepost, repost)
 					img.avatar(src= post.user.avatarThumbnailUrl, alt='avatar')
 			header
 				div.author(itemprop='author')
-					a.name(href= config.url + '/' + post.user.screenName, rel='author')= post.user.name
-					if post.user.isVerified
-						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
-					if userSettings.displayScreenNameInPost
+					if userSettings.displayUserNameInPost
+						a.name(href= config.url + '/' + post.user.screenName, rel='author')= post.user.name
+						if post.user.isVerified
+							img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+					if userSettings.displayUserScreenNameInPost
 						span.screen-name= post.user.screenName
 				div.right
 					if post.app != null
