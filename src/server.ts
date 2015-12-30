@@ -149,9 +149,9 @@ app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => vo
 			UserSettings.findOne({
 				userId: userId
 			}, (err: any, settings: IUserSettings) => {
-				req.user = Object.assign({}, user, {_settings: settings});
+				req.user = Object.assign({}, user, {_settings: settings.toObject()});
 				req.renderData.me = user;
-				req.renderData.userSettings = settings;
+				req.renderData.userSettings = settings.toObject();
 				next();
 			});
 		});

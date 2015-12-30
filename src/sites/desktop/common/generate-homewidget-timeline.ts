@@ -38,6 +38,7 @@ export default function generateHomewidgetTimeline(me: User, tlsource: string): 
 			return compiler({
 				posts: tl,
 				me: me,
+				userSettings: me._settings,
 				config: config.publicConfig
 			});
 		}

@@ -17,10 +17,7 @@ script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
 script!= 'var NOUI = ' + noui.toString() + '; Object.freeze(NOUI);'
 script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
 script!= 'var ME = ' + JSON.stringify(me) + '; Object.freeze(ME);'
-if login
-	script!= 'var USER_SETTINGS = userSettings; Object.freeze(USER_SETTINGS);'
-else
-	script!= 'var USER_SETTINGS = ' + JSON.stringify(guestUserSettings) + '; Object.freeze(USER_SETTINGS);'
+script!= 'var USER_SETTINGS = ' + JSON.stringify(userSettings) + '; Object.freeze(USER_SETTINGS);'
 script(src= scriptPath)
 script.
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
