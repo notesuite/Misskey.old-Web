@@ -69,8 +69,11 @@ $ ->
 			data: {'user-id': USER.id}}
 		.done (users) ->
 			close = show-modal-window do
-				users-compiler {
+				$ users-compiler {
 					users
+					config: CONFIG
+					me: ME
+					user-settings: USER_SETTINGS
 				}
 				true
 				null

@@ -7,13 +7,22 @@ export default function reply(req: express.Request, res: express.Response): void
 	const photos: string = req.body['photos'];
 
 	if (photos !== undefined && photos !== null && photos !== '[]') {
-		requestApi('posts/photo', req.body, req.user).then((reply: Object) => {
+		requestApi('posts/create', {
+			type: 'photo',
+			'in-reply-to-post-id': req.body['in-reply-to-post-id'],
+			photos: req.body['photos'],
+			text: req.body['text']
+		}, req.user).then((reply: Object) => {
 			res.send(reply);
 		}, (err: any) => {
 			res.send(err);
 		});
 	} else {
-		requestApi('posts/status', req.body, req.user).then((reply: Object) => {
+		requestApi('posts/create', {
+			type: 'text',
+			'in-reply-to-post-id': req.body['in-reply-to-post-id'],
+			text: req.body['text']
+		}, req.user).then((reply: Object) => {
 			res.send(reply);
 		}, (err: any) => {
 			res.send(err);

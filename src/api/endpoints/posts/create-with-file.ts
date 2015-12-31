@@ -29,7 +29,8 @@ export default function createWithFile(req: express.Request, res: express.Respon
 
 	function create(photo: any = null): void {
 		if (photo !== null) {
-			requestApi('posts/photo', {
+			requestApi('posts/create', {
+				type: 'photo',
 				text: req.body.text,
 				photos: JSON.stringify([photo.id])
 			}, req.user).then((reply: Object) => {
@@ -38,7 +39,8 @@ export default function createWithFile(req: express.Request, res: express.Respon
 				res.send(err);
 			});
 		} else {
-			requestApi('posts/status', {
+			requestApi('posts/create', {
+				type: 'text',
 				text: req.body.text
 			}, req.user).then((reply: Object) => {
 				res.redirect(config.publicConfig.url);
