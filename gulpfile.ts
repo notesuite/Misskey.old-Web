@@ -8,7 +8,6 @@ import * as browserify from 'browserify';
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const es = require('event-stream');
-// import * as del from 'del';
 const babel = require('gulp-babel');
 const less = require('gulp-less');
 const minifyCSS = require('gulp-minify-css');
