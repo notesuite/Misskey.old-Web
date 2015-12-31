@@ -57,6 +57,7 @@
 		"src/sites/desktop/pages/user/followers/controller.ts",
 		"src/sites/desktop/pages/post/controller.ts",
 		"src/sites/desktop/pages/terms-of-use/controller.ts",
+		"src/sites/desktop/pages/search/controller.ts",
 		"src/sites/desktop/pages/i/mentions/controller.ts",
 		"src/sites/desktop/pages/i/settings/controller.ts",
 		"src/sites/desktop/pages/i/home-customize/controller.ts",

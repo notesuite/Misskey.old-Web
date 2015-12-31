@@ -60,6 +60,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'welcome');
 	});
 
+	app.get(`/subdomain/${config.publicConfig.searchDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'search');
+	});
+
 	app.get('/i/*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		if (req.isLogin) {
 			next();
