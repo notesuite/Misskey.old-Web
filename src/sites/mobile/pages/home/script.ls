@@ -48,10 +48,13 @@ $ ->
 	$ '#misskey-header .post' .click ->
 		text = window.prompt '新規投稿'
 		if text? and text != ''
-			$.ajax "#{CONFIG.web-api-url}/posts/status" {
-				data: {text}
+			$.ajax "#{CONFIG.web-api-url}/posts/create" {
+				data: {
+					type: \text
+					text
+				}
 			} .done (post) ->
-				#
+				# something
 			.fail (data) ->
 				error = data.error
 				switch error
