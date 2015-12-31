@@ -2,9 +2,9 @@ extends ../../ui
 include ../../common/views/post/smart/post
 
 block title
-	| a
+	= '「' + query + '」の検索結果'
 
-block contents
+block content
 	main
 		if posts.length > 0
 			div.posts

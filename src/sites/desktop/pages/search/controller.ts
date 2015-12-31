@@ -11,6 +11,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		'query': query
 	}, req.user).then((posts: any[]) => {
 		res.display({
+			query: query,
 			posts: posts
 		});
 	});
