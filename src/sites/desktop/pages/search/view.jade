@@ -1,0 +1,12 @@
+extends ../../ui
+include ../../common/views/post/smart/post
+
+block title
+	| a
+
+block contents
+	main
+		if posts.length > 0
+			div.posts
+				each post in timeline
+					+post(post)
