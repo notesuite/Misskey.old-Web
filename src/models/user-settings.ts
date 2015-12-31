@@ -46,7 +46,7 @@ export interface IUserSettings extends mongoose.Document {
 
 let guestUserSettings0: any = {};
 
-for (var key in schema) {
+for (let key in schema) {
 	if (schema.hasOwnProperty(key)) {
 		const value = schema[key];
 		if (!value.required) {
