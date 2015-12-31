@@ -6,7 +6,13 @@ block title
 
 block content
 	main
-		if posts.length > 0
-			div.posts
-				each post in timeline
-					+post(post)
+		h1
+			= '「' + query + '」の検索結果'
+		div#posts
+			if posts.length > 0
+				div.posts
+					each post in posts
+						+post(post)
+			else
+				p.no-result
+					| 見つかりませんでした

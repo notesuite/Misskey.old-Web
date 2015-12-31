@@ -3,14 +3,27 @@
 
 html {
 	color: #000;
-	background: #f2ebe8;
+	background: #eee;
 }
 
 main {
 	display: block;
 	position: relative;
 
-	.posts {
+	h1 {
+		display: block;
+		margin: 0;
+		padding: 16px;
+		text-align: center;
+		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
+		font-size: 1.5em;
+		color: #555;
+	}
+
+	#posts {
 		@import "../../common/styles/timeline";
+
+		max-width: 600px;
+		margin: 0 auto;
 	}
 }
