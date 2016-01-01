@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ "$(ps axc | grep -P 'deploy$' | wc -l)" -gt 2 ]; then
+	echo '他のdeployが実行中です。強制終了させるにはkillall deployをしてください。'
+	exit
+fi
+
+cd /var/misskey-web
+echo -e "\e[32m--- Installing...\e[m"
+npm install MissKernel/Misskey-Web#master
+cd ./node_modules/misskey-web
+npm install
+npm run dtsm
+sudo ./node_modules/.bin/bower install --allow-root
+npm run build
+cd ../../../
+
+echo -e "\e[32m--- Stoping process...\e[m"
+forever stop $(pwd)/misskey-web.js
+
+echo -e "\e[32m--- Starting process...\e[m"
+forever start $(pwd)/misskey-web.js
+
+forever list
+
+echo -e "\e[32m--- Finish!\e[m"
