@@ -23,6 +23,9 @@ module.exports = (type) ->
 
 		timeline := new Timeline $ '#widget-timeline > .timeline'
 
+		$ '#widget-timeline .timeline > .read-more' .click ->
+			read-more!
+
 		$ document .keydown (e) ->
 			tag = e.target.tag-name.to-lower-case!
 			if tag != \input and tag != \textarea
@@ -48,8 +51,11 @@ module.exports = (type) ->
 		init-widgets!
 
 	function read-more
+		$button = $ '#widget-timeline .timeline > .read-more'
 		if not timeline-loading
 			timeline-loading := yes
+			$button.attr \disabled on
+			$button.text '読み込み中'
 			endpoint = switch (type)
 				| \home => "#{CONFIG.web-api-url}/posts/timeline"
 				| \mentions => "#{CONFIG.web-api-url}/posts/mentions"
@@ -63,6 +69,8 @@ module.exports = (type) ->
 			.fail (data) ->
 			.always ->
 				timeline-loading := no
+				$button.attr \disabled off
+				$button.text 'もっと読み込む'
 
 	function init-stream
 		$ \body .append $ '<p class="streaming-info"><i class="fa fa-spinner fa-spin"></i>ストリームに接続しています...</p>'
