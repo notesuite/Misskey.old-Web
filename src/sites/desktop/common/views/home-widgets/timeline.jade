@@ -4,7 +4,7 @@ div.misskey-home-widget#widget-timeline(
 		data-widget-id='timeline',
 		data-widget-name='タイムライン')
 	div.timeline
-		div.posts
+		div.posts.can-more-read
 			if posts.length > 0
 				each post in posts
 					+post(post)
@@ -16,3 +16,4 @@ div.misskey-home-widget#widget-timeline(
 				| タイムラインに表示するコンテンツがありません。
 				br
 				| フォローしている人の投稿と、自分の投稿がここに表示されます。
+		footer

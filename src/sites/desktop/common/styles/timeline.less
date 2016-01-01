@@ -5,7 +5,16 @@
 	padding: 0;
 	list-style: none;
 
-	.post {
+	&.can-more-read {
+		> .post {
+			&:last-child {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+		}
+	}
+
+	> .post {
 		position: relative;
 		margin: 0;
 		padding: 12px 0;
@@ -16,7 +25,7 @@
 
 		&:focus {
 			z-index: 1;
-			box-shadow: 0 0 2px @themeColor;
+			box-shadow: 0 0 2px @theme-color;
 		}
 
 		&:first-child {
@@ -62,14 +71,14 @@
 				opacity: 1;
 
 				> button {
-					color: @themeColor;
+					color: @theme-color;
 
 					&:hover {
-						color: lighten(@themeColor, 10%);
+						color: lighten(@theme-color, 10%);
 					}
 
 					&:active {
-						color: darken(@themeColor, 10%);
+						color: darken(@theme-color, 10%);
 					}
 				}
 			}
@@ -80,14 +89,14 @@
 				opacity: 1;
 
 				> button {
-					color: @themeColor;
+					color: @theme-color;
 
 					&:hover {
-						color: lighten(@themeColor, 10%);
+						color: lighten(@theme-color, 10%);
 					}
 
 					&:active {
-						color: darken(@themeColor, 10%);
+						color: darken(@theme-color, 10%);
 					}
 				}
 			}
@@ -193,7 +202,7 @@
 
 						&:active {
 							text-decoration: underline;
-							color: darken(@themeColor, 10%);
+							color: darken(@theme-color, 10%);
 							transition: all 0s ease;
 						}
 					}
@@ -248,7 +257,7 @@
 							}
 
 							&:active {
-								color: @themeColor;
+								color: @theme-color;
 								text-decoration: underline;
 							}
 						}
@@ -419,20 +428,20 @@
 					transition: border 0.2s ease, color 0.2s ease;
 
 					&:hover {
-						border: solid 1px @themeColor;
+						border: solid 1px @theme-color;
 
 						& + .design-allow:before {
-							border-right: solid 12px @themeColor;
+							border-right: solid 12px @theme-color;
 						}
 					}
 
 					&:focus {
-						color: darken(@themeColor, 20%);
+						color: darken(@theme-color, 20%);
 						outline: none;
-						border: solid 1px @themeColor;
+						border: solid 1px @theme-color;
 
 						& + .design-allow:before {
-							border-right: solid 12px @themeColor;
+							border-right: solid 12px @theme-color;
 						}
 					}
 				}
@@ -567,11 +576,11 @@
 					}
 
 					&:hover {
-						color: @themeColor;
+						color: @theme-color;
 					}
 
 					&:active {
-						color: darken(@themeColor, 10%);
+						color: darken(@theme-color, 10%);
 						transition: color 0s ease;
 					}
 				}
@@ -705,7 +714,7 @@
 				}
 
 				&:active {
-					color: @themeColor;
+					color: @theme-color;
 					text-decoration: underline;
 				}
 			}
@@ -786,12 +795,12 @@
 
 	&:hover {
 		background: #f8f8f8;
-		//color: @themeColor;
+		//color: @theme-color;
 	}
 
 	&:active {
 		background: #ddd;
-		//color: @themeColor;
+		//color: @theme-color;
 	}
 
 	&:disabled {

@@ -58,14 +58,14 @@ input[type='text'] {
 	transition: color 0.5s ease, border-color 0.5s ease;
 
 	&:hover {
-		border-color: @themeColor;
+		border-color: @theme-color;
 		transition: border 0.2s ease;
 	}
 
 	&:focus {
-		color: @themeColor;
-		border-color: @themeColor;
-		box-shadow: 0 0 0 3px fade(@themeColor, 30%);
+		color: @theme-color;
+		border-color: @theme-color;
+		box-shadow: 0 0 0 3px fade(@theme-color, 30%);
 		transition: color 0, border 0.5s ease;
 	}
 
@@ -95,7 +95,7 @@ input[type='text'] {
 	font-weight: normal;
 	text-decoration: none;
 	color: #fff;
-	background: @themeColor;
+	background: @theme-color;
 	outline: none;
 	border: none;
 	border-radius: 0;
@@ -117,16 +117,16 @@ input[type='text'] {
 	}
 
 	&:hover {
-		background: lighten(@themeColor, 10%);
+		background: lighten(@theme-color, 10%);
 	}
 
 	&:active {
-		background: darken(@themeColor, 10%);
+		background: darken(@theme-color, 10%);
 		transition: background 0s ease;
 	}
 
 	&:focus {
-		outline: solid 2px fade(@themeColor, 50%);
+		outline: solid 2px fade(@theme-color, 50%);
 	}
 
 	&.processing {

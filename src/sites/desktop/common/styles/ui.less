@@ -44,7 +44,7 @@
 
 	> .title {
 		margin: 1em 0;
-		color: @themeColor;
+		color: @theme-color;
 		// color: #43A4EC;
 		font-weight: bold;
 
@@ -90,11 +90,11 @@
 			}
 
 			&:hover {
-				color: @themeColor;
+				color: @theme-color;
 			}
 
 			&:active {
-				color: darken(@themeColor, 10%);
+				color: darken(@theme-color, 10%);
 				transition: color 0s ease;
 			}
 		}
@@ -124,7 +124,7 @@
 
 	> h1 {
 		margin: 1em 0;
-		color: @themeColor;
+		color: @theme-color;
 		font-size: 1em;
 		font-weight: bold;
 
@@ -255,10 +255,10 @@
 
 			&.active {
 				background: #fff;
-				color: @themeColor;
+				color: @theme-color;
 
 				&:hover {
-					color: @themeColor;
+					color: @theme-color;
 				}
 			}
 
@@ -317,7 +317,7 @@
 				}
 
 				&:focus {
-					color: darken(@themeColor, 20%);
+					color: darken(@theme-color, 20%);
 				}
 			}
 
@@ -334,7 +334,7 @@
 				overflow: hidden;
 
 				&::-webkit-progress-value {
-					background-color: @themeColor;
+					background-color: @theme-color;
 				}
 
 				&::-webkit-progress-bar {
@@ -448,11 +448,11 @@
 					}
 
 					&:hover {
-						color: @themeColor;
+						color: @theme-color;
 					}
 
 					&:active {
-						color: darken(@themeColor, 10%);
+						color: darken(@theme-color, 10%);
 						transition: color 0s ease;
 					}
 				}
@@ -474,7 +474,7 @@
 		font-weight: normal;
 		text-decoration: none;
 		color: #fff;
-		background: @themeColor;
+		background: @theme-color;
 		outline: none;
 		border: none;
 		border-radius: 0;
@@ -496,16 +496,16 @@
 		}
 
 		&:hover {
-			background: lighten(@themeColor, 10%);
+			background: lighten(@theme-color, 10%);
 		}
 
 		&:active {
-			background: darken(@themeColor, 10%);
+			background: darken(@theme-color, 10%);
 			transition: background 0s ease;
 		}
 
 		&:focus {
-			outline: solid 2px fade(@themeColor, 50%);
+			outline: solid 2px fade(@theme-color, 50%);
 		}
 
 		&.updating {
@@ -569,7 +569,7 @@
 		background-position: center center;
 		background-size: auto 24px;
 		//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
-		//border-top: solid 3px @themeColor;
+		//border-top: solid 3px @theme-color;
 		//border-bottom: solid 3px rgba(0, 0, 0, 0.1);
 		//box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 		background-clip: content-box;
@@ -711,12 +711,12 @@
 
 							&:hover {
 								color: #fff;
-								background: @themeColor;
+								background: @theme-color;
 							}
 
 							&:active {
 								color: #fff;
-								background: @themeColor;
+								background: @theme-color;
 							}
 
 							* {
@@ -776,10 +776,10 @@
 								background-clip: padding-box !important;
 
 								&.active {
-									background: @themeColor;
+									background: @theme-color;
 
 									> a {
-										color: contrast(@themeColor, #000, #fff, 70%) !important;
+										color: contrast(@theme-color, #000, #fff, 70%) !important;
 										border-bottom: none !important;
 
 										&:hover {
@@ -826,8 +826,8 @@
 										margin-left: 8px;
 										padding: 2px 4px;
 										font-size: 0.8em;
-										color: contrast(@themeColor, #000, #fff, 70%);
-										background: @themeColor;
+										color: contrast(@theme-color, #000, #fff, 70%);
+										background: @theme-color;
 										border-radius: 2px;
 									}
 								}
@@ -931,7 +931,7 @@
 						}
 
 						&:focus {
-							color: @themeColor;
+							color: @theme-color;
 							background: rgba(0, 0, 0, 0.2);
 						}
 
@@ -978,7 +978,7 @@
 
 									&:hover {
 										color: #fff;
-										background: @themeColor;
+										background: @theme-color;
 
 										.name {
 											color: #fff;
@@ -991,7 +991,7 @@
 
 									&:active {
 										color: #fff;
-										background: darken(@themeColor, 10%);
+										background: darken(@theme-color, 10%);
 
 										.name {
 											color: #fff;
@@ -1096,7 +1096,7 @@
 								}
 
 								> .unread-count {
-									color: contrast(@themeColor, #000, #fff, 70%) !important;
+									color: contrast(@theme-color, #000, #fff, 70%) !important;
 									display: inline-block;
 									position: relative;
 									z-index: 1;
@@ -1106,7 +1106,7 @@
 									vertical-align: super;
 									font-size: 0.7em;
 									line-height: 1em;
-									background: @themeColor;
+									background: @theme-color;
 									border-radius: 2px;
 								}
 							}
@@ -1133,8 +1133,8 @@
 						font-size: 1.2em;
 						font-weight: normal;
 						text-decoration: none;
-						color: contrast(@themeColor, #000, #fff, 70%);
-						background: @themeColor !important;
+						color: contrast(@theme-color, #000, #fff, 70%);
+						background: @theme-color !important;
 						outline: none;
 						border: none;
 						border-radius: 2px;
@@ -1147,11 +1147,11 @@
 						}
 
 						&:hover {
-							background: lighten(@themeColor, 10%) !important;
+							background: lighten(@theme-color, 10%) !important;
 						}
 
 						&:active {
-							background: darken(@themeColor, 10%) !important;
+							background: darken(@theme-color, 10%) !important;
 							transition: background 0s ease;
 						}
 					}
@@ -1425,14 +1425,14 @@
 	transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 
 	&:hover {
-		border-color: @themeColor;
+		border-color: @theme-color;
 		//box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1) inset;
 		transition: border 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	&:focus {
-		color: darken(@themeColor, 20%);
-		border-color: @themeColor;
+		color: darken(@theme-color, 20%);
+		border-color: @theme-color;
 		//box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2) inset;
 		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
 	}
@@ -1459,7 +1459,7 @@
 	transition: all 0.2s ease;
 
 	&:hover {
-		color: darken(@themeColor, 20%);
+		color: darken(@theme-color, 20%);
 	}
 }
 
@@ -1493,11 +1493,11 @@
 	}
 
 	&:hover {
-		color: @themeColor;
+		color: @theme-color;
 	}
 
 	&:active {
-		color: darken(@themeColor, 10%);
+		color: darken(@theme-color, 10%);
 		transition: color 0s ease;
 	}
 }
@@ -1782,8 +1782,8 @@
 					color: #4D5965;
 
 					&:hover {
-						background: @themeColor;
-						color: contrast(@themeColor, #000, #fff, 70%);
+						background: @theme-color;
+						color: contrast(@theme-color, #000, #fff, 70%);
 					}
 
 					> a {
@@ -1855,15 +1855,15 @@
 					}
 
 					&:hover {
-						color: @themeColor;
+						color: @theme-color;
 					}
 
 					&:focus {
-						color: @themeColor;
+						color: @theme-color;
 					}
 
 					&:active {
-						color: darken(@themeColor, 10%);
+						color: darken(@theme-color, 10%);
 					}
 
 					i {
@@ -1894,7 +1894,7 @@
 					border: none;
 					border-radius: 0;
 					box-shadow: none;
-					background: @themeColor;
+					background: @theme-color;
 					transition: all .1s ease;
 					cursor: pointer;
 
@@ -1903,15 +1903,15 @@
 					}
 
 					&:hover {
-						background: lighten(@themeColor, 10%);
+						background: lighten(@theme-color, 10%);
 					}
 
 					&:focus {
-						background: lighten(@themeColor, 10%);
+						background: lighten(@theme-color, 10%);
 					}
 
 					&:active {
-						background: darken(@themeColor, 10%);
+						background: darken(@theme-color, 10%);
 					}
 
 					i {
@@ -1950,15 +1950,15 @@
 				}
 
 				&:hover {
-					color: @themeColor;
+					color: @theme-color;
 				}
 
 				&:focus {
-					color: @themeColor;
+					color: @theme-color;
 				}
 
 				&:active {
-					color: darken(@themeColor, 10%);
+					color: darken(@theme-color, 10%);
 				}
 			}
 		}
@@ -1980,8 +1980,8 @@
 				z-index: 1;
 				width: 0;
 				height: 0;
-				border: solid 1px @themeColor;
-				background: fade(@themeColor, 50%);
+				border: solid 1px @theme-color;
+				background: fade(@theme-color, 50%);
 				opacity: 0;
 			}
 
@@ -2008,21 +2008,21 @@
 
 					&[data-selected=true] {
 						> .content {
-							//border: solid 4px @themeColor;
-							outline: solid 4px @themeColor;
+							//border: solid 4px @theme-color;
+							outline: solid 4px @theme-color;
 
 							&:hover {
-								//border: solid 4px lighten(@themeColor, 20%);
-								outline: solid 4px lighten(@themeColor, 10%);
+								//border: solid 4px lighten(@theme-color, 20%);
+								outline: solid 4px lighten(@theme-color, 10%);
 
 								> .name {
-									background: lighten(@themeColor, 10%);
+									background: lighten(@theme-color, 10%);
 								}
 							}
 
 							> .name {
-								color: contrast(@themeColor, #000, #fff, 70%);
-								background: @themeColor;
+								color: contrast(@theme-color, #000, #fff, 70%);
+								background: @theme-color;
 							}
 						}
 					}
@@ -2124,7 +2124,7 @@
 						overflow: hidden;
 
 						&::-webkit-progress-value {
-							background-color: @themeColor;
+							background-color: @theme-color;
 						}
 
 						&::-webkit-progress-bar {
@@ -2175,13 +2175,13 @@
 				&:hover,
 				&:focus {
 					color: #fff;
-					background: @themeColor;
+					background: @theme-color;
 					text-decoration: none;
 				}
 
 				&:active {
 					color: #fff;
-					background: darken(@themeColor, 10%);
+					background: darken(@theme-color, 10%);
 				}
 
 				* {

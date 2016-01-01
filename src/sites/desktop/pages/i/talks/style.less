@@ -71,8 +71,8 @@ html {
 			}
 
 			&:focus {
-				color: darken(@themeColor, 20%);
-				border: solid 1px @themeColor;
+				color: darken(@theme-color, 20%);
+				border: solid 1px @theme-color;
 				transition: color 0, border 0;
 			}
 		}
@@ -110,7 +110,7 @@ html {
 
 					&:hover {
 						color: #fff;
-						background: @themeColor;
+						background: @theme-color;
 
 						.name {
 							color: #fff;
@@ -123,7 +123,7 @@ html {
 
 					&:active {
 						color: #fff;
-						background: darken(@themeColor, 10%);
+						background: darken(@theme-color, 10%);
 
 						.name {
 							color: #fff;
@@ -179,7 +179,7 @@ main {
 				background: #fafafa;
 
 				> a > article > header > h2 {
-					color: @themeColor;
+					color: @theme-color;
 				}
 
 				> a > article > .avatar {
@@ -402,7 +402,7 @@ main {
 
 			&.active {
 				> a {
-					border-top: solid 2px @themeColor;
+					border-top: solid 2px @theme-color;
 				}
 			}
 

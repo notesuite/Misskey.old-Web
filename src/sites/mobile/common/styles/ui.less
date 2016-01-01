@@ -29,13 +29,13 @@
 	transition: color 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
 
 	&:hover {
-		border: solid 2px @themeColor;
+		border: solid 2px @theme-color;
 		transition: border 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	&:focus {
-		color: darken(@themeColor, 20%);
-		border: solid 2px @themeColor;
+		color: darken(@theme-color, 20%);
+		border: solid 2px @theme-color;
 		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
 	}
 
@@ -70,8 +70,8 @@
 	font-size: 1.3em;
 	font-weight: normal;
 	text-decoration: none;
-	color: contrast(@themeColor, #000, #fff, 70%);
-	background: @themeColor !important;
+	color: contrast(@theme-color, #000, #fff, 70%);
+	background: @theme-color !important;
 	outline: none;
 	border: none;
 	border-radius: 4px;
@@ -79,11 +79,11 @@
 	transition: background 0.1s ease;
 
 	&:hover {
-		background: lighten(@themeColor, 10%) !important;
+		background: lighten(@theme-color, 10%) !important;
 	}
 
 	&:active {
-		background: darken(@themeColor, 10%) !important;
+		background: darken(@theme-color, 10%) !important;
 		transition: background 0s ease;
 	}
 }
@@ -153,7 +153,7 @@
 		margin: 0;
 		padding: 6px 14px;
 		cursor: pointer;
-		color: contrast(@themeColor, #000, #fff, 70%);
+		color: contrast(@theme-color, #000, #fff, 70%);
 		font-size: 1.4em;
 		line-height: 36px;
 		font-weight: normal;
@@ -181,7 +181,7 @@
 		box-sizing: border-box;
 		margin: 0;
 		padding: 6px 12px;
-		color: contrast(@themeColor, #000, #fff, 70%);
+		color: contrast(@theme-color, #000, #fff, 70%);
 		font-size: 1.4em;
 		line-height: 36px;
 		background: transparent;

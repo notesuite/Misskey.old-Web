@@ -41,13 +41,13 @@ html {
 	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
 
 	&:hover {
-		border-bottom: solid 2px @themeColor;
+		border-bottom: solid 2px @theme-color;
 		transition: all .2s ease;
 	}
 
 	&:focus {
-		color: @themeColor;
-		border-bottom: solid 2px @themeColor;
+		color: @theme-color;
+		border-bottom: solid 2px @theme-color;
 		transition: all .1s ease;
 	}
 }
@@ -127,17 +127,17 @@ main {
 			transition: all .5s ease;
 
 			&:hover {
-				color: @themeColor;
+				color: @theme-color;
 				transition: all .2s ease;
 			}
 
 			&:focus {
-				color: @themeColor;
+				color: @theme-color;
 				transition: all .2s ease;
 			}
 
 			&:active {
-				color: darken(@themeColor, 30%);
+				color: darken(@theme-color, 30%);
 				transition: all .2s ease;
 			}
 		}

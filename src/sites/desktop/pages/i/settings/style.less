@@ -33,7 +33,7 @@ html {
 
 		> input[type=checkbox]:checked + p {
 			&:before {
-				border: solid 2px darken(@themeColor, 5%);
+				border: solid 2px darken(@theme-color, 5%);
 			}
 		}
 	}
@@ -49,7 +49,7 @@ html {
 
 		> input[type=checkbox]:checked + p {
 			&:before {
-				border: solid 2px darken(@themeColor, 10%);
+				border: solid 2px darken(@theme-color, 10%);
 			}
 		}
 	}
@@ -61,8 +61,8 @@ html {
 			color: #555;
 
 			&:before {
-				border: solid 2px @themeColor;
-				box-shadow: 0 0 0 (@checkbox-size / 2) @themeColor inset;
+				border: solid 2px @theme-color;
+				box-shadow: 0 0 0 (@checkbox-size / 2) @theme-color inset;
 			}
 
 			&:after {
@@ -105,7 +105,7 @@ html {
 			width: @checkbox-size;
 			height: @checkbox-size;
 			border: solid 2px #ddd;
-			box-shadow: 0 0 0 0 @themeColor inset;
+			box-shadow: 0 0 0 0 @theme-color inset;
 			transition: border 1s cubic-bezier(0,1,0,1), box-shadow 1s cubic-bezier(0,1,0,1);
 		}
 
@@ -123,7 +123,7 @@ html {
 			height: @checkbox-size;
 			line-height: @checkbox-size;
 			text-align: center;
-			color: contrast(@themeColor, #000, #fff, 70%);
+			color: contrast(@theme-color, #000, #fff, 70%);
 			opacity: 0;
 			transition: opacity 0.5s ease, width 0.5s ease;
 		}
@@ -175,13 +175,13 @@ body > .contents {
 			transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 
 			&:hover {
-				border-color: @themeColor;
+				border-color: @theme-color;
 				transition: border 0.2s ease, box-shadow 0.2s ease;
 			}
 
 			&:focus {
-				color: @themeColor;
-				border-color: @themeColor;
+				color: @theme-color;
+				border-color: @theme-color;
 				transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
 			}
 
@@ -225,7 +225,7 @@ body > .contents {
 			}
 
 			&:active {
-				color: @themeColor;
+				color: @theme-color;
 				background: rgba(255, 255, 255, 0.05);
 				box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 			}
@@ -260,7 +260,7 @@ body > .contents {
 					}
 
 					&:hover {
-						color: @themeColor;
+						color: @theme-color;
 					}
 
 					i {
@@ -269,8 +269,8 @@ body > .contents {
 
 					&.active {
 						padding-left: 32px;
-						color: @themeColor;
-						border-left: solid 3px @themeColor;
+						color: @theme-color;
+						border-left: solid 3px @theme-color;
 					}
 				}
 			}
@@ -339,7 +339,7 @@ body > .contents {
 					font-weight: normal;
 					text-decoration: none;
 					color: #fff;
-					background: @themeColor;
+					background: @theme-color;
 					outline: none;
 					border: none;
 					border-radius: 0;
@@ -358,12 +358,12 @@ body > .contents {
 
 					&:hover {
 						color: #fff;
-						background: lighten(@themeColor, 10%);
+						background: lighten(@theme-color, 10%);
 					}
 
 					&:active {
 						color: #fff;
-						background: darken(@themeColor, 10%);
+						background: darken(@theme-color, 10%);
 						transition: color 0s ease;
 					}
 				}
@@ -620,26 +620,26 @@ body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 			}
 
 			&:hover {
-				color: @themeColor;
+				color: @theme-color;
 			}
 
 			&:active {
-				color: darken(@themeColor, 10%);
+				color: darken(@theme-color, 10%);
 				transition: color 0s ease;
 			}
 
 			&.ok {
 				color: #fff;
-				background: @themeColor;
+				background: @theme-color;
 
 				&:hover {
 					color: #fff;
-					background: lighten(@themeColor, 10%);
+					background: lighten(@theme-color, 10%);
 				}
 
 				&:active {
 					color: #fff;
-					background: darken(@themeColor, 10%);
+					background: darken(@theme-color, 10%);
 					transition: color 0s ease;
 				}
 			}
@@ -654,11 +654,11 @@ body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 		}
 
 		.cropper-view-box {
-			outline-color: @themeColor;
+			outline-color: @theme-color;
 		}
 
 		.cropper-line, .cropper-point {
-			background-color: @themeColor;
+			background-color: @theme-color;
 		}
 
 		.cropper-bg {

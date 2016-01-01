@@ -84,15 +84,15 @@
 				cursor: pointer;
 
 				&.following {
-					color: contrast(@themeColor, #000, #fff, 70%);
-					background: @themeColor;
+					color: contrast(@theme-color, #000, #fff, 70%);
+					background: @theme-color;
 
 					&:hover {
-						background: lighten(@themeColor, 10%);
+						background: lighten(@theme-color, 10%);
 					}
 
 					&:active {
-						background: darken(@themeColor, 10%);
+						background: darken(@theme-color, 10%);
 					}
 				}
 
@@ -134,8 +134,8 @@
 				border-radius: 0 4px 4px 0;
 
 				&.followed {
-					color: contrast(@themeColor, #000, #fff, 70%);
-					background: lighten(@themeColor, 10%);
+					color: contrast(@theme-color, #000, #fff, 70%);
+					background: lighten(@theme-color, 10%);
 				}
 
 				&.not-followed {

@@ -1,8 +1,8 @@
-export const homeDirPath: string = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-export const configDirName: string = '.misskey';
-export const configFileName: string = 'web.json';
-export const configDirectoryPath: string = `${homeDirPath}/${configDirName}`;
-export const configPath: string = `${configDirectoryPath}/${configFileName}`;
+export const homeDirPath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+export const configDirName = '.misskey';
+export const configFileName = 'web.json';
+export const configDirectoryPath = `${homeDirPath}/${configDirName}`;
+export const configPath = `${configDirectoryPath}/${configFileName}`;
 
 export default loadConfig();
 

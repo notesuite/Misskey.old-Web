@@ -45,13 +45,13 @@ body {
 	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
 
 	&:hover {
-		border-bottom: solid 2px @themeColor;
+		border-bottom: solid 2px @theme-color;
 		transition: all .2s ease;
 	}
 
 	&:focus {
-		color: @themeColor;
-		border-bottom: solid 2px @themeColor;
+		color: @theme-color;
+		border-bottom: solid 2px @theme-color;
 		transition: all .1s ease;
 	}
 }
@@ -175,17 +175,17 @@ main {
 				font-family: FontAwesome, '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 
 				&:hover {
-					color: @themeColor;
+					color: @theme-color;
 					transition: all .2s ease;
 				}
 
 				&:focus {
-					color: @themeColor;
+					color: @theme-color;
 					transition: all .2s ease;
 				}
 
 				&:active {
-					color: darken(@themeColor, 30%);
+					color: darken(@theme-color, 30%);
 					transition: all .2s ease;
 				}
 			}
@@ -209,7 +209,7 @@ main {
 			border: 0;
 			border-radius: 0;
 			box-shadow: none;
-			background: @themeColor;
+			background: @theme-color;
 			overflow: hidden;
 			cursor: pointer;
 
@@ -287,7 +287,7 @@ main {
 				line-height: 1em;
 				font-weight: bold;
 				text-transform: uppercase;
-				color: @themeColor;
+				color: @theme-color;
 
 				i {
 					margin-right: 6px;
@@ -352,7 +352,7 @@ main {
 
 			&.done {
 				font-weight: bold;
-				color: @themeColor;
+				color: @theme-color;
 
 				&:before {
 					content: "\f00c";
@@ -402,7 +402,7 @@ main {
 				border: 0;
 				border-radius: 4px;
 				box-shadow: none;
-				background: @themeColor;
+				background: @theme-color;
 				cursor: pointer;
 
 				* {
@@ -414,11 +414,11 @@ main {
 				}
 
 				&:hover {
-					background: lighten(@themeColor, 10%);
+					background: lighten(@theme-color, 10%);
 				}
 
 				&:active {
-					background: darken(@themeColor, 10%);
+					background: darken(@theme-color, 10%);
 				}
 			}
 

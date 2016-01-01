@@ -2,7 +2,7 @@
 @import "../../../resources/font-awesome/less/font-awesome";
 
 ::selection {
-	background: @themeColor;
+	background: @theme-color;
 	color: #fff;
 }
 
@@ -20,10 +20,10 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: default;*/
-	-webkit-tap-highlight-color: fade(@themeColor, 70%);
+	-webkit-tap-highlight-color: fade(@theme-color, 70%);
 
 	&:focus {
-		/*outline: solid 2px @themeColor;*/
+		/*outline: solid 2px @theme-color;*/
 		outline: none;
 	}
 
@@ -58,7 +58,7 @@
 		}
 
 		&:active {
-			background: @themeColor;
+			background: @theme-color;
 		}
 	}
 
@@ -76,12 +76,12 @@ html, body {
 
 a {
 	text-decoration: none;
-	color: @themeColor;
+	color: @theme-color;
 	transition: color 0.1s ease;
 	cursor: pointer;
 
 	&:hover {
-		color: darken(@themeColor, 10%);
+		color: darken(@theme-color, 10%);
 		text-decoration: underline;
 	}
 

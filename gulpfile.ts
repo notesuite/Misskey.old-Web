@@ -10,9 +10,17 @@ const buffer = require('vinyl-buffer');
 const es = require('event-stream');
 const babel = require('gulp-babel');
 const less = require('gulp-less');
+const lessVars = require('gulp-less-json-variables');
 const minifyCSS = require('gulp-minify-css');
 const ls = require('gulp-livescript');
 const uglify = require('gulp-uglify');
+
+const homeDirPath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+const configDirName = '.misskey';
+const configFileName = 'web.less-vars.json';
+const configDirectoryPath = `${homeDirPath}/${configDirName}`;
+const configPath = `${configDirectoryPath}/${configFileName}`;
+const jsonLessVars = require(configPath);
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
 	typescript: require('typescript')
@@ -86,7 +94,14 @@ task('build-develop:frontside-scripts', ['copy:frontside-templates', 'compile:fr
 	});
 });
 
-task('build:frontside-styles', () => {
+task('set-less-variables', () => {
+	return src('./src/sites/common/common.less')
+		.pipe(lessVars(jsonLessVars))
+		.pipe(dest('./src/sites/common'));
+});
+
+
+task('build:frontside-styles', ['set-less-variables'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS({
@@ -95,7 +110,7 @@ task('build:frontside-styles', () => {
 		.pipe(dest('./built/resources'));
 });
 
-task('build-develop:frontside-styles', () => {
+task('build-develop:frontside-styles', ['set-less-variables'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(dest('./built/resources'));

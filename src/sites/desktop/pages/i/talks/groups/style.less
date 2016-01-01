@@ -108,7 +108,7 @@
 					font-weight: normal;
 					text-decoration: none;
 					color: #fff;
-					background: @themeColor;
+					background: @theme-color;
 					outline: none;
 					border: none;
 					border-radius: 0;
@@ -130,16 +130,16 @@
 					}
 
 					&:hover {
-						background: lighten(@themeColor, 10%);
+						background: lighten(@theme-color, 10%);
 					}
 
 					&:active {
-						background: darken(@themeColor, 10%);
+						background: darken(@theme-color, 10%);
 						transition: background 0s ease;
 					}
 
 					&:focus {
-						outline: solid 2px fade(@themeColor, 50%);
+						outline: solid 2px fade(@theme-color, 50%);
 					}
 				}
 			}

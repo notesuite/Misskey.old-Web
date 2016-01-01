@@ -15,72 +15,72 @@
 
 	&[data-is-favorited='true'] > article > .main > .main {
 		&:hover > .footer > .actions > .favorite > button {
-			color: @themeColor;
+			color: @theme-color;
 		}
 
 		> .footer > .actions > .favorite {
 			> button {
-				color: @themeColor;
+				color: @theme-color;
 
 				&:hover {
-					color: darken(@themeColor, 10%);
+					color: darken(@theme-color, 10%);
 				}
 
 				&:active {
-					color: darken(@themeColor, 20%);
+					color: darken(@theme-color, 20%);
 				}
 			}
 
 			> .count {
-				color: @themeColor;
+				color: @theme-color;
 			}
 		}
 	}
 
 	&[data-is-reposted='true'] > article > .main > .main {
 		&:hover > .footer > .actions > .repost > button {
-			color: @themeColor;
+			color: @theme-color;
 		}
 
 		> .footer > .actions > .repost {
 			> button {
-				color: @themeColor;
+				color: @theme-color;
 
 				&:hover {
-					color: darken(@themeColor, 10%);
+					color: darken(@theme-color, 10%);
 				}
 
 				&:active {
-					color: darken(@themeColor, 20%);
+					color: darken(@theme-color, 20%);
 				}
 			}
 
 			> .count {
-				color: @themeColor;
+				color: @theme-color;
 			}
 		}
 	}
 
 	&[data-is-pinned='true'] > article > .main > .main {
 		&:hover > .footer > .actions > .pin > button {
-			color: @themeColor;
+			color: @theme-color;
 		}
 
 		> .footer > .actions > .pin {
 			> button {
-				color: @themeColor;
+				color: @theme-color;
 
 				&:hover {
-					color: darken(@themeColor, 10%);
+					color: darken(@theme-color, 10%);
 				}
 
 				&:active {
-					color: darken(@themeColor, 20%);
+					color: darken(@theme-color, 20%);
 				}
 			}
 
 			> .count {
-				color: @themeColor;
+				color: @theme-color;
 			}
 		}
 	}
@@ -400,7 +400,7 @@
 					}
 
 					.screen-name {
-						color: @themeColor;
+						color: @theme-color;
 						text-decoration: none;
 
 						&:hover {
@@ -408,7 +408,7 @@
 						}
 
 						&:active {
-							color: darken(@themeColor, 20%);
+							color: darken(@theme-color, 20%);
 						}
 					}
 
@@ -757,20 +757,20 @@
 					transition: border 0.2s ease, color 0.2s ease;
 
 					&:hover {
-						border: solid 1px @themeColor;
+						border: solid 1px @theme-color;
 
 						& + .design-allow:before {
-							border-right: solid 12px @themeColor;
+							border-right: solid 12px @theme-color;
 						}
 					}
 
 					&:focus {
-						color: darken(@themeColor, 20%);
+						color: darken(@theme-color, 20%);
 						outline: none;
-						border: solid 1px @themeColor;
+						border: solid 1px @theme-color;
 
 						& + .design-allow:before {
-							border-right: solid 12px @themeColor;
+							border-right: solid 12px @theme-color;
 						}
 					}
 				}
@@ -905,11 +905,11 @@
 					}
 
 					&:hover {
-						color: @themeColor;
+						color: @theme-color;
 					}
 
 					&:active {
-						color: darken(@themeColor, 10%);
+						color: darken(@theme-color, 10%);
 						transition: color 0s ease;
 					}
 				}
@@ -1163,17 +1163,17 @@
 							}
 
 							.screen-name {
-								color: @themeColor;
+								color: @theme-color;
 								text-decoration: none;
 								transition: text-shadow 0.2s ease;
 
 								&:hover {
-									color: darken(@themeColor, 10%);
-									text-shadow: 0 0 4px fade(@themeColor, 30%);
+									color: darken(@theme-color, 10%);
+									text-shadow: 0 0 4px fade(@theme-color, 30%);
 								}
 
 								&:active {
-									color: darken(@themeColor, 20%);
+									color: darken(@theme-color, 20%);
 								}
 							}
 
