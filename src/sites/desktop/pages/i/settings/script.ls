@@ -90,7 +90,7 @@ $ ->
 	init-checkbox-controll $form.find '.web [name="enable-url-preview-in-post"]'
 	init-checkbox-controll $form.find '.web [name="thumbnailyze-attached-image-of-post"]'
 	init-checkbox-controll $form.find '.web [name="enable-notification-sound-when-receiving-new-post"]'
-	init-checkbox-controll $form.find '.web [name="enable-automatic-reading-of-timeline"]'
+	init-checkbox-controll $form.find '.web [name="read-timeline-automatically"]'
 	init-checkbox-controll $form.find '.web [name="enable-sushi"]'
 
 function init-checkbox-controll $checkbox

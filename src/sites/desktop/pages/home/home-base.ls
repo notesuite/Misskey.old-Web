@@ -37,8 +37,8 @@ module.exports = (type) ->
 		$ window .blur ->
 			is-active := no
 
-		# auto read more
-		if USER_SETTINGS.enable-automatic-reading-of-timeline
+		# Read more automatically
+		if USER_SETTINGS.read-timeline-automatically
 			$ window .scroll ->
 				current = $ window .scroll-top! + window.inner-height
 				if current > $ document .height! - 32

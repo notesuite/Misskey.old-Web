@@ -8,6 +8,9 @@ div.misskey-home-widget#widget-timeline(
 			if posts.length > 0
 				each post in posts
 					+post(post)
+		if posts.length > 0
+			button.read-more
+				| もっと読み込む
 		if posts.length == 0
 			p.empty
 				| タイムラインに表示するコンテンツがありません。
