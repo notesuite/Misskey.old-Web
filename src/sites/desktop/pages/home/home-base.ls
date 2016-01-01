@@ -44,7 +44,7 @@ module.exports = (type) ->
 		if USER_SETTINGS.read-timeline-automatically
 			$ window .scroll ->
 				current = $ window .scroll-top! + window.inner-height
-				if current > $ document .height! - 32
+				if current > $ document .height! - 16 # 遊び
 					read-more!
 
 		init-stream!
