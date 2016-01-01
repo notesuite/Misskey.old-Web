@@ -37,7 +37,7 @@ block contents
 				ol.photos
 					each post in photoPosts
 						each photo in post.photos
-							li.photo(style='background-image: url("' + photo.url + '")', title= post.createdAt)
+							li.photo(style='background-image: url("' + photo.thumbnailUrl + '")', title= post.createdAt)
 								a(href= config.url + '/' + user.screenName + '/' + post.id)
 	div#main-content
 		div#timeline
