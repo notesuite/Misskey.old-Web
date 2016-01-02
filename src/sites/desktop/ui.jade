@@ -92,16 +92,16 @@ block body
 							div.main-nav
 								ul
 									if login
-										li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href= config.url)
+										li.home(class= pagePath == '/' ? 'active' : ''): a(href= config.url)
 											i.fa.fa-home
 											p Home
-										li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href= config.url + '/i/mentions')
+										li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a(href= config.url + '/i/mentions')
 											i.fa.fa-at
 											p Mentions
-										li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href= config.talkUrl)
+										li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a(href= config.talkUrl)
 											i.fa.fa-comments
 											p Talks
-										li.album(class= pagePath == '/i/album' ? 'active' : ''): a.ui-waves-effect(href= config.url + '/i/album')
+										li.album(class= pagePath == '/i/album' ? 'active' : ''): a(href= config.url + '/i/album')
 											i.fa.fa-cloud
 											p Album
 					div.right
