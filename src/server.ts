@@ -27,20 +27,6 @@ import config from './config';
 import router from './router';
 import apiRouter from './api/router';
 
-function uatype(ua: string): string {
-	'use strict';
-	if (ua !== undefined && ua !== null) {
-		ua = ua.toLowerCase();
-		if (/(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
-			return 'mobile';
-		} else {
-			return 'desktop';
-		}
-	} else {
-		return 'desktop';
-	}
-}
-
 console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
 // Grobal options
@@ -128,6 +114,20 @@ apiRouter(app);
 app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 	// Chromeでは ALLOW-FROM をサポートしていないらしい
 	// res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
+
+	function uatype(ua: string): string {
+		'use strict';
+		if (ua !== undefined && ua !== null) {
+			ua = ua.toLowerCase();
+			if (/(iphone|ipod|ipad|android|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
+				return 'mobile';
+			} else {
+				return 'desktop';
+			}
+		} else {
+			return 'desktop';
+		}
+	}
 
 	const ua: string = uatype(req.headers['user-agent']);
 	const noui: boolean = req.query.hasOwnProperty('noui');
