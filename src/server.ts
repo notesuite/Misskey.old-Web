@@ -77,12 +77,12 @@ app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirn
 app.use(require('subdomain')(subdomainOptions));
 
 // HSTS
-app.use((req, res, next) => {
-	if (config.https.enable) {
+if (config.https.enable) {
+	app.use((req, res, next) => {
 		res.header('Strict-Transport-Security', 'max-age=10886400; includeSubDomains; preload');
-	}
-	next();
-});
+		next();
+	});
+}
 
 app.get(`/subdomain/${config.publicConfig.resourcesDomain}/`, (req, res) => {
 	res.send(musics());
