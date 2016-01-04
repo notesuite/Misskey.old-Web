@@ -2,11 +2,26 @@ import * as express from 'express';
 import * as multer from 'multer';
 const upload: any = multer({ dest: 'uploads/' });
 
+import { MisskeyExpressRequest } from '../misskey-express-request';
 import requestApi from '../utils/request-api';
 import config from '../config';
 
 export default function router(app: express.Express): void {
 	'use strict';
+
+	app.use((req, res, next) => {
+		(<MisskeyExpressRequest>req).isLogin =
+			req.hasOwnProperty('session') &&
+			req.session !== null &&
+			req.session.hasOwnProperty('userId') &&
+			(<any>req.session).userId !== null;
+
+		if ((<MisskeyExpressRequest>req).isLogin) {
+			req.user = (<any>req.session).userId;
+		}
+
+		next();
+	});
 
 	app.get(`/subdomain/${config.publicConfig.webApiDomain}/`, (req, res) => {
 		res.send('sakuhima');

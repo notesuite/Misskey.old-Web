@@ -1,7 +1,9 @@
+import * as cluster from 'cluster';
 import * as express from 'express';
 
 import { User } from './models/user';
-import { UserSettings, IUserSettings } from './models/user-settings';
+import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
+import namingWorkerId from './utils/naming-worker-id';
 import requestApi from './utils/request-api';
 import login from './core/login';
 import { MisskeyExpressRequest } from './misskey-express-request';
@@ -9,8 +11,63 @@ import { MisskeyExpressResponse } from './misskey-express-response';
 import callController from './call-controller';
 import config from './config';
 
+const workerId: string = namingWorkerId(cluster.worker.id);
+
 export default function router(app: express.Express): void {
 	'use strict';
+
+	// Init session
+	app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
+		// Chromeでは ALLOW-FROM をサポートしていないらしい
+		// res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
+
+		function uatype(ua: string): string {
+			'use strict';
+			if (ua !== undefined && ua !== null) {
+				ua = ua.toLowerCase();
+				if (/(iphone|ipod|ipad|android|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
+					return 'mobile';
+				} else {
+					return 'desktop';
+				}
+			} else {
+				return 'desktop';
+			}
+		}
+
+		const ua: string = uatype(req.headers['user-agent']);
+		const noui: boolean = req.query.hasOwnProperty('noui');
+
+		req.data = {};
+		req.ua = ua;
+		req.renderData = {
+			pagePath: req.path,
+			noui: noui,
+			config: config.publicConfig,
+			login: req.isLogin,
+			ua: ua,
+			workerId: workerId
+		};
+
+		if (req.isLogin) {
+			const userId: string = req.session.userId;
+			requestApi('account/show', {}, userId).then((user: User) => {
+				UserSettings.findOne({
+					userId: userId
+				}, (err: any, settings: IUserSettings) => {
+					req.user = Object.assign({}, user, {_settings: settings.toObject()});
+					req.renderData.me = user;
+					req.renderData.userSettings = settings.toObject();
+					next();
+				});
+			});
+		} else {
+			req.user = null;
+			req.renderData.me = null;
+			req.renderData.userSettings = guestUserSettings;
+			next();
+		}
+	});
 
 	app.param('userScreenName', paramUserScreenName);
 	app.param('postId', paramPostId);

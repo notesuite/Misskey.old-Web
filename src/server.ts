@@ -14,24 +14,18 @@ import * as cookieParser from 'cookie-parser';
 const vhost: any = require('vhost');
 const cors: any = require('cors');
 
-import { User } from './models/user';
-import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
-import { MisskeyExpressRequest } from './misskey-express-request';
-import { MisskeyExpressResponse } from './misskey-express-response';
-import requestApi from './utils/request-api';
 import namingWorkerId from './utils/naming-worker-id';
 import musics from './utils/musics';
 
 import config from './config';
 
-import router from './router';
+import webRouter from './router';
 import apiRouter from './api/router';
 
 console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
 // Grobal options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
-const workerId: string = namingWorkerId(cluster.worker.id);
 const subdomainOptions = {
 	base: config.publicConfig.host
 };
@@ -56,25 +50,6 @@ app.use(cors({
 	credentials: true
 }));
 
-// Statics
-app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
-	fallthrough: true
-})));
-
-app.use(require('subdomain')(subdomainOptions));
-
-app.get(`/subdomain/${config.publicConfig.resourcesDomain}/`, (req, res) => {
-	res.send(musics());
-});
-
-// Statics
-app.get('/favicon.ico', (req, res) => {
-	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
-});
-app.get('/manifest.json', (req, res) => {
-	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
-});
-
 // Session settings
 app.use(expressSession({
 	name: config.sessionKey,
@@ -94,77 +69,28 @@ app.use(expressSession({
 	})
 }));
 
-app.use((req, res, next) => {
-	(<MisskeyExpressRequest>req).isLogin =
-		req.hasOwnProperty('session') &&
-		req.session !== null &&
-		req.session.hasOwnProperty('userId') &&
-		(<any>req.session).userId !== null;
+// Statics
+app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
+	fallthrough: true
+})));
 
-	if ((<MisskeyExpressRequest>req).isLogin) {
-		req.user = (<any>req.session).userId;
-	}
+app.use(require('subdomain')(subdomainOptions));
 
-	next();
+app.get(`/subdomain/${config.publicConfig.resourcesDomain}/`, (req, res) => {
+	res.send(musics());
+});
+
+// Statics
+app.get('/favicon.ico', (req, res) => {
+	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
+});
+app.get('/manifest.json', (req, res) => {
+	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
 
 apiRouter(app);
 
-// Init session
-app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
-	// Chromeでは ALLOW-FROM をサポートしていないらしい
-	// res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
-
-	function uatype(ua: string): string {
-		'use strict';
-		if (ua !== undefined && ua !== null) {
-			ua = ua.toLowerCase();
-			if (/(iphone|ipod|ipad|android|windows.*phone|psp|vita|nitro|nintendo)/i.test(ua)) {
-				return 'mobile';
-			} else {
-				return 'desktop';
-			}
-		} else {
-			return 'desktop';
-		}
-	}
-
-	const ua: string = uatype(req.headers['user-agent']);
-	const noui: boolean = req.query.hasOwnProperty('noui');
-
-	req.data = {};
-	req.ua = ua;
-	req.renderData = {
-		pagePath: req.path,
-		noui: noui,
-		config: config.publicConfig,
-		login: req.isLogin,
-		ua: ua,
-		workerId: workerId
-	};
-
-	if (req.isLogin) {
-		const userId: string = req.session.userId;
-		requestApi('account/show', {}, userId).then((user: User) => {
-			UserSettings.findOne({
-				userId: userId
-			}, (err: any, settings: IUserSettings) => {
-				req.user = Object.assign({}, user, {_settings: settings.toObject()});
-				req.renderData.me = user;
-				req.renderData.userSettings = settings.toObject();
-				next();
-			});
-		});
-	} else {
-		req.user = null;
-		req.renderData.me = null;
-		req.renderData.userSettings = guestUserSettings;
-		next();
-	}
-});
-
-// Rooting
-router(app);
+webRouter(app);
 
 let server: http.Server | https.Server;
 let port: number;
