@@ -11,6 +11,11 @@ link(rel='icon', href= config.url + '/favicon.ico')
 link(rel='manifest', href= config.url + '/manifest.json')
 link(rel='help', href= config.helpUrl)
 link(rel='search', href= config.searchUrl)
+link(rel='dns-prefetch', href= config.resourcesUrl)
+link(rel='dns-prefetch', href= config.webApiUrl)
+link(rel='dns-prefetch', href= config.searchUrl)
+link(rel='dns-prefetch', href= config.talkUrl)
+link(rel='dns-prefetch', href= config.apiUrl)
 link(rel='stylesheet', href= stylePath)
 script!= 'document.domain = \'' + config.host + '\';'
 script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
