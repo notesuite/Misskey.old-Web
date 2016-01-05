@@ -11,6 +11,7 @@ const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(expressSession);
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+import * as csrf from 'csurf';
 const vhost: any = require('vhost');
 const cors: any = require('cors');
 
@@ -68,6 +69,16 @@ app.use(expressSession({
 		mongooseConnection: db
 	})
 }));
+
+// CSRF
+app.use(csrf({
+	cookie: false
+}));
+
+app.use((req, res, next) => {
+	res.locals.csrftoken = req.csrfToken();
+	next();
+});
 
 // Statics
 app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
