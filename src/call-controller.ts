@@ -10,6 +10,10 @@ export default function callController(
 ): void {
 	'use strict';
 
+	if (!req.hasOwnProperty('ua')) {
+		req.ua = 'desktop';
+	}
+
 	res.display = (data: any = {}): void => {
 		const viewPath: string = `${__dirname}/sites/${req.ua}/pages/${name}/view`;
 		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
