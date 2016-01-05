@@ -18,4 +18,6 @@ forever stopall
 -d talk.misskey.xyz \
 -d bbs.misskey.xyz \
 -d dev.misskey.xyz \
+-d share.misskey.xyz \
+-d widgets.misskey.xyz \
 --server https://acme-v01.api.letsencrypt.org/directory

@@ -46,6 +46,7 @@
 		"src/sites/desktop/common/generate-homewidgets.ts",
 		"src/sites/desktop/common/generate-homewidget-timeline.ts",
 		"src/sites/desktop/pages/entrance/controller.ts",
+		"src/sites/desktop/pages/share/controller.ts",
 		"src/sites/desktop/pages/login/controller.ts",
 		"src/sites/desktop/pages/error/controller.ts",
 		"src/sites/desktop/pages/not-found/controller.ts",

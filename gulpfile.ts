@@ -100,7 +100,6 @@ task('set-less-variables', () => {
 		.pipe(dest('./src/sites/common'));
 });
 
-
 task('build:frontside-styles', ['set-less-variables'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
@@ -133,6 +132,9 @@ task('build-copy', ['build:frontside-scripts'], () => {
 		'!./src/**/*.ls',
 		'!./src/**/*.js'
 	]).pipe(dest('./built'));
+	src([
+		'./src/share/script.js'
+	]).pipe(dest('./built/share'));
 	src('./resources/**/*').pipe(dest('./built/resources/common/'));
 });
 
@@ -145,6 +147,9 @@ task('build-develop-copy', ['build-develop:frontside-scripts'], () => {
 		'!./src/**/*.ls',
 		'!./src/**/*.js'
 	]).pipe(dest('./built'));
+	src([
+		'./src/share/script.js'
+	]).pipe(dest('./built/share'));
 	src('./resources/**/*').pipe(dest('./built/resources/common/'));
 });
 

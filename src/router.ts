@@ -1,5 +1,6 @@
 import * as cluster from 'cluster';
 import * as express from 'express';
+import * as path from 'path';
 
 import { User } from './models/user';
 import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
@@ -119,6 +120,14 @@ export default function router(app: express.Express): void {
 
 	app.get(`/subdomain/${config.publicConfig.searchDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'search');
+	});
+
+	app.get(`/subdomain/${config.publicConfig.shareDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'share');
+	});
+
+	app.get(`/subdomain/${config.publicConfig.shareDomain}/script.js`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		res.sendFile(path.resolve(`${__dirname}/share/script.js`));
 	});
 
 	app.get('/i/*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
