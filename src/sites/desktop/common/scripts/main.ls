@@ -11,4 +11,5 @@ $.ajax-setup {
 	}
 }
 
+# Disable Back Forward Cache
 window.add-event-listener \unload ->
