@@ -37,8 +37,9 @@ mixin core(post, isRepost, repost)
 		if post.inReplyToPost
 			+subPost(post.inReplyToPost)(class='reply-source')
 		if isRepost
+			- var reposterTitle = repost.user.comment != null ? repost.user.comment : '@' + repost.user.screenName;
 			p.repost-info
-				a.avatar-anchor(href= config.url + '/' + repost.user.screenName, title= userTitle)
+				a.avatar-anchor(href= config.url + '/' + repost.user.screenName, title= reposterTitle)
 					img.avatar(src= repost.user.avatarThumbnailUrl, alt='avatar')
 				i.fa.fa-retweet
 				| Reposted by 
