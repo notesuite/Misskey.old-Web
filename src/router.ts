@@ -192,7 +192,18 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'not-found');
 	});
 
-	// Error handling
+	// Error handlings
+
+	app.use((err: any, req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: (err: any) => void) => {
+		if (err.code !== 'EBADCSRFTOKEN') {
+			return next(err);
+		}
+
+		// handle CSRF token errors
+		res.status(403);
+		res.send('form tampered with');
+	});
+
 	app.use((err: any, req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		console.error(err);
 		callController(req, res, 'error', err);
