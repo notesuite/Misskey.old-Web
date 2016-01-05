@@ -8,9 +8,10 @@ block header
 
 block content
 	main(role='main')
-		form#form(action= config.webApiUrl + '/web/posts/create-with-file', method='post', enctype='multipart/form-data')
+		form#form
 			textarea.ui-textarea#textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 			input.ui-input-file(name='file', type='file', accept='image/*')
 			button.ui-button(type='submit')
-				| 投稿
+				p 投稿
 				i.fa.fa-paper-plane
+			progress

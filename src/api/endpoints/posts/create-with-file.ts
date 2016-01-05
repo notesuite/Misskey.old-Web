@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as express from 'express';
 import requestApi from '../../../utils/request-api';
-import config from '../../../config';
 
 export default function createWithFile(req: express.Request, res: express.Response): void {
 	'use strict';
@@ -21,7 +20,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			create(albumFile);
 		}, (err: any) => {
 			console.error(err);
-			res.status(500).send('something-happened');
+			res.status(500).send(err);
 		});
 	} else {
 		create();
@@ -33,19 +32,19 @@ export default function createWithFile(req: express.Request, res: express.Respon
 				type: 'photo',
 				text: req.body.text,
 				photos: JSON.stringify([photo.id])
-			}, req.user).then((reply: Object) => {
-				res.redirect(config.publicConfig.url);
+			}, req.user).then((post: Object) => {
+				res.send(post);
 			}, (err: any) => {
-				res.send(err);
+				res.status(500).send(err);
 			});
 		} else {
 			requestApi('posts/create', {
 				type: 'text',
 				text: req.body.text
-			}, req.user).then((reply: Object) => {
-				res.redirect(config.publicConfig.url);
+			}, req.user).then((post: Object) => {
+				res.send(post);
 			}, (err: any) => {
-				res.send(err);
+				res.status(500).send(err);
 			});
 		}
 	}
