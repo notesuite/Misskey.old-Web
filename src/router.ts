@@ -146,6 +146,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/mentions');
 	});
 
+	app.get('/i/notifications', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'i/notifications');
+	});
+
 	app.get(`/subdomain/${config.publicConfig.talkDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'i/talks');
 	});

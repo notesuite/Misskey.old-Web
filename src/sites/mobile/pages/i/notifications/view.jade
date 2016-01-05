@@ -1,0 +1,24 @@
+extends ../../../ui
+include ../../../common/views/notification/item
+
+block title
+	| 通知
+
+block header
+	i.fa.fa-bell-o
+	| 通知
+
+block content
+	main(role='main')
+		div#stream
+			div.notifications
+				if notifications.length > 0
+					each notification in notifications
+						+item(notification)
+				else
+					p.empty
+						| 通知はありません。
+			if notifications.length > 0
+				button.read-more
+					i.fa.fa-sort-amount-desc
+					| もっと読み込む

@@ -8,7 +8,7 @@ $ ->
 	$ '#timeline > .read-more' .click ->
 		$button = $ @
 		$button.attr \disabled on
-		$button.find \p .text 'Loading...'
+		$button.find \p .text '読み込んでいます...'
 		$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
 			data:
 				limit: 20
@@ -18,7 +18,7 @@ $ ->
 				timeline.add-last post
 		.always ->
 			$button.attr \disabled off
-			$button.find \p .text 'Read more...?'
+			$button.find \p .text 'もっと読み込む'
 
 	socket = io.connect "#{CONFIG.web-streaming-url}/streaming/home"
 
