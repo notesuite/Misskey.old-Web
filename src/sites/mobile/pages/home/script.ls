@@ -8,6 +8,7 @@ $ ->
 	$ '#timeline > .read-more' .click ->
 		$button = $ @
 		$button.attr \disabled on
+		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \p .text '読み込んでいます...'
 		$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
 			data:
@@ -18,6 +19,7 @@ $ ->
 				timeline.add-last post
 		.always ->
 			$button.attr \disabled off
+			$button.find \i .attr \class 'fa fa-sort-amount-desc'
 			$button.find \p .text 'もっと読み込む'
 
 	socket = io.connect "#{CONFIG.web-streaming-url}/streaming/home"
