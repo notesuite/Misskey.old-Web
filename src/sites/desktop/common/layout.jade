@@ -16,16 +16,16 @@ html#misskey(
 
 	head(prefix='og: http://ogp.me/ns#')
 		include ./head
-		
+
 		block meta
-		
+
 		title
 			block title
-		
+
 		block assets
 		script(src= scriptPath)
 		link(rel='stylesheet', href= stylePath)
-	
+
 	body
 		if login
 			div#misskey-post-form-back(role='presentation')
@@ -70,7 +70,7 @@ html#misskey(
 							p coming soon
 						form#misskey-post-form-poll-tab-page(data-name='poll')
 							p coming soon
-					
+
 		header#misskey-main-header
 			div.main
 				div.main-contents-container
@@ -102,7 +102,7 @@ html#misskey(
 													i.fa.fa-heart
 													| Donate
 											ul
-												li: a.ui-waves-effect(href= 'https://github.com/MissKernel/Misskey-Web')
+												li: a.ui-waves-effect(href= 'https://github.com/MissKernel/Misskey')
 													i.fa.fa-github
 													| Github repository
 												li: a.ui-waves-effect(href= config.developmentChannelUrl)
@@ -111,7 +111,7 @@ html#misskey(
 												li: a.ui-waves-effect(href= 'http://dev.misskey.xyz')
 													i.fa.fa-terminal
 													| Developers Center
-													
+
 								div.main-nav
 									button.misskey Misskey
 									ul
