@@ -33,7 +33,7 @@ mixin user-message(message)
 							div.text= message.text
 						if message.file
 							div.file.image
-								img(src= message.file.url, alt='image', title= message.file.name)
+								img(src= message.file.url, alt='image', title= message.file.name, data-original-url= message.file.url)
 					else
 						p.is-deleted このメッセージは削除されました
 			footer
@@ -66,7 +66,7 @@ mixin group-message(message)
 							div.text= message.text
 						if message.file
 							div.file.image
-								img(src= message.file.url, alt='image', title= message.file.name)
+								img(src= message.file.url, alt='image', title= message.file.name, data-original-url= message.file.url)
 					else
 						p.is-deleted このメッセージは削除されました
 			footer

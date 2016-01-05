@@ -35,7 +35,7 @@ mixin user-message(message)
 							div.text= message.text
 						if message.file
 							div.file.image
-								img(src= message.file.url, alt='image', title= message.file.name)
+								img(src= message.file.url, alt='image', title= message.file.name, data-original-url= message.file.url)
 					else
 						p.is-deleted このメッセージは削除されました
 			footer
@@ -63,14 +63,14 @@ mixin group-message(message)
 							| 既読
 							= message.reads.length
 					button.delete-button(title='メッセージを削除')
-						img(src=config.resourcesUrl + '/desktop/pages/i/talk/delete.png', alt='Delete')
+						img(src= config.resourcesUrl + '/desktop/pages/i/talk/delete.png', alt='Delete')
 				div.content
 					if !message.isDeleted
 						if message.text != ''
 							div.text= message.text
 						if message.file
 							div.file.image
-								img(src= message.file.url, alt='image', title= message.file.name)
+								img(src= message.file.url, alt='image', title= message.file.name, data-original-url= message.file.url)
 					else
 						p.is-deleted このメッセージは削除されました
 			footer
