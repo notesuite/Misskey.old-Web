@@ -33,6 +33,17 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			});
 		}),
 		new Promise<any>((resolve, reject) => {
+			if (post.inReplyToPost !== null) {
+				requestApi('posts/talk/show', {
+					'post-id': post.inReplyToPost.id
+				}, me).then((talk: any[]) => {
+					resolve(talk);
+				});
+			} else {
+				resolve([]);
+			}
+		}),
+		new Promise<any>((resolve, reject) => {
 			requestApi('posts/likes/show', {
 				'post-id': post.id
 			}, me).then((likes: any[]) => {
@@ -47,11 +58,13 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			});
 		})
 	]).then((results: any[]) => {
+		console.log(results[1]);
 		res.display({
 			user: user,
 			post: post,
 			replies: results[0],
-			likes: results[1],
+			talk: results[1],
+			likes: results[2],
 			reposts: results[2]
 		});
 	});
