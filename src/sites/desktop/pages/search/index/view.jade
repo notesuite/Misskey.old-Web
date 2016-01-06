@@ -1,0 +1,10 @@
+extends ../../../ui
+
+block title
+	| Misskeyを検索
+
+block content
+	main
+		form(action= config.searchUrl, method='GET')
+			input(type='text', name='q', required)
+			input(type='submit', value='検索')

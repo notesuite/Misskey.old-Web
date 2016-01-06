@@ -1,0 +1,28 @@
+extends ../../../ui
+include ../../../common/views/post/smart/post
+
+block title
+	| 検索結果: 
+	= query
+
+block header
+	i.fa.fa-search
+	= query
+
+block assets
+	script!= 'var QUERY = atob("' + (new Buffer(query, 'utf8')).toString('base64') + '");'
+
+block content
+	main(role='main')
+		div#stream
+			div.posts
+				if posts.length > 0
+					each post in posts
+						+post(post)
+				else
+					p.empty
+						| 見つかりませんでした！
+			if posts.length > 0
+				button.read-more
+					i.fa.fa-sort-amount-desc
+					p もっと読み込む

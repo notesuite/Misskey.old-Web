@@ -1,0 +1,14 @@
+extends ../../../ui
+
+block title
+	| Misskeyを検索
+
+block header
+	i.fa.fa-search
+	| 検索
+
+block content
+	main
+		form(action= config.searchUrl, method='GET')
+			input.ui-input-text(type='text', name='q', required)
+			input.ui-button(type='submit', value='検索')

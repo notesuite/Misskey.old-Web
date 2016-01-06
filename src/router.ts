@@ -119,7 +119,11 @@ export default function router(app: express.Express): void {
 	});
 
 	app.get(`/subdomain/${config.publicConfig.searchDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
-		callController(req, res, 'search');
+		if (req.query.hasOwnProperty('q')) {
+			callController(req, res, 'search/result');
+		} else {
+			callController(req, res, 'search/index');
+		}
 	});
 
 	app.get(`/subdomain/${config.publicConfig.shareDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {

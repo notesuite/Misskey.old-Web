@@ -1,8 +1,11 @@
-extends ../../ui
-include ../../common/views/post/smart/post
+extends ../../../ui
+include ../../../common/views/post/smart/post
 
 block title
 	= '「' + query + '」の検索結果'
+
+block assets
+	script!= 'var QUERY = atob("' + (new Buffer(query, 'utf8')).toString('base64') + '");'
 
 block content
 	main
@@ -13,6 +16,8 @@ block content
 				div.posts
 					each post in posts
 						+post(post)
+				button.read-more
+					| もっと読み込む
 			else
 				p.no-result
 					| 見つかりませんでした

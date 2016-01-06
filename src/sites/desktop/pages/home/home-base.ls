@@ -23,9 +23,6 @@ module.exports = (type) ->
 
 		timeline := new Timeline $ '#widget-timeline > .timeline'
 
-		$ '#widget-timeline .timeline > .read-more' .click ->
-			read-more!
-
 		$ document .keydown (e) ->
 			tag = e.target.tag-name.to-lower-case!
 			if tag != \input and tag != \textarea
@@ -39,6 +36,9 @@ module.exports = (type) ->
 
 		$ window .blur ->
 			is-active := no
+
+		$ '#widget-timeline .timeline > .read-more' .click ->
+			read-more!
 
 		# Read more automatically
 		if USER_SETTINGS.read-timeline-automatically

@@ -1,0 +1,27 @@
+@import "../../../common/styles/ui";
+
+html, #misskey-main {
+	color: #000;
+	background: #F1E9E2;
+}
+
+#stream {
+	@import "../../../common/styles/timeline";
+	margin: 0 auto;
+	padding: 8px;
+	max-width: 500px;
+
+	> .posts {
+		> .post {
+			&:first-child {
+				border-radius: 6px 6px 0 0;
+			}
+		}
+	}
+}
+
+@media (min-width: 600px) {
+	#stream {
+		padding: 16px 8px;
+	}
+}
