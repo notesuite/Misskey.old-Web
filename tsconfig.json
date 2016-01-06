@@ -74,6 +74,7 @@
 		"src/sites/mobile/pages/not-found/controller.ts",
 		"src/sites/mobile/pages/user-not-found/controller.ts",
 		"src/sites/mobile/pages/home/controller.ts",
+		"src/sites/mobile/pages/post/controller.ts",
 		"src/sites/mobile/pages/i/mentions/controller.ts",
 		"src/sites/mobile/pages/i/notifications/controller.ts",
 		"src/sites/mobile/pages/i/post-new/controller.ts",
