@@ -317,3 +317,40 @@ main {
 		font-weight: 500;
 	}
 }
+
+@media (max-width: 350px) {
+	main {
+		#talks {
+
+			> .talk {
+				font-size: 0.9em;
+
+				&.user {
+					> a {
+						> article {
+							> .avatar {
+								width: 50px;
+								height: 50px;
+								margin: 0 8px 0 0;
+								border-radius: 6px;
+							}
+						}
+					}
+				}
+
+				&.group {
+					> a {
+						> article {
+							> .icon {
+								width: 50px;
+								height: 50px;
+								margin: 0 8px 0 0;
+								border-radius: 6px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

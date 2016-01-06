@@ -36,7 +36,7 @@ mixin core(post, isRepost, repost)
 				a.avatar-anchor(href='/' + repost.user.screenName)
 					img.avatar(src=repost.user.avatarThumbnailUrl, alt='avatar')
 				i.fa.fa-retweet
-				| Reposted by 
+				span.reposted-by Reposted by 
 				a.name(href='/' + repost.user.screenName)= repost.user.name
 		div.main
 			div.avatar-area
