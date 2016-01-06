@@ -87,6 +87,7 @@
 					display: block;
 
 					> .avatar {
+						display: block;
 						width: 50px;
 						height: 50px;
 						margin: 0;
@@ -166,6 +167,7 @@
 
 			> .content {
 				overflow: hidden;
+				word-wrap: break-word;
 			}
 		}
 
@@ -474,6 +476,18 @@
 			}
 		}
 	}
+
+	@media (max-width: 350px) {
+		> .avatar-anchor {
+
+			> .avatar {
+				width: 32px;
+				height: 32px;
+				margin: 0 8px 4px 0;
+				border-radius: 6px;
+			}
+		}
+	}
 }
 
 > .read-more {
@@ -524,24 +538,29 @@
 	border-radius: 8px;
 }
 
-/*
-@media (max-width: 400px) {
+
+@media (max-width: 350px) {
 
 	> .posts {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-
-		.post.status,
-		.post.photo,
-		.post.repost {
-			padding: 0 0;
+		.post {
+			font-size: 0.9em;
 
 			> .main {
-				position: relative;
-				padding: 16px 16px 0 16px;
+				padding: 14px 14px 0 14px;
+
+				> .avatar-area {
+					margin: 0 8px 0 0;
+
+					.avatar-anchor {
+
+						> .avatar {
+							width: 46px;
+							height: 46px;
+							border-radius: 6px;
+						}
+					}
+				}
 			}
 		}
 	}
 }
-*/
