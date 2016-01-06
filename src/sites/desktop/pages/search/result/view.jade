@@ -5,7 +5,7 @@ block title
 	= '「' + query + '」の検索結果'
 
 block assets
-	script!= 'var QUERY = atob("' + (new Buffer(query, 'utf8')).toString('base64') + '");'
+	script!= 'var QUERY = decodeURIComponent("' + encodeURIComponent(query) + '");'
 
 block content
 	main
