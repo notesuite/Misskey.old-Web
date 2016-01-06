@@ -1,6 +1,69 @@
 $ = require 'jquery'
 require './main.js'
 
+function update-relative-times
+	now = new Date!
+	$ "time[data-display-type='relative']" .each ->
+		date = new Date($ @ .attr \datetime)
+		ago = ~~((now - date) / 1000)
+		time-text = switch
+			| ago >= 31536000s => ~~(ago / 31536000s) + '年前'
+			| ago >= 2592000s  => ~~(ago / 2592000s) + 'ヶ月前'
+			| ago >= 604800s   => ~~(ago / 604800s) + '週間前'
+			| ago >= 86400s    => ~~(ago / 86400s) + '日前'
+			| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
+			| ago >= 60s       => ~~(ago / 60s) + '分前'
+			| ago >= 5s        => ~~(ago % 60s) + '秒前'
+			| ago <  5s        => 'たった今'
+			| _ => ''
+		$ @ .text time-text
+
+function update-statuses
+	$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-nav .home a .unread-count' .remove!
+			$ '#misskey-nav .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
+
+	$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-nav .mentions a .unread-count' .remove!
+			$ '#misskey-nav .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
+
+	$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-nav .notifications a .unread-count' .remove!
+			$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{data}</span>"
+
+	$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
+	.done (data) ->
+		if data != 0
+			$ '#misskey-nav .talks a .unread-count' .remove!
+			$ '#misskey-nav .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
+
+$ ->
+	if not NOUI
+		SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
+		update-statuses!
+		set-interval update-statuses, 10000ms
+		init-view-position!
+
+	update-relative-times!
+	set-interval update-relative-times, 1000ms
+
+$ window .load ->
+	if not NOUI
+		init-view-position!
+
+function init-view-position
+	padding = $ 'body > #misskey-header' .outer-height!
+	$ \#misskey-main .css \padding-top "#{padding}px"
+	$ \#misskey-nav .css \margin-top "#{padding}px"
+	$ '#misskey-nav > .slidemenu-body > .slidemenu-content' .css \padding-bottom "#{padding}px"
+
+
 ``
 /**
  * sp-slidemenu.js
@@ -970,64 +1033,3 @@ require './main.js'
 
 })(window, window.document);
 ``
-
-function update-relative-times
-	now = new Date!
-	$ "time[data-display-type='relative']" .each ->
-		date = new Date($ @ .attr \datetime)
-		ago = ~~((now - date) / 1000)
-		time-text = switch
-			| ago >= 31536000s => ~~(ago / 31536000s) + '年前'
-			| ago >= 2592000s  => ~~(ago / 2592000s) + 'ヶ月前'
-			| ago >= 604800s   => ~~(ago / 604800s) + '週間前'
-			| ago >= 86400s    => ~~(ago / 86400s) + '日前'
-			| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
-			| ago >= 60s       => ~~(ago / 60s) + '分前'
-			| ago >= 5s        => ~~(ago % 60s) + '秒前'
-			| ago <  5s        => 'たった今'
-			| _ => ''
-		$ @ .text time-text
-
-function update-statuses
-	$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .home a .unread-count' .remove!
-			$ '#misskey-nav .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .mentions a .unread-count' .remove!
-			$ '#misskey-nav .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .notifications a .unread-count' .remove!
-			$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .talks a .unread-count' .remove!
-			$ '#misskey-nav .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-$ ->
-	if not NOUI
-		SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
-		update-statuses!
-		set-interval update-statuses, 10000ms
-		init-view-position!
-
-	update-relative-times!
-	set-interval update-relative-times, 1000ms
-
-$ window .load ->
-	if not NOUI
-		init-view-position!
-
-function init-view-position
-	padding = $ 'body > #misskey-header' .outer-height!
-	$ \#misskey-main .css \padding-top "#{padding}px"
-	$ \#misskey-nav .css \margin-top "#{padding}px"
