@@ -76,7 +76,7 @@ block content
 					i.fa.fa-paper-plane
 				progress
 			if replies.length > 0
-				each postInReplies in replies
+				each postInReplies in replies.reverse()
 					+subPost(postInReplies)(class='post-in-replies')
 
 mixin subPost(post)
