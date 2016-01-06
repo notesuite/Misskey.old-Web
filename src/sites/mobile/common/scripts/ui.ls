@@ -1014,17 +1014,18 @@ function update-statuses
 			$ '#misskey-nav .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
 
 $ ->
-	SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
+	if not NOUI
+		SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
+		update-statuses!
+		set-interval update-statuses, 10000ms
+		init-view-position!
 
 	update-relative-times!
-	update-statuses!
 	set-interval update-relative-times, 1000ms
-	set-interval update-statuses, 10000ms
-
-	init-view-position!
 
 $ window .load ->
-	init-view-position!
+	if not NOUI
+		init-view-position!
 
 function init-view-position
 	padding = $ 'body > #misskey-header' .outer-height!
