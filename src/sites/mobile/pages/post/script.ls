@@ -100,14 +100,14 @@ $ ->
 					XHR.upload.add-event-listener \progress progress, false
 				XHR
 		}
-		.done (file) ->
-			location.href = CONFIG.url
+		.done ->
+			location.reload!
 		.fail (err) ->
 			$submit-button.attr \disabled off
 			$submit-button.find \p .text '投稿'
 			$submit-button.find \i .attr \class 'fa fa-paper-plane'
 			$progress.css \display \none
-			alert "投稿に失敗しました。再度お試しください。\r\nErrorCode: #{err.response-text}"
+			alert "返信に失敗しました。再度お試しください。\r\nErrorCode: #{err.response-text}"
 
 		function progress e
 			percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100

@@ -27,7 +27,7 @@ $ ->
 					XHR.upload.add-event-listener \progress progress, false
 				XHR
 		}
-		.done (file) ->
+		.done ->
 			location.href = CONFIG.url
 		.fail (err) ->
 			$submit-button.attr \disabled off

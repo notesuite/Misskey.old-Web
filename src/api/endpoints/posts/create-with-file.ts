@@ -29,9 +29,10 @@ export default function createWithFile(req: express.Request, res: express.Respon
 	function create(photo: any = null): void {
 		if (photo !== null) {
 			requestApi('posts/create', {
-				type: 'photo',
-				text: req.body.text,
-				photos: JSON.stringify([photo.id])
+				'type': 'photo',
+				'text': req.body.text,
+				'photos': JSON.stringify([photo.id]),
+				'in-reply-to-post-id': req.body['in-reply-to-post-id']
 			}, req.user).then((post: Object) => {
 				res.send(post);
 			}, (err: any) => {
@@ -39,8 +40,9 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			});
 		} else {
 			requestApi('posts/create', {
-				type: 'text',
-				text: req.body.text
+				'type': 'text',
+				'text': req.body.text,
+				'in-reply-to-post-id': req.body['in-reply-to-post-id']
 			}, req.user).then((post: Object) => {
 				res.send(post);
 			}, (err: any) => {

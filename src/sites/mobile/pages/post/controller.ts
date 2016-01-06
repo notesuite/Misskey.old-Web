@@ -58,7 +58,6 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			});
 		})
 	]).then((results: any[]) => {
-		console.log(results[1]);
 		res.display({
 			user: user,
 			post: post,
