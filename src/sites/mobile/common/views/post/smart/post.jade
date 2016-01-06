@@ -55,24 +55,23 @@ mixin core(post, isRepost, repost)
 						time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
 			div.content(itemprop='articleBody')
 				+content(post)
-		if login
-			footer
-				div.like
-					button(title= post.isLiked ? 'Unlike' : 'Like')
-						if userSettings.enableSushi
-							i.fa
-								| 🍣
-						else
-							i.fa.fa-star
-					p.count
-						= post.likesCount != 0 ? post.likesCount : ''
-				div.repost
-					button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
-						i.fa.fa-retweet
-					p.count
-						= post.repostsCount != 0 ? post.repostsCount : ''
-				div.reply
-					button(title='返信')
-						i.fa.fa-reply
-					p.count
-						= post.repliesCount != 0 ? post.repliesCount : ''
+		footer
+			div.like
+				button(title= post.isLiked ? 'Unlike' : 'Like')
+					if userSettings.enableSushi
+						i.fa
+							| 🍣
+					else
+						i.fa.fa-star
+				p.count
+					= post.likesCount != 0 ? post.likesCount : ''
+			div.repost
+				button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
+					i.fa.fa-retweet
+				p.count
+					= post.repostsCount != 0 ? post.repostsCount : ''
+			div.reply
+				button(title='返信')
+					i.fa.fa-reply
+				p.count
+					= post.repliesCount != 0 ? post.repliesCount : ''

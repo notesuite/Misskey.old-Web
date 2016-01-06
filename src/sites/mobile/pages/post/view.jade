@@ -1,4 +1,5 @@
 extends ../../ui
+include ../../common/views/post/content
 
 block title
 	= post.user.name + 'さんの' + post.createdAt + 'の投稿'
@@ -12,4 +13,79 @@ block header
 
 block content
 	main(role='main')
-		
+		article#post(
+				class                   = post.type
+				lang                    = post.user.lang
+				itemscope
+				itemtype                = 'http://schema.org/BlogPosting'
+				data-id                 = post.id
+				data-cursor             = post.cursor
+				data-type               = post.type
+				data-user-name          = post.user.name
+				data-user-screen-name   = post.user.screenName
+				data-is-liked          != login ? post.isLiked.toString() : null
+				data-is-reposted       != login ? post.isReposted.toString() : null)
+			if post.inReplyToPost
+				+subPost(post.inReplyToPost)(class='reply-source')
+			div.main
+				div.avatar-area
+					a.avatar-anchor(href= '/' + post.user.screenName)
+						img.avatar(src= post.user.avatarThumbnailUrl, alt='avatar')
+				header
+					div.author(itemprop='author')
+						if userSettings.displayUserNameInPost
+							a.name(href= '/' + post.user.screenName)= post.user.name
+							if post.user.isVerified
+								img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+						if userSettings.displayUserScreenNameInPost
+							p.screen-name= post.user.screenName
+					if userSettings.displayCreatedAtInPost
+						a.time-anchor(href= '/' + post.user.screenName + '/' + post.id, itemprop='url')
+							time(datetime= post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
+				div.content(itemprop='articleBody')
+					+content(post)
+			footer
+				div.like
+					button(title= post.isLiked ? 'Unlike' : 'Like')
+						if userSettings.enableSushi
+							i.fa
+								| 🍣
+						else
+							i.fa.fa-star
+					p.count
+						= post.likesCount != 0 ? post.likesCount : ''
+				div.repost
+					button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
+						i.fa.fa-retweet
+					p.count
+						= post.repostsCount != 0 ? post.repostsCount : ''
+				div.reply
+					button(title='返信')
+						i.fa.fa-reply
+					p.count
+						= post.repliesCount != 0 ? post.repliesCount : ''
+			form#form
+				textarea.ui-textarea#textarea(name='text', placeholder='この投稿に返信する', role='textbox', aria-multiline)
+				input.ui-input-file(name='file', type='file', accept='image/*')
+				button.ui-button(type='submit')
+					p 返信
+					i.fa.fa-paper-plane
+				progress
+
+mixin subPost(post)
+	aside.sub-post(class!= attributes.class !== undefined ? attributes.class + ' ' + post.type : post.type
+			data-id= post.id)
+		a.avatar-anchor(href= '/' + post.user.screenName)
+			img.avatar(src=post.user.avatarThumbnailUrl, alt='avatar')
+		header
+			if userSettings.displayUserNameInPost
+				a.name(href= '/' + post.user.screenName)= post.user.name
+				if post.user.isVerified
+					img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+			if userSettings.displayUserScreenNameInPost
+				p.screen-name= post.user.screenName
+			if userSettings.displayCreatedAtInPost
+				a.time-anchor(href= '/' + post.user.screenName + '/' + post.id)
+					time(datetime= post.createdAt, pubdate, data-display-type='relative')= post.createdAt
+		div.main
+			+content(post)
