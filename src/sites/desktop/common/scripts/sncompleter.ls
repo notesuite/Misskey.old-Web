@@ -65,7 +65,7 @@ module.exports = ($input) ->
 		caret := get-caret!
 		text = $input.val!.substring 0 caret
 
-		$dummy-input = $ '<div role="presentation" />'
+		$dummy-input = $ '<div role="presentation" class="autocomplete-tmp-dummy" />'
 			..css {
 				'position': \absolute
 				'top': \0
@@ -124,6 +124,7 @@ module.exports = ($input) ->
 		$opening-menu := null
 		$input.parent!.children \.ui-autocomplete .remove!
 		$input.unbind \keydown autocomplate-keydown
+		$ \body .children \.autocomplete-tmp-dummy .remove!
 
 	function autocomplate-keydown(e)
 		select = $opening-menu.attr \data-select
