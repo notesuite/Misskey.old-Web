@@ -9,7 +9,8 @@ block header
 	| 通知
 
 block action
-	button.delete.action: i.fa.fa-trash
+	if notifications.length > 0
+		button.delete.action: i.fa.fa-trash
 
 block content
 	main(role='main')
