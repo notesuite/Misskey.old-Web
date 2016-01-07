@@ -8,7 +8,6 @@ import * as browserify from 'browserify';
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const es = require('event-stream');
-const babel = require('gulp-babel');
 const less = require('gulp-less');
 const lessVars = require('gulp-less-json-variables');
 const minifyCSS = require('gulp-minify-css');
@@ -23,7 +22,8 @@ const configPath = `${configDirectoryPath}/${configFileName}`;
 const jsonLessVars = require(configPath);
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
-	typescript: require('typescript')
+	typescript: require('typescript'),
+	target: 'ES5'
 });
 
 task('build', [
@@ -45,7 +45,6 @@ task('build-develop', [
 task('build:ts', () => {
 	return tsProject.src()
 		.pipe(ts(tsProject))
-		.pipe(babel())
 		.pipe(dest('./built'));
 });
 
