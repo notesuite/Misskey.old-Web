@@ -2,14 +2,25 @@ require '../../../common/scripts/ui.js'
 $ = require 'jquery'
 notification-compiler = require '../../../common/views/notification/render.jade'
 
+function delete-all
+	$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
+	.done ->
+		location.reload!
+	.fail ->
+		alert '削除に失敗しました。再度お試しください。'
+
 $ ->
 	$ '#misskey-header .delete' .click ->
 		if window.confirm 'すべての通知を削除しますか？'
-			$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
-			.done (post) ->
-				location.reload!
-			.fail (data) ->
-				alert '削除に失敗しました。再度お試しください。'
+			$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
+			.done (count) ->
+				if count != 0
+					if window.confirm '未読の通知があるようですが、それでもすべて削除しますか？'
+						delete-all!
+				else
+					delete-all!
+			.fail ->
+				alert '削除の準備に失敗しました。再度お試しください。'
 
 	$ '#stream > .read-more' .click ->
 		$button = $ @
