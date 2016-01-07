@@ -3,6 +3,14 @@ $ = require 'jquery'
 notification-compiler = require '../../../common/views/notification/render.jade'
 
 $ ->
+	$ '#misskey-header .delete' .click ->
+		if window.confirm 'すべての通知を削除しますか？'
+			$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
+			.done (post) ->
+				location.reload!
+			.fail (data) ->
+				alert '削除に失敗しました。再度お試しください。'
+
 	$ '#stream > .read-more' .click ->
 		$button = $ @
 		$button.attr \disabled on
