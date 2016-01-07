@@ -14,6 +14,8 @@ block assets
 
 block content
 	main(role='main')
+		form#form(action= config.searchUrl, method='GET')
+			input.ui-input-text(type='text', name='q', value=query, placeholder='キーワードを入力して検索', equired)
 		div#stream
 			div.posts
 				if posts.length > 0
