@@ -3,10 +3,14 @@ $ = require 'jquery'
 notification-compiler = require '../../../common/views/notification/render.jade'
 
 function delete-all
+	$ '#misskey-header .delete i' .attr \class 'fa fa-spinner fa-spin'
+
 	$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
 	.done ->
 		location.reload!
+		alert '削除しました。'
 	.fail ->
+		$ '#misskey-header .delete i' .attr \class 'fa fa-trash'
 		alert '削除に失敗しました。再度お試しください。'
 
 $ ->

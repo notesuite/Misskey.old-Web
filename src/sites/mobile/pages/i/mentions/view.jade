@@ -8,6 +8,10 @@ block header
 	i.fa.fa-at
 	| あなた宛て
 
+block action
+	if mentions.length > 0
+		button.delete.action: i.fa.fa-trash
+
 block content
 	main(role='main')
 		div#stream
