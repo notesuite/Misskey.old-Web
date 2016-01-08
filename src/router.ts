@@ -137,6 +137,8 @@ export default function router(app: express.Express): void {
 	});
 
 	app.get(`/subdomain/${config.publicConfig.shareDomain}/script.js`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Credentials', 'false');
 		res.sendFile(path.resolve(`${__dirname}/share/script.js`));
 	});
 
