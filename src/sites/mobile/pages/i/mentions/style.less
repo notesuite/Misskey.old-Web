@@ -12,6 +12,19 @@ html, #misskey-main {
 	max-width: 500px;
 
 	> .posts {
+		> .empty {
+			display: block;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 16px;
+			text-align: center;
+			color: #A0877E;
+
+			> i {
+				margin-right: 0.25em;
+			}
+		}
+
 		> .post {
 			&:first-child {
 				border-radius: 6px 6px 0 0;
