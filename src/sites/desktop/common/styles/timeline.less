@@ -246,20 +246,17 @@
 					}
 
 					> .time-anchor {
+						color: #B7A793;
+
+						&:active {
+							color: @theme-color;
+							text-decoration: underline;
+						}
+
 						> time {
 							display: inline;
 							vertical-align: top;
-							color: #B7A793;
 							font-size: small;
-
-							&:hover {
-								text-decoration: underline;
-							}
-
-							&:active {
-								color: @theme-color;
-								text-decoration: underline;
-							}
 						}
 					}
 				}
