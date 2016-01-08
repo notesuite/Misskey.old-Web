@@ -1113,6 +1113,8 @@
 						}
 
 						> .dropdown-content {
+							width: 300px;
+
 							> .nav {
 								display: none;
 								height: 32px;
@@ -1122,8 +1124,8 @@
 								width: 300px;
 								z-index: 1;
 								color: #fff;
-								background: #111;
-								border-bottom: solid 1px #232323;
+								background: inherit;
+								border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 
 								&:after {
 									content: "";
@@ -1189,6 +1191,10 @@
 
 							> .main {
 								@import (multiple) "./notifications-base";
+
+								.notifications {
+									color: #fff;
+								}
 
 								.loading {
 									margin: 100px auto 0;
