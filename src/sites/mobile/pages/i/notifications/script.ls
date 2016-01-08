@@ -8,8 +8,8 @@ function delete-all
 	$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
 	.done ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-trash-o'
-		location.reload!
 		alert '削除しました。'
+		location.reload!
 	.fail ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-trash'
 		alert '削除に失敗しました。再度お試しください。'
