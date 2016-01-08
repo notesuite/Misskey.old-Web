@@ -17,8 +17,8 @@ block content
 		div#user
 			div.banner(style={'background-image': "url(#{user.bannerUrl})"})
 			div.body
-				a.avatar-anchor(href=user.avatarUrl)
-					img.avatar(src=user.avatarThumbnailUrl, alt='avatar')
+				a.avatar-anchor(href= user.avatarUrl)
+					img.avatar(src= user.avatarThumbnailUrl, alt='avatar')
 				div.name-and-screenname-container
 					h1.name= user.name
 					p.screen-name= user.screenName
