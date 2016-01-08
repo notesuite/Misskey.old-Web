@@ -75,9 +75,15 @@ app.use(compression());
 app.use((req, res, next) => {
 	res.header('Access-Control-Allow-Origin', config.publicConfig.url);
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Headers', 'Content-Type, csrf-token');
 	res.header('Access-Control-Allow-Credentials', 'true');
-	next();
+
+	// intercept OPTIONS method
+	if (req.method === 'OPTIONS') {
+		res.sendStatus(200);
+	} else {
+		next();
+	}
 });
 
 // Session settings
