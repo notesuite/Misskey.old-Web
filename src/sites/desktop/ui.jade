@@ -113,7 +113,7 @@ block body
 								div.dropdown.left(data-active='false')
 									div.dropdown-header(role='button')
 										span.screen-name
-											=me.screenName
+											= me.screenName
 											i.fa.fa-angle-down
 										img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
 									div.dropdown-content
@@ -140,15 +140,15 @@ block body
 								div.dropdown.left(data-active='false')
 									div.dropdown-header(role='button')
 										p
-											i.fa.fa-envelope
+											i.fa.fa-bell
 									div.dropdown-content
 										div.nav
 											select.filter-type(title='表示を絞り込み')
 												option(value='all') すべて
 												option(value='self-notification') self-notification
 												option(value='follow') 被フォロー
-												option(value='status-favorite') つぶやきの被お気に入り
-												option(value='status-repost') つぶやきの被Repost
+												option(value='like') Like
+												option(value='repost') Repost
 											button.delete-all-button(title='全ての通知を削除')
 												i.fa.fa-trash-o
 										div.main
