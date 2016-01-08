@@ -7,6 +7,7 @@ function delete-all
 
 	$.ajax "#{CONFIG.web-api-url}/posts/mentions/delete-all"
 	.done ->
+		$ '#misskey-header .delete i' .attr \class 'fa fa-trash-o'
 		location.reload!
 		alert '削除しました。'
 	.fail ->
