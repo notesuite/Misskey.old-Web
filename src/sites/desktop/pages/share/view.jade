@@ -5,14 +5,17 @@ block title
 		
 block body
 	main(role='main')
-		form#form
-			img.avatar(src= me.avatarThumbnailUrl, alt='')
-			h1
-				| 「
-				= title
-				| 」を共有
-			textarea(required)
-				= url
-			button(type='submit')
-				| 投稿
+		if login
+			form#form
+				img.avatar(src= me.avatarThumbnailUrl, alt='')
+				h1
+					| 「
+					= title
+					| 」を共有
+				textarea(required)
+					= url
+				button(type='submit')
+					| 投稿
+		else
+			p plz login
 	footer
