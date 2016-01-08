@@ -1,0 +1,24 @@
+extends ../../ui
+
+block title
+	| Misskeyでページを共有する
+
+block header
+	i.fa.fa-share-alt
+	| ページを共有
+
+block content
+	main(role='main')
+		if login
+			form#form
+				h1
+					| 「
+					= title
+					| 」を共有
+				textarea.ui-textarea(required)
+					= url
+				button.ui-button(type='submit')
+					| 投稿
+		else
+			p plz login
+	footer

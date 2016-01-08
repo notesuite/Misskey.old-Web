@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require '../../common/scripts/main.js'
+require '../../common/scripts/ui.js'
 
 $ ->
 	$ \#form .submit (event) ->
@@ -15,6 +15,9 @@ $ ->
 		}
 		.done (group) ->
 			alert '投稿しました。'
-			window.close!
+			if window.opener?
+				window.close!
+			else
+				location.href = CONFIG.url
 		.fail (data) ->
 			$submit-button.attr \disabled no
