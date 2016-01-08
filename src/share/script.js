@@ -45,11 +45,11 @@ button.misskey-share > .count:hover {\
 \
 ";
 
-window.onload = function() {
+window.addEventListener('onload', function() {
 	var style = document.createElement('style');
 	style.appendChild(document.createTextNode(buttonStyle));
 	document.getElementsByTagName('head')[0].appendChild(style);
-	
+
 	var shareFormUrl = 'https://share.misskey.xyz/?title=' + document.title + '&url=' + location.href;
 
 	[].forEach.call(document.getElementsByClassName('misskey-share'), function(button) {
@@ -64,7 +64,7 @@ window.onload = function() {
 			return false;
 		};
 		button.appendChild(a);
-		
+
 		var count = document.createElement('a');
 		count.textContent = '-';
 		count.setAttribute('class', 'count');
@@ -100,4 +100,4 @@ window.onload = function() {
 		}
 		ajax.send(null);
 	});
-}
+});
