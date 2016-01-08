@@ -45,7 +45,7 @@ button.misskey-share > .count:hover {\
 \
 ";
 
-window.addEventListener('onload', function() {
+window.addEventListener('load', function() {
 	var style = document.createElement('style');
 	style.appendChild(document.createTextNode(buttonStyle));
 	document.getElementsByTagName('head')[0].appendChild(style);
