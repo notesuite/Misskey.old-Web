@@ -14,6 +14,7 @@ sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
 show-modal-dialog = require './modal-dialog.js'
 ui-window = require './window.js'
+notifications-compiler = require '../../common/views/notification/smart/items.jade'
 
 album = new AlbumWindow
 
@@ -177,7 +178,7 @@ function init-header
 			$info.append-to $notifications-container
 		.fail (data) ->
 
-	# 「通知」ドロップダウン
+	# Notifications drop-down
 	$ '#misskey-header .notifications .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-header .notifications .dropdown'
 
@@ -192,22 +193,29 @@ function init-header
 			$dropdown.attr \data-active \true
 
 			$notifications-container = $ '#misskey-header .notifications .dropdown .dropdown-content .main'
-			$ '<img class="loading" src="/resources/images/notifications-loading.gif" alt="loading..." />' .append-to $notifications-container
+				..append $ '
+			<div class="loading">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>'
 
 			# 通知読み込み
 			$.ajax "#{CONFIG.web-api-url}/notifications/timeline"
-			.done (data) ->
+			.done (notifications) ->
 				$ '#misskey-header .notifications .loading' .remove!
 				$ '#misskey-header .notifications .unread-count' .remove!
 				$list = $ '<ol class="notifications" />'
-				if data != ''
+				if notifications != []
 					$ '#misskey-header .notifications .nav' .css \display \block
 					$ '#misskey-header .notifications .main' .css \margin-top \32px
-					$notifications = $ data
-					$notifications.each ->
-						$notification = $ @
-						$notification.append-to $list
-					$list.append-to $notifications-container
+					$notifications = $ notifications-compiler {
+						items: notifications
+						config: CONFIG
+						me: ME
+					}
+					$list.append $notifications
+					$ '#misskey-header .notifications .main' .append $list
 				else
 					$info = $ '<p class="notifications-empty">通知はありません</p>'
 					$info.append-to $notifications-container

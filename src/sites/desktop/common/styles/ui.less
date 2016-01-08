@@ -1113,8 +1113,124 @@
 						}
 
 						> .dropdown-content {
+							> .nav {
+								display: none;
+								height: 32px;
+								position: fixed;
+								top: inherit;
+								left: inherit;
+								width: 300px;
+								z-index: 1;
+								color: #fff;
+								background: #111;
+								border-bottom: solid 1px #232323;
+
+								&:after {
+									content: "";
+									display: block;
+									clear: both;
+								}
+
+								.filter-type {
+									-webkit-appearance: none;
+									-moz-appearance: none;
+									appearance: none;
+									display: block;
+									float: left;
+									box-sizing: border-box;
+									margin: 0;
+									padding: 0 8px;
+									height: 32px;
+									color: #fff;
+									border: none;
+									border-radius: 0;
+									background: transparent;
+									transition: border 0.1s ease;
+
+									&:hover {
+										background: rgba(255, 255, 255, 0.1);
+									}
+
+									option {
+										background: #000;
+									}
+								}
+
+								.delete-all-button {
+									-webkit-appearance: none;
+									-moz-appearance: none;
+									appearance: none;
+									display: block;
+									float: right;
+									box-sizing: border-box;
+									margin: 0;
+									padding: 0;
+									width: 32px;
+									height: 32px;
+									color: #fff;
+									border: none;
+									outline: none;
+									background: transparent;
+									cursor: pointer;
+
+									&:hover {
+										background: rgba(255, 255, 255, 0.1);
+									}
+
+									&:active {
+										background: rgba(255, 255, 255, 0.2);
+									}
+
+									* {
+										pointer-events: none;
+									}
+								}
+							}
+
 							> .main {
-								@import "./notifications-base";
+								@import (multiple) "./notifications-base";
+
+								.loading {
+									margin: 100px auto 0;
+									width: 70px;
+									text-align: center;
+
+									> div {
+										width: 18px;
+										height: 18px;
+										background-color: #333;
+
+										border-radius: 100%;
+										display: inline-block;
+										-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+										animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+									}
+
+									.bounce1 {
+										-webkit-animation-delay: -0.32s;
+										animation-delay: -0.32s;
+									}
+
+									.bounce2 {
+										-webkit-animation-delay: -0.16s;
+										animation-delay: -0.16s;
+									}
+
+									@-webkit-keyframes sk-bouncedelay {
+										0%, 80%, 100% { -webkit-transform: scale(0) }
+										40% { -webkit-transform: scale(1.0) }
+									}
+
+									@keyframes sk-bouncedelay {
+										0%, 80%, 100% {
+											-webkit-transform: scale(0);
+											transform: scale(0);
+										} 40% {
+											-webkit-transform: scale(1.0);
+											transform: scale(1.0);
+										}
+									}
+								}
 							}
 						}
 					}
