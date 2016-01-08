@@ -61,6 +61,12 @@ app.locals.cache = true;
 // app.locals.pretty = '    ';
 app.set('view engine', 'jade');
 
+// DEBUG LOG
+app.use((req, res, next) => {
+	console.log(req.path);
+	next();
+});
+
 // Init API server
 app.use(vhost(config.publicConfig.webApiHost, api(session)));
 
