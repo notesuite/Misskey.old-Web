@@ -11,12 +11,19 @@
 		position: relative;
 		box-sizing: border-box;
 		margin: 0;
-		padding: 16px;
+		padding: 26px;
 		background: #fff;
 		border-bottom: solid 1px #eee;
 
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
 		> .avatar-anchor {
 			display: block;
+			float: left;
 
 			&, > .avatar {
 				width: 64px;
@@ -31,9 +38,7 @@
 
 		> .body {
 			display: block;
-			position: absolute;
-			top: 16px;
-			left: 80px;
+			float: left;
 			padding: 4px 16px;
 
 			> header {
@@ -61,9 +66,7 @@
 
 		> .friend-form {
 			display: block;
-			position: absolute;
-			top: 16px;
-			right: 16px;
+			float: right;
 
 			.friend-button {
 				-webkit-appearance: none;
@@ -97,16 +100,17 @@
 				}
 
 				&.not-following {
-					color: #fff;
-					@backgroundColor: #aaa;
-					background: @backgroundColor;
+					padding: 3px;
+					color: @theme-color;
+					background: transparent;
+					border: solid 1px @theme-color;
 
 					&:hover {
-						background: lighten(@backgroundColor, 10%);
+						background: fade(@theme-color, 15%);
 					}
 
 					&:active {
-						background: darken(@backgroundColor, 10%);
+						background: fade(@theme-color, 30%);
 					}
 				}
 

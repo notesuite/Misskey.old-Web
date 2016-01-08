@@ -1,7 +1,6 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery'
 
-users-compiler = require '../../common/widgets/users-list/users.jade'
 show-modal-window = require '../../common/scripts/modal-window.js'
 AlbumWindow = require '../../common/scripts/album-window.js'
 avatar-form = require '../../common/scripts/avatar-form.js'
@@ -63,30 +62,6 @@ $ ->
 				window.is-following = true
 			.fail ->
 				$button.attr \disabled off
-
-	$ \#followings .click ->
-		$.ajax "#{CONFIG.web-api-url}/users/followings" {
-			data: {'user-id': USER.id}}
-		.done (users) ->
-			close = show-modal-window do
-				$ users-compiler {
-					users
-					config: CONFIG
-					me: ME
-					user-settings: USER_SETTINGS
-				}
-				true
-				null
-				\followings-window
-		return false
-
-	$ \#followers .click ->
-		close = show-modal-window do
-			$ '<iframe>' .attr \src "#{CONFIG.url}/#{USER.screen-name}/followers?noui"
-			true
-			null
-			\followers-window
-		return false
 
 	$ window .scroll ->
 		top = $ @ .scroll-top!
