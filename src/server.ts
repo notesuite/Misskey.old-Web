@@ -13,15 +13,15 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
 const vhost: any = require('vhost');
-const cors: any = require('cors');
 
 import namingWorkerId from './utils/naming-worker-id';
 import musics from './utils/musics';
 
 import config from './config';
 
-import webRouter from './router';
-import apiRouter from './api/router';
+import api from './api/server';
+import resources from './resources-server';
+import router from './router';
 
 console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
@@ -34,25 +34,7 @@ const subdomainOptions = {
 // Init DB connection
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
-// Init server
-const app: express.Express = express();
-app.disable('x-powered-by');
-app.locals.compileDebug = false;
-app.locals.filename = 'jade';
-app.locals.cache = true;
-// app.locals.pretty = '    ';
-app.set('view engine', 'jade');
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser(config.cookiePass));
-app.use(compression());
-app.use(cors({
-	origin: true,
-	credentials: true
-}));
-
-// Session settings
-app.use(expressSession({
+const session: any = {
 	name: config.sessionKey,
 	secret: config.sessionSecret,
 	resave: false,
@@ -68,22 +50,47 @@ app.use(expressSession({
 	store: new _MongoStore({
 		mongooseConnection: db
 	})
-}));
+};
+
+// Init server
+const app: express.Express = express();
+app.disable('x-powered-by');
+app.locals.compileDebug = false;
+app.locals.filename = 'jade';
+app.locals.cache = true;
+// app.locals.pretty = '    ';
+app.set('view engine', 'jade');
+
+// Init API server
+app.use(vhost(config.publicConfig.webApiHost, api(session)));
+
+// Init static resources server
+app.use(vhost(config.publicConfig.resourcesHost, resources()));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(config.cookiePass));
+app.use(compression());
+
+// CORS
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', config.publicConfig.url);
+	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTION');
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Credentials', 'true');
+	next();
+});
+
+// Session settings
+app.use(expressSession(session));
 
 // CSRF
 app.use(csrf({
 	cookie: false
 }));
-
 app.use((req, res, next) => {
 	res.locals.csrftoken = req.csrfToken();
 	next();
 });
-
-// Statics
-app.use(vhost(config.publicConfig.resourcesHost, (<any>express.static)(`${__dirname}/resources`, {
-	fallthrough: true
-})));
 
 app.use(require('subdomain')(subdomainOptions));
 
@@ -107,9 +114,7 @@ app.get('/manifest.json', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
 
-apiRouter(app);
-
-webRouter(app);
+router(app);
 
 let server: http.Server | https.Server;
 let port: number;

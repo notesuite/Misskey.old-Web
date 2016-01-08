@@ -10,6 +10,7 @@ meta(name='canonical', content= config.url + pagePath)
 meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no')
 meta(name='referrer', content='origin')
 meta(name='csrf_token', content= csrftoken)
+script!= 'document.domain = \'' + config.host + '\';'
 link(rel='shortcut icon', href= config.url + '/favicon.ico')
 link(rel='icon', href= config.url + '/favicon.ico')
 link(rel='apple-touch-icon', sizes='120x120', href= config.resourcesUrl + '/common/apple-touch-icon-120x120.png')
@@ -24,7 +25,6 @@ link(rel='dns-prefetch', href= config.searchUrl)
 link(rel='dns-prefetch', href= config.talkUrl)
 link(rel='dns-prefetch', href= config.apiUrl)
 link(rel='stylesheet', href= stylePath)
-script!= 'document.domain = \'' + config.host + '\';'
 script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
 script!= 'var NOUI = ' + noui.toString() + '; Object.freeze(NOUI);'
 script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
