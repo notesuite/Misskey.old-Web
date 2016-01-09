@@ -53,6 +53,7 @@ class UsersList
 		$user = $ user-compiler {
 			user: user
 			config: CONFIG
+			login: LOGIN
 			me: ME
 			user-settings: USER_SETTINGS
 		}
