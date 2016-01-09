@@ -14,12 +14,7 @@ const minifyCSS = require('gulp-minify-css');
 const ls = require('gulp-livescript');
 const uglify = require('gulp-uglify');
 
-const homeDirPath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-const configDirName = '.misskey';
-const configFileName = 'web.less-vars.json';
-const configDirectoryPath = `${homeDirPath}/${configDirName}`;
-const configPath = `${configDirectoryPath}/${configFileName}`;
-const jsonLessVars = require(configPath);
+import config from './src/config';
 
 const tsProject = ts.createProject('tsconfig.json', <any>{
 	typescript: require('typescript'),
@@ -102,7 +97,10 @@ task('build-develop:frontside-scripts', ['copy:frontside-templates', 'compile:fr
 
 task('set-less-variables', () => {
 	return src('./src/sites/common/common.less')
-		.pipe(lessVars(jsonLessVars))
+		.pipe(lessVars({
+			'@theme-color': config.publicConfig.themeColor,
+			'@resources-url': "\"" + config.publicConfig.resourcesUrl + "\""
+		}))
 		.pipe(dest('./src/sites/common'));
 });
 
