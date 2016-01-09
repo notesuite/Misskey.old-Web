@@ -11,7 +11,7 @@
 		position: relative;
 		box-sizing: border-box;
 		margin: 0;
-		padding: 26px;
+		padding: 16px;
 		background: #fff;
 		border-bottom: solid 1px #eee;
 
@@ -26,20 +26,20 @@
 			float: left;
 
 			&, > .avatar {
-				width: 64px;
-				height: 64px;
+				width: 58px;
+				height: 58px;
 			}
 
 			> .avatar {
 				display: block;
-				border-radius: 8px;
+				border-radius: 6px;
 			}
 		}
 
 		> .body {
 			display: block;
 			float: left;
-			padding: 4px 16px;
+			padding: 0 16px;
 
 			> header {
 
@@ -64,54 +64,49 @@
 			}
 		}
 
-		> .friend-form {
+		.friend-button {
 			display: block;
 			float: right;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 10px 16px;
+			text-align: center;
+			touch-action: manipulation;
+			cursor: pointer;
+			font-size: 1em;
+			border: none;
+			border-radius: 4px;
 
-			.friend-button {
-				display: block;
-				-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-				box-sizing: border-box;
-				margin: 0;
-				padding: 10px 16px;
-				width: 100%;
-				text-align: center;
-				touch-action: manipulation;
-				cursor: pointer;
-				font-size: 1em;
-				border: none;
-				border-radius: 4px;
+			&.following {
+				color: #fff;
+				font-weight: bold;
+				background: @theme-color;
+				background: -moz-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
+				background: -webkit-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
+				background: linear-gradient(to bottom, @theme-color 0%, darken(@theme-color, 10%) 100%);
+				border: solid 1px darken(@theme-color, 10%);
+			}
 
-				&.following {
-					color: #fff;
-					font-weight: bold;
-					background: @theme-color;
-					background: -moz-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-					background: -webkit-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-					background: linear-gradient(to bottom, @theme-color 0%, darken(@theme-color, 10%) 100%);
-					border: solid 1px darken(@theme-color, 10%);
-				}
+			&.not-following {
+				color: #444;
+				font-weight: normal;
+				background: #fff;
+				background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
+				background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
+				background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+				border: solid 1px #eee;
+			}
 
-				&.not-following {
-					color: #444;
-					font-weight: normal;
-					background: #fff;
-					background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
-					background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
-					background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
-					border: solid 1px #eee;
-				}
+			&:disabled {
+				opacity: 0.7;
+			}
 
-				&:disabled {
-					opacity: 0.7;
-				}
-
-				> i {
-					margin-right: 0.25em;
-				}
+			> i {
+				margin-right: 0.25em;
 			}
 		}
 	}

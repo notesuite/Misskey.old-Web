@@ -9,7 +9,7 @@ class UsersList
 			function check-follow
 				($user.attr \data-is-following) == \true
 
-			$friend-button = $user.find '.friend-form .friend-button'
+			$friend-button = $user.find \.friend-button
 
 			$friend-button.click ->
 				$friend-button.attr \disabled on
@@ -22,7 +22,7 @@ class UsersList
 							..attr \disabled off
 							..remove-class \following
 							..add-class \not-following
-							..find \.text .text 'フォロー'
+							..find \.text .text 'フォローする'
 							..find \i .attr \class 'fa fa-plus'
 						$user.attr \data-is-following \false
 					.fail ->

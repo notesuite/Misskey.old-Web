@@ -11,13 +11,12 @@ mixin user(user)
 				p.screen-name= user.screenName
 			p.comment= user.comment
 		if login
-			div.friend-form
-				if me.id != user.id
-					if user.isFollowing
-						button.friend-button.following
-							i.fa.fa-minus-circle
-							span.text フォロー解除
-					else
-						button.friend-button.not-following
-							i.fa.fa-minus-plus
-							span.text フォローする
+			if me.id != user.id
+				if user.isFollowing
+					button.friend-button.following
+						i.fa.fa-minus-circle
+						span.text フォロー解除
+				else
+					button.friend-button.not-following
+						i.fa.fa-plus
+						span.text フォローする
