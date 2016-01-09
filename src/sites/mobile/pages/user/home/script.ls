@@ -5,6 +5,19 @@ Timeline = require '../../../common/scripts/timeline-core.js'
 $ ->
 	timeline = new Timeline $ '#timeline'
 
+	$ '#misskey-header .post' .click ->
+		text = window.prompt 'このユーザーになんか言う' "@#{USER.screen-name} "
+		if text? and text != ''
+			$.ajax "#{CONFIG.web-api-url}/posts/create" {
+				data: {
+					type: \text
+					text
+				}
+			} .done (post) ->
+				alert '投稿しました。'
+			.fail (data) ->
+				alert '投稿に失敗しました。'
+
 	$ '#timeline > .read-more' .click ->
 		$button = $ @
 		$button.attr \disabled on
