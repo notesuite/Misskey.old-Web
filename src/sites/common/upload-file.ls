@@ -30,4 +30,5 @@ module.exports = (file, $progress, uploading, success, failed) ->
 				$progress
 					..attr \max e.total
 					..attr \value e.loaded
-		uploading e.total, e.loaded, percentage
+		if uploading?
+			uploading e.total, e.loaded, percentage
