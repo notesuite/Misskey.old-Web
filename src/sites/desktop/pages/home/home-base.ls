@@ -1,5 +1,5 @@
 require '../../common/scripts/ui.js'
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 moment = require 'moment'
 Timeline = require '../../common/scripts/timeline-core.js'
 notification-compiler = require '../../common/views/notification/smart/render.jade'

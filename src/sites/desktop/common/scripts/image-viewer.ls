@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 
 module.exports = ($image) ->
 	$img = $image.find \img

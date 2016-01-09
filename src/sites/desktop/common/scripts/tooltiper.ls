@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 
 module.exports = ($elem) ->
 	$tooltip = $ '<p class="ui-tooltip">' .text $elem.attr \data-tooltip

@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 
 class UsersList
 	($list) ->

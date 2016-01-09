@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 require '../../../common/scripts/ui.js'
 UsersList = require '../../../common/widgets/users-list/script.js'
 

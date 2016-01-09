@@ -1,5 +1,5 @@
 require '../../../common/scripts/ui.js'
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 Timeline = require '../../../common/scripts/timeline-core.js'
 
 function delete-all

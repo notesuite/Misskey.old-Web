@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 Sortable = require 'Sortable'
 require '../../common/scripts/ui.js'
 sncompleter = require '../../common/scripts/sncompleter.js'

@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 Sortable = require 'Sortable'
 upload-file = require '../../../common/upload-file.js'

@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 urldecorator = require './urldecorator.js'
 
 module.exports = (post-type, $content) ->

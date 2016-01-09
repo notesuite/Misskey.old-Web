@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 urldecorator = require '../../../common/urldecorator.js'
 imageviewer = require './image-viewer.js'
 

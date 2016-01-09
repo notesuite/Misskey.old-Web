@@ -1,5 +1,5 @@
 require '../base.js'
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 UsersList = require '../../../common/widgets/users-list/script.js'
 
 $ ->

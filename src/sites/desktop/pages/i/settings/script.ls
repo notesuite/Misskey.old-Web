@@ -1,6 +1,6 @@
 require '../../../common/scripts/ui.js'
 
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 
 Tab = require '../../../common/scripts/lib/tab.js'
 AlbumWindow = require '../../../common/scripts/album-window.js'

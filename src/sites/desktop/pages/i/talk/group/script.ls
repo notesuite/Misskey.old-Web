@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 show-modal-dialog = require '../../../../common/scripts/modal-dialog.js'
 require '../main.js'
 

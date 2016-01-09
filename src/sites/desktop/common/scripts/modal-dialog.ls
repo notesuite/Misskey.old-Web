@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 
 module.exports = ($title, $content, buttons, can-close = true, on-shown = null, klass = null) ->

@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 attach-fast-click = require 'fastclick'
 
 CSRF_TOKEN = $ 'meta[name="csrf_token"]' .attr \content

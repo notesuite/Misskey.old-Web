@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 require '../../common/scripts/main.js'
 

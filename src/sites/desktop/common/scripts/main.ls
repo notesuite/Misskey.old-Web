@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 
 CSRF_TOKEN = $ 'meta[name="csrf_token"]' .attr \content
 

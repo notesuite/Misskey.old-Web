@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
 

@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jquery/dist/jquery'
 
 ``
 $.fn.selectRange = function(start, end) {
