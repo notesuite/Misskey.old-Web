@@ -1,35 +1,36 @@
 extends ../../../ui
 
 block title
-	| Settings
+	| アカウント設定 - Misskey
 
 block header
-	| Settings
+	i.fa.fa-cog
+	| 設定
 
 block content
 	main(role='main')
-		p#message= 'Hello, ' + me.name + '!'
+		p#message
+			| 何を設定しますか？
 		.menu
-			p.caption Profile
+			p.caption プロフィール
 			.item: a(href='/i/settings/avatar')
-				| Avatar
+				| アイコン
+				i.angle.fa.fa-angle-right
+			.item: a(href='/i/settings/banner')
+				| ヘッダー画像
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/name')
-				| Nickname
+				| 名前
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/comment')
-				| Comment
+				| コメント
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/website')
-				| Website
+				| WebサイトURL
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/location')
-				| Location
+				| ロケーション
 				i.angle.fa.fa-angle-right
 		.menu
-			p.caption Advanced
-			.item: a(href='/i/refresh')
-				| Refresh cache of user data
-		.menu
-			.item: a(href='/logout')
-				| Logout
+			.item: a(href= config.signoutUrl)
+				| ログアウト
