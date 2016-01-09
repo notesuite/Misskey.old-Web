@@ -85,6 +85,7 @@
 		"src/sites/mobile/pages/i/notifications/controller.ts",
 		"src/sites/mobile/pages/i/post-new/controller.ts",
 		"src/sites/mobile/pages/i/settings/controller.ts",
+		"src/sites/mobile/pages/i/settings/avatar/controller.ts",
 		"src/sites/mobile/pages/i/talks/controller.ts",
 		"src/sites/mobile/pages/i/talk/group/controller.ts",
 		"src/sites/mobile/pages/i/talk/user/controller.ts",

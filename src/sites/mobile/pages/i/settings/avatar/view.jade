@@ -1,0 +1,20 @@
+extends ../../../../ui
+
+block title
+	| アイコンの設定 - Misskey
+
+block header
+	i.fa.fa-cog
+	| アイコン
+
+block content
+	main(role='main')
+		img#avatar(src= me.avatarThumbnailUrl, alt='avatar')
+		form#form
+			label
+				p.caption
+					| アイコンに使用する画像をアップロード
+				input.ui-input-file(name='file', type='file', accept='image/*')
+				progress
+			button.ui-button(type='submit')
+				| 決定

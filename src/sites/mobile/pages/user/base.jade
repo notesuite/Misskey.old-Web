@@ -36,7 +36,11 @@ block content
 									span.count= comma(user.followersCount)
 									span.caption Followers
 						div.swiper-slide
-							p.comment= user.comment
+							if user.comment != null && user.comment != ''
+								p.comment= user.comment
+							else
+								p.no-comment
+									| - no comment -
 							if user.location != null && user.location != ''
 								p.location
 									i.fa.fa-map-marker
@@ -45,6 +49,15 @@ block content
 								p.url
 									i.fa.fa-link
 									a(href= user.url, target='_blank')= user.url
+						div.swiper-slide
+							if user.tags.length > 0
+								ul.tags
+									each tag in user.tags
+										li.tag: a(href='')= tag
+							else
+								p.empty-tags
+									| タグは設定されていません。
+								
 					div.swiper-pagination
 			div.status
 				div(data-href= config.url + '/' + user.screenName)

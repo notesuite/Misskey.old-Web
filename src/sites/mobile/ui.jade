@@ -30,39 +30,39 @@ html(
 			nav#misskey-nav
 				div.slidemenu-body
 					div.slidemenu-content
-						a.me(href=config.url + '/' + me.screenName)
-							img.avatar(src=me.avatarThumbnailUrl, alt='avatar')
+						a.me(href= config.url + '/' + me.screenName)
+							img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
 							p.name= me.name
 						div.links
 							ul
-								li.post-new: a(href=config.url + '/i/post-new')
+								li.post-new: a(href= config.url + '/i/post-new')
 									i.icon.fa.fa-pencil-square-o
 									| Post
 									i.angle.fa.fa-angle-right
 							ul
-								li.home: a(href=config.url)
+								li.home: a(href= config.url)
 									i.icon.fa.fa-home
 									| Home
 									i.angle.fa.fa-angle-right
-								li.mentions: a(href=config.url + '/i/mentions')
+								li.mentions: a(href= config.url + '/i/mentions')
 									i.icon.fa.fa-at
 									| Mentions
 									i.angle.fa.fa-angle-right
-								li.notifications: a(href=config.url + '/i/notifications')
+								li.notifications: a(href= config.url + '/i/notifications')
 									i.icon.fa.fa-bell-o
 									| Notifications
 									i.angle.fa.fa-angle-right
-								li.talks: a(href=config.talkUrl)
+								li.talks: a(href= config.talkUrl)
 									i.icon.fa.fa-comments-o
 									| Talks
 									i.angle.fa.fa-angle-right
 							ul
-								li.settings: a(href=config.searchUrl)
+								li.settings: a(href= config.searchUrl)
 									i.icon.fa.fa-search
 									| Search
 									i.angle.fa.fa-angle-right
 							ul
-								li.settings: a(href=config.url + '/i/settings')
+								li.settings: a(href= config.url + '/i/settings')
 									i.icon.fa.fa-cog
 									| Settings
 									i.angle.fa.fa-angle-right
