@@ -4,4 +4,39 @@
 	@import (multiple) "../../../common/widgets/users-list/style";
 
 	padding: 8px;
+
+	> .read-more {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		line-height: 3.25em;
+		font-size: 1em;
+		color: #A98C76;
+		cursor: pointer;
+		background: #fffbfb;
+		outline: none;
+		border: none;
+		border-radius: 0;
+
+		&:disabled {
+			color: #E4D6CB;
+		}
+
+		> i {
+			margin-right: 0.5em;
+		}
+
+		> p {
+			display: inline;
+		}
+	}
 }

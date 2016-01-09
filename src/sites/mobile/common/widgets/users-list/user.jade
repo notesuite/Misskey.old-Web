@@ -7,7 +7,7 @@ mixin user(user)
 			img.avatar(src= user.avatarThumbnailUrl)
 		div.body
 			header
-				p.name= user.name
+				a.name(href= config.url + '/' + user.screenName)= user.name
 				p.screen-name= user.screenName
 			p.comment= user.comment
 		if login

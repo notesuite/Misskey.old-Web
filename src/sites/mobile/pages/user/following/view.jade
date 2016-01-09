@@ -10,4 +10,12 @@ block header
 
 block user-content
 	div#following
-		+users(following)
+		if following.length == 0
+			p.empty
+				| 誰もフォローしていないようです。
+		else
+			+users(following)
+			
+			button.read-more
+				i.fa.fa-sort-amount-desc
+				p もっと読み込む
