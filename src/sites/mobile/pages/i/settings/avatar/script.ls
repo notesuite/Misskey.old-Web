@@ -29,5 +29,4 @@ $ ->
 			aspect-ratio: 1 / 1
 			highlight: no
 			view-mode: 1
-			preview: $crop-form.find \.preview
 		}
