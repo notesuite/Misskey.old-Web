@@ -29,7 +29,7 @@ function read-more
 		$button.text '読み込み中'
 		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
 			data:
-				limit: 10
+				limit: 20
 				'user-id': USER.id
 				'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor}
 		.done (posts) ->
