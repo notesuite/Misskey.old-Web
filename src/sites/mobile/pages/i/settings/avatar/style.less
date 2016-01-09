@@ -10,6 +10,12 @@ main {
 		border: solid 4px #fff;
 	}
 
+	.caption {
+		margin: 1em;
+		text-align: center;
+		color: #444;
+	}
+
 	progress {
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -32,6 +38,100 @@ main {
 
 		&:not([value])::-webkit-progress-bar {
 			background-image: url("@{resources-url}/mobile/common/images/indeter.gif");
+		}
+	}
+}
+
+body {
+	> .crop-form {
+		position: fixed;
+		z-index: 2048;
+		top: 0;
+		width: 100%;
+		height: 100%;
+
+		> p {
+			display: block;
+			box-sizing: border-box;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			margin: 0;
+			padding: 0.5em;
+			width: 100%;
+			text-align: center;
+			color: #fff;
+			background: #424A4C;
+		}
+
+		> .buttons {
+			display: block;
+			box-sizing: border-box;
+			position: fixed;
+			z-index: 1;
+			bottom: 0;
+			margin: 0;
+			padding: 0 4px;
+			width: 100%;
+			color: #fff;
+			background: #424A4C;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			button {
+				display: block;
+				float: right;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				box-sizing: border-box;
+				margin: 8px 4px;
+				padding: 10px 16px;
+				text-align: center;
+				touch-action: manipulation;
+				cursor: pointer;
+				font-size: 1em;
+				border: none;
+				border-radius: 4px;
+
+				&.ok {
+					color: #fff;
+					font-weight: bold;
+					background: @theme-color;
+					background: -moz-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
+					background: -webkit-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
+					background: linear-gradient(to bottom, @theme-color 0%, darken(@theme-color, 10%) 100%);
+					border: solid 1px darken(@theme-color, 10%);
+				}
+
+				&.cancel {
+					color: #444;
+					font-weight: normal;
+					background: #fff;
+					background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
+					background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
+					background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+					border: solid 1px #eee;
+				}
+
+				&:disabled {
+					opacity: 0.5;
+				}
+
+				> i {
+					margin-right: 0.25em;
+				}
+			}
+		}
+
+		> .container {
+			width: 100%;
+			height: 100%;
 		}
 	}
 }
