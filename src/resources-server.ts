@@ -16,5 +16,10 @@ export default function server(): express.Express {
 
 	app.use(express.static(`${__dirname}/resources`));
 
+	// Not found handling
+	app.use((req, res) => {
+		res.status(404).send('not-found');
+	});
+
 	return app;
 }

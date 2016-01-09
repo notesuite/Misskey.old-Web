@@ -9,7 +9,8 @@ block meta
 	meta(name='description', content= post.user.name + 'さんの' + post.createdAt + 'の投稿')
 
 block header
-	= post.user.name + 'さんの' + post.createdAt + 'の投稿'
+	b post.user.name
+	| の投稿
 
 block content
 	main(role='main')

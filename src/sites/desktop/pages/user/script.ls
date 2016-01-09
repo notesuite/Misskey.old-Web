@@ -45,8 +45,9 @@ $ ->
 				$button
 					..attr \disabled off
 					..remove-class \following
-					..add-class \notFollowing
-					..text 'フォロー'
+					..add-class \not-following
+					..find \.text .text 'フォロー'
+					..find \i .attr \class 'fa fa-plus'
 				window.is-following = false
 			.fail ->
 				$button.attr \disabled off
@@ -56,9 +57,10 @@ $ ->
 			.done ->
 				$button
 					..attr \disabled off
-					..remove-class \notFollowing
+					..remove-class \not-following
 					..add-class \following
-					..text 'フォロー中'
+					..find \.text .text 'フォロー中'
+					..find \i .attr \class 'fa fa-minus-circle'
 				window.is-following = true
 			.fail ->
 				$button.attr \disabled off

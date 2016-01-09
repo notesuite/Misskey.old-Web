@@ -28,6 +28,7 @@ const tsProject = ts.createProject('tsconfig.json', <any>{
 
 task('build', [
 	'build:ts',
+	'copy:bower_components',
 	'copy:frontside-templates',
 	'build:frontside-scripts',
 	'build:frontside-styles',
@@ -36,6 +37,7 @@ task('build', [
 
 task('build-develop', [
 	'build:ts',
+	'copy:bower_components',
 	'copy:frontside-templates',
 	'build-develop:frontside-scripts',
 	'build-develop:frontside-styles',
@@ -46,6 +48,11 @@ task('build:ts', () => {
 	return tsProject.src()
 		.pipe(ts(tsProject))
 		.pipe(dest('./built'));
+});
+
+task('copy:bower_components', () => {
+	return src('./bower_components/**/*')
+		.pipe(dest('./built/resources/bower_components'));
 });
 
 task('compile:frontside-scripts', () => {
@@ -99,7 +106,7 @@ task('set-less-variables', () => {
 		.pipe(dest('./src/sites/common'));
 });
 
-task('build:frontside-styles', ['set-less-variables'], () => {
+task('build:frontside-styles', ['set-less-variables', 'copy:bower_components'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(minifyCSS({
@@ -108,7 +115,7 @@ task('build:frontside-styles', ['set-less-variables'], () => {
 		.pipe(dest('./built/resources'));
 });
 
-task('build-develop:frontside-styles', ['set-less-variables'], () => {
+task('build-develop:frontside-styles', ['set-less-variables', 'copy:bower_components'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
 		.pipe(dest('./built/resources'));

@@ -9,14 +9,18 @@ block contents
 		div#friend-form
 			if login
 				if me.id != user.id
-					if user.isFollowingMe
+					if user.isFollowed
 						p#friend-status
 							i.fa.fa-heart
 							| フォローされています
 					if user.isFollowing
-						button#friend-button.following フォローしています
+						button#friend-button.following
+							i.fa.fa-minus-circle
+							span.text フォロー中
 					else
-						button#friend-button.not-following フォローする
+						button#friend-button.not-following
+							i.fa.fa-plus
+							span.text フォローする
 				else
 					p#friend-status
 						i.fa.fa-smile-o
@@ -45,6 +49,8 @@ block contents
 				div.posts
 					each post in timeline
 						+post(post)
+				button.read-more
+					| もっと読み込む
 			else
 				p.empty
 					| このユーザーはまだ何も投稿していないようです。
