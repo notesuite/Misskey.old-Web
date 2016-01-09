@@ -9,7 +9,7 @@ block meta
 	meta(name='description', content= post.user.name + 'さんの' + post.createdAt + 'の投稿')
 
 block header
-	b post.user.name
+	b= post.user.name
 	| の投稿
 
 block content

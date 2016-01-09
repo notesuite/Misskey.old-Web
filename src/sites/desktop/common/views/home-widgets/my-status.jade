@@ -7,7 +7,7 @@ div.misskey-home-widget#widget-my-status(data-widget-id='my-status', data-widget
 		table.status
 			tr
 				td: a(href='/' + me.screenName)= me.postsCount
-				td: a(href='/' + me.screenName + '/followings')= me.followingsCount
+				td: a(href='/' + me.screenName + '/following')= me.followingCount
 				td: a(href='/' + me.screenName + '/followers')= me.followersCount
 			tr
 				th Posts

@@ -56,7 +56,7 @@
 		"src/sites/desktop/pages/welcome/controller.ts",
 		"src/sites/desktop/pages/home/controller.ts",
 		"src/sites/desktop/pages/user/home/controller.ts",
-		"src/sites/desktop/pages/user/followings/controller.ts",
+		"src/sites/desktop/pages/user/following/controller.ts",
 		"src/sites/desktop/pages/user/followers/controller.ts",
 		"src/sites/desktop/pages/post/controller.ts",
 		"src/sites/desktop/pages/terms-of-use/controller.ts",
@@ -88,6 +88,8 @@
 		"src/sites/mobile/pages/i/talks/controller.ts",
 		"src/sites/mobile/pages/i/talk/group/controller.ts",
 		"src/sites/mobile/pages/i/talk/user/controller.ts",
-		"src/sites/mobile/pages/user/home/controller.ts"
+		"src/sites/mobile/pages/user/home/controller.ts",
+		"src/sites/mobile/pages/user/following/controller.ts",
+		"src/sites/mobile/pages/user/followers/controller.ts"
 	]
 }

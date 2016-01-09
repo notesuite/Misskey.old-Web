@@ -9,12 +9,12 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	const user: User = req.data.user;
 	const me: User = req.user;
 
-	requestApi('users/followings', {
+	requestApi('users/following', {
 		'user-id': user.id
-	}, me).then(followings => {
+	}, me).then(following => {
 		res.display({
 			user: user,
-			followings: followings
+			following: following
 		});
 	});
 };

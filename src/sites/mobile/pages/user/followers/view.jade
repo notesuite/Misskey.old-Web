@@ -1,0 +1,13 @@
+extends ../base
+include ../../../common/widgets/users-list/users
+
+block title
+	= user.name + 'さんをフォローしているユーザー'
+
+block header
+	b= user.name
+	| のフォロワー
+
+block user-content
+	div#followers
+		+users(followers)

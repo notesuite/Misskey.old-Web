@@ -1,0 +1,71 @@
+extends ../../ui
+
+block assets
+	script!= 'var USER = ' + JSON.stringify(user) + ';'
+
+block content
+	-
+		function comma(str) {
+			return String(str).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+		}
+
+	main
+		div#user
+			div.banner(style={'background-image': "url(#{user.bannerUrl})"})
+				div.swiper-container
+					div.swiper-wrapper
+						div.swiper-slide
+							a.avatar-anchor(href= config.url + '/' + user.screenName)
+								img.avatar(src= user.avatarThumbnailUrl, alt='avatar')
+							h1.name
+								= user.name
+								if user.isVerified
+									img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+							p.screen-name
+								= user.screenName
+								if login && (me.id != user.id) && user.isFollowed
+									span#friend-status
+										i.fa.fa-heart
+										| フォローされています
+							div.following-and-followers
+								a.following(href= config.url + '/' + user.screenName + '/following')
+									span.count= comma(user.followingCount)
+									span.caption Following
+								i |
+								a.followers(href= config.url + '/' + user.screenName + '/followers')
+									span.count= comma(user.followersCount)
+									span.caption Followers
+						div.swiper-slide
+							p.comment= user.comment
+							if user.location != null && user.location != ''
+								p.location
+									i.fa.fa-map-marker
+									= user.location
+							if user.url != null && user.url != ''
+								p.url
+									i.fa.fa-link
+									a(href= user.url, target='_blank')= user.url
+					div.swiper-pagination
+			div.status
+				div(data-href= config.url + '/' + user.screenName)
+					p.count= comma(user.postsCount)
+					p.caption Posts
+				div(data-href= config.url + '/' + user.screenName + '/likes')
+					p.count= comma(user.likesCount)
+					p.caption Likes
+				div(data-href= config.url + '/' + user.screenName + '/liked')
+					p.count= comma(user.likedCount)
+					p.caption Liked
+			div.actions
+				div#friend-form
+					if login
+						if me.id != user.id
+							if user.isFollowing
+								button#friend-button.following
+									i.fa.fa-minus-circle
+									span.text フォロー解除
+							else
+								button#friend-button.not-following
+									i.fa.fa-plus
+									span.text フォローする
+		block user-content
