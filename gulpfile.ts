@@ -10,7 +10,7 @@ const buffer = require('vinyl-buffer');
 const es = require('event-stream');
 const less = require('gulp-less');
 const lessVars = require('gulp-less-json-variables');
-const minifyCSS = require('gulp-minify-css');
+const cssnano = require('gulp-cssnano');
 const ls = require('gulp-livescript');
 const uglify = require('gulp-uglify');
 
@@ -107,9 +107,7 @@ task('set-less-variables', () => {
 task('build:frontside-styles', ['set-less-variables', 'copy:bower_components'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
-		.pipe(minifyCSS({
-			keepSpecialComments: 0
-		}))
+		.pipe(cssnano())
 		.pipe(dest('./built/resources'));
 });
 
