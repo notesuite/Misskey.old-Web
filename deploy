@@ -18,6 +18,8 @@ cd ../../../
 echo -e "\e[32m--- Stoping process...\e[m"
 forever stop $(pwd)/misskey-web.js
 
+NODE_ENV=production
+
 echo -e "\e[32m--- Starting process...\e[m"
 forever start $(pwd)/misskey-web.js
 
