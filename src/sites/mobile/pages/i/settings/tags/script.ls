@@ -6,7 +6,6 @@ $ ->
 
 	$form.submit (event) ->
 		event.prevent-default!
-		$form = $ @
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 			..html '更新中...'
