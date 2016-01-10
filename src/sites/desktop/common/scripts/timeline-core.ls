@@ -62,7 +62,7 @@ class Post
 					THIS.focus-reply-form!
 				if e.which == 70 or e.which == 76 # f or l
 					THIS.like!
-				if e.which == 69 # e
+				if e.which == 69 or e.which == 83 # e or s
 					THIS.repost!
 
 		THIS.$post.click (event) ->
