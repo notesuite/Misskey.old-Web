@@ -6,17 +6,19 @@ $ ->
 
 	$form.submit (event) ->
 		event.prevent-default!
-		
+
 		$submit-button = $form.find '[type=submit]'
-		$submit-button.attr \disabled on
-		$submit-button.html '更新中...'
+			..attr \disabled on
+			..html '更新中...'
 
 		$.ajax "#{CONFIG.web-api-url}/account/location/update" {
-			data: new FormData $form.0}
+			data: $form.serialize!
+		}
 		.done ->
 			alert '更新しました。'
 			location.reload!
 		.fail (err) ->
-			$submit-button.attr \disabled off
-			$submit-button.html '更新'
+			$submit-button
+				..attr \disabled off
+				..html '更新'
 			alert 'ごめんなさい、更新に失敗しました。'
