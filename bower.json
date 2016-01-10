@@ -17,14 +17,14 @@
     "tests"
   ],
   "dependencies": {
-    "cropper": "2.1.0",
+    "cropper": "2.2.4",
     "jquery": "2.2.0",
-    "jquery.transit": "~0.9.12",
-    "moment": "~2.10.6",
-    "Sortable": "~1.4.2",
-    "fuck-adblock": "fuckadblock#~3.2.0",
-    "fastclick": "~1.0.6",
-    "marked": "~0.3.5",
-    "Swiper": "swiper#~3.2.7"
+    "jquery.transit": "0.9.12",
+    "moment": "2.11.1",
+    "Sortable": "1.4.2",
+    "fuck-adblock": "3.2.0",
+    "fastclick": "1.0.6",
+    "marked": "0.3.5",
+    "Swiper": "swiper#3.3.0"
   }
 }
