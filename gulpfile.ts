@@ -107,7 +107,9 @@ task('set-less-variables', () => {
 task('build:frontside-styles', ['set-less-variables', 'copy:bower_components'], () => {
 	return src('./src/sites/**/*.less')
 		.pipe(less())
-		.pipe(cssnano())
+		.pipe(cssnano({
+			safe: true // 高度な圧縮は無効にする (一部デザインが不適切になる場合があるため)
+		}))
 		.pipe(dest('./built/resources'));
 });
 
