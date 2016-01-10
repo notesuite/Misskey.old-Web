@@ -18,13 +18,13 @@
   ],
   "dependencies": {
     "cropper": "2.2.4",
+    "fastclick": "1.0.6",
+    "fuck-adblock": "3.2.0",
     "jquery": "2.2.0",
     "jquery.transit": "0.9.12",
+    "marked": "0.3.5",
     "moment": "2.11.1",
     "Sortable": "1.4.2",
-    "fuck-adblock": "3.2.0",
-    "fastclick": "1.0.6",
-    "marked": "0.3.5",
     "Swiper": "swiper#3.3.0"
   }
 }
