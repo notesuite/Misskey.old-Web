@@ -191,11 +191,32 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/album');
 	});
 
-	app.get('/i/settings', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/settings'));
+	app.get('/i/settings', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings'));
 
-	app.get('/i/settings/avatar', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/settings/avatar'));
+	app.get('/i/settings/avatar', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/avatar'));
 
-	app.get('/i/home-customize', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => callController(req, res, 'i/home-customize'));
+	app.get('/i/settings/banner', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/banner'));
+
+	app.get('/i/settings/comment', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/comment'));
+
+	app.get('/i/settings/location', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/location'));
+
+	app.get('/i/settings/name', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/name'));
+
+	app.get('/i/settings/tags', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/tags'));
+
+	app.get('/i/settings/website', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/website'));
+
+	app.get('/i/home-customize', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/home-customize'));
 
 	app.get('/:userScreenName', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'user/home');
