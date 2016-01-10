@@ -53,7 +53,9 @@ block content
 							if user.tags.length > 0
 								ul.tags
 									each tag in user.tags
-										li.tag: a(href='')= tag
+										li.tag: a(href= config.searchUrl + '/user-tag/' + tag)
+											i.fa.fa-tag
+											= tag
 							else
 								p.empty-tags
 									| タグは設定されていません。
