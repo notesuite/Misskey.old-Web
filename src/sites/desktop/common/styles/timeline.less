@@ -240,6 +240,7 @@
 			}
 
 			> .content {
+				@import (multiple) "./post-content";
 				overflow: hidden;
 			}
 		}
@@ -577,14 +578,6 @@
 			}
 		}
 
-		&.status {
-			> .main {
-				> .content {
-					@import (multiple) "./post-content";
-				}
-			}
-		}
-
 		&.reply {
 			> .talk {
 				display: none;
@@ -603,12 +596,6 @@
 
 				> header > a > time {
 					top: 16px;
-				}
-			}
-
-			> .main {
-				> .content {
-					@import (multiple) "./post-content";
 				}
 			}
 		}

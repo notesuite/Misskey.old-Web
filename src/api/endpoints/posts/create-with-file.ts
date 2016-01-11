@@ -26,13 +26,13 @@ export default function createWithFile(req: express.Request, res: express.Respon
 		create();
 	}
 
-	function create(photo: any = null): void {
-		if (photo !== null) {
-			requestApi('posts/create', {
-				'type': 'photo',
+	function create(fileEntity: any = null): void {
+		const inReplyToPostId = req.body['in-reply-to-post-id'];
+		if (inReplyToPostId !== undefined && inReplyToPostId !== null && inReplyToPostId !== '') {
+			requestApi('posts/reply', {
 				'text': req.body.text,
-				'photos': JSON.stringify([photo.id]),
-				'in-reply-to-post-id': req.body['in-reply-to-post-id']
+				'files': fileEntity.id,
+				'in-reply-to-post-id': inReplyToPostId
 			}, req.user).then((post: Object) => {
 				res.send(post);
 			}, (err: any) => {
@@ -40,9 +40,8 @@ export default function createWithFile(req: express.Request, res: express.Respon
 			});
 		} else {
 			requestApi('posts/create', {
-				'type': 'text',
 				'text': req.body.text,
-				'in-reply-to-post-id': req.body['in-reply-to-post-id']
+				'files': fileEntity.id
 			}, req.user).then((post: Object) => {
 				res.send(post);
 			}, (err: any) => {
