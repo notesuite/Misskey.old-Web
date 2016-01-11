@@ -11,7 +11,7 @@ mixin post(post)
 mixin core(post, isRepost, repost)
 	- var login = (me != null);
 	- var isHaveReplies = (post.repliesCount > 0);
-	- var isTalk = (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null);
+	- var isTalk = (post.type == 'reply' && post.inReplyToPost != null && post.inReplyToPost.inReplyToPost != null);
 	- var userTitle = post.user.comment != null ? post.user.comment : '@' + post.user.screenName;
 	article.post(
 			class                   = isRepost ? 'repost ' + post.type : post.type
@@ -27,14 +27,12 @@ mixin core(post, isRepost, repost)
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != isHaveReplies.toString()
 			data-is-talk           != isTalk.toString())
-		if isTalk
-			i.fa.fa-ellipsis-v.talk-ellipsis
 		if isHaveReplies
 			i.fa.fa-ellipsis-v.replies-ellipsis
-		if login && me.id != post.userId
-			+repost-form(post)
-		div.talk
-		if post.inReplyToPost
+		if post.type == 'reply'
+			if isTalk
+				i.fa.fa-ellipsis-v.talk-ellipsis
+				div.talk
 			+subPost(post.inReplyToPost)(class='reply-source')
 		if isRepost
 			- var reposterTitle = repost.user.comment != null ? repost.user.comment : '@' + repost.user.screenName;
@@ -106,3 +104,5 @@ mixin core(post, isRepost, repost)
 						i.fa.fa-folder-open
 					input(name='file', type='file', accept='image/*', multiple)
 		div.replies(itemprop='comment')
+		if login && me.id != post.userId
+			+repost-form(post)

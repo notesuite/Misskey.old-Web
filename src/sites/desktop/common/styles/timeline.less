@@ -127,26 +127,6 @@
 			@import "./repost-form";
 		}
 
-		> .talk {
-			display: none;
-			margin: 0;
-			padding: 0;
-
-			> .sub-post {
-				.timeline-sub-article;
-			}
-		}
-
-		> .reply-source {
-			.timeline-sub-article;
-			padding-top: 16px;
-			padding-bottom: 0;
-
-			> header > a > time {
-				top: 16px;
-			}
-		}
-
 		> .main {
 			position: relative;
 			padding: 16px 32px 16px 32px;
@@ -600,15 +580,35 @@
 		&.status {
 			> .main {
 				> .content {
-					@import (multiple) "./post-text-content";
+					@import (multiple) "./post-content";
 				}
 			}
 		}
 
-		&.photo {
+		&.reply {
+			> .talk {
+				display: none;
+				margin: 0;
+				padding: 0;
+
+				> .sub-post {
+					.timeline-sub-article;
+				}
+			}
+
+			> .reply-source {
+				.timeline-sub-article;
+				padding-top: 16px;
+				padding-bottom: 0;
+
+				> header > a > time {
+					top: 16px;
+				}
+			}
+
 			> .main {
 				> .content {
-					@import (multiple) "./post-photo-content";
+					@import (multiple) "./post-content";
 				}
 			}
 		}
@@ -731,20 +731,16 @@
 	}
 
 	&.status,
-	&.photo {
+	&.reply {
 		> .main {
-			@import (multiple) "./post-text-content";
+			@import (multiple) "./post-content";
 
 			> .text {
 				font-size: 0.9em;
 				color: #987469;
 				overflow: hidden;
 			}
-		}
-	}
 
-	&.photo {
-		> .main {
 			> .photos {
 				margin: 0;
 				padding: 0;
