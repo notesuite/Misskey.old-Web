@@ -100,7 +100,7 @@ mixin core(post, isRepost, repost)
 						ol.users
 							each like in likes
 								li.user
-									a.avatar-anchor(href='/' + like.user.screenName, title= '@' + like.user.screenName, data-tooltip= user.name)
+									a.avatar-anchor(href='/' + like.user.screenName, title= '@' + like.user.screenName, data-tooltip= like.user.name)
 										img.avatar(src=like.user.avatarUrl, alt='avatar')
 				if reposts != null && reposts.length > 0
 					section.reposts
@@ -111,7 +111,7 @@ mixin core(post, isRepost, repost)
 						ol.users
 							each repost in reposts
 								li.user
-									a.avatar-anchor(href='/' + repost.user.screenName, title= '@' + repost.user.screenName, data-tooltip= user.name)
+									a.avatar-anchor(href='/' + repost.user.screenName, title= '@' + repost.user.screenName, data-tooltip= repost.user.name)
 										img.avatar(src=repost.user.avatarUrl, alt='avatar')
 			form.reply-form
 				if login
