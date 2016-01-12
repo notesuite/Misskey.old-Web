@@ -7,10 +7,6 @@ block assets
 	script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
 
 block content
-	div#customizer-menu
-		p
-			i.fa.fa-wrench
-			| ホームのカスタマイズ中
 	div#customizer-garbage-storage
 		+widget(unuseWidgets)
 	main

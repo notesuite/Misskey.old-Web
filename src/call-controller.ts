@@ -24,8 +24,8 @@ export default function callController(
 			data.stylePath = `${config.publicConfig.resourcesUrl}/${req.ua}/pages/${name}/style.css`;
 		}
 		data.scriptPath = `${config.publicConfig.resourcesUrl}/${req.ua}/pages/${name}/script.js`;
-		Object.assign(data, req.renderData);
-		res.render(viewPath, data);
+		const d = Object.assign({}, req.renderData, data);
+		res.render(viewPath, d);
 	};
 
 	let controller: any;

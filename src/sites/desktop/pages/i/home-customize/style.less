@@ -65,43 +65,21 @@
 	}
 }
 
-
-#customizer-menu {
-	display: none;
-	box-sizing: border-box;
-	position: fixed;
-	top: 0;
-	z-index: 1024;
-	width: 100%;
-	padding: 8px;
-	background-color: #fff;
-	background-image: url('/resources/images/stripe.png');
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-	text-align: center;
-
-	> p {
-		margin: 0;
-		font-weight: bold;
-		color: rgba(0, 0, 0, 0.7);
-
-		> i {
-			margin-right: 0.25em;
-		}
-	}
-}
-
 #customizer-nav-container {
 	width: 100%;
 	color: #fff;
 	background: rgba(0, 0, 0, 0.7);
 
+	@nav-height: 50px;
+	@nav-vertical-padding: 8px;
+
 	#customizer-nav {
 		box-sizing: border-box;
+		margin: 0 auto;
+		padding: @nav-vertical-padding 0;
 		max-width: 1200px;
 		width: 100%;
-		margin: 0 auto;
-		padding: 16px;
-		border-radius: 0 0 8px 8px;
+		height: @nav-height;
 
 		&:after {
 			content: "";
@@ -114,8 +92,9 @@
 
 			> p {
 				display: inline-block;
-				vertical-align: middle;
+				vertical-align: top;
 				margin: 0 8px;
+				line-height: @nav-height - (@nav-vertical-padding * 2);
 			}
 
 			select {
@@ -124,13 +103,13 @@
 				appearance: none;
 				display: inline-block;
 				min-width: 16em;
-				padding: 8px 16px;
-				vertical-align: middle;
-				background-color: #fff;
-				background-image: url("/resources/images/select-arrow.svg");
-				background-repeat: no-repeat;
-				background-position: ~"calc(100% - -4px)" center;
-				border: 2px solid #ddd;
+				padding: 0 16px;
+				vertical-align: top;
+				line-height: @nav-height - (@nav-vertical-padding * 2) - 4px;
+				color: #fff;
+				background: transparent;
+				border: 2px solid rgba(255, 255, 255, 0.5);
+				border-radius: 4px;
 				outline: none;
 				box-shadow: none;
 
@@ -144,7 +123,7 @@
 				}
 
 				&:focus {
-					color: darken(@theme-color, 20%);
+					color: @theme-color;
 					border: solid 2px @theme-color;
 					transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
 				}
@@ -158,7 +137,8 @@
 				vertical-align: middle;
 				box-sizing: border-box;
 				margin: 0 8px;
-				padding: 8px 12px;
+				padding: 0 12px;
+				line-height: @nav-height - (@nav-vertical-padding * 2);
 				font-size: 1em;
 				font-weight: normal;
 				text-decoration: none;
@@ -200,7 +180,8 @@
 				vertical-align: middle;
 				box-sizing: border-box;
 				margin: 0 8px;
-				padding: 8px 12px;
+				padding: 0 12px;
+				line-height: @nav-height - (@nav-vertical-padding * 2);
 				font-size: 1em;
 				font-weight: normal;
 				text-decoration: none;

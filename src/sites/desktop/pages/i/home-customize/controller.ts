@@ -40,6 +40,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 				generateHomewidgets(me, layout.right, 'home').then((rights: string[]) => {
 					widgets.right = rights;
 					res.display({
+						noui: true,
 						widgets,
 						unuseWidgets: unuseWidgetHtmls
 					});
