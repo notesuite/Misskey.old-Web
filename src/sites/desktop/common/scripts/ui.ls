@@ -326,6 +326,7 @@ class PostForm
 			step: ->
 				$global-container.css {
 					'-webkit-filter': "blur(#{@blur-radius}px)"
+					'-moz-filter': "blur(#{@blur-radius}px)"
 					'filter': "blur(#{@blur-radius}px)"
 				}
 		}
@@ -363,6 +364,7 @@ class PostForm
 			step: ->
 				$global-container.css {
 					'-webkit-filter': "blur(#{@blur-radius}px)"
+					'-moz-filter': "blur(#{@blur-radius}px)"
 					'filter': "blur(#{@blur-radius}px)"
 				}
 		}
