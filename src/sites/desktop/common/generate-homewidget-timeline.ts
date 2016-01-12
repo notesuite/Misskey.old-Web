@@ -26,7 +26,7 @@ export default function generateHomewidgetTimeline(me: User, tlsource: string): 
 				}, reject);
 				break;
 			case 'mentions':
-				requestApi('posts/mentions', { 'limit': 10 }, me.id).then((tl: Post[]) => {
+				requestApi('posts/mentions/show', { 'limit': 10 }, me.id).then((tl: Post[]) => {
 					resolve(compile(tl));
 				}, reject);
 				break;
