@@ -152,7 +152,7 @@ function init-header
 		else
 			open!
 
-	# 通知全削除ﾎﾞﾔﾝ
+	# 通知全削除
 	$ '#misskey-header .notifications .delete-all-button' .click ->
 		$ '#misskey-header .notifications .notification' .each (i) ->
 			$notification = $ @
@@ -165,7 +165,7 @@ function init-header
 					$message.remove!
 			, i * 50
 
-		$.ajax CONFIG.web-api-url + '/notification/delete-all'
+		$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
 		.done (data) ->
 			$ '#misskey-header .notifications .unread-count' .remove!
 			$list = $ '<ol class="notifications" />'
@@ -366,6 +366,12 @@ class PostForm
 					'-webkit-filter': "blur(#{@blur-radius}px)"
 					'-moz-filter': "blur(#{@blur-radius}px)"
 					'filter': "blur(#{@blur-radius}px)"
+				}
+			complete: ->
+				$global-container.css {
+					'-webkit-filter': ""
+					'-moz-filter': ""
+					'filter': ""
 				}
 		}
 
