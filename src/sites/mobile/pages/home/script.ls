@@ -1,6 +1,8 @@
 require '../../common/scripts/ui.js'
 $ = require 'jquery/dist/jquery'
+require 'jquery.transit'
 Timeline = require '../../common/scripts/timeline-core.js'
+notification-render = require '../../common/views/notification/render.jade'
 
 $ ->
 	timeline = new Timeline $ '#timeline'
@@ -46,6 +48,28 @@ $ ->
 	socket.on \post (post) ->
 		timeline.add post
 		$ '#timeline > .empty' .remove!
+
+	socket.on \notification (notification) ->
+		$notification = $ notification-render {
+			notification
+			config: CONFIG
+			me: ME
+			user-settings: USER_SETTINGS
+		}
+		$notification.append-to $ \body
+			.transition {
+				y: $notification.outer-height!
+			} 0
+			.transition {
+				y: 0
+			} 500ms \ease
+
+		set-timeout ->
+			$notification.transition {
+				y: $notification.outer-height!
+			} 500ms \ease ->
+				$notification.remove!
+		, 5000ms
 
 	$ '#misskey-header .post' .click ->
 		text = window.prompt '新規投稿'

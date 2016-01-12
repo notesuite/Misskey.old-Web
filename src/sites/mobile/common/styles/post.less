@@ -159,7 +159,7 @@
 		}
 
 		> .reply, > .repost, > .like, > .delete, > .pin {
-			display: inline-block;
+			display: block;
 			float: right;
 			margin: 0;
 			padding: 0 16px;
@@ -173,7 +173,7 @@
 				display: inline-block;
 				box-sizing: border-box;
 				margin: 0;
-				padding: 8px;
+				padding: 10px 8px;
 				cursor: pointer;
 				font-size: 1em;
 				font-weight: normal;
@@ -198,12 +198,16 @@
 				}
 
 				> i {
+					display: block;
+					width: 1em;
+					height: 1em;
 					cursor: pointer;
 				}
 			}
 
 			> .count {
-				display: inline;
+				display: inline-block;
+				margin: 0;
 				color: rgba(0, 0, 0, 0.2);
 				font-size: 0.8em;
 			}
@@ -476,7 +480,7 @@
 
 					> a {
 						display: block;
-						
+
 						> .image {
 							display: block;
 							position: relative;

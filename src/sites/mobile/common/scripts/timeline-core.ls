@@ -1,4 +1,5 @@
 $ = require 'jquery/dist/jquery'
+require 'jquery.transit'
 post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
 
@@ -32,6 +33,10 @@ class Timeline
 			..find '> footer > .like > button' .click ->
 				$button = $ @
 					..attr \disabled on
+				$button.find \i .transition {
+					perspective: '100px'
+					rotate-x: '-360deg'
+				} 500ms
 				if check-liked!
 					$post.attr \data-is-liked \false
 					$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
