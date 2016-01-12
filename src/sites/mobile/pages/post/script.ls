@@ -94,6 +94,9 @@ $ ->
 			+async
 			-process-data
 			-content-type
+			headers: {
+				'csrf-token': CSRF_TOKEN
+			}
 			xhr: ->
 				XHR = $.ajax-settings.xhr!
 				if XHR.upload
@@ -119,4 +122,3 @@ $ ->
 				$progress
 					..attr \max e.total
 					..attr \value e.loaded
-			uploading e.total, e.loaded, percentage

@@ -78,7 +78,7 @@ block content
 					i.fa.fa-reply
 				progress
 			if replies.length > 0
-				each postInReplies in replies.reverse()
+				each postInReplies in replies
 					+subPost(postInReplies)(class='post-in-replies')
 
 mixin subPost(post)

@@ -21,6 +21,9 @@ $ ->
 			+async
 			-process-data
 			-content-type
+			headers: {
+				'csrf-token': CSRF_TOKEN
+			}
 			xhr: ->
 				XHR = $.ajax-settings.xhr!
 				if XHR.upload
