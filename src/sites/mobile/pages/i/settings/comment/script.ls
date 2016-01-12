@@ -12,7 +12,9 @@ $ ->
 			..html '更新中...'
 
 		$.ajax "#{CONFIG.web-api-url}/account/comment/update" {
-			data: $form.serialize!
+			data: {
+				'comment': $form.find '[name="comment"]' .val!
+			}
 		}
 		.done ->
 			alert '更新しました。'
