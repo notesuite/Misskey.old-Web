@@ -25,7 +25,7 @@ import router from './router';
 
 console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
 
-// Grobal options
+// Global options
 const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
 const subdomainOptions = {
 	base: config.publicConfig.host

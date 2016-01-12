@@ -324,6 +324,17 @@ class PostForm
 				, 300ms
 			, i * 50
 
+		$global-container = $ 'body > .global-container'
+		$ {blur-radius: 0} .animate {blur-radius: 5}, {
+			duration: 100ms
+			easing: \linear
+			step: ->
+				$global-container.css {
+					'-webkit-filter': "blur(#{@blur-radius}px)"
+					'filter': "blur(#{@blur-radius}px)"
+				}
+		}
+
 		THIS.status-post-form.focus!
 		THIS.active-tab = \status
 
@@ -343,6 +354,17 @@ class PostForm
 		} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
 			if ($ \#misskey-post-form .css \opacity) === '0'
 				$ \#misskey-post-form-container .css \display \none
+
+		$global-container = $ 'body > .global-container'
+		$ {blur-radius: 5} .animate {blur-radius: 0}, {
+			duration: 100ms
+			easing: \linear
+			step: ->
+				$global-container.css {
+					'-webkit-filter': "blur(#{@blur-radius}px)"
+					'filter': "blur(#{@blur-radius}px)"
+				}
+		}
 
 class StatusPostForm
 	(post-form) ->
