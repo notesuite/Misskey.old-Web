@@ -48,21 +48,21 @@ class Post
 		THIS.$post.keydown (e) ->
 			tag = e.target.tag-name.to-lower-case!
 			if tag != \input and tag != \textarea and tag != \button
-				if e.which == 38 # ↑
+				if e.which == 38 or e.which == 75 # ↑ or k
 					THIS.$post.prev!.focus!
-				if e.which == 40 # ↓
+				if e.which == 40 or e.which == 74 # ↓ or j
 					THIS.$post.next!.focus!
-				if e.which == 13 # Enter
+				if e.which == 32 # Space
 					e.prevent-default!
 					THIS.toggle-display-state!
-				if e.which == 82 # r
+				if e.which == 13 # Enter
 					e.prevent-default!
 					if not THIS.is-open
 						THIS.open!
 					THIS.focus-reply-form!
 				if e.which == 70 or e.which == 76 # f or l
 					THIS.like!
-				if e.which == 69 or e.which == 83 # e or s
+				if e.which == 82 or e.which == 83 # r or s
 					THIS.repost!
 
 		THIS.$post.click (event) ->
@@ -110,6 +110,7 @@ class Post
 		THIS.$reply-form.find 'textarea' .keydown (e) ->
 			if e.which == 27 # Esc
 				e.prevent-default!
+				THIS.close!
 				THIS.$post.focus!
 
 		# Paste file
