@@ -142,6 +142,18 @@ export default function router(app: express.Express): void {
 		res.sendFile(path.resolve(`${__dirname}/share/script.js`));
 	});
 
+	app.get(`/subdomain/${config.publicConfig.aboutDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'about');
+	});
+
+	app.get(`/subdomain/${config.publicConfig.aboutDomain}/license`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'about/license');
+	});
+
+	app.get(`/subdomain/${config.publicConfig.aboutDomain}/technologies`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'about/technologies');
+	});
+
 	app.get('/i/*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		if (req.isLogin) {
 			next();

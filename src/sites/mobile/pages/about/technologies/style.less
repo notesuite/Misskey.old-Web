@@ -1,0 +1,51 @@
+@import "../../../common/styles/ui";
+
+html, #misskey-main {
+	color: #000;
+	background: #F1E9E2;
+}
+
+#main-container {
+	padding: 8px;
+
+	main {
+		display: block;
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 8px 12px;
+		max-width: 500px;
+		background: #fffbfb;
+		border-radius: 8px;
+
+		h1 {
+			display: block;
+			margin: 0 0 16px 0;
+			padding: 8px;
+			font-size: 1em;
+			color: #8E7364;
+			border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+		}
+
+		a.logo-anchor {
+			display: block;
+			padding: 16px;
+
+			img {
+				display: block;
+				max-width: 100%;
+				max-height: 200px;
+				margin: 0 auto;
+			}
+		}
+	}
+
+	@media (min-width: 516px) {
+		padding: 16px 8px;
+
+		main {
+			.body {
+				padding: 0 32px;
+			}
+		}
+	}
+}

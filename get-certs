@@ -13,6 +13,7 @@ forever stopall
 -d resources.misskey.xyz \
 -d login.misskey.xyz \
 -d logout.misskey.xyz \
+-d about.misskey.xyz \
 -d help.misskey.xyz \
 -d search.misskey.xyz \
 -d talk.misskey.xyz \
