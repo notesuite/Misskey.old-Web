@@ -33,10 +33,10 @@ class Timeline
 			..find '> footer > .like > button' .click ->
 				$button = $ @
 					..attr \disabled on
-				$button.find \i .transition {
-					perspective: '100px'
-					rotate-x: '-360deg'
-				} 500ms
+				#$button.find \i .transition {
+				#	perspective: '100px'
+				#	rotate-x: '-360deg'
+				#} 500ms
 				if check-liked!
 					$post.attr \data-is-liked \false
 					$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
