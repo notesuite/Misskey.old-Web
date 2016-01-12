@@ -3,8 +3,6 @@ $ = require 'jquery/dist/jquery'
 Timeline = require '../../../common/scripts/timeline-core.js'
 
 function delete-all
-	$ '#misskey-header .delete i' .attr \class 'fa fa-spinner fa-spin'
-
 	$.ajax "#{CONFIG.web-api-url}/posts/mentions/delete-all"
 	.done ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-trash-o'
@@ -18,15 +16,19 @@ $ ->
 	timeline = new Timeline $ '#stream'
 
 	$ '#misskey-header .delete' .click ->
+		$ '#misskey-header .delete i' .attr \class 'fa fa-spinner fa-spin'
 		if window.confirm 'すべてのあなた宛ての投稿の通知を削除しますか？'
 			$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
 			.done (count) ->
 				if count != 0
 					if window.confirm '未読のあなた宛ての投稿の通知があるようですが、それでもすべて削除しますか？'
 						delete-all!
+					else
+						$ '#misskey-header .delete i' .attr \class 'fa fa-trash'
 				else
 					delete-all!
 			.fail ->
+				$ '#misskey-header .delete i' .attr \class 'fa fa-trash'
 				alert '削除の準備に失敗しました。再度お試しください。'
 
 	$ '#stream > .read-more' .click ->

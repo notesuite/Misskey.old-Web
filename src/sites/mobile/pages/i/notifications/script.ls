@@ -3,8 +3,6 @@ $ = require 'jquery/dist/jquery'
 notification-compiler = require '../../../common/views/notification/render.jade'
 
 function delete-all
-	$ '#misskey-header .delete i' .attr \class 'fa fa-spinner fa-spin'
-
 	$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
 	.done ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-trash-o'
@@ -16,15 +14,19 @@ function delete-all
 
 $ ->
 	$ '#misskey-header .delete' .click ->
+		$ '#misskey-header .delete i' .attr \class 'fa fa-spinner fa-spin'
 		if window.confirm 'すべての通知を削除しますか？'
 			$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
 			.done (count) ->
 				if count != 0
 					if window.confirm '未読の通知があるようですが、それでもすべて削除しますか？'
 						delete-all!
+					else
+						$ '#misskey-header .delete i' .attr \class 'fa fa-trash'
 				else
 					delete-all!
 			.fail ->
+				$ '#misskey-header .delete i' .attr \class 'fa fa-trash'
 				alert '削除の準備に失敗しました。再度お試しください。'
 
 	$ '#stream > .read-more' .click ->
