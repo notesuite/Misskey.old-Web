@@ -1,5 +1,6 @@
 $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
+upload-file = require '../../../common/upload-file.js'
 file-compiler = require '../views/album/file.jade'
 
 class Album
@@ -145,34 +146,15 @@ class Album
 		$info = $ "<li><p class='name'>#{file.name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
 		THIS.$album-uploads.find \ol .append $info
-		data = new FormData!
-			..append \file file
-		$.ajax "#{CONFIG.web-api-url}/web/album/upload" {
-			+async
-			-process-data
-			-content-type
-			data: data
-			xhr: ->
-				XHR = $.ajax-settings.xhr!
-				if XHR.upload
-					XHR.upload.add-event-listener \progress (e) ->
-						percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
-						if percentage == 100
-							$progress-bar
-								..remove-attr \value
-								..remove-attr \max
-						else
-							$progress-bar
-								..attr \max e.total
-								..attr \value e.loaded
-					, false
-				XHR
-		}
-		.done (file) ->
-			if THIS.current-location == file.folder
-				THIS.add-file file
-		.fail (data) ->
-			window.display-message 'アップロードに失敗しました。'
+		upload-file do
+			file
+			$progress-bar
+			null
+			(file-obj) ->
+				if THIS.current-location == file-obj.folder
+					THIS.add-file file-obj
+			(err) ->
+				window.display-message 'アップロードに失敗しました。'
 
 	init-contextmenu: ($trigger, $menu, shown) ->
 		THIS = @
