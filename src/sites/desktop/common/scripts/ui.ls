@@ -154,24 +154,7 @@ function init-header
 
 	# 通知全削除
 	$ '#misskey-header .notifications .delete-all-button' .click ->
-		$ '#misskey-header .notifications .notification' .each (i) ->
-			$notification = $ @
-			set-timeout ->
-				$notification.transition {
-					perspective: \4096px
-					rotate-x: \90
-					opacity: \0
-				} 200ms \ease ->
-					$message.remove!
-			, i * 50
-
-		$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
-		.done (data) ->
-			$ '#misskey-header .notifications .unread-count' .remove!
-			$list = $ '<ol class="notifications" />'
-			$info = $ '<p class="notification-empty">通知はありません</p>'
-			$info.append-to $notifications-container
-		.fail (data) ->
+		notification-delete-all!
 
 	# Notifications drop-down
 	$ '#misskey-header .notifications .dropdown .dropdown-header' .click ->
@@ -248,6 +231,53 @@ function init-header
 									$ '<span class="name">' .text user.name
 								.append do
 									$ '<span class="screen-name">' .text "@#{user.screen-name}"
+
+function notification-delete-all
+	$i = $ '#misskey-header .notifications .delete-all-button > i'
+		..attr \class 'fa fa-spinner fa-spin'
+	$modal-ok = $ '<button>はい</button>'
+	$modal-cancel = $ '<button>キャンセル</button>'
+	dialog-close = show-modal-dialog do
+		$ '<p><i class="fa fa-exclamation-triangle"></i>Are you sure?</p>'
+		'すべての通知を削除しますか？'
+		[$modal-cancel, $modal-ok]
+		no
+	$modal-cancel.click ->
+		dialog-close!
+		$i.attr \class 'fa fa-trash-o'
+	$modal-ok.click ->
+		dialog-close!
+		$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
+		.done (count) ->
+			if count != 0
+				$modal-ok = $ '<button><b>はい</b>っつってんだろ</button>'
+				$modal-cancel = $ '<button>やっぱり削除は辞める</button>'
+				dialog-close = show-modal-dialog do
+					$ '<p><i class="fa fa-exclamation-triangle"></i>Really?</p>'
+					'お調べしましたところ、未読の通知が在るようです。それでもすべて削除しますか？'
+					[$modal-cancel, $modal-ok]
+					no
+				$modal-cancel.click ->
+					dialog-close!
+					$i.attr \class 'fa fa-trash-o'
+				$modal-ok.click ->
+					dialog-close!
+					del!
+			else
+				del!
+		.fail ->
+			$i.attr \class 'fa fa-trash-o'
+			alert '削除の準備に失敗しました。再度お試しください。'
+
+	function del
+		$.ajax "#{CONFIG.web-api-url}/notifications/delete-all"
+		.done ->
+			$i.attr \class 'fa fa-trash-o'
+			$ '#misskey-header .notifications .unread-count' .remove!
+			$ '#misskey-header .notifications .main' .html '<p class="notification-empty">通知はありません</p>'
+		.fail ->
+			$i.attr \class 'fa fa-trash-o'
+			alert '削除に失敗しました。再度お試しください。'
 
 class PostForm
 	->
