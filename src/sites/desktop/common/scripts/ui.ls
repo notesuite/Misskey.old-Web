@@ -69,11 +69,6 @@ $ ->
 				e.prevent-default!
 				post-form.open!
 
-	$ document .keydown (e) ->
-		if e.which == 27
-			e.prevent-default!
-			post-form.close!
-
 $ window .load ->
 	if not NOUI
 		$ \body .css \margin-top "#{$ 'body > #misskey-header' .outer-height!}px"
@@ -337,6 +332,12 @@ class PostForm
 
 		THIS.status-post-form.focus!
 		THIS.active-tab = \status
+
+		# ESC Close
+		$ document .one \keydown (e) ->
+			if e.which == 27
+				e.prevent-default!
+				THIS.close!
 
 	close: ->
 		THIS = @
