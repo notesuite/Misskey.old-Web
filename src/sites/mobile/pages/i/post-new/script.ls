@@ -46,4 +46,3 @@ $ ->
 				$progress
 					..attr \max e.total
 					..attr \value e.loaded
-			uploading e.total, e.loaded, percentage

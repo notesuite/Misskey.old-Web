@@ -178,8 +178,8 @@ class Post
 			$.ajax "#{CONFIG.web-api-url}/posts/talk/show" {
 				data: {'post-id': THIS.destination-id}}
 			.done (posts) ->
-				THIS.$talk.append posts.map (post) ->
-					THIS.sub-render post
+				posts.for-each (post) ->
+					THIS.sub-render post .append-to THIS.$talk .hide!.fade-in 500ms
 			.fail ->
 				THIS.is-talk-loaded = false
 
@@ -190,8 +190,8 @@ class Post
 			$.ajax "#{CONFIG.web-api-url}/posts/replies/show" {
 				data: {'post-id':THIS.id}}
 			.done (posts) ->
-				THIS.$replies .append posts.map (post) ->
-					THIS.sub-render post
+				posts.for-each (post) ->
+					THIS.sub-render post .append-to THIS.$replies .hide!.fade-in 500ms
 			.fail ->
 				THIS.is-replies-loaded = false
 
@@ -249,8 +249,8 @@ class Post
 			data:
 				'text': (THIS.$reply-form.find \textarea .val!)
 				'in-reply-to-post-id': THIS.id
-				'photos': JSON.stringify((THIS.$reply-form.find '.photos > li' .map ->
-					($ @).attr \data-id).get!)
+				'files': (THIS.$reply-form.find '.photos > li' .map ->
+					$ @ .attr \data-id).get!.join \,
 		} .done (post) ->
 			$reply = THIS.sub-render post
 			$reply.prepend-to THIS.$replies

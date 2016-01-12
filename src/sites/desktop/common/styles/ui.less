@@ -183,15 +183,12 @@
 	right: 0;
 	box-sizing: border-box;
 	width: 100%;
-	max-width: 552px;
+	max-width: 530px;
 	margin: auto;
 	padding: 0;
 	background: #fff;
 	opacity: 0;
-
-	*:not(i) {
-		font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
-	}
+	font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
 
 	> .close-button {
 		display: block;
@@ -289,66 +286,36 @@
 				clear: both;
 			}
 
-			textarea {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				user-select: text;
-				-moz-user-select: text;
-				-webkit-user-select: text;
-				-ms-user-select: text;
-				box-sizing: border-box;
-				width: 100%;
-				min-width: 100%;
-				max-width: 100%;
-				height: 7em;
-				min-height: 7em;
-				vertical-align: bottom;
-				margin: 0;
-				padding: 8px 12px;
-				outline: 0;
-				border: none;
-				border-radius: 0;
-				font-size: 1em;
-				transition: color 0.2s ease, box-shadow 0.2s ease;
-
-				&:hover {
-				}
-
-				&:focus {
-					color: darken(@theme-color, 20%);
-				}
-			}
-
-			progress {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				display: block;
-				margin: 0;
-				width: 100%;
-				height: 8px;
-				border: none;
-				border-radius: 0;
-				overflow: hidden;
-
-				&::-webkit-progress-value {
-					background-color: @theme-color;
-				}
-
-				&::-webkit-progress-bar {
-					background-color: #fff;
-				}
-
-				&:not([value])::-webkit-progress-bar {
-					background-image: url("@{resources-url}/desktop/common/images/indeter.gif");
-				}
-			}
-
-			&#misskey-post-form-photo-tab-page {
+			&#misskey-post-form-status-tab-page {
 				textarea {
-					height: 5em;
-					min-height: 5em;
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					user-select: text;
+					-moz-user-select: text;
+					-webkit-user-select: text;
+					-ms-user-select: text;
+					box-sizing: border-box;
+					width: 100%;
+					min-width: 100%;
+					max-width: 100%;
+					height: 7em;
+					min-height: 7em;
+					vertical-align: bottom;
+					margin: 0;
+					padding: 8px 12px;
+					outline: 0;
+					border: none;
+					border-radius: 0;
+					font-size: 1em;
+					transition: color 0.2s ease, box-shadow 0.2s ease;
+
+					&:hover {
+					}
+
+					&:focus {
+						color: darken(@theme-color, 20%);
+					}
 				}
 
 				input[type=file] {
@@ -415,22 +382,89 @@
 					list-style: none;
 				}
 
-				.attach-from-local,
-				.attach-from-album {
+				progress {
 					-webkit-appearance: none;
 					-moz-appearance: none;
 					appearance: none;
-					display: inline-block;
-					box-sizing: border-box;
+					display: block;
 					margin: 0;
-					padding: 12px 14px;
-					width: 50%;
+					width: 100%;
+					height: 8px;
+					border: none;
+					border-radius: 0;
+					overflow: hidden;
+
+					&::-webkit-progress-value {
+						background-color: @theme-color;
+					}
+
+					&::-webkit-progress-bar {
+						background-color: #fff;
+					}
+
+					&:not([value])::-webkit-progress-bar {
+						background-image: url("@{resources-url}/desktop/common/images/indeter.gif");
+					}
+				}
+
+				.attach-actions {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					padding: 0 0 12px 16px;
+
+					.attach-from-local,
+					.attach-from-album {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: inline-block;
+						box-sizing: border-box;
+						margin: 0;
+						padding: 12px 16px;
+						line-height: 1em;
+						font-size: 1em;
+						font-weight: normal;
+						text-decoration: none;
+						color: #95856e;
+						background: transparent;
+						outline: none;
+						border: none;
+						border-radius: 0;
+						box-shadow: none;
+						cursor: pointer;
+						transition: color 0.1s ease;
+
+						* {
+							pointer-events: none;
+						}
+
+						&:hover {
+							color: @theme-color;
+						}
+
+						&:active {
+							color: darken(@theme-color, 10%);
+							transition: color 0s ease;
+						}
+					}
+				}
+
+				button.submit {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					display: block;
+					float: right;
+					box-sizing: border-box;
+					margin: 8px 0 16px 16px;
+					padding: 10px 18px;
 					line-height: 1em;
 					font-size: 1em;
 					font-weight: normal;
 					text-decoration: none;
-					color: #95856e;
-					background: transparent;
+					color: #fff;
+					background: @theme-color;
 					outline: none;
 					border: none;
 					border-radius: 0;
@@ -442,75 +476,36 @@
 						pointer-events: none;
 					}
 
+					p {
+						display: inline;
+						margin: 0;
+					}
+
 					i {
-						margin-right: 0.375em;
+						margin-left: 0.375em;
 					}
 
 					&:hover {
-						color: @theme-color;
+						background: lighten(@theme-color, 10%);
 					}
 
 					&:active {
-						color: darken(@theme-color, 10%);
-						transition: color 0s ease;
+						background: darken(@theme-color, 10%);
+						transition: background 0s ease;
+					}
+
+					&:focus {
+						outline: solid 2px fade(@theme-color, 50%);
+					}
+
+					&.updating {
+						cursor: wait;
 					}
 				}
 			}
 		}
 	}
 
-	button.submit {
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		display: block;
-		float: right;
-		box-sizing: border-box;
-		margin: 8px 16px 16px 16px;
-		padding: 10px 18px;
-		line-height: 1em;
-		font-size: 1em;
-		font-weight: normal;
-		text-decoration: none;
-		color: #fff;
-		background: @theme-color;
-		outline: none;
-		border: none;
-		border-radius: 0;
-		box-shadow: none;
-		cursor: pointer;
-		transition: color 0.1s ease;
-
-		* {
-			pointer-events: none;
-		}
-
-		p {
-			display: inline;
-			margin: 0;
-		}
-
-		i {
-			margin-left: 0.375em;
-		}
-
-		&:hover {
-			background: lighten(@theme-color, 10%);
-		}
-
-		&:active {
-			background: darken(@theme-color, 10%);
-			transition: background 0s ease;
-		}
-
-		&:focus {
-			outline: solid 2px fade(@theme-color, 50%);
-		}
-
-		&.updating {
-			cursor: wait;
-		}
-	}
 }
 
 #misskey-header {

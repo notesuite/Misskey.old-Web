@@ -10,37 +10,24 @@ block body
 				ul#misskey-post-form-tabs
 					li(data-ref='status', title='近況')
 						i.fa.fa-comment-o
-					li(data-ref='photo', title='画像付き投稿')
-						i.fa.fa-picture-o
-					li(data-ref='video', title='動画付き投稿')
-						i.fa.fa-film
-					li(data-ref='audio', title='音声付き投稿')
-						i.fa.fa-music
 					li(data-ref='poll', title='投票')
 						i.fa.fa-pie-chart
 				div#misskey-post-form-tab-pages
 					form#misskey-post-form-status-tab-page(data-name='status')
-						textarea(name='text', placeholder='What\'s up?', aria-multiline='true', required)
-					form#misskey-post-form-photo-tab-page(data-name='photo')
-						textarea(name='text', placeholder='What\'s up?', aria-multiline='true')
+						textarea(name='text', placeholder='What\'s up?', aria-multiline='true', tabindex='1')
 						ol.photos
 						ol.uploads
-						button.attach-from-local.ui-waves-effect(type='button')
-							i.fa.fa-upload
-							| PCから画像を添付
-						button.attach-from-album.ui-waves-effect(type='button')
-							i.fa.fa-folder-open
-							| アルバムから画像を添付
-						input(name='file', type='file', accept='image/*', multiple)
-					form#misskey-post-form-video-tab-page(data-name='video')
-						p coming soon
-					form#misskey-post-form-audio-tab-page(data-name='audio')
-						p coming soon
+						div.attach-actions
+							button.attach-from-local(type='button', title='PCからファイルを添付', tabindex='3')
+								i.fa.fa-upload
+							button.attach-from-album(type='button', title='アルバムからファイルを添付', tabindex='4')
+								i.fa.fa-folder-open
+						input(name='file', type='file', accept='image/*', multiple, tabindex='-1')
+						button.submit(type='submit', tabindex='2')
+							p Update
+							i.fa.fa-paper-plane
 					form#misskey-post-form-poll-tab-page(data-name='poll')
 						p coming soon
-				button.submit(type='submit')
-					p Update
-					i.fa.fa-paper-plane
 
 	if !noui
 		header#misskey-header

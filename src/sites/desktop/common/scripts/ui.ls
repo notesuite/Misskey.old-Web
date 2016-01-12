@@ -260,8 +260,6 @@ class PostForm
 
 		THIS.is-open = no
 
-		THIS.$submit-button = $ '#misskey-post-form > [type=submit]'
-		THIS.photo-post-form = new PhotoPostForm THIS
 		THIS.status-post-form = new StatusPostForm THIS
 
 		THIS.tab = Tab do
@@ -270,7 +268,6 @@ class PostForm
 			(id) ->
 				switch (id)
 				| \status => THIS.status-post-form.focus!
-				| \photo => THIS.photo-post-form.focus!
 
 		$ \#misskey-post-button .click ->
 			THIS.open!
@@ -280,11 +277,6 @@ class PostForm
 			THIS.close!
 		$ \#misskey-post-form .find \.close-button .click ->
 			THIS.close!
-		THIS.$submit-button.click ->
-			switch (THIS.active-tab)
-			| \status => THIS.status-post-form.submit!
-			| \photo => THIS.photo-post-form.submit!
-			return false
 
 	open: ->
 		THIS = @
@@ -352,22 +344,81 @@ class PostForm
 			if ($ \#misskey-post-form .css \opacity) === '0'
 				$ \#misskey-post-form-container .css \display \none
 
-	upload-file: (file, $form, complete) ->
+class StatusPostForm
+	(post-form) ->
+		THIS = @
+		THIS.post-form = post-form
+
+		THIS.$form = $ '#misskey-post-form-status-tab-page'
+		THIS.$textarea = THIS.$form.find 'textarea'
+		THIS.$submit-button = THIS.$form.find '[type=submit]'
+
+		Sortable.create (THIS.$form.find '.photos')[0], {
+			animation: 150ms
+		}
+
+		sncompleter THIS.$textarea
+
+		THIS.$textarea.bind \input ->
+			$ \#misskey-post-form .find \.submit-button .attr \disabled off
+
+		THIS.$textarea.keypress (e) ->
+			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+				THIS.submit!
+
+		THIS.$textarea.on \paste (event) ->
+			items = (event.clipboard-data || event.original-event.clipboard-data).items
+			for i from 0 to items.length - 1
+				item = items[i]
+				if item.kind == \file && item.type.index-of \image != -1
+					file = item.get-as-file!
+					THIS.post-form.photo-post-form.upload-new-file file
+
+		THIS.$form.find '.attach-from-album' .click ->
+			window.open-select-album-file-dialog (files) ->
+				files.for-each (file) ->
+					THIS.add-file file
+
+		THIS.$form.find '.attach-from-local' .click ->
+			THIS.$form.find 'input[type=file]' .click!
+			return false
+
+		THIS.$form.find 'input[type=file]' .change ->
+			files = (THIS.$form.find 'input[type=file]')[0].files
+			for i from 0 to files.length - 1
+				file = files.item i
+				THIS.upload-file file
+
+		THIS.$form.submit (event) ->
+			event.prevent-default!
+			THIS.submit!
+
+	upload-file: (file) ->
+		THIS = @
 		name = if file.has-own-property \name then file.name else 'untitled'
 		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
 		$progress = $info.find \progress
-		$form.find '> .uploads' .append $info
+		THIS.$form.find '> .uploads' .append $info
 		upload-file do
 			file
 			$progress
-			(total, uploaded, percentage) ->
+			null
 			(file) ->
 				$info.remove!
-				complete file
+				THIS.add-file file
 			->
 				$info.remove!
 
-	submit: (data, always = null, done = null, fail = null) ->
+	add-file: (file) ->
+		THIS = @
+		$thumbnail = $ "<li style='background-image: url(#{file.thumbnail-url});' data-id='#{file.id}' />"
+		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
+		$thumbnail.append $remove-button
+		$remove-button.click ->
+			$thumbnail.remove!
+		THIS.$form.find '.photos' .append $thumbnail
+
+	submit: ->
 		THIS = @
 
 		THIS.$submit-button.attr \disabled on
@@ -375,165 +426,34 @@ class PostForm
 		THIS.$submit-button.find \p .text 'Updating'
 		THIS.$submit-button.find \i .attr \class 'fa fa-spinner fa-pulse'
 
-		$.ajax "#{CONFIG.web-api-url}/posts/create", {data}
+		file-ids = (THIS.$form.find '.photos > li' .map ->
+			$ @ .attr \data-id).get!
+
+		$.ajax "#{CONFIG.web-api-url}/posts/create", { data: {
+			'text': THIS.$form.find \textarea .val!
+			'files': file-ids.join \,
+		}}
 		.done (data) ->
 			window.display-message '投稿しました！'
 			THIS.$submit-button.find \p .text 'Update'
 			THIS.$submit-button.find \i .attr \class 'fa fa-paper-plane'
-			THIS.close!
-			if done?
-				done!
-		.fail (data) ->
+			THIS.post-form.close!
+			THIS.$form[0].reset!
+			THIS.$form.find '.photos' .empty!
+		.fail (err, text-status) ->
+			console.error err, text-status
 			window.display-message '投稿に失敗しました。'
 			THIS.$submit-button.find \p .text 'Re Update'
 			THIS.$submit-button.find \i .attr \class 'fa fa-repeat'
-			if fail?
-				fail!
 		.always ->
 			THIS.$submit-button.attr \disabled off
 			THIS.$submit-button.remove-class \updating
-			if always?
-				always!
-
-class StatusPostForm
-	(post-form) ->
-		THIS = @
-		THIS.post-form = post-form
-
-		sncompleter $ '#misskey-post-form-status-tab-page textarea'
-
-		$ '#misskey-post-form-status-tab-page textarea' .bind \input ->
-			$ \#misskey-post-form .find \.submit-button .attr \disabled off
-
-		$ '#misskey-post-form-status-tab-page textarea' .keypress (e) ->
-			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
-				THIS.submit!
-
-		$ '#misskey-post-form-status-tab-page textarea' .on \paste (event) ->
-			items = (event.clipboard-data || event.original-event.clipboard-data).items
-			for i from 0 to items.length - 1
-				item = items[i]
-				if item.kind == \file && item.type.index-of \image != -1
-					file = item.get-as-file!
-					THIS.post-form.photo-post-form.focus!
-					THIS.post-form.photo-post-form.upload-new-file file
-
-		$ \#misskey-post-form-status-tab-page .find '.image-attacher input[name=image]' .change ->
-			$input = $ @
-			$ \#misskey-post-form .find '.image-preview-container' .css \display \block
-			$ \#misskey-post-form .find \.submit-button .attr \disabled off
-			file = $input.prop \files .0
-			if file.type.match 'image.*'
-				reader = new FileReader!
-					..onload = ->
-						$img = $ '<img>' .attr \src reader.result
-						$ \#misskey-post-form .find '.image-preview' .find 'img' .remove!
-						$ \#misskey-post-form .find '.image-preview' .append $img
-					..readAsDataURL file
-
-		$ \#misskey-post-form-status-tab-page .submit (event) ->
-			event.prevent-default!
-			THIS.submit!
-
-	submit: ->
-		THIS = @
-
-		$form = $ \#misskey-post-form-status-tab-page
-		$form.find \textarea .attr \disabled on
-
-		THIS.post-form.submit {
-			'type': \text
-			'text': ($form.find \textarea .val!)
-		}
-		, ->
-				$form.find \textarea .attr \disabled off
-		, ->
-				$form[0].reset!
 
 	focus: ->
 		THIS = @
 		THIS.post-form.tab.select \status no
 		THIS.post-form.active-tab = \status
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
-
-class PhotoPostForm
-	(post-form) ->
-		THIS = @
-		THIS.post-form = post-form
-
-		Sortable.create ($ '#misskey-post-form-photo-tab-page > .photos')[0], {
-			animation: 150ms
-		}
-
-		sncompleter $ '#misskey-post-form-photo-tab-page textarea'
-
-		$ '#misskey-post-form-photo-tab-page textarea' .on \paste (event) ->
-			items = (event.clipboard-data || event.original-event.clipboard-data).items
-			for i from 0 to items.length - 1
-				item = items[i]
-				if item.kind == \file && item.type.index-of \image != -1
-					file = item.get-as-file!
-					THIS.post-form.photo-post-form.upload-new-file file
-
-		$ '#misskey-post-form-photo-tab-page textarea' .keypress (e) ->
-			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
-				THIS.submit!
-
-		$ '#misskey-post-form-photo-tab-page > .attach-from-album' .click ->
-			window.open-select-album-file-dialog (files) ->
-				files.for-each (file) ->
-					THIS.add-file file
-
-		$ '#misskey-post-form-photo-tab-page > .attach-from-local' .click ->
-			$ '#misskey-post-form-photo-tab-page > input[type=file]' .click!
-			false
-
-		$ '#misskey-post-form-photo-tab-page > input[type=file]' .change ->
-			files = ($ '#misskey-post-form-photo-tab-page > input[type=file]')[0].files
-			for i from 0 to files.length - 1
-				file = files.item i
-				THIS.upload-new-file file
-
-		$ \#misskey-post-form-photo-tab-page .submit (event) ->
-			event.prevent-default!
-			THIS.submit!
-
-	add-file: (file-data) ->
-		$thumbnail = $ "<li style='background-image: url(#{file-data.thumbnail-url});' data-id='#{file-data.id}' />"
-		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
-		$thumbnail.append $remove-button
-		$remove-button.click ->
-			$thumbnail.remove!
-		$ '#misskey-post-form-photo-tab-page > .photos' .append $thumbnail
-
-	upload-new-file: (file) ->
-		THIS = @
-		THIS.post-form.upload-file file, ($ '#misskey-post-form-photo-tab-page'), (file) ->
-			THIS.add-file file
-
-	submit: ->
-		THIS = @
-
-		$form = $ \#misskey-post-form-photo-tab-page
-		$form.find \textarea .attr \disabled on
-
-		THIS.post-form.submit {
-				'type': \photo
-				'text': ($form.find \textarea .val!)
-				'photos': JSON.stringify(($form.find '.photos > li' .map ->
-					($ @).attr \data-id).get!)
-		}
-		, ->
-			$form.find \textarea .attr \disabled off
-		, ->
-			$form[0].reset!
-			$ '#misskey-post-form-photo-tab-page > .photos' .empty!
-
-	focus: ->
-		THIS = @
-		THIS.post-form.tab.select \photo no
-		THIS.post-form.active-tab = \photo
-		$ \#misskey-post-form-photo-tab-page .find \textarea .focus!
 
 function update-header-statuses
 	$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"

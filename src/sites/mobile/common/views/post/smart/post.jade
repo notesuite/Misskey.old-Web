@@ -10,7 +10,7 @@ mixin post(post)
 mixin core(post, isRepost, repost)
 	- var login = (me != null);
 	- var isHaveReplies = (post.repliesCount > 0);
-	- var isTalk = (post.inReplyToPost !== null && post.inReplyToPost.inReplyToPost !== null);
+	- var isTalk = (post.type == 'reply' && post.inReplyToPost != null && post.inReplyToPost.inReplyToPost != null);
 	article.post(
 			class                   = isRepost ? 'repost ' + post.type : post.type
 			lang                    = post.user.lang
@@ -25,11 +25,11 @@ mixin core(post, isRepost, repost)
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != isHaveReplies.toString()
 			data-is-talk           != isTalk.toString())
-		if isTalk
-			i.fa.fa-ellipsis-v.talk-ellipsis
 		if isHaveReplies
 			i.fa.fa-ellipsis-v.replies-ellipsis
-		if post.inReplyToPost
+		if post.type == 'reply'
+			if isTalk
+				i.fa.fa-ellipsis-v.talk-ellipsis
 			+subPost(post.inReplyToPost)(class='reply-source')
 		if isRepost
 			p.repost-info

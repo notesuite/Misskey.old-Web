@@ -2,21 +2,21 @@ mixin content(post)
 	include ../../../../common/text-parser.jade
 	case post.type
 		when 'status'
+		when 'reply'
 			div.text!= parse(post.text)
-		when 'photo'
-			div.text!= parse(post.text)
-			ol.photos
-				each photo in post.photos
-					li.photo
-						a(href= photo.url)
-							if me !== null && userSettings.thumbnailyzeAttachedImageOfPost
-								img.image.thumbnail(
-									src= photo.thumbnailUrl,
-									data-original-url= photo.url,
-									alt= photo.name,
-									title= photo.name)
-							else
-								img.image(src= photo.url,
-									data-original-url= photo.url,
-									alt= photo.name,
-									title= photo.name)
+			if post.files != null
+				ol.photos
+					each photo in post.files
+						li.photo
+							a(href= photo.url, target='_blank')
+								if me !== null && userSettings.thumbnailyzeAttachedImageOfPost
+									img.image.thumbnail(
+										src= photo.thumbnailUrl,
+										data-original-url= photo.url,
+										alt= photo.name,
+										title= photo.name)
+								else
+									img.image(src= photo.url,
+										data-original-url= photo.url,
+										alt= photo.name,
+										title= photo.name)

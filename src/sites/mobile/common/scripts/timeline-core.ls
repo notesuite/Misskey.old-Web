@@ -55,7 +55,7 @@ class Timeline
 			..find '> footer > .reply > button' .click ->
 				reply-text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
 				if reply-text? and reply-text != ''
-					$.ajax "#{CONFIG.web-api-url}/posts/create" {
+					$.ajax "#{CONFIG.web-api-url}/posts/reply" {
 						data:
 							type: \text
 							text: reply-text

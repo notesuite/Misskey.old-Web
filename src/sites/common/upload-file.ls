@@ -8,6 +8,9 @@ module.exports = (file, $progress, uploading, success, failed) ->
 		-process-data
 		-content-type
 		data: data
+		headers: {
+			'csrf-token': CSRF_TOKEN
+		}
 		xhr: ->
 			XHR = $.ajax-settings.xhr!
 			if XHR.upload

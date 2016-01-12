@@ -31,7 +31,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 		if (inReplyToPostId !== undefined && inReplyToPostId !== null && inReplyToPostId !== '') {
 			requestApi('posts/reply', {
 				'text': req.body.text,
-				'files': fileEntity.id,
+				'files': fileEntity !== null ? fileEntity.id : null,
 				'in-reply-to-post-id': inReplyToPostId
 			}, req.user).then((post: Object) => {
 				res.send(post);
@@ -41,7 +41,7 @@ export default function createWithFile(req: express.Request, res: express.Respon
 		} else {
 			requestApi('posts/create', {
 				'text': req.body.text,
-				'files': fileEntity.id
+				'files': fileEntity !== null ? fileEntity.id : null
 			}, req.user).then((post: Object) => {
 				res.send(post);
 			}, (err: any) => {
