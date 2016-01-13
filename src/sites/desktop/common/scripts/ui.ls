@@ -53,6 +53,7 @@ $ ->
 		if tag != \input and tag != \textarea
 			# Short cut Help
 			if e.which == 47 or e.which == 104
+				e.prevent-default!
 				if window.is-keyboard-shortcuts-open
 					window.keyboard-shortcuts-closer!
 				else
