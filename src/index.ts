@@ -11,7 +11,7 @@ if (cluster.isMaster) {
 	const cpuCount: number = require('os').cpus().length;
 
 	// Create a worker for each CPU
-	for (var i = 0; i < cpuCount; i++) {
+	for (let i = 0; i < cpuCount; i++) {
 		cluster.fork();
 	}
 
