@@ -434,7 +434,7 @@ class StatusPostForm
 				item = items[i]
 				if item.kind == \file && item.type.index-of \image != -1
 					file = item.get-as-file!
-					THIS.post-form.photo-post-form.upload-new-file file
+					THIS.upload-file file
 
 		THIS.$form.find '.attach-from-album' .click ->
 			window.open-select-album-file-dialog (files) ->
