@@ -57,9 +57,17 @@ mixin item(notification)
 							i.fa.fa-star
 							a(href= '/' + notification.content.user.screenName)= notification.content.user.name
 						a.post-preview(href= '/' + me.screenName + '/' + notification.content.post.id)= notification.content.post.text
+				when 'mention'
+					a.avatar-anchor(href='/' + notification.content.post.user.screenName, rel='avatar')
+						img.avatar(src= notification.content.post.user.avatarThumbnailUrl, alt='avatar')
+					div.text
+						p
+							i.fa.fa-reply
+							a(href= '/' + notification.content.post.user.screenName)= notification.content.post.user.name
+						a.post-preview(href= '/' + notification.content.post.user.screenName + '/' + notification.content.post.id)= notification.content.post.text
 				when 'talk-user-message'
 					a.avatar-anchor(href='/' + notification.content.message.user.screenName, rel='avatar')
-						img.avatar(src=notification.content.message.user.avatarThumbnailUrl, alt='avatar')
+						img.avatar(src= notification.content.message.user.avatarThumbnailUrl, alt='avatar')
 					div.text
 						p
 							i.fa.fa-comment-o
