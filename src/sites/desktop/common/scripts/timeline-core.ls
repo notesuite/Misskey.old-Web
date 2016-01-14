@@ -6,9 +6,7 @@ sncompleter = require './sncompleter.js'
 post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
 sub-post-compiler = require '../views/post/smart/sub-post-render.jade'
-AlbumWindow = require './album-window.js'
-
-album = new AlbumWindow
+AlbumDialog = require './album-dialog.js'
 
 class Post
 	(post = null) ->
@@ -128,7 +126,8 @@ class Post
 				THIS.submit-reply!
 
 		THIS.$reply-form.find '.attach-from-album' .click ->
-			window.open-select-album-file-dialog (files) ->
+			album = new AlbumDialog
+			album.choose-file (files) ->
 				files.for-each (file) ->
 					THIS.attach-file file
 

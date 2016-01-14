@@ -1,0 +1,12 @@
+include ./album
+
+div.misskey-album-dialog
+	div.background(role='presentation')
+	div.container
+		div.controller
+			button.close
+				i.fa.fa-times
+			div.chooser
+				button.submit-button
+					| 決定
+		+album

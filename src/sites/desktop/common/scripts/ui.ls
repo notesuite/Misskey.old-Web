@@ -8,15 +8,13 @@ require './main.js'
 require '../../../common/kronos.js'
 Tab = require './lib/tab.js'
 WavesEffect = require './lib/waves-effect.js'
-AlbumWindow = require './album-window.js'
+AlbumDialog = require './album-dialog.js'
 upload-file = require '../../../common/upload-file.js'
 sncompleter = require './sncompleter.js'
 show-modal-window = require './modal-window.js'
 show-modal-dialog = require './modal-dialog.js'
 ui-window = require './window.js'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
-
-album = new AlbumWindow
 
 window.is-keyboard-shortcuts-open = no
 
@@ -94,9 +92,6 @@ window.display-message = (message) ->
 		} 200ms \ease ->
 			$message.remove!
 	, 5000ms
-
-window.open-select-album-file-dialog = (cb) ->
-	album.choose-file cb
 
 function init-header
 	update-header-clock!
@@ -437,7 +432,8 @@ class StatusPostForm
 					THIS.upload-file file
 
 		THIS.$form.find '.attach-from-album' .click ->
-			window.open-select-album-file-dialog (files) ->
+			album = new AlbumDialog
+			album.choose-file (files) ->
 				files.for-each (file) ->
 					THIS.add-file file
 

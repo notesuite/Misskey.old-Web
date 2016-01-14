@@ -1,7 +1,9 @@
 extends ../../../ui
+include ../../../common/views/album
 
 block title
 	| Album
 
 block content
-	include ../../../common/views/album
+	div#album
+		+album

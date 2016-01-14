@@ -4,11 +4,11 @@ upload-file = require '../../../common/upload-file.js'
 file-compiler = require '../views/album/file.jade'
 
 class Album
-	->
+	($album) ->
 		THIS = @
 		THIS.on-file-dblclicked = null
 		@current-location = null
-		@$album = $ \#misskey-album
+		@$album = $album
 		@$album-header = @$album.find '> header'
 		@$album-uploads = @$album.find '> .uploads'
 		@$album-uploader = @$album-header.find '> .uploader'

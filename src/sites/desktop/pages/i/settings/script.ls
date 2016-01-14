@@ -3,12 +3,10 @@ require '../../../common/scripts/ui.js'
 $ = require 'jquery/dist/jquery'
 
 Tab = require '../../../common/scripts/lib/tab.js'
-AlbumWindow = require '../../../common/scripts/album-window.js'
+AlbumDialog = require '../../../common/scripts/album-dialog.js'
 show-modal-window = require '../../../common/scripts/modal-window.js'
 show-modal-dialog = require '../../../common/scripts/modal-dialog.js'
 avatar-form = require '../../../common/scripts/avatar-form.js'
-
-album = new AlbumWindow
 
 function chain-case-to-camel-case p
 	p.replace /-./g (s) -> s.char-at 1 .to-upper-case!
@@ -57,6 +55,7 @@ $ ->
 		$modal-ok.click -> dialog-close!
 
 	$form.find '.avatar .select-from-album' .click ->
+		album = new AlbumDialog
 		album.choose-file (files) ->
 			file = files.0
 			avatar-form file

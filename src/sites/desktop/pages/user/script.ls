@@ -2,11 +2,9 @@ require '../../common/scripts/ui.js'
 $ = require 'jquery/dist/jquery'
 
 show-modal-window = require '../../common/scripts/modal-window.js'
-AlbumWindow = require '../../common/scripts/album-window.js'
+AlbumDialog = require '../../common/scripts/album-dialog.js'
 avatar-form = require '../../common/scripts/avatar-form.js'
 banner-form = require '../../common/scripts/banner-form.js'
-
-album = new AlbumWindow
 
 $ ->
 	is-me = LOGIN and ME.id == USER.id
@@ -15,11 +13,13 @@ $ ->
 
 	if is-me
 		$ \#banner-edit .click ->
+			album = new AlbumDialog
 			album.choose-file (files) ->
 				file = files.0
 				banner-form file
 
 		$ \#avatar .click ->
+			album = new AlbumDialog
 			album.choose-file (files) ->
 				file = files.0
 				avatar-form file
