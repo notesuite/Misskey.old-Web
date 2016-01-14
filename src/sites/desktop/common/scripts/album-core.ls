@@ -34,8 +34,8 @@ class Album
 
 		# Init selectd area highlighter
 		THIS.$album-browser.mousedown (e) ->
-			left = e.client-x - (THIS.$album.position!.left + THIS.$album-browser.position!.left) + THIS.$album-browser.scroll-left!
-			top = e.client-y - (THIS.$album.position!.top + THIS.$album-browser.position!.top) + THIS.$album-browser.scroll-top!
+			left = e.page-x + THIS.$album-browser.scroll-left! - THIS.$album-browser.offset!.left
+			top = e.page-y + THIS.$album-browser.scroll-top! - THIS.$album-browser.offset!.top
 			THIS.$selection.stop!
 			THIS.$selection.css {
 				display: \block
@@ -48,8 +48,8 @@ class Album
 			THIS.$album-files.find \.file .each ->
 				($ @).attr \data-selected \false
 			function move(e)
-				cursor-x = e.client-x - (THIS.$album.position!.left + THIS.$album-browser.position!.left) + THIS.$album-browser.scroll-left!
-				cursor-y = e.client-y - (THIS.$album.position!.top + THIS.$album-browser.position!.top) + THIS.$album-browser.scroll-top!
+				cursor-x = e.page-x + THIS.$album-browser.scroll-left! - THIS.$album-browser.offset!.left
+				cursor-y = e.page-y + THIS.$album-browser.scroll-top! - THIS.$album-browser.offset!.top
 				w = cursor-x - left
 				h = cursor-y - top
 				css = {
