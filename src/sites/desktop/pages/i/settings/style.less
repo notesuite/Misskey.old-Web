@@ -9,131 +9,7 @@ html {
 	background-size: cover;
 }
 
-.checkbox {
-	@checkbox-size: 28px;
-
-	display: block;
-
-	&, * {
-		user-select: none;
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-		cursor: pointer;
-	}
-
-	&:hover {
-		> p {
-			color: #111 !important;
-
-			&:before {
-				border: solid 2px #ccc;
-			}
-		}
-
-		> input[type=checkbox]:checked + p {
-			&:before {
-				border: solid 2px darken(@theme-color, 5%);
-			}
-		}
-	}
-
-	&:active {
-		> p {
-			color: #000 !important;
-
-			&:before {
-				border: solid 2px #bbb;
-			}
-		}
-
-		> input[type=checkbox]:checked + p {
-			&:before {
-				border: solid 2px darken(@theme-color, 10%);
-			}
-		}
-	}
-
-	> input[type=checkbox] {
-		display: none;
-
-		&:checked + p {
-			color: #555;
-
-			&:before {
-				border: solid 2px @theme-color;
-				box-shadow: 0 0 0 (@checkbox-size / 2) @theme-color inset;
-			}
-
-			&:after {
-				width: @checkbox-size;
-				opacity: 1;
-			}
-		}
-
-		/*
-		&:disabled {
-			&, & + p {
-				opacity: 0.5;
-			}
-		}
-		*/
-
-		&.updating {
-			&, & + p {
-				cursor: wait;
-			}
-		}
-	}
-
-	> p {
-		display: block;
-		position: relative;
-		margin: 0;
-		padding: 16px 0 16px (@checkbox-size + 8px);
-		color: #777;
-
-		&:before {
-			content: '';
-			display: block;
-			box-sizing: border-box;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			margin: auto 0;
-			width: @checkbox-size;
-			height: @checkbox-size;
-			border: solid 2px #ddd;
-			box-shadow: 0 0 0 0 @theme-color inset;
-			transition: border 1s cubic-bezier(0,1,0,1), box-shadow 1s cubic-bezier(0,1,0,1);
-		}
-
-		&:after {
-			content: '\f00c';
-			font-family: FontAwesome;
-			display: block;
-			overflow: hidden;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			margin: auto 0;
-			width: 0;
-			height: @checkbox-size;
-			line-height: @checkbox-size;
-			text-align: center;
-			color: contrast(@theme-color, #000, #fff, 70%);
-			opacity: 0;
-			transition: opacity 0.5s ease, width 0.5s ease;
-		}
-	}
-}
-
-body > .contents {
-	width: 100%;
-	max-width: 750px;
-	margin: 0 auto;
+#misskey-contents {
 	padding: 32px 0;
 
 	> main {
@@ -143,6 +19,8 @@ body > .contents {
 		display: -o-flex;
 		display: flex;
 		justify-content: center;
+		max-width: 750px;
+		margin: 0 auto;
 		text-align: left;
 		background: #fff;
 		// border: solid 1px #ddd;
@@ -544,6 +422,128 @@ body > .contents {
 		}
 	}
 }
+
+.checkbox {
+	@checkbox-size: 28px;
+
+	display: block;
+
+	&, * {
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		cursor: pointer;
+	}
+
+	&:hover {
+		> p {
+			color: #111 !important;
+
+			&:before {
+				border: solid 2px #ccc;
+			}
+		}
+
+		> input[type=checkbox]:checked + p {
+			&:before {
+				border: solid 2px darken(@theme-color, 5%);
+			}
+		}
+	}
+
+	&:active {
+		> p {
+			color: #000 !important;
+
+			&:before {
+				border: solid 2px #bbb;
+			}
+		}
+
+		> input[type=checkbox]:checked + p {
+			&:before {
+				border: solid 2px darken(@theme-color, 10%);
+			}
+		}
+	}
+
+	> input[type=checkbox] {
+		display: none;
+
+		&:checked + p {
+			color: #555;
+
+			&:before {
+				border: solid 2px @theme-color;
+				box-shadow: 0 0 0 (@checkbox-size / 2) @theme-color inset;
+			}
+
+			&:after {
+				width: @checkbox-size;
+				opacity: 1;
+			}
+		}
+
+		/*
+		&:disabled {
+			&, & + p {
+				opacity: 0.5;
+			}
+		}
+		*/
+
+		&.updating {
+			&, & + p {
+				cursor: wait;
+			}
+		}
+	}
+
+	> p {
+		display: block;
+		position: relative;
+		margin: 0;
+		padding: 16px 0 16px (@checkbox-size + 8px);
+		color: #777;
+
+		&:before {
+			content: '';
+			display: block;
+			box-sizing: border-box;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto 0;
+			width: @checkbox-size;
+			height: @checkbox-size;
+			border: solid 2px #ddd;
+			box-shadow: 0 0 0 0 @theme-color inset;
+			transition: border 1s cubic-bezier(0,1,0,1), box-shadow 1s cubic-bezier(0,1,0,1);
+		}
+
+		&:after {
+			content: '\f00c';
+			font-family: FontAwesome;
+			display: block;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto 0;
+			width: 0;
+			height: @checkbox-size;
+			line-height: @checkbox-size;
+			text-align: center;
+			color: contrast(@theme-color, #000, #fff, 70%);
+			opacity: 0;
+			transition: opacity 0.5s ease, width 0.5s ease;
+		}
+	}
+}
+
 
 body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 	position: relative;
