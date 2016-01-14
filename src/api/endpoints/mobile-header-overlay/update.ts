@@ -4,24 +4,7 @@ import { UserSettings, IUserSettings } from '../../../models/user-settings';
 export default function updateHomeLayout(req: express.Request, res: express.Response): void {
 	'use strict';
 
-	const layoutString: string = req.body['layout'];
-	const layout = JSON.parse(layoutString);
-
-	const saveLayout: any = {
-		left: [],
-		center: [],
-		right: []
-	};
-
-	if (layout.left !== undefined) {
-		saveLayout.left = layout.left;
-	}
-	if (layout.center !== undefined) {
-		saveLayout.center = layout.center;
-	}
-	if (layout.right !== undefined) {
-		saveLayout.right = layout.right;
-	}
+	const id: string = req.body['id'];
 
 	UserSettings.findOne({
 		userId: req.user
@@ -29,7 +12,7 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 		if (findErr !== null) {
 			return res.sendStatus(500);
 		}
-		settings.homeLayout = saveLayout;
+		settings.mobileHeaderOverlay = id;
 		settings.save((saveErr: any, savedSettings: IUserSettings) => {
 			if (saveErr !== null) {
 				return res.sendStatus(500);

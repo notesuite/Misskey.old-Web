@@ -22,6 +22,7 @@ const schema: any = {
 		center: ['timeline'],
 		right: ['my-status', 'notifications', 'recommendation-users', 'donate', 'ad']
 	}},
+	mobileHeaderOverlay: { type: String, required: false, default: null },
 	userId: { type: Schema.Types.ObjectId, required: true }
 };
 
@@ -41,6 +42,7 @@ export const UserSettings: mongoose.Model<mongoose.Document> = db.model('UserSet
 export interface IUserSettings extends mongoose.Document {
 	theme: string;
 	homeLayout: any;
+	mobileHeaderOverlay: string;
 	userId: mongoose.Types.ObjectId;
 }
 

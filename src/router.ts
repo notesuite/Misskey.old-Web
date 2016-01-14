@@ -227,6 +227,9 @@ export default function router(app: express.Express): void {
 	app.get('/i/settings/website', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
 		callController(req, res, 'i/settings/website'));
 
+	app.get('/i/settings/mobile-header-overlay', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
+		callController(req, res, 'i/settings/mobile-header-overlay'));
+
 	app.get('/i/home-customize', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) =>
 		callController(req, res, 'i/home-customize'));
 

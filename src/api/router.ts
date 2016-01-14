@@ -31,6 +31,7 @@ export default function router(app: express.Express): void {
 	app.post('/web/avatar/update', require('./endpoints/avatar/update').default);
 	app.post('/web/banner/update', require('./endpoints/banner/update').default);
 	app.post('/web/home-layout/update', require('./endpoints/home-layout/update').default);
+	app.post('/web/mobile-header-overlay/update', require('./endpoints/mobile-header-overlay/update').default);
 	app.post('/web/user-settings/update', require('./endpoints/user-settings/update').default);
 	app.post('/web/album/upload',
 		upload.single('file'),

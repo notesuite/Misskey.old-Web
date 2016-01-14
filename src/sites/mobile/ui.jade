@@ -22,7 +22,10 @@ html(
 	
 	body
 		if !noui
-			header#misskey-header
+			- var headerOverlayStyle = userSettings.mobileHeaderOverlay != null
+			-     ? 'url("' + config.resourcesUrl + '/mobile/common/images/header-overlay/' + userSettings.mobileHeaderOverlay + '.svg")'
+			-     : 'none';
+			header#misskey-header(style={'background-image': headerOverlayStyle})
 				button#open-misskey-nav-button(role='button'): i.fa.fa-bars
 				h1
 					block header

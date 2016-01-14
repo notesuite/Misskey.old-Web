@@ -4,37 +4,8 @@ main {
 	form {
 		padding: 8px;
 
-		[type=submit] {
-			display: block;
-			float: right;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
-			touch-action: manipulation;
-			box-sizing: border-box;
-			margin: 8px 0;
-			padding: 10px 16px;
-			width: 100%;
-			text-align: center;
-			cursor: pointer;
-			font-size: 1em;
-			font-weight: bold;
-			color: #fff;
-			background: @theme-color;
-			background: -moz-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-			background: -webkit-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-			background: linear-gradient(to bottom, @theme-color 0%, darken(@theme-color, 10%) 100%);
-			border: solid 1px darken(@theme-color, 10%);
-			border-radius: 4px;
-
-			&:disabled {
-				opacity: 0.5;
-			}
-
-			> i {
-				margin-right: 0.25em;
-			}
+		[type='submit'] {
+			margin-top: 8px;
 		}
 	}
 }

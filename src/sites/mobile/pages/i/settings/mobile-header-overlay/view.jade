@@ -1,0 +1,26 @@
+extends ../../../../ui
+
+block title
+	| ヘッダーデザインの設定 - Misskey
+
+block header
+	i.fa.fa-cog
+	| ヘッダーのデザイン
+
+block content
+	main(role='main')
+		form#form
+			select.ui-select(name='id')
+				option(value='none', selected= userSettings.mobileHeaderOverlay == null) なし
+				option(value='light-gradation', selected= userSettings.mobileHeaderOverlay == 'light-gradation') 明るいグラデーション
+				option(value='dark-gradation', selected= userSettings.mobileHeaderOverlay == 'dark-gradation') 暗いグラデーション
+				option(value='glossy', selected= userSettings.mobileHeaderOverlay == 'glossy') Glossy
+				option(value='halftone', selected= userSettings.mobileHeaderOverlay == 'halftone') ハーフトーン
+				option(value='stripe', selected= userSettings.mobileHeaderOverlay == 'stripe') ストライプ(明)
+				option(value='dark-stripe', selected= userSettings.mobileHeaderOverlay == 'dark-stripe') ストライプ(暗)
+				option(value='grid', selected= userSettings.mobileHeaderOverlay == 'grid') グリッド
+				option(value='bubbles', selected= userSettings.mobileHeaderOverlay == 'bubbles') バブル
+				option(value='musicsheet', selected= userSettings.mobileHeaderOverlay == 'musicsheet') 楽譜
+				option(value='city', selected= userSettings.mobileHeaderOverlay == 'city') City
+			button.ui-button(type='submit')
+				| 更新
