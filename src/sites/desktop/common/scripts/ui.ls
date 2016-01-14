@@ -38,7 +38,7 @@ function ad-block-detected
 $ ->
 	if not NOUI
 		init-header!
-		$ \body .css \margin-top "#{$ 'body > #misskey-header' .outer-height!}px"
+		$ \body .css \margin-top "#{$ '#misskey-header' .outer-height!}px"
 
 	if LOGIN
 		post-form = new PostForm
@@ -70,7 +70,7 @@ $ ->
 
 $ window .load ->
 	if not NOUI
-		$ \body .css \margin-top "#{$ 'body > #misskey-header' .outer-height!}px"
+		$ \body .css \margin-top "#{$ '#misskey-header' .outer-height!}px"
 
 	WavesEffect.attach-to-class \ui-waves-effect
 
@@ -345,12 +345,12 @@ class PostForm
 				, 300ms
 			, i * 50
 
-		$global-container = $ 'body > .global-container'
+		$contents = $ '#misskey-contents'
 		$ {blur-radius: 0} .animate {blur-radius: 5}, {
 			duration: 100ms
 			easing: \linear
 			step: ->
-				$global-container.css {
+				$contents.css {
 					'-webkit-filter': "blur(#{@blur-radius}px)"
 					'-moz-filter': "blur(#{@blur-radius}px)"
 					'filter': "blur(#{@blur-radius}px)"
@@ -383,18 +383,18 @@ class PostForm
 			if ($ \#misskey-post-form .css \opacity) === '0'
 				$ \#misskey-post-form-container .css \display \none
 
-		$global-container = $ 'body > .global-container'
+		$contents = $ '#misskey-contents'
 		$ {blur-radius: 5} .animate {blur-radius: 0}, {
 			duration: 100ms
 			easing: \linear
 			step: ->
-				$global-container.css {
+				$contents.css {
 					'-webkit-filter': "blur(#{@blur-radius}px)"
 					'-moz-filter': "blur(#{@blur-radius}px)"
 					'filter': "blur(#{@blur-radius}px)"
 				}
 			complete: ->
-				$global-container.css {
+				$contents.css {
 					'-webkit-filter': ""
 					'-moz-filter': ""
 					'filter': ""

@@ -29,128 +29,130 @@ block body
 					form#misskey-post-form-poll-tab-page(data-name='poll')
 						p coming soon
 
-	if !noui
-		header#misskey-header
-			div.main
-				div.main-contents-container
-					div.left
-						nav
-							div.misskey-menu
-								div.dropdown.right(data-active='false')
-									div.dropdown-header(role='button')
-										div.hamburger
-											span.bar
-											span.bar
-											span.bar
-									div.dropdown-content
-										ul
-											li: a.ui-waves-effect(href= '/')
-												i.fa.fa-info-circle
-												| About Misskey
-												i.fa.fa-angle-right
-											li: a.ui-waves-effect(href= config.helpUrl)
-												i.fa.fa-question-circle
-												| Help
-												i.fa.fa-angle-right
-										ul
-											li: a.ui-waves-effect(href= config.url + '/syuilo')
-												i.fa.fa-check-circle
-												| @syuilo
-												i.fa.fa-angle-right
-											li: a.ui-waves-effect(href= config.url + '/misskey')
-												i.fa.fa-check-circle
-												| @misskey
-												i.fa.fa-angle-right
-										ul
-											li: a.ui-waves-effect(href= config.url + '/about/donate')
-												i.fa.fa-heart
-												| Donate
-												i.fa.fa-angle-right
-										ul
-											li: a.ui-waves-effect(href='https://github.com/MissKernel/Misskey')
-												i.fa.fa-github
-												| Github repository
-												i.fa.fa-angle-right
-											li: a.ui-waves-effect(href= config.developerCenterUrl)
-												i.fa.fa-terminal
-												| Developers Center
-												i.fa.fa-angle-right
+	div#misskey-global
 
-							div.main-nav
-								ul
-									if login
-										li.home(class= pagePath == '/' ? 'active' : ''): a(href= config.url)
-											i.fa.fa-home
-											p Home
-										li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a(href= config.url + '/i/mentions')
-											i.fa.fa-at
-											p Mentions
-										li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a(href= config.talkUrl)
-											i.fa.fa-comments
-											p Talks
-										li.album(class= pagePath == '/i/album' ? 'active' : ''): a(href= config.url + '/i/album')
-											i.fa.fa-cloud
-											p Album
-					div.right
-						form.search(action= config.searchUrl, method='get', role='search')
-							input(type='search', name='q', placeholder!='&#xf002; Search')
-							div.result
-						if login
-							div.account
-								div.dropdown.left(data-active='false')
-									div.dropdown-header(role='button')
-										span.screen-name
-											= me.screenName
-											i.fa.fa-angle-down
-										img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
-									div.dropdown-content
-										ul
-											li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
-												i.fa.fa-user
-												| Profile
-												i.fa.fa-angle-right
-											li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
-												i.fa.fa-star
-												| Likes
-												i.fa.fa-angle-right
-										ul
-											li: a.ui-waves-effect(href= config.url + '/i/settings')
-												i.fa.fa-cog
-												| Settings
-												i.fa.fa-angle-right
-										ul
-											li: a.ui-waves-effect(href= config.signoutUrl)
-												i(class='fa fa-power-off')
-												| Sign out
-												i.fa.fa-angle-right
-							div.notifications
-								div.dropdown.left(data-active='false')
-									div.dropdown-header(role='button')
-										p
-											i.fa.fa-bell
-									div.dropdown-content
-										div.nav
-											select.filter-type(title='表示を絞り込み')
-												option(value='all') すべて
-												option(value='self-notification') self-notification
-												option(value='follow') 被フォロー
-												option(value='like') Like
-												option(value='repost') Repost
-											button.delete-all-button(title='全ての通知を削除')
-												i.fa.fa-trash-o
-										div.main
-							div.post
-								button#misskey-post-button(title='新しい投稿を作成')
-									i.fa.fa-pencil-square-o
-						div.time
-							div.dropdown(data-active='false')
-								div.dropdown-header(role='button')
-									time.now(datetime= Date.now())
-								div.dropdown-content
-									canvas.clock#misskey-main-clock-canvas(width='256', height='256')
+		if !noui
+			header#misskey-header
+				div.main
+					div.main-contents-container
+						div.left
+							nav
+								div.misskey-menu
+									div.dropdown.right(data-active='false')
+										div.dropdown-header(role='button')
+											div.hamburger
+												span.bar
+												span.bar
+												span.bar
+										div.dropdown-content
+											ul
+												li: a.ui-waves-effect(href= '/')
+													i.fa.fa-info-circle
+													| About Misskey
+													i.fa.fa-angle-right
+												li: a.ui-waves-effect(href= config.helpUrl)
+													i.fa.fa-question-circle
+													| Help
+													i.fa.fa-angle-right
+											ul
+												li: a.ui-waves-effect(href= config.url + '/syuilo')
+													i.fa.fa-check-circle
+													| @syuilo
+													i.fa.fa-angle-right
+												li: a.ui-waves-effect(href= config.url + '/misskey')
+													i.fa.fa-check-circle
+													| @misskey
+													i.fa.fa-angle-right
+											ul
+												li: a.ui-waves-effect(href= config.url + '/about/donate')
+													i.fa.fa-heart
+													| Donate
+													i.fa.fa-angle-right
+											ul
+												li: a.ui-waves-effect(href='https://github.com/MissKernel/Misskey')
+													i.fa.fa-github
+													| Github repository
+													i.fa.fa-angle-right
+												li: a.ui-waves-effect(href= config.developerCenterUrl)
+													i.fa.fa-terminal
+													| Developers Center
+													i.fa.fa-angle-right
 
-	div.global-container.contents
-		block content
+								div.main-nav
+									ul
+										if login
+											li.home(class= pagePath == '/' ? 'active' : ''): a(href= config.url)
+												i.fa.fa-home
+												p Home
+											li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a(href= config.url + '/i/mentions')
+												i.fa.fa-at
+												p Mentions
+											li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a(href= config.talkUrl)
+												i.fa.fa-comments
+												p Talks
+											li.album(class= pagePath == '/i/album' ? 'active' : ''): a(href= config.url + '/i/album')
+												i.fa.fa-cloud
+												p Album
+						div.right
+							form.search(action= config.searchUrl, method='get', role='search')
+								input(type='search', name='q', placeholder!='&#xf002; Search')
+								div.result
+							if login
+								div.account
+									div.dropdown.left(data-active='false')
+										div.dropdown-header(role='button')
+											span.screen-name
+												= me.screenName
+												i.fa.fa-angle-down
+											img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
+										div.dropdown-content
+											ul
+												li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
+													i.fa.fa-user
+													| Profile
+													i.fa.fa-angle-right
+												li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
+													i.fa.fa-star
+													| Likes
+													i.fa.fa-angle-right
+											ul
+												li: a.ui-waves-effect(href= config.url + '/i/settings')
+													i.fa.fa-cog
+													| Settings
+													i.fa.fa-angle-right
+											ul
+												li: a.ui-waves-effect(href= config.signoutUrl)
+													i(class='fa fa-power-off')
+													| Sign out
+													i.fa.fa-angle-right
+								div.notifications
+									div.dropdown.left(data-active='false')
+										div.dropdown-header(role='button')
+											p
+												i.fa.fa-bell
+										div.dropdown-content
+											div.nav
+												select.filter-type(title='表示を絞り込み')
+													option(value='all') すべて
+													option(value='self-notification') self-notification
+													option(value='follow') 被フォロー
+													option(value='like') Like
+													option(value='repost') Repost
+												button.delete-all-button(title='全ての通知を削除')
+													i.fa.fa-trash-o
+											div.main
+								div.post
+									button#misskey-post-button(title='新しい投稿を作成')
+										i.fa.fa-pencil-square-o
+							div.time
+								div.dropdown(data-active='false')
+									div.dropdown-header(role='button')
+										time.now(datetime= Date.now())
+									div.dropdown-content
+										canvas.clock#misskey-main-clock-canvas(width='256', height='256')
+
+		div#misskey-contents
+			block content
 
 	article#misskey-keyboard-shortcuts
 		h1
