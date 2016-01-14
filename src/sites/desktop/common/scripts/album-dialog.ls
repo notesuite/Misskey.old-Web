@@ -55,16 +55,14 @@ class AlbumDialog
 		@$album-background.animate {
 			opacity: 0
 		} 100ms \linear ->
-			if (THIS.$album-background.css \opacity) == \0
-				THIS.$album-background.remove!
+			THIS.$album-background.remove!
 		@$album-container.stop!
 		@$album-container.css \pointer-events \none
 		@$album-container.transition {
 			opacity: \0
 			scale: \0.8
 		} 1000ms 'cubic-bezier(0, 1, 0, 1)' ->
-			if (THIS.$album-container.css \opacity) == \0
-				THIS.$album-container.remove!
+			THIS.$album.remove!
 
 	choose-file: (cb) ->
 		THIS = @
