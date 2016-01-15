@@ -21,6 +21,7 @@ export default function router(app: express.Express): void {
 	app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		// Chromeでは ALLOW-FROM をサポートしていないらしい
 		// res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
+		res.header('X-Frame-Options', config.publicConfig.url);
 
 		(<MisskeyExpressRequest>req).isLogin =
 			req.hasOwnProperty('session') &&
