@@ -360,8 +360,8 @@ class PostForm
 		THIS.status-post-form.focus!
 		THIS.active-tab = \status
 
-		# ESC Close
-		$ document .one \keydown (e) ->
+		$ document .on \keydown.post-form-close (e) ->
+			# ESC Close
 			if e.which == 27
 				e.prevent-default!
 				THIS.close!
@@ -369,6 +369,8 @@ class PostForm
 	close: ->
 		THIS = @
 		THIS.is-open = no
+
+		$ document .off \keydown.post-form-close
 
 		$ \#misskey-post-form-back .css \pointer-events \none
 		$ \#misskey-post-form-back .animate {
