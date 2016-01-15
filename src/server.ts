@@ -56,7 +56,6 @@ const session: any = {
 const app: express.Express = express();
 app.disable('x-powered-by');
 app.locals.compileDebug = false;
-app.locals.filename = 'jade';
 app.locals.cache = true;
 // app.locals.pretty = '    ';
 app.set('view engine', 'jade');

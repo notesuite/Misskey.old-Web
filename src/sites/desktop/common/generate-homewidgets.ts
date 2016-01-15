@@ -24,7 +24,6 @@ export default function generateHomewidgets(me: User, widgets: string[], tlsourc
 			default:
 				const compiler: (locals?: any) => string = jade.compileFile(
 					`${__dirname}/views/home-widgets/${widget}.jade`, {
-						filename: 'jade',
 						cache: true
 				});
 				return Promise.resolve(compiler({
