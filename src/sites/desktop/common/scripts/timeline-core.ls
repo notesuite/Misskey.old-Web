@@ -50,6 +50,9 @@ class Post
 					THIS.$post.prev!.focus!
 				if e.which == 40 or e.which == 74 # ↓ or j
 					THIS.$post.next!.focus!
+				if e.which == 27 # Esc
+					e.prevent-default!
+					THIS.close!
 				if e.which == 32 # Space
 					e.prevent-default!
 					THIS.toggle-display-state!
