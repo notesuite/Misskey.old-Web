@@ -21,7 +21,7 @@ export default function router(app: express.Express): void {
 	app.use((req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		// Chromeでは ALLOW-FROM をサポートしていないらしい
 		// res.header('X-Frame-Options', `ALLOW-FROM ${config.publicConfig.url}`);
-		res.header('X-Frame-Options', config.publicConfig.url);
+		res.header('X-Frame-Options', 'SAMEORIGIN');
 
 		(<MisskeyExpressRequest>req).isLogin =
 			req.hasOwnProperty('session') &&
@@ -177,6 +177,21 @@ export default function router(app: express.Express): void {
 
 	app.get('/i/notifications', (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
 		callController(req, res, 'i/notifications');
+	});
+
+	app.get(`/subdomain/${config.publicConfig.talkDomain}/*`, (req, res, next) => {
+		if (req.headers.hasOwnProperty('referer')) {
+			const referer = req.headers['referer'];
+			if ((new RegExp(`^https?://(.+\.)?${config.publicConfig.host}/?\$`)).test(referer)) {
+				res.header('X-Frame-Options', '');
+			} else {
+				res.header('X-Frame-Options', 'DENY');
+			}
+		} else {
+			res.header('X-Frame-Options', 'DENY');
+		}
+
+		next();
 	});
 
 	app.get(`/subdomain/${config.publicConfig.talkDomain}/`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
