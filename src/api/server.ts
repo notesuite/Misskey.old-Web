@@ -33,6 +33,11 @@ export default function server(session: any): express.Express {
 		credentials: true
 	}));
 
+	app.use((req, res, next) => {
+		res.header('X-Frame-Options', 'DENY');
+		next();
+	});
+
 	router(app);
 
 	return app;
