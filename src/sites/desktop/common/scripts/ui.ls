@@ -74,6 +74,30 @@ $ window .load ->
 
 	WavesEffect.attach-to-class \ui-waves-effect
 
+# Init Keyboard Shortcuts
+init-keyboard-shortcuts-resolver!
+
+function init-keyboard-shortcuts-resolver
+	$ document .on \keydown on-keydown
+	$ \#misskey-keyboard-shortcut-stacks .empty!
+
+function on-keydown e
+	el = e.target.tag-name.to-lower-case!
+	if el != \input and el != \textarea and el != \button
+		if e.which == 50 # K
+			$ document .off \keydown on-keydown
+
+			$ \#misskey-keyboard-shortcut-stacks .append $ '<kbd>k</kbd>'
+
+			# 次の入力を待つ
+			$ document .one \keydown (e) ->
+				switch e.which
+				| 50, 27 => # K or ESC
+					init-keyboard-shortcuts-resolver!
+				| _ =>
+					init-keyboard-shortcuts-resolver!
+					window.display-message '不明なショートカットです'
+
 ################################
 
 window.display-message = (message) ->

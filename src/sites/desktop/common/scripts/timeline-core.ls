@@ -46,25 +46,40 @@ class Post
 		THIS.$post.keydown (e) ->
 			tag = e.target.tag-name.to-lower-case!
 			if tag != \input and tag != \textarea and tag != \button
-				if e.which == 38 or e.which == 75 # ↑ or k
-					THIS.$post.prev!.focus!
-				if e.which == 40 or e.which == 74 # ↓ or j
-					THIS.$post.next!.focus!
-				if e.which == 27 # Esc
-					e.prevent-default!
-					THIS.close!
-				if e.which == 32 # Space
-					e.prevent-default!
-					THIS.toggle-display-state!
-				if e.which == 13 # Enter
-					e.prevent-default!
-					if not THIS.is-open
-						THIS.open!
-					THIS.focus-reply-form!
-				if e.which == 70 or e.which == 76 # f or l
-					THIS.like!
-				if e.which == 82 or e.which == 83 # r or s
-					THIS.repost!
+				if e.shift-key
+					switch e.which
+					| 9 => # tab
+						e.prevent-default!
+						THIS.$post.prev!.focus!
+				else
+					switch e.which
+					| 38 => # ↑
+						THIS.$post.prev!.focus!
+					| 75 => # k
+						e.prevent-default!
+						THIS.$post.prev!.focus!
+					| 40 => # tab or ↓ or j
+						THIS.$post.next!.focus!
+					| 9, 74 => # tab or j
+						e.prevent-default!
+						THIS.$post.next!.focus!
+					| 27 => # Esc
+						e.prevent-default!
+						THIS.close!
+					| 32 => # Space
+						e.prevent-default!
+						THIS.toggle-display-state!
+					| 13 => # Enter
+						e.prevent-default!
+						if not THIS.is-open
+							THIS.open!
+						THIS.focus-reply-form!
+					| 70, 76 => # f or l
+						e.prevent-default!
+						THIS.like!
+					| 82, 83 => # r or s
+						e.prevent-default!
+						THIS.repost!
 
 		THIS.$post.click (event) ->
 			if document.get-selection!.to-string! != ''

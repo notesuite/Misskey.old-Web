@@ -1,6 +1,8 @@
 extends ./base
 
 block body
+	div#misskey-keyboard-shortcut-stacks
+
 	if login
 		div#misskey-post-form-back(role='presentation')
 		div#misskey-post-form-container
@@ -30,7 +32,6 @@ block body
 						p coming soon
 
 	div#misskey-global
-
 		if !noui
 			header#misskey-header
 				div.main
