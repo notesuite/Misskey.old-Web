@@ -5,7 +5,9 @@
 		"headerTalks": "Talks",
 		"headerAlbum": "Album",
 		"headerSearchPlaceholder": "Search",
-		"headerAccountProfilePage": "Profile"
+		"headerAccountProfilePage": "Profile",
+"attachFileFromPc": "Attach a file from PC",
+"attachFileFromAlbum": "Attach a file from album"
 	},
 	"pages": {
 
