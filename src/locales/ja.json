@@ -5,7 +5,9 @@
 		"headerTalks": "トーク",
 		"headerAlbum": "アルバム",
 		"headerSearchPlaceholder": "検索",
-		"headerAccountProfilePage": "プロフィール"
+		"headerAccountProfilePage": "プロフィール",
+"attachFileFromPc": "PCからファイルを添付",
+"attachFileFromAlbum": "アルバムからファイルを添付"
 	},
 	"pages": {
 
