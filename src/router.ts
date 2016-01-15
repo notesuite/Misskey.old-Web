@@ -154,6 +154,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'about/technologies');
 	});
 
+	app.get(`/subdomain/${config.publicConfig.aboutDomain}/system`, (req: MisskeyExpressRequest, res: MisskeyExpressResponse) => {
+		callController(req, res, 'about/system');
+	});
+
 	app.get('/i/*', (req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: () => void) => {
 		if (req.isLogin) {
 			next();
