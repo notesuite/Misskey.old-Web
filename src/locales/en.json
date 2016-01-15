@@ -1,0 +1,13 @@
+{
+	"common": {
+		"headerHome": "Home",
+		"headerMentions": "Mentions",
+		"headerTalks": "Talks",
+		"headerAlbum": "Album",
+		"headerSearchPlaceholder": "Search",
+		"headerAccountProfilePage": "Profile"
+	},
+	"pages": {
+
+	}
+}

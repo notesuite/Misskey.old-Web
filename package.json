@@ -57,6 +57,7 @@
     "vinyl-source-stream": "1.1.0"
   },
   "dependencies": {
+    "accept-language": "2.0.16",
     "body-parser": "1.14.2",
     "cheerio-httpcli": "0.6.2",
     "compression": "1.6.0",

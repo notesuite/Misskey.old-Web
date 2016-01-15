@@ -1,6 +1,7 @@
 meta(charset='utf-8')
 meta(http-equiv='X-UA-Compatible', content='IE=edge')
 meta(http-equiv='x-dns-prefetch-control', content='on')
+meta(name='robots', content='all')
 meta(name='application-name', content='Misskey')
 meta(name='theme-color', content= config.themeColor)
 meta(name='google-site-verification', content='0KUjKH7EJj28VnWKm0p_Uo1bc6i3ldPNQOHvjxlvnm4')
@@ -27,6 +28,7 @@ link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/
 link(rel='stylesheet', href= stylePath)
 script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
 script!= 'var NOUI = ' + noui.toString() + '; Object.freeze(NOUI);'
+script!= 'var LANG = "' + lang + '"; Object.freeze(LANG);'
 script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
 script!= 'var ME = ' + JSON.stringify(me) + '; Object.freeze(ME);'
 script!= 'var USER_SETTINGS = ' + JSON.stringify(userSettings) + '; Object.freeze(USER_SETTINGS);'
@@ -41,3 +43,5 @@ script.
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-57628372-1', 'auto');
 	ga('send', 'pageview');
+
+script!= 'var LOCALE = ' + JSON.stringify(locale) + '; Object.freeze(LOCALE);'

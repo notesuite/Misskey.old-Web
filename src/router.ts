@@ -1,6 +1,8 @@
 import * as cluster from 'cluster';
 import * as express from 'express';
 import * as path from 'path';
+const acceptLanguage: any = require('accept-language');
+acceptLanguage.languages(['en-US', 'ja-JP']);
 
 import { User } from './models/user';
 import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
@@ -46,6 +48,10 @@ export default function router(app: express.Express): void {
 		const ua: string = uatype(req.headers['user-agent']);
 		const noui: boolean = req.query.hasOwnProperty('noui');
 
+		const language = acceptLanguage.parse(req.headers['accept-language'])[0].language;
+
+		console.log(language);
+
 		req.data = {};
 		req.ua = ua;
 		req.renderData = {
@@ -65,6 +71,8 @@ export default function router(app: express.Express): void {
 				}, (err: any, settings: IUserSettings) => {
 					req.user = Object.assign({}, user, {_settings: settings.toObject()});
 					req.renderData.me = user;
+					req.renderData.lang = user.lang;
+					req.renderData.locale = require(`${__dirname}/locales/${user.lang}.json`);
 					req.renderData.userSettings = settings.toObject();
 					next();
 				});
@@ -72,6 +80,8 @@ export default function router(app: express.Express): void {
 		} else {
 			req.user = null;
 			req.renderData.me = null;
+			req.renderData.lang = language;
+			req.renderData.locale = require(`${__dirname}/locales/${language}.json`);
 			req.renderData.userSettings = guestUserSettings;
 			next();
 		}
