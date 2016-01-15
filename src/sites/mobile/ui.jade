@@ -21,6 +21,14 @@ html(
 		block assets
 	
 	body
+		noscript
+			article
+				h1 JavaScriptを有効にしてください
+				p
+					strong
+						| JavaScriptが無効になっているか、利用できない環境のようです。
+						| Misskeyの利用にはJavaScriptが有効になっている必要があります。
+
 		if !noui
 			- var headerOverlayStyle = userSettings.mobileHeaderOverlay != null
 			-     ? 'url("' + config.resourcesUrl + '/mobile/common/images/header-overlay/' + userSettings.mobileHeaderOverlay + '.svg")'
