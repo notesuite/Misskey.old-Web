@@ -52,7 +52,7 @@
 					},
 					"re_confirmation_dialog": {
 						"title": "Really?",
-						"text": "There are some unread nofications. Are you sure you want to delete all notifications?",
+						"text": "There are some unread notifications. Are you sure you want to delete all notifications?",
 						"ok": "<b>Shut up</b> and do it now",
 						"cancel": "Cancel"
 					}
