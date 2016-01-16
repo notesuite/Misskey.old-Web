@@ -96,7 +96,7 @@ block body
 												p= locale.common.album
 						div.right
 							form.search(action= config.searchUrl, method='get', role='search')
-								input(type='search', name='q', placeholder!='&#xf002; ' + locale.common.search)
+								input(type='search', name='q', placeholder!='&#xf002; ' + locale.sites.desktop.common.header.search_placeholder)
 								div.result
 							if login
 								div.account
@@ -119,7 +119,7 @@ block body
 											ul
 												li: a.ui-waves-effect(href= config.url + '/i/settings')
 													i.fa.fa-cog
-													=locale.common.settings
+													=locale.sites.desktop.common.header.settings
 													i.fa.fa-angle-right
 											ul
 												li: a.ui-waves-effect(href= config.signoutUrl)
@@ -139,7 +139,7 @@ block body
 													option(value='follow') 被フォロー
 													option(value='like') Like
 													option(value='repost') Repost
-												button.delete-all-button(title=locale.common.delete_all_notifications)
+												button.delete-all-button(title=locale.sites.desktop.common.header.delete_all_notifications)
 													i.fa.fa-trash-o
 											div.main
 								div.post
