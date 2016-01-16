@@ -1,8 +1,7 @@
-import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
+import * as express from 'express';
 import requestApi from '../../../../../utils/request-api';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
 	const query: string = req.query.q;
@@ -10,7 +9,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	requestApi('posts/search', {
 		'query': query
 	}, req.user).then((posts: any[]) => {
-		res.display({
+		res.locals.display({
 			query: query,
 			posts: posts
 		});

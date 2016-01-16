@@ -1,9 +1,8 @@
-import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
+import * as express from 'express';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
-	res.display({
+	res.locals.display({
 		env: process.env.NODE_ENV
 	});
 };

@@ -2,21 +2,19 @@ import * as express from 'express';
 import * as multer from 'multer';
 const upload: any = multer({ dest: 'uploads/' });
 
-import { MisskeyExpressRequest } from '../misskey-express-request';
-import { MisskeyExpressResponse } from '../misskey-express-response';
 import requestApi from '../utils/request-api';
 
 export default function router(app: express.Express): void {
 	'use strict';
 
 	app.use((req, res, next) => {
-		(<MisskeyExpressRequest>req).isLogin =
+		res.locals.isLogin =
 			req.hasOwnProperty('session') &&
 			req.session !== null &&
 			req.session.hasOwnProperty('userId') &&
 			(<any>req.session).userId !== null;
 
-		if ((<MisskeyExpressRequest>req).isLogin) {
+		if (res.locals.isLogin) {
 			req.user = (<any>req.session).userId;
 		}
 
@@ -60,7 +58,7 @@ export default function router(app: express.Express): void {
 	});
 
 	// Error handling
-	app.use((err: any, req: MisskeyExpressRequest, res: MisskeyExpressResponse, next: (err: any) => void) => {
+	app.use((err: any, req: express.Request, res: express.Response, next: (err: any) => void) => {
 		if (err.code === 'EBADCSRFTOKEN') {
 			// handle CSRF token errors
 			res.status(403);

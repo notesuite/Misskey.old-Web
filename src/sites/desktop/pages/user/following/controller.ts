@@ -1,18 +1,17 @@
+import * as express from 'express';
 import { User } from '../../../../../models/user';
-import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
 import requestApi from '../../../../../utils/request-api';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
-	const user: User = req.data.user;
+	const user: User = res.locals.user;
 	const me: User = req.user;
 
 	requestApi('users/following', {
 		'user-id': user.id
 	}, me).then(following => {
-		res.display({
+		res.locals.display({
 			user: user,
 			following: following
 		});

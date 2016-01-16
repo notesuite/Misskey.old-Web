@@ -1,14 +1,11 @@
+import * as express from 'express';
 import { User } from '../../../../../models/user';
-import { IUserSettings } from '../../../../../models/user-settings';
-import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
 import requestApi from '../../../../../utils/request-api';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
-	const user: User = req.data.user;
-	const userSettings: IUserSettings = req.data.userSettings;
+	const user: User = res.locals.user;
 	const me: User = req.user;
 
 	Promise.all([
@@ -25,10 +22,9 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 	]).then(results => {
 		const timeline: any = results[0];
 		const photoPosts: any = results[1];
-		res.display({
+		res.locals.display({
 			user: user,
 			timeline: timeline,
-			overrideTheme: userSettings !== null ? userSettings.theme : null,
 			photoPosts
 		});
 	});

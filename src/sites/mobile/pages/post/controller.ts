@@ -1,13 +1,12 @@
+import * as express from 'express';
 import { User } from '../../../../models/user';
-import { MisskeyExpressRequest } from '../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../misskey-express-response';
 import requestApi from '../../../../utils/request-api';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
-	const user: User = req.data.user;
-	const post: any = req.data.post;
+	const user: User = res.locals.user;
+	const post: any = res.locals.post;
 	const me: User = req.user;
 
 	Promise.all([
@@ -49,7 +48,7 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 		})
 	]).then((results: any[]) => {
 		console.log(results[0]);
-		res.display({
+		res.locals.display({
 			user: user,
 			post: post,
 			replies: results[0],

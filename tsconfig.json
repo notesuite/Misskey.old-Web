@@ -20,8 +20,6 @@
 		"src/router.ts",
 		"src/resources-server.ts",
 		"src/call-controller.ts",
-		"src/misskey-express-request.ts",
-		"src/misskey-express-response.ts",
 		"src/models/user.ts",
 		"src/models/post.ts",
 		"src/models/user-settings.ts",

@@ -1,15 +1,14 @@
+import * as express from 'express';
 import { User } from '../../../../models/user';
-import { MisskeyExpressRequest } from '../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../misskey-express-response';
 import generateLayoutedHomeWidgets from '../../common/generate-layouted-homewidgets';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
 	const me: User = req.user;
 
-	generateLayoutedHomeWidgets(me, 'home').then((widgets: any) => {
-		res.display({
+	generateLayoutedHomeWidgets(me, res.locals.locale, 'home').then((widgets: any) => {
+		res.locals.display({
 			widgets
 		});
 	}, (err: any) => {

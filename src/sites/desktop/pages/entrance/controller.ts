@@ -1,11 +1,10 @@
-import { MisskeyExpressRequest } from '../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../misskey-express-response';
+import * as express from 'express';
 import requestApi from '../../../../utils/request-api';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 	requestApi('hashtags/trend/show', {}).then((hashtags: string[]) => {
-		res.display({
+		res.locals.display({
 			trends: hashtags.map(hashtag => `#${hashtag}`)
 		});
 	});

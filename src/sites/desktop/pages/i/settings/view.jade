@@ -1,7 +1,7 @@
 extends ../../../ui
 
 block title
-	| 設定
+	=locale.pages.i.settings.page_title
 
 block content
 	main(role='main')
@@ -9,10 +9,10 @@ block content
 			ul
 				li(data-ref='profile')
 					i.fa.fa-user
-					| Profile
+					=locale.pages.i.settings.profile
 				li(data-ref='web')
 					i.fa.fa-desktop
-					| Web
+					=locale.pages.i.settings.web
 				li(data-ref='application')
 					i.fa.fa-puzzle-piece
 					| Applications
@@ -30,7 +30,7 @@ block content
 				label.avatar
 					h2.title
 						i.fa.fa-camera-retro
-						| Avatar
+						=locale.pages.i.settings.user_avatar
 					img.avatar(src=me.avatarUrl, alt='avatar')
 					button.select-from-local.ui-waves-effect(type='button')
 						i.fa.fa-upload
@@ -64,7 +64,7 @@ block content
 						input.profile.location(name='location', type='text', value=me.location, placeholder=me.location)
 				button.profile.submit-button(type='submit')
 					i.fa.fa-check
-					| Update
+					=locale.common.update
 
 			div.web(data-name='web')
 				section

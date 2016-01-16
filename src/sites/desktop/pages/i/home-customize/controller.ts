@@ -1,8 +1,7 @@
-import { MisskeyExpressRequest } from '../../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../../misskey-express-response';
+import * as express from 'express';
 import generateHomewidgets from '../../../common/generate-homewidgets';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
 	const widgetCatalog = [
@@ -31,15 +30,15 @@ module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void
 			return widgetName;
 		}
 	});
-	generateHomewidgets(me, unuseWidgets, 'home').then((unuses: string[]) => {
+	generateHomewidgets(me, res.locals.locale, unuseWidgets, 'home').then((unuses: string[]) => {
 		const unuseWidgetHtmls = unuses;
-		generateHomewidgets(me, layout.left, 'home').then((lefts: string[]) => {
+		generateHomewidgets(me, res.locals.locale, layout.left, 'home').then((lefts: string[]) => {
 			widgets.left = lefts;
-			generateHomewidgets(me, layout.center, 'home').then((centers: string[]) => {
+			generateHomewidgets(me, res.locals.locale, layout.center, 'home').then((centers: string[]) => {
 				widgets.center = centers;
-				generateHomewidgets(me, layout.right, 'home').then((rights: string[]) => {
+				generateHomewidgets(me, res.locals.locale, layout.right, 'home').then((rights: string[]) => {
 					widgets.right = rights;
-					res.display({
+					res.locals.display({
 						noui: true,
 						widgets,
 						unuseWidgets: unuseWidgetHtmls

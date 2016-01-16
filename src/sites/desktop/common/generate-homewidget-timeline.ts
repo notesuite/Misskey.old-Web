@@ -9,7 +9,7 @@ import config from '../../../config';
 /**
  * @param tlsource 'home' or 'mentions'
  */
-export default function generateHomewidgetTimeline(me: User, tlsource: string): Promise<string> {
+export default function generateHomewidgetTimeline(me: User, locale: any, tlsource: string): Promise<string> {
 	'use strict';
 
 	const compiler: (locals?: any) => string = jade.compileFile(
@@ -38,6 +38,7 @@ export default function generateHomewidgetTimeline(me: User, tlsource: string): 
 				posts: tl,
 				me: me,
 				userSettings: me._settings,
+				locale: locale,
 				config: config.publicConfig
 			});
 		}

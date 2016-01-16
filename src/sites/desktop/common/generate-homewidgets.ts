@@ -4,7 +4,7 @@ import { User } from '../../../models/user';
 import generateHomewidgetTimeline from './generate-homewidget-timeline';
 import config from '../../../config';
 
-export default function generateHomewidgets(me: User, widgets: string[], tlsource: string): Promise<any> {
+export default function generateHomewidgets(me: User, locale: any, widgets: string[], tlsource: string): Promise<any> {
 	'use strict';
 
 	return Promise.all(widgets.map((widget: string) => {
@@ -20,7 +20,7 @@ export default function generateHomewidgets(me: User, widgets: string[], tlsourc
 
 		switch (widget) {
 			case 'timeline':
-				return generateHomewidgetTimeline(me, tlsource);
+				return generateHomewidgetTimeline(me, locale, tlsource);
 			default:
 				const compiler: (locals?: any) => string = jade.compileFile(
 					`${__dirname}/views/home-widgets/${widget}.jade`, {

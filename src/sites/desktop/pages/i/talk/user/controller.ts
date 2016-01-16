@@ -1,17 +1,16 @@
-import { MisskeyExpressRequest } from '../../../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../../../misskey-express-response';
+import * as express from 'express';
 import requestApi from '../../../../../../utils/request-api';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
 	// const me = req.user;
-	const otherparty = req.data.user;
+	const otherparty = res.locals.user;
 
 	requestApi('talks/messages/stream', {
 		'user-id': otherparty.id
 	}, req.user.id).then((messages: any[]) => {
-		res.display({
+		res.locals.display({
 			otherparty: otherparty,
 			messages: messages.reverse()
 		});

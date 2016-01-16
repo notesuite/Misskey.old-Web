@@ -1,14 +1,13 @@
-import { MisskeyExpressRequest } from '../../../../../../misskey-express-request';
-import { MisskeyExpressResponse } from '../../../../../../misskey-express-response';
+import * as express from 'express';
 import requestApi from '../../../../../../utils/request-api';
 
-module.exports = (req: MisskeyExpressRequest, res: MisskeyExpressResponse): void => {
+module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
 
 	requestApi('talks/history/show', {
 		type: 'user'
 	}, req.user.id).then((messages: any[]) => {
-		res.display({
+		res.locals.display({
 			messages: messages
 		});
 	});

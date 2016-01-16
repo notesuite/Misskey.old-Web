@@ -119,12 +119,12 @@ block body
 											ul
 												li: a.ui-waves-effect(href= config.url + '/i/settings')
 													i.fa.fa-cog
-													| Settings
+													=locale.common.settings
 													i.fa.fa-angle-right
 											ul
 												li: a.ui-waves-effect(href= config.signoutUrl)
 													i(class='fa fa-power-off')
-													| Sign out
+													=locale.common.sign_out
 													i.fa.fa-angle-right
 								div.notifications
 									div.dropdown.left(data-active='false')
@@ -158,7 +158,7 @@ block body
 	article#misskey-keyboard-shortcuts
 		h1
 			i.fa.fa-keyboard-o
-			| Keyboard shortcuts
+			=locale.common.keyboard_shortcuts.title
 		dl
 			dt
 				kbd: kbd ?

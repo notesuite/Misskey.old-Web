@@ -6,14 +6,14 @@ mixin repost-form(post)
 		form.form
 			h2
 				i.fa.fa-retweet
-				| この投稿をRepostしますか？
+				=locale.common.post_repost_form_title
 			article(class=post.type)
 				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
 					img.avatar(src=post.user.avatarThumbnailUrl, alt='avatar')
 				header.header
 					a.name(href='/' + post.user.screenName, target='_blank', rel='author')= post.user.name
 					if post.user.isVerified
-						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+						img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title=locale.common.verified)
 					span.screen-name= '@' + post.user.screenName
 					a.time-anchor(href='/' + post.user.screenName + '/' + post.id, itemprop='url')
 						time(datetime=post.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= post.createdAt
@@ -22,7 +22,7 @@ mixin repost-form(post)
 			div.actions
 				button.accept(type='submit')
 					i.fa.fa-check
-					p Repost
+					=locale.common.repost
 				button.cancel(type='button')
 					i.fa.fa-ban
-					p キャンセル
+					=locale.common.cancel
