@@ -24,7 +24,7 @@
 				},
 				"ad_block_detected": {
 					"title": "Adblock Enabled",
-					"text": "Adblock(or anything that prevents loading the resources) is working. <strong>Misskey doesn't show ads</strong>, but you may not use some of the functions(following users, etc.). To use Misskey pleasantly, disable Adblock.",
+					"text": "Adblock(or anything that prevents loading the resources) is working. <strong>Misskey doesn't show ads</strong>, but you may not use some of the functions(following users, etc.) if you use Adblock. To use Misskey pleasantly, disable Adblock.",
 					"ok": "Okay"
 				},
 				"post_form": {
