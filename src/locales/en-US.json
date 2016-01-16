@@ -11,6 +11,9 @@
 	"sites": {
 		"desktop": {
 			"common": {
+				"connecting_stream": "ストリームに接続しています...",
+				"connected_stream": "ストリームに接続しました",
+				"reconnecting_stream": "ストリームから切断されました 再接続中...",
 				"header": {
 					"search_placeholder": "Search",
 					"profile_page": "Profile",
