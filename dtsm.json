@@ -14,79 +14,79 @@
   },
   "dependencies": {
     "express/express.d.ts": {
-      "ref": "b27d0d0e1ce4207a7a5b1da847cb776c16d7531e"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "mongoose/mongoose.d.ts": {
-      "ref": "b27d0d0e1ce4207a7a5b1da847cb776c16d7531e"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "jade/jade.d.ts": {
-      "ref": "b27d0d0e1ce4207a7a5b1da847cb776c16d7531e"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "gulp/gulp.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "gulp-typescript/gulp-typescript.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "gulp-tslint/gulp-tslint.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "body-parser/body-parser.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "cookie-parser/cookie-parser.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "express-session/express-session.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "moment/moment.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "cors/cors.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "compression/compression.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "connect-mongo/connect-mongo.d.ts": {
-      "ref": "eab2e0487e9685952db58e487d484a1c342ec670"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "request/request.d.ts": {
-      "ref": "43f4fc592a99e2f0f8f4ee3ae26a3a8e2f5ca3ae"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "gm/gm.d.ts": {
-      "ref": "af5b8275d1f2b92738b93fddabc461fc20c553a1"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "less/less.d.ts": {
-      "ref": "af5b8275d1f2b92738b93fddabc461fc20c553a1"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "socket.io/socket.io.d.ts": {
-      "ref": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "multer/multer.d.ts": {
-      "ref": "3191f6e0088eee07c4d8fd24e4d27a40a60d9eb9"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "gulp-less/gulp-less.d.ts": {
-      "ref": "eb59a40d3c2f3257e34ec2ede181046230814a41"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "cookie/cookie.d.ts": {
-      "ref": "eb59a40d3c2f3257e34ec2ede181046230814a41"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "redis/redis.d.ts": {
-      "ref": "eb59a40d3c2f3257e34ec2ede181046230814a41"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "browserify/browserify.d.ts": {
-      "ref": "aed176536a202b9a2475ce1989ea6d2d0226a185"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "glob/glob.d.ts": {
-      "ref": "aed176536a202b9a2475ce1989ea6d2d0226a185"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "vinyl-source-stream/vinyl-source-stream.d.ts": {
-      "ref": "aed176536a202b9a2475ce1989ea6d2d0226a185"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     },
     "csurf/csurf.d.ts": {
-      "ref": "419793fb796b0e5c1ed11e018ad28475de0c3735"
+      "ref": "138ad74b9e8e6c08af7633964962835add4c91e2"
     }
   }
 }
