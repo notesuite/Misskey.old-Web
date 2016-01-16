@@ -1,15 +1,44 @@
 {
 	"common": {
-		"headerHome": "ホーム",
-		"headerMentions": "自分宛て",
-		"headerTalks": "トーク",
-		"headerAlbum": "アルバム",
-		"headerSearchPlaceholder": "検索",
-		"headerAccountProfilePage": "プロフィール",
-"attachFileFromPc": "PCからファイルを添付",
-"attachFileFromAlbum": "アルバムからファイルを添付"
+		"home": "ホーム",
+		"mentions": "自分宛て",
+		"talks": "トーク",
+		"album": "アルバム",
+		"search": "検索",
+		"header_profile_page": "プロフィール",
+		"status": "近況",
+		"poll": "投票",
+		"create_new_post": "新しい投稿を作成",
+		"attach_file_from_pc": "PCからファイルを添付",
+		"attach_file_from_album": "アルバムからファイルを添付",
+		"delete_all_notifications": "全ての通知を削除",
+		"keyboard_shortcuts": {
+			"or": "または",
+			"show_this_dialog": "このダイアログを表示する",
+			"_1": "投稿フォームを開いた状態で",
+			"open_post_form": "投稿フォームを開く",
+			"close_post_form": "投稿フォームを閉じる"
+		}
 	},
 	"pages": {
-
+		"i": {
+			"settings": {
+				"user_name": "名前",
+				"user_comment": "コメント",
+				"user_website_url": "ウェブサイトURL",
+				"user_location": "ロケーション",
+				"display_user_name_in_post": "投稿にユーザー名を表示する",
+				"display_user_screen_name_in_post": "投稿にユーザーIDを表示する",
+				"display_created_at_in_post": "投稿に投稿日時を表示する",
+				"display_actions_in_post": "投稿にアクションを表示する",
+				"confirmation_when_repost": "Repostするときに確認する",
+				"enable_url_preview_in_post": "投稿のURLプレビューを有効にする",
+				"thumbnailyze_attached_image_of_post": "投稿の添付画像を、そのままではなく圧縮されたものを表示する",
+				"customize_home": "ホームをカスタマイズ",
+				"enable_notification_sound_when_receiving_new_post": "新しい投稿がされたときに通知音を鳴らす",
+				"read_timeline_automatically": "自動的にタイムラインを「もっと読み込む」",
+				"enable_sushi": "寿司を有効にする(環境依存)"
+			}
+		}
 	}
 }

@@ -1,15 +1,44 @@
 {
 	"common": {
-		"headerHome": "Home",
-		"headerMentions": "Mentions",
-		"headerTalks": "Talks",
-		"headerAlbum": "Album",
-		"headerSearchPlaceholder": "Search",
-		"headerAccountProfilePage": "Profile",
-"attachFileFromPc": "Attach a file from PC",
-"attachFileFromAlbum": "Attach a file from album"
+		"home": "Home",
+		"mentions": "Mentions",
+		"talks": "Talks",
+		"album": "Album",
+		"searc": "Search",
+		"header_profile_page": "Profile",
+		"status": "Status",
+		"poll": "Poll",
+		"create_new_post": "Create new post",
+		"attach_file_from_pc": "Attach a file from PC",
+		"attach_file_from_album": "Attach a file from album",
+		"delete_all_notifications": "Delete all notifications",
+		"keyboard_shortcuts": {
+			"or": "or",
+			"show_this_dialog": "Show this dialog",
+			"_1": "投稿フォームを開いた状態で",
+			"open_post_form": "Open the post form",
+			"close_post_form": "Close the post form"
+		}
 	},
 	"pages": {
-
+		"i": {
+			"settings": {
+				"user_name": "Name",
+				"user_comment": "Comment",
+				"user_website_url": "Website URL",
+				"user_location": "Location",
+				"display_user_name_in_post": "Display a name of user in a post",
+				"display_user_screen_name_in_post": "Display a id of user in a post",
+				"display_created_at_in_post": "Display created at in a post",
+				"display_actions_in_post": "Display an actions in a post",
+				"confirmation_when_repost": "Confirmation when Repost",
+				"enable_url_preview_in_post": "Enable URL preview in a post",
+				"thumbnailyze_attached_image_of_post": "Show the attached image of a post in the thumbnail instead of raw",
+				"customize_home": "Customize home",
+				"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receiving a new post",
+				"read_timeline_automatically": "Read the timeline automatically",
+				"enable_sushi": "Enable Sushi (Environment-dependent)"
+			}
+		}
 	}
 }

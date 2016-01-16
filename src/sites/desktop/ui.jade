@@ -10,9 +10,9 @@ block body
 				button.close-button(type='button')
 					i.fa.fa-times
 				ul#misskey-post-form-tabs
-					li(data-ref='status', title='近況')
+					li(data-ref='status', title=locale.common.status)
 						i.fa.fa-comment-o
-					li(data-ref='poll', title='投票')
+					li(data-ref='poll', title=locale.common.poll)
 						i.fa.fa-pie-chart
 				div#misskey-post-form-tab-pages
 					form#misskey-post-form-status-tab-page(data-name='status')
@@ -20,9 +20,9 @@ block body
 						ol.photos
 						ol.uploads
 						div.attach-actions
-							button.attach-from-local(type='button', title='PCからファイルを添付', tabindex='3')
+							button.attach-from-local(type='button', title=locale.common.attach_file_from_pc, tabindex='3')
 								i.fa.fa-upload
-							button.attach-from-album(type='button', title='アルバムからファイルを添付', tabindex='4')
+							button.attach-from-album(type='button', title=locale.common.attach_file_from_album, tabindex='4')
 								i.fa.fa-folder-open
 						input(name='file', type='file', accept='image/*', multiple, tabindex='-1')
 						button.submit(type='submit', tabindex='2')
@@ -84,19 +84,19 @@ block body
 										if login
 											li.home(class= pagePath == '/' ? 'active' : ''): a(href= config.url)
 												i.fa.fa-home
-												p= locale.common.headerHome
+												p= locale.common.home
 											li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a(href= config.url + '/i/mentions')
 												i.fa.fa-at
-												p= locale.common.headerMentions
+												p= locale.common.mentions
 											li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a(href= config.talkUrl)
 												i.fa.fa-comments
-												p= locale.common.headerTalks
+												p= locale.common.talks
 											li.album(class= pagePath == '/i/album' ? 'active' : ''): a(href= config.url + '/i/album')
 												i.fa.fa-cloud
-												p= locale.common.headerAlbum
+												p= locale.common.album
 						div.right
 							form.search(action= config.searchUrl, method='get', role='search')
-								input(type='search', name='q', placeholder!='&#xf002; Search')
+								input(type='search', name='q', placeholder!='&#xf002; ' + locale.common.search)
 								div.result
 							if login
 								div.account
@@ -110,7 +110,7 @@ block body
 											ul
 												li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
 													i.fa.fa-user
-													| Profile
+													=locale.common.header_profile_page
 													i.fa.fa-angle-right
 												li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
 													i.fa.fa-star
@@ -139,11 +139,11 @@ block body
 													option(value='follow') 被フォロー
 													option(value='like') Like
 													option(value='repost') Repost
-												button.delete-all-button(title='全ての通知を削除')
+												button.delete-all-button(title=locale.common.delete_all_notifications)
 													i.fa.fa-trash-o
 											div.main
 								div.post
-									button#misskey-post-button(title='新しい投稿を作成')
+									button#misskey-post-button(title=locale.common.createNewPost)
 										i.fa.fa-pencil-square-o
 							div.time
 								div.dropdown(data-active='false')
@@ -162,19 +162,19 @@ block body
 		dl
 			dt
 				kbd: kbd ?
-				| または
+				=locale.common.keyboard_shortcuts.or
 				kbd: kbd h
-			dd このダイアログを表示する
+			dd=locale.common.keyboard_shortcuts.show_this_dialog
 
 			dt
 				kbd: kbd p
-				| または
+				=locale.common.keyboard_shortcuts.or
 				kbd: kbd n
-			dd 投稿フォームを開く
+			dd=locale.common.keyboard_shortcuts.open_post_form
 
 			dt
-				| 投稿フォームを開いた状態で
+				=locale.common.keyboard_shortcuts._1
 				kbd: kbd Esc
-			dd 投稿フォームを閉じる
+			dd=locale.common.keyboard_shortcuts.close_post_form
 
 			block shortcuts
