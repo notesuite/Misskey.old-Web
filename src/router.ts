@@ -43,8 +43,11 @@ export default function router(app: express.Express): void {
 
 		const ua: string = uatype(req.headers['user-agent']);
 		const noui: boolean = req.query.hasOwnProperty('noui');
+		const acceptLanguageStr: string = req.headers['accept-language'];
 
-		const language = acceptLanguage.get(req.headers['accept-language']);
+		const language = acceptLanguageStr !== undefined && acceptLanguageStr !== null
+			? acceptLanguage.get(acceptLanguageStr)
+			: 'en-US';
 
 		res.locals.config = config.publicConfig;
 		res.locals.pagePath = req.path;
