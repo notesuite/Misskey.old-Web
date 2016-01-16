@@ -81,7 +81,7 @@
 						"display_user_screen_name_in_post": "Show the user's ID in the posts",
 						"display_created_at_in_post": "Show the created time in the posts",
 						"display_actions_in_post": "Show the actions in the posts",
-						"confirmation_when_repost": "Confirm when I repost",
+						"confirmation_when_repost": "Show a confirm dialog when I repost",
 						"enable_url_preview_in_post": "Enable URL preview in a post",
 						"thumbnailyze_attached_image_of_post": "Show the thumbnail image instead of the raw image",
 						"customize_home": "Customize your home",
