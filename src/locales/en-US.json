@@ -42,7 +42,7 @@
 					},
 					"re_confirmation_dialog": {
 						"title": "Really?",
-						"text": "There are some unread nofications. Are you sure you want delete all notifications?",
+						"text": "There are some unread nofications. Are you sure you want to delete all notifications?",
 						"ok": "<b>Shut up</b> and do it now",
 						"cancel": "Cancel"
 					}
@@ -79,13 +79,13 @@
 						"update": "Update",
 						"display_user_name_in_post": "Show the user's name in the posts",
 						"display_user_screen_name_in_post": "Show the user's ID in the posts",
-						"display_created_at_in_post": "Show when created the post in the posts",
+						"display_created_at_in_post": "Show the created time in the posts",
 						"display_actions_in_post": "Show the actions in the posts",
 						"confirmation_when_repost": "Confirm when I repost",
 						"enable_url_preview_in_post": "Enable URL preview in a post",
-						"thumbnailyze_attached_image_of_post": "Show the thumbnail image insted of the raw image",
+						"thumbnailyze_attached_image_of_post": "Show the thumbnail image instead of the raw image",
 						"customize_home": "Customize your home",
-						"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receiving a new post",
+						"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receive a new post",
 						"read_timeline_automatically": "Read the timeline more automatically",
 						"enable_sushi": "Enable Sushi (Environment-dependent)"
 					}
