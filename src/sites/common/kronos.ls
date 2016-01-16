@@ -6,14 +6,14 @@ function update-relative-times
 		date = new Date($ @ .attr \datetime)
 		ago = ~~((now - date) / 1000)
 		time-text = switch
-			| ago >= 31536000s => ~~(ago / 31536000s) + '年前'
-			| ago >= 2592000s  => ~~(ago / 2592000s) + 'ヶ月前'
-			| ago >= 604800s   => ~~(ago / 604800s) + '週間前'
-			| ago >= 86400s    => ~~(ago / 86400s) + '日前'
-			| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
-			| ago >= 60s       => ~~(ago / 60s) + '分前'
-			| ago >= 10s       => ~~(ago % 60s) + '秒前'
-			| ago <  10s       => 'たった今'
+			| ago >= 31536000s => LOCALE.common.times.years_ago.replace '{n}' ~~(ago / 31536000s)
+			| ago >= 2592000s  => LOCALE.common.times.months_ago.replace '{n}' ~~(ago / 2592000s)
+			| ago >= 604800s   => LOCALE.common.times.weeks_ago.replace '{n}' ~~(ago / 604800s)
+			| ago >= 86400s    => LOCALE.common.times.days_ago.replace '{n}' ~~(ago / 86400s)
+			| ago >= 3600s     => LOCALE.common.times.hours_ago.replace '{n}' ~~(ago / 3600s)
+			| ago >= 60s       => LOCALE.common.times.minutes_ago.replace '{n}' ~~(ago / 60s)
+			| ago >= 10s       => LOCALE.common.times.seconds_ago.replace '{n}' ~~(ago % 60s)
+			| ago <  10s       => LOCALE.common.times.just_now
 			| _ => ''
 		$ @ .text time-text
 

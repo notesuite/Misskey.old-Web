@@ -1,4 +1,4 @@
-div.misskey-home-widget#widget-my-status(data-widget-id='my-status', data-widget-name='ステータス')
+div.misskey-home-widget#widget-my-status(data-widget-id='my-status', data-widget-name=locale.sites.desktop.pages.home.my_status_widget.name)
 	header
 		a.avatar-anchor(href='/' + me.screenName)
 			img.avatar(src=me.avatarThumbnailUrl, alt='avatar')
@@ -10,6 +10,6 @@ div.misskey-home-widget#widget-my-status(data-widget-id='my-status', data-widget
 				td: a(href='/' + me.screenName + '/following')= me.followingCount
 				td: a(href='/' + me.screenName + '/followers')= me.followersCount
 			tr
-				th Posts
-				th Following
-				th Followers
+				th=locale.sites.desktop.pages.home.my_status_widget.posts
+				th=locale.sites.desktop.pages.home.my_status_widget.following
+				th=locale.sites.desktop.pages.home.my_status_widget.followers

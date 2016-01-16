@@ -185,6 +185,7 @@ function init-widgets
 					users
 					config: CONFIG
 					me: ME
+					locale: LOCALE
 				}
 				$users.append-to $ '#widget-recommendation-users'
 				$users.each ->

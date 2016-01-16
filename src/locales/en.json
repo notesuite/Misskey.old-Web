@@ -6,7 +6,17 @@
 		"album": "Album",
 		"sign_in": "Sign in",
 		"sign_out": "Sign out",
-		"verified": "Verified"
+		"verified": "Verified",
+		"times": {
+			"just_now": "just now",
+			"seconds_ago": "{n} seconds ago",
+			"minutes_ago": "{n} minutes ago",
+			"hours_ago": "{n} hours ago",
+			"days_ago": "{n} days ago",
+			"weeks_ago": "{n} weeks ago",
+			"months_ago": "{n} months ago",
+			"years_ago": "{n} years ago"
+		}
 	},
 	"sites": {
 		"desktop": {
@@ -64,6 +74,24 @@
 				}
 			},
 			"pages": {
+				"home": {
+					"my_status_widget": {
+						"name": "Status",
+						"posts": "Posts",
+						"following": "Following",
+						"followers": "Followers"
+					},
+					"recommendation_users_widget": {
+						"name": "Recommendation users",
+						"no_users": "No recommendation users",
+						"follow": "Follow"
+					},
+					"donate_widget": {
+						"name": "寄付のお願い",
+						"title": "寄付のお願い",
+						"text": "Misskeyの運営にはドメイン、サーバー等のコストが掛かります。 Misskeyは広告を掲載したりしないため、 収入を皆様からの寄付に頼っています。 もしご興味があれば、<a href='/syuilo'>@syuilo</a>までご連絡ください。ご協力ありがとうございます。"
+					}
+				},
 				"i": {
 					"settings": {
 						"page_title": "Settings",
