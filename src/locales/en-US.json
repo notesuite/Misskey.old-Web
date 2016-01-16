@@ -11,9 +11,9 @@
 	"sites": {
 		"desktop": {
 			"common": {
-				"connecting_stream": "ストリームに接続しています...",
-				"connected_stream": "ストリームに接続しました",
-				"reconnecting_stream": "ストリームから切断されました 再接続中...",
+				"connecting_stream": "Connecting to Stream...",
+				"connected_stream": "Connected",
+				"reconnecting_stream": "you've disconnect from stream. reconnecting...",
 				"header": {
 					"search_placeholder": "Search",
 					"profile_page": "Profile",
@@ -23,8 +23,8 @@
 					"delete_all_notifications": "Delete all notifications"
 				},
 				"ad_block_detected": {
-					"title": "広告ブロッカーが有効です",
-					"text": "広告ブロッカー(もしくはリソースの読み込みを妨げる何らかの機能)がはたらいています。<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。Misskeyを快適にご利用いただくためには、広告ブロッカーを無効にしてください。",
+					"title": "you're using Ad blocker",
+					"text": "adblocker(or something like interfere with the reading resources) is working. <strong>Misskey don't ads.</strong>but some function may don't work when your adblocker is enable.(e.x can't follow user). please make sure your adblocker is disabled if you want use misskey nice.",
 					"ok": "Okay"
 				},
 				"post_form": {
@@ -36,21 +36,21 @@
 				"delete_all_notifications_flow": {
 					"confirmation_dialog": {
 						"title": "Are you sure?",
-						"text": "すべての通知を削除しますか？",
+						"text": "Delete all nofications？",
 						"ok": "Yes",
 						"cancel": "Cancel"
 					},
 					"re_confirmation_dialog": {
 						"title": "Really?",
-						"text": "お調べしましたところ、未読の通知が在るようです。それでもすべて削除しますか？",
-						"ok": "<b>はい</b>っつってんだろ",
+						"text": "there's unread nofications. are you sure you want delete all?",
+						"ok": "i said <b>OK</b>",
 						"cancel": "Cancel"
 					}
 				},
 				"post": {
 					"send_reply": "Reply",
-					"reply_form_textarea_placeholder": "この投稿に返信...",
-					"repost_form_title": "この投稿をRepostしますか？",
+					"reply_form_textarea_placeholder": "Reply to status...",
+					"repost_form_title": "Repost This Status?",
 					"attach_file_from_pc": "Attach a file from PC",
 					"attach_file_from_album": "Attach a file from album"
 				},
@@ -58,7 +58,7 @@
 					"title": "Keyboard shortcuts",
 					"or": "or",
 					"show_this_dialog": "Show this dialog",
-					"_1": "投稿フォームを開いた状態で",
+					"_1": "while opening post form",
 					"open_post_form": "Open the post form",
 					"close_post_form": "Close the post form"
 				}
