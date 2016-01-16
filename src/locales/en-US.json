@@ -11,46 +11,46 @@
 	"sites": {
 		"desktop": {
 			"common": {
-				"connecting_stream": "Connecting to Stream...",
+				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
-				"reconnecting_stream": "you've disconnect from stream. reconnecting...",
+				"reconnecting_stream": "Disconnected from stream. Reconnecting...",
 				"header": {
 					"search_placeholder": "Search",
 					"profile_page": "Profile",
 					"settings": "Settings",
-					"create_new_post_button_tooltip": "Create new post",
+					"create_new_post_button_tooltip": "Create a new post",
 					"empty_notifications": "No notifications",
 					"delete_all_notifications": "Delete all notifications"
 				},
 				"ad_block_detected": {
-					"title": "you're using Ad blocker",
-					"text": "adblocker(or something like interfere with the reading resources) is working. <strong>Misskey don't ads.</strong> but some function may don't work when your adblocker is enable.(e.x can't follow user). please make sure your adblocker is disabled if you want use misskey nice.",
+					"title": "Adblock Enabled",
+					"text": "Adblock(or anything that prevents loading the resources) is working. <strong>Misskey doesn't show ads</strong>, but you may not use some of the functions(following users, etc.). To use Misskey pleasantly, disable Adblock.",
 					"ok": "Okay"
 				},
 				"post_form": {
 					"status_tab": "Status",
-					"poll_tab": "Poll",
+					"poll_tab": "Vote",
 					"attach_file_from_pc": "Attach a file from PC",
 					"attach_file_from_album": "Attach a file from album"
 				},
 				"delete_all_notifications_flow": {
 					"confirmation_dialog": {
 						"title": "Are you sure?",
-						"text": "Delete all nofications？",
+						"text": "Do you really want to delete all nofications?",
 						"ok": "Yes",
 						"cancel": "Cancel"
 					},
 					"re_confirmation_dialog": {
 						"title": "Really?",
-						"text": "there's unread nofications. are you sure you want delete all?",
-						"ok": "i said <b>OK</b>",
+						"text": "There are some unread nofications. Are you sure you want delete all notifications?",
+						"ok": "<b>Shut up</b> and do it now",
 						"cancel": "Cancel"
 					}
 				},
 				"post": {
 					"send_reply": "Reply",
 					"reply_form_textarea_placeholder": "Reply to status...",
-					"repost_form_title": "Repost This Status?",
+					"repost_form_title": "Do you want to repost this status?",
 					"attach_file_from_pc": "Attach a file from PC",
 					"attach_file_from_album": "Attach a file from album"
 				},
@@ -58,7 +58,7 @@
 					"title": "Keyboard shortcuts",
 					"or": "or",
 					"show_this_dialog": "Show this dialog",
-					"while_opening_post_form": "while opening post form",
+					"while_opening_post_form": "while showing post form",
 					"open_post_form": "Open the post form",
 					"close_post_form": "Close the post form"
 				}
@@ -77,16 +77,16 @@
 						"user_website_url": "Website URL",
 						"user_location": "Location",
 						"update": "Update",
-						"display_user_name_in_post": "Display a name of user in a post",
-						"display_user_screen_name_in_post": "Display a id of user in a post",
-						"display_created_at_in_post": "Display created at in a post",
-						"display_actions_in_post": "Display an actions in a post",
-						"confirmation_when_repost": "Confirmation when Repost",
+						"display_user_name_in_post": "Show the user's name in the posts",
+						"display_user_screen_name_in_post": "Show the user's ID in the posts",
+						"display_created_at_in_post": "Show when created the post in the posts",
+						"display_actions_in_post": "Show the actions in the posts",
+						"confirmation_when_repost": "Confirm when I repost",
 						"enable_url_preview_in_post": "Enable URL preview in a post",
-						"thumbnailyze_attached_image_of_post": "Show the attached image of a post in the thumbnail instead of raw",
-						"customize_home": "Customize home",
+						"thumbnailyze_attached_image_of_post": "Show the thumbnail image insted of the raw image",
+						"customize_home": "Customize your home",
 						"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receiving a new post",
-						"read_timeline_automatically": "Read the timeline automatically",
+						"read_timeline_automatically": "Read the timeline more automatically",
 						"enable_sushi": "Enable Sushi (Environment-dependent)"
 					}
 				}
