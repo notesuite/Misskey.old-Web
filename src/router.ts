@@ -2,7 +2,7 @@ import * as cluster from 'cluster';
 import * as express from 'express';
 import * as path from 'path';
 const acceptLanguage: any = require('accept-language');
-acceptLanguage.languages(['en-US', 'ja-JP']);
+acceptLanguage.languages(['en', 'ja']);
 
 import { User } from './models/user';
 import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
@@ -47,7 +47,7 @@ export default function router(app: express.Express): void {
 
 		const language = acceptLanguageStr !== undefined && acceptLanguageStr !== null
 			? acceptLanguage.get(acceptLanguageStr)
-			: 'en-US';
+			: 'en';
 
 		res.locals.config = config.publicConfig;
 		res.locals.pagePath = req.path;
