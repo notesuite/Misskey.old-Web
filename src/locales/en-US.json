@@ -24,7 +24,7 @@
 				},
 				"ad_block_detected": {
 					"title": "you're using Ad blocker",
-					"text": "adblocker(or something like interfere with the reading resources) is working. <strong>Misskey don't ads.</strong>but some function may don't work when your adblocker is enable.(e.x can't follow user). please make sure your adblocker is disabled if you want use misskey nice.",
+					"text": "adblocker(or something like interfere with the reading resources) is working. <strong>Misskey don't ads.</strong> but some function may don't work when your adblocker is enable.(e.x can't follow user). please make sure your adblocker is disabled if you want use misskey nice.",
 					"ok": "Okay"
 				},
 				"post_form": {
