@@ -1,7 +1,7 @@
 extends ../../../ui
 
 block title
-	=locale.pages.i.settings.page_title
+	=locale.sites.desktop.pages.i.settings.page_title
 
 block content
 	main(role='main')
@@ -9,10 +9,10 @@ block content
 			ul
 				li(data-ref='profile')
 					i.fa.fa-user
-					=locale.pages.i.settings.profile
+					=locale.sites.desktop.pages.i.settings.profile
 				li(data-ref='web')
 					i.fa.fa-desktop
-					=locale.pages.i.settings.web
+					=locale.sites.desktop.pages.i.settings.web
 				li(data-ref='application')
 					i.fa.fa-puzzle-piece
 					| Applications
@@ -30,36 +30,36 @@ block content
 				label.avatar
 					h2.title
 						i.fa.fa-camera-retro
-						=locale.pages.i.settings.user_avatar
+						=locale.sites.desktop.pages.i.settings.user_avatar
 					img.avatar(src=me.avatarUrl, alt='avatar')
 					button.select-from-local.ui-waves-effect(type='button')
 						i.fa.fa-upload
-						=locale.common.attach_file_from_pc
+						=locale.sites.desktop.pages.i.settings.select_image_from_pc
 					button.select-from-album.ui-waves-effect(type='button')
 						i.fa.fa-folder-open
-						=locale.common.attach_file_from_album
+						=locale.sites.desktop.pages.i.settings.select_image_from_album
 				label
 					h2.title
 						i.fa.fa-user
-						=locale.pages.i.settings.user_name
+						=locale.sites.desktop.pages.i.settings.user_name
 					div.content
 						input.profile.name(name='name', type='text', value=me.name, placeholder=me.name, required)
 				label
 					h2.title
 						i.fa.fa-comment
-						=locale.pages.i.settings.user_comment
+						=locale.sites.desktop.pages.i.settings.user_comment
 					div.content
 						input.profile.comment(name='comment', type='text', value=me.comment, placeholder=me.comment)
 				label
 					h2.title
 						i.fa.fa-globe
-						=locale.pages.i.settings.user_website_url
+						=locale.sites.desktop.pages.i.settings.user_website_url
 					div.content
 						input.profile.url(name='url', type='url', value=me.url, placeholder=me.url)
 				label
 					h2.title
 						i.fa.fa-map-marker
-						=locale.pages.i.settings.user_location
+						=locale.sites.desktop.pages.i.settings.user_location
 					div.content
 						input.profile.location(name='location', type='text', value=me.location, placeholder=me.location)
 				button.profile.submit-button(type='submit')
@@ -71,41 +71,41 @@ block content
 					h1 General
 					label.checkbox
 						input(type='checkbox', name='display-user-name-in-post', checked= userSettings.displayUserNameInPost)
-						p=locale.pages.i.settings.display_user_name_in_post
+						p=locale.sites.desktop.pages.i.settings.display_user_name_in_post
 					label.checkbox
 						input(type='checkbox', name='display-user-screen-name-in-post', checked= userSettings.displayUserScreenNameInPost)
-						p=locale.pages.i.settings.display_user_screen_name_in_post
+						p=locale.sites.desktop.pages.i.settings.display_user_screen_name_in_post
 					label.checkbox
 						input(type='checkbox', name='display-created-at-in-post', checked= userSettings.displayCreatedAtInPost)
-						p=locale.pages.i.settings.display_created_at_in_post
+						p=locale.sites.desktop.pages.i.settings.display_created_at_in_post
 					label.checkbox
 						input(type='checkbox', name='display-actions-in-post', checked= userSettings.displayActionsInPost)
-						p=locale.pages.i.settings.display_actions_in_post
+						p=locale.sites.desktop.pages.i.settings.display_actions_in_post
 					label.checkbox
 						input(type='checkbox', name='confirmation-when-repost', checked= userSettings.confirmationWhenRepost)
-						p=locale.pages.i.settings.confirmation_when_repost
+						p=locale.sites.desktop.pages.i.settings.confirmation_when_repost
 					label.checkbox
 						input(type='checkbox', name='enable-url-preview-in-post', checked= userSettings.enableUrlPreviewInPost)
-						p=locale.pages.i.settings.enable_url_preview_in_post
+						p=locale.sites.desktop.pages.i.settings.enable_url_preview_in_post
 					label.checkbox
 						input(type='checkbox', name='thumbnailyze-attached-image-of-post', checked= userSettings.thumbnailyzeAttachedImageOfPost)
-						p=locale.pages.i.settings.thumbnailyze_attached_image_of_post
+						p=locale.sites.desktop.pages.i.settings.thumbnailyze_attached_image_of_post
 				section
 					h1 Home
 					a.home-customize(href='/i/home-customize')
-						=locale.pages.i.settings.customize_home
+						=locale.sites.desktop.pages.i.settings.customize_home
 						i.fa.fa-cog
 					label.checkbox
 						input(type='checkbox', name='enable-notification-sound-when-receiving-new-post', checked= userSettings.enableNotificationSoundWhenReceivingNewPost)
-						p=locale.pages.i.settings.enable_notification_sound_when_receiving_new_post
+						p=locale.sites.desktop.pages.i.settings.enable_notification_sound_when_receiving_new_post
 					label.checkbox
 						input(type='checkbox', name='read-timeline-automatically', checked= userSettings.readTimelineAutomatically)
-						p=locale.pages.i.settings.read_timeline_automatically
+						p=locale.sites.desktop.pages.i.settings.read_timeline_automatically
 				section
 					h1 Advanced
 					label.checkbox
 						input(type='checkbox', name='enable-sushi', checked= userSettings.enableSushi)
-						p=locale.pages.i.settings.enable_sushi
+						p=locale.sites.desktop.pages.i.settings.enable_sushi
 
 			div.application(data-name='application')
 				if apps != null && apps.length > 0

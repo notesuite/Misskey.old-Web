@@ -44,7 +44,7 @@ export default function router(app: express.Express): void {
 		const ua: string = uatype(req.headers['user-agent']);
 		const noui: boolean = req.query.hasOwnProperty('noui');
 
-		const language = acceptLanguage.parse(req.headers['accept-language'])[0].language;
+		const language = acceptLanguage.get(req.headers['accept-language']);
 
 		res.locals.config = config.publicConfig;
 		res.locals.pagePath = req.path;
@@ -52,6 +52,7 @@ export default function router(app: express.Express): void {
 		res.locals.login = res.locals.isLogin;
 		res.locals.ua = ua;
 		res.locals.workerId = workerId;
+		res.locals.lang = language;
 
 		if (res.locals.isLogin) {
 			const userId: string = (<any>req).session.userId;
@@ -61,8 +62,7 @@ export default function router(app: express.Express): void {
 				}, (err: any, settings: IUserSettings) => {
 					req.user = Object.assign({}, user, {_settings: settings.toObject()});
 					res.locals.me = user;
-					res.locals.lang = user.lang;
-					res.locals.locale = require(`${__dirname}/locales/${user.lang}.json`);
+					res.locals.locale = require(`${__dirname}/locales/${language}.json`);
 					res.locals.userSettings = settings.toObject();
 					next();
 				});
@@ -70,7 +70,6 @@ export default function router(app: express.Express): void {
 		} else {
 			req.user = null;
 			res.locals.me = null;
-			res.locals.lang = language;
 			res.locals.locale = require(`${__dirname}/locales/${language}.json`);
 			res.locals.userSettings = guestUserSettings;
 			next();
