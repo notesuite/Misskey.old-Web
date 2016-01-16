@@ -174,6 +174,7 @@ class Post
 			config: CONFIG
 			me: ME
 			user-settings: USER_SETTINGS
+			locale: LOCALE
 		}
 
 	check-liked: ->
