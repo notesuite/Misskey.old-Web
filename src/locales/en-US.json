@@ -73,6 +73,7 @@
 						"user_comment": "Comment",
 						"user_website_url": "Website URL",
 						"user_location": "Location",
+						"update": "Update",
 						"display_user_name_in_post": "Display a name of user in a post",
 						"display_user_screen_name_in_post": "Display a id of user in a post",
 						"display_created_at_in_post": "Display created at in a post",

@@ -73,6 +73,7 @@
 						"user_comment": "コメント",
 						"user_website_url": "ウェブサイトURL",
 						"user_location": "ロケーション",
+						"update": "更新",
 						"display_user_name_in_post": "投稿にユーザー名を表示する",
 						"display_user_screen_name_in_post": "投稿にユーザーIDを表示する",
 						"display_created_at_in_post": "投稿に投稿日時を表示する",
