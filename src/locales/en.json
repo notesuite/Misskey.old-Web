@@ -4,20 +4,20 @@
 		"mentions": "Mentions",
 		"talks": "Talks",
 		"album": "Album",
-		"search": "Search",
-		"settings": "Settings",
 		"sign_in": "Sign in",
 		"sign_out": "Sign out",
-		"verified": "Verified",
-		"empty_notifications": "No notifications",
-		"delete_all_notifications": "Delete all notifications"
+		"verified": "Verified"
 	},
 	"sites": {
 		"desktop": {
 			"common": {
 				"header": {
+					"search_placeholder": "Search",
 					"profile_page": "Profile",
-					"create_new_post_button_tooltip": "Create new post"
+					"settings": "Settings",
+					"create_new_post_button_tooltip": "Create new post",
+					"empty_notifications": "No notifications",
+					"delete_all_notifications": "Delete all notifications"
 				},
 				"ad_block_detected": {
 					"title": "広告ブロッカーが有効です",

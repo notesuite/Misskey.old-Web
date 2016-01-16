@@ -4,20 +4,20 @@
 		"mentions": "自分宛て",
 		"talks": "トーク",
 		"album": "アルバム",
-		"search": "検索",
-		"settings": "設定",
 		"sign_in": "サインイン",
 		"sign_out": "サインアウト",
-		"verified": "認証済み",
-		"empty_notifications": "通知はありません",
-		"delete_all_notifications": "全ての通知を削除"
+		"verified": "認証済み"
 	},
 	"sites": {
 		"desktop": {
 			"common": {
 				"header": {
+					"search_placeholder": "検索",
 					"profile_page": "プロフィール",
-					"create_new_post_button_tooltip": "新しい投稿を作成"
+					"settings": "設定",
+					"create_new_post_button_tooltip": "新しい投稿を作成",
+					"empty_notifications": "通知はありません",
+					"delete_all_notifications": "全ての通知を削除"
 				},
 				"ad_block_detected": {
 					"title": "広告ブロッカーが有効です",
