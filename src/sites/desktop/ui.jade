@@ -110,7 +110,7 @@ block body
 											ul
 												li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
 													i.fa.fa-user
-													=locale.common.header_profile_page
+													=locale.sites.desktop.common.header.profile_page
 													i.fa.fa-angle-right
 												li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
 													i.fa.fa-star
@@ -143,7 +143,7 @@ block body
 													i.fa.fa-trash-o
 											div.main
 								div.post
-									button#misskey-post-button(title=locale.common.createNewPost)
+									button#misskey-post-button(title=locale.sites.desktop.common.header.create_new_post_button_tooltip)
 										i.fa.fa-pencil-square-o
 							div.time
 								div.dropdown(data-active='false')
@@ -158,23 +158,23 @@ block body
 	article#misskey-keyboard-shortcuts
 		h1
 			i.fa.fa-keyboard-o
-			=locale.common.keyboard_shortcuts.title
+			=locale.sites.desktop.common.keyboard_shortcuts.title
 		dl
 			dt
 				kbd: kbd ?
-				=locale.common.keyboard_shortcuts.or
+				=locale.sites.desktop.common.keyboard_shortcuts.or
 				kbd: kbd h
-			dd=locale.common.keyboard_shortcuts.show_this_dialog
+			dd=locale.sites.desktop.common.keyboard_shortcuts.show_this_dialog
 
 			dt
 				kbd: kbd p
-				=locale.common.keyboard_shortcuts.or
+				=locale.sites.desktop.common.keyboard_shortcuts.or
 				kbd: kbd n
-			dd=locale.common.keyboard_shortcuts.open_post_form
+			dd=locale.sites.desktop.common.keyboard_shortcuts.open_post_form
 
 			dt
-				=locale.common.keyboard_shortcuts._1
+				=locale.sites.desktop.common.keyboard_shortcuts._1
 				kbd: kbd Esc
-			dd=locale.common.keyboard_shortcuts.close_post_form
+			dd=locale.sites.desktop.common.keyboard_shortcuts.close_post_form
 
 			block shortcuts
