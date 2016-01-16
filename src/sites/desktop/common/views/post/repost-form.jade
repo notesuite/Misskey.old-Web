@@ -6,7 +6,7 @@ mixin repost-form(post)
 		form.form
 			h2
 				i.fa.fa-retweet
-				=locale.common.post_repost_form_title
+				=locale.sites.desktop.common.post.repost_form_title
 			article(class=post.type)
 				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
 					img.avatar(src=post.user.avatarThumbnailUrl, alt='avatar')

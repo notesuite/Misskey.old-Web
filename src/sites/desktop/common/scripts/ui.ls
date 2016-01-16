@@ -24,12 +24,10 @@ else
 	fuck-ad-block.on-detected ad-block-detected
 
 function ad-block-detected
-	$modal-ok = $ '<button>了解</button>'
+	$modal-ok = $ "<button>#{LOCALE.sites.desktop.common.ad_block_detected.ok}</button>"
 	dialog-close = show-modal-dialog do
-		$ '<p><i class="fa fa-exclamation-triangle"></i>広告ブロッカーが有効です</p>'
-		'広告ブロッカー(もしくはリソースの読み込みを妨げる何らかの機能)がはたらいています。
-		<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。
-		Misskeyを快適にご利用いただくためには、広告ブロッカーを無効にしてください。'
+		$ "<p><i class=\"fa fa-exclamation-triangle\"></i>#{LOCALE.sites.desktop.common.ad_block_detected.title}</p>"
+		LOCALE.sites.desktop.common.ad_block_detected.text
 		[$modal-ok]
 	$modal-ok.click -> dialog-close!
 
@@ -146,7 +144,7 @@ function init-header
 		ui-window do
 			window-id
 			$content
-			"<i class=\"fa fa-comments\"></i>トーク"
+			"<i class=\"fa fa-comments\"></i>#{LOCALE.common.talks}"
 			500px
 			560px
 			yes
@@ -215,7 +213,7 @@ function init-header
 					$list.append $notifications
 					$ '#misskey-header .notifications .main' .append $list
 				else
-					$info = $ '<p class="notifications-empty">通知はありません</p>'
+					$info = $ "<p class=\"notifications-empty\">#{LOCALE.common.empty_notifications}</p>"
 					$info.append-to $notifications-container
 			.fail (data) ->
 				$ '#misskey-header .notifications .loading' .remove!
@@ -255,11 +253,11 @@ function init-header
 function notification-delete-all
 	$i = $ '#misskey-header .notifications .delete-all-button > i'
 		..attr \class 'fa fa-spinner fa-spin'
-	$modal-ok = $ '<button>はい</button>'
-	$modal-cancel = $ '<button>キャンセル</button>'
+	$modal-ok = $ "<button>#{LOCALE.sites.desktop.common.delete_all_notifications_flow.confirmation_dialog.ok}</button>"
+	$modal-cancel = $ "<button>#{LOCALE.sites.desktop.common.delete_all_notifications_flow.confirmation_dialog.cancel}</button>"
 	dialog-close = show-modal-dialog do
-		$ '<p><i class="fa fa-exclamation-triangle"></i>Are you sure?</p>'
-		'すべての通知を削除しますか？'
+		$ "<p><i class=\"fa fa-exclamation-triangle\"></i>#{LOCALE.sites.desktop.common.delete_all_notifications_flow.confirmation_dialog.title}</p>"
+		LOCALE.sites.desktop.common.delete_all_notifications_flow.confirmation_dialog.text
 		[$modal-cancel, $modal-ok]
 		no
 	$modal-cancel.click ->
@@ -270,11 +268,11 @@ function notification-delete-all
 		$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
 		.done (count) ->
 			if count != 0
-				$modal-ok = $ '<button><b>はい</b>っつってんだろ</button>'
-				$modal-cancel = $ '<button>やっぱり削除は辞める</button>'
+				$modal-ok = $ "<button>#{LOCALE.sites.desktop.common.delete_all_notifications_flow.re_confirmation_dialog.ok}</button>"
+				$modal-cancel = $ "<button>#{LOCALE.sites.desktop.common.delete_all_notifications_flow.re_confirmation_dialog.cancel}</button>"
 				dialog-close = show-modal-dialog do
-					$ '<p><i class="fa fa-exclamation-triangle"></i>Really?</p>'
-					'お調べしましたところ、未読の通知が在るようです。それでもすべて削除しますか？'
+					$ "<p><i class=\"fa fa-exclamation-triangle\"></i>#{LOCALE.sites.desktop.common.delete_all_notifications_flow.re_confirmation_dialog.title}</p>"
+					LOCALE.sites.desktop.common.delete_all_notifications_flow.re_confirmation_dialog.text
 					[$modal-cancel, $modal-ok]
 					no
 				$modal-cancel.click ->

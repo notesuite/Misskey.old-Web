@@ -8,51 +8,82 @@
 		"settings": "設定",
 		"sign_in": "サインイン",
 		"sign_out": "サインアウト",
-		"header_profile_page": "プロフィール",
-		"status": "近況",
-		"poll": "投票",
-		"repost": "Repost",
 		"verified": "認証済み",
-		"post_send_reply": "返信",
-		"post_reply_form_textarea_placeholder": "この投稿に返信...",
-		"post_repost_form_title": "この投稿をRepostしますか？",
-		"create_new_post": "新しい投稿を作成",
-		"attach_file_from_pc": "PCからファイルを添付",
-		"attach_file_from_album": "アルバムからファイルを添付",
-		"delete_all_notifications": "全ての通知を削除",
-		"update": "更新",
-		"cancel": "キャンセル",
-		"keyboard_shortcuts": {
-			"title": "キーボード ショートカット",
-			"or": "または",
-			"show_this_dialog": "このダイアログを表示する",
-			"_1": "投稿フォームを開いた状態で",
-			"open_post_form": "投稿フォームを開く",
-			"close_post_form": "投稿フォームを閉じる"
-		}
+		"empty_notifications": "通知はありません",
+		"delete_all_notifications": "全ての通知を削除"
 	},
-	"pages": {
-		"i": {
-			"settings": {
-				"page_title": "設定",
-				"profile": "プロフィール",
-				"web": "Web",
-				"user_avatar": "アイコン",
-				"user_name": "名前",
-				"user_comment": "コメント",
-				"user_website_url": "ウェブサイトURL",
-				"user_location": "ロケーション",
-				"display_user_name_in_post": "投稿にユーザー名を表示する",
-				"display_user_screen_name_in_post": "投稿にユーザーIDを表示する",
-				"display_created_at_in_post": "投稿に投稿日時を表示する",
-				"display_actions_in_post": "投稿にアクションを表示する",
-				"confirmation_when_repost": "Repostするときに確認する",
-				"enable_url_preview_in_post": "投稿のURLプレビューを有効にする",
-				"thumbnailyze_attached_image_of_post": "投稿の添付画像を、そのままではなく圧縮されたものを表示する",
-				"customize_home": "ホームをカスタマイズ",
-				"enable_notification_sound_when_receiving_new_post": "新しい投稿がされたときに通知音を鳴らす",
-				"read_timeline_automatically": "自動的にタイムラインを「もっと読み込む」",
-				"enable_sushi": "寿司を有効にする(環境依存)"
+	"sites": {
+		"desktop": {
+			"common": {
+				"header": {
+					"profile_page": "プロフィール",
+					"create_new_post_button_tooltip": "新しい投稿を作成"
+				},
+				"ad_block_detected": {
+					"title": "広告ブロッカーが有効です",
+					"text": "広告ブロッカー(もしくはリソースの読み込みを妨げる何らかの機能)がはたらいています。<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。Misskeyを快適にご利用いただくためには、広告ブロッカーを無効にしてください。",
+					"ok": "了解"
+				},
+				"post_form": {
+					"status_tab": "近況",
+					"poll_tab": "投票",
+					"attach_file_from_pc": "PCからファイルを添付",
+					"attach_file_from_album": "アルバムからファイルを添付"
+				},
+				"delete_all_notifications_flow": {
+					"confirmation_dialog": {
+						"title": "Are you sure?",
+						"text": "すべての通知を削除しますか？",
+						"ok": "はい",
+						"cancel": "キャンセル"
+					},
+					"re_confirmation_dialog": {
+						"title": "Really?",
+						"text": "お調べしましたところ、未読の通知が在るようです。それでもすべて削除しますか？",
+						"ok": "<b>はい</b>っつってんだろ",
+						"cancel": "やっぱり削除は辞める"
+					}
+				},
+				"post": {
+					"send_reply": "返信",
+					"reply_form_textarea_placeholder": "この投稿に返信...",
+					"repost_form_title": "この投稿をRepostしますか？",
+					"attach_file_from_pc": "PCからファイルを添付",
+					"attach_file_from_album": "アルバムからファイルを添付"
+				},
+				"keyboard_shortcuts": {
+					"title": "キーボード ショートカット",
+					"or": "または",
+					"show_this_dialog": "このダイアログを表示する",
+					"_1": "投稿フォームを開いた状態で",
+					"open_post_form": "投稿フォームを開く",
+					"close_post_form": "投稿フォームを閉じる"
+				}
+			},
+			"pages": {
+				"i": {
+					"settings": {
+						"page_title": "設定",
+						"profile": "プロフィール",
+						"web": "Web",
+						"user_avatar": "アイコン",
+						"user_name": "名前",
+						"user_comment": "コメント",
+						"user_website_url": "ウェブサイトURL",
+						"user_location": "ロケーション",
+						"display_user_name_in_post": "投稿にユーザー名を表示する",
+						"display_user_screen_name_in_post": "投稿にユーザーIDを表示する",
+						"display_created_at_in_post": "投稿に投稿日時を表示する",
+						"display_actions_in_post": "投稿にアクションを表示する",
+						"confirmation_when_repost": "Repostするときに確認する",
+						"enable_url_preview_in_post": "投稿のURLプレビューを有効にする",
+						"thumbnailyze_attached_image_of_post": "投稿の添付画像を、そのままではなく圧縮されたものを表示する",
+						"customize_home": "ホームをカスタマイズ",
+						"enable_notification_sound_when_receiving_new_post": "新しい投稿がされたときに通知音を鳴らす",
+						"read_timeline_automatically": "自動的にタイムラインを「もっと読み込む」",
+						"enable_sushi": "寿司を有効にする(環境依存)"
+					}
+				}
 			}
 		}
 	}

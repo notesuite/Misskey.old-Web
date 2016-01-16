@@ -69,7 +69,7 @@ mixin core(post, isRepost, repost)
 			if userSettings.displayActionsInPost
 				ul.actions
 					li.reply
-						button(title=locale.common.post_send_reply)
+						button(title=locale.sites.desktop.common.post.send_reply)
 							i.fa.fa-reply
 						a.count(href= config.url + '/' + post.user.screenName + '/' + post.id)
 							= post.repliesCount != 0 ? post.repliesCount : ''
@@ -91,16 +91,16 @@ mixin core(post, isRepost, repost)
 			form.reply-form
 				img.me-avatar(src= me.avatarThumbnailUrl, alt='avatar')
 				div.form
-					textarea(name='text', placeholder=locale.common.post_reply_form_textarea_placeholder, aria-multiline='true')= '@' + post.user.screenName + ' '
+					textarea(name='text', placeholder=locale.sites.desktop.common.post.reply_form_textarea_placeholder, aria-multiline='true')= '@' + post.user.screenName + ' '
 					div.design-allow(role='presentation')
 					ol.photos
 					ol.uploads
 					button.submit-button.ui-button(type='submit')
-						=locale.common.post_send_reply
+						=locale.sites.desktop.common.post.send_reply
 						i.fa.fa-reply
-					button.attach-from-local(type='button', title=locale.common.attach_file_from_pc)
+					button.attach-from-local(type='button', title=locale.sites.desktop.common.post.attach_file_from_pc)
 						i.fa.fa-upload
-					button.attach-from-album(type='button', title=locale.common.attach_file_from_album)
+					button.attach-from-album(type='button', title=locale.sites.desktop.common.post.attach_file_from_album)
 						i.fa.fa-folder-open
 					input(name='file', type='file', accept='image/*', multiple)
 		div.replies(itemprop='comment')

@@ -8,51 +8,82 @@
 		"settings": "Settings",
 		"sign_in": "Sign in",
 		"sign_out": "Sign out",
-		"header_profile_page": "Profile",
-		"status": "Status",
-		"poll": "Poll",
-		"repost": "Repost",
 		"verified": "Verified",
-		"post_send_reply": "Reply",
-		"post_reply_form_textarea_placeholder": "この投稿に返信...",
-		"post_repost_form_title": "この投稿をRepostしますか？",
-		"create_new_post": "Create new post",
-		"attach_file_from_pc": "Attach a file from PC",
-		"attach_file_from_album": "Attach a file from album",
-		"delete_all_notifications": "Delete all notifications",
-		"update": "Update",
-		"cancel": "Cancel",
-		"keyboard_shortcuts": {
-			"title": "Keyboard shortcuts",
-			"or": "or",
-			"show_this_dialog": "Show this dialog",
-			"_1": "投稿フォームを開いた状態で",
-			"open_post_form": "Open the post form",
-			"close_post_form": "Close the post form"
-		}
+		"empty_notifications": "No notifications",
+		"delete_all_notifications": "Delete all notifications"
 	},
-	"pages": {
-		"i": {
-			"settings": {
-				"page_title": "Settings",
-				"profile": "Profile",
-				"web": "Web",
-				"user_avatar": "Avatar",
-				"user_name": "Name",
-				"user_comment": "Comment",
-				"user_website_url": "Website URL",
-				"user_location": "Location",
-				"display_user_name_in_post": "Display a name of user in a post",
-				"display_user_screen_name_in_post": "Display a id of user in a post",
-				"display_created_at_in_post": "Display created at in a post",
-				"display_actions_in_post": "Display an actions in a post",
-				"confirmation_when_repost": "Confirmation when Repost",
-				"enable_url_preview_in_post": "Enable URL preview in a post",
-				"thumbnailyze_attached_image_of_post": "Show the attached image of a post in the thumbnail instead of raw",
-				"customize_home": "Customize home",
-				"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receiving a new post",
-				"read_timeline_automatically": "Read the timeline automatically",
-				"enable_sushi": "Enable Sushi (Environment-dependent)"
+	"sites": {
+		"desktop": {
+			"common": {
+				"header": {
+					"profile_page": "Profile",
+					"create_new_post_button_tooltip": "Create new post"
+				},
+				"ad_block_detected": {
+					"title": "広告ブロッカーが有効です",
+					"text": "広告ブロッカー(もしくはリソースの読み込みを妨げる何らかの機能)がはたらいています。<strong>Misskeyは広告を掲載していません</strong>が、広告ブロッカーが有効だと一部の機能が利用できない場合があります(ユーザーのフォローが出来ないなど)。Misskeyを快適にご利用いただくためには、広告ブロッカーを無効にしてください。",
+					"ok": "Okay"
+				},
+				"post_form": {
+					"status_tab": "Status",
+					"poll_tab": "Poll",
+					"attach_file_from_pc": "Attach a file from PC",
+					"attach_file_from_album": "Attach a file from album"
+				},
+				"delete_all_notifications_flow": {
+					"confirmation_dialog": {
+						"title": "Are you sure?",
+						"text": "すべての通知を削除しますか？",
+						"ok": "Yes",
+						"cancel": "Cancel"
+					},
+					"re_confirmation_dialog": {
+						"title": "Really?",
+						"text": "お調べしましたところ、未読の通知が在るようです。それでもすべて削除しますか？",
+						"ok": "<b>はい</b>っつってんだろ",
+						"cancel": "Cancel"
+					}
+				},
+				"post": {
+					"send_reply": "Reply",
+					"reply_form_textarea_placeholder": "この投稿に返信...",
+					"repost_form_title": "この投稿をRepostしますか？",
+					"attach_file_from_pc": "Attach a file from PC",
+					"attach_file_from_album": "Attach a file from album"
+				},
+				"keyboard_shortcuts": {
+					"title": "Keyboard shortcuts",
+					"or": "or",
+					"show_this_dialog": "Show this dialog",
+					"_1": "投稿フォームを開いた状態で",
+					"open_post_form": "Open the post form",
+					"close_post_form": "Close the post form"
+				}
+			},
+			"pages": {
+				"i": {
+					"settings": {
+						"page_title": "Settings",
+						"profile": "Profile",
+						"web": "Web",
+						"user_avatar": "Avatar",
+						"user_name": "Name",
+						"user_comment": "Comment",
+						"user_website_url": "Website URL",
+						"user_location": "Location",
+						"display_user_name_in_post": "Display a name of user in a post",
+						"display_user_screen_name_in_post": "Display a id of user in a post",
+						"display_created_at_in_post": "Display created at in a post",
+						"display_actions_in_post": "Display an actions in a post",
+						"confirmation_when_repost": "Confirmation when Repost",
+						"enable_url_preview_in_post": "Enable URL preview in a post",
+						"thumbnailyze_attached_image_of_post": "Show the attached image of a post in the thumbnail instead of raw",
+						"customize_home": "Customize home",
+						"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receiving a new post",
+						"read_timeline_automatically": "Read the timeline automatically",
+						"enable_sushi": "Enable Sushi (Environment-dependent)"
+					}
+				}
 			}
 		}
 	}
