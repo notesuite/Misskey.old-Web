@@ -68,7 +68,7 @@ block content
 
 			div.web(data-name='web')
 				section
-					h1 General
+					h1=locale.sites.desktop.pages.i.settings.general
 					label.checkbox
 						input(type='checkbox', name='display-user-name-in-post', checked= userSettings.displayUserNameInPost)
 						p=locale.sites.desktop.pages.i.settings.display_user_name_in_post
@@ -91,7 +91,7 @@ block content
 						input(type='checkbox', name='thumbnailyze-attached-image-of-post', checked= userSettings.thumbnailyzeAttachedImageOfPost)
 						p=locale.sites.desktop.pages.i.settings.thumbnailyze_attached_image_of_post
 				section
-					h1 Home
+					h1=locale.sites.desktop.pages.i.settings.home
 					a.home-customize(href='/i/home-customize')
 						=locale.sites.desktop.pages.i.settings.customize_home
 						i.fa.fa-cog
@@ -102,7 +102,7 @@ block content
 						input(type='checkbox', name='read-timeline-automatically', checked= userSettings.readTimelineAutomatically)
 						p=locale.sites.desktop.pages.i.settings.read_timeline_automatically
 				section
-					h1 Advanced
+					h1=locale.sites.desktop.pages.i.settings.advanced
 					label.checkbox
 						input(type='checkbox', name='enable-sushi', checked= userSettings.enableSushi)
 						p=locale.sites.desktop.pages.i.settings.enable_sushi
