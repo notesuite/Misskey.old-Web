@@ -1,9 +1,5 @@
 {
 	"common": {
-		"home": "ホーム",
-		"mentions": "自分宛て",
-		"talks": "トーク",
-		"album": "アルバム",
 		"sign_in": "サインイン",
 		"sign_out": "サインアウト",
 		"verified": "認証済み",
@@ -25,6 +21,10 @@
 				"connected_stream": "ストリームに接続しました",
 				"reconnecting_stream": "ストリームから切断されました 再接続中...",
 				"header": {
+					"home": "ホーム",
+					"mentions": "自分宛て",
+					"talks": "トーク",
+					"album": "アルバム",
 					"search_placeholder": "検索",
 					"profile_page": "プロフィール",
 					"settings": "設定",
@@ -120,6 +120,23 @@
 						"read_timeline_automatically": "自動的にタイムラインを「もっと読み込む」",
 						"enable_sushi": "寿司を有効にする(環境依存)"
 					}
+				}
+			}
+		},
+		"mobile": {
+			"common": {
+				"connecting_stream": "ストリームに接続しています...",
+				"connected_stream": "ストリームに接続しました",
+				"reconnecting_stream": "ストリームに再接続中...",
+				"nav": {
+					"post": "投稿",
+					"home": "ホーム",
+					"mentions": "自分宛て",
+					"notifications": "通知",
+					"talks": "トーク",
+					"search": "検索",
+					"settings": "設定",
+					"about_misskey": "Misskeyについて"
 				}
 			}
 		}

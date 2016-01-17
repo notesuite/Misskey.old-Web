@@ -84,16 +84,16 @@ block body
 										if login
 											li.home(class= pagePath == '/' ? 'active' : ''): a(href= config.url)
 												i.fa.fa-home
-												p= locale.common.home
+												p= locale.sites.deskyop.common.header.home
 											li.mentions(class= pagePath == '/i/mentions' ? 'active' : ''): a(href= config.url + '/i/mentions')
 												i.fa.fa-at
-												p= locale.common.mentions
+												p= locale.sites.deskyop.common.header.mentions
 											li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a(href= config.talkUrl)
 												i.fa.fa-comments
-												p= locale.common.talks
+												p= locale.sites.deskyop.common.header.talks
 											li.album(class= pagePath == '/i/album' ? 'active' : ''): a(href= config.url + '/i/album')
 												i.fa.fa-cloud
-												p= locale.common.album
+												p= locale.sites.deskyop.common.header.album
 						div.right
 							form.search(action= config.searchUrl, method='get', role='search')
 								input(type='search', name='q', placeholder!='&#xf002; ' + locale.sites.desktop.common.header.search_placeholder)

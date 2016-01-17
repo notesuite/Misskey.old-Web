@@ -48,41 +48,41 @@ html(
 							ul
 								li.post-new: a(href= config.url + '/i/post-new')
 									i.icon.fa.fa-pencil-square-o
-									| Post
+									=locale.sites.mobile.common.nav.post
 									i.angle.fa.fa-angle-right
 							ul
 								li.home: a(href= config.url)
 									i.icon.fa.fa-home
-									| Home
+									=locale.sites.mobile.common.nav.home
 									i.angle.fa.fa-angle-right
 								li.mentions: a(href= config.url + '/i/mentions')
 									i.icon.fa.fa-at
-									| Mentions
+									=locale.sites.mobile.common.nav.mentions
 									i.angle.fa.fa-angle-right
 								li.notifications: a(href= config.url + '/i/notifications')
 									i.icon.fa.fa-bell-o
-									| Notifications
+									=locale.sites.mobile.common.nav.notifications
 									i.angle.fa.fa-angle-right
 								li.talks: a(href= config.talkUrl)
 									i.icon.fa.fa-comments-o
-									| Talks
+									=locale.sites.mobile.common.nav.talks
 									i.angle.fa.fa-angle-right
 							ul
 								li.settings: a(href= config.searchUrl)
 									i.icon.fa.fa-search
-									| Search
+									=locale.sites.mobile.common.nav.search
 									i.angle.fa.fa-angle-right
 							ul
 								li.settings: a(href= config.url + '/i/settings')
 									i.icon.fa.fa-cog
-									| Settings
+									=locale.sites.mobile.common.nav.settings
 									i.angle.fa.fa-angle-right
 						p.manager
 							| このセッションは
 							b= workerId
 							| が担当しました
 						p.about
-							a(href= config.aboutUrl) Misskeyについて
+							a(href= config.aboutUrl)=locale.sites.mobile.common.nav.about_misskey
 
 		div#misskey-main
 			block content
