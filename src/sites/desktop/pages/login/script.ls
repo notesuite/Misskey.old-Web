@@ -23,7 +23,11 @@ $ ->
 			..attr \disabled on
 
 		$.ajax CONFIG.signin-url, {
-			data: $form.serialize!}
+			data: {
+				'screen-name': $form.find '[name="screen-name"]' .val!
+				'password': $form.find '[name="password"]' .val!
+			}
+		}
 		.done ->
 			location.reload!
 		.fail ->
