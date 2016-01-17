@@ -4,3 +4,12 @@ article
 		dl
 			dt ENV
 			dd= env
+
+			dt TLS
+			if tls
+				dd yes
+			else
+				dd no
+
+			dt Domain
+			dd= domain
