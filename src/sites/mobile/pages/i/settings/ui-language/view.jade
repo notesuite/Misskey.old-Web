@@ -1,0 +1,19 @@
+extends ../../../../ui
+
+block title
+	| UIに使用する言語 - Misskey
+
+block header
+	i.fa.fa-language
+	| UIの言語
+
+block content
+	main(role='main')
+		form#form
+			div.ui-select-wrapper
+				select.ui-select(name='lang')
+					option(value='_auto', selected= userSettings.uiLanguage == null) 自動
+					option(value='ja', selected= userSettings.uiLanguage == 'ja') 日本語
+					option(value='en', selected= userSettings.uiLanguage == 'en') English
+			button.ui-button(type='submit')
+				| 更新

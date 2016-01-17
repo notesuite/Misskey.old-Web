@@ -35,10 +35,17 @@ block content
 				| WebサイトURL
 				i.angle.fa.fa-angle-right
 		.menu
+			p.caption Web全般
+			.item: a(href='/i/settings/ui-language')
+				i.fa.fa-language
+				| UIに使用する言語
+				i.angle.fa.fa-angle-right
+		.menu
 			p.caption モバイル
 			.item: a(href='/i/settings/mobile-header-overlay')
 				| ヘッダーのデザイン
 				i.angle.fa.fa-angle-right
 		.menu
 			.item: a(href= config.signoutUrl)
+				i.fa.fa-power-off
 				| ログアウト

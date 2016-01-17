@@ -17,6 +17,7 @@ const schema: any = {
 	enableNotificationSoundWhenReceivingNewPost: { type: Boolean, required: false, default: true },
 	readTimelineAutomatically: { type: Boolean, required: false, default: true },
 	theme: { type: String, required: false, default: null },
+	uiLanguage: { type: String, required: false, default: null },
 	homeLayout: { type: Schema.Types.Mixed, required: false, default: {
 		left: [],
 		center: ['timeline'],
@@ -40,6 +41,7 @@ if (!(<any>schemaObj).options.toObject) {
 export const UserSettings: mongoose.Model<mongoose.Document> = db.model('UserSettings', schemaObj);
 
 export interface IUserSettings extends mongoose.Document {
+	uiLanguage: string;
 	theme: string;
 	homeLayout: any;
 	mobileHeaderOverlay: string;

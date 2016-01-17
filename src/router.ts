@@ -43,10 +43,10 @@ export default function router(app: express.Express): void {
 
 		const ua: string = uatype(req.headers['user-agent']);
 		const noui: boolean = req.query.hasOwnProperty('noui');
-		const acceptLanguageStr: string = req.headers['accept-language'];
+		const browserAcceptLanguageString: string = req.headers['accept-language'];
 
-		const language = acceptLanguageStr !== undefined && acceptLanguageStr !== null
-			? acceptLanguage.get(acceptLanguageStr)
+		const browserAcceptLanguage = browserAcceptLanguageString !== undefined && browserAcceptLanguageString !== null
+			? acceptLanguage.get(browserAcceptLanguageString)
 			: 'en';
 
 		res.locals.config = config.publicConfig;
@@ -55,7 +55,6 @@ export default function router(app: express.Express): void {
 		res.locals.login = res.locals.isLogin;
 		res.locals.ua = ua;
 		res.locals.workerId = workerId;
-		res.locals.lang = language;
 
 		if (res.locals.isLogin) {
 			const userId: string = (<any>req).session.userId;
@@ -63,18 +62,24 @@ export default function router(app: express.Express): void {
 				UserSettings.findOne({
 					userId: userId
 				}, (err: any, settings: IUserSettings) => {
+					const lang = settings.uiLanguage !== null
+						? settings.uiLanguage
+						: browserAcceptLanguage;
 					req.user = Object.assign({}, user, {_settings: settings.toObject()});
 					res.locals.me = user;
-					res.locals.locale = require(`${__dirname}/locales/${language}.json`);
 					res.locals.userSettings = settings.toObject();
+					res.locals.locale = require(`${__dirname}/locales/${lang}.json`);
+					res.locals.lang = lang;
 					next();
 				});
 			});
 		} else {
+			const lang = browserAcceptLanguage;
 			req.user = null;
 			res.locals.me = null;
-			res.locals.locale = require(`${__dirname}/locales/${language}.json`);
 			res.locals.userSettings = guestUserSettings;
+			res.locals.locale = require(`${__dirname}/locales/${lang}.json`);
+			res.locals.lang = lang;
 			next();
 		}
 	});
@@ -248,6 +253,9 @@ export default function router(app: express.Express): void {
 
 	app.get('/i/settings/website', (req, res) =>
 		callController(req, res, 'i/settings/website'));
+
+	app.get('/i/settings/ui-language', (req, res) =>
+		callController(req, res, 'i/settings/ui-language'));
 
 	app.get('/i/settings/mobile-header-overlay', (req, res) =>
 		callController(req, res, 'i/settings/mobile-header-overlay'));

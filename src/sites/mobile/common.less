@@ -150,6 +150,26 @@ a {
 	max-width: 100%;
 }
 
+.ui-select-wrapper {
+	position: relative;
+
+	&:after {
+		content: "\f107";
+		font-family: FontAwesome;
+		font-size: 1em;
+		color: #777;
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 1em;
+		height: 1em;
+		margin: auto 12px auto 0;
+		pointer-events: none;
+	}
+}
+
 .ui-button {
 	-webkit-appearance: none;
 	-moz-appearance: none;
