@@ -6,6 +6,6 @@ module.exports = (req: express.Request, res: express.Response): void => {
 	res.locals.display({
 		env: process.env.NODE_ENV,
 		tls: config.https.enable,
-		domain: config.publicConfig.domain
+		host: config.publicConfig.host
 	});
 };
