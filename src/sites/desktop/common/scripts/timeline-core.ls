@@ -230,7 +230,7 @@ class Post
 			THIS.$post.find '.talk-ellipsis' .show THIS.animation-speed
 			THIS.$post.find '.replies-ellipsis' .show THIS.animation-speed
 			THIS.$post.find '.talk' .slide-up THIS.animation-speed
-			THIS.$post.find '.reply-form' .hide THIS.animation-speed
+			THIS.$post.find '.reply-form' .slide-up THIS.animation-speed
 			THIS.$post.find '.replies' .slide-up THIS.animation-speed
 			THIS.$post.prev!.remove-class \display-active-before
 			THIS.$post.next!.remove-class \display-active-after
@@ -252,7 +252,7 @@ class Post
 			THIS.$post.find  '> .talk-ellipsis' .hide THIS.animation-speed
 			THIS.$post.find  '> .replies-ellipsis' .hide THIS.animation-speed
 			THIS.$post.find  '> .talk' .slide-down THIS.animation-speed
-			THIS.$post.find  '> .reply-form' .show THIS.animation-speed
+			THIS.$post.find  '> .reply-form' .slide-down THIS.animation-speed
 			THIS.$post.find  '> .replies' .slide-down THIS.animation-speed
 
 			THIS.load-talk!
