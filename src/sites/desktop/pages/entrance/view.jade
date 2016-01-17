@@ -16,9 +16,11 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 	body
 		main
 			header
-				h1 Misskey
-				p
-					| A mini-blog sns. find your likes!!!
+				div.kyoppie
+					h1 Misskey
+				div.yuppie
+					p
+						| A mini-blog sns. find your likes!!!
 			div#trends
 				if trends.length > 0
 					each trend in trends
