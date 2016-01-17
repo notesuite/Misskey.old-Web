@@ -142,7 +142,8 @@
 			"pages": {
 				"home": {
 					"page_title": "Home - Misskey",
-					"page_header_title": "Home"
+					"page_header_title": "Home",
+					"read_more": "Read more"
 				},
 				"i": {
 					"settings": {
