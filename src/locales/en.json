@@ -97,6 +97,11 @@
 						"text": "To manage Misskey, we spend money for our domain, server, etc.. There's no incomes for us, so we need your tip. If you're interested, contact <a href='/syuilo'>@syuilo</a>. Thank you for your contribution!"
 					}
 				},
+				"login": {
+					"page_title": "Sign in - Misskey",
+					"title": "Sign in to Misskey",
+					"signin": "Sign in"
+				},
 				"i": {
 					"settings": {
 						"page_title": "Settings",

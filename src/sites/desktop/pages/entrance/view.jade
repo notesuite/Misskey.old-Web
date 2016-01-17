@@ -1,109 +1,109 @@
-doctype html
+extends ../../base
 
-html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
-	head(prefix='og: http://ogp.me/ns#')
-		include ../../head
-		meta(name='description', content='A mini-blog sns.')
-		meta(name='keywords', content='Misskey')
-		meta(property='og:title', content='Misskey')
-		meta(property='og:type', content='website')
-		meta(property='og:description', content='A mini-blog sns.')
-		meta(property='og:url', content=url)
-		meta(property='og:image', content='')
-		meta(property='og:site_name', content='Misskey')
-		title Misskey
+block title
+	| Misskey
+
+block meta
+	meta(name='description', content='A mini-blog sns.')
+	meta(name='keywords', content='Misskey')
+	meta(property='og:title', content='Misskey')
+	meta(property='og:type', content='website')
+	meta(property='og:description', content='A mini-blog sns.')
+	meta(property='og:url', content=url)
+	meta(property='og:image', content='')
+	meta(property='og:site_name', content='Misskey')
+
+block body
+	main
+		header
+			div.kyoppie
+				h1 Misskey
+			div.yuppie
+				p
+					| A mini-blog sns. find your likes!!!
+		div#trends
+			if trends.length > 0
+				each trend in trends
+					a= trend
+		div.contents
+			form#login-form
+				h2
+					| Account
+				label
+					i.fa.fa-at
+					input#id(name='screen-name'
+						type='text'
+						pattern='^[0-9A-Za-z\-]+$'
+						placeholder='User name'
+						autocomplete='off'
+						autofocus
+						required)
+				label
+					i.fa.fa-lock
+					input(name='password'
+						type='password'
+						placeholder='Password'
+						autocomplete='off'
+						required)
+				input(type='submit', value!='SIGN IN &#xf105;')
+			button.ui-waves-effect#new
+				i.fa.fa-pencil-square-o
+				| Create account
+			div.ad.
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- Home -->
+				<ins class="adsbygoogle"
+					style="display:block"
+					data-ad-client="ca-pub-6690007638570619"
+					data-ad-slot="1203284285"
+					data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
 	
-	body
-		main
+	div#register-form-background(role='presentation')
+	div#register-form
+		div.main
 			header
-				div.kyoppie
-					h1 Misskey
-				div.yuppie
+				h2
+					i.fa.fa-child
+					| Create my Misskey account
+			form
+				label.user-name
+					input.user-name-input(
+						name='screen-name',
+						type='text',
+						placeholder='User name',
+						pattern='^[a-zA-Z0-9_]+$',
+						autocomplete='off',
+						required)
+					p.profile-page-url-preview https://misskey.xyz/
+				label.password
+					input.password-input(
+						name='password',
+						type='password',
+						placeholder='Passcode',
+						autocomplete='off',
+						required)
+				label.password-retype
+					input.password-retype-input(
+						name='retype-password',
+						type='password',
+						placeholder='Retype passcode',
+						autocomplete='off',
+						required)
+				label.agree-tou
+					input(
+						name='agree-tou',
+						type='checkbox',
+						required)
 					p
-						| A mini-blog sns. find your likes!!!
-			div#trends
-				if trends.length > 0
-					each trend in trends
-						a= trend
-			div.contents
-				form#login-form
-					h2
-						| Account
-					label
-						i.fa.fa-at
-						input#id(name='screen-name'
-							type='text'
-							pattern='^[0-9A-Za-z\-]+$'
-							placeholder='User name'
-							autocomplete='off'
-							autofocus
-							required)
-					label
-						i.fa.fa-lock
-						input(name='password'
-							type='password'
-							placeholder='Password'
-							autocomplete='off'
-							required)
-					input(type='submit', value!='SIGN IN &#xf105;')
-				button.ui-waves-effect#new
-					i.fa.fa-pencil-square-o
-					| Create account
-				div.ad.
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- Home -->
-					<ins class="adsbygoogle"
-						style="display:block"
-						data-ad-client="ca-pub-6690007638570619"
-						data-ad-slot="1203284285"
-						data-ad-format="auto"></ins>
-					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-		
-		div#register-form-background(role='presentation')
-		div#register-form
-			div.main
-				header
-					h2
-						i.fa.fa-child
-						| Create my Misskey account
-				form
-					label.user-name
-						input.user-name-input(
-							name='screen-name',
-							type='text',
-							placeholder='User name',
-							pattern='^[a-zA-Z0-9_]+$',
-							autocomplete='off',
-							required)
-						p.profile-page-url-preview https://misskey.xyz/
-					label.password
-						input.password-input(
-							name='password',
-							type='password',
-							placeholder='Passcode',
-							autocomplete='off',
-							required)
-					label.password-retype
-						input.password-retype-input(
-							name='retype-password',
-							type='password',
-							placeholder='Retype passcode',
-							autocomplete='off',
-							required)
-					label.agree-tou
-						input(
-							name='agree-tou',
-							type='checkbox',
-							required)
-						p
-							| I agree to the 
-							a(href='/terms-of-use', target='_blank') Terms of Use(Japanese)
-					div.actions
-						button#register-cancel(type='button')
-							i.fa.fa-ban
-							| Cancel
-						button#register-accept(type='submit')
-							i.fa.fa-check
-							| Create!
+						| I agree to the 
+						a(href='/terms-of-use', target='_blank') Terms of Use(Japanese)
+				div.actions
+					button#register-cancel(type='button')
+						i.fa.fa-ban
+						| Cancel
+					button#register-accept(type='submit')
+						i.fa.fa-check
+						| Create!
