@@ -13,6 +13,6 @@ block content
 			div.ui-select-wrapper
 				select.ui-select(name='lang')
 					option(value='_auto', selected= userSettings.uiLanguage == null)=locale.sites.mobile.pages.i.settings.ui_language_page.auto
-					optgroup(label='--------')
+					optgroup(label='------------------------')
 						option(value='ja', selected= userSettings.uiLanguage == 'ja')= "🇯🇵 日本語 (" + locale.common.languages.japanese + ")"
 						option(value='en', selected= userSettings.uiLanguage == 'en')= "🇺🇸 English (" + locale.common.languages.english + ")"
