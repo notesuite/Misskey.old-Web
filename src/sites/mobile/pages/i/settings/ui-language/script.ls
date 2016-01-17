@@ -15,7 +15,6 @@ $ ->
 			}
 		}
 		.done ->
-			alert '更新しました。'
 			location.reload!
 		.fail (err) ->
 			$submit-button

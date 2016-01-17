@@ -11,7 +11,7 @@ $ ->
 		$button = $ @
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
-		$button.find \p .text '読み込んでいます...'
+		$button.find \p .text LOCALE.sites.mobile.pages.home.timeline_loading
 		$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
 			data:
 				limit: 20
@@ -22,7 +22,7 @@ $ ->
 		.always ->
 			$button.attr \disabled off
 			$button.find \i .attr \class 'fa fa-sort-amount-desc'
-			$button.find \p .text 'もっと読み込む'
+			$button.find \p .text LOCALE.sites.mobile.pages.home.read_more
 
 	socket = io.connect "#{CONFIG.web-streaming-url}/streaming/home"
 
@@ -72,7 +72,7 @@ $ ->
 		, 5000ms
 
 	$ '#misskey-header .post' .click ->
-		text = window.prompt '新規投稿'
+		text = window.prompt LOCALE.sites.mobile.pages.home.new_post
 		if text? and text != ''
 			$.ajax "#{CONFIG.web-api-url}/posts/create" {
 				data: {

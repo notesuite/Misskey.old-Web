@@ -147,7 +147,9 @@
 				"home": {
 					"page_title": "Home - Misskey",
 					"page_header_title": "Home",
-					"read_more": "Read more"
+					"read_more": "Read more",
+					"timeline_loading": "Loading...",
+					"new_post": "New post"
 				},
 				"i": {
 					"settings": {
