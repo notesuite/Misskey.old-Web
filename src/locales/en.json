@@ -177,7 +177,8 @@
 						"ui_language_page": {
 							"page_title": "Interface language - Misskey",
 							"page_header_title": "UI Language",
-							"auto": "Detect automatically (Default)"
+							"auto": "Detect automatically (Default)",
+							"specify": "Specify language:"
 						}
 					}
 				}
