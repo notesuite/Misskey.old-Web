@@ -141,6 +141,10 @@
 					"search": "Search",
 					"settings": "Settings",
 					"about_misskey": "About Misskey"
+				},
+				"post": {
+					"reply_dialog": "{user-name}「{text}」への返信",
+					"repost_confirm": "{user-name}「{text}」をRepostしますか？"
 				}
 			},
 			"pages": {

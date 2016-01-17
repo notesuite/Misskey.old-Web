@@ -58,7 +58,12 @@ class Timeline
 
 			# Init reply button
 			..find '> footer > .reply > button' .click ->
-				reply-text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
+				reply-text = window.prompt do
+					LOCALE.sites.mobile.common.post.reply_dialog
+						.replace '{user-name}' user-name
+						.replace '{text}' text
+					"@#{user-screen-name} "
+
 				if reply-text? and reply-text != ''
 					$.ajax "#{CONFIG.web-api-url}/posts/reply" {
 						data:
@@ -98,7 +103,11 @@ class Timeline
 						$status.attr \data-is-reposted \true
 				else
 					if USER_SETTINGS.confirmation-when-repost
-						if window.confirm "#{user-name}「#{text}」\nを Repost しますか？"
+						confirm = window.confirm do
+							LOCALE.sites.mobile.common.post.repost_confirm
+								.replace '{user-name}' user-name
+								.replace '{text}' text
+						if confirm
 							repost!
 					else
 						repost!
