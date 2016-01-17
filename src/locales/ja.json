@@ -140,6 +140,10 @@
 				}
 			},
 			"pages": {
+				"home": {
+					"page_title": "ホーム - Misskey",
+					"page_header_title": "ホーム"
+				},
 				"i": {
 					"settings": {
 						"page_title": "設定 - Misskey",

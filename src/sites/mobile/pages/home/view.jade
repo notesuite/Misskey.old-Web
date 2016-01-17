@@ -2,14 +2,14 @@ extends ../../ui
 include ../../common/views/post/smart/post
 
 block title
-	| Misskey
+	=locale.sites.mobile.pages.home.page_title
 
 block assets
 	script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
 
 block header
 	i.fa.fa-home
-	| Home
+	=locale.sites.mobile.pages.home.page_header_title
 
 block action
 	button.post.action: i.fa.fa-pencil-square-o

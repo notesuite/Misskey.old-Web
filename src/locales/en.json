@@ -140,6 +140,10 @@
 				}
 			},
 			"pages": {
+				"home": {
+					"page_title": "Home - Misskey",
+					"page_header_title": "Home"
+				},
 				"i": {
 					"settings": {
 						"page_title": "Settings - Misskey",
