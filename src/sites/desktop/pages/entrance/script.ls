@@ -46,10 +46,16 @@ function init-register-form
 		$form = $ @
 
 		$.ajax "#{CONFIG.web-api-url}/account/create" {
-			data: $form.serialize!
+			data: {
+				'screen-name': $form.find '[name="screen-name"]' .val!
+				'password': $form.find '[name="password"]' .val!
+			}
 		} .done ->
 			$.ajax CONFIG.signin-url, {
-				data: $form.serialize!
+				data: {
+					'screen-name': $form.find '[name="screen-name"]' .val!
+					'password': $form.find '[name="password"]' .val!
+				}
 			} .done ->
 				# location.href = "#{CONFIG.url}/welcome"
 				location.href = CONFIG.url
