@@ -142,7 +142,8 @@
 			"pages": {
 				"home": {
 					"page_title": "ホーム - Misskey",
-					"page_header_title": "ホーム"
+					"page_header_title": "ホーム",
+					"read_more": "もっと読み込む"
 				},
 				"i": {
 					"settings": {
