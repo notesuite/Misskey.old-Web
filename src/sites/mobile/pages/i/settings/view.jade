@@ -1,51 +1,51 @@
 extends ../../../ui
 
 block title
-	| アカウント設定 - Misskey
+	=locale.sites.mobile.pages.i.settings.page_title
 
 block header
 	i.fa.fa-cog
-	| 設定
+	=locale.sites.mobile.pages.i.settings.page_header_title
 
 block content
 	main(role='main')
 		p#message
-			| 何を設定しますか？
+			=locale.sites.mobile.pages.i.settings.hello
 		.menu
-			p.caption プロフィール
+			p.caption=locale.sites.mobile.pages.i.settings.profile
 			.item: a(href='/i/settings/avatar')
-				| アイコン
+				=locale.sites.mobile.pages.i.settings.avatar
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/banner')
-				| ヘッダー画像
+				=locale.sites.mobile.pages.i.settings.banner
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/name')
-				| 名前
+				=locale.sites.mobile.pages.i.settings.name
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/comment')
-				| コメント
+				=locale.sites.mobile.pages.i.settings.comment
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/tags')
-				| タグ
+				=locale.sites.mobile.pages.i.settings.tags
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/location')
-				| ロケーション
+				=locale.sites.mobile.pages.i.settings.location
 				i.angle.fa.fa-angle-right
 			.item: a(href='/i/settings/website')
-				| WebサイトURL
+				=locale.sites.mobile.pages.i.settings.url
 				i.angle.fa.fa-angle-right
 		.menu
-			p.caption Web全般
+			p.caption=locale.sites.mobile.pages.i.settings.web_general
 			.item: a(href='/i/settings/ui-language')
 				i.fa.fa-language
-				| UIに使用する言語
+				=locale.sites.mobile.pages.i.settings.ui_language
 				i.angle.fa.fa-angle-right
 		.menu
-			p.caption モバイル
+			p.caption=locale.sites.mobile.pages.i.settings.mobile
 			.item: a(href='/i/settings/mobile-header-overlay')
-				| ヘッダーのデザイン
+				=locale.sites.mobile.pages.i.settings.header_design
 				i.angle.fa.fa-angle-right
 		.menu
 			.item: a(href= config.signoutUrl)
 				i.fa.fa-power-off
-				| ログアウト
+				=locale.sites.mobile.pages.i.settings.signout

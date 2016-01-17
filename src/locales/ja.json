@@ -138,6 +138,28 @@
 					"settings": "設定",
 					"about_misskey": "Misskeyについて"
 				}
+			},
+			"pages": {
+				"i": {
+					"settings": {
+						"page_title": "設定 - Misskey",
+						"page_header_title": "設定",
+						"hello": "何を設定しますか？",
+						"profile": "プロフィール",
+						"avatar": "アイコン",
+						"banner": "バナー画像",
+						"name": "名前",
+						"comment": "コメント",
+						"tags": "タグ",
+						"location": "ロケーション",
+						"url": "WebサイトURL",
+						"web_general": "Web全般",
+						"ui_language": "インターフェイスの言語",
+						"mobile": "モバイル",
+						"header_design": "ヘッダーのデザイン",
+						"signout": "ログアウト"
+					}
+				}
 			}
 		}
 	}
