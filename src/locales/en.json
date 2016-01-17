@@ -144,8 +144,8 @@
 					"about_misskey": "About Misskey"
 				},
 				"post": {
-					"reply_dialog": "{user-name}「{text}」への返信",
-					"repost_confirm": "{user-name}「{text}」をRepostしますか？"
+					"reply_dialog": "Reply to {user-name}「{text}」",
+					"repost_confirm": "Are you sure Repost the {user-name}「{text}」?"
 				}
 			},
 			"pages": {
