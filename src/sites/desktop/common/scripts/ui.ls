@@ -144,7 +144,7 @@ function init-header
 		ui-window do
 			window-id
 			$content
-			"<i class=\"fa fa-comments\"></i>#{LOCALE.common.talks}"
+			"<i class=\"fa fa-comments\"></i>#{LOCALE.sites.desktop.common.talk_window_title}"
 			500px
 			560px
 			yes

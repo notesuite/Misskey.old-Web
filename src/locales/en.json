@@ -24,6 +24,7 @@
 				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
 				"reconnecting_stream": "Disconnected from stream. Reconnecting...",
+				"talk_window_title": "Talk",
 				"header": {
 					"home": "Home",
 					"mentions": "Mentions",
