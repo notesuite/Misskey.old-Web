@@ -12,6 +12,10 @@
 			"weeks_ago": "{n} weeks ago",
 			"months_ago": "{n} months ago",
 			"years_ago": "{n} years ago"
+		},
+		"languages": {
+			"japanese": "Japanese",
+			"english": "English"
 		}
 	},
 	"sites": {
@@ -162,7 +166,12 @@
 						"ui_language": "Interface language",
 						"mobile": "Mobile",
 						"header_design": "Header design",
-						"signout": "Sign out"
+						"signout": "Sign out",
+						"ui_language_page": {
+							"page_title": "Interface language - Misskey",
+							"page_header_title": "UI Language",
+							"auto": "Auto"
+						}
 					}
 				}
 			}

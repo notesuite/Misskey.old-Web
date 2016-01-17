@@ -4,9 +4,7 @@ require '../../../../common/scripts/ui.js'
 $ ->
 	$form = $ \#form
 
-	$form.submit (event) ->
-		event.prevent-default!
-
+	$form.find '[name="lang"]' .change ->
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 			..html '更新中...'

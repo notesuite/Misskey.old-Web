@@ -1,19 +1,18 @@
 extends ../../../../ui
 
 block title
-	| インターフェイスに使用する言語 - Misskey
+	=locale.sites.mobile.pages.i.settings.ui_language_page.page_title
 
 block header
 	i.fa.fa-language
-	| インターフェイスの言語
+	=locale.sites.mobile.pages.i.settings.ui_language_page.page_header_title
 
 block content
 	main(role='main')
 		form#form
 			div.ui-select-wrapper
 				select.ui-select(name='lang')
-					option(value='_auto', selected= userSettings.uiLanguage == null) 自動
-					option(value='ja', selected= userSettings.uiLanguage == 'ja') 日本語
-					option(value='en', selected= userSettings.uiLanguage == 'en') English
-			button.ui-button(type='submit')
-				| 更新
+					option(value='_auto', selected= userSettings.uiLanguage == null)=locale.sites.mobile.pages.i.settings.ui_language_page.auto
+					optgroup(label='--------')
+						option(value='ja', selected= userSettings.uiLanguage == 'ja')= "🇯🇵日本語 (" + locale.common.languages.japanese + ")"
+						option(value='en', selected= userSettings.uiLanguage == 'en')= "🇺🇸English (" + locale.common.languages.english + ")"

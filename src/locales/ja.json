@@ -12,6 +12,10 @@
 			"weeks_ago": "{n}週間前",
 			"months_ago": "{n}ヶ月前",
 			"years_ago": "{n}年前"
+		},
+		"languages": {
+			"japanese": "日本語",
+			"english": "英語"
 		}
 	},
 	"sites": {
@@ -162,7 +166,12 @@
 						"ui_language": "インターフェイスの言語",
 						"mobile": "モバイル",
 						"header_design": "ヘッダーのデザイン",
-						"signout": "ログアウト"
+						"signout": "ログアウト",
+						"ui_language_page": {
+							"page_title": "インターフェイスに使用する言語 - Misskey",
+							"page_header_title": "UIの言語",
+							"auto": "自動"
+						}
 					}
 				}
 			}
