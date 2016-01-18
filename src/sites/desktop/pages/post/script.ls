@@ -5,6 +5,7 @@ sncompleter = require '../../common/scripts/sncompleter.js'
 tooltiper = require '../../common/scripts/tooltiper.js'
 AlbumDialog = require '../../common/scripts/album-dialog.js'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
+sub-post-compiler = require '../../common/views/post/detail/sub-post-render.jade'
 
 function init-post($post)
 	post-type = $post.attr \data-type
@@ -19,37 +20,38 @@ function init-post($post)
 
 	post-content-initializer post-type, $post.find '> .main > .content'
 
-	$reply-form.find 'textarea' .on \paste (event) ->
-		items = (event.clipboard-data || event.original-event.clipboard-data).items
-		for i from 0 to items.length - 1
-			item = items[i]
-			if item.kind == \file && item.type.index-of \image != -1
-				file = item.get-as-file!
+	$reply-form
+		..find 'textarea' .on \paste (event) ->
+			items = (event.clipboard-data || event.original-event.clipboard-data).items
+			for i from 0 to items.length - 1
+				item = items[i]
+				if item.kind == \file && item.type.index-of \image != -1
+					file = item.get-as-file!
+					upload-new-file file
+
+		..find 'textarea' .keypress (e) ->
+			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+				submit-reply!
+
+		..find '.attach-from-album' .click ->
+			album = new AlbumDialog
+			album.choose-file (files) ->
+				files.for-each (file) ->
+					add-file file
+
+		..find '.attach-from-local' .click ->
+			$reply-form.find 'input[type=file]' .click!
+			return false
+
+		..find 'input[type=file]' .change ->
+			files = ($reply-form.find 'input[type=file]')[0].files
+			for i from 0 to files.length - 1
+				file = files.item i
 				upload-new-file file
 
-	$reply-form.find 'textarea' .keypress (e) ->
-		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+		..submit (event) ->
+			event.prevent-default!
 			submit-reply!
-
-	$reply-form.find '.attach-from-album' .click ->
-		album = new AlbumDialog
-		album.choose-file (files) ->
-			files.for-each (file) ->
-				add-file file
-
-	$reply-form.find '.attach-from-local' .click ->
-		$reply-form.find 'input[type=file]' .click!
-		return false
-
-	$reply-form.find 'input[type=file]' .change ->
-		files = ($reply-form.find 'input[type=file]')[0].files
-		for i from 0 to files.length - 1
-			file = files.item i
-			upload-new-file file
-
-	$reply-form.submit (event) ->
-		event.prevent-default!
-		submit-reply!
 
 	$post.find '> .main > .likes-and-reposts .users > .user > a' .each ->
 		tooltiper $ @
@@ -66,12 +68,16 @@ function init-post($post)
 				'photos': JSON.stringify(($reply-form.find '.photos > li' .map ->
 					($ @).attr \data-id).get!)
 			data-type: \text}
-		.done (html) ->
-			$reply = $ html
-			$submit-button.attr \disabled off
-			$reply.prepend-to $post.find '> .main > .replies'
+		.done (post) ->
+			$reply = $ sub-post-compiler {
+				post
+				config: CONFIG
+				me: ME
+				user-settings: USER_SETTINGS
+				locale: LOCALE
+			}
+			$reply.prepend-to $post.find '> .replies'
 			$reply-form.remove!
-			window.display-message '返信しました！'
 		.fail ->
 			window.display-message '返信に失敗しました。再度お試しください。'
 			$submit-button
