@@ -71,7 +71,7 @@ class Post
 				album = new AlbumDialog
 				album.choose-file (files) ->
 					files.for-each (file) ->
-						add-file file
+						THIS.add-file file
 
 			..find '.attach-from-local' .click ->
 				THIS.$reply-form.find 'input[type=file]' .click!
