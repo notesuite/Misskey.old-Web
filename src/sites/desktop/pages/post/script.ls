@@ -38,6 +38,18 @@ class Post
 		THIS.is-have-replies = (THIS.$post.attr \data-is-have-replies) == \true
 		THIS.type = THIS.$post.attr \data-type
 
+		# Init like button
+		THIS.$post.find '> footer > .actions > .like > button' .click ->
+			THIS.like!
+
+		# Init repost button
+		THIS.$post.find '> footer > .actions > .repost > button' .click ->
+			THIS.repost!
+
+		# Init reply button
+		THIS.$post.find '> footer > .actions > .reply > button' .click ->
+			THIS.$reply-form.find 'textarea' .focus!
+
 		post-content-initializer THIS.type, THIS.$post.find '> .main > .content'
 
 		THIS.$post.find '> .main > .likes-and-reposts .users > .user > a' .each ->
