@@ -118,11 +118,13 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.post(`/subdomain/${config.publicConfig.signoutDomain}/`, (req, res) => {
+	app.get(`/subdomain/${config.publicConfig.signoutDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
 			req.session.destroy(() => {
-				res.redirect('/');
+				res.redirect(config.publicConfig.url);
 			});
+		} else {
+			res.redirect(config.publicConfig.url);
 		}
 	});
 
