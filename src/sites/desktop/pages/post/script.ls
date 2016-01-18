@@ -7,65 +7,98 @@ AlbumDialog = require '../../common/scripts/album-dialog.js'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
 sub-post-compiler = require '../../common/views/post/detail/sub-post-render.jade'
 
-function init-post($post)
-	post-type = $post.attr \data-type
+class Post
+	(post = null) ->
+		THIS = @
 
-	$reply-form = $post.find '> .reply-form'
+		if post?
+			$post = $ post-compiler {
+				post
+				config: CONFIG
+				me: ME
+				user-settings: USER_SETTINGS
+				locale: LOCALE
+			}
 
-	Sortable.create ($reply-form.find '.photos')[0], {
-		animation: 150ms
-	}
+			THIS.init-element $post
 
-	sncompleter $reply-form.find 'textarea'
+	init-element: ($post) ->
+		THIS = @
 
-	post-content-initializer post-type, $post.find '> .main > .content'
+		THIS.$post = $post
+		THIS.$repost-form = THIS.$post.children '.repost-form'
+		THIS.$reply-form = THIS.$post.children '.reply-form'
+		THIS.$destination = THIS.$post.children '.reply-source'
+		THIS.$talk = THIS.$post.children '.talk'
+		THIS.$replies = THIS.$post.children '.replies'
+		THIS.id = THIS.$post.attr \data-id
+		if THIS.$destination.length != 0
+			THIS.destination-id = THIS.$destination.attr \data-id
+		THIS.is-talk = (THIS.$post.attr \data-is-talk) == \true
+		THIS.is-have-replies = (THIS.$post.attr \data-is-have-replies) == \true
+		THIS.type = THIS.$post.attr \data-type
 
-	$reply-form
-		..find 'textarea' .on \paste (event) ->
-			items = (event.clipboard-data || event.original-event.clipboard-data).items
-			for i from 0 to items.length - 1
-				item = items[i]
-				if item.kind == \file && item.type.index-of \image != -1
-					file = item.get-as-file!
+		post-content-initializer THIS.type, THIS.$post.find '> .main > .content'
+
+		THIS.$post.find '> .main > .likes-and-reposts .users > .user > a' .each ->
+			tooltiper $ @
+
+		THIS.init-reply-form!
+
+	init-reply-form: ->
+		THIS = @
+
+		Sortable.create ($reply-form.find '.photos')[0], {
+			animation: 150ms
+		}
+
+		sncompleter $reply-form.find 'textarea'
+
+		THIS.$reply-form
+			..find 'textarea' .on \paste (event) ->
+				items = (event.clipboard-data || event.original-event.clipboard-data).items
+				for i from 0 to items.length - 1
+					item = items[i]
+					if item.kind == \file && item.type.index-of \image != -1
+						file = item.get-as-file!
+						upload-new-file file
+
+			..find 'textarea' .keypress (e) ->
+				if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
+					submit-reply!
+
+			..find '.attach-from-album' .click ->
+				album = new AlbumDialog
+				album.choose-file (files) ->
+					files.for-each (file) ->
+						add-file file
+
+			..find '.attach-from-local' .click ->
+				$reply-form.find 'input[type=file]' .click!
+				return false
+
+			..find 'input[type=file]' .change ->
+				files = ($reply-form.find 'input[type=file]')[0].files
+				for i from 0 to files.length - 1
+					file = files.item i
 					upload-new-file file
 
-		..find 'textarea' .keypress (e) ->
-			if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
-				submit-reply!
+			..submit (event) ->
+				event.prevent-default!
+				THIS.submit-reply!
 
-		..find '.attach-from-album' .click ->
-			album = new AlbumDialog
-			album.choose-file (files) ->
-				files.for-each (file) ->
-					add-file file
+	submit-reply: ->
+		THIS = @
 
-		..find '.attach-from-local' .click ->
-			$reply-form.find 'input[type=file]' .click!
-			return false
-
-		..find 'input[type=file]' .change ->
-			files = ($reply-form.find 'input[type=file]')[0].files
-			for i from 0 to files.length - 1
-				file = files.item i
-				upload-new-file file
-
-		..submit (event) ->
-			event.prevent-default!
-			submit-reply!
-
-	$post.find '> .main > .likes-and-reposts .users > .user > a' .each ->
-		tooltiper $ @
-
-	function submit-reply
-		$submit-button = $reply-form.find \.submit-button
+		$submit-button = THIS.$reply-form.find \.submit-button
 			..attr \disabled on
 			..text 'Replying...'
 
 		$.ajax "#{CONFIG.web-api-url}/posts/reply" {
 			data:
-				'text': ($reply-form.find \textarea .val!)
-				'in-reply-to-post-id': ($post.attr \data-id)
-				'files': ($reply-form.find '.photos > li' .map ->
+				'text': (THIS.$reply-form.find \textarea .val!)
+				'in-reply-to-post-id': (THIS.id)
+				'files': (THIS.$reply-form.find '.photos > li' .map ->
 					$ @ .attr \data-id).get!.join \,
 		}
 		.done (post) ->
@@ -76,28 +109,32 @@ function init-post($post)
 				user-settings: USER_SETTINGS
 				locale: LOCALE
 			}
-			$reply.prepend-to $post.find '> .replies'
-			$reply-form.remove!
+			$reply.prepend-to THIS.$post.find '> .replies'
+			THIS.$reply-form.remove!
 		.fail ->
 			window.display-message '返信に失敗しました。再度お試しください。'
 			$submit-button
 				..attr \disabled off
 				..text 'Re Reply'
 
-	function add-file(file-data)
+	add-file: (file-data) ->
+		THIS = @
+
 		$thumbnail = $ "<li style='background-image: url(#{file-data.url});' data-id='#{file-data.id}' />"
-		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="/resources/desktop/images/form-file-thumbnail-remove.png" alt="remove"></button>'
+		$remove-button = $ '<button class="remove" title="添付を取り消し"><img src="' + CONFIG.resources-url + '/desktop/common/images/delete.png" alt="remove"></button>'
 		$thumbnail.append $remove-button
 		$remove-button.click (e) ->
 			e.stop-immediate-propagation!
 			$thumbnail.remove!
-		$reply-form.find '.photos' .append $thumbnail
+		THIS.$reply-form.find '.photos' .append $thumbnail
 
-	function upload-new-file(file)
+	upload-new-file: (file) ->
+		THIS = @
+
 		name = if file.has-own-property \name then file.name else 'untitled'
 		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
-		$reply-form.find '.uploads' .append $info
+		THIS.$reply-form.find '.uploads' .append $info
 		window.upload-file do
 			file
 			(total, uploaded, percentage) ->
@@ -111,9 +148,105 @@ function init-post($post)
 						..attr \value uploaded
 			(html) ->
 				$info.remove!
-				add-file JSON.parse ($ html).attr \data-data
+				THIS.add-file JSON.parse ($ html).attr \data-data
 			->
 				$info.remove!
 
+	like: ->
+		THIS = @
+		$button = THIS.$post.find '> footer > .actions > .like > button'
+			..attr \disabled on
+		$button.find \i .transition {
+			perspective: '100px'
+			rotate-x: '-360deg'
+		} 500ms
+		if THIS.check-liked!
+			THIS.$post.attr \data-is-liked \false
+			$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
+				data: {'post-id': THIS.id}}
+			.done ->
+				$button.attr \disabled off
+			.fail ->
+				$button.attr \disabled off
+				THIS.$post.attr \data-is-liked \true
+		else
+			THIS.$post.attr \data-is-liked \true
+			$.ajax "#{CONFIG.web-api-url}/posts/like" {
+				data: {'post-id': THIS.id}}
+			.done ->
+				$button.attr \disabled off
+			.fail ->
+				$button.attr \disabled off
+				THIS.$post.attr \data-is-liked \false
+
+	repost: ->
+		THIS = @
+
+		function repost(always, done, fail)
+			THIS.$post.attr \data-is-reposted \true
+			$.ajax "#{CONFIG.web-api-url}/posts/repost" {
+				data: {'post-id': THIS.id}}
+			.done ->
+				window.display-message 'Reposted!'
+				done!
+			.fail ->
+				THIS.$post.attr \data-is-reposted \false
+				window.display-message 'Repostに失敗しました。再度お試しください。'
+				fail!
+			.always ->
+				always!
+
+		function open
+			THIS.$repost-form.find '.background' .css \display \block
+			THIS.$repost-form.find '.background' .animate {
+				opacity: 1
+			} 100ms \linear
+
+			THIS.$repost-form.find '.form' .css \display \block
+			THIS.$repost-form.find '.form' .animate {
+				opacity: 1
+			} 100ms \linear
+
+		function close
+			THIS.$repost-form.find '.background' .animate {
+				opacity: 0
+			} 100ms \linear ->
+				THIS.$repost-form.find '.background' .css \display \none
+
+			THIS.$repost-form.find '.form' .animate {
+				opacity: 0
+			} 100ms \linear ->
+				THIS.$repost-form.find '.form' .css \display \none
+
+		if USER_SETTINGS.confirmation-when-repost
+			open!
+
+			THIS.$repost-form.find '.form' .unbind \submit
+			THIS.$repost-form.find '.form' .one \submit (event) ->
+				event.prevent-default!
+				$form = $ @
+				$submit-button = $form.find \.accept
+					..attr \disabled on
+					..attr \data-reposting \true
+				repost do
+					->
+						$submit-button
+							..attr \disabled off
+							..attr \data-reposting \false
+					->
+						close!
+
+			THIS.$repost-form.find '.form > .actions > .cancel' .unbind \click
+			THIS.$repost-form.find '.form > .actions > .cancel' .one \click ->
+				close!
+
+			THIS.$repost-form.find '.background' .unbind \click
+			THIS.$repost-form.find '.background' .one \click ->
+				close!
+		else
+			repost!
+
+
 $ ->
-	init-post $ '#post > article'
+	post = new Post!
+		..init-element $ '#post > article'
