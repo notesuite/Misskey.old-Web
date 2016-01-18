@@ -81,8 +81,8 @@
 		}
 	}
 
-	&[data-is-not-found-reply-yet='true'] > .reply-form {
-		border-radius: 0 0 6px 6px;
+	&[data-is-talk='false'] > .reply-source {
+		border-radius: 6px 6px 0 0;
 	}
 
 	.repost-form {
@@ -129,6 +129,7 @@
 
 		&:not(:empty) {
 			border-bottom: solid 1px #eef0f2;
+			border-radius: 6px 6px 0 0;
 		}
 
 		> .sub-post {
@@ -543,7 +544,6 @@
 
 	> .reply-form {
 		padding: 16px 42px 8px 42px;
-		background: #fbfbfb;
 
 		&:after {
 			content: "";
@@ -777,11 +777,12 @@
 	}
 
 	&.repost {
+		border-color: #A7D494;
 
 		> .repost-info {
 			display: block;
 			margin: 0;
-			padding: 8px 32px;
+			padding: 16px 32px 0 32px;
 			line-height: 28px;
 			color: #57bb00;
 
