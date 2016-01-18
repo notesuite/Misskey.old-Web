@@ -4,11 +4,11 @@ html, body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	background: @theme-color;
 }
 
 html {
 	color: #444;
-	background: #fff;
 
 	&.logging {
 		&, * {
@@ -17,21 +17,52 @@ html {
 	}
 }
 
-#avatar {
+body {
+	box-sizing: border-box;
+	padding-top: 8px;
+}
+
+.avatar-container {
 	display: block;
-	width: 100px;
-	height: 100px;
-	margin: 0 auto 18px auto;
-	border-radius: 100%;
+	position: relative;
+
+	.hr {
+		position: absolute;
+		top: 63.5px;
+		left: 0;
+		right: 0;
+		height: 1px;
+		width: 100%;
+		margin: 0 auto;
+		background: #eee;
+	}
+
+	#avatar {
+		display: block;
+		box-sizing: border-box;
+		width: 128px;
+		height: 128px;
+		position: relative;
+		margin: 0 auto;
+		border: solid 16px #fff;
+		border-radius: 100%;
+		// box-shadow: 0 0 0 1px #eee, 0 0 0 16px #fff;
+	}
 }
 
 main {
 	display: block;
+	box-sizing: border-box;
+	padding-bottom: 48px;
+	min-height: ~"calc(100% - (8px + 128px))";
+	background: #fff;
 
 	h1 {
 		display: block;
+		position: relative;
+		z-index: 1;
 		margin: 0;
-		padding: 32px 64px 16px 64px;
+		padding: 32px 64px 0 64px;
 		text-align: center;
 		color: #777;
 		font-size: 2em;
@@ -41,11 +72,15 @@ main {
 
 	#form {
 		display: block;
-		box-sizing: border-box;
-		margin: 0 auto;
-		padding: 0;
-		width: 260px;
 		font-family: 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+
+		.kyoppie {
+			display: block;
+			box-sizing: border-box;
+			margin: 0 auto;
+			padding: 0;
+			width: 260px;
+		}
 
 		label {
 			display: block;
@@ -86,6 +121,10 @@ main {
 			box-shadow: 0 0 0 114514px #fff inset;
 			background: transparent;
 			transition: all 0.2s ease;
+
+			&:disabled {
+				opacity: 0.5;
+			}
 
 			&:hover {
 				border: solid 1px #bbb;
@@ -164,5 +203,19 @@ main {
 				margin-right: 0.3em;
 			}
 		}
+	}
+}
+
+body > footer {
+	display: block;
+	box-sizing: border-box;
+	padding: 16px;
+	height: 128px;
+	text-align: center;
+	font-size: 0.9em;
+	color: #fff;
+
+	.misskey {
+		color: #fff;
 	}
 }

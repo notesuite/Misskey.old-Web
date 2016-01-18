@@ -6,11 +6,11 @@ $ ->
 	$form = $ '#form'
 
 	$ '#id' .change ->
-		$.ajax "#{CONFIG.api-url}/users/show", {
+		$.ajax "#{CONFIG.web-api-url}/users/show", {
 			data: {'screen-name': $ '#id' .val!}
-			xhr-fields: {-with-credentials}}
+		}
 		.done (user) ->
-			$ '#avatar' .attr \src user.avatar-url
+			$ '#avatar' .attr \src user.avatar-thumbnail-url
 
 	$form.submit (event) ->
 		event.prevent-default!
@@ -19,6 +19,8 @@ $ ->
 			..attr \disabled on
 			..find \span .text LOCALE.sites.desktop.pages.login.signing_in
 			..find \i .attr \class 'fa fa-spinner fa-pulse'
+
+		$form.find \input .attr \disabled on
 
 		$ \html .add-class \logging
 
@@ -35,5 +37,7 @@ $ ->
 				..attr \disabled off
 				.find \span .text LOCALE.sites.desktop.pages.login.signin
 				..find \i .attr \class 'fa fa-sign-in'
+
+			$form.find \input .attr \disabled on
 
 			$ \html .remove-class \logging

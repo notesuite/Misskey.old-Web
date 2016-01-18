@@ -8,33 +8,38 @@ block body
 		header
 			h1=locale.sites.desktop.pages.login.title
 		form#form(action='/login', method='get')
-			img#avatar(src= config.resourcesUrl + '/common/avatar.jpg', alt='')
-			label
-				p
-					i.fa.fa-at
-					=locale.sites.desktop.pages.login.screen_name_caption
-				input#id(name='screen-name'
-					type='text'
-					pattern='^[0-9A-Za-z\-]+$'
-					placeholder='User ID'
-					autocomplete='off'
-					autofocus
-					required)
-			label
-				p
-					i.fa.fa-lock
-					=locale.sites.desktop.pages.login.password_caption
-				input(name='password'
-					type='password'
-					placeholder='Password'
-					autocomplete='off'
-					required)
-			button(type='submit')
-				i.fa.fa-sign-in
-				span=locale.sites.desktop.pages.login.signin
-			a.register(href=config.url)
-				i.fa.fa-angle-right
-				=locale.sites.desktop.pages.login.register
-			a.forgot-password(href=config.helpUrl + '/forgot-password')
-				i.fa.fa-angle-right
-				=locale.sites.desktop.pages.login.forgot_password
+			div.avatar-container
+				div.hr(role='presentation')
+				img#avatar(src= config.resourcesUrl + '/common/avatar.jpg', alt='')
+			div.kyoppie
+				label
+					p
+						i.fa.fa-at
+						=locale.sites.desktop.pages.login.screen_name_caption
+					input#id(name='screen-name'
+						type='text'
+						pattern='^[0-9A-Za-z\-]+$'
+						placeholder='User ID'
+						autocomplete='off'
+						autofocus
+						required)
+				label
+					p
+						i.fa.fa-lock
+						=locale.sites.desktop.pages.login.password_caption
+					input(name='password'
+						type='password'
+						placeholder='Password'
+						autocomplete='off'
+						required)
+				button(type='submit')
+					i.fa.fa-sign-in
+					span=locale.sites.desktop.pages.login.signin
+				a.register(href=config.url)
+					i.fa.fa-angle-right
+					=locale.sites.desktop.pages.login.register
+				a.forgot-password(href=config.helpUrl + '/forgot-password')
+					i.fa.fa-angle-right
+					=locale.sites.desktop.pages.login.forgot_password
+	footer
+		a.misskey(href=config.url) Misskey

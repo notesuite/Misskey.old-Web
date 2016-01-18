@@ -16,6 +16,8 @@ export default function router(app: express.Express): void {
 
 		if (res.locals.isLogin) {
 			req.user = (<any>req.session).userId;
+		} else {
+			req.user = null;
 		}
 
 		next();
