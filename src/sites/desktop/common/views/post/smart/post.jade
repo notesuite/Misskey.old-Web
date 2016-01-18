@@ -23,6 +23,8 @@ mixin core(post, isRepost, repost)
 			data-id                 = post.id
 			data-cursor             = isRepost ? repost.cursor : post.cursor
 			data-type               = post.type
+			data-user-id            = post.user.id
+			data-user-screen-name   = post.user.screenName
 			data-is-liked          != login ? post.isLiked.toString() : null
 			data-is-reposted       != login ? post.isReposted.toString() : null
 			data-is-have-replies   != isHaveReplies.toString()

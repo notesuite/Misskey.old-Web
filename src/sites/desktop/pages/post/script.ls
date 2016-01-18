@@ -3,20 +3,23 @@ Sortable = require 'Sortable'
 require '../../common/scripts/ui.js'
 sncompleter = require '../../common/scripts/sncompleter.js'
 tooltiper = require '../../common/scripts/tooltiper.js'
+AlbumDialog = require '../../common/scripts/album-dialog.js'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
 
 function init-post($post)
 	post-type = $post.attr \data-type
 
-	Sortable.create ($post.find '> .main > .reply-form .photos')[0], {
+	$reply-form = $post.find '> .reply-form'
+
+	Sortable.create ($reply-form.find '.photos')[0], {
 		animation: 150ms
 	}
 
-	sncompleter $post.find '> .main > .reply-form textarea'
+	sncompleter $reply-form.find 'textarea'
 
-	post-content-initializer post-type, $post.find '> .main > .body > .content'
+	post-content-initializer post-type, $post.find '> .main > .content'
 
-	$post.find '> .main > .reply-form textarea' .on \paste (event) ->
+	$reply-form.find 'textarea' .on \paste (event) ->
 		items = (event.clipboard-data || event.original-event.clipboard-data).items
 		for i from 0 to items.length - 1
 			item = items[i]
@@ -24,26 +27,27 @@ function init-post($post)
 				file = item.get-as-file!
 				upload-new-file file
 
-	$post.find '> .main > .reply-form textarea' .keypress (e) ->
+	$reply-form.find 'textarea' .keypress (e) ->
 		if (e.char-code == 10 || e.char-code == 13) && e.ctrl-key
 			submit-reply!
 
-	$post.find '> .main > .reply-form .attach-from-album' .click ->
-		window.open-select-album-file-dialog (files) ->
+	$reply-form.find '.attach-from-album' .click ->
+		album = new AlbumDialog
+		album.choose-file (files) ->
 			files.for-each (file) ->
 				add-file file
 
-	$post.find '> .main > .reply-form .attach-from-local' .click ->
-		$post.find '> .main > .reply-form input[type=file]' .click!
-		false
+	$reply-form.find '.attach-from-local' .click ->
+		$reply-form.find 'input[type=file]' .click!
+		return false
 
-	$post.find '> .main > .reply-form input[type=file]' .change ->
-		files = ($post.find '> .main > .reply-form input[type=file]')[0].files
+	$reply-form.find 'input[type=file]' .change ->
+		files = ($reply-form.find 'input[type=file]')[0].files
 		for i from 0 to files.length - 1
 			file = files.item i
 			upload-new-file file
 
-	$post.find '> .main > .reply-form' .submit (event) ->
+	$reply-form.submit (event) ->
 		event.prevent-default!
 		submit-reply!
 
@@ -51,23 +55,22 @@ function init-post($post)
 		tooltiper $ @
 
 	function submit-reply
-		$form = $post.find '> .main > .reply-form'
-		$submit-button = $form.find \.submit-button
+		$submit-button = $reply-form.find \.submit-button
 			..attr \disabled on
 			..text 'Replying...'
 
 		$.ajax "#{CONFIG.web-api-url}/web/sites/desktop/post/reply" {
 			data:
-				'text': ($form.find \textarea .val!)
+				'text': ($reply-form.find \textarea .val!)
 				'in-reply-to-post-id': ($post.attr \data-id)
-				'photos': JSON.stringify(($form.find '.photos > li' .map ->
+				'photos': JSON.stringify(($reply-form.find '.photos > li' .map ->
 					($ @).attr \data-id).get!)
 			data-type: \text}
 		.done (html) ->
 			$reply = $ html
 			$submit-button.attr \disabled off
 			$reply.prepend-to $post.find '> .main > .replies'
-			$form.remove!
+			$reply-form.remove!
 			window.display-message '返信しました！'
 		.fail ->
 			window.display-message '返信に失敗しました。再度お試しください。'
@@ -82,13 +85,13 @@ function init-post($post)
 		$remove-button.click (e) ->
 			e.stop-immediate-propagation!
 			$thumbnail.remove!
-		$post.find '> .main > .reply-form .photos' .append $thumbnail
+		$reply-form.find '.photos' .append $thumbnail
 
 	function upload-new-file(file)
 		name = if file.has-own-property \name then file.name else 'untitled'
 		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
-		$post.find '> .main > .reply-form .uploads' .append $info
+		$reply-form.find '.uploads' .append $info
 		window.upload-file do
 			file
 			(total, uploaded, percentage) ->
