@@ -309,12 +309,13 @@ function init-read-before-statuses-button
 		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
 			data:
 				'user-id': USER.id
-				'max-cursor': $ \html .attr \data-before-source-cursor
+				'max-cursor': window.BEFORE_CURSOR
+				'limit': 1
 		}
 		.done (post-data) ->
-			post = new Post post-data
+			post = new Post post-data.0
 			post.$post.append-to $ '#before-timeline' .hide! .slide-down 500ms
-			$ \html .attr \data-before-source-cursor post.$post.attr \data-cursor
+			window.BEFORE_CURSOR = post.$post.attr \data-cursor
 		.fail (err) ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 		.always ->
@@ -334,12 +335,13 @@ function init-read-after-statuses-button
 		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
 			data:
 				'user-id': USER.id
-				'since-cursor': $ \html .attr \data-after-source-cursor
+				'since-cursor': window.AFTER_CURSOR
+				'limit': 1
 		}
 		.done (post-data) ->
-			post = new Post post-data
+			post = new Post post-data.0
 			post.$post.append-to $ '#after-timeline' .hide! .slide-down 500ms
-			$ \html .attr \data-after-source-cursor post.$post.attr \data-cursor
+			window.AFTER_CURSOR = post.$post.attr \data-cursor
 		.fail (err) ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 		.always ->

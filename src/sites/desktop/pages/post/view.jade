@@ -10,6 +10,8 @@ block meta
 
 block assets
 	script!= 'var USER = ' + JSON.stringify(user) + ';'
+	script!= 'var BEFORE_CURSOR = "' + post.cursor + '";'
+	script!= 'var AFTER_CURSOR = "' + post.cursor + '";'
 
 block content
 	main(role='main')
