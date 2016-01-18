@@ -99,6 +99,14 @@ class Post
 				event.prevent-default!
 				THIS.submit-reply!
 
+	check-liked: ->
+		THIS = @
+		(THIS.$post.attr \data-is-liked) == \true
+
+	check-reposted: ->
+		THIS = @
+		(THIS.$post.attr \data-is-reposted) == \true
+
 	submit-reply: ->
 		THIS = @
 
