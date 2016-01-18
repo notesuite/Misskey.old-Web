@@ -10,20 +10,31 @@ block body
 		form#form(action='/login', method='get')
 			img#avatar(src= config.resourcesUrl + '/common/avatar.jpg', alt='')
 			label
-				i.fa.fa-at
+				p
+					i.fa.fa-at
+					=locale.sites.desktop.pages.login.screen_name_caption
 				input#id(name='screen-name'
 					type='text'
 					pattern='^[0-9A-Za-z\-]+$'
-					placeholder='User name'
+					placeholder='User ID'
 					autocomplete='off'
 					autofocus
 					required)
 			label
-				i.fa.fa-lock
+				p
+					i.fa.fa-lock
+					=locale.sites.desktop.pages.login.password_caption
 				input(name='password'
 					type='password'
 					placeholder='Password'
 					autocomplete='off'
 					required)
 			button(type='submit')
-				=locale.sites.desktop.pages.login.signin
+				i.fa.fa-sign-in
+				span=locale.sites.desktop.pages.login.signin
+			a.register(href=config.url)
+				i.fa.fa-angle-right
+				=locale.sites.desktop.pages.login.register
+			a.forgot-password(href=config.helpUrl + '/forgot-password')
+				i.fa.fa-angle-right
+				=locale.sites.desktop.pages.login.forgot_password

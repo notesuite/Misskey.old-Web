@@ -104,7 +104,12 @@
 				"login": {
 					"page_title": "Sign in - Misskey",
 					"title": "Sign in to Misskey",
-					"signin": "Sign in"
+					"signin": "Sign in",
+					"signing_in": "Signing in...",
+					"screen_name_caption": "User ID",
+					"password_caption": "Passcode",
+					"register": "Create an account",
+					"forgot_password": "I forgot passcode"
 				},
 				"i": {
 					"settings": {

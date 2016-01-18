@@ -3,6 +3,8 @@ require 'jquery.transit'
 require '../../common/scripts/main.js'
 
 $ ->
+	$form = $ '#form'
+
 	$ '#id' .change ->
 		$.ajax "#{CONFIG.api-url}/users/show", {
 			data: {'screen-name': $ '#id' .val!}
@@ -10,17 +12,15 @@ $ ->
 		.done (user) ->
 			$ '#avatar' .attr \src user.avatar-url
 
-	$ '#form' .submit (event) ->
+	$form.submit (event) ->
 		event.prevent-default!
-		$form = $ @
-			..css {
-				'transform': 'perspective(512px) rotateX(-90deg)'
-				'opacity': '0'
-				'transition': 'all ease-in 0.5s'
-			}
 
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
+			..find \span .text LOCALE.sites.desktop.pages.login.signing_in
+			..find \i .attr \class 'fa fa-spinner fa-pulse'
+
+		$ \html .add-class \logging
 
 		$.ajax CONFIG.signin-url, {
 			data: {
@@ -31,11 +31,9 @@ $ ->
 		.done ->
 			location.reload!
 		.fail ->
-			$submit-button.attr \disabled off
-			set-timeout ->
-				$form.css {
-					'transform': 'perspective(512px) scale(1)'
-					'opacity': '1'
-					'transition': 'all ease 0.7s'
-				}
-			, 500ms
+			$submit-button
+				..attr \disabled off
+				.find \span .text LOCALE.sites.desktop.pages.login.signin
+				..find \i .attr \class 'fa fa-sign-in'
+
+			$ \html .remove-class \logging

@@ -100,7 +100,7 @@ export default function router(app: express.Express): void {
 		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
 			res.sendStatus(200);
 		}, (err: any) => {
-			res.sendStatus(500);
+			res.status(err.statusCode).send(err.body);
 		});
 	});
 

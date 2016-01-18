@@ -28,7 +28,7 @@ export default function login(screenName: string, password: string, session: any
 				}
 			});
 		}, (err: any) => {
-			reject();
+			reject(err);
 		});
 
 		function saveSession(user: any): void {

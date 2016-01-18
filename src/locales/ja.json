@@ -104,7 +104,12 @@
 				"login": {
 					"page_title": "ログイン - Misskey",
 					"title": "Misskeyにログイン",
-					"signin": "ログイン"
+					"signin": "ログイン",
+					"signing_in": "ログイン中...",
+					"screen_name_caption": "ユーザーID",
+					"password_caption": "パスコード",
+					"register": "アカウント作成はこちら",
+					"forgot_password": "パスコードを忘れた場合"
 				},
 				"i": {
 					"settings": {
