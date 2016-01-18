@@ -65,8 +65,8 @@ function init-post($post)
 			data:
 				'text': ($reply-form.find \textarea .val!)
 				'in-reply-to-post-id': ($post.attr \data-id)
-				'files': JSON.stringify(($reply-form.find '.photos > li' .map ->
-					($ @).attr \data-id).get!)
+				'files': ($reply-form.find '.photos > li' .map ->
+					$ @ .attr \data-id).get!.join \,
 		}
 		.done (post) ->
 			$reply = $ sub-post-compiler {
