@@ -48,11 +48,11 @@ class Post
 	init-reply-form: ->
 		THIS = @
 
-		Sortable.create ($reply-form.find '.photos')[0], {
+		Sortable.create (THIS.$reply-form.find '.photos')[0], {
 			animation: 150ms
 		}
 
-		sncompleter $reply-form.find 'textarea'
+		sncompleter THIS.$reply-form.find 'textarea'
 
 		THIS.$reply-form
 			..find 'textarea' .on \paste (event) ->
@@ -74,11 +74,11 @@ class Post
 						add-file file
 
 			..find '.attach-from-local' .click ->
-				$reply-form.find 'input[type=file]' .click!
+				THIS.$reply-form.find 'input[type=file]' .click!
 				return false
 
 			..find 'input[type=file]' .change ->
-				files = ($reply-form.find 'input[type=file]')[0].files
+				files = (THIS.$reply-form.find 'input[type=file]')[0].files
 				for i from 0 to files.length - 1
 					file = files.item i
 					upload-new-file file
