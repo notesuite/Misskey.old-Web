@@ -340,7 +340,7 @@ function init-read-after-statuses-button
 		}
 		.done (post-data) ->
 			post = new Post post-data.0
-			post.$post.append-to $ '#after-timeline' .hide! .slide-down 500ms
+			post.$post.prepend-to $ '#after-timeline' .hide! .slide-down 500ms
 			window.AFTER_CURSOR = post.$post.attr \data-cursor
 		.fail (err) ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
