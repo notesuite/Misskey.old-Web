@@ -61,13 +61,13 @@ function init-post($post)
 			..attr \disabled on
 			..text 'Replying...'
 
-		$.ajax "#{CONFIG.web-api-url}/web/sites/desktop/post/reply" {
+		$.ajax "#{CONFIG.web-api-url}/posts/reply" {
 			data:
 				'text': ($reply-form.find \textarea .val!)
 				'in-reply-to-post-id': ($post.attr \data-id)
-				'photos': JSON.stringify(($reply-form.find '.photos > li' .map ->
+				'files': JSON.stringify(($reply-form.find '.photos > li' .map ->
 					($ @).attr \data-id).get!)
-			data-type: \text}
+		}
 		.done (post) ->
 			$reply = $ sub-post-compiler {
 				post
