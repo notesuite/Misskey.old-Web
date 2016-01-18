@@ -294,3 +294,56 @@ class Post
 $ ->
 	post = new Post!
 		..init-element $ '#post > article'
+
+	init-read-before-statuses-button!
+	init-read-after-statuses-button!
+
+function init-read-before-statuses-button
+	$button = $ \#read-before
+	$button.click ->
+		$button
+			..attr \disabled on
+			..attr \title '読み込み中...'
+			..find \i .attr \class 'fa fa-spinner fa-pulse'
+
+		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
+			data:
+				'user-id': USER.id
+				'max-cursor': $ \html .attr \data-before-source-cursor
+		}
+		.done (post-data) ->
+			post = new Post post-data
+			post.$post.append-to $ '#before-timeline' .hide! .slide-down 500ms
+			$ \html .attr \data-before-source-cursor post.$post.attr \data-cursor
+		.fail (err) ->
+			window.display-message '読み込みに失敗しました。再度お試しください。'
+		.always ->
+			$button
+				..attr \disabled off
+				..attr \title 'これより前の投稿を読む'
+				..find \i .attr \class 'fa fa-chevron-down'
+
+function init-read-after-statuses-button
+	$button = $ \#read-after
+	$button.click ->
+		$button
+			..attr \disabled on
+			..attr \title '読み込み中...'
+			..find \i .attr \class 'fa fa-spinner fa-pulse'
+
+		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
+			data:
+				'user-id': USER.id
+				'since-cursor': $ \html .attr \data-after-source-cursor
+		}
+		.done (post-data) ->
+			post = new Post post-data
+			post.$post.append-to $ '#after-timeline' .hide! .slide-down 500ms
+			$ \html .attr \data-after-source-cursor post.$post.attr \data-cursor
+		.fail (err) ->
+			window.display-message '読み込みに失敗しました。再度お試しください。'
+		.always ->
+			$button
+				..attr \disabled off
+				..attr \title 'これより後の投稿を読む'
+				..find \i .attr \class 'fa fa-chevron-up'

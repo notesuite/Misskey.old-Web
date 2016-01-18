@@ -8,6 +8,9 @@ block meta
 	meta(name='keywords', content='Misskey')
 	meta(name='description', content= post.user.name + 'さんの' + post.createdAt + 'の投稿')
 
+block assets
+	script!= 'var USER = ' + JSON.stringify(user) + ';'
+
 block content
 	main(role='main')
 		button#read-after(role='button', title='これより後の投稿を読む'): i.fa.fa-chevron-up
