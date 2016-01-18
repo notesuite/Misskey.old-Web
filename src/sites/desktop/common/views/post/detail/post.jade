@@ -30,7 +30,7 @@ mixin core(post, isRepost, repost)
 			data-is-have-replies   != isHaveReplies.toString()
 			data-is-talk           != isTalk.toString())
 		if isTalk
-			button.read-talk(role='button', title='会話をもっと読む')
+			button.read-talk(title='会話をもっと読む')
 				i.fa.fa-ellipsis-v
 		if post.type == 'reply'
 			if isTalk

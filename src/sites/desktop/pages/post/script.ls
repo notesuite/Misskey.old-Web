@@ -5,6 +5,8 @@ sncompleter = require '../../common/scripts/sncompleter.js'
 tooltiper = require '../../common/scripts/tooltiper.js'
 AlbumDialog = require '../../common/scripts/album-dialog.js'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
+
+post-compiler = require '../../common/views/post/detail/render.jade'
 sub-post-compiler = require '../../common/views/post/detail/sub-post-render.jade'
 
 class Post
@@ -37,6 +39,10 @@ class Post
 		THIS.is-talk = (THIS.$post.attr \data-is-talk) == \true
 		THIS.is-have-replies = (THIS.$post.attr \data-is-have-replies) == \true
 		THIS.type = THIS.$post.attr \data-type
+
+		# Init read talk button
+		THIS.$post.find '> .read-talk' .click ->
+			THIS.read-talk!
 
 		# Init like button
 		THIS.$post.find '> .main > footer > .actions > .like > button' .click ->
@@ -107,6 +113,30 @@ class Post
 		THIS = @
 		(THIS.$post.attr \data-is-reposted) == \true
 
+	read-talk: ->
+		THIS = @
+		$button = THIS.$post.find '> .read-talk'
+		$button.attr \disabled on
+		$button.find \i .attr \class 'fa fa-spinner fa-spin'
+		$.ajax "#{CONFIG.web-api-url}/posts/talk/show" {
+			data: {'post-id': THIS.destination-id}}
+		.done (posts) ->
+			$button.remove!
+			posts.for-each (post) ->
+				THIS.sub-render post .append-to THIS.$talk .hide!.fade-in 500ms
+		.fail ->
+			$button.attr \disabled off
+			$button.find \i .attr \class 'fa fa-ellipsis-v'
+
+	sub-render: (post) ->
+		$ sub-post-compiler {
+			post
+			config: CONFIG
+			me: ME
+			user-settings: USER_SETTINGS
+			locale: LOCALE
+		}
+
 	submit-reply: ->
 		THIS = @
 
@@ -122,13 +152,7 @@ class Post
 					$ @ .attr \data-id).get!.join \,
 		}
 		.done (post) ->
-			$reply = $ sub-post-compiler {
-				post
-				config: CONFIG
-				me: ME
-				user-settings: USER_SETTINGS
-				locale: LOCALE
-			}
+			$reply = $ THIS.sub-render post
 			$reply.prepend-to THIS.$post.find '> .replies'
 			THIS.$reply-form.remove!
 		.fail ->
