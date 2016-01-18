@@ -6,7 +6,7 @@ mixin repost-form(post)
 		form.form
 			h2
 				i.fa.fa-retweet
-				=locale.sites.desktop.common.post.repost_form_title
+				=locale.sites.desktop.common.post.repost_dialog.title
 			article(class=post.type)
 				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
 					img.avatar(src=post.user.avatarThumbnailUrl, alt='avatar')
@@ -22,7 +22,7 @@ mixin repost-form(post)
 			div.actions
 				button.accept(type='submit')
 					i.fa.fa-check
-					=locale.common.repost
+					=locale.sites.desktop.common.post.repost_dialog.accept
 				button.cancel(type='button')
 					i.fa.fa-ban
-					=locale.common.cancel
+					=locale.sites.desktop.common.post.repost_dialog.cancel

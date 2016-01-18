@@ -65,9 +65,13 @@
 				"post": {
 					"send_reply": "返信",
 					"reply_form_textarea_placeholder": "この投稿に返信...",
-					"repost_form_title": "この投稿をRepostしますか？",
 					"attach_file_from_pc": "PCからファイルを添付",
-					"attach_file_from_album": "アルバムからファイルを添付"
+					"attach_file_from_album": "アルバムからファイルを添付",
+					"repost_dialog": {
+						"title": "この投稿をRepostしますか？",
+						"accept": "Repost",
+						"cancel": "キャンセル"
+					}
 				},
 				"keyboard_shortcuts": {
 					"title": "キーボード ショートカット",

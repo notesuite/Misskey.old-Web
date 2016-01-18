@@ -65,9 +65,13 @@
 				"post": {
 					"send_reply": "Reply",
 					"reply_form_textarea_placeholder": "Reply to status...",
-					"repost_form_title": "Do you want to repost this status?",
 					"attach_file_from_pc": "Attach a file from PC",
-					"attach_file_from_album": "Attach a file from album"
+					"attach_file_from_album": "Attach a file from album",
+					"repost_dialog": {
+						"title": "Do you want to repost this status?",
+						"accept": "Repost",
+						"cancel": "Cancel"
+					}
 				},
 				"keyboard_shortcuts": {
 					"title": "Keyboard shortcuts",
