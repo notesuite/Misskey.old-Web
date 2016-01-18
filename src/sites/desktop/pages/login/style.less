@@ -4,7 +4,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	background: @theme-color;
+	background: #fff;
 }
 
 html {
@@ -15,11 +15,6 @@ html {
 			cursor: wait !important;
 		}
 	}
-}
-
-body {
-	box-sizing: border-box;
-	padding-top: 8px;
 }
 
 .avatar-container {
@@ -206,6 +201,17 @@ main {
 	}
 }
 
+body > header {
+	display: block;
+	box-sizing: border-box;
+	height: 8px;
+	background-color: @theme-color;
+	background-image: url("@{resources-url}/common/background-overlay.svg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
 body > footer {
 	display: block;
 	box-sizing: border-box;
@@ -214,6 +220,11 @@ body > footer {
 	text-align: center;
 	font-size: 0.9em;
 	color: #fff;
+	background-color: @theme-color;
+	background-image: url("@{resources-url}/common/background-overlay.svg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 
 	.misskey {
 		color: #fff;
