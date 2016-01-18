@@ -306,16 +306,14 @@ function init-read-before-statuses-button
 			..attr \title '読み込み中...'
 			..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
+		$.ajax "#{CONFIG.web-api-url}/posts/show" {
 			data:
-				'user-id': USER.id
-				'max-cursor': window.BEFORE_CURSOR
-				'limit': 1
+				'post-id': window.PREV_ID
 		}
 		.done (post-data) ->
-			post = new Post post-data.0
+			post = new Post post-data
 			post.$post.append-to $ '#before-timeline' .hide! .slide-down 500ms
-			window.BEFORE_CURSOR = post.$post.attr \data-cursor
+			window.PREV_ID = post-data.prev-post
 		.fail (err) ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 		.always ->
@@ -332,16 +330,14 @@ function init-read-after-statuses-button
 			..attr \title '読み込み中...'
 			..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
+		$.ajax "#{CONFIG.web-api-url}/posts/show" {
 			data:
-				'user-id': USER.id
-				'since-cursor': window.AFTER_CURSOR
-				'limit': 1
+				'post-id': window.NEXT_ID
 		}
 		.done (post-data) ->
-			post = new Post post-data.0
+			post = new Post post-data
 			post.$post.prepend-to $ '#after-timeline' .hide! .slide-down 500ms
-			window.AFTER_CURSOR = post.$post.attr \data-cursor
+			window.NEXT_ID = post-data.next-post
 		.fail (err) ->
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 		.always ->
