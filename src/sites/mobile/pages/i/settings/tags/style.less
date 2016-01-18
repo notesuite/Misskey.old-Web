@@ -1,6 +1,12 @@
 @import "../base";
 
 main {
+	display: block;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 0;
+	max-width: 500px;
+
 	form {
 		padding: 8px;
 
@@ -13,5 +19,9 @@ main {
 		[type='submit'] {
 			margin-top: 8px;
 		}
+	}
+
+	@media (min-width: 516px) {
+		padding-top: 16px;
 	}
 }

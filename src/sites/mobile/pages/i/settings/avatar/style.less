@@ -2,6 +2,12 @@
 @import (inline) "../../../../../../../bower_components/cropper/dist/cropper.css";
 
 main {
+	display: block;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 0;
+	max-width: 500px;
+	
 	#avatar {
 		display: block;
 		width: 64px;
@@ -43,6 +49,10 @@ main {
 				background-image: url("@{resources-url}/mobile/common/images/indeter.gif");
 			}
 		}
+	}
+
+	@media (min-width: 516px) {
+		padding-top: 16px;
 	}
 }
 
