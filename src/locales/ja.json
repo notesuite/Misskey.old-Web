@@ -165,6 +165,14 @@
 					"timeline_loading": "読み込んでいます...",
 					"new_post": "新規投稿"
 				},
+				"search": {
+					"index": {
+						"page_title": "Misskeyを検索",
+						"page_header_title": "検索",
+						"submit": "検索",
+						"input_placeholder": "キーワードを入力"
+					}
+				},
 				"i": {
 					"settings": {
 						"page_title": "設定 - Misskey",

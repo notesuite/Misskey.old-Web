@@ -1,14 +1,14 @@
 extends ../../../ui
 
 block title
-	| Misskeyを検索
+	=locale.sites.mobile.pages.search.index.page_title
 
 block header
 	i.fa.fa-search
-	| 検索
+	=locale.sites.mobile.pages.search.index.page_header_title
 
 block content
 	main
 		form(action= config.searchUrl, method='GET')
-			input.ui-input-text(type='text', name='q', required)
-			input.ui-button(type='submit', value='検索')
+			input.ui-input-text(type='text', name='q', placeholder=locale.sites.mobile.pages.search.index.input_placeholder, equired)
+			input.ui-button(type='submit', value=locale.sites.mobile.pages.search.index.submit)

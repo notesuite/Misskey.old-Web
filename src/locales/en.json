@@ -165,6 +165,14 @@
 					"timeline_loading": "Loading...",
 					"new_post": "New post"
 				},
+				"search": {
+					"index": {
+						"page_title": "Search Misskey",
+						"page_header_title": "Search",
+						"submit": "Search",
+						"input_placeholder": "Enter keyword"
+					}
+				},
 				"i": {
 					"settings": {
 						"page_title": "Settings - Misskey",
