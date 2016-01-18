@@ -187,7 +187,8 @@
 							"page_title": "インターフェイスに使用する言語 - Misskey",
 							"page_header_title": "UIの言語",
 							"auto": "自動で決定する(規定)",
-							"specify": "言語を指定:"
+							"specify": "言語を指定:",
+							"current_language": "現在の言語:"
 						}
 					}
 				}
