@@ -36,7 +36,7 @@ $ ->
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \p .text '読み込んでいます...'
-		$.ajax "#{CONFIG.web-api-url}/posts/mentions" {
+		$.ajax "#{CONFIG.web-api-url}/posts/mentions/show" {
 			data:
 				limit: 20
 				'max-cursor': $ '#stream > .posts > .post:last-child' .attr \data-cursor

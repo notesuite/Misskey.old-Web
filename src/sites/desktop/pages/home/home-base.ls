@@ -58,7 +58,7 @@ module.exports = (type) ->
 			$button.text '読み込み中'
 			endpoint = switch (type)
 				| \home => "#{CONFIG.web-api-url}/posts/timeline"
-				| \mentions => "#{CONFIG.web-api-url}/posts/mentions"
+				| \mentions => "#{CONFIG.web-api-url}/posts/mentions/show"
 			$.ajax endpoint, {
 				data:
 					limit: 10
