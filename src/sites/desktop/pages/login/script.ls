@@ -38,6 +38,6 @@ $ ->
 				.find \span .text LOCALE.sites.desktop.pages.login.signin
 				..find \i .attr \class 'fa fa-sign-in'
 
-			$form.find \input .attr \disabled on
+			$form.find \input .attr \disabled off
 
 			$ \html .remove-class \logging
