@@ -8,7 +8,7 @@ block body
 	main
 		header
 			h1=locale.sites.desktop.pages.login.title
-		form#form(action='/login', method='get')
+		form#form
 			div.avatar-container
 				div.hr(role='presentation')
 				img#avatar(src= config.resourcesUrl + '/common/avatar.jpg', alt='')
@@ -36,7 +36,7 @@ block body
 				button(type='submit')
 					i.fa.fa-sign-in
 					span=locale.sites.desktop.pages.login.signin
-				a.register(href=config.url)
+				a.register(href=config.beginUrl)
 					i.fa.fa-angle-right
 					=locale.sites.desktop.pages.login.register
 				a.forgot-password(href=config.helpUrl + '/forgot-password')

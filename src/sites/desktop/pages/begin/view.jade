@@ -1,0 +1,70 @@
+extends ../../base
+
+block title
+	=locale.sites.desktop.pages.register.page_title
+
+block meta
+	script(src='https://www.google.com/recaptcha/api.js')
+
+block body
+	header
+	main
+		header
+			h1=locale.sites.desktop.pages.register.title
+		form#form(action='/login', method='get')
+			div.kyoppie
+				label#screen-name
+					p.caption
+						i.fa.fa-at
+						=locale.sites.desktop.pages.register.screen_name_caption
+					input(name='screen-name'
+						type='text'
+						pattern='^[0-9A-Za-z\-]+$'
+						placeholder=locale.sites.desktop.pages.register.screen_name_placeholder
+						autocomplete='off'
+						autofocus
+						required)
+					p.profile-page-url-preview
+					p.info(data-state='none')
+						i
+						span
+				label#password
+					p.caption
+						i.fa.fa-lock
+						=locale.sites.desktop.pages.register.password_caption
+					input(name='password'
+						type='password'
+						placeholder=locale.sites.desktop.pages.register.password_placeholder
+						autocomplete='off'
+						required)
+				label#retype-password
+					p.caption
+						i.fa.fa-lock
+						=locale.sites.desktop.pages.register.retype_password_caption
+					input(name='password-retyped'
+						type='password'
+						placeholder=locale.sites.desktop.pages.register.retype_password_placeholder
+						autocomplete='off'
+						required)
+				label#recaptcha
+					p.caption
+						i.fa.fa-toggle-off
+						=locale.sites.desktop.pages.register.verify_caption
+					div.g-recaptcha(
+						data-callback='onRecaptchaed'
+						data-expired-callback='onRecaptchaExpired'
+						data-sitekey='6Ldd8foSAAAAAPzLf76PvjZmho4F60THwnlpPPA0')
+				label#agree-tou
+					input(
+						name='agree-tou',
+						type='checkbox',
+						required)
+					p!=locale.sites.desktop.pages.register.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+				button(type='submit')
+					i.fa.fa-check
+					span=locale.sites.desktop.pages.register.create
+				a.signin(href=config.signinUrl)
+					i.fa.fa-angle-right
+					=locale.sites.desktop.pages.register.signin
+	footer
+		a.misskey(href=config.url) Misskey

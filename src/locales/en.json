@@ -101,6 +101,27 @@
 						"text": "To manage Misskey, we spend money for our domain, server, etc.. There's no incomes for us, so we need your tip. If you're interested, contact <a href='/syuilo'>@syuilo</a>. Thank you for your contribution!"
 					}
 				},
+				"register": {
+					"page_title": "Begin - Misskey",
+					"title": "Create a Misskey account",
+					"screen_name_caption": "User ID",
+					"screen_name_placeholder": "半角英数字、記号(ハイフン)",
+					"screen_name_error_1": "半角英数とハイフンのみでお願いします",
+					"screen_name_error_2": "4文字以上でお願いします",
+					"screen_name_error_3": "20文字以内でお願いします",
+					"screen_name_info_1": "確認中...",
+					"screen_name_info_2": "このIDは使用できます",
+					"screen_name_info_3": "このIDは使用されています",
+					"screen_name_info_4": "確認に失敗しました",
+					"password_caption": "Passcode",
+					"password_placeholder": "8文字以上",
+					"retype_password_caption": "Retype passcode",
+					"retype_password_placeholder": "Enter again",
+					"verify_caption": "Verify",
+					"agree_tou": "I agree to the {Terms of Use}",
+					"create": "Create account",
+					"signin": "Already have an account"
+				},
 				"login": {
 					"page_title": "Sign in - Misskey",
 					"title": "Sign in to Misskey",

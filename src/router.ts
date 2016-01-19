@@ -96,6 +96,14 @@ export default function router(app: express.Express): void {
 		}
 	});
 
+	app.get(`/subdomain/${config.publicConfig.beginDomain}/`, (req, res) => {
+		if (res.locals.isLogin) {
+			res.redirect(config.publicConfig.url);
+		} else {
+			callController(req, res, 'begin');
+		}
+	});
+
 	app.post(`/subdomain/${config.publicConfig.signinDomain}/`, (req, res) => {
 		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
 			res.sendStatus(200);

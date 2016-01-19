@@ -101,6 +101,27 @@
 						"text": "Misskeyの運営にはドメイン、サーバー等のコストが掛かります。 Misskeyは広告を掲載したりしないため、 収入を皆様からの寄付に頼っています。 もしご興味があれば、<a href='/syuilo'>@syuilo</a>までご連絡ください。ご協力ありがとうございます。"
 					}
 				},
+				"register": {
+					"page_title": "Misskeyを始める",
+					"title": "Misskeyアカウントを作成",
+					"screen_name_caption": "ユーザーID",
+					"screen_name_placeholder": "半角英数字、記号(ハイフン)",
+					"screen_name_error_1": "半角英数とハイフンのみでお願いします",
+					"screen_name_error_2": "4文字以上でお願いします",
+					"screen_name_error_3": "20文字以内でお願いします",
+					"screen_name_info_1": "確認中...",
+					"screen_name_info_2": "このIDは使用できます",
+					"screen_name_info_3": "このIDは使用されています",
+					"screen_name_info_4": "確認に失敗しました",
+					"password_caption": "パスコード",
+					"password_placeholder": "8文字以上",
+					"retype_password_caption": "パスコード(再入力)",
+					"retype_password_placeholder": "再度入力",
+					"verify_caption": "確認",
+					"agree_tou": "{利用規約}に同意します",
+					"create": "アカウント作成",
+					"signin": "既にアカウントをお持ちの方はこちら"
+				},
 				"login": {
 					"page_title": "ログイン - Misskey",
 					"title": "Misskeyにログイン",

@@ -1,0 +1,282 @@
+@import "../../common";
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background: #fff;
+}
+
+html {
+	color: #444;
+
+	&.logging {
+		&, * {
+			cursor: wait !important;
+		}
+	}
+}
+
+.avatar-container {
+	display: block;
+	position: relative;
+
+	.hr {
+		position: absolute;
+		top: 63.5px;
+		left: 0;
+		right: 0;
+		height: 1px;
+		width: 100%;
+		margin: 0 auto;
+		background: #eee;
+	}
+
+	#avatar {
+		display: block;
+		box-sizing: border-box;
+		width: 128px;
+		height: 128px;
+		position: relative;
+		margin: 0 auto;
+		border: solid 16px #fff;
+		border-radius: 100%;
+		// box-shadow: 0 0 0 1px #eee, 0 0 0 16px #fff;
+	}
+}
+
+main {
+	display: block;
+	box-sizing: border-box;
+	position: relative;
+	padding-bottom: 48px;
+	min-height: ~"calc(100% - (8px + 128px))";
+	background: #fff;
+	/* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); */
+
+	h1 {
+		display: block;
+		position: relative;
+		z-index: 1;
+		margin: 0;
+		padding: 32px 64px 0 64px;
+		text-align: center;
+		color: #777;
+		font-size: 2em;
+		font-weight: normal;
+		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
+	}
+
+	#form {
+		display: block;
+		font-family: 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+
+		.kyoppie {
+			display: block;
+			box-sizing: border-box;
+			margin: 0 auto;
+			padding: 0;
+			width: 302px;
+		}
+
+		label {
+			display: block;
+			position: relative;
+			margin: 16px 0;
+
+			> .caption {
+				margin: 0 0 4px 0;
+				color: darken(@theme-color, 20%);
+				font-size: 0.95em;
+
+				> i {
+					margin-right: 0.25em;
+					color: @theme-color;
+				}
+			}
+
+			> .info {
+				display: block;
+				margin: 4px 0;
+				font-size: 0.8em;
+
+				&[data-state='none'] {
+					display: none;
+				}
+
+				&[data-state='error'] {
+					color: #FF1161;
+				}
+
+				&[data-state='processing'] {
+					color: #999;
+				}
+
+				&[data-state='success'] {
+					color: #3CB7B5;
+				}
+
+				> i {
+					margin-right: 0.3em;
+				}
+			}
+
+			&#screen-name {
+				.profile-page-url-preview {
+					display: block;
+					margin: 4px 8px;
+					font-size: 0.8em;
+					color: #888;
+
+					&:empty {
+						display: none;
+					}
+				}
+			}
+		}
+
+		[type=text], [type=password] {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			user-select: text;
+			-moz-user-select: text;
+			-webkit-user-select: text;
+			-ms-user-select: text;
+			display: inline-block;
+			cursor: auto;
+			box-sizing: border-box;
+			padding: 11px;
+			margin: 0;
+			width: 100%;
+			font-size: 1em;
+			color: #222;
+			outline: none;
+			border: solid 1px #ddd;
+			border-radius: 3px;
+			box-shadow: 0 0 0 114514px #fff inset;
+			background: transparent;
+			transition: all 0.2s ease;
+
+			&:disabled {
+				opacity: 0.5;
+			}
+
+			&:hover {
+				border: solid 1px #bbb;
+				transition: all 0s ease;
+			}
+
+			&:focus {
+				color: darken(@theme-color, 20%);
+				border: solid 1px @theme-color;
+				transition: all 0s ease;
+			}
+		}
+
+		#agree-tou {
+			padding: 4px 0;
+
+			p {
+				display: inline;
+				color: #222;
+			}
+		}
+
+		[type=submit] {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			cursor: pointer;
+			display: block;
+			box-sizing: border-box;
+			position: relative;
+			padding: 12px;
+			margin: 20px 0 22px 0;
+			width: 100%;
+			font-size: 1em;
+			color: #fff;
+			outline: none;
+			border: none;
+			border-radius: 3px;
+			box-shadow: none;
+			background: @theme-color;
+
+			&:before {
+				content: "";
+				display: block;
+				width: 48px;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.1);
+				border-radius: 3px 0 0 3px;
+			}
+
+			> i {
+				display: block;
+				width: 48px;
+				height: 1em;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				margin: auto 0;
+			}
+
+			&:disabled {
+				opacity: 0.5;
+			}
+
+			&:hover {
+				background: darken(@theme-color, 5%);
+			}
+
+			&:active {
+				background: darken(@theme-color, 10%);
+			}
+		}
+
+		.signin {
+			display: block;
+			margin: 8px 0;
+			color: #888;
+			font-size: 0.7em;
+
+			> i {
+				margin-right: 0.3em;
+			}
+		}
+	}
+}
+
+body > header {
+	display: block;
+	box-sizing: border-box;
+	height: 8px;
+	background-color: @theme-color;
+	background-image: url("@{resources-url}/common/background-overlay.svg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+body > footer {
+	display: block;
+	box-sizing: border-box;
+	padding: 16px;
+	height: 128px;
+	text-align: center;
+	font-size: 0.9em;
+	color: #fff;
+	background-color: @theme-color;
+	background-image: url("@{resources-url}/common/background-overlay.svg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+
+	.misskey {
+		color: #fff;
+	}
+}

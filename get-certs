@@ -11,6 +11,7 @@ forever stopall
 -d misskey.xyz \
 -d himasaku.misskey.xyz \
 -d resources.misskey.xyz \
+-d begin.misskey.xyz \
 -d login.misskey.xyz \
 -d logout.misskey.xyz \
 -d about.misskey.xyz \
