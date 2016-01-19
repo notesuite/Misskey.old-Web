@@ -46,7 +46,7 @@ block body
 						autocomplete='off'
 						required)
 				input(type='submit', value!='SIGN IN &#xf105;')
-			button.ui-waves-effect#new
+			a#new(href=config.beginUrl)
 				i.fa.fa-pencil-square-o
 				| Create account
 			div.ad.
@@ -60,50 +60,3 @@ block body
 				<script>
 				(adsbygoogle = window.adsbygoogle || []).push({});
 				</script>
-	
-	div#register-form-background(role='presentation')
-	div#register-form
-		div.main
-			header
-				h2
-					i.fa.fa-child
-					| Create my Misskey account
-			form
-				label.user-name
-					input.user-name-input(
-						name='screen-name',
-						type='text',
-						placeholder='User name',
-						pattern='^[a-zA-Z0-9_]+$',
-						autocomplete='off',
-						required)
-					p.profile-page-url-preview https://misskey.xyz/
-				label.password
-					input.password-input(
-						name='password',
-						type='password',
-						placeholder='Passcode',
-						autocomplete='off',
-						required)
-				label.password-retype
-					input.password-retype-input(
-						name='retype-password',
-						type='password',
-						placeholder='Retype passcode',
-						autocomplete='off',
-						required)
-				label.agree-tou
-					input(
-						name='agree-tou',
-						type='checkbox',
-						required)
-					p
-						| I agree to the 
-						a(href='/terms-of-use', target='_blank') Terms of Use(Japanese)
-				div.actions
-					button#register-cancel(type='button')
-						i.fa.fa-ban
-						| Cancel
-					button#register-accept(type='submit')
-						i.fa.fa-check
-						| Create!

@@ -34,6 +34,7 @@
 		"src/api/streaming/get-session-user.ts",
 		"src/api/streaming/home.ts",
 		"src/api/streaming/talk.ts",
+		"src/api/endpoints/account/create.ts",
 		"src/api/endpoints/url/analyze.ts",
 		"src/api/endpoints/album/upload.ts",
 		"src/api/endpoints/avatar/update.ts",

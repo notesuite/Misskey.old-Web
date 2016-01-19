@@ -40,6 +40,7 @@ export interface IConfig {
 	cookiePass: string;
 	sessionKey: string;
 	sessionSecret: string;
+	googleRecaptchaSecret: string;
 	publicConfig: {
 		themeColor: string;
 		domain: string;
