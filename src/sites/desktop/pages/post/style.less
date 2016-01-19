@@ -16,26 +16,21 @@ main {
 	@import (multiple) "../../common/styles/post-detail";
 }
 
-#after-timeline, #before-timeline {
-	@import (multiple) "../../common/styles/post-detail";
-}
+#no-next, #no-prev {
+	display: block;
+	margin: 0;
+	padding: 12px;
+	color: #c8cac3;
+	text-align: center;
+	font-size: 0.8em;
+	font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
 
-#after-timeline {
-	> .post {
-		margin-bottom: 16px;
+	> i {
+		margin-right: 0.25em;
 	}
 }
 
-#before-timeline {
-	> .post {
-		margin-top: 16px;
-	}
-}
-
-#read-before, #read-after {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+#next, #prev {
 	display: block;
 	box-sizing: border-box;
 	margin: 0;

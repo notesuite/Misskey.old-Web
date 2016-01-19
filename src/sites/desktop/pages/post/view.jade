@@ -2,11 +2,11 @@ extends ../../ui
 include ../../common/views/post/detail/post
 
 block title
-	= post.user.name + 'さんの' + post.createdAt + 'の投稿'
+	= user.name + 'さんの' + post.createdAt + 'の投稿'
 
 block meta
 	meta(name='keywords', content='Misskey')
-	meta(name='description', content= post.user.name + 'さんの' + post.createdAt + 'の投稿')
+	meta(name='description', content= user.name + 'さんの' + post.createdAt + 'の投稿')
 
 block assets
 	script!= 'var USER = ' + JSON.stringify(user) + ';'
@@ -16,9 +16,20 @@ block assets
 
 block content
 	main(role='main')
-		button#read-after(role='button', title='これより後の投稿を読む'): i.fa.fa-chevron-up
-		aside.timeline#after-timeline
+
+		if post.nextPost !== null
+			a#next(href=config.url + '/' + user.screenName + '/' + post.nextPost, title='この次の投稿'): i.fa.fa-chevron-up
+		else
+			p#no-next
+				i.fa.fa-info-circle
+				| これより新しい投稿はありません。
+
 		div#post
 			+post(post)
-		aside.timeline#before-timeline
-		button#read-before(role='button', title='これより前の投稿を読む'): i.fa.fa-chevron-down
+
+		if post.prevPost !== null
+			a#prev(href=config.url + '/' + user.screenName + '/' + post.prevPost, title='この前の投稿'): i.fa.fa-chevron-down
+		else
+			p#no-prev
+				i.fa.fa-info-circle
+				| これより古い投稿はありません。
