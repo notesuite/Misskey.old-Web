@@ -58,13 +58,14 @@ main {
 		display: block;
 		position: relative;
 		z-index: 1;
-		margin: 0;
-		padding: 32px 64px 0 64px;
+		margin: 0 0 32px 0;
+		padding: 32px 64px 16px 64px;
 		text-align: center;
 		color: #777;
 		font-size: 2em;
 		font-weight: normal;
 		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
+		border-bottom: solid 1px #eee;
 	}
 
 	#form {
@@ -75,14 +76,28 @@ main {
 			display: block;
 			box-sizing: border-box;
 			margin: 0 auto;
-			padding: 0;
-			width: 302px;
+			padding: 0 32px 0 64px;
+			width: 398px;
 		}
 
 		label {
 			display: block;
 			position: relative;
 			margin: 16px 0;
+
+			&:before {
+				content: "";
+				display: block;
+				width: 16px;
+				height: 16px;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: -40px;
+				margin: auto 0;
+				background: #eee;
+				border-radius: 100%;
+			}
 
 			> .caption {
 				margin: 0 0 4px 0;

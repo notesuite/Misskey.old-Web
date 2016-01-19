@@ -124,6 +124,8 @@
 					"verify_caption": "Verify",
 					"agree_tou": "I agree to the {Terms of Use}",
 					"create": "Create account",
+					"creating": "Processing...",
+					"logging": "Logging...",
 					"signin": "Already have an account"
 				},
 				"login": {

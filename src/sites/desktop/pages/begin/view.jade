@@ -13,6 +13,7 @@ block body
 			h1=locale.sites.desktop.pages.register.title
 		form#form(action='/login', method='get')
 			div.kyoppie
+				
 				label#screen-name
 					p.caption
 						i.fa.fa-at
@@ -28,6 +29,7 @@ block body
 					p.info(data-state='none')
 						i
 						span
+				
 				label#password
 					p.caption
 						i.fa.fa-lock
@@ -40,6 +42,7 @@ block body
 					p.info(data-state='none')
 						i
 						span
+				
 				label#retype-password
 					p.caption
 						i.fa.fa-lock
@@ -52,6 +55,7 @@ block body
 					p.info(data-state='none')
 						i
 						span
+				
 				label#recaptcha
 					p.caption
 						i.fa.fa-toggle-off
@@ -60,15 +64,18 @@ block body
 						data-callback='onRecaptchaed'
 						data-expired-callback='onRecaptchaExpired'
 						data-sitekey='6Ldd8foSAAAAAPzLf76PvjZmho4F60THwnlpPPA0')
+				
 				label#agree-tou
 					input(
 						name='agree-tou',
 						type='checkbox',
 						required)
 					p!=locale.sites.desktop.pages.register.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+				
 				button(type='submit')
 					i.fa.fa-check
 					span=locale.sites.desktop.pages.register.create
+					
 				a.signin(href=config.signinUrl)
 					i.fa.fa-angle-right
 					=locale.sites.desktop.pages.register.signin

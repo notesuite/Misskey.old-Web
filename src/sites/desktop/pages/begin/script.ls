@@ -94,26 +94,35 @@ $ ->
 
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
-			..find \span .text LOCALE.sites.desktop.pages.login.signing_in
+			..find \span .text LOCALE.sites.desktop.pages.register.creating
 			..find \i .attr \class 'fa fa-spinner fa-pulse'
 
 		$form.find \input .attr \disabled on
 
 		$ \html .add-class \logging
 
-		$.ajax CONFIG.signin-url, {
+		$.ajax "#{CONFIG.web-api-url}/account/create" {
 			data: {
 				'screen-name': $form.find '[name="screen-name"]' .val!
 				'password': $form.find '[name="password"]' .val!
 			}
-		}
-		.done ->
-			location.reload!
+		} .done ->
+			$submit-button
+				.find \span .text LOCALE.sites.desktop.pages.register.logging
+
+			$.ajax CONFIG.signin-url, {
+				data: {
+					'screen-name': $form.find '[name="screen-name"]' .val!
+					'password': $form.find '[name="password"]' .val!
+				}
+			} .done ->
+				# location.href = "#{CONFIG.url}/welcome"
+				location.href = CONFIG.url
 		.fail ->
 			$submit-button
 				..attr \disabled off
-				.find \span .text LOCALE.sites.desktop.pages.login.signin
-				..find \i .attr \class 'fa fa-sign-in'
+				.find \span .text LOCALE.sites.desktop.pages.register.create
+				..find \i .attr \class 'fa fa-check'
 
 			$form.find \input .attr \disabled off
 

@@ -124,6 +124,8 @@
 					"verify_caption": "確認",
 					"agree_tou": "{利用規約}に同意します",
 					"create": "アカウント作成",
+					"creating": "処理中...",
+					"logging": "ログイン中...",
 					"signin": "既にアカウントをお持ちの方はこちら"
 				},
 				"login": {
