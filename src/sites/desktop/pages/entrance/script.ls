@@ -32,6 +32,3 @@ $ ->
 					'transition': 'all ease 0.7s'
 				}
 			, 500ms
-
-	$ '#new' .click show-register-form
-	init-register-form!
