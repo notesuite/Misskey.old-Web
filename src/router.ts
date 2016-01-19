@@ -96,11 +96,11 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.get(`/subdomain/${config.publicConfig.beginDomain}/`, (req, res) => {
+	app.get(`/subdomain/${config.publicConfig.registerDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
 			res.redirect(config.publicConfig.url);
 		} else {
-			callController(req, res, 'begin');
+			callController(req, res, 'register');
 		}
 	});
 
