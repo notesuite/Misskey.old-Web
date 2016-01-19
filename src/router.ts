@@ -43,6 +43,7 @@ export default function router(app: express.Express): void {
 
 		const ua: string = uatype(req.headers['user-agent']);
 		const noui: boolean = req.query.hasOwnProperty('noui');
+		const cookieLang: boolean = req.cookies['ui-language'];
 		const browserAcceptLanguageString: string = req.headers['accept-language'];
 
 		const browserAcceptLanguage = browserAcceptLanguageString !== undefined && browserAcceptLanguageString !== null
@@ -74,7 +75,9 @@ export default function router(app: express.Express): void {
 				});
 			});
 		} else {
-			const lang = browserAcceptLanguage;
+			const lang = cookieLang !== undefined
+				? cookieLang
+				: browserAcceptLanguage;
 			req.user = null;
 			res.locals.me = null;
 			res.locals.userSettings = guestUserSettings;

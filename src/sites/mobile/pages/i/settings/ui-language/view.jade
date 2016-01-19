@@ -16,6 +16,7 @@ block content
 					optgroup(label=locale.sites.mobile.pages.i.settings.ui_language_page.specify)
 						option(value='ja', selected= userSettings.uiLanguage == 'ja')= "🇯🇵 日本語 (" + locale.common.languages.japanese + ")"
 						option(value='en', selected= userSettings.uiLanguage == 'en')= "🇺🇸 English (" + locale.common.languages.english + ")"
+						option(value='_homu', selected= userSettings.uiLanguage == '_homu')= "ほむ (ほむ)"
 			p#current-language
 				=locale.sites.mobile.pages.i.settings.ui_language_page.current_language
 				b= lang

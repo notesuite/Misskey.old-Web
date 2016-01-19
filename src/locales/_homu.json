@@ -1,0 +1,238 @@
+{
+	"common": {
+		"sign_in": "ほむ",
+		"sign_out": "ほむ",
+		"verified": "ほむ",
+		"times": {
+			"just_now": "ほむ",
+			"seconds_ago": "{n}ほむ",
+			"minutes_ago": "{n}ほむ",
+			"hours_ago": "{n}ほむ",
+			"days_ago": "{n}ほむ",
+			"weeks_ago": "{n}ほむ",
+			"months_ago": "{n}ほむ",
+			"years_ago": "{n}ほむ"
+		},
+		"languages": {
+			"japanese": "ほむ",
+			"english": "ほむ"
+		}
+	},
+	"sites": {
+		"desktop": {
+			"common": {
+				"connecting_stream": "ほむ",
+				"connected_stream": "ほむ",
+				"reconnecting_stream": "ほむ",
+				"talk_window_title": "ほむ",
+				"header": {
+					"home": "ほむ",
+					"mentions": "ほむ",
+					"talks": "ほむ",
+					"album": "ほむ",
+					"search_placeholder": "ほむ",
+					"profile_page": "ほむ",
+					"settings": "ほむ",
+					"create_new_post_button_tooltip": "ほむ",
+					"empty_notifications": "ほむ",
+					"delete_all_notifications": "ほむ"
+				},
+				"ad_block_detected": {
+					"title": "ほむ",
+					"text": "ほむ",
+					"ok": "ほむ"
+				},
+				"post_form": {
+					"status_tab": "ほむ",
+					"poll_tab": "ほむ",
+					"attach_file_from_pc": "ほむ",
+					"attach_file_from_album": "ほむ"
+				},
+				"delete_all_notifications_flow": {
+					"confirmation_dialog": {
+						"title": "ほむ",
+						"text": "ほむ",
+						"ok": "ほむ",
+						"cancel": "ほむ"
+					},
+					"re_confirmation_dialog": {
+						"title": "ほむ",
+						"text": "ほむ",
+						"ok": "ほむ",
+						"cancel": "ほむ"
+					}
+				},
+				"post": {
+					"send_reply": "ほむ",
+					"reply_form_textarea_placeholder": "ほむ",
+					"attach_file_from_pc": "ほむ",
+					"attach_file_from_album": "ほむ",
+					"repost_dialog": {
+						"title": "ほむ",
+						"accept": "ほむ",
+						"cancel": "ほむ"
+					}
+				},
+				"keyboard_shortcuts": {
+					"title": "ほむ",
+					"or": "ほむ",
+					"show_this_dialog": "ほむ",
+					"while_opening_post_form": "ほむ",
+					"open_post_form": "ほむ",
+					"close_post_form": "ほむ"
+				}
+			},
+			"pages": {
+				"home": {
+					"my_status_widget": {
+						"name": "ほむ",
+						"posts": "ほむ",
+						"following": "ほむ",
+						"followers": "ほむ"
+					},
+					"recommendation_users_widget": {
+						"name": "ほむ",
+						"no_users": "ほむ",
+						"follow": "ほむ"
+					},
+					"donate_widget": {
+						"name": "ほむ",
+						"title": "ほむ",
+						"text": "ほむ"
+					}
+				},
+				"register": {
+					"page_title": "ほむ",
+					"title": "ほむ",
+					"screen_name_caption": "ほむ",
+					"screen_name_placeholder": "ほむ",
+					"screen_name_error_1": "ほむ",
+					"screen_name_error_2": "ほむ",
+					"screen_name_error_3": "ほむ",
+					"screen_name_info_1": "ほむ",
+					"screen_name_info_2": "ほむ",
+					"screen_name_info_3": "ほむ",
+					"screen_name_info_4": "ほむ",
+					"password_caption": "ほむ",
+					"password_placeholder": "ほむ",
+					"password_error_1": "ほむ",
+					"password_info_1": "ほむ",
+					"retype_password_caption": "ほむ",
+					"retype_password_placeholder": "ほむ",
+					"retype_password_error_1": "ほむ",
+					"retype_password_info_1": "ほむ",
+					"verify_caption": "ほむ",
+					"agree_tou": "{ほむ}ほむ",
+					"create": "ほむ",
+					"creating": "ほむ",
+					"logging": "ほむ",
+					"signin": "ほむ"
+				},
+				"login": {
+					"page_title": "ほむ",
+					"title": "ほむ",
+					"signin": "ほむ",
+					"signing_in": "ほむ",
+					"screen_name_caption": "ほむ",
+					"password_caption": "ほむ",
+					"register": "ほむ",
+					"forgot_password": "ほむ"
+				},
+				"i": {
+					"settings": {
+						"page_title": "ほむ",
+						"profile": "ほむ",
+						"web": "ほむ",
+						"general": "ほむ",
+						"home": "ほむ",
+						"advanced": "ほむ",
+						"user_avatar": "ほむ",
+						"select_image_from_pc": "ほむ",
+						"select_image_from_album": "ほむ",
+						"user_name": "ほむ",
+						"user_comment": "ほむ",
+						"user_website_url": "ほむ",
+						"user_location": "ほむ",
+						"update": "ほむ",
+						"display_user_name_in_post": "ほむ",
+						"display_user_screen_name_in_post": "ほむ",
+						"display_created_at_in_post": "ほむ",
+						"display_actions_in_post": "ほむ",
+						"confirmation_when_repost": "ほむ",
+						"enable_url_preview_in_post": "ほむ",
+						"thumbnailyze_attached_image_of_post": "ほむ",
+						"customize_home": "ほむ",
+						"enable_notification_sound_when_receiving_new_post": "ほむ",
+						"read_timeline_automatically": "ほむ",
+						"enable_sushi": "ほむ"
+					}
+				}
+			}
+		},
+		"mobile": {
+			"common": {
+				"connecting_stream": "ほむ",
+				"connected_stream": "ほむ",
+				"reconnecting_stream": "ほむ",
+				"nav": {
+					"post": "ほむ",
+					"home": "ほむ",
+					"mentions": "ほむ",
+					"notifications": "ほむ",
+					"talks": "ほむ",
+					"search": "ほむ",
+					"settings": "ほむ",
+					"about_misskey": "ほむ"
+				},
+				"post": {
+					"reply_dialog": "ほむ",
+					"repost_confirm": "ほむ"
+				}
+			},
+			"pages": {
+				"home": {
+					"page_title": "ほむ",
+					"page_header_title": "ほむ",
+					"read_more": "ほむ",
+					"timeline_loading": "ほむ",
+					"new_post": "ほむ"
+				},
+				"search": {
+					"index": {
+						"page_title": "ほむ",
+						"page_header_title": "ほむ",
+						"submit": "ほむ",
+						"input_placeholder": "ほむ"
+					}
+				},
+				"i": {
+					"settings": {
+						"page_title": "ほむ",
+						"page_header_title": "ほむ",
+						"hello": "ほむ",
+						"profile": "ほむ",
+						"avatar": "ほむ",
+						"banner": "ほむ",
+						"name": "ほむ",
+						"comment": "ほむ",
+						"tags": "ほむ",
+						"location": "ほむ",
+						"url": "ほむ",
+						"web_general": "ほむ",
+						"ui_language": "ほむ",
+						"mobile": "ほむ",
+						"header_design": "ほむ",
+						"signout": "ほむ",
+						"ui_language_page": {
+							"page_title": "ほむ",
+							"page_header_title": "ほむ",
+							"auto": "ほむ",
+							"specify": "ほむ",
+							"current_language": "ほむ"
+						}
+					}
+				}
+			}
+		}
+	}
+}
