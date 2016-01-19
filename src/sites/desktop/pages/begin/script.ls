@@ -40,7 +40,7 @@ $ ->
 						$ '#screen-name > .info'
 							..children \i .attr \class 'fa fa-check'
 							..children \span .text LOCALE.sites.desktop.pages.register.screen_name_info_2
-							..attr \data-state \success
+							..attr \data-state \ok
 					else
 						$ '#screen-name > .info'
 							..children \i .attr \class 'fa fa-exclamation-triangle'
@@ -53,6 +53,41 @@ $ ->
 						..attr \data-state \error
 		else
 			$ '#screen-name > .profile-page-url-preview' .text ""
+
+	$ '#password > input' .keyup ->
+		password = $ '#password > input' .val!
+		if password != ''
+			err = switch
+				| password.length < 8chars       => LOCALE.sites.desktop.pages.register.password_error_1
+				| _                              => null
+			if err
+				$ '#password > .info'
+					..children \i .attr \class 'fa fa-exclamation-triangle'
+					..children \span .text err
+					..attr \data-state \error
+			else
+				$ '#password > .info'
+					..children \i .attr \class 'fa fa-check'
+					..children \span .text LOCALE.sites.desktop.pages.register.password_info_1
+					..attr \data-state \ok
+
+	$ '#retype-password > input' .keyup ->
+		password = $ '#password > input' .val!
+		retyped-password = $ '#retype-password > input' .val!
+		if retyped-password != ''
+			err = switch
+				| retyped-password != password   => LOCALE.sites.desktop.pages.register.retype_password_error_1
+				| _                              => null
+			if err
+				$ '#retype-password > .info'
+					..children \i .attr \class 'fa fa-exclamation-triangle'
+					..children \span .text err
+					..attr \data-state \error
+			else
+				$ '#retype-password > .info'
+					..children \i .attr \class 'fa fa-check'
+					..children \span .text LOCALE.sites.desktop.pages.register.retype_password_info_1
+					..attr \data-state \ok
 
 	$form.submit (event) ->
 		event.prevent-default!
