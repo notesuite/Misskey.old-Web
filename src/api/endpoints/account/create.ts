@@ -21,7 +21,6 @@ export default function create(req: express.Request, res: express.Response): voi
 			return;
 		}
 		const parsed: any = JSON.parse(body);
-		console.log(body);
 		if (parsed.success) {
 			requestApi('account/create', {
 				'screen-name': req.body['screen-name'],
