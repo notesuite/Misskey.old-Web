@@ -99,25 +99,21 @@ $ ->
 
 		$form.find \input .attr \disabled on
 
-		$ \html .add-class \logging
+		screen-name = $form.find '[name="screen-name"]' .val!
+		password = $form.find '[name="password"]' .val!
 
-		alert grecaptcha.get-response!
+		$ \html .add-class \logging
 
 		$.ajax "#{CONFIG.web-api-url}/account/create" {
 			data:
-				'screen-name': $form.find '[name="screen-name"]' .val!
-				'password': $form.find '[name="password"]' .val!
+				'screen-name': screen-name
+				'password': password
+				'g-recaptcha-response': grecaptcha.get-response!
 		} .done ->
 			$submit-button
 				.find \span .text LOCALE.sites.desktop.pages.register.logging
 
-			$.ajax CONFIG.signin-url, {
-				data:
-					'screen-name': $form.find '[name="screen-name"]' .val!
-					'password': $form.find '[name="password"]' .val!
-			} .done ->
-				# location.href = "#{CONFIG.url}/welcome"
-				location.href = CONFIG.url
+			location.href = "#{CONFIG.signin-url}?screen-name=#{screen-name}&password=#{password}"
 		.fail ->
 			$submit-button
 				..attr \disabled off
