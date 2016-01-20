@@ -15,10 +15,10 @@ $ ->
 		sn = $ '#screen-name > input' .val!
 		if sn != ''
 			err = switch
-				| not sn.match /^[a-zA-Z0-9-]+$/ => LOCALE.sites.desktop.pages.register.screen_name_error_1
-				| sn.length < 4chars             => LOCALE.sites.desktop.pages.register.screen_name_error_2
-				| sn.length > 20chars            => LOCALE.sites.desktop.pages.register.screen_name_error_3
-				| _                              => null
+				| not sn.match /^[a-zA-Z0-9\-]+$/ => LOCALE.sites.desktop.pages.register.screen_name_error_1
+				| sn.length < 3chars              => LOCALE.sites.desktop.pages.register.screen_name_error_2
+				| sn.length > 20chars             => LOCALE.sites.desktop.pages.register.screen_name_error_3
+				| _                               => null
 
 			if err
 				$ '#screen-name > .info'
