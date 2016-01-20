@@ -1,5 +1,13 @@
 @import "../../common";
 
+* {
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -153,6 +161,10 @@ main {
 			border-radius: 3px;
 			box-shadow: none;
 			background: @theme-color;
+
+			* {
+				pointer-events: none;
+			}
 
 			&:before {
 				content: "";
