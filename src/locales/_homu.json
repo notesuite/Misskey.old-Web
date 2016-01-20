@@ -235,10 +235,10 @@
 					"signin": "ほむ"
 				},
 				"home": {
-					"page_title": "ほむ",
-					"page_header_title": "ほむ",
+					"page_title": "ほむホーム - Misskey",
+					"page_header_title": "ほむホーム",
 					"read_more": "ほむ",
-					"timeline_loading": "ほむ",
+					"timeline_loading": "ほむ...",
 					"new_post": "ほむ"
 				},
 				"search": {
