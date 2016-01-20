@@ -64,11 +64,9 @@ html(
 	body
 		noscript
 			article#misskey-no-script-caution
-				h1 JavaScriptを有効にしてください
+				h1=locale.sites.mobile.common.no_script_caution.title
 				p
-					strong
-						| JavaScriptが無効になっているか、利用できない環境のようです。
-						| Misskeyの利用にはJavaScriptが有効になっている必要があります。
+					strong=locale.sites.mobile.common.no_script_caution.text
 
 		block body
 		

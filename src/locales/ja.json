@@ -21,6 +21,10 @@
 	"sites": {
 		"desktop": {
 			"common": {
+				"no_script_caution": {
+					"title": "JavaScriptを有効にしてください",
+					"text": "JavaScriptが無効になっているか、利用できない環境のようです。Misskeyのご利用にはJavaScriptが有効になっている必要があります。"
+				},
 				"connecting_stream": "ストリームに接続しています...",
 				"connected_stream": "ストリームに接続しました",
 				"reconnecting_stream": "ストリームから切断されました 再接続中...",
@@ -172,6 +176,10 @@
 		},
 		"mobile": {
 			"common": {
+				"no_script_caution": {
+					"title": "JavaScriptを有効にしてください",
+					"text": "JavaScriptが無効になっているか、利用できない環境のようです。Misskeyのご利用にはJavaScriptが有効になっている必要があります。"
+				},
 				"connecting_stream": "ストリームに接続しています...",
 				"connected_stream": "ストリームに接続しました",
 				"reconnecting_stream": "ストリームに再接続中...",
