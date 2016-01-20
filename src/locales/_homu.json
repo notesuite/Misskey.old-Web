@@ -4,29 +4,34 @@
 		"sign_out": "ほむ",
 		"verified": "ほむ",
 		"times": {
-			"just_now": "ほむ",
-			"seconds_ago": "{n}ほむ",
-			"minutes_ago": "{n}ほむ",
-			"hours_ago": "{n}ほむ",
-			"days_ago": "{n}ほむ",
-			"weeks_ago": "{n}ほむ",
-			"months_ago": "{n}ほむ",
-			"years_ago": "{n}ほむ"
+			"just_now": "たったほむ",
+			"seconds_ago": "{n}ほむ前",
+			"minutes_ago": "{n}ほむほむ前",
+			"hours_ago": "{n}ほむほむほむ前",
+			"days_ago": "{n}ほむほむほむほむ前",
+			"weeks_ago": "{n}ほむほむほむほむほむ前",
+			"months_ago": "{n}ほむほむほむほむほむほむ前",
+			"years_ago": "{n}ほむほむほむほむほむほむほむ前"
 		},
 		"languages": {
-			"japanese": "ほむ",
-			"english": "ほむ"
+			"japanese": "ほむ語",
+			"english": "ほむ語"
 		}
 	},
 	"sites": {
 		"desktop": {
 			"common": {
-				"connecting_stream": "ほむ",
+				"no_script_caution": {
+					"title": "ほむ",
+					"text": "ほむ"
+				},
+				"connecting_stream": "ほむ...",
 				"connected_stream": "ほむ",
-				"reconnecting_stream": "ほむ",
+				"reconnecting_stream": "ほむ...",
 				"talk_window_title": "ほむ",
+				"account_suspended": "ほむ",
 				"header": {
-					"home": "ほむ",
+					"home": "ほむホーム",
 					"mentions": "ほむ",
 					"talks": "ほむ",
 					"album": "ほむ",
@@ -122,7 +127,7 @@
 					"retype_password_error_1": "ほむ",
 					"retype_password_info_1": "ほむ",
 					"verify_caption": "ほむ",
-					"agree_tou": "{ほむ}ほむ",
+					"agree_tou": "ほむ",
 					"create": "ほむ",
 					"creating": "ほむ",
 					"logging": "ほむ",
@@ -171,9 +176,14 @@
 		},
 		"mobile": {
 			"common": {
-				"connecting_stream": "ほむ",
+				"no_script_caution": {
+					"title": "ほむ",
+					"text": "ほむ"
+				},
+				"connecting_stream": "ほむ...",
 				"connected_stream": "ほむ",
-				"reconnecting_stream": "ほむ",
+				"reconnecting_stream": "ほむ...",
+				"account_suspended": "ほむ",
 				"nav": {
 					"post": "ほむ",
 					"home": "ほむ",
@@ -190,6 +200,40 @@
 				}
 			},
 			"pages": {
+				"entrance": {
+					"account": "ほむ",
+					"screen_name": "ほむ",
+					"password": "ほむ",
+					"signin": "ほむ",
+					"register": "ほむ"
+				},
+				"register": {
+					"page_title": "ほむ",
+					"title": "ほむ",
+					"screen_name_caption": "ほむ",
+					"screen_name_placeholder": "ほむ",
+					"screen_name_error_1": "ほむ",
+					"screen_name_error_2": "ほむ",
+					"screen_name_error_3": "ほむ",
+					"screen_name_info_1": "ほむ",
+					"screen_name_info_2": "ほむ",
+					"screen_name_info_3": "ほむ",
+					"screen_name_info_4": "ほむ",
+					"password_caption": "ほむ",
+					"password_placeholder": "ほむ",
+					"password_error_1": "ほむ",
+					"password_info_1": "ほむ",
+					"retype_password_caption": "ほむ",
+					"retype_password_placeholder": "ほむ",
+					"retype_password_error_1": "ほむ",
+					"retype_password_info_1": "ほむ",
+					"verify_caption": "ほむ",
+					"agree_tou": "ほむ",
+					"create": "ほむ",
+					"creating": "ほむ",
+					"logging": "ほむ",
+					"signin": "ほむ"
+				},
 				"home": {
 					"page_title": "ほむ",
 					"page_header_title": "ほむ",
