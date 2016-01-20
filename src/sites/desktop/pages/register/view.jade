@@ -3,22 +3,25 @@ extends ../../base
 block title
 	=locale.sites.desktop.pages.register.page_title
 
-block meta
+block assets
 	script(src='https://www.google.com/recaptcha/api.js')
+	script!= 'var SCREEN_NAME_INPUT_ID = "' + screenNameInputId + '";'
+	script!= 'var PASSWORD_INPUT_ID = "' + passwordInputId + '";'
+	script!= 'var RETYPE_PASSWORD_INPUT_ID = "' + retypePasswordInputId + '";'
 
 block body
 	header
 	main
 		header
 			h1=locale.sites.desktop.pages.register.title
-		form#form(action='/login', method='get')
+		form#form(autocomplete='off')
 			div.kyoppie
 				
 				label#screen-name
 					p.caption
 						i.fa.fa-at
 						=locale.sites.desktop.pages.register.screen_name_caption
-					input(name='screen-name'
+					input(name=screenNameInputId
 						type='text'
 						pattern='^[0-9A-Za-z\-]{3,20}$'
 						placeholder=locale.sites.desktop.pages.register.screen_name_placeholder
@@ -34,7 +37,7 @@ block body
 					p.caption
 						i.fa.fa-lock
 						=locale.sites.desktop.pages.register.password_caption
-					input(name='password'
+					input(name=passwordInputId
 						type='password'
 						placeholder=locale.sites.desktop.pages.register.password_placeholder
 						autocomplete='off'
@@ -47,7 +50,7 @@ block body
 					p.caption
 						i.fa.fa-lock
 						=locale.sites.desktop.pages.register.retype_password_caption
-					input(name='password-retyped'
+					input(name=retypePasswordInputId
 						type='password'
 						placeholder=locale.sites.desktop.pages.register.retype_password_placeholder
 						autocomplete='off'
@@ -69,6 +72,7 @@ block body
 					input(
 						name='agree-tou',
 						type='checkbox',
+						autocomplete='off',
 						required)
 					p!=locale.sites.desktop.pages.register.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
 				

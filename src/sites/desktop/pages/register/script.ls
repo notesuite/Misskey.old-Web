@@ -99,8 +99,8 @@ $ ->
 
 		$form.find \input .attr \disabled on
 
-		screen-name = $form.find '[name="screen-name"]' .val!
-		password = $form.find '[name="password"]' .val!
+		screen-name = $form.find "[name='#{SCREEN_NAME_INPUT_ID}']" .val!
+		password = $form.find "[name='#{PASSWORD_INPUT_ID}']" .val!
 
 		$ \html .add-class \logging
 
