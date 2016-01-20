@@ -121,7 +121,7 @@
 					"retype_password_placeholder": "再度入力してください",
 					"retype_password_error_1": "一致していません",
 					"retype_password_info_1": "OK",
-					"verify_caption": "確認",
+					"verify_caption": "認証",
 					"agree_tou": "{利用規約}に同意します",
 					"create": "アカウント作成",
 					"creating": "処理中...",
