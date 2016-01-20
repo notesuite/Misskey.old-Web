@@ -1,0 +1,84 @@
+extends ../../base
+
+block title
+	=locale.sites.mobile.pages.register.page_title
+
+block assets
+	script(src='https://www.google.com/recaptcha/api.js')
+	script!= 'var SCREEN_NAME_INPUT_ID = "' + screenNameInputId + '";'
+	script!= 'var PASSWORD_INPUT_ID = "' + passwordInputId + '";'
+	script!= 'var RETYPE_PASSWORD_INPUT_ID = "' + retypePasswordInputId + '";'
+
+block body
+	main
+		header
+			h1=locale.sites.mobile.pages.register.title
+		form#form(autocomplete='off')
+			div.kyoppie
+				
+				label#screen-name
+					p.caption
+						i.fa.fa-at
+						=locale.sites.mobile.pages.register.screen_name_caption
+					input(name=screenNameInputId
+						type='text'
+						pattern='^[0-9A-Za-z\-]{3,20}$'
+						placeholder=locale.sites.mobile.pages.register.screen_name_placeholder
+						autocomplete='off'
+						autofocus
+						required)
+					p.profile-page-url-preview
+					p.info(data-state='none')
+						i
+						span
+				
+				label#password
+					p.caption
+						i.fa.fa-lock
+						=locale.sites.mobile.pages.register.password_caption
+					input(name=passwordInputId
+						type='password'
+						placeholder=locale.sites.mobile.pages.register.password_placeholder
+						autocomplete='off'
+						required)
+					p.info(data-state='none')
+						i
+						span
+				
+				label#retype-password
+					p.caption
+						i.fa.fa-lock
+						=locale.sites.mobile.pages.register.retype_password_caption
+					input(name=retypePasswordInputId
+						type='password'
+						placeholder=locale.sites.mobile.pages.register.retype_password_placeholder
+						autocomplete='off'
+						required)
+					p.info(data-state='none')
+						i
+						span
+				
+				label#recaptcha
+					p.caption
+						i.fa.fa-toggle-off
+						=locale.sites.mobile.pages.register.verify_caption
+					div.g-recaptcha(
+						data-callback='onRecaptchaed'
+						data-expired-callback='onRecaptchaExpired'
+						data-sitekey=config.googleRecaptchaSiteKey)
+				
+				label#agree-tou
+					input(
+						name='agree-tou',
+						type='checkbox',
+						autocomplete='off',
+						required)
+					p!=locale.sites.mobile.pages.register.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+				
+				button(type='submit')
+					i.fa.fa-check
+					span=locale.sites.mobile.pages.register.create
+					
+				a.signin(href=config.signinUrl)
+					i.fa.fa-angle-right
+					=locale.sites.mobile.pages.register.signin

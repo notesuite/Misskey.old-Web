@@ -1,44 +1,43 @@
-doctype html
+extends ../../base
 
-html(lang='ja', dir='ltr')
-	head(prefix='og: http://ogp.me/ns#')
-		include ../../head
-		meta(name='description', content='A mini-blog sns.')
-		meta(name='keywords', content='Misskey')
-		meta(property='og:title', content='Misskey')
-		meta(property='og:type', content='website')
-		meta(property='og:description', content='A mini-blog sns.')
-		meta(property='og:url', content= config.url)
-		meta(property='og:image', content='')
-		meta(property='og:site_name', content='Misskey')
-		title Misskey
-	
-	body
-		main
-			header
-				h1 Misskey
-				p
-					| A mini-blog sns. find your likes!!!
-			form#login-form(action=config.signinUrl, method='get')
-				h2
-					| Account
-				label
-					i.fa.fa-at
-					input.ui-input-text#id(name='screen-name'
-						type='text'
-						pattern='^[0-9A-Za-z_]+$'
-						placeholder='User name'
-						autocomplete='off'
-						autofocus
-						required)
-				label
-					i.fa.fa-lock
-					input.ui-input-password(name='password'
-						type='password'
-						placeholder='Password'
-						autocomplete='off'
-						required)
-				button.ui-button(type='submit')
-					| Sign in
-			p.info
-				| Hey there! 現在、アカウントの作成はPCから行えます。
+block title
+	| Misskey
+
+block meta
+	meta(name='description', content='A mini-blog sns.')
+	meta(name='keywords', content='Misskey')
+	meta(property='og:title', content='Misskey')
+	meta(property='og:type', content='website')
+	meta(property='og:description', content='A mini-blog sns.')
+	meta(property='og:url', content=url)
+	meta(property='og:image', content='')
+	meta(property='og:site_name', content='Misskey')
+
+block body
+	main
+		header
+			h1 Misskey
+			p A mini-blog sns.
+		form#login-form(action=config.signinUrl, method='get')
+			h2=locale.sites.mobile.pages.entrance.account
+			label
+				i.fa.fa-at
+				input.ui-input-text(
+					name='screen-name'
+					type='text'
+					pattern='^[0-9A-Za-z\-]{1,20}$'
+					placeholder=locale.sites.mobile.pages.entrance.screen_name
+					autofocus
+					required)
+			label
+				i.fa.fa-lock
+				input.ui-input-password(
+					name='password'
+					type='password'
+					placeholder=locale.sites.mobile.pages.entrance.password
+					required)
+			button.ui-button(type='submit')
+				=locale.sites.mobile.pages.entrance.signin
+		a.register(href=config.registerUrl)
+			i.fa.fa-angle-right
+			=locale.sites.mobile.pages.entrance.register

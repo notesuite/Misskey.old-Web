@@ -75,6 +75,7 @@
 		"src/sites/desktop/pages/i/talks/groups/controller.ts",
 		"src/sites/desktop/pages/i/talks/group/create/controller.ts",
 		"src/sites/mobile/pages/entrance/controller.ts",
+		"src/sites/mobile/pages/register/controller.ts",
 		"src/sites/mobile/pages/about/controller.ts",
 		"src/sites/mobile/pages/about/license/controller.ts",
 		"src/sites/mobile/pages/about/technologies/controller.ts",

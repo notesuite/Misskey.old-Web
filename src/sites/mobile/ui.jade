@@ -1,92 +1,64 @@
-doctype html
+extends ./base
 
-- var htmlSchema = 'http://schema.org/WebPage';
+block body
+	if !noui
+		- var headerOverlayStyle = userSettings.mobileHeaderOverlay != null
+		-     ? 'url("' + config.resourcesUrl + '/mobile/common/images/header-overlay/' + userSettings.mobileHeaderOverlay + '.svg")'
+		-     : 'none';
+		header#misskey-header
+			if login && me.isSuspended
+				p.account-suspended= locale.sites.mobile.common.account_suspended
+			div.main(style={'background-image': headerOverlayStyle})
+				button#open-misskey-nav-button(role='button'): i.fa.fa-bars
+				h1
+					block header
+				block action
+		nav#misskey-nav
+			div.slidemenu-body
+				div.slidemenu-content
+					if login
+						a.me(href= config.url + '/' + me.screenName)
+							img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
+							p.name= me.name
+					div.links
+						ul
+							li.post-new: a(href= config.url + '/i/post-new')
+								i.icon.fa.fa-pencil-square-o
+								=locale.sites.mobile.common.nav.post
+								i.angle.fa.fa-angle-right
+						ul
+							li.home: a(href= config.url)
+								i.icon.fa.fa-home
+								=locale.sites.mobile.common.nav.home
+								i.angle.fa.fa-angle-right
+							li.mentions: a(href= config.url + '/i/mentions')
+								i.icon.fa.fa-at
+								=locale.sites.mobile.common.nav.mentions
+								i.angle.fa.fa-angle-right
+							li.notifications: a(href= config.url + '/i/notifications')
+								i.icon.fa.fa-bell-o
+								=locale.sites.mobile.common.nav.notifications
+								i.angle.fa.fa-angle-right
+							li.talks: a(href= config.talkUrl)
+								i.icon.fa.fa-comments-o
+								=locale.sites.mobile.common.nav.talks
+								i.angle.fa.fa-angle-right
+						ul
+							li.settings: a(href= config.searchUrl)
+								i.icon.fa.fa-search
+								=locale.sites.mobile.common.nav.search
+								i.angle.fa.fa-angle-right
+						ul
+							li.settings: a(href= config.url + '/i/settings')
+								i.icon.fa.fa-cog
+								=locale.sites.mobile.common.nav.settings
+								i.angle.fa.fa-angle-right
+					p.manager
+						| このセッションは
+						b= workerId
+						| が担当しました
+					p.about
+						a(href= config.aboutUrl)=locale.sites.mobile.common.nav.about_misskey
 
-block vars
-
-html(
-		lang=lang,
-		dir='ltr',
-		itemscope,
-		itemtype= htmlSchema)
-
-	head(prefix='og: http://ogp.me/ns#')
-		include ./head
-		
-		block meta
-		
-		title
-			block title
-		
-		block assets
-	
-	body
-		noscript
-			article#misskey-no-script-caution
-				h1 JavaScriptを有効にしてください
-				p
-					strong
-						| JavaScriptが無効になっているか、利用できない環境のようです。
-						| Misskeyの利用にはJavaScriptが有効になっている必要があります。
-
-		if !noui
-			- var headerOverlayStyle = userSettings.mobileHeaderOverlay != null
-			-     ? 'url("' + config.resourcesUrl + '/mobile/common/images/header-overlay/' + userSettings.mobileHeaderOverlay + '.svg")'
-			-     : 'none';
-			header#misskey-header(style={'background-image': headerOverlayStyle})
-				if login && me.isSuspended
-					p.account-suspended= locale.sites.mobile.common.account_suspended
-				div.main
-					button#open-misskey-nav-button(role='button'): i.fa.fa-bars
-					h1
-						block header
-					block action
-			nav#misskey-nav
-				div.slidemenu-body
-					div.slidemenu-content
-						if login
-							a.me(href= config.url + '/' + me.screenName)
-								img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
-								p.name= me.name
-						div.links
-							ul
-								li.post-new: a(href= config.url + '/i/post-new')
-									i.icon.fa.fa-pencil-square-o
-									=locale.sites.mobile.common.nav.post
-									i.angle.fa.fa-angle-right
-							ul
-								li.home: a(href= config.url)
-									i.icon.fa.fa-home
-									=locale.sites.mobile.common.nav.home
-									i.angle.fa.fa-angle-right
-								li.mentions: a(href= config.url + '/i/mentions')
-									i.icon.fa.fa-at
-									=locale.sites.mobile.common.nav.mentions
-									i.angle.fa.fa-angle-right
-								li.notifications: a(href= config.url + '/i/notifications')
-									i.icon.fa.fa-bell-o
-									=locale.sites.mobile.common.nav.notifications
-									i.angle.fa.fa-angle-right
-								li.talks: a(href= config.talkUrl)
-									i.icon.fa.fa-comments-o
-									=locale.sites.mobile.common.nav.talks
-									i.angle.fa.fa-angle-right
-							ul
-								li.settings: a(href= config.searchUrl)
-									i.icon.fa.fa-search
-									=locale.sites.mobile.common.nav.search
-									i.angle.fa.fa-angle-right
-							ul
-								li.settings: a(href= config.url + '/i/settings')
-									i.icon.fa.fa-cog
-									=locale.sites.mobile.common.nav.settings
-									i.angle.fa.fa-angle-right
-						p.manager
-							| このセッションは
-							b= workerId
-							| が担当しました
-						p.about
-							a(href= config.aboutUrl)=locale.sites.mobile.common.nav.about_misskey
-
-		div#misskey-main
-			block content
+	div#misskey-main
+		block content

@@ -192,6 +192,40 @@
 				}
 			},
 			"pages": {
+				"entrance": {
+					"account": "Account",
+					"screen_name": "User ID",
+					"password": "Passcode",
+					"signin": "Sign in",
+					"register": "Create an account"
+				},
+				"register": {
+					"page_title": "Begin - Misskey",
+					"title": "Create a Misskey account",
+					"screen_name_caption": "User ID",
+					"screen_name_placeholder": "Use A-Z,a-z,0-9 and -",
+					"screen_name_error_1": "Use alphanumeric or hyphen please.",
+					"screen_name_error_2": "Use 3 characters and more.",
+					"screen_name_error_3": "20 characters and less please.",
+					"screen_name_info_1": "Checking...",
+					"screen_name_info_2": "You can use this name.",
+					"screen_name_info_3": "This name is already taken.",
+					"screen_name_info_4": "Failed to check.",
+					"password_caption": "Passcode",
+					"password_placeholder": "8 characters and more.",
+					"password_error_1": "Use 8 characters and more.",
+					"password_info_1": "OK",
+					"retype_password_caption": "Retype passcode",
+					"retype_password_placeholder": "Enter again",
+					"retype_password_error_1": "Doesn't match passcode.",
+					"retype_password_info_1": "OK",
+					"verify_caption": "Verify",
+					"agree_tou": "I agree to the {Terms of Use}",
+					"create": "Create account",
+					"creating": "Processing...",
+					"logging": "Logging...",
+					"signin": "Already have an account"
+				},
 				"home": {
 					"page_title": "Home - Misskey",
 					"page_header_title": "Home",
