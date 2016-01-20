@@ -54,7 +54,12 @@ task('compile:frontside-scripts', () => {
 	return es.merge(
 		src('./src/sites/**/*.ls')
 			.pipe(ls()),
-		src(['./src/sites/*/common/**/*.js', './src/sites/*/pages/**/*.js', '!./src/sites/*/pages/**/controller.js'])
+		src('./src/sites/common/scripts/*.js')
+			.pipe(dest('./tmp/common/scripts/')),
+		src([
+			'./src/sites/*/common/**/*.js',
+			'./src/sites/*/pages/**/*.js',
+			'!./src/sites/*/pages/**/controller.js'])
 	).pipe(dest('./tmp/'));
 });
 

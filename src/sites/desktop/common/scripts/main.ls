@@ -14,6 +14,3 @@ $.ajax-setup {
 
 	data: { '_csrf': CSRF_TOKEN }
 }
-
-# Disable Back Forward Cache
-window.add-event-listener \unload ->
