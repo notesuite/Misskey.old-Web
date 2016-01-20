@@ -34,6 +34,11 @@ block body
 	div#misskey-global
 		if !noui
 			header#misskey-header
+				if login && me.isSuspended
+					- var text = locale.sites.desktop.common.account_suspended
+					-   .replace('<link>', '<a href="' + config.helpUrl + '/account-suspended">')
+					-   .replace('</link>', '</a>');
+					p.account-suspended!=text
 				div.main
 					div.main-contents-container
 						div.left

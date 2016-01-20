@@ -25,6 +25,7 @@
 				"connected_stream": "ストリームに接続しました",
 				"reconnecting_stream": "ストリームから切断されました 再接続中...",
 				"talk_window_title": "トーク",
+				"account_suspended": "<strong>現在、あなたのアカウントは凍結されています。</strong>サポートが必要な場合は、<link>こちら</link>をご確認ください。",
 				"header": {
 					"home": "ホーム",
 					"mentions": "自分宛て",
@@ -174,6 +175,7 @@
 				"connecting_stream": "ストリームに接続しています...",
 				"connected_stream": "ストリームに接続しました",
 				"reconnecting_stream": "ストリームに再接続中...",
+				"account_suspended": "あなたのアカウントは凍結されています",
 				"nav": {
 					"post": "投稿",
 					"home": "ホーム",

@@ -25,6 +25,7 @@
 				"connected_stream": "Connected",
 				"reconnecting_stream": "Disconnected from stream. Reconnecting...",
 				"talk_window_title": "Talk",
+				"account_suspended": "<strong>Your account has been suspended.</strong> If you need our support, please check <link>here</link>.",
 				"header": {
 					"home": "Home",
 					"mentions": "Mentions",
@@ -174,6 +175,7 @@
 				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
 				"reconnecting_stream": "Reconnecting...",
+				"account_suspended": "Your account has been suspended",
 				"nav": {
 					"post": "Post",
 					"home": "Home",
