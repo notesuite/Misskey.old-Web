@@ -31,5 +31,7 @@ html(
 						| JavaScriptが無効になっているか、利用できない環境のようです。
 						| Misskeyの利用にはJavaScriptが有効になっている必要があります。
 		block body
+		
+		script!= 'var LOCALE = ' + JSON.stringify(locale) + '; Object.freeze(LOCALE);'
 
 != '\r\n<!-- Misskeyの開発に興味がありますか？ Gitリポジトリはこちらです: https://github.com/MissKernel/Misskey -->'
