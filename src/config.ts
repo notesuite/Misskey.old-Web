@@ -23,6 +23,10 @@ export interface IConfig {
 			pass: string;
 		};
 	};
+	redis: {
+		host: string;
+		password: string;
+	};
 	port: {
 		http: number;
 		https: number;
@@ -36,7 +40,6 @@ export interface IConfig {
 	apiPasskey: string;
 	apiServerIp: string;
 	apiServerPort: number;
-	redisServerHost: string;
 	cookiePass: string;
 	sessionKey: string;
 	sessionSecret: string;
