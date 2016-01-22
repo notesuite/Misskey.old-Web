@@ -181,13 +181,14 @@ function init-streaming(stream)
 	socket = io.connect endpoint
 
 	socket.on \connected ->
+		console.log 'initializing...'
 		sign = switch (TALK_TYPE)
 			| \user => {'otherparty-id': OTHERPARTY.id}
 			| \group => {'group-id': GROUP.id}
 		socket.json.emit \init sign
 
-	socket.on \inited ->
-		# something
+	socket.on \initialized ->
+		console.log 'initialized'
 
 	socket.on \disconnect (client) ->
 		console.log 'Disconnected'

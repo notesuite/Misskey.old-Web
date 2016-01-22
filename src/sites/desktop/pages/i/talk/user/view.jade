@@ -1,8 +1,11 @@
 extends ../main
 
-block meta
+append assets
 	script!= 'var TALK_TYPE = "user";'
 	script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
+
+append meta
+	meta(name='description', content='Misskey Talk')
 
 block title
 	= 'トーク: ' + otherparty.name

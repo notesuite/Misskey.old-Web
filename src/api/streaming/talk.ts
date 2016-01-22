@@ -40,6 +40,8 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 				subscriber.subscribe(`misskey:talk-user-stream:${socket.user.id}-${socket.otherpartyId}`);
 				subscriber.on('message', onStreamMessage);
+
+				socket.emit('initialized');
 			});
 
 			socket.on('disconnect', () => {
@@ -66,6 +68,8 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 
 				subscriber.subscribe(`misskey:talk-group-stream:${socket.groupId}`);
 				subscriber.on('message', onStreamMessage);
+
+				socket.emit('initialized');
 			});
 
 			socket.on('disconnect', () => {
