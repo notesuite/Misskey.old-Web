@@ -280,6 +280,11 @@
 							"auto": "ほむ",
 							"specify": "ほむ",
 							"current_language": "ほむ"
+						},
+						"mobile_header_overlay_page": {
+							"page_title": "ほむ - Misskey",
+							"page_header_title": "ほむ",
+							"none": "ほむ"
 						}
 					}
 				}

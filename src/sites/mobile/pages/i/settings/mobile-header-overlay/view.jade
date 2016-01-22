@@ -1,18 +1,18 @@
 extends ../../../../ui
 
 block title
-	| ヘッダーデザインの設定 - Misskey
+	=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.page_title
 
 block header
-	i.fa.fa-cog
-	| ヘッダーのデザイン
+	i.fa.fa-paint-brush
+	=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.page_header_title
 
 block content
 	main(role='main')
 		form#form
 			div.ui-select-wrapper
 				select.ui-select(name='id')
-					option(value='none', selected= userSettings.mobileHeaderOverlay == null) なし
+					option(value='none', selected= userSettings.mobileHeaderOverlay == null)=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.none
 					option(value='light-gradation', selected= userSettings.mobileHeaderOverlay == 'light-gradation') グラデーション(明)
 					option(value='dark-gradation', selected= userSettings.mobileHeaderOverlay == 'dark-gradation') グラデーション(暗)
 					option(value='glossy', selected= userSettings.mobileHeaderOverlay == 'glossy') Glossy

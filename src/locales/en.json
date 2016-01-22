@@ -280,6 +280,11 @@
 							"auto": "Detect automatically (Default)",
 							"specify": "Specify language:",
 							"current_language": "Current language:"
+						},
+						"mobile_header_overlay_page": {
+							"page_title": "Design of header - Misskey",
+							"page_header_title": "Design of header",
+							"none": "None"
 						}
 					}
 				}

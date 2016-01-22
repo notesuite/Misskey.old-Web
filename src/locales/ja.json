@@ -280,6 +280,11 @@
 							"auto": "自動で決定する(規定)",
 							"specify": "言語を指定:",
 							"current_language": "現在の言語:"
+						},
+						"mobile_header_overlay_page": {
+							"page_title": "ヘッダーのデザイン - Misskey",
+							"page_header_title": "ヘッダーのデザイン",
+							"none": "なし"
 						}
 					}
 				}
