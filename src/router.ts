@@ -155,6 +155,14 @@ export default function router(app: express.Express): void {
 		}
 	});
 
+	app.get(`/subdomain/${config.publicConfig.adminDomain}/`, (req, res) => {
+		if (res.locals.isLogin) {
+			callController(req, res, 'admin');
+		} else {
+			callController(req, res, 'login');
+		}
+	});
+
 	app.get(`/subdomain/${config.publicConfig.shareDomain}/`, (req, res) => {
 		callController(req, res, 'share');
 	});
