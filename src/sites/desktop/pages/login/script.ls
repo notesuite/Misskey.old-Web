@@ -31,7 +31,9 @@ $ ->
 		}
 		.done ->
 			location.reload!
-		.fail ->
+		.fail (err) ->
+			console.error err
+
 			$submit-button
 				..attr \disabled off
 				.find \span .text LOCALE.sites.desktop.pages.login.signin
@@ -40,3 +42,12 @@ $ ->
 			$form.find \input .attr \disabled off
 
 			$ \html .remove-class \logging
+
+			text = switch (err.response-text)
+				| \user-not-found => LOCALE.sites.desktop.pages.login.failed_1
+				| \failed => LOCALE.sites.desktop.pages.login.failed_2
+
+			$form.find '.info'
+				..children \i .attr \class 'fa fa-exclamation-triangle'
+				..children \span .text text
+				..attr \data-state \error

@@ -138,6 +138,8 @@
 					"title": "Misskeyにログイン",
 					"signin": "ログイン",
 					"signing_in": "ログイン中...",
+					"failed_1": "そのようなIDのユーザーは存在しません",
+					"failed_2": "パスコードが間違っています",
 					"screen_name_caption": "ユーザーID",
 					"password_caption": "パスコード",
 					"register": "アカウント作成はこちら",

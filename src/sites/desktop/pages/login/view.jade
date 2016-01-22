@@ -33,9 +33,12 @@ block body
 						placeholder='Password'
 						autocomplete='off'
 						required)
+				p.info(data-state='none')
+					i
+					span
 				button(type='submit')
 					i.fa.fa-sign-in
-					span=locale.sites.desktop.pages.login.signin
+					span.text=locale.sites.desktop.pages.login.signin
 				a.register(href=config.registerUrl)
 					i.fa.fa-angle-right
 					=locale.sites.desktop.pages.login.register
