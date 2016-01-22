@@ -37,7 +37,7 @@ $ ->
 			$submit-button.find \.text .text LOCALE.sites.mobile.pages.i.post.post
 			$submit-button.find \i .attr \class 'fa fa-paper-plane'
 			$progress.css \display \none
-			alert "投稿に失敗しました。再度お試しください。\r\nErrorCode: #{err.response-text}"
+			alert "#{LOCALE.sites.mobile.pages.i.post.failed}\r\nErrorCode: #{err.response-text}"
 
 		function progress e
 			percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100

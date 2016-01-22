@@ -254,7 +254,8 @@
 						"page_title": "New post - Misskey",
 						"page_header_title": "New post",
 						"post": "Post",
-						"posting": "Posting..."
+						"posting": "Posting...",
+						"failed": "Post failed. Please try again."
 					},
 					"settings": {
 						"page_title": "Settings - Misskey",

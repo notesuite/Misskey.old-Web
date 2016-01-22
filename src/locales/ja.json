@@ -254,7 +254,8 @@
 						"page_title": "新規投稿 - Misskey",
 						"page_header_title": "新規投稿",
 						"post": "投稿",
-						"posting": "投稿中..."
+						"posting": "投稿中...",
+						"failed": "投稿に失敗しました。再度お試しください。"
 					},
 					"settings": {
 						"page_title": "設定 - Misskey",

@@ -250,6 +250,13 @@
 					}
 				},
 				"i": {
+					"post": {
+						"page_title": "ほむ - Misskey",
+						"page_header_title": "ほむ",
+						"post": "ほむ",
+						"posting": "ほむ...",
+						"failed": "ほむ。"
+					},
 					"settings": {
 						"page_title": "ほむ",
 						"page_header_title": "ほむ",
