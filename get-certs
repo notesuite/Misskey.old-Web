@@ -9,6 +9,7 @@ forever stopall
 # GET CERTS
 /var/misskey-web/letsencrypt/letsencrypt-auto certonly --standalone \
 -d misskey.xyz \
+-d admin.misskey.xyz \
 -d himasaku.misskey.xyz \
 -d resources.misskey.xyz \
 -d begin.misskey.xyz \
