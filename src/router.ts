@@ -189,8 +189,8 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.get('/i/post-new', (req, res) => {
-		callController(req, res, 'i/post-new');
+	app.get('/i/post', (req, res) => {
+		callController(req, res, 'i/post');
 	});
 
 	app.get('/i/mentions', (req, res) => {

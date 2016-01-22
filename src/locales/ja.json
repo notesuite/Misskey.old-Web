@@ -250,6 +250,12 @@
 					}
 				},
 				"i": {
+					"post": {
+						"page_title": "新規投稿 - Misskey",
+						"page_header_title": "新規投稿",
+						"post": "投稿",
+						"posting": "投稿中..."
+					},
 					"settings": {
 						"page_title": "設定 - Misskey",
 						"page_header_title": "設定",

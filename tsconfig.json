@@ -90,7 +90,7 @@
 		"src/sites/mobile/pages/search/result/controller.ts",
 		"src/sites/mobile/pages/i/mentions/controller.ts",
 		"src/sites/mobile/pages/i/notifications/controller.ts",
-		"src/sites/mobile/pages/i/post-new/controller.ts",
+		"src/sites/mobile/pages/i/post/controller.ts",
 		"src/sites/mobile/pages/i/settings/controller.ts",
 		"src/sites/mobile/pages/i/settings/avatar/controller.ts",
 		"src/sites/mobile/pages/i/settings/banner/controller.ts",

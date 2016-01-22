@@ -1,10 +1,11 @@
 extends ../../../ui
 
 block title
-	| 新規投稿
+	=locale.sites.mobile.pages.i.post.page_title
 
 block header
-	| 新規投稿
+	i.fa.fa-pencil
+	=locale.sites.mobile.pages.i.post.page_header_title
 
 block content
 	main(role='main')
@@ -12,6 +13,8 @@ block content
 			textarea.ui-textarea#textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 			input.ui-input-file(name='file', type='file', accept='image/*')
 			button.ui-button(type='submit')
-				p 投稿
+				span.text=locale.sites.mobile.pages.i.post.post
 				i.fa.fa-paper-plane
-			progress
+			div.progress
+				progress
+				ol.log

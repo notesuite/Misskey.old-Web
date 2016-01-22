@@ -250,6 +250,12 @@
 					}
 				},
 				"i": {
+					"post": {
+						"page_title": "New post - Misskey",
+						"page_header_title": "New post",
+						"post": "Post",
+						"posting": "Posting..."
+					},
 					"settings": {
 						"page_title": "Settings - Misskey",
 						"page_header_title": "Settings",
