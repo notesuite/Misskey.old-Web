@@ -13,13 +13,16 @@ block content
 			div.ui-select-wrapper
 				select.ui-select(name='id')
 					option(value='none', selected= userSettings.mobileHeaderOverlay == null) なし
-					option(value='light-gradation', selected= userSettings.mobileHeaderOverlay == 'light-gradation') 明るいグラデーション
-					option(value='dark-gradation', selected= userSettings.mobileHeaderOverlay == 'dark-gradation') 暗いグラデーション
+					option(value='light-gradation', selected= userSettings.mobileHeaderOverlay == 'light-gradation') グラデーション(明)
+					option(value='dark-gradation', selected= userSettings.mobileHeaderOverlay == 'dark-gradation') グラデーション(暗)
 					option(value='glossy', selected= userSettings.mobileHeaderOverlay == 'glossy') Glossy
-					option(value='halftone', selected= userSettings.mobileHeaderOverlay == 'halftone') ハーフトーン
-					option(value='stripe', selected= userSettings.mobileHeaderOverlay == 'stripe') ストライプ(明)
+					option(value='light-halftone', selected= userSettings.mobileHeaderOverlay == 'light-halftone') ハーフトーン(明)
+					option(value='dark-halftone', selected= userSettings.mobileHeaderOverlay == 'dark-halftone') ハーフトーン(暗)
+					option(value='light-stripe', selected= userSettings.mobileHeaderOverlay == 'light-stripe') ストライプ(明)
 					option(value='dark-stripe', selected= userSettings.mobileHeaderOverlay == 'dark-stripe') ストライプ(暗)
-					option(value='grid', selected= userSettings.mobileHeaderOverlay == 'grid') グリッド
-					option(value='bubbles', selected= userSettings.mobileHeaderOverlay == 'bubbles') バブル
+					option(value='light-grid', selected= userSettings.mobileHeaderOverlay == 'light-grid') グリッド(明)
+					option(value='dark-grid', selected= userSettings.mobileHeaderOverlay == 'dark-grid') グリッド(暗)
+					option(value='light-bubbles', selected= userSettings.mobileHeaderOverlay == 'light-bubbles') バブル(明)
+					option(value='dark-bubbles', selected= userSettings.mobileHeaderOverlay == 'dark-bubbles') バブル(暗)
 					option(value='musicsheet', selected= userSettings.mobileHeaderOverlay == 'musicsheet') 楽譜
 					option(value='city', selected= userSettings.mobileHeaderOverlay == 'city') City

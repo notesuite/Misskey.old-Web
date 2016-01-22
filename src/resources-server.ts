@@ -14,6 +14,13 @@ export default function server(): express.Express {
 		credentials: false
 	}));
 
+	// SVGZ
+	// see: https://github.com/strongloop/express/issues/1911
+	app.get(/.svgz/, (req, res, next) => {
+		res.set({'Content-Encoding': 'gzip'});
+		next();
+	});
+
 	app.use(express.static(`${__dirname}/resources`));
 
 	// Not found handling
