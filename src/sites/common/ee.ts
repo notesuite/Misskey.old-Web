@@ -33,6 +33,13 @@ export default function ee(req: express.Request, res: express.Response, q: strin
 	function setEEcookie(name: string, value: string): void {
 		'use strict';
 		const age = 1000 * 60 * 5;
+		clearCookie('ee-flipx');
+		clearCookie('ee-flipy');
+		clearCookie('ee-skew');
+		clearCookie('ee-grayscale');
+		clearCookie('ee-sepia');
+		clearCookie('ee-saturate');
+		clearCookie('ee-invert');
 		res.cookie(name, value, {
 			path: '/',
 			domain: `.${config.publicConfig.host}`,
@@ -42,5 +49,13 @@ export default function ee(req: express.Request, res: express.Response, q: strin
 			maxAge: age
 		});
 		res.locals.cookie[name] = value;
+	}
+
+	function clearCookie(name: string): void {
+		res.clearCookie(name, {
+			path: '/',
+			domain: `.${config.publicConfig.host}`
+		});
+		res.locals.cookie[name] = undefined;
 	}
 }

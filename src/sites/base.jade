@@ -43,20 +43,7 @@ html(
 		link(rel='dns-prefetch', href= config.apiUrl)
 		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
 		link(charset='utf-8', rel='stylesheet', href= stylePath)
-		if cookie.hasOwnProperty('ee-flipy')
-			style!= 'html { transform: scaleY(-1); }'
-		if cookie.hasOwnProperty('ee-flipx')
-			style!= 'html { transform: scaleX(-1); }'
-		if cookie.hasOwnProperty('ee-skew')
-			style!= 'html { transform: skew(-20deg); }'
-		if cookie.hasOwnProperty('ee-grayscale')
-			style!= 'html { filter: grayscale(100%); -webkit-filter: grayscale(100%); }'
-		if cookie.hasOwnProperty('ee-sepia')
-			style!= 'html { filter: sepia(100%); -webkit-filter: sepia(100%); }'
-		if cookie.hasOwnProperty('ee-saturate')
-			style!= 'html { filter: saturate(1000%); -webkit-filter: saturate(1000%); }'
-		if cookie.hasOwnProperty('ee-invert')
-			style!= 'html { filter: invert(100%); -webkit-filter: invert(100%); }'
+		style!= eeStyle
 		script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
 		script!= 'var LANG = "' + lang + '"; Object.freeze(LANG);'
 		script!= 'var NOUI = ' + noui.toString() + '; Object.freeze(NOUI);'

@@ -20,6 +20,25 @@ export default function callController(
 		}
 		data.scriptPath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${name}/script.js`;
 		delete res.locals.display;
+
+		let eeStyle: string;
+		if (res.locals.cookie['ee-flipy'] !== undefined) {
+			eeStyle = 'html { transform: scaleY(-1); }';
+		} else if (res.locals.cookie['ee-flipx'] !== undefined) {
+			eeStyle = 'html { transform: scaleX(-1); }';
+		} else if (res.locals.cookie['ee-skew'] !== undefined) {
+			eeStyle = 'html { transform: skew(-20deg); }';
+		} else if (res.locals.cookie['ee-grayscale'] !== undefined) {
+			eeStyle = 'html { filter: grayscale(100%); -webkit-filter: grayscale(100%); }';
+		} else if (res.locals.cookie['ee-sepia'] !== undefined) {
+			eeStyle = 'html { filter: sepia(100%); -webkit-filter: sepia(100%); }';
+		} else if (res.locals.cookie['ee-saturate'] !== undefined) {
+			eeStyle = 'html { filter: saturate(1000%); -webkit-filter: saturate(1000%); }';
+		} else if (res.locals.cookie['ee-invert'] !== undefined) {
+			eeStyle = 'html { filter: invert(100%); -webkit-filter: invert(100%); }';
+		}
+		res.locals.eeStyle = eeStyle;
+
 		res.render(viewPath, data);
 	};
 
