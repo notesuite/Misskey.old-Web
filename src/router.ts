@@ -51,6 +51,7 @@ export default function router(app: express.Express): void {
 			: 'en';
 
 		res.locals.config = config.publicConfig;
+		res.locals.cookie = req.cookies;
 		res.locals.pagePath = req.path;
 		res.locals.noui = noui;
 		res.locals.login = res.locals.isLogin;

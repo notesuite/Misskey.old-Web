@@ -1,75 +1,13 @@
-doctype html
+extends ../base
 
-- var htmlSchema = 'http://schema.org/WebPage';
+block root-meta
+	meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no')
+	block meta
 
-block vars
-
-!= '<!-- このセッションは ' + workerId + ' が担当しました -->'
-
-html(
-		lang=lang,
-		dir='ltr',
-		itemscope,
-		itemtype= htmlSchema)
-
-	head(prefix='og: http://ogp.me/ns#')
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge')
-		meta(http-equiv='x-dns-prefetch-control', content='on')
-		meta(name='robots', content='all')
-		meta(name='application-name', content='Misskey')
-		meta(name='theme-color', content= config.themeColor)
-		meta(name='google-site-verification', content='0KUjKH7EJj28VnWKm0p_Uo1bc6i3ldPNQOHvjxlvnm4')
-		meta(name='coverage', content='worldwide')
-		meta(name='canonical', content= config.url + pagePath)
-		meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no')
-		meta(name='referrer', content='origin')
-		meta(name='csrf-token', content= csrftoken)
-		block meta
-		title
-			block title
-		script!= 'document.domain = \'' + config.host + '\';'
-		link(rel='shortcut icon', href= config.url + '/favicon.ico')
-		link(rel='icon', href= config.url + '/favicon.ico')
-		link(rel='apple-touch-icon', sizes='120x120', href= config.resourcesUrl + '/common/apple-touch-icon-120x120.png')
-		link(rel='apple-touch-icon', sizes='144x144', href= config.resourcesUrl + '/common/apple-touch-icon-144x144.png')
-		link(rel='apple-touch-icon', sizes='180x180', href= config.resourcesUrl + '/common/apple-touch-icon-180x180.png')
-		link(rel='manifest', href= config.url + '/manifest.json')
-		link(rel='help', href= config.helpUrl, title='Misskey help')
-		link(rel='search', href= config.searchUrl, title=' Misskey search')
-		link(rel='dns-prefetch', href= config.resourcesUrl)
-		link(rel='dns-prefetch', href= config.webApiUrl)
-		link(rel='dns-prefetch', href= config.searchUrl)
-		link(rel='dns-prefetch', href= config.talkUrl)
-		link(rel='dns-prefetch', href= config.apiUrl)
-		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
-		link(rel='stylesheet', href= stylePath)
-		script!= 'var CONFIG = ' + JSON.stringify(config) + '; Object.freeze(CONFIG);'
-		script!= 'var LANG = "' + lang + '"; Object.freeze(LANG);'
-		script!= 'var NOUI = ' + noui.toString() + '; Object.freeze(NOUI);'
-		script!= 'var LOGIN = ' + login.toString() + '; Object.freeze(LOGIN);'
-		script!= 'var ME = ' + JSON.stringify(me) + '; Object.freeze(ME);'
-		script!= 'var USER_SETTINGS = ' + JSON.stringify(userSettings) + '; Object.freeze(USER_SETTINGS);'
-		script(src= scriptPath)
-		script.
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			ga('create', 'UA-57628372-1', 'auto');
-			ga('send', 'pageview');
-		
-		block assets
-	
-	body
-		noscript
-			article#misskey-no-script-caution
-				h1=locale.sites.mobile.common.no_script_caution.title
-				p
-					strong=locale.sites.mobile.common.no_script_caution.text
-
-		block body
-		
-		script!= 'var LOCALE = ' + JSON.stringify(locale) + '; Object.freeze(LOCALE);'
-
-!= '\r\n<!-- Misskeyの開発に興味がありますか？ Gitリポジトリはこちらです: https://github.com/MissKernel/Misskey -->'
+block root-body
+	noscript
+		article#misskey-no-script-caution
+			h1=locale.sites.mobile.common.no_script_caution.title
+			p
+				strong=locale.sites.mobile.common.no_script_caution.text
+	block body

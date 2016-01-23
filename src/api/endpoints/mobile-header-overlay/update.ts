@@ -12,7 +12,7 @@ export default function updateHomeLayout(req: express.Request, res: express.Resp
 		if (findErr !== null) {
 			return res.sendStatus(500);
 		}
-		settings.mobileHeaderOverlay = id;
+		settings.mobileHeaderOverlay = id === 'none' ? null : id;
 		settings.save((saveErr: any, savedSettings: IUserSettings) => {
 			if (saveErr !== null) {
 				return res.sendStatus(500);

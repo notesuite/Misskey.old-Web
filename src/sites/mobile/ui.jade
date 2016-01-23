@@ -8,7 +8,7 @@ block body
 		header#misskey-header
 			if login && me.isSuspended
 				p.account-suspended= locale.sites.mobile.common.account_suspended
-			div.main(style={'background-image': headerOverlayStyle})
+			div.main(style={'background-image': headerOverlayStyle != null ? headerOverlayStyle : ''})
 				button#open-misskey-nav-button(role='button'): i.fa.fa-bars
 				h1
 					block header
