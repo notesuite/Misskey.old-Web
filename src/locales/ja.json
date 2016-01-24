@@ -159,7 +159,7 @@
 						"user_name": "名前",
 						"user_comment": "コメント",
 						"user_website_url": "ウェブサイトURL",
-						"user_location": "ロケーション",
+						"user_location": "場所",
 						"update": "更新",
 						"display_user_name_in_post": "投稿にユーザー名を表示する",
 						"display_user_screen_name_in_post": "投稿にユーザーIDを表示する",
