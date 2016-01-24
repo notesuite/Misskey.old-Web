@@ -51,6 +51,8 @@ export interface IConfig {
 		url: string;
 		adminUrl: string;
 		adminDomain: string;
+		authorizeUrl: string;
+		authorizeDomain: string;
 		registerUrl: string;
 		registerDomain: string;
 		signinDomain: string;
