@@ -46,7 +46,7 @@ mixin core(post, isRepost, repost)
 		div.main
 			div.avatar-area
 				a.avatar-anchor(href= config.url + '/' + post.user.screenName, title= userTitle, rel='avatar')
-					img.avatar(src= post.user.avatarThumbnailUrl, alt='avatar')
+					img.avatar(src!= post.user.avatarUrl + '?size=64&quality=' + userSettings.imageQuality, alt='avatar')
 			header
 				div.author(itemprop='author')
 					if userSettings.displayUserNameInPost
@@ -90,7 +90,7 @@ mixin core(post, isRepost, repost)
 							= post.likesCount != 0 ? post.likesCount : ''
 		if login
 			form.reply-form
-				img.me-avatar(src= me.avatarThumbnailUrl, alt='avatar')
+				img.me-avatar(src!= me.avatarUrl + '?size=64&quality=' + userSettings.imageQuality, alt='avatar')
 				div.form
 					textarea(name='text', placeholder=locale.sites.desktop.common.post.reply_form_textarea_placeholder, aria-multiline='true')= '@' + post.user.screenName + ' '
 					div.design-allow(role='presentation')
