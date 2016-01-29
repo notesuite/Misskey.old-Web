@@ -169,7 +169,9 @@ function init-widgets
 				$notifications = $ notifications-compiler {
 					items: notifications
 					config: CONFIG
+					user-settings: USER_SETTINGS
 					me: ME
+					locale: LOCALE
 				}
 				$notifications.append-to $ '#widget-notifications .notifications'
 			else
@@ -185,6 +187,7 @@ function init-widgets
 					users
 					config: CONFIG
 					me: ME
+					user-settings: USER_SETTINGS
 					locale: LOCALE
 				}
 				$users.append-to $ '#widget-recommendation-users'

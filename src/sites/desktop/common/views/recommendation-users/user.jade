@@ -2,7 +2,7 @@ mixin user(user)
 	div.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
 		div.avatar-area
 			a.avatar-anchor(href= '/' + user.screenName)
-				img.avatar(src= user.avatarUrl, alt='avatar')
+				img.avatar(src= user.avatarUrl + '?size=48&quality=' + userSettings.displayImageQuality, alt='avatar')
 		div.main
 			a.name-anchor(href= '/' + user.screenName)
 				p.name= user.name

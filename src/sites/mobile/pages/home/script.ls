@@ -54,6 +54,7 @@ $ ->
 			notification
 			config: CONFIG
 			me: ME
+			locale: LOCALE
 			user-settings: USER_SETTINGS
 		}
 		$notification.append-to $ \body
