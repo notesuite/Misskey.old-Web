@@ -53,10 +53,7 @@ block body
 								i.icon.fa.fa-cog
 								=locale.sites.mobile.common.nav.settings
 								i.angle.fa.fa-angle-right
-					p.manager
-						| このセッションは
-						b= workerId
-						| が担当しました
+					p.manager=locale.sites.mobile.common.managed_by.replace('{name}', workerId)
 					p.about
 						a(href= config.aboutUrl)=locale.sites.mobile.common.nav.about_misskey
 

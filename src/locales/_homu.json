@@ -190,6 +190,7 @@
 				"connected_stream": "ほむ",
 				"reconnecting_stream": "ほむ...",
 				"account_suspended": "ほむ",
+				"managed_by": "ほ{name}む",
 				"nav": {
 					"post": "ほむ",
 					"home": "ほむ",

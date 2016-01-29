@@ -190,6 +190,7 @@
 				"connected_stream": "ストリームに接続しました",
 				"reconnecting_stream": "ストリームに再接続中...",
 				"account_suspended": "あなたのアカウントは凍結されています",
+				"managed_by": "このセッションは{name}が担当しました",
 				"nav": {
 					"post": "投稿",
 					"home": "ホーム",

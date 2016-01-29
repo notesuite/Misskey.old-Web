@@ -190,6 +190,7 @@
 				"connected_stream": "Connected",
 				"reconnecting_stream": "Reconnecting...",
 				"account_suspended": "Your account has been suspended",
+				"managed_by": "Managed by {name}",
 				"nav": {
 					"post": "Post",
 					"home": "Home",
