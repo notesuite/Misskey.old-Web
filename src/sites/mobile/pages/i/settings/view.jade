@@ -13,44 +13,52 @@ block content
 			=locale.sites.mobile.pages.i.settings.hello
 		.menu
 			p.caption=locale.sites.mobile.pages.i.settings.profile
-			.item: a(href='/i/settings/avatar')
-				=locale.sites.mobile.pages.i.settings.avatar
-				i.angle.fa.fa-angle-right
-			.item: a(href='/i/settings/banner')
-				=locale.sites.mobile.pages.i.settings.banner
-				i.angle.fa.fa-angle-right
-			.item: a(href='/i/settings/name')
-				=locale.sites.mobile.pages.i.settings.name
-				i.angle.fa.fa-angle-right
-			.item: a(href='/i/settings/comment')
-				=locale.sites.mobile.pages.i.settings.comment
-				i.angle.fa.fa-angle-right
-			.item: a(href='/i/settings/tags')
-				=locale.sites.mobile.pages.i.settings.tags
-				i.angle.fa.fa-angle-right
-			.item: a(href='/i/settings/location')
-				=locale.sites.mobile.pages.i.settings.location
-				i.angle.fa.fa-angle-right
-			.item: a(href='/i/settings/website')
-				=locale.sites.mobile.pages.i.settings.url
-				i.angle.fa.fa-angle-right
+			.items
+				.item: a(href='/i/settings/avatar')
+					=locale.sites.mobile.pages.i.settings.avatar
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/banner')
+					=locale.sites.mobile.pages.i.settings.banner
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/name')
+					=locale.sites.mobile.pages.i.settings.name
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/comment')
+					=locale.sites.mobile.pages.i.settings.comment
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/tags')
+					=locale.sites.mobile.pages.i.settings.tags
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/location')
+					=locale.sites.mobile.pages.i.settings.location
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/website')
+					=locale.sites.mobile.pages.i.settings.url
+					i.angle.fa.fa-angle-right
 		.menu
 			p.caption=locale.sites.mobile.pages.i.settings.web_general
-			.item: a(href='/i/settings/ui-language')
-				i.fa.fa-language
-				=locale.sites.mobile.pages.i.settings.ui_language
-				i.angle.fa.fa-angle-right
-			.item: a(href='/i/settings/display-image-quality')
-				i.fa.fa-picture-o
-				=locale.sites.mobile.pages.i.settings.display_image_quality
-				i.angle.fa.fa-angle-right
+			.items
+				.item: a(href='/i/settings/ui-language')
+					i.fa.fa-language
+					=locale.sites.mobile.pages.i.settings.ui_language
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/display-image-quality')
+					i.fa.fa-picture-o
+					=locale.sites.mobile.pages.i.settings.display_image_quality
+					i.angle.fa.fa-angle-right
 		.menu
 			p.caption=locale.sites.mobile.pages.i.settings.mobile
-			.item: a(href='/i/settings/mobile-header-overlay')
-				i.fa.fa-paint-brush
-				=locale.sites.mobile.pages.i.settings.header_design
-				i.angle.fa.fa-angle-right
+			.items
+				.item: a(href='/i/settings/mobile-header-overlay')
+					i.fa.fa-paint-brush
+					=locale.sites.mobile.pages.i.settings.header_design
+					i.angle.fa.fa-angle-right
+				.item: a(href='/i/settings/push-notification')
+					i.fa.fa-bolt
+					=locale.sites.mobile.pages.i.settings.push_notification
+					i.angle.fa.fa-angle-right
 		.menu
-			.item: a(href= config.signoutUrl)
-				i.fa.fa-power-off
-				=locale.sites.mobile.pages.i.settings.signout
+			.items
+				.item: a(href= config.signoutUrl)
+					i.fa.fa-power-off
+					=locale.sites.mobile.pages.i.settings.signout

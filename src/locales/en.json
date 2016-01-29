@@ -279,9 +279,11 @@
 						"web_general": "Web General",
 						"ui_language": "Interface language",
 						"display_image_quality": "Quality of a displaying image",
+						"push_notification": "Push notification",
 						"mobile": "Mobile",
 						"header_design": "Header design",
 						"signout": "Sign out",
+						"back_to_settings": "Back to settings menu",
 						"ui_language_page": {
 							"page_title": "Interface language - Misskey",
 							"page_header_title": "UI Language",
@@ -289,16 +291,29 @@
 							"specify": "Specify language:",
 							"current_language": "Current language:"
 						},
+						"push_notification_page": {
+							"page_title": "Push notification - Misskey",
+							"page_header_title": "Push notification",
+							"enable_pseudo_push_notification": "Pseudo push notification",
+							"pseudo_push_notification_display_duration_form": {
+								"title": "Display duration",
+								"caption": "Short <-> Long",
+								"submit": "Apply"
+							}
+						},
 						"display_image_quality_page": {
 							"page_title": "Quality of a displaying image - Misskey",
 							"page_header_title": "Quality of a displaying image",
-							"caption": "Low - Medium - High",
-							"submit": "Submit"
+							"caption": "Low <-> High",
+							"submit": "Apply"
 						},
 						"mobile_header_overlay_page": {
 							"page_title": "Design of header - Misskey",
 							"page_header_title": "Design of header",
-							"none": "None"
+							"none": "None",
+							"form": {
+								"title": "Overlay"
+							}
 						}
 					}
 				}

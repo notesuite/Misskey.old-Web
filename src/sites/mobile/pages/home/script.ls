@@ -63,14 +63,13 @@ $ ->
 			} 0
 			.transition {
 				y: 0
-			} 500ms \ease
-
-		set-timeout ->
-			$notification.transition {
-				y: $notification.outer-height!
 			} 500ms \ease ->
-				$notification.remove!
-		, 5000ms
+				set-timeout ->
+					$notification.transition {
+						y: $notification.outer-height!
+					} 500ms \ease ->
+						$notification.remove!
+				, USER_SETTINGS.pseudo-push-notification-display-duration
 
 	$ '#misskey-header .post' .click ->
 		text = window.prompt LOCALE.sites.mobile.pages.home.new_post

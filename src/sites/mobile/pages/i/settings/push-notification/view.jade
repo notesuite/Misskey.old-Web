@@ -1,0 +1,19 @@
+extends ../page-base
+
+block title
+	=locale.sites.mobile.pages.i.settings.push_notification_page.page_title
+
+block header
+	i.fa.fa-picture-o
+	=locale.sites.mobile.pages.i.settings.push_notification_page.page_header_title
+
+block forms
+	form#pseudo-push-notification-display-duration-form
+		h1
+			i.fa.fa-clock-o
+			=locale.sites.mobile.pages.i.settings.push_notification_page.pseudo_push_notification_display_duration_form.title
+		div.body
+			p.caption=locale.sites.mobile.pages.i.settings.push_notification_page.pseudo_push_notification_display_duration_form.caption
+			input.ui-input-range(name='duration', type='range', min='3000', max='7000', value= userSettings.pseudoPushNotificationDisplayDuration)
+			button.ui-button(type='submit')
+				=locale.sites.mobile.pages.i.settings.push_notification_page.pseudo_push_notification_display_duration_form.submit

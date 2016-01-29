@@ -7,6 +7,7 @@ const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, conf
 
 const schema: any = {
 	displayImageQuality: { type: Number, required: false, default: 90 },
+	pseudoPushNotificationDisplayDuration: { type: Number, required: false, default: 5000 },
 	enableSushi: { type: Boolean, required: false, default: false },
 	displayUserNameInPost: { type: Boolean, required: false, default: true },
 	displayUserScreenNameInPost: { type: Boolean, required: false, default: false },
@@ -43,6 +44,7 @@ export const UserSettings: mongoose.Model<mongoose.Document> = db.model('UserSet
 
 export interface IUserSettings extends mongoose.Document {
 	displayImageQuality: number;
+	pseudoPushNotificationDisplayDuration: number;
 	uiLanguage: string;
 	theme: string;
 	homeLayout: any;

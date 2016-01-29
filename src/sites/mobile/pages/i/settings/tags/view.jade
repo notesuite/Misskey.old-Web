@@ -1,4 +1,4 @@
-extends ../../../../ui
+extends ../page-base
 
 block title
 	| タグの設定 - Misskey
@@ -7,10 +7,10 @@ block header
 	i.fa.fa-tags
 	| タグ
 
-block content
-	main(role='main')
-		form#form
-			p 空白で区切って複数のタグを設定できます
+block forms
+	form#form
+		div.body
+			p.caption 空白で区切って複数のタグを設定できます
 			input.ui-input-text(name='tags', type='text', value= me.tags.join(' '))
 			button.ui-button(type='submit')
 				| 更新

@@ -279,9 +279,11 @@
 						"web_general": "ほむ",
 						"ui_language": "ほむ",
 						"display_image_quality": "ほむ",
+						"push_notification": "ほむ",
 						"mobile": "ほむ",
 						"header_design": "ほむ",
 						"signout": "ほむ",
+						"back_to_settings": "ほむ",
 						"ui_language_page": {
 							"page_title": "ほむ",
 							"page_header_title": "ほむ",
@@ -289,16 +291,29 @@
 							"specify": "ほむ",
 							"current_language": "ほむ"
 						},
+						"push_notification_page": {
+							"page_title": "ほむ - Misskey",
+							"page_header_title": "ほむ",
+							"enable_pseudo_push_notification": "ほむ",
+							"pseudo_push_notification_display_duration_form": {
+								"title": "ほむ",
+								"caption": "ほむ <-> ほむ",
+								"submit": "ほむ"
+							}
+						},
 						"display_image_quality_page": {
 							"page_title": "ほむ - Misskey",
 							"page_header_title": "ほむ",
-							"caption": "ほむ - ほむ - ほむ",
+							"caption": "ほむ <-> ほむ",
 							"submit": "ほむ"
 						},
 						"mobile_header_overlay_page": {
 							"page_title": "ほむ - Misskey",
 							"page_header_title": "ほむ",
-							"none": "ほむ"
+							"none": "ほむ",
+							"form": {
+								"title": "ほむ"
+							}
 						}
 					}
 				}

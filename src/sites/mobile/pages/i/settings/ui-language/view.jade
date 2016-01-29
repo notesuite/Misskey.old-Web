@@ -1,4 +1,4 @@
-extends ../../../../ui
+extends ../page-base
 
 block title
 	=locale.sites.mobile.pages.i.settings.ui_language_page.page_title
@@ -7,9 +7,12 @@ block header
 	i.fa.fa-language
 	=locale.sites.mobile.pages.i.settings.ui_language_page.page_header_title
 
-block content
-	main(role='main')
-		form#form
+block forms
+	form#form
+		h1
+			=locale.sites.mobile.pages.i.settings.ui_language_page.current_language
+			b= lang
+		div.body
 			div.ui-select-wrapper
 				select.ui-select(name='lang')
 					option(value='_auto', selected= userSettings.uiLanguage == null)=locale.sites.mobile.pages.i.settings.ui_language_page.auto
@@ -17,6 +20,3 @@ block content
 						option(value='ja', selected= userSettings.uiLanguage == 'ja')= "🇯🇵 日本語 (" + locale.common.languages.japanese + ")"
 						option(value='en', selected= userSettings.uiLanguage == 'en')= "🇺🇸 English (" + locale.common.languages.english + ")"
 						option(value='_homu', selected= userSettings.uiLanguage == '_homu')= "ほむ (ほむ)"
-			p#current-language
-				=locale.sites.mobile.pages.i.settings.ui_language_page.current_language
-				b= lang

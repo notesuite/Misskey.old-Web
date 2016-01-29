@@ -1,36 +1,15 @@
-@import "../base";
+@import "../page-base";
 
-main {
-	display: block;
-	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 0;
-	max-width: 500px;
-
-	form {
-		padding: 8px;
-
-		option[value='_auto'] {
-			font-weight: bold;
-		}
-
-		[type='submit'] {
-			margin-top: 8px;
-		}
+#form {
+	option[value='_auto'] {
+		font-weight: bold;
 	}
 
-	#current-language {
-		display: block;
-		margin: 0;
-		padding: 16px;
-		color: #777;
+	h1 {
+		font-weight: normal;
 
 		b {
 			margin-left: 0.5em;
 		}
-	}
-
-	@media (min-width: 516px) {
-		padding-top: 16px;
 	}
 }

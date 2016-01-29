@@ -1,4 +1,4 @@
-extends ../../../../ui
+extends ../page-base
 
 block title
 	=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.page_title
@@ -7,9 +7,11 @@ block header
 	i.fa.fa-paint-brush
 	=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.page_header_title
 
-block content
-	main(role='main')
-		form#form
+block forms
+	form#form
+		h1
+			=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.form.title
+		div.body
 			div.ui-select-wrapper
 				select.ui-select(name='id')
 					option(value='none', selected= userSettings.mobileHeaderOverlay == null)=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.none

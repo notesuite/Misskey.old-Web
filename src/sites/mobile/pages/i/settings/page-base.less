@@ -1,0 +1,62 @@
+@import "./base";
+
+#main-container {
+	padding: 8px;
+
+	> main {
+		display: block;
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 8px 12px;
+		max-width: 500px;
+		background: #fff;
+		border-radius: 8px;
+
+		> form {
+			h1 {
+				display: block;
+				margin: 0 0 16px 0;
+				padding: 8px;
+				font-size: 1em;
+				color: #868B90;
+				border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+
+				> i {
+					margin-right: 0.25em;
+				}
+			}
+
+			.body {
+				padding: 0 4px 8px 4px;
+				color: #222;
+				font-size: 1em;
+
+				.caption {
+					display: block;
+					margin: 8px;
+					color: #757779;
+					font-size: 0.9em;
+				}
+
+				[type='submit'] {
+					margin-top: 8px;
+				}
+			}
+		}
+	}
+
+	> .back-to-settings {
+		display: block;
+		padding: 8px;
+		text-align: center;
+		color: #747779;
+
+		> i {
+			margin-right: 0.25em;
+		}
+	}
+
+	@media (min-width: 516px) {
+		padding: 16px 8px;
+	}
+}
