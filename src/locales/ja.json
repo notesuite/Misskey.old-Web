@@ -68,6 +68,7 @@
 					}
 				},
 				"post": {
+					"repost_info": "{name}がRepost",
 					"send_reply": "返信",
 					"reply_form_textarea_placeholder": "この投稿に返信...",
 					"attach_file_from_pc": "PCからファイルを添付",
@@ -197,6 +198,7 @@
 					"about_misskey": "Misskeyについて"
 				},
 				"post": {
+					"repost_info": "{name}がRepost",
 					"reply_dialog": "{user-name}「{text}」への返信",
 					"repost_confirm": "{user-name}「{text}」をRepostしますか？"
 				}

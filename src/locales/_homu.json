@@ -68,6 +68,7 @@
 					}
 				},
 				"post": {
+					"repost_info": "ほむ by {name}",
 					"send_reply": "ほむ",
 					"reply_form_textarea_placeholder": "ほむ",
 					"attach_file_from_pc": "ほむ",
@@ -197,6 +198,7 @@
 					"about_misskey": "ほむ"
 				},
 				"post": {
+					"repost_info": "ほむ by {name}",
 					"reply_dialog": "ほむ",
 					"repost_confirm": "ほむ"
 				}

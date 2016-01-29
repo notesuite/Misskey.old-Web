@@ -68,6 +68,7 @@
 					}
 				},
 				"post": {
+					"repost_info": "Reposted by {name}",
 					"send_reply": "Reply",
 					"reply_form_textarea_placeholder": "Reply to status...",
 					"attach_file_from_pc": "Attach a file from PC",
@@ -197,6 +198,7 @@
 					"about_misskey": "About Misskey"
 				},
 				"post": {
+					"repost_info": "Reposted by {name}",
 					"reply_dialog": "Reply to {user-name}「{text}」",
 					"repost_confirm": "Are you sure Repost the {user-name}「{text}」?"
 				}
