@@ -28,6 +28,7 @@ export default function generateHomewidgets(me: User, locale: any, widgets: stri
 				});
 				return Promise.resolve(compiler({
 					me: me,
+					userSettings: me._settings,
 					config: config.publicConfig,
 					locale: locale
 				}));

@@ -110,7 +110,7 @@ block body
 											span.screen-name
 												= me.screenName
 												i.fa.fa-angle-down
-											img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
+											img.avatar(src= me.avatarUrl + '?size=64&quality=' + userSettings.displayImageQuality, alt='avatar')
 										div.dropdown-content
 											ul
 												li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
