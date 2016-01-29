@@ -105,6 +105,9 @@
 						"name": "Donation",
 						"title": "Donation",
 						"text": "To manage Misskey, we spend money for our domain, server, etc.. There's no incomes for us, so we need your tip. If you're interested, contact <a href='/syuilo'>@syuilo</a>. Thank you for your contribution!"
+					},
+					"ad_widget": {
+						"text": "Stop, No destination reply."
 					}
 				},
 				"register": {
