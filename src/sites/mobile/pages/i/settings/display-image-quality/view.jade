@@ -1,0 +1,16 @@
+extends ../../../../ui
+
+block title
+	=locale.sites.mobile.pages.i.settings.display_image_quality_page.page_title
+
+block header
+	i.fa.fa-picture-o
+	=locale.sites.mobile.pages.i.settings.display_image_quality_page.page_header_title
+
+block content
+	main(role='main')
+		form#form
+			p.caption=locale.sites.mobile.pages.i.settings.display_image_quality_page.caption
+			input.ui-input-range(name='quality', type='range', min='0', max='100', value= userSettings.displayImageQuality)
+			button.ui-button(type='submit')
+				=locale.sites.mobile.pages.i.settings.display_image_quality_page.submit

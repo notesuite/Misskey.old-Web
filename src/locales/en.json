@@ -278,6 +278,7 @@
 						"url": "Web site URL",
 						"web_general": "Web General",
 						"ui_language": "Interface language",
+						"display_image_quality": "Quality of a displaying image",
 						"mobile": "Mobile",
 						"header_design": "Header design",
 						"signout": "Sign out",
@@ -287,6 +288,12 @@
 							"auto": "Detect automatically (Default)",
 							"specify": "Specify language:",
 							"current_language": "Current language:"
+						},
+						"display_image_quality_page": {
+							"page_title": "Quality of a displaying image - Misskey",
+							"page_header_title": "Quality of a displaying image",
+							"caption": "Low - Medium - High",
+							"submit": "Submit"
 						},
 						"mobile_header_overlay_page": {
 							"page_title": "Design of header - Misskey",

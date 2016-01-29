@@ -6,7 +6,7 @@ const Schema: typeof mongoose.Schema = mongoose.Schema;
 const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 const schema: any = {
-	imageQuality: { type: Number, required: false, default: 90 },
+	displayImageQuality: { type: Number, required: false, default: 90 },
 	enableSushi: { type: Boolean, required: false, default: false },
 	displayUserNameInPost: { type: Boolean, required: false, default: true },
 	displayUserScreenNameInPost: { type: Boolean, required: false, default: false },
@@ -42,6 +42,7 @@ if (!(<any>schemaObj).options.toObject) {
 export const UserSettings: mongoose.Model<mongoose.Document> = db.model('UserSettings', schemaObj);
 
 export interface IUserSettings extends mongoose.Document {
+	displayImageQuality: number;
 	uiLanguage: string;
 	theme: string;
 	homeLayout: any;

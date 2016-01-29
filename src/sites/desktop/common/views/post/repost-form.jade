@@ -9,7 +9,7 @@ mixin repost-form(post)
 				=locale.sites.desktop.common.post.repost_dialog.title
 			article(class=post.type)
 				a.avatar-anchor(href='/' + post.user.screenName, title= userTitle, rel='avatar')
-					img.avatar(src!= post.user.avatarUrl + '?size=64&quality=' + userSettings.imageQuality, alt='avatar')
+					img.avatar(src= post.user.avatarUrl + '?size=64&quality=' + userSettings.displayImageQuality, alt='avatar')
 				header.header
 					a.name(href='/' + post.user.screenName, target='_blank', rel='author')= post.user.name
 					if post.user.isVerified

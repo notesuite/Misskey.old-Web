@@ -278,6 +278,7 @@
 						"url": "WebサイトURL",
 						"web_general": "Web全般",
 						"ui_language": "インターフェイスの言語",
+						"display_image_quality": "表示する画像のクオリティ",
 						"mobile": "モバイル",
 						"header_design": "ヘッダーのデザイン",
 						"signout": "ログアウト",
@@ -287,6 +288,12 @@
 							"auto": "自動で決定する(規定)",
 							"specify": "言語を指定:",
 							"current_language": "現在の言語:"
+						},
+						"display_image_quality_page": {
+							"page_title": "表示する画像のクオリティ - Misskey",
+							"page_header_title": "表示する画像のクオリティ",
+							"caption": "低画質 - 中画質 - 高画質",
+							"submit": "決定"
 						},
 						"mobile_header_overlay_page": {
 							"page_title": "ヘッダーのデザイン - Misskey",

@@ -281,6 +281,9 @@ export default function router(app: express.Express): void {
 	app.get('/i/settings/ui-language', (req, res) =>
 		callController(req, res, 'i/settings/ui-language'));
 
+	app.get('/i/settings/display-image-quality', (req, res) =>
+		callController(req, res, 'i/settings/display-image-quality'));
+
 	app.get('/i/settings/mobile-header-overlay', (req, res) =>
 		callController(req, res, 'i/settings/mobile-header-overlay'));
 

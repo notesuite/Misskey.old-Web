@@ -278,6 +278,7 @@
 						"url": "ほむ",
 						"web_general": "ほむ",
 						"ui_language": "ほむ",
+						"display_image_quality": "ほむ",
 						"mobile": "ほむ",
 						"header_design": "ほむ",
 						"signout": "ほむ",
@@ -287,6 +288,12 @@
 							"auto": "ほむ",
 							"specify": "ほむ",
 							"current_language": "ほむ"
+						},
+						"display_image_quality_page": {
+							"page_title": "ほむ - Misskey",
+							"page_header_title": "ほむ",
+							"caption": "ほむ - ほむ - ほむ",
+							"submit": "ほむ"
 						},
 						"mobile_header_overlay_page": {
 							"page_title": "ほむ - Misskey",

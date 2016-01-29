@@ -4,7 +4,7 @@ mixin subPost(post)
 	aside.sub-post(class!= attributes.class !== undefined ? attributes.class + ' ' + post.type : post.type
 			data-id= post.id)
 		a.avatar-anchor(href='/' + post.user.screenName)
-			img.avatar(src=post.user.avatarThumbnailUrl, alt='avatar')
+			img.avatar(src= post.user.avatarUrl + '?size=48&quality=' + userSettings.displayImageQuality, alt='avatar')
 		header
 			if userSettings.displayUserNameInPost
 				a.name(href='/' + post.user.screenName)= post.user.name

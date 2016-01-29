@@ -18,7 +18,7 @@ block body
 				div.slidemenu-content
 					if login
 						a.me(href= config.url + '/' + me.screenName)
-							img.avatar(src= me.avatarThumbnailUrl, alt='avatar')
+							img.avatar(src= me.avatarUrl + '?size=128&quality=' + userSettings.displayImageQuality, alt='avatar')
 							p.name= me.name
 					div.links
 						ul
