@@ -32,7 +32,7 @@ export default function ee(req: express.Request, res: express.Response, q: strin
 
 	function setEEcookie(name: string, value: string): void {
 		'use strict';
-		const age = 1000 * 60 * 5;
+		const age = 1000 * 60 * 3;
 		clearCookie('ee-flipx');
 		clearCookie('ee-flipy');
 		clearCookie('ee-skew');
