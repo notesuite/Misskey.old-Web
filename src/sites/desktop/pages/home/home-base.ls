@@ -116,7 +116,7 @@ module.exports = (type) ->
 
 				if not is-active
 					unread-count++
-					document.title = "(#{unread-count}) " + $ '#widget-timeline > .timeline > .posts > .post:first-child > .main > .content > .text' .text!
+					document.title = "(#{unread-count}) #{post.text}"
 
 			socket.on \mention (post) ->
 				id = post.id

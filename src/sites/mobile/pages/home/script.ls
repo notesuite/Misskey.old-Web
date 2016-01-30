@@ -4,8 +4,21 @@ require 'jquery.transit'
 Timeline = require '../../common/scripts/timeline-core.js'
 notification-render = require '../../common/views/notification/render.jade'
 
+is-active = yes
+unread-count = 0
+
 $ ->
+	default-title = document.title
+
 	timeline = new Timeline $ '#timeline'
+
+	$ window .focus ->
+		is-active := yes
+		unread-count := 0
+		document.title = default-title
+
+	$ window .blur ->
+		is-active := no
 
 	$ '#timeline > .read-more' .click ->
 		$button = $ @
@@ -48,6 +61,10 @@ $ ->
 	socket.on \post (post) ->
 		timeline.add post
 		$ '#timeline > .empty' .remove!
+
+		if not is-active
+			unread-count++
+			document.title = "(#{unread-count}) #{post.text}"
 
 	socket.on \notification (notification) ->
 		$notification = $ notification-render {
