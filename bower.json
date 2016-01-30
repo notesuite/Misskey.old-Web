@@ -17,7 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "cropper": "2.2.4",
+    "cropper": "2.2.5",
     "fastclick": "1.0.6",
     "fuck-adblock": "3.2.0",
     "jquery": "2.2.0",
