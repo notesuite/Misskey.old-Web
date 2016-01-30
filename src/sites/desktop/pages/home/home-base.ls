@@ -5,6 +5,7 @@ Timeline = require '../../common/scripts/timeline-core.js'
 notification-compiler = require '../../common/views/notification/smart/render.jade'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
 recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
+get-post-summary = require '../../../common/get-post-summary'
 
 is-active = yes
 unread-count = 0
@@ -116,7 +117,7 @@ module.exports = (type) ->
 
 				if not is-active
 					unread-count++
-					document.title = "(#{unread-count}) #{post.text}"
+					document.title = "(#{unread-count}) #{get-post-summary LANG, post}"
 
 			socket.on \mention (post) ->
 				id = post.id

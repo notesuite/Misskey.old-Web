@@ -3,6 +3,7 @@ $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 Timeline = require '../../common/scripts/timeline-core.js'
 notification-render = require '../../common/views/notification/render.jade'
+get-post-summary = require '../../../common/get-post-summary'
 
 is-active = yes
 unread-count = 0
@@ -64,7 +65,7 @@ $ ->
 
 		if not is-active
 			unread-count++
-			document.title = "(#{unread-count}) #{post.text}"
+			document.title = "(#{unread-count}) #{get-post-summary LANG, post}"
 
 	socket.on \notification (notification) ->
 		$notification = $ notification-render {
