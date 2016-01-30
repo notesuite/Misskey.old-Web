@@ -347,13 +347,16 @@ class Post
 				data: {'post-id': THIS.id}}
 			.done ->
 				window.display-message 'Reposted!'
-				done!
+				if done?
+					done!
 			.fail ->
 				THIS.$post.attr \data-is-reposted \false
 				window.display-message 'Repostに失敗しました。再度お試しください。'
-				fail!
+				if fail?
+					fail!
 			.always ->
-				always!
+				if always?
+					always!
 
 		function open
 			THIS.$repost-form.find '.background' .css \display \block
