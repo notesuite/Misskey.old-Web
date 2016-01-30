@@ -104,6 +104,8 @@ module.exports = (type) ->
 				$notification = $ notification-compiler {
 					notification
 					config: CONFIG
+					locale: LOCALE
+					user-settings: USER_SETTINGS
 					me: ME
 				} .hide!
 				$notification.prepend-to ($ '#widget-notifications .notifications') .show 200
