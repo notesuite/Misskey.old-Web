@@ -42,7 +42,10 @@
 	
 	function analyzeStrike(text) {
 		'use strict';
-		return text.replace
+		return text.replace(/~~(.+?)~~/g, function(arg, strikeee){
+			return '<strike>' + strikeee + '<strike>';
+		});
+	}
 
 	function analyzeHashtags(text) {
 		'use strict';
