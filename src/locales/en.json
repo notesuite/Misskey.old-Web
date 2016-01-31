@@ -50,6 +50,7 @@
 				"post_form": {
 					"status_tab": "Status",
 					"poll_tab": "Vote",
+					"whats_up": "What's up?",
 					"attach_file_from_pc": "Attach a file from PC",
 					"attach_file_from_album": "Attach a file from album"
 				},

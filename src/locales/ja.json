@@ -50,6 +50,7 @@
 				"post_form": {
 					"status_tab": "近況",
 					"poll_tab": "投票",
+					"whats_up": "いまどうしてる？",
 					"attach_file_from_pc": "PCからファイルを添付",
 					"attach_file_from_album": "アルバムからファイルを添付"
 				},
