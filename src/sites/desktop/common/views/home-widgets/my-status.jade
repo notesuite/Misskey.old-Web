@@ -6,9 +6,9 @@ div.misskey-home-widget#widget-my-status(data-widget-id='my-status', data-widget
 	nav(role='navigation')
 		table.status
 			tr
-				td: a(href='/' + me.screenName)= me.postsCount
-				td: a(href='/' + me.screenName + '/following')= me.followingCount
-				td: a(href='/' + me.screenName + '/followers')= me.followersCount
+				td: a.posts-anchor(href='/' + me.screenName)= me.postsCount
+				td: a.following-anchor(href='/' + me.screenName + '/following')= me.followingCount
+				td: a.followers-anchor(href='/' + me.screenName + '/followers')= me.followersCount
 			tr
 				th=locale.sites.desktop.pages.home.my_status_widget.posts
 				th=locale.sites.desktop.pages.home.my_status_widget.following

@@ -139,10 +139,8 @@ function init-header
 
 	# Talks
 	$ '#misskey-header > .main .main-contents-container .left nav .main-nav ul .talks a' .click ->
-		window-id = "misskey-window-talk-histories"
 		$content = $ '<iframe>' .attr {src: CONFIG.talk-url, +seamless}
 		ui-window do
-			window-id
 			$content
 			"<i class=\"fa fa-comments\"></i>#{LOCALE.sites.desktop.common.talk_window_title}"
 			500px

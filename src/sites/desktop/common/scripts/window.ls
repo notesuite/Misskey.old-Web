@@ -1,8 +1,8 @@
 $ = require 'jquery/dist/jquery'
 
-module.exports = (id, $content, title, width, height, can-popout = false) ->
+module.exports = ($content, title, width, height, can-popout = false) ->
 	$window = $ '''
-		<div class="ui-window" id="''' + id + '''">
+		<div class="ui-window">
 			<header>
 				<h1>''' + title + '''</h1>
 				<div class="buttons">

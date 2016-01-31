@@ -6,6 +6,7 @@ notification-compiler = require '../../common/views/notification/smart/render.ja
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
 recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
 get-post-summary = require '../../../common/get-post-summary'
+ui-window = require '../../common/scripts/window'
 
 is-active = yes
 unread-count = 0
@@ -164,6 +165,27 @@ module.exports = (type) ->
 						url
 
 function init-widgets
+	if $ \#widget-my-status .length != 0
+		$ '#widget-my-status .following-anchor' .click ->
+			$content = $ '<iframe>' .attr {src: (($ @).attr \href) + '?noui', +seamless}
+			ui-window do
+				$content
+				LOCALE.sites.desktop.pages.home.my_status_widget.following
+				500px
+				560px
+				yes
+			return false
+
+		$ '#widget-my-status .followers-anchor' .click ->
+			$content = $ '<iframe>' .attr {src: (($ @).attr \href) + '?noui', +seamless}
+			ui-window do
+				$content
+				LOCALE.sites.desktop.pages.home.my_status_widget.followers
+				500px
+				560px
+				yes
+			return false
+
 	if $ \#widget-notifications .length != 0
 		# 通知読み込み
 		$.ajax "#{CONFIG.web-api-url}/notifications/timeline"
