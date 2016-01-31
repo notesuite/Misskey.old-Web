@@ -32,6 +32,17 @@
 			return '<strong>' + boldee + '</strong>';
 		});
 	}
+	
+	function analyzeItalic(text) {
+		'use strict';
+		return text.replace(/_(.+?)_/g, function(arg, italicee){
+			return '<i>' + italicee + '<i>';
+		});
+	}
+	
+	function analyzeStrike(text) {
+		'use strict';
+		return text.replace
 
 	function analyzeHashtags(text) {
 		'use strict';
