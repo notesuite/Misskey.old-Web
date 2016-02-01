@@ -44,27 +44,34 @@ $ ->
 		update-header-statuses!
 		set-interval update-header-statuses, 10000ms
 
-	$ document .keypress (e) ->
-		tag = e.target.tag-name.to-lower-case!
-		if tag != \input and tag != \textarea
-			# Short cut Help
-			if e.which == 47 or e.which == 104
-				e.prevent-default!
-				if window.is-keyboard-shortcuts-open
-					window.keyboard-shortcuts-closer!
-				else
-					window.is-keyboard-shortcuts-open = yes
-					window.keyboard-shortcuts-closer = show-modal-window do
-						$ '#misskey-keyboard-shortcuts > *' .clone!
-						true
-						null
-						\misskey-keyboard-shortcuts
-						->
-							window.is-keyboard-shortcuts-open = no
-			# Open post form
-			if e.which == 110 or e.which == 112
-				e.prevent-default!
-				post-form.open!
+$ document .keypress (e) ->
+	tag = e.target.tag-name.to-lower-case!
+	if tag != \input and tag != \textarea
+		# Short cut Help
+		if e.which == 47 or e.which == 104
+			e.prevent-default!
+			if window.is-keyboard-shortcuts-open
+				window.keyboard-shortcuts-closer!
+			else
+				window.is-keyboard-shortcuts-open = yes
+				window.keyboard-shortcuts-closer = show-modal-window do
+					$ '#misskey-keyboard-shortcuts > *' .clone!
+					true
+					null
+					\misskey-keyboard-shortcuts
+					->
+						window.is-keyboard-shortcuts-open = no
+		# Open post form
+		if e.which == 110 or e.which == 112
+			e.prevent-default!
+			post-form.open!
+
+$ window .on \scroll (e) ->
+	t = $ window .scroll-top!
+	if t == 0
+		$ \html .attr \data-is-scrolled \false
+	else
+		$ \html .attr \data-is-scrolled \true
 
 $ window .load ->
 	if not NOUI

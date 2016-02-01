@@ -51,9 +51,10 @@
 		//border-top: solid 3px @theme-color;
 		//border-bottom: solid 3px rgba(0, 0, 0, 0.1);
 		//box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-		//box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 		background-clip: content-box;
 		font-size: 0.9rem;
+		transition: box-shadow 0.1s ease;
 
 		&, * {
 			user-select: none;
@@ -855,6 +856,14 @@
 					}
 				}
 			}
+		}
+	}
+}
+
+html[data-is-scrolled=true] {
+	#misskey-header {
+		> .main {
+			box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 		}
 	}
 }
