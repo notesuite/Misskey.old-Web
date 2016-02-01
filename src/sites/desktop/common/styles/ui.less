@@ -49,6 +49,11 @@
 			> a {
 				display: block;
 				padding: 16px;
+				color: #868C8C;
+
+				* {
+					pointer-events: none;
+				}
 
 				> i {
 					margin-right: 0.3em;
@@ -56,6 +61,7 @@
 
 				&:hover {
 					text-decoration: none;
+					color: @theme-color;
 				}
 			}
 		}
