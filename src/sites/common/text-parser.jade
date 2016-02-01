@@ -8,7 +8,7 @@
 		if (text === null) {
 			return null;
 		}
-		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeBold(escapeHtml(text))))).replace(/(\r\n|\r|\n)/g, '<br>');
+		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeStrike(analyzeItalic(analyzeBold(escapeHtml(text))))))).replace(/(\r\n|\r|\n)/g, '<br>');
 		return text;
 	}
 	
