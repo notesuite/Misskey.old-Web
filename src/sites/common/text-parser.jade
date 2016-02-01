@@ -8,7 +8,7 @@
 		if (text === null) {
 			return null;
 		}
-		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeStrike(analyzeItalic(analyzeBold(escapeHtml(text))))))).replace(/(\r\n|\r|\n)/g, '<br>');
+		text = analyzeHashtags(analyzeMentions(analyzeUrl(analyzeStrike(analyzeBold(escapeHtml(text)))))).replace(/(\r\n|\r|\n)/g, '<br>');
 		return text;
 	}
 	
@@ -30,13 +30,6 @@
 		'use strict';
 		return text.replace(/\*\*(.+?)\*\*/g, function(arg, boldee) {
 			return '<strong>' + boldee + '</strong>';
-		});
-	}
-	
-	function analyzeItalic(text) {
-		'use strict';
-		return text.replace(/_(.+?)_/g, function(arg, italicee){
-			return '<i>' + italicee + '</i>';
 		});
 	}
 	
