@@ -1,20 +1,18 @@
-extends ../../../../ui
+extends ../page-base
 
 block title
-	| ヘッダー画像の設定 - Misskey
+	=locale.sites.mobile.pages.i.settings.banner_page.page_title
 
 block header
 	i.fa.fa-picture-o
-	| ヘッダー画像
+	=locale.sites.mobile.pages.i.settings.banner_page.page_header_title
 
-block content
-	main(role='main')
-		img#banner(src= me.bannerThumbnailUrl, alt='banner')
-		div#form
-			label
-				p.caption
-					| ヘッダーに使用する画像をアップロード
-				input.ui-input-file(name='file', type='file', accept='image/*')
-				progress
-			button.ui-button.submit
-				| 決定
+block forms
+	img#banner(src= me.bannerThumbnailUrl, alt='banner')
+	div.form#form
+		h1
+			i.fa.fa-upload
+			=locale.sites.mobile.pages.i.settings.avatar_page.upload_form.title
+		div.body
+			input.ui-input-file(name='file', type='file', accept='image/*')
+			progress

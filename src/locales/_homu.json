@@ -286,6 +286,30 @@
 						"header_design": "ほむ",
 						"signout": "ほむ",
 						"back_to_settings": "ほむ",
+						"avatar_page": {
+							"page_title": "ほむ - Misskey",
+							"page_header_title": "ほむ",
+							"upload_form": {
+								"title": "ほむ"
+							},
+							"crop_form": {
+								"title": "ほむ",
+								"ok": "ほむ",
+								"cancel": "ほむ"
+							}
+						},
+						"banner_page": {
+							"page_title": "ほむ - Misskey",
+							"page_header_title": "ほむ",
+							"upload_form": {
+								"title": "ほむ"
+							},
+							"crop_form": {
+								"title": "ほむ",
+								"ok": "ほむ",
+								"cancel": "ほむ"
+							}
+						},
 						"ui_language_page": {
 							"page_title": "ほむ",
 							"page_header_title": "ほむ",

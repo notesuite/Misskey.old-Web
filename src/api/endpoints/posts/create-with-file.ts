@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as express from 'express';
-import requestApi from '../../../utils/request-api';
+import requestApi from '../../../core/request-api';
 
 export default function createWithFile(req: express.Request, res: express.Response): void {
 	'use strict';

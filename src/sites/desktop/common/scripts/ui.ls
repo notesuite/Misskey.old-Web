@@ -206,6 +206,8 @@ function init-header
 					$notifications = $ notifications-compiler {
 						items: notifications
 						config: CONFIG
+						locale: LOCALE
+						user-settings: USER_SETTINGS
 						me: ME
 					}
 					$list.append $notifications

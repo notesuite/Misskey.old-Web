@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as express from 'express';
 import * as request from 'request';
-import requestApi from '../../../utils/request-api';
+import requestApi from '../../../core/request-api';
 import config from '../../../config';
 
 export default function create(req: express.Request, res: express.Response): void {

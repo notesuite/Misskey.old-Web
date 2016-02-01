@@ -23,7 +23,7 @@
 			"common": {
 				"no_script_caution": {
 					"title": "Please enable JavaScript",
-					"text": "JavaScript is disabled or unavailable in your environment. JavaScript is required to use Misskey."
+					"text": "JavaScript seems to be disabled. JavaScript is required to use Misskey."
 				},
 				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
@@ -185,7 +185,7 @@
 			"common": {
 				"no_script_caution": {
 					"title": "Please enable JavaScript",
-					"text": "JavaScript is disabled or unavailable in your environment. JavaScript is required to use Misskey."
+					"text": "JavaScript seems to be disabled. JavaScript is required to use Misskey."
 				},
 				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
@@ -286,6 +286,30 @@
 						"header_design": "Header design",
 						"signout": "Sign out",
 						"back_to_settings": "Back to settings",
+						"avatar_page": {
+							"page_title": "Avatar - Misskey",
+							"page_header_title": "Avatar",
+							"upload_form": {
+								"title": "Upload an image"
+							},
+							"crop_form": {
+								"title": "Select a portion to be used for avatar",
+								"ok": "OK",
+								"cancel": "Cancel"
+							}
+						},
+						"banner_page": {
+							"page_title": "Banner - Misskey",
+							"page_header_title": "Banner",
+							"upload_form": {
+								"title": "Upload an image"
+							},
+							"crop_form": {
+								"title": "Select a portion to be used for banner",
+								"ok": "OK",
+								"cancel": "Cancel"
+							}
+						},
 						"ui_language_page": {
 							"page_title": "Interface language - Misskey",
 							"page_header_title": "UI language",

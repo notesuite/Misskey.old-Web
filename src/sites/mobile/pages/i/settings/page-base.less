@@ -7,12 +7,14 @@
 		display: block;
 		box-sizing: border-box;
 		margin: 0 auto;
-		padding: 8px 12px;
 		max-width: 500px;
-		background: #fff;
-		border-radius: 8px;
 
-		> form {
+		> form,
+		> .form {
+			padding: 8px 12px;
+			background: #fff;
+			border-radius: 8px;
+
 			h1 {
 				display: block;
 				margin: 0 0 16px 0;
@@ -27,7 +29,8 @@
 			}
 
 			.body {
-				padding: 0 4px 8px 4px;
+				padding: 0 4px 0 4px;
+				margin-bottom: 8px;
 				color: #222;
 				font-size: 1em;
 

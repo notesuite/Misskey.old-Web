@@ -1,58 +1,37 @@
-@import "../base";
+@import "../page-base";
 @import (inline) "../../../../../../../bower_components/cropper/dist/cropper.css";
 
-main {
+#avatar {
 	display: block;
-	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 0;
-	max-width: 500px;
-	
-	#avatar {
-		display: block;
-		width: 64px;
-		height: 64px;
-		margin: 16px auto;
-		border: solid 4px #fff;
+	max-width: 90px;
+	margin: 16px auto;
+	border: solid 4px #fff;
+	border-radius: 8px;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+progress {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: none;
+	margin: 8px 0;
+	width: 100%;
+	height: 8px;
+	border: none;
+	border-radius: 4px;
+	overflow: hidden;
+
+	&::-webkit-progress-value {
+		background-color: @theme-color;
 	}
 
-	#form {
-		padding: 0 8px;
-
-		.caption {
-			margin: 1em;
-			text-align: center;
-			color: #444;
-		}
-
-		progress {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			display: none;
-			margin: 8px 0;
-			width: 100%;
-			height: 8px;
-			border: none;
-			border-radius: 4px;
-			overflow: hidden;
-
-			&::-webkit-progress-value {
-				background-color: @theme-color;
-			}
-
-			&::-webkit-progress-bar {
-				background-color: #fff;
-			}
-
-			&:not([value])::-webkit-progress-bar {
-				background-image: url("@{resources-url}/mobile/common/images/indeter.gif");
-			}
-		}
+	&::-webkit-progress-bar {
+		background-color: #fff;
 	}
 
-	@media (min-width: 516px) {
-		padding-top: 16px;
+	&:not([value])::-webkit-progress-bar {
+		background-image: url("@{resources-url}/mobile/common/images/indeter.gif");
 	}
 }
 

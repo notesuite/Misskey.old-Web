@@ -14,8 +14,7 @@ import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
 const vhost: any = require('vhost');
 
-import namingWorkerId from './utils/naming-worker-id';
-import musics from './utils/musics';
+import namingWorkerId from './core/naming-worker-id';
 
 import config from './config';
 
@@ -106,10 +105,6 @@ if (config.https.enable) {
 		next();
 	});
 }
-
-app.get(`/subdomain/${config.publicConfig.resourcesDomain}/`, (req, res) => {
-	res.send(musics());
-});
 
 // Statics
 app.get('/favicon.ico', (req, res) => {

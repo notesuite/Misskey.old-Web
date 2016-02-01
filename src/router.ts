@@ -6,8 +6,8 @@ acceptLanguage.languages(['en', 'ja']);
 
 import { User } from './models/user';
 import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
-import namingWorkerId from './utils/naming-worker-id';
-import requestApi from './utils/request-api';
+import namingWorkerId from './core/naming-worker-id';
+import requestApi from './core/request-api';
 import login from './core/login';
 import callController from './call-controller';
 import config from './config';
@@ -74,6 +74,8 @@ export default function router(app: express.Express): void {
 					res.locals.lang = lang;
 					next();
 				});
+			}, (err: any) => {
+				res.status(500).send('API error');
 			});
 		} else {
 			const lang = cookieLang !== undefined

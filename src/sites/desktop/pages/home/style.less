@@ -124,6 +124,8 @@ body > .streaming-info {
 	display: block;
 	box-sizing: border-box;
 	background: transparent;
+	// border: solid 1px rgba(0, 0, 0, 0.15);
+	// border-radius: 8px;
 	overflow: hidden;
 
 	header {
@@ -166,12 +168,21 @@ body > .streaming-info {
 		color: #95856e;
 
 		.status {
-			margin: 0 auto;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			width: 100%;
 			border-collapse: collapse;
 
 			tr {
+				display: block;
+				width: 100%;
+
 				th, td {
-					min-width: 3.2em;
+					display: block;
+					box-sizing: border-box;
+					width: 33%;
+					float: left;
 					padding: 0;
 					margin: 0;
 					line-height: 1em;
