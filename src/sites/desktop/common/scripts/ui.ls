@@ -127,19 +127,21 @@ function init-header
 	set-interval update-header-clock, 1000ms
 
 	# 「Misskey Menu」ドロップダウン
-	$ '#misskey-header .misskey-menu .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-header .misskey-menu .dropdown'
+	$ '#misskey-header .misskey-menu .hamburger' .click ->
+		$button = $ '#misskey-header .misskey-menu .hamburger'
 
 		function close
-			$dropdown.attr \data-active \false
+			$button.attr \data-active \false
+			$ \#misskey-menu .css \left \-400px
 
 		function open
-			$ document .click (e) ->
-				if !$.contains $dropdown[0], e.target
-					close!
-			$dropdown.attr \data-active \true
+			#$ document .click (e) ->
+			#	if !$.contains \#misskey-menu e.target
+			#		close!
+			$button.attr \data-active \true
+			$ \#misskey-menu .css \left \0
 
-		if ($dropdown.attr \data-active) == \true
+		if ($button.attr \data-active) == \true
 			close!
 		else
 			open!
