@@ -41,34 +41,27 @@ block body
 							li: a.ui-waves-effect(href= '/')
 								i.fa.fa-info-circle
 								| About Misskey
-								i.fa.fa-angle-right
 							li: a.ui-waves-effect(href= config.helpUrl)
 								i.fa.fa-question-circle
 								| Help
-								i.fa.fa-angle-right
 						ul
 							li: a.ui-waves-effect(href= config.url + '/syuilo')
 								i.fa.fa-check-circle
 								| @syuilo
-								i.fa.fa-angle-right
 							li: a.ui-waves-effect(href= config.url + '/misskey')
 								i.fa.fa-check-circle
 								| @misskey
-								i.fa.fa-angle-right
 						ul
 							li: a.ui-waves-effect(href= config.url + '/about/donate')
 								i.fa.fa-heart
 								| Donate
-								i.fa.fa-angle-right
 						ul
 							li: a.ui-waves-effect(href='https://github.com/MissKernel/Misskey')
 								i.fa.fa-github
 								| Github repository
-								i.fa.fa-angle-right
 							li: a.ui-waves-effect(href= config.developerCenterUrl)
 								i.fa.fa-terminal
 								| Developers Center
-								i.fa.fa-angle-right
 
 				if login && me.isSuspended
 					- var text = locale.sites.desktop.common.account_suspended
