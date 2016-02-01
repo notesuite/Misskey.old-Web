@@ -133,6 +133,7 @@ function init-header
 		function close
 			$button.attr \data-active \false
 			$ \#misskey-menu .css \left \-400px
+			$ \#misskey-menu-bg .attr \data-show \false
 
 		function open
 			#$ document .click (e) ->
@@ -140,6 +141,7 @@ function init-header
 			#		close!
 			$button.attr \data-active \true
 			$ \#misskey-menu .css \left \0
+			$ \#misskey-menu-bg .attr \data-show \true
 
 		if ($button.attr \data-active) == \true
 			close!
