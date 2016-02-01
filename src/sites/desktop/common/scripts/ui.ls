@@ -133,6 +133,7 @@ function init-header
 		function close
 			$button.attr \data-active \false
 			$ \#misskey-menu .css \left \-400px
+			$ '#misskey-menu > .body' .css \left \-400px
 			$ \#misskey-menu-bg .attr \data-show \false
 
 		function open
@@ -141,6 +142,9 @@ function init-header
 			$button.attr \data-active \true
 			$ \#misskey-menu .css \left \0
 			$ \#misskey-menu-bg .attr \data-show \true
+			set-timeout do
+				-> $ '#misskey-menu > .body' .css \left \0
+				100ms
 
 		if ($button.attr \data-active) == \true
 			close!
