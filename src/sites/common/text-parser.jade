@@ -36,7 +36,7 @@
 	function analyzeStrike(text) {
 		'use strict';
 		return text.replace(/~~(.+?)~~/g, function(arg, strikeee){
-			return '<strike>' + strikeee + '</strike>';
+			return '<del>' + strikeee + '</del>';
 		});
 	}
 
