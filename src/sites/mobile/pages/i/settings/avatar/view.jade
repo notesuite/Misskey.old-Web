@@ -1,20 +1,18 @@
-extends ../../../../ui
+extends ../page-base
 
 block title
-	| アイコンの設定 - Misskey
+	=locale.sites.mobile.pages.i.settings.avatar_page.page_title
 
 block header
 	i.fa.fa-camera-retro
-	| アイコン
+	=locale.sites.mobile.pages.i.settings.avatar_page.page_header_title
 
-block content
-	main(role='main')
-		img#avatar(src= me.avatarThumbnailUrl, alt='avatar')
-		div#form
-			label
-				p.caption
-					| アイコンに使用する画像をアップロード
-				input.ui-input-file(name='file', type='file', accept='image/*')
-				progress
-			button.ui-button.submit
-				| 決定
+block forms
+	img#avatar(src= me.avatarThumbnailUrl, alt='avatar')
+	div.form#form
+		h1
+			i.fa.fa-upload
+			=locale.sites.mobile.pages.i.settings.avatar_page.upload_form.title
+		div.body
+			input.ui-input-file(name='file', type='file', accept='image/*')
+			progress

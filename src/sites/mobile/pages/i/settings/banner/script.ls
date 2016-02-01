@@ -24,12 +24,12 @@ $ ->
 
 	function crop file
 		$crop-form = $ '<form class="crop-form">
-				<p>ヘッダーに使用する部分を選択してください</p>
+				<p>' + LOCALE.sites.mobile.pages.i.settings.banner_page.crop_form.title + '</p>
 				<div class="container">
 				</div>
 				<div class="buttons">
-					<button type="submit" class="ok"><i class="fa fa-check"></i>OK</button>
-					<button type="button" class="cancel"><i class="fa fa-ban"></i>キャンセル</button>
+					<button type="submit" class="ok"><i class="fa fa-check"></i>' + LOCALE.sites.mobile.pages.i.settings.banner_page.crop_form.ok + '</button>
+					<button type="button" class="cancel"><i class="fa fa-ban"></i>' + LOCALE.sites.mobile.pages.i.settings.banner_page.crop_form.cancel + '</button>
 				</div>
 			</form>
 		'

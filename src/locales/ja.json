@@ -285,7 +285,31 @@
 						"mobile": "モバイル",
 						"header_design": "ヘッダーのデザイン",
 						"signout": "ログアウト",
-						"back_to_settings": "設定メニューに戻る",
+						"back_to_settings": "設定に戻る",
+						"avatar_page": {
+							"page_title": "アイコン - Misskey",
+							"page_header_title": "アイコン",
+							"upload_form": {
+								"title": "画像をアップロード"
+							},
+							"crop_form": {
+								"title": "アイコンに使用する部分を選択してください",
+								"ok": "決定",
+								"cancel": "キャンセル"
+							}
+						},
+						"banner_page": {
+							"page_title": "バナー - Misskey",
+							"page_header_title": "バナー",
+							"upload_form": {
+								"title": "画像をアップロード"
+							},
+							"crop_form": {
+								"title": "バナーに使用する部分を選択してください",
+								"ok": "決定",
+								"cancel": "キャンセル"
+							}
+						},
 						"ui_language_page": {
 							"page_title": "インターフェイスに使用する言語 - Misskey",
 							"page_header_title": "UIの言語",
