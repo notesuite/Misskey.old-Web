@@ -70,6 +70,8 @@ export interface IConfig {
 		helpDomain: string;
 		talkDomain: string;
 		talkUrl: string;
+		forumDomain: string;
+		forumUrl: string;
 		apiHost: string;
 		apiUrl: string;
 		webApiDomain: string;

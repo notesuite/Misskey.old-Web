@@ -96,9 +96,9 @@ block body
 											li.talks(class= pagePath == '/i/talks' ? 'active' : ''): a(href= config.talkUrl)
 												i.fa.fa-comments
 												p= locale.sites.desktop.common.header.talks
-											li.album(class= pagePath == '/i/album' ? 'active' : ''): a(href= config.url + '/i/album')
-												i.fa.fa-cloud
-												p= locale.sites.desktop.common.header.album
+											li.forum: a(href= config.forumUrl)
+												i.fa.fa-users
+												p= locale.sites.desktop.common.header.forum
 						div.right
 							form.search(action= config.searchUrl, method='get', role='search')
 								input(type='search', name='q', placeholder!='&#xf002; ' + locale.sites.desktop.common.header.search_placeholder)
@@ -116,6 +116,10 @@ block body
 												li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
 													i.fa.fa-user
 													=locale.sites.desktop.common.header.profile_page
+													i.fa.fa-angle-right
+												li: a.ui-waves-effect(href= config.url + '/i/album')
+													i.fa.fa-cloud
+													=locale.sites.desktop.common.header.album
 													i.fa.fa-angle-right
 												li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
 													i.fa.fa-star

@@ -20,7 +20,7 @@ forever stopall
 -d help.misskey.xyz \
 -d search.misskey.xyz \
 -d talk.misskey.xyz \
--d bbs.misskey.xyz \
+-d forum.misskey.xyz \
 -d dev.misskey.xyz \
 -d share.misskey.xyz \
 -d widgets.misskey.xyz \
