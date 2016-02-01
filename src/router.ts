@@ -252,6 +252,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/talk/group');
 	});
 
+	app.get(`/subdomain/${config.publicConfig.forumDomain}/`, (req, res) => {
+		callController(req, res, 'forum');
+	});
+
 	app.get('/i/album', (req, res) => {
 		callController(req, res, 'i/album');
 	});

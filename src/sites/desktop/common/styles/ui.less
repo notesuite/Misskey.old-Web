@@ -6,8 +6,8 @@
  * ---------------------------------------------------------------- */
 
 #misskey-header {
-	@header-background-color: #545E65;
-	@header-foreground-color: #D1D4D4;
+	@header-background-color: #fffbfb;
+	@header-foreground-color: #ABA49E;
 
 	position: fixed;
 	top: 0;
@@ -51,6 +51,7 @@
 		//border-top: solid 3px @theme-color;
 		//border-bottom: solid 3px rgba(0, 0, 0, 0.1);
 		//box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+		//box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 		background-clip: content-box;
 		font-size: 0.9rem;
 
@@ -99,16 +100,12 @@
 			&:not([data-active='true']) {
 				> .dropdown-header {
 					&:hover {
-						background: rgba(0, 0, 0, 0.1);
-
 						&, * {
-							color: #fff !important;
+							color: darken(@header-foreground-color, 20%);
 						}
 					}
 
 					&:active {
-						background: rgba(0, 0, 0, 0.2);
-
 						&, * {
 							color: #fff !important;
 						}
@@ -286,7 +283,7 @@
 									}
 
 									&:hover {
-										color: #fff;
+										color: darken(@header-foreground-color, 20%);
 									}
 
 									&:active {
@@ -343,7 +340,7 @@
 								&:hover {
 									.hamburger {
 										.bar {
-											background: #fff;
+											background: darken(@header-foreground-color, 20%);
 										}
 									}
 								}
@@ -396,7 +393,6 @@
 						height: 48px;
 						font-size: 1em;
 						line-height: ~"calc(48px - 12px)";
-						color: #fff;
 						background: transparent;
 						outline: none;
 						//border: solid 1px #ddd;
@@ -406,17 +402,8 @@
 						transition: color 0.5s ease, border 0.5s ease;
 						font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo, メイリオ','sans-serif';
 
-						&:hover {
-							background: rgba(0, 0, 0, 0.1);
-						}
-
-						&:focus {
-							color: @theme-color;
-							background: rgba(0, 0, 0, 0.2);
-						}
-
 						&[data-active='true'] {
-							background: #111111;
+							background: #fff;
 						}
 
 						&::-webkit-input-placeholder,
@@ -435,7 +422,7 @@
 						width: 340px;
 						margin: 0;
 						padding: 0;
-						background: #111111;
+						background: #fff;
 
 						> ol.users {
 							margin: 0;
@@ -538,7 +525,6 @@
 								line-height: 48px;
 								font-weight: bold;
 								text-decoration: none;
-								color: @header-foreground-color;
 
 								i {
 									margin-left: 8px;
@@ -843,7 +829,7 @@
 								color: @header-foreground-color;
 
 								> .yyyymmdd {
-									color: rgba(255,255,255,0.5);
+									opacity: 0.7;
 								}
 							}
 						}
