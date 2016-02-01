@@ -45,6 +45,7 @@ export default function requestApi(
 				}
 			});
 		} catch (e) {
+			console.error('omg');
 			console.error(e);
 			reject(e);
 		}

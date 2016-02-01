@@ -1,4 +1,4 @@
-import requestApi from '../utils/request-api';
+import requestApi from '../core/request-api';
 import { UserSettings, IUserSettings } from '../models/user-settings';
 
 export default function login(screenName: string, password: string, session: any): Promise<void> {

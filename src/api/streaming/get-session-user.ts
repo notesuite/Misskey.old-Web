@@ -3,7 +3,7 @@ import * as cookie from 'cookie';
 
 import { User } from '../../models/user';
 import { UserSettings, IUserSettings } from '../../models/user-settings';
-import requestApi from '../../utils/request-api';
+import requestApi from '../../core/request-api';
 import config from '../../config';
 
 export default function getSessionUser(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
