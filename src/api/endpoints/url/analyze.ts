@@ -303,7 +303,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 		const iconPath: string = $('link[rel="icon"]').attr('href');
 		const icon: string = nullOrEmpty(shortcutIconPath)
 			? nullOrEmpty(iconPath)
-				? null
+				? URL.resolve(url.href, '/favicon.ico')
 				: URL.resolve(url.href, iconPath)
 			: URL.resolve(url.href, shortcutIconPath);
 
