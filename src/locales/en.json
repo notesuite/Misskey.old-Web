@@ -23,7 +23,7 @@
 			"common": {
 				"no_script_caution": {
 					"title": "Please enable JavaScript",
-					"text": "JavaScript is disabled or unavailable in your environment. JavaScript is required to use Misskey."
+					"text": "JavaScript seems to be disabled. JavaScript is required to use Misskey."
 				},
 				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
@@ -185,7 +185,7 @@
 			"common": {
 				"no_script_caution": {
 					"title": "Please enable JavaScript",
-					"text": "JavaScript is disabled or unavailable in your environment. JavaScript is required to use Misskey."
+					"text": "JavaScript seems to be disabled. JavaScript is required to use Misskey."
 				},
 				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
