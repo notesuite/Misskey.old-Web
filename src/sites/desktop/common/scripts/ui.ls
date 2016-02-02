@@ -70,14 +70,13 @@ $ ->
 
 $ window .on \scroll (e) ->
 	t = $ window .scroll-top!
-	if t == 0
-		$ \html .attr \data-is-scrolled \false
-	else
-		$ \html .attr \data-is-scrolled \true
+	opacity = t / 128
+	if opacity > 0.3 then opacity = 0.3
+	$ \#misskey-header .css \box-shadow "0 0 1px rgba(0, 0, 0, #{opacity})"
 
 $ window .load ->
 	if not NOUI
-		$ \body .css \margin-top "#{$ '#misskey-header' .outer-height!}px"
+		$ \body .css \margin-top "#{$ \#misskey-header .outer-height!}px"
 
 	WavesEffect.attach-to-class \ui-waves-effect
 
@@ -143,20 +142,22 @@ function init-header
 			yes
 		false
 
-	# 「アカウント」ドロップダウン
-	$ '#misskey-header .account .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-header .account .dropdown'
+	# Account dropdown
+	$ '#misskey-header .account .body' .css \top "-#{$ '#misskey-header .account .body' .outer-height! - $ \#misskey-header .outer-height!}px"
+	$ '#misskey-header .account' .click ->
+		$dropdown = $ '#misskey-header .account'
 
 		function close
 			$dropdown.attr \data-active \false
-			$dropdown.find 'i.fa.fa-angle-up' .attr \class 'fa fa-angle-down'
+			$dropdown.find 'button i.fa.fa-angle-up' .attr \class 'fa fa-angle-down'
+			$dropdown.find '.body' .css \top "-#{$dropdown.find '.body' .outer-height! - $ \#misskey-header .outer-height!}px"
+			$dropdown.find '.bg' .attr \data-show \false
 
 		function open
-			$ document .click (e) ->
-				if !$.contains $dropdown[0], e.target
-					close!
 			$dropdown.attr \data-active \true
-			$dropdown.find 'i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
+			$dropdown.find 'button i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
+			$dropdown.find '.body' .css \top ($ \#misskey-header .outer-height!)
+			$dropdown.find '.bg' .attr \data-show \true
 
 		if ($dropdown.attr \data-active) == \true
 			close!
@@ -168,12 +169,12 @@ function init-header
 		notification-delete-all!
 
 	# Notifications drop-down
-	$ '#misskey-header .notifications .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-header .notifications .dropdown'
+	$ '#misskey-header .notifications .header' .click ->
+		$dropdown = $ '#misskey-header .notifications'
 
 		function close
 			$dropdown.attr \data-active \false
-			$ '#misskey-header .notifications .dropdown .dropdown-content .main' .empty!
+			$ '#misskey-header .notifications .body .main' .empty!
 
 		function open
 			$ document .click (e) ->

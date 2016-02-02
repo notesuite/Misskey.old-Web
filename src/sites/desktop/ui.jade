@@ -32,7 +32,7 @@ block body
 	div#misskey-global
 		if !noui
 			header#misskey-header
-				div#misskey-menu-bg
+				div#misskey-menu-bg(role='presentation')
 				div#misskey-menu
 					div.body
 						ul
@@ -96,52 +96,51 @@ block body
 								div.result
 							if login
 								div.account
-									div.dropdown.left(data-active='false')
-										div.dropdown-header(role='button')
-											span.screen-name
-												= me.screenName
-												i.fa.fa-angle-down
-											img.avatar(src= me.avatarUrl + '?size=64&quality=' + userSettings.displayImageQuality, alt='avatar')
-										div.dropdown-content
-											ul
-												li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
-													i.fa.fa-user
-													=locale.sites.desktop.common.header.profile_page
-													i.fa.fa-angle-right
-												li: a.ui-waves-effect(href= config.url + '/i/album')
-													i.fa.fa-cloud
-													=locale.sites.desktop.common.header.album
-													i.fa.fa-angle-right
-												li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
-													i.fa.fa-star
-													| Likes
-													i.fa.fa-angle-right
-											ul
-												li: a.ui-waves-effect(href= config.url + '/i/settings')
-													i.fa.fa-cog
-													=locale.sites.desktop.common.header.settings
-													i.fa.fa-angle-right
-											ul
-												li: a.ui-waves-effect(href= config.signoutUrl)
-													i(class='fa fa-power-off')
-													=locale.common.sign_out
-													i.fa.fa-angle-right
-								div.notifications
-									div.dropdown.left(data-active='false')
-										div.dropdown-header(role='button')
-											p
-												i.fa.fa-bell
-										div.dropdown-content
-											div.nav
-												select.filter-type(title='表示を絞り込み')
-													option(value='all') すべて
-													option(value='self-notification') self-notification
-													option(value='follow') 被フォロー
-													option(value='like') Like
-													option(value='repost') Repost
-												button.delete-all-button(title=locale.sites.desktop.common.header.delete_all_notifications)
-													i.fa.fa-trash-o
-											div.main
+									div.bg(role='presentation')
+									button.header(data-active='false')
+										span.screen-name
+											= me.screenName
+											i.fa.fa-angle-down
+										img.avatar(src= me.avatarUrl + '?size=64&quality=' + userSettings.displayImageQuality, alt='avatar')
+									div.body
+										ul
+											li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
+												i.fa.fa-user
+												=locale.sites.desktop.common.header.profile_page
+												i.fa.fa-angle-right
+											li: a.ui-waves-effect(href= config.url + '/i/album')
+												i.fa.fa-cloud
+												=locale.sites.desktop.common.header.album
+												i.fa.fa-angle-right
+											li: a.ui-waves-effect(href= config.url + '/' + me.screenName + '/likes')
+												i.fa.fa-star
+												| Likes
+												i.fa.fa-angle-right
+										ul
+											li: a.ui-waves-effect(href= config.url + '/i/settings')
+												i.fa.fa-cog
+												=locale.sites.desktop.common.header.settings
+												i.fa.fa-angle-right
+										ul
+											li: a.ui-waves-effect(href= config.signoutUrl)
+												i(class='fa fa-power-off')
+												=locale.common.sign_out
+												i.fa.fa-angle-right
+								div.notifications(data-active='false')
+									button.header
+										span
+											i.fa.fa-bell
+									div.body
+										div.nav
+											select.filter-type(title='表示を絞り込み')
+												option(value='all') すべて
+												option(value='self-notification') self-notification
+												option(value='follow') 被フォロー
+												option(value='like') Like
+												option(value='repost') Repost
+											button.delete-all-button(title=locale.sites.desktop.common.header.delete_all_notifications)
+												i.fa.fa-trash-o
+										div.main
 								div.post
 									button#misskey-post-button(title=locale.sites.desktop.common.header.create_new_post_button_tooltip)
 										i.fa.fa-pencil-square-o
