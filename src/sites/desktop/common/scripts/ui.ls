@@ -554,9 +554,9 @@ function update-header-statuses
 
 	$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
 	.done (data) ->
-		$ '#misskey-header .notifications .dropdown .dropdown-header p .unread-count' .remove!
+		$ '#misskey-header .notifications .header span .unread-count' .remove!
 		if data != 0
-			$ '#misskey-header .notifications .dropdown .dropdown-header p' .append $ "<span class=\"unread-count\">#{data}</span>"
+			$ '#misskey-header .notifications .header span' .append $ "<span class=\"unread-count\">#{data}</span>"
 
 function update-header-clock
 	s = (new Date!).get-seconds!
