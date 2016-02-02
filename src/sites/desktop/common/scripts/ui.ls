@@ -47,8 +47,8 @@ $ ->
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!
 		if tag != \input and tag != \textarea
-			# Short cut Help
-			if e.which == 47 or e.which == 104
+			switch (e.which)
+			| 47, 104 => # Short cut Help
 				e.prevent-default!
 				if window.is-keyboard-shortcuts-open
 					window.keyboard-shortcuts-closer!
@@ -61,10 +61,12 @@ $ ->
 						\misskey-keyboard-shortcuts
 						->
 							window.is-keyboard-shortcuts-open = no
-			# Open post form
-			if e.which == 110 or e.which == 112
+			| 110, 112 => # Open post form
 				e.prevent-default!
 				post-form.open!
+			| 109 =>
+				e.prevent-default!
+				toggle-misskey-menu!
 
 $ window .on \scroll (e) ->
 	t = $ window .scroll-top!
@@ -78,30 +80,6 @@ $ window .load ->
 		$ \body .css \margin-top "#{$ '#misskey-header' .outer-height!}px"
 
 	WavesEffect.attach-to-class \ui-waves-effect
-
-# Init Keyboard Shortcuts
-init-keyboard-shortcuts-resolver!
-
-function init-keyboard-shortcuts-resolver
-	$ document .on \keydown on-keydown
-	$ \#misskey-keyboard-shortcut-stacks .empty!
-
-function on-keydown e
-	el = e.target.tag-name.to-lower-case!
-	if el != \input and el != \textarea and el != \button
-		if e.which == 50 # K
-			$ document .off \keydown on-keydown
-
-			$ \#misskey-keyboard-shortcut-stacks .append $ '<kbd>k</kbd>'
-
-			# 次の入力を待つ
-			$ document .one \keydown (e) ->
-				switch e.which
-				| 50, 27 => # K or ESC
-					init-keyboard-shortcuts-resolver!
-				| _ =>
-					init-keyboard-shortcuts-resolver!
-					window.display-message '不明なショートカットです'
 
 ################################
 
@@ -122,34 +100,37 @@ window.display-message = (message) ->
 			$message.remove!
 	, 5000ms
 
+function toggle-misskey-menu
+	$button = $ '#misskey-header .misskey-menu .hamburger'
+
+	function close
+		$button.attr \data-active \false
+		$ \#misskey-menu .css \left \-400px
+		$ '#misskey-menu > .body' .css \left \-400px
+		$ \#misskey-menu-bg .attr \data-show \false
+
+	function open
+		$ \#misskey-menu-bg .one \click (e) ->
+			close!
+		$button.attr \data-active \true
+		$ \#misskey-menu .css \left \0
+		$ \#misskey-menu-bg .attr \data-show \true
+		set-timeout do
+			-> $ '#misskey-menu > .body' .css \left \0
+			100ms
+
+	if ($button.attr \data-active) == \true
+		close!
+	else
+		open!
+
 function init-header
 	update-header-clock!
 	set-interval update-header-clock, 1000ms
 
 	# 「Misskey Menu」ドロップダウン
 	$ '#misskey-header .misskey-menu .hamburger' .click ->
-		$button = $ '#misskey-header .misskey-menu .hamburger'
-
-		function close
-			$button.attr \data-active \false
-			$ \#misskey-menu .css \left \-400px
-			$ '#misskey-menu > .body' .css \left \-400px
-			$ \#misskey-menu-bg .attr \data-show \false
-
-		function open
-			$ \#misskey-menu-bg .one \click (e) ->
-				close!
-			$button.attr \data-active \true
-			$ \#misskey-menu .css \left \0
-			$ \#misskey-menu-bg .attr \data-show \true
-			set-timeout do
-				-> $ '#misskey-menu > .body' .css \left \0
-				100ms
-
-		if ($button.attr \data-active) == \true
-			close!
-		else
-			open!
+		toggle-misskey-menu!
 
 	# Talks
 	$ '#misskey-header > .main .main-contents-container .left nav .main-nav ul .talks a' .click ->

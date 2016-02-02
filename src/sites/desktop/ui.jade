@@ -1,8 +1,6 @@
 extends ./base
 
 block body
-	div#misskey-keyboard-shortcut-stacks
-
 	if login
 		div#misskey-post-form-back(role='presentation')
 		div#misskey-post-form-container
@@ -177,5 +175,9 @@ block body
 				=locale.sites.desktop.common.keyboard_shortcuts.while_opening_post_form
 				kbd: kbd Esc
 			dd=locale.sites.desktop.common.keyboard_shortcuts.close_post_form
+			
+			dt
+				kbd: kbd m
+			dd=locale.sites.desktop.common.keyboard_shortcuts.show_misskey_menu
 
 			block shortcuts

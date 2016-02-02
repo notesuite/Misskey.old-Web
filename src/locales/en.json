@@ -85,6 +85,7 @@
 					"title": "Keyboard shortcuts",
 					"or": "or",
 					"show_this_dialog": "Show this dialog",
+					"show_misskey_menu": "Show Misskey menu",
 					"while_opening_post_form": "while showing post form",
 					"open_post_form": "Open the post form",
 					"close_post_form": "Close the post form"
