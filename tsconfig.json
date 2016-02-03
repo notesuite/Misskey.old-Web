@@ -46,7 +46,6 @@
 		"src/api/endpoints/posts/create-with-file.ts",
 		"src/api/endpoints/posts/reply.ts",
 		"src/sites/common/ee.ts",
-		"src/sites/common/get-post-summary.ts",
 		"src/sites/desktop/common/generate-layouted-homewidgets.ts",
 		"src/sites/desktop/common/generate-homewidgets.ts",
 		"src/sites/desktop/common/generate-homewidget-timeline.ts",

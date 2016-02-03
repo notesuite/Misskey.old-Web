@@ -84,6 +84,8 @@ task('build:frontside-scripts', ['copy:frontside-templates', 'compile:frontside-
 				.pipe(uglify())
 				.pipe(dest('./built'));
 		});
+		src('./tmp/common/scripts/*.js')
+			.pipe(dest('./built/sites/common/scripts/'));
 		es.merge(tasks).on('end', done);
 	});
 });
@@ -96,6 +98,8 @@ task('build-develop:frontside-scripts', ['copy:frontside-templates', 'compile:fr
 				.pipe(source(entry.replace('tmp', 'resources')))
 				.pipe(dest('./built'));
 		});
+		src('./tmp/common/scripts/*.js')
+			.pipe(dest('./built/sites/common/scripts/'));
 		es.merge(tasks).on('end', done);
 	});
 });

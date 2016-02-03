@@ -1,9 +1,11 @@
-export default function analyze(locale: any, post: any): string {
+module.exports = analyze;
+
+function analyze(locale, post) {
 	'use strict';
 	switch (post.type) {
 		case 'status':
 		case 'reply':
-			let text = !isEmpty(post.text) ? post.text : '';
+			var text = !isEmpty(post.text) ? post.text : '';
 			if (!isEmpty(post.files) && post.files.length > 0) {
 				if (text !== '') {
 					text += ' ';
@@ -29,7 +31,7 @@ export default function analyze(locale: any, post: any): string {
 	}
 };
 
-function isEmpty(x: any): boolean {
+function isEmpty(x) {
 	'use strict';
 	return x === undefined || x === null;
 }
