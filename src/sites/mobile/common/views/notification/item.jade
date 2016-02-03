@@ -54,7 +54,11 @@ mixin item(notification)
 						img.avatar(src= notification.content.user.avatarUrl + '?size=48&quality=' + userSettings.displayImageQuality, alt='avatar')
 					div.text
 						p
-							i.fa.fa-star
+							if userSettings.enableSushi
+								i.fa
+									| 🍣
+							else
+								i.fa.fa-thumbs-o-up
 							a(href= '/' + notification.content.user.screenName)= notification.content.user.name
 						a.post-preview(href= '/' + me.screenName + '/' + notification.content.post.id)= notification.content.post.text
 				when 'mention'

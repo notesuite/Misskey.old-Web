@@ -86,7 +86,11 @@ mixin core(post, isRepost, repost)
 								= post.repostsCount != 0 ? post.repostsCount : ''
 						li.like
 							button.like-button(title= post.isLiked ? 'Unlike' : 'Like', role='button')
-								i.fa.fa-star
+								if userSettings.enableSushi
+									i.fa
+										| 🍣
+								else
+									i.fa.fa-thumbs-o-up
 							a.count(href=config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
 								= post.likesCount != 0 ? post.likesCount : ''
 			div.likes-and-reposts
