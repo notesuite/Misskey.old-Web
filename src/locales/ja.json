@@ -75,6 +75,7 @@
 					"reply_form_textarea_placeholder": "この投稿に返信...",
 					"attach_file_from_pc": "PCからファイルを添付",
 					"attach_file_from_album": "アルバムからファイルを添付",
+					"read_more_talk": "これより前の会話をもっと見る...",
 					"repost_dialog": {
 						"title": "この投稿をRepostしますか？",
 						"accept": "Repost",

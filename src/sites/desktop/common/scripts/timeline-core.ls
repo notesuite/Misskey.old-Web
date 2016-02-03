@@ -196,10 +196,20 @@ class Post
 		if THIS.is-talk and not THIS.is-talk-loaded
 			THIS.is-talk-loaded = true
 			$.ajax "#{CONFIG.web-api-url}/posts/talk/show" {
-				data: {'post-id': THIS.destination-id}}
+				data:
+					'post-id': THIS.destination-id
+					'limit': 4
+			}
 			.done (posts) ->
+				is-omitted = false
+				omitted-post = null
+				if posts.length == 4
+					omitted-post = posts.shift!
+					is-omitted = true
 				posts.for-each (post) ->
 					THIS.sub-render post .append-to THIS.$talk .hide!.fade-in 500ms
+				if is-omitted
+					THIS.$talk.prepend $ "<a class='read-more' href='#{CONFIG.url}/#{omitted-post.user.screen-name}/#{omitted-post.id}'>#{LOCALE.sites.desktop.common.post.read_more_talk}</a>"
 			.fail ->
 				THIS.is-talk-loaded = false
 
