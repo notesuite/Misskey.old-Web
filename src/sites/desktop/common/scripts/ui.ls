@@ -182,7 +182,7 @@ function init-header
 					close!
 			$dropdown.attr \data-active \true
 
-			$notifications-container = $ '#misskey-header .notifications .dropdown .dropdown-content .main'
+			$notifications-container = $ '#misskey-header .notifications .body .main'
 				..append $ '
 			<div class="loading">
 				<div class="bounce1"></div>
@@ -193,12 +193,12 @@ function init-header
 			# 通知読み込み
 			$.ajax "#{CONFIG.web-api-url}/notifications/timeline"
 			.done (notifications) ->
-				$ '#misskey-header .notifications .loading' .remove!
+				$ '#misskey-header .notifications .body .loading' .remove!
 				$ '#misskey-header .notifications .unread-count' .remove!
 				$list = $ '<ol class="notifications" />'
 				if notifications != []
-					$ '#misskey-header .notifications .nav' .css \display \block
-					$ '#misskey-header .notifications .main' .css \margin-top \32px
+					$ '#misskey-header .notifications .body .nav' .css \display \block
+					$ '#misskey-header .notifications .body .main' .css \margin-top \32px
 					$notifications = $ notifications-compiler {
 						items: notifications
 						config: CONFIG
