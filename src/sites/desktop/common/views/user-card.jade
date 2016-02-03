@@ -1,0 +1,13 @@
+div.ui-user-card
+	- var userTitle = user.comment != null ? user.comment : '@' + user.screenName;
+	div.banner(style={'background-image': "url(#{user.bannerUrl}?size=250&quality=#{userSettings.displayImageQuality})"})
+	a.avatar-anchor(href= config.url + '/' + user.screenName, title= userTitle, rel='avatar')
+		img.avatar(src= user.avatarUrl + '?size=88&quality=' + userSettings.displayImageQuality, alt='avatar')
+	p.name
+		a(href= config.url + '/' + user.screenName)
+			span= user.name
+			if user.isVerified
+				img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title=locale.common.verified)
+	p.screen-name= user.screenName
+	if user.comment != null
+		p.comment= user.comment

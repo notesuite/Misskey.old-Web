@@ -39,13 +39,13 @@ mixin core(post, isRepost, repost)
 		if isRepost
 			- var reposterTitle = repost.user.comment != null ? repost.user.comment : '@' + repost.user.screenName;
 			p.repost-info
-				a.avatar-anchor(href= config.url + '/' + repost.user.screenName, title= reposterTitle)
+				a.avatar-anchor(href= config.url + '/' + repost.user.screenName, title= reposterTitle, data-user-card=repost.user.screenName)
 					img.avatar(src= repost.user.avatarUrl + '?size=48&quality=' + userSettings.displayImageQuality, alt='avatar')
 				i.fa.fa-retweet
 				!= locale.sites.desktop.common.post.repost_info.replace('{name}', '<a class="name" href="' + config.url + '/' + repost.user.screenName + '">' + repost.user.name + '</a>')
 		div.main
 			div.avatar-area
-				a.avatar-anchor(href= config.url + '/' + post.user.screenName, title= userTitle, rel='avatar')
+				a.avatar-anchor(href= config.url + '/' + post.user.screenName, title= userTitle, rel='avatar', data-user-card=post.user.screenName)
 					img.avatar(src= post.user.avatarUrl + '?size=64&quality=' + userSettings.displayImageQuality, alt='avatar')
 			header
 				div.author(itemprop='author')
@@ -85,7 +85,7 @@ mixin core(post, isRepost, repost)
 								i.fa
 									| 🍣
 							else
-								i.fa.fa-star
+								i.fa.fa-thumbs-o-up
 						a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/likes')
 							= post.likesCount != 0 ? post.likesCount : ''
 		if login

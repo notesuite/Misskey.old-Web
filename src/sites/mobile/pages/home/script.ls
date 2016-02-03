@@ -78,7 +78,7 @@ $ ->
 		$notification.append-to $ \body
 			.transition {
 				y: $notification.outer-height!
-			} 0
+			} 0ms
 			.transition {
 				y: 0
 			} 500ms \ease ->

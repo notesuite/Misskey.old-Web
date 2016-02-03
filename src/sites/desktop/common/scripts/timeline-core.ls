@@ -7,6 +7,7 @@ post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
 sub-post-compiler = require '../views/post/smart/sub-post-render.jade'
 AlbumDialog = require './album-dialog.js'
+user-card = require './user-card.js'
 
 class Post
 	(post = null) ->
@@ -111,6 +112,9 @@ class Post
 			THIS.focus-reply-form!
 
 		post-content-initializer THIS.type, THIS.$post.find '> .main > .content'
+
+		THIS.$post.find '[data-user-card]' .each ->
+			user-card $ @
 
 		if LOGIN
 			THIS.init-reply-form!
