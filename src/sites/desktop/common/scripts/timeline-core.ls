@@ -173,13 +173,16 @@ class Post
 		THIS.timeline = parent-timeline
 
 	sub-render: (post) ->
-		$ sub-post-compiler {
+		$post = $ sub-post-compiler {
 			post
 			config: CONFIG
 			me: ME
 			user-settings: USER_SETTINGS
 			locale: LOCALE
 		}
+		$post.find '[data-user-card]' .each ->
+			user-card $ @
+		return $post
 
 	check-liked: ->
 		THIS = @
