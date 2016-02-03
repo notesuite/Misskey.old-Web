@@ -439,9 +439,6 @@ class Timeline
 	add: (post-data) ->
 		THIS = @
 
-		if USER_SETTINGS.enable-notification-sound-when-receiving-new-post
-			new Audio CONFIG.resources-url + '/desktop/common/sounds/post.mp3' .play!
-
 		post = new Post post-data
 			..set-parent-timeline THIS
 
@@ -452,6 +449,9 @@ class Timeline
 			post.$post.add-class \display-active-before
 
 		post.$post.prepend-to THIS.$tl .hide!.slide-down 200ms
+
+		if USER_SETTINGS.enable-notification-sound-when-receiving-new-post
+			new Audio CONFIG.resources-url + '/desktop/common/sounds/post.mp3' .play!
 
 	add-last: (post-data) ->
 		THIS = @
