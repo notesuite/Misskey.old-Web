@@ -9,5 +9,5 @@ div.ui-user-card
 			if user.isVerified
 				img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title=locale.common.verified)
 	p.screen-name= user.screenName
-	if user.comment != null
+	if user.comment != null && user.comment.trim() != ''
 		p.comment= user.comment
