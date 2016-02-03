@@ -2,6 +2,7 @@ import * as express from 'express';
 import { User } from '../../../../models/user';
 import { Post } from '../../../../models/post';
 import requestApi from '../../../../core/request-api';
+import getPostSuumary from '../../../common/get-post-summary';
 
 module.exports = (req: express.Request, res: express.Response): void => {
 	'use strict';
@@ -50,6 +51,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 		res.locals.display({
 			user: user,
 			post: post,
+			summary: getPostSuumary(res.locals.lang, post),
 			replies: results[0],
 			likes: results[1],
 			reposts: results[2]

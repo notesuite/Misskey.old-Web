@@ -7,6 +7,18 @@ block title
 block meta
 	meta(name='keywords', content='Misskey')
 	meta(name='description', content= user.name + 'さんの' + post.createdAt + 'の投稿')
+	meta(property='og:title', content= user.name + 'さんの投稿')
+	meta(property='og:type', content='article')
+	meta(property='og:description', content= summary)
+	meta(property='og:url', content= config.url + '/' + user.screenName + '/' + post.id)
+	meta(property='og:image', content= user.avatarUrl)
+	meta(property='og:site_name', content='Misskey')
+	meta(property='twitter:card', content='summary')
+	meta(property='twitter:site', content='@syuilo')
+	meta(property='twitter:title', content= user.name + 'さんの投稿')
+	meta(property='twitter:description', content= summary)
+	meta(property='twitter:image', content= user.avatarUrl)
+	meta(property='twitter:url', content= config.url + '/' + user.screenName + '/' + post.id)
 
 block assets
 	script!= 'var USER = ' + JSON.stringify(user) + ';'
