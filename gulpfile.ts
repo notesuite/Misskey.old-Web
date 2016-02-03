@@ -50,10 +50,12 @@ task('copy:bower_components', () => {
 		.pipe(dest('./built/resources/bower_components'));
 });
 
-task('compile:frontside-scripts', () => {
+task('compile:frontside-scripts', ['build:ts'], () => {
 	return es.merge(
 		src('./src/sites/**/*.ls')
 			.pipe(ls()),
+		src('./built/sites/common/scripts/*.js')
+			.pipe(dest('./tmp/common/scripts/')),
 		src('./src/sites/common/scripts/*.js')
 			.pipe(dest('./tmp/common/scripts/')),
 		src([
