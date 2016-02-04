@@ -94,7 +94,7 @@ module.exports = ($trigger) ->
 					$nav.find \.nav .css \right \-200px
 					$nav.find \.nav-bg .css \right \-200px
 					$nav.find \.bg .attr \data-show \false
-				$card.find '> .main' .css \left \-16px
+				$card.find '> .main' .css \left \-32px
 				$nav.find \.nav-bg .css \right \0
 				set-timeout do
 					-> $nav.find \.nav .css \right \0
