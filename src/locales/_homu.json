@@ -91,7 +91,12 @@
 				},
 				"user_card": {
 					"follow": "ほむ",
-					"unfollow": "ほむ"
+					"unfollow": "ほむ",
+					"nav": {
+						"following": "ほむ",
+						"followers": "ほむ",
+						"talk": "ほむ"
+					}
 				}
 			},
 			"pages": {

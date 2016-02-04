@@ -93,7 +93,12 @@
 				},
 				"user_card": {
 					"follow": "Follow",
-					"unfollow": "Unfollow"
+					"unfollow": "Unfollow",
+					"nav": {
+						"following": "Following",
+						"followers": "Followers",
+						"talk": "Talk"
+					}
 				}
 			},
 			"pages": {

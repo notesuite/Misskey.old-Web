@@ -93,7 +93,12 @@
 				},
 				"user_card": {
 					"follow": "フォローする",
-					"unfollow": "フォロー解除"
+					"unfollow": "フォロー解除",
+					"nav": {
+						"following": "フォロー",
+						"followers": "フォロワー",
+						"talk": "トーク"
+					}
 				}
 			},
 			"pages": {

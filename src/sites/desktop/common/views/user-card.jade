@@ -1,18 +1,38 @@
 div.ui-user-card
 	- var userTitle = user.comment != null ? user.comment : '@' + user.screenName;
-	div.banner(style={'background-image': "url(#{user.bannerUrl}?size=250&quality=#{userSettings.displayImageQuality})"})
-	if login && me.id !== user.id
-		if user.isFollowing
-			button.friend-button.following(data-tooltip=locale.sites.desktop.common.user_card.unfollow): i.fa.fa-plus
-		else
-			button.friend-button.not-following(data-tooltip=locale.sites.desktop.common.user_card.follow): i.fa.fa-plus
-	a.avatar-anchor(href= config.url + '/' + user.screenName, title= userTitle, rel='avatar')
-		img.avatar(src= user.avatarUrl + '?size=88&quality=' + userSettings.displayImageQuality, alt='avatar')
-	p.name
-		a(href= config.url + '/' + user.screenName)
-			span= user.name
-			if user.isVerified
-				img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title=locale.common.verified)
-	p.screen-name= user.screenName
-	if user.comment != null && user.comment.trim() != ''
-		p.comment= user.comment
+	div.main
+		div.banner(style={'background-image': "url(#{user.bannerUrl}?size=250&quality=#{userSettings.displayImageQuality})"})
+		button.nav-button
+			i.fa.fa-ellipsis-h
+		if login && me.id !== user.id
+			if user.isFollowing
+				button.friend-button.following(data-tooltip=locale.sites.desktop.common.user_card.unfollow): i.fa.fa-plus
+			else
+				button.friend-button.not-following(data-tooltip=locale.sites.desktop.common.user_card.follow): i.fa.fa-plus
+		a.avatar-anchor(href= config.url + '/' + user.screenName, title= userTitle, rel='avatar')
+			img.avatar(src= user.avatarUrl + '?size=88&quality=' + userSettings.displayImageQuality, alt='avatar')
+		p.name
+			a(href= config.url + '/' + user.screenName)
+				span= user.name
+				if user.isVerified
+					img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title=locale.common.verified)
+		p.screen-name= user.screenName
+		if user.comment != null && user.comment.trim() != ''
+			p.comment= user.comment
+	div.nav-container
+		div.bg
+		div.nav-bg
+		div.nav
+			ul
+				li
+					button.following-button
+						i.fa.fa-heart
+						=locale.sites.desktop.common.user_card.nav.following
+				li
+					button.followers-button
+						i.fa.fa-users
+						=locale.sites.desktop.common.user_card.nav.followers
+				li
+					button.talk-button
+						i.fa.fa-comments-o
+						=locale.sites.desktop.common.user_card.nav.talk
