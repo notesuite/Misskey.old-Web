@@ -88,6 +88,10 @@
 					"while_opening_post_form": "ほむ",
 					"open_post_form": "ほむ",
 					"close_post_form": "ほむ"
+				},
+				"user_card": {
+					"follow": "ほむ",
+					"unfollow": "ほむ"
 				}
 			},
 			"pages": {

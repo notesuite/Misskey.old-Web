@@ -90,6 +90,10 @@
 					"while_opening_post_form": "投稿フォームを開いた状態で",
 					"open_post_form": "投稿フォームを開く",
 					"close_post_form": "投稿フォームを閉じる"
+				},
+				"user_card": {
+					"follow": "フォローする",
+					"unfollow": "フォロー解除"
 				}
 			},
 			"pages": {

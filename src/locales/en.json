@@ -90,6 +90,10 @@
 					"while_opening_post_form": "while showing post form",
 					"open_post_form": "Open the post form",
 					"close_post_form": "Close the post form"
+				},
+				"user_card": {
+					"follow": "Follow",
+					"unfollow": "Unfollow"
 				}
 			},
 			"pages": {
