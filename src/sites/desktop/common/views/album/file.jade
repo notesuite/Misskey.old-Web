@@ -5,27 +5,28 @@ case file.type
 		div.item.file(
 				data-selected='false'
 				data-file-id= file.id
-				data-mimetype= file.mimeType,
-				data-folder-id= file.folder === null ? 'null' : file.folder,
+				data-mimetype= file.mimeType
+				data-folder-id= file.folder === null ? 'null' : file.folder
+				data-created-at= file.createdAt
 				data-data= JSON.stringify(file))
 			div.context-menu
 				ul
-					li
-						p 選択
-					li
-						p 開く
+					li: button
+						span.text 選択
+					li: button
+						span.text 開く
 				ul
 					li
 						a(href= file.url + '?download', download= file.name)
 							i.fa.fa-download
-							| ダウンロード
+							span.text ダウンロード
 				ul
-					li
+					li: button
 						i.fa.fa-i-cursor
-						p 名前を変更
-					li
+						span.text 名前を変更
+					li: button
 						i.fa.fa-trash-o
-						p 削除
+						span.text 削除
 			case file.mimeType
 				when 'image/jpeg'
 				when 'image/png'
@@ -44,21 +45,21 @@ case file.type
 				data-folder-id= file.id)
 			div.context-menu
 				ul
-					li
-						| 選択
-					li
-						| 開く
+					li: button
+						span.text 選択
+					li: button
+						span.text 開く
 				ul
 					li
 						a(href= file.url + '?download', download= file.name)
 							i.fa.fa-download
-							| ダウンロード
+							span.text ダウンロード
 				ul
-					li
+					li: button
 						i.fa.fa-i-cursor
-						| 名前を変更
-					li
+						span.text 名前を変更
+					li: button
 						i.fa.fa-trash-o
-						| 削除
+						span.text 削除
 			div.content
 				p.name= file.name

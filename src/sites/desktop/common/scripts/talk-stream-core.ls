@@ -20,7 +20,7 @@ class Stream
 		THIS.$messages.each ->
 			$message = $ @
 			THIS.init-message $message
-			THIS.init-date-info $message
+			THIS.insert-date-info $message
 
 	init-message: ($message) ->
 		THIS = @
@@ -38,7 +38,7 @@ class Stream
 					urldecorator $a
 			imageviewer $message.find '.content > .image'
 
-	init-date-info: ($message, reverse = no) ->
+	insert-date-info: ($message, reverse = no) ->
 		$compare-message =
 			if reverse
 			then $message.next \.message
@@ -79,7 +79,7 @@ class Stream
 		can-scroll = THIS.check-can-scroll!
 		THIS.init-message $message
 		$message.append-to THIS.$stream .hide!.show 200ms
-		THIS.init-date-info $message
+		THIS.insert-date-info $message
 		THIS.refresh-my-messages!
 		if can-scroll
 			scroll 0, ($ document .height!)
@@ -101,7 +101,7 @@ class Stream
 
 		THIS.init-message $message
 		$message.prepend-to THIS.$stream
-		THIS.init-date-info $message, yes
+		THIS.insert-date-info $message, yes
 		THIS.refresh-my-messages!
 
 	refresh-my-messages: ->

@@ -106,14 +106,35 @@ class Album
 			selected-files.push JSON.parse ($ @).attr \data-data
 		return selected-files
 
+	insert-date-info: ($file, reverse = no) ->
+		$compare-file =
+			if reverse
+			then $file.next \.file
+			else $file.prev \.file
+		if $compare-file.length == 0
+			return
+		compare-date = new Date $compare-file.attr \data-created-at
+		current-date = new Date $file.attr \data-created-at
+		if compare-date.get-date! != current-date.get-date!
+			date-info-str = if reverse
+				then "#{compare-date.get-full-year!} / #{compare-date.get-month! + 1} / #{compare-date.get-date!}"
+				else "#{current-date.get-full-year!} / #{current-date.get-month! + 1} / #{current-date.get-date!}"
+			$date-info = $ '<div class="date"><p>' + date-info-str + '</p></div>'
+			if reverse
+				$file.after $date-info
+			else
+				$file.before $date-info
+
 	add-file: (file) ->
 		THIS = @
 		$file = $ file-compiler {
 			file
 			config: CONFIG
+			locale: LOCALE
 			me: ME
 		}
 		THIS.$album-files.append $file
+		THIS.insert-date-info $file
 		THIS.init-contextmenu $file, ($file.find '> .context-menu'), ->
 			$file.attr \data-selected \true
 		$file.mousedown (e) ->
@@ -158,39 +179,50 @@ class Album
 
 	init-contextmenu: ($trigger, $menu, shown) ->
 		THIS = @
+		$instance = null
+
 		$trigger.bind \contextmenu (e) ->
 			e.stop-immediate-propagation!
+
 			function mousedown(e)
 				e.stop-immediate-propagation!
 				if e.which == 3
 					close!
-				if !$.contains $menu[0], e.target
+				else if (!$.contains $instance[0], e.target) and (e.target != $instance[0])
 					close!
-				false
+				return false
+
 			function close
-				$menu.attr \data-active \false
+				$instance.remove!
+				$instance := null
 				$ 'body *' .each ->
 					($ @).off \mousedown mousedown
+
 			function open
 				$ 'body *' .each ->
 					($ @).on \mousedown mousedown
-				$menu.attr \data-active \true
-				left = e.client-x - THIS.$album.position!.left
-				top = e.client-y - THIS.$album.position!.top
-				$menu.css {
-					top
-					left
-					opacity: 0
-				}
-				$menu.animate {
-					opacity: 1
-				} 100ms
-				if shown !== undefined
+				$instance := $menu.clone true
+					..add-class \misskey-album-context-menu
+					..bind \contextmenu (e) ->
+						e.stop-immediate-propagation!
+						return false
+				$instance.append-to $ \body
+					.css {
+						top: e.page-y
+						left: e.page-x
+						opacity: 0
+					}
+					.animate {
+						opacity: 1
+					} 100ms
+				if shown?
 					shown!
-			if ($menu.attr \data-active) == \true
+
+			if $instance?
 				close!
 			else
 				open!
-			false
+
+			return false
 
 module.exports = Album

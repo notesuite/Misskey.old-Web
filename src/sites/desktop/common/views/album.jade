@@ -1,23 +1,22 @@
-mixin album
-	div.album
-		header
-			form.uploader(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
-				input(name='file', type='file', accept='*', multiple)
-				button
+div.misskey-album
+	header
+		form.uploader(action=config.apiUrl + '/album/upload', method='post', enctype='multipart/form-data', role='form')
+			input(name='file', type='file', accept='*', multiple)
+			button
+				i.fa.fa-cloud-upload
+				span.text アップロード
+		nav
+			ol.path
+	.browser
+		.context-menu.menu
+			ul
+				li: button
 					i.fa.fa-cloud-upload
-					| アップロード
-			nav
-				ol.path
-		.browser
-			.context-menu.menu
-				ul
-					li: button
-						i.fa.fa-cloud-upload
-						p アップロード
-					li
-						i.fa.fa-folder
-						p フォルダーを作成
-			.selection(role='presentation')
-			div.files
-		.uploads
-			ol
+					span アップロード
+				li: button
+					i.fa.fa-folder
+					span フォルダーを作成
+		.selection(role='presentation')
+		div.files
+	.uploads
+		ol

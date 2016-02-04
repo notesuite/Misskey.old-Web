@@ -18,7 +18,7 @@ class AlbumDialog
 
 		$ 'body' .append $album
 
-		@album = new Album $album.find '> .container > .album'
+		@album = new Album $album.find '> .container > .misskey-album'
 
 		@$album = $album
 		@$album-background = @$album.find '> .background'
