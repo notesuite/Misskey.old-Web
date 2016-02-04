@@ -59,7 +59,10 @@ module.exports = ($trigger) ->
 					opacity: 1
 				} 200ms \ease
 
+			$ document .on \click on-click
+
 	function close
+		$ document .off \click on-click
 		if $card?
 			$card
 				.transition {
@@ -68,3 +71,7 @@ module.exports = ($trigger) ->
 				} 200ms \ease ->
 					$card.remove!
 					$card := null
+
+	function on-click(e)
+		if $card[0] !== e.target and !$.contains $card[0], e.target
+			close!
