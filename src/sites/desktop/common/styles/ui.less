@@ -1948,12 +1948,16 @@
 
 .ui-user-card {
 	display: block;
-	position: relative;
-	width: 100%;
+	position: absolute;
+	z-index: 256;
+	width: 250px;
 	min-height: 190px;
-	overflow: hidden;
 	text-align: center;
-	background: #fff;
+	background-clip: content-box;
+	background: #fbfbfb;
+	border-radius: 3px;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.4), 0 3px 3px -2px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
 
 	> .main {
 		display: block;
@@ -2218,20 +2222,5 @@
 				}
 			}
 		}
-	}
-}
-
-.ui-user-card-popup {
-	display: block;
-	position: absolute;
-	z-index: 256;
-	width: 250px;
-	background-clip: content-box;
-	background: #fbfbfb;
-	border-radius: 3px;
-	box-shadow: 0 0 1px rgba(0, 0, 0, 0.4), 0 3px 3px -2px rgba(0, 0, 0, 0.3);
-
-	> .ui-user-card {
-		background: inherit;
 	}
 }
