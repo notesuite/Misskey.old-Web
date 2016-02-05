@@ -4,21 +4,21 @@ import config from './config';
 export default function callController(
 	req: express.Request,
 	res: express.Response,
-	name: string,
+	path: string,
 	options: any = null
 ): void {
 	'use strict';
 
 	res.locals.display = (data: any = {}): void => {
-		const viewPath: string = `${__dirname}/sites/${res.locals.ua}/pages/${name}/view`;
+		const viewPath: string = `${__dirname}/sites/${res.locals.ua}/pages/${path}/view`;
 		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
-			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${name}/style.${data.overrideTheme}.css`;
+			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${data.overrideTheme}.css`;
 		} else if (res.locals.isLogin && req.user._settings.theme !== null) {
-			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${name}/style.${req.user._settings.theme}.css`;
+			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${req.user._settings.theme}.css`;
 		} else {
-			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${name}/style.css`;
+			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.css`;
 		}
-		data.scriptPath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${name}/script.js`;
+		data.scriptPath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/script.js`;
 		delete res.locals.display;
 
 		let eeStyle: string;
@@ -51,7 +51,34 @@ export default function callController(
 			pages: {}
 		};
 
-		res.locals.locale.sites[res.locals.ua].pages[name] = locale.sites[res.locals.ua].pages[name];
+		const parts = path.split('/');
+		let s = 'res.locals.locale.sites[res.locals.ua].pages = ';
+
+		parts.forEach(part => {
+			s += `{'${part}': `;
+		});
+
+		s += '{}';
+
+		parts.forEach(part => {
+			s += '}';
+		});
+
+		s += '; res.locals.locale.sites[res.locals.ua].pages';
+
+		parts.forEach(part => {
+			s += `['${part}']`;
+		});
+
+		s += ' = locale.sites[res.locals.ua].pages';
+
+		parts.forEach(part => {
+			s += `['${part}']`;
+		});
+
+		s += ';';
+
+		eval(s);
 
 		res.render(viewPath, data);
 	};
@@ -59,13 +86,13 @@ export default function callController(
 	let controller: any;
 	switch (res.locals.ua) {
 		case 'desktop':
-			controller = require(`./sites/desktop/pages/${name}/controller`);
+			controller = require(`./sites/desktop/pages/${path}/controller`);
 			break;
 		case 'mobile':
-			controller = require(`./sites/mobile/pages/${name}/controller`);
+			controller = require(`./sites/mobile/pages/${path}/controller`);
 			break;
 		default:
-			controller = require(`./sites/desktop/pages/${name}/controller`);
+			controller = require(`./sites/desktop/pages/${path}/controller`);
 			break;
 	}
 
