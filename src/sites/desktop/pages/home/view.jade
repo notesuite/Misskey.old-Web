@@ -19,12 +19,15 @@ block content
 		div#contents
 			if widgets.left != null && widgets.left.length > 0
 				div#left-contents
-					+widget(widgets.left)
+					div.body
+						+widget(widgets.left)
 			div#main-contents(role='main')
-				+widget(widgets.center)
+				div.body
+					+widget(widgets.center)
 			if widgets.right != null && widgets.right.length > 0
 				div#right-contents
-					+widget(widgets.right)
+					div.body
+						+widget(widgets.right)
 
 block shortcuts
 	dt

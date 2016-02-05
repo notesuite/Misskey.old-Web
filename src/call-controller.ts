@@ -1,6 +1,8 @@
 import * as express from 'express';
 import config from './config';
 
+/* tslint:disable:no-eval */
+
 export default function callController(
 	req: express.Request,
 	res: express.Response,
@@ -9,7 +11,7 @@ export default function callController(
 ): void {
 	'use strict';
 
-	res.locals.display = (data: any = {}): void => {
+	res.locals.display = (data: any = {}, addLocalePagePath: string = null): void => {
 		const viewPath: string = `${__dirname}/sites/${res.locals.ua}/pages/${path}/view`;
 		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
 			data.stylePath = `${config.publicConfig.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${data.overrideTheme}.css`;
@@ -79,6 +81,39 @@ export default function callController(
 		s += ';';
 
 		eval(s);
+
+		if (addLocalePagePath !== null) {
+			const parts2 = addLocalePagePath.split('/');
+			let s2 = 'var addLocale = ';
+
+			parts2.forEach(part => {
+				s2 += `{'${part}': `;
+			});
+
+			s2 += '{}';
+
+			parts2.forEach(part => {
+				s2 += '}';
+			});
+
+			s2 += '; addLocale';
+
+			parts2.forEach(part => {
+				s2 += `['${part}']`;
+			});
+
+			s2 += ' = locale.sites[res.locals.ua].pages';
+
+			parts2.forEach(part => {
+				s2 += `['${part}']`;
+			});
+
+			s2 += ';';
+
+			s2 += 'Object.assign(res.locals.locale.sites[res.locals.ua].pages, addLocale);';
+
+			eval(s2);
+		}
 
 		res.render(viewPath, data);
 	};

@@ -42,7 +42,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 						noui: true,
 						widgets,
 						unuseWidgets: unuseWidgetHtmls
-					});
+					}, 'home');
 				});
 			});
 		});

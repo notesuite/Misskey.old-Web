@@ -42,6 +42,29 @@ module.exports = (type) ->
 		$ '#widget-timeline .timeline > .read-more' .click ->
 			read-more!
 
+		$ window .scroll ->
+			top = $ window .scroll-top!
+			$right = $ \#right-contents
+			$left = $ \#left-contents
+			$right-body = $right.children \.body
+			$left-body = $left.children \.body
+
+			right-overflow = ($right.offset!.top + $right-body.outer-height!) - window.inner-height
+			if right-overflow < 0 then right-overflow = 0
+			if top + window.inner-height > $right.offset!.top + $right-body.outer-height!
+				margin = top - right-overflow
+				$right-body.css \margin-top "#{margin}px"
+			else
+				$right-body.css \margin-top 0
+
+			left-overflow = ($left.offset!.top + $left-body.outer-height!) - window.inner-height
+			if left-overflow < 0 then left-overflow = 0
+			if top + window.inner-height > $left.offset!.top + $left-body.outer-height!
+				margin = top - left-overflow
+				$left-body.css \margin-top "#{margin}px"
+			else
+				$left-body.css \margin-top 0
+
 		# Read more automatically
 		if USER_SETTINGS.read-timeline-automatically
 			$ window .scroll ->
