@@ -36,7 +36,7 @@ block body
 				div#misskey-menu
 					div.body
 						ul
-							li: a.ui-waves-effect(href= '/')
+							li: a.ui-waves-effect(href= config.aboutUrl)
 								i.fa.fa-info-circle
 								| About Misskey
 							li: a.ui-waves-effect(href= config.helpUrl)
@@ -50,7 +50,7 @@ block body
 								i.fa.fa-check-circle
 								| @misskey
 						ul
-							li: a.ui-waves-effect(href= config.url + '/about/donate')
+							li: a.ui-waves-effect(href= config.aboutUrl + '/donate')
 								i.fa.fa-heart
 								| Donate
 						ul
