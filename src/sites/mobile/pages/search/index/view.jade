@@ -1,14 +1,14 @@
 extends ../../../ui
 
 block title
-	=locale.sites.mobile.pages.search.index.page_title
+	=locale.sites.mobile.pages._search._index.page_title
 
 block header
 	i.fa.fa-search
-	=locale.sites.mobile.pages.search.index.page_header_title
+	=locale.sites.mobile.pages._search._index.page_header_title
 
 block content
 	main
 		form(action= config.searchUrl, method='GET')
-			input.ui-input-text(type='text', name='q', placeholder=locale.sites.mobile.pages.search.index.input_placeholder, equired)
-			input.ui-button(type='submit', value=locale.sites.mobile.pages.search.index.submit)
+			input.ui-input-text(type='text', name='q', placeholder=locale.sites.mobile.pages._search._index.input_placeholder, equired)
+			input.ui-button(type='submit', value=locale.sites.mobile.pages._search._index.submit)

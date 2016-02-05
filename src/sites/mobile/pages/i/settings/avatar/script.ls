@@ -24,12 +24,12 @@ $ ->
 
 	function crop file
 		$crop-form = $ '<form class="crop-form">
-				<p>' + LOCALE.sites.mobile.pages.i.settings.avatar_page.crop_form.title + '</p>
+				<p>' + LOCALE.sites.mobile.pages._i._settings._avatar.crop_form.title + '</p>
 				<div class="container">
 				</div>
 				<div class="buttons">
-					<button type="submit" class="ok"><i class="fa fa-check"></i>' + LOCALE.sites.mobile.pages.i.settings.avatar_page.crop_form.ok + '</button>
-					<button type="button" class="cancel"><i class="fa fa-ban"></i>' + LOCALE.sites.mobile.pages.i.settings.avatar_page.crop_form.cancel + '</button>
+					<button type="submit" class="ok"><i class="fa fa-check"></i>' + LOCALE.sites.mobile.pages._i._settings._avatar.crop_form.ok + '</button>
+					<button type="button" class="cancel"><i class="fa fa-ban"></i>' + LOCALE.sites.mobile.pages._i._settings._avatar.crop_form.cancel + '</button>
 				</div>
 			</form>
 		'

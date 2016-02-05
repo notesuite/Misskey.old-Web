@@ -53,7 +53,7 @@ export default function callController(
 			pages: {}
 		};
 
-		const parts = path.split('/');
+		const parts = path.split('/').map(x => `_${x}`.replace(/\-/g, '_'));
 		let s = 'res.locals.locale.sites[res.locals.ua].pages = ';
 
 		parts.forEach(part => {
@@ -83,7 +83,7 @@ export default function callController(
 		eval(s);
 
 		if (addLocalePagePath !== null) {
-			const parts2 = addLocalePagePath.split('/');
+			const parts2 = addLocalePagePath.split('/').map(x => `_${x}`.replace(/\-/g, '_'));
 			let s2 = 'var addLocale = ';
 
 			parts2.forEach(part => {

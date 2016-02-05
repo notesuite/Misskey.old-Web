@@ -1,18 +1,18 @@
 extends ../page-base
 
 block title
-	=locale.sites.mobile.pages.i.settings.banner_page.page_title
+	=locale.sites.mobile.pages._i._settings._banner.page_title
 
 block header
 	i.fa.fa-picture-o
-	=locale.sites.mobile.pages.i.settings.banner_page.page_header_title
+	=locale.sites.mobile.pages._i._settings._banner.page_header_title
 
 block forms
 	img#banner(src= me.bannerThumbnailUrl, alt='banner')
 	div.form#form
 		h1
 			i.fa.fa-upload
-			=locale.sites.mobile.pages.i.settings.avatar_page.upload_form.title
+			=locale.sites.mobile.pages._i._settings._banner.upload_form.title
 		div.body
 			input.ui-input-file(name='file', type='file', accept='image/*')
 			progress

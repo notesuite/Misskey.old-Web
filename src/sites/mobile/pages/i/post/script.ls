@@ -12,7 +12,7 @@ $ ->
 	$form.submit (event) ->
 		event.prevent-default!
 		$submit-button.attr \disabled on
-		$submit-button.find \.text .text LOCALE.sites.mobile.pages.i.post.posting
+		$submit-button.find \.text .text LOCALE.sites.mobile.pages._i._post.posting
 		$submit-button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$progress.css \display \block
 
@@ -34,7 +34,7 @@ $ ->
 			location.href = CONFIG.url
 		.fail (err) ->
 			$submit-button.attr \disabled off
-			$submit-button.find \.text .text LOCALE.sites.mobile.pages.i.post.post
+			$submit-button.find \.text .text LOCALE.sites.mobile.pages._i._post.post
 			$submit-button.find \i .attr \class 'fa fa-paper-plane'
 			$progress.css \display \none
 			alert "#{LOCALE.sites.mobile.pages.i.post.failed}\r\nErrorCode: #{err.response-text}"

@@ -1,16 +1,16 @@
 extends ../page-base
 
 block title
-	=locale.sites.mobile.pages.i.settings.display_image_quality_page.page_title
+	=locale.sites.mobile.pages._i._settings._display_image_quality.page_title
 
 block header
 	i.fa.fa-picture-o
-	=locale.sites.mobile.pages.i.settings.display_image_quality_page.page_header_title
+	=locale.sites.mobile.pages._i._settings._display_image_quality.page_header_title
 
 block forms
 	form#form
 		div.body
-			p.caption=locale.sites.mobile.pages.i.settings.display_image_quality_page.caption
+			p.caption=locale.sites.mobile.pages._i._settings._display_image_quality.caption
 			input.ui-input-range(name='quality', type='range', min='0', max='100', value= userSettings.displayImageQuality)
 			button.ui-button(type='submit')
-				=locale.sites.mobile.pages.i.settings.display_image_quality_page.submit
+				=locale.sites.mobile.pages._i._settings._display_image_quality.submit

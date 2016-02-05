@@ -1,20 +1,20 @@
 extends ../page-base
 
 block title
-	=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.page_title
+	=locale.sites.mobile.pages._i._settings._mobile_header_overlay.page_title
 
 block header
 	i.fa.fa-paint-brush
-	=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.page_header_title
+	=locale.sites.mobile.pages._i._settings._mobile_header_overlay.page_header_title
 
 block forms
 	form#form
 		h1
-			=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.form.title
+			=locale.sites.mobile.pages._i._settings._mobile_header_overlay.form.title
 		div.body
 			div.ui-select-wrapper
 				select.ui-select(name='id')
-					option(value='none', selected= userSettings.mobileHeaderOverlay == null)=locale.sites.mobile.pages.i.settings.mobile_header_overlay_page.none
+					option(value='none', selected= userSettings.mobileHeaderOverlay == null)=locale.sites.mobile.pages._i._settings._mobile_header_overlay.none
 					option(value='light-gradation', selected= userSettings.mobileHeaderOverlay == 'light-gradation') グラデーション(明)
 					option(value='dark-gradation', selected= userSettings.mobileHeaderOverlay == 'dark-gradation') グラデーション(暗)
 					option(value='glossy', selected= userSettings.mobileHeaderOverlay == 'glossy') Glossy

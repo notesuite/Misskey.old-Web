@@ -110,7 +110,7 @@
 				}
 			},
 			"pages": {
-				"home": {
+				"_home": {
 					"my_status_widget": {
 						"name": "ほむ",
 						"posts": "ほむ",
@@ -131,7 +131,7 @@
 						"text": "ほむ"
 					}
 				},
-				"register": {
+				"_register": {
 					"page_title": "ほむ",
 					"title": "ほむ",
 					"screen_name_caption": "ほむ",
@@ -158,7 +158,7 @@
 					"logging": "ほむ",
 					"signin": "ほむ"
 				},
-				"login": {
+				"_login": {
 					"page_title": "ほむ",
 					"title": "ほむ",
 					"signin": "ほむ",
@@ -170,8 +170,8 @@
 					"register": "ほむ",
 					"forgot_password": "ほむ"
 				},
-				"i": {
-					"settings": {
+				"_i": {
+					"_settings": {
 						"page_title": "ほむ",
 						"profile": "ほむ",
 						"web": "ほむ",
@@ -197,6 +197,16 @@
 						"enable_notification_sound_when_receiving_new_post": "ほむ",
 						"read_timeline_automatically": "ほむ",
 						"enable_sushi": "ほむ"
+					}
+				},
+				"_search": {
+					"_index": {
+						"submit": "ほむ",
+						"input_placeholder": "ほむ"
+					}
+				},
+				"_user": {
+					"_home": {
 					}
 				}
 			}
@@ -229,14 +239,14 @@
 				}
 			},
 			"pages": {
-				"entrance": {
+				"_entrance": {
 					"account": "ほむ",
 					"screen_name": "ほむ",
 					"password": "ほむ",
 					"signin": "ほむ",
 					"register": "ほむ"
 				},
-				"register": {
+				"_register": {
 					"page_title": "ほむ",
 					"title": "ほむ",
 					"screen_name_caption": "ほむ",
@@ -263,30 +273,30 @@
 					"logging": "ほむ",
 					"signin": "ほむ"
 				},
-				"home": {
+				"_home": {
 					"page_title": "ほむホーム - Misskey",
 					"page_header_title": "ほむホーム",
 					"read_more": "ほむ",
 					"timeline_loading": "ほむ...",
 					"new_post": "ほむ"
 				},
-				"search": {
-					"index": {
+				"_search": {
+					"_index": {
 						"page_title": "ほむ",
 						"page_header_title": "ほむ",
 						"submit": "ほむ",
 						"input_placeholder": "ほむ"
 					}
 				},
-				"i": {
-					"post": {
+				"_i": {
+					"_post": {
 						"page_title": "ほむ - Misskey",
 						"page_header_title": "ほむ",
 						"post": "ほむ",
 						"posting": "ほむ...",
 						"failed": "ほむ。"
 					},
-					"settings": {
+					"_settings": {
 						"page_title": "ほむ",
 						"page_header_title": "ほむ",
 						"hello": "ほむ",
@@ -305,8 +315,10 @@
 						"mobile": "ほむ",
 						"header_design": "ほむ",
 						"signout": "ほむ",
-						"back_to_settings": "ほむ",
-						"avatar_page": {
+						"__common": {
+							"back_to_settings": "ほむ"
+						},
+						"_avatar": {
 							"page_title": "ほむ - Misskey",
 							"page_header_title": "ほむ",
 							"upload_form": {
@@ -318,7 +330,7 @@
 								"cancel": "ほむ"
 							}
 						},
-						"banner_page": {
+						"_banner": {
 							"page_title": "ほむ - Misskey",
 							"page_header_title": "ほむ",
 							"upload_form": {
@@ -330,14 +342,14 @@
 								"cancel": "ほむ"
 							}
 						},
-						"ui_language_page": {
+						"_ui_language": {
 							"page_title": "ほむ",
 							"page_header_title": "ほむ",
 							"auto": "ほむ",
 							"specify": "ほむ",
 							"current_language": "ほむ"
 						},
-						"push_notification_page": {
+						"_push_notification": {
 							"page_title": "ほむ - Misskey",
 							"page_header_title": "ほむ",
 							"enable_pseudo_push_notification": "ほむ",
@@ -347,13 +359,13 @@
 								"submit": "ほむ"
 							}
 						},
-						"display_image_quality_page": {
+						"_display_image_quality": {
 							"page_title": "ほむ - Misskey",
 							"page_header_title": "ほむ",
 							"caption": "ほむ <-> ほむ",
 							"submit": "ほむ"
 						},
-						"mobile_header_overlay_page": {
+						"_mobile_header_overlay": {
 							"page_title": "ほむ - Misskey",
 							"page_header_title": "ほむ",
 							"none": "ほむ",
@@ -361,6 +373,10 @@
 								"title": "ほむ"
 							}
 						}
+					}
+				},
+				"_user": {
+					"_home": {
 					}
 				}
 			}

@@ -1,7 +1,7 @@
 extends ../../base
 
 block title
-	=locale.sites.mobile.pages.register.page_title
+	=locale.sites.mobile.pages._register.page_title
 
 block assets
 	script(src='https://www.google.com/recaptcha/api.js')
@@ -12,18 +12,18 @@ block assets
 block body
 	main
 		header
-			h1=locale.sites.mobile.pages.register.title
+			h1=locale.sites.mobile.pages._register.title
 		form#form(autocomplete='off')
 			div.kyoppie
 				
 				label#screen-name
 					p.caption
 						i.fa.fa-at
-						=locale.sites.mobile.pages.register.screen_name_caption
+						=locale.sites.mobile.pages._register.screen_name_caption
 					input(name=screenNameInputId
 						type='text'
 						pattern='^[0-9A-Za-z\-]{3,20}$'
-						placeholder=locale.sites.mobile.pages.register.screen_name_placeholder
+						placeholder=locale.sites.mobile.pages._register.screen_name_placeholder
 						autocomplete='off'
 						autofocus
 						required)
@@ -35,10 +35,10 @@ block body
 				label#password
 					p.caption
 						i.fa.fa-lock
-						=locale.sites.mobile.pages.register.password_caption
+						=locale.sites.mobile.pages._register.password_caption
 					input(name=passwordInputId
 						type='password'
-						placeholder=locale.sites.mobile.pages.register.password_placeholder
+						placeholder=locale.sites.mobile.pages._register.password_placeholder
 						autocomplete='off'
 						required)
 					p.info(data-state='none')
@@ -48,10 +48,10 @@ block body
 				label#retype-password
 					p.caption
 						i.fa.fa-lock
-						=locale.sites.mobile.pages.register.retype_password_caption
+						=locale.sites.mobile.pages._register.retype_password_caption
 					input(name=retypePasswordInputId
 						type='password'
-						placeholder=locale.sites.mobile.pages.register.retype_password_placeholder
+						placeholder=locale.sites.mobile.pages._register.retype_password_placeholder
 						autocomplete='off'
 						required)
 					p.info(data-state='none')
@@ -61,7 +61,7 @@ block body
 				label#recaptcha
 					p.caption
 						i.fa.fa-toggle-off
-						=locale.sites.mobile.pages.register.verify_caption
+						=locale.sites.mobile.pages._register.verify_caption
 					div.g-recaptcha(
 						data-callback='onRecaptchaed'
 						data-expired-callback='onRecaptchaExpired'
@@ -73,12 +73,12 @@ block body
 						type='checkbox',
 						autocomplete='off',
 						required)
-					p!=locale.sites.mobile.pages.register.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+					p!=locale.sites.mobile.pages._register.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
 				
 				button(type='submit')
 					i.fa.fa-check
-					span=locale.sites.mobile.pages.register.create
+					span=locale.sites.mobile.pages._register.create
 					
 				a.signin(href=config.signinUrl)
 					i.fa.fa-angle-right
-					=locale.sites.mobile.pages.register.signin
+					=locale.sites.mobile.pages._register.signin

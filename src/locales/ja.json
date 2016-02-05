@@ -112,7 +112,7 @@
 				}
 			},
 			"pages": {
-				"home": {
+				"_home": {
 					"my_status_widget": {
 						"name": "ステータス",
 						"posts": "投稿",
@@ -133,7 +133,7 @@
 						"text": "止めよう、空中リプライ"
 					}
 				},
-				"register": {
+				"_register": {
 					"page_title": "Misskeyを始める",
 					"title": "Misskeyアカウントを作成",
 					"screen_name_caption": "ユーザーID",
@@ -160,7 +160,7 @@
 					"logging": "ログイン中...",
 					"signin": "既にアカウントをお持ちの方はこちら"
 				},
-				"login": {
+				"_login": {
 					"page_title": "ログイン - Misskey",
 					"title": "Misskeyにログイン",
 					"signin": "ログイン",
@@ -172,8 +172,8 @@
 					"register": "アカウント作成はこちら",
 					"forgot_password": "パスコードを忘れた場合"
 				},
-				"i": {
-					"settings": {
+				"_i": {
+					"_settings": {
 						"page_title": "設定",
 						"profile": "プロフィール",
 						"web": "Web",
@@ -199,6 +199,16 @@
 						"enable_notification_sound_when_receiving_new_post": "新しい投稿がされたときに通知音を鳴らす",
 						"read_timeline_automatically": "自動的にタイムラインを「もっと読み込む」",
 						"enable_sushi": "寿司を有効にする(環境依存)"
+					}
+				},
+				"_search": {
+					"_index": {
+						"submit": "検索",
+						"input_placeholder": "キーワードを入力"
+					}
+				},
+				"_user": {
+					"_home": {
 					}
 				}
 			}
@@ -231,14 +241,14 @@
 				}
 			},
 			"pages": {
-				"entrance": {
+				"_entrance": {
 					"account": "アカウント",
 					"screen_name": "ユーザーID",
 					"password": "パスコード",
 					"signin": "ログイン",
 					"register": "アカウントを作成する"
 				},
-				"register": {
+				"_register": {
 					"page_title": "Misskeyを始める",
 					"title": "Misskeyアカウントを作成",
 					"screen_name_caption": "ユーザーID",
@@ -265,30 +275,30 @@
 					"logging": "ログイン中...",
 					"signin": "既にアカウントをお持ちの方はこちら"
 				},
-				"home": {
+				"_home": {
 					"page_title": "ホーム - Misskey",
 					"page_header_title": "ホーム",
 					"read_more": "もっと読み込む",
 					"timeline_loading": "読み込んでいます...",
 					"new_post": "新規投稿"
 				},
-				"search": {
-					"index": {
+				"_search": {
+					"_index": {
 						"page_title": "Misskeyを検索",
 						"page_header_title": "検索",
 						"submit": "検索",
 						"input_placeholder": "キーワードを入力"
 					}
 				},
-				"i": {
-					"post": {
+				"_i": {
+					"_post": {
 						"page_title": "新規投稿 - Misskey",
 						"page_header_title": "新規投稿",
 						"post": "投稿",
 						"posting": "投稿中...",
 						"failed": "投稿に失敗しました。再度お試しください。"
 					},
-					"settings": {
+					"_settings": {
 						"page_title": "設定 - Misskey",
 						"page_header_title": "設定",
 						"hello": "何を設定しますか？",
@@ -307,8 +317,10 @@
 						"mobile": "モバイル",
 						"header_design": "ヘッダーのデザイン",
 						"signout": "ログアウト",
-						"back_to_settings": "設定に戻る",
-						"avatar_page": {
+						"__common": {
+							"back_to_settings": "設定に戻る"
+						},
+						"_avatar": {
 							"page_title": "アイコン - Misskey",
 							"page_header_title": "アイコン",
 							"upload_form": {
@@ -320,7 +332,7 @@
 								"cancel": "キャンセル"
 							}
 						},
-						"banner_page": {
+						"_banner": {
 							"page_title": "バナー - Misskey",
 							"page_header_title": "バナー",
 							"upload_form": {
@@ -332,14 +344,14 @@
 								"cancel": "キャンセル"
 							}
 						},
-						"ui_language_page": {
+						"_ui_language": {
 							"page_title": "インターフェイスに使用する言語 - Misskey",
 							"page_header_title": "UIの言語",
 							"auto": "自動で決定する(規定)",
 							"specify": "言語を指定:",
 							"current_language": "現在の言語:"
 						},
-						"push_notification_page": {
+						"_push_notification": {
 							"page_title": "プッシュ通知 - Misskey",
 							"page_header_title": "プッシュ通知",
 							"enable_pseudo_push_notification": "擬似プッシュ通知",
@@ -349,13 +361,13 @@
 								"submit": "決定"
 							}
 						},
-						"display_image_quality_page": {
+						"_display_image_quality": {
 							"page_title": "表示する画像のクオリティ - Misskey",
 							"page_header_title": "表示する画像のクオリティ",
 							"caption": "低画質 <-> 高画質",
 							"submit": "決定"
 						},
-						"mobile_header_overlay_page": {
+						"_mobile_header_overlay": {
 							"page_title": "ヘッダーのデザイン - Misskey",
 							"page_header_title": "ヘッダーのデザイン",
 							"none": "なし",
@@ -363,6 +375,10 @@
 								"title": "オーバーレイ"
 							}
 						}
+					}
+				},
+				"_user": {
+					"_home": {
 					}
 				}
 			}

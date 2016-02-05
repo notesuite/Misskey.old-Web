@@ -2,14 +2,14 @@ extends ../../ui
 include ../../common/views/post/smart/post
 
 block title
-	=locale.sites.mobile.pages.home.page_title
+	=locale.sites.mobile.pages._home.page_title
 
 block assets
 	script(src= config.webStreamingUrl + '/socket.io/socket.io.js')
 
 block header
 	i.fa.fa-home
-	=locale.sites.mobile.pages.home.page_header_title
+	=locale.sites.mobile.pages._home.page_header_title
 
 block action
 	button.post.action: i.fa.fa-pencil-square-o
@@ -29,4 +29,4 @@ block content
 			if timeline.length > 0
 				button.read-more
 					i.fa.fa-sort-amount-desc
-					span.text=locale.sites.mobile.pages.home.read_more
+					span.text=locale.sites.mobile.pages._home.read_more

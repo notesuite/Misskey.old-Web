@@ -44,26 +44,28 @@ module.exports = (type) ->
 
 		$ window .scroll ->
 			top = $ window .scroll-top!
-			$right = $ \#right-contents
-			$left = $ \#left-contents
-			$right-body = $right.children \.body
-			$left-body = $left.children \.body
 
-			right-overflow = ($right.offset!.top + $right-body.outer-height!) - window.inner-height
-			if right-overflow < 0 then right-overflow = 0
-			if top + window.inner-height > $right.offset!.top + $right-body.outer-height!
-				margin = top - right-overflow
-				$right-body.css \margin-top "#{margin}px"
-			else
-				$right-body.css \margin-top 0
+			if $ \#left-contents .length != 0
+				$left = $ \#left-contents
+				$left-body = $left.children \.body
+				left-overflow = ($left.offset!.top + $left-body.outer-height!) - window.inner-height
+				if left-overflow < 0 then left-overflow = 0
+				if top + window.inner-height > $left.offset!.top + $left-body.outer-height!
+					margin = top - left-overflow
+					$left-body.css \margin-top "#{margin}px"
+				else
+					$left-body.css \margin-top 0
 
-			left-overflow = ($left.offset!.top + $left-body.outer-height!) - window.inner-height
-			if left-overflow < 0 then left-overflow = 0
-			if top + window.inner-height > $left.offset!.top + $left-body.outer-height!
-				margin = top - left-overflow
-				$left-body.css \margin-top "#{margin}px"
-			else
-				$left-body.css \margin-top 0
+			if $ \#right-contents .length != 0
+				$right = $ \#right-contents
+				$right-body = $right.children \.body
+				right-overflow = ($right.offset!.top + $right-body.outer-height!) - window.inner-height
+				if right-overflow < 0 then right-overflow = 0
+				if top + window.inner-height > $right.offset!.top + $right-body.outer-height!
+					margin = top - right-overflow
+					$right-body.css \margin-top "#{margin}px"
+				else
+					$right-body.css \margin-top 0
 
 		# Read more automatically
 		if USER_SETTINGS.read-timeline-automatically
@@ -193,7 +195,7 @@ function init-widgets
 			$content = $ '<iframe>' .attr {src: (($ @).attr \href) + '?noui', +seamless}
 			ui-window do
 				$content
-				LOCALE.sites.desktop.pages.home.my_status_widget.following
+				LOCALE.sites.desktop.pages._home.my_status_widget.following
 				500px
 				560px
 				yes
@@ -203,7 +205,7 @@ function init-widgets
 			$content = $ '<iframe>' .attr {src: (($ @).attr \href) + '?noui', +seamless}
 			ui-window do
 				$content
-				LOCALE.sites.desktop.pages.home.my_status_widget.followers
+				LOCALE.sites.desktop.pages._home.my_status_widget.followers
 				500px
 				560px
 				yes
