@@ -16,6 +16,16 @@
 		"languages": {
 			"japanese": "ほむ語",
 			"english": "ほむ語"
+		},
+		"about": {
+			"articles": {
+				"license": {
+					"title": "ほむ"
+				},
+				"technologies": {
+					"title": "ほむ"
+				}
+			}
 		}
 	},
 	"sites": {

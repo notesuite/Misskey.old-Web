@@ -180,16 +180,8 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'about');
 	});
 
-	app.get(`/subdomain/${config.publicConfig.aboutDomain}/license`, (req, res) => {
-		callController(req, res, 'about/license');
-	});
-
-	app.get(`/subdomain/${config.publicConfig.aboutDomain}/technologies`, (req, res) => {
-		callController(req, res, 'about/technologies');
-	});
-
-	app.get(`/subdomain/${config.publicConfig.aboutDomain}/system`, (req, res) => {
-		callController(req, res, 'about/system');
+	app.get(`/subdomain/${config.publicConfig.aboutDomain}/:page`, (req, res) => {
+		callController(req, res, 'about/article');
 	});
 
 	app.get('/i/*', (req, res, next) => {

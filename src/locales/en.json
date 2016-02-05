@@ -16,6 +16,16 @@
 		"languages": {
 			"japanese": "Japanese",
 			"english": "English"
+		},
+		"about": {
+			"articles": {
+				"license": {
+					"title": "License"
+				},
+				"technologies": {
+					"title": "Technologies"
+				}
+			}
 		}
 	},
 	"sites": {

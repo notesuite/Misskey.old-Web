@@ -1,13 +1,13 @@
 extends ../../../ui
 
 block title
-	| ライセンス
+	= title
 
 block header
 	i.fa.fa-info-circle
-	| ライセンス
+	= title
 
 block content
 	div#main-container
 		main(role='main')
-			include ../../../../common/about-contents/license
+			!= article
