@@ -2,7 +2,7 @@ extends ../main
 
 block meta
 	script!= 'var TALK_TYPE = "group";'
-	script!= 'var GROUP = ' + JSON.stringify(group) + ';'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var GROUP = ' + JSON.stringify(group) + '; Object.freeze(GROUP);') + '"));'
 
 block title
 	= 'トーク: ' + group.name

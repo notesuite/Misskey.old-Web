@@ -1,7 +1,7 @@
 extends ../../ui
 
 block assets
-	script!= 'var USER = ' + JSON.stringify(user) + ';'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var USER = ' + JSON.stringify(user) + '; Object.freeze(USER);') + '"));'
 
 block content
 	-

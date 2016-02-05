@@ -41,7 +41,7 @@ const session: any = {
 	cookie: {
 		path: '/',
 		domain: `.${config.publicConfig.host}`,
-		httpOnly: false,
+		httpOnly: true,
 		secure: config.https.enable,
 		expires: new Date(Date.now() + sessionExpires),
 		maxAge: sessionExpires

@@ -21,8 +21,8 @@ block meta
 	meta(property='twitter:url', content= config.url + '/' + user.screenName + '/' + post.id)
 
 block assets
-	script!= 'var USER = ' + JSON.stringify(user) + ';'
-	script!= 'var POST = ' + JSON.stringify(post) + ';'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var USER = ' + JSON.stringify(user) + '; Object.freeze(USER);') + '"));'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var POST = ' + JSON.stringify(post) + '; Object.freeze(POST);') + '"));'
 	script!= 'var NEXT_ID = "' + post.nextPost + '";'
 	script!= 'var PREV_ID = "' + post.prevPost + '";'
 

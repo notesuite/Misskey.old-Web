@@ -2,7 +2,7 @@ extends ../main
 
 append assets
 	script!= 'var TALK_TYPE = "user";'
-	script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var OTHERPARTY = ' + JSON.stringify(otherparty) + '; Object.freeze(OTHERPARTY);') + '"));'
 
 append meta
 	meta(name='description', content='Misskey Talk')

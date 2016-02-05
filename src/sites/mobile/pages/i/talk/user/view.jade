@@ -2,7 +2,7 @@ extends ../main
 
 block meta
 	script!= 'var TALK_TYPE = "user";'
-	script!= 'var OTHERPARTY = ' + JSON.stringify(otherparty) + ';'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var OTHERPARTY = ' + JSON.stringify(otherparty) + '; Object.freeze(OTHERPARTY);') + '"));'
 
 block title
 	= 'トーク: ' + otherparty.name
