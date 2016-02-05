@@ -4,7 +4,7 @@
  * @version  0.0.0
  * @url https://github.com/syuilo/waves-effect
  *
- * Copyright 2015 syuilo.
+ * Copyright 2015-2016 syuilo.
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  */
@@ -28,7 +28,7 @@
 	'use strict';
 
 	var WavesEffect = function WavesEffect(){};
-	
+
 	function distance(p, q) {
 		var sqrt = Math.sqrt, pow = Math.pow;
 		return sqrt(pow(p.x - q.x, 2) + pow(p.y - q.y, 2));
@@ -53,9 +53,9 @@
 				var positionY = rect.top;
 				var targetX = positionX;
 				var targetY = positionY;
-				
+
 				target.style.position = 'relative';
-				
+
 				var rippleContainer = document.createElement('div');
 				rippleContainer.className = 'waveseffect-ripple-container';
 				rippleContainer.style.position = 'absolute';
@@ -67,7 +67,7 @@
 				rippleContainer.style.overflow = 'hidden';
 				rippleContainer.style.pointerEvents = 'none';
 				// rippleContainer.style.backgroundColor = 'red';
-				
+
 				var ripple = document.createElement('div');
 				ripple.className = 'waveseffect-ripple';
 				ripple.style.position = 'absolute';
@@ -82,14 +82,14 @@
 				ripple.style.transition = 'all 1s cubic-bezier(0,.75,.25,1)';
 				rippleContainer.appendChild(ripple);
 				target.appendChild(rippleContainer);
-				
+
 				var boxW = target.clientWidth;
 				var boxH = target.clientHeight;
 				var circleCenterX = event.clientX - targetX;
 				var circleCenterY = event.clientY - targetY;
-				
+
 				var scale = calcCircleScale(boxW, boxH, circleCenterX, circleCenterY);
-				
+
 				setTimeout(function() {
 					ripple.style.transform = 'scale(' + (scale / 2) + ', ' + (scale / 2) + ')';
 				}, 1);
@@ -98,7 +98,7 @@
 					ripple.style.opacity = '0';
 				}, 1000);
 				setTimeout(function() {
-					target.removeChild(rippleContainer); 
+					target.removeChild(rippleContainer);
 				}, 2000);
 			}, false);
 		});

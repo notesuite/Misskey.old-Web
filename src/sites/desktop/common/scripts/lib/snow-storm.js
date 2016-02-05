@@ -1,12 +1,12 @@
 /*
- * (c) syuilo 2015
+ * (c) syuilo 2015-2016
  */
 
 var $ = require('jquery');
 
 $(function() {
 	$('html').css('overflow-x', 'hidden');
-	
+
 	var crystals = [];
 
 	function setSnow(top, left) {
@@ -37,7 +37,7 @@ $(function() {
 				'bottom' : '0px'
 			});
 			$('body').append($snow);
-			
+
 			crystals.push({
 				speed: speed,
 				size: size,
@@ -92,13 +92,13 @@ $(function() {
 					'left' : left + 'px',
 				});
 			}
-			
+
 			function removeCrystal(pile) {
 				object.splice(index, 1);
-				
+
 				if (pile) {
 					$snow.css('transition', 'opacity 30s linear, width 30s linear, bottom 30s linear, left 30s linear');
-					
+
 					$snow.css({
 						'position': 'fixed',
 						'top': '',
@@ -107,7 +107,7 @@ $(function() {
 						'width': (crystal.size * 4) + 'px',
 						'opacity': '0'
 					});
-					
+
 					setTimeout(function() {
 						$snow.remove();
 					}, 30000);

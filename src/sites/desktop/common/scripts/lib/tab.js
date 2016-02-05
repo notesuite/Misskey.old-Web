@@ -1,6 +1,6 @@
 /**
  * Tab
- * (c) syuilo 2015
+ * (c) syuilo 2015-2016
  */
 
 var $ = require('jquery');
@@ -17,16 +17,16 @@ module.exports = function($tabList, $tabPages, onChanged) {
 		});
 
 		$tabPages.children('[data-name="' + tabName + '"]').css('display', 'block');
-		
+
 		if (onChanged !== undefined && riseChangeEvent) {
 			onChanged(tabName);
 		}
 	}
-	
+
 	$tabList.children().each(function() {
 		var $tabListItem = $(this);
 		$tabListItem.addClass('unactive');
-		
+
 		$tabListItem.click(function() {
 			select($(this).attr('data-ref'));
 			return false;
@@ -38,7 +38,7 @@ module.exports = function($tabList, $tabPages, onChanged) {
 	});
 
 	select($tabList.children(':first-child').attr('data-ref'), false);
-	
+
 	return {
 		select: select
 	};
