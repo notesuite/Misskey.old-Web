@@ -39,6 +39,20 @@ export default function callController(
 		}
 		res.locals.eeStyle = eeStyle;
 
+		const locale = res.locals.locale;
+
+		res.locals.locale = {
+			common: locale.common,
+			sites: {}
+		};
+
+		res.locals.locale.sites[res.locals.ua] = {
+			common: locale.sites[res.locals.ua].common,
+			pages: {}
+		};
+
+		res.locals.locale.sites[res.locals.ua].pages[name] = locale.sites[res.locals.ua].pages[name];
+
 		res.render(viewPath, data);
 	};
 
