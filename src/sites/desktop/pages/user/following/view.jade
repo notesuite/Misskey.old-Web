@@ -1,5 +1,5 @@
 extends ../../../ui
-include ../../../common/widgets/users-list/users
+include ../../../common/views/user-card
 
 block title
 	= user.name + 'さんがフォローしているユーザー'
@@ -18,4 +18,7 @@ block content
 		}
 	
 	main(role='main')
-		+users(following)
+		ol.users
+			each followee in following
+				li.user
+					+user-card(followee)

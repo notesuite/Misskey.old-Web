@@ -7,7 +7,7 @@ post-content-initializer = require './post-content-initializer.js'
 post-compiler = require '../views/post/smart/render.jade'
 sub-post-compiler = require '../views/post/smart/sub-post-render.jade'
 AlbumDialog = require './album-dialog.js'
-user-card = require './user-card.js'
+user-card = require './user-card-popup.js'
 
 class Post
 	(post = null) ->

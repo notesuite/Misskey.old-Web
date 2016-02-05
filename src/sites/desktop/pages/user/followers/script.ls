@@ -1,6 +1,7 @@
 $ = require 'jquery/dist/jquery'
 require '../../../common/scripts/ui.js'
-UsersList = require '../../../common/widgets/users-list/script.js'
+init-user-card = require '../../../common/scripts/init-user-card.js'
 
 $ ->
-	users-list = new UsersList $ '.users'
+	$ 'main > .users > .user' .each ->
+		init-user-card ($ @).children '.ui-user-card'

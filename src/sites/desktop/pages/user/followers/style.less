@@ -1,10 +1,9 @@
 @import "../../../common";
 @import "../../../common/styles/ui";
-@import "../../../common/widgets/users-list/style";
 
 html {
 	color: #000;
-	background-color: #eee;
+	background-color: @ui-background-color;
 }
 
 main {
@@ -15,7 +14,23 @@ main {
 	padding: 16px 0;
 
 	> .users {
-		.user-list;
+		display: block;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		> .user {
+			display: block;
+			float: left;
+			margin: 16px 0 0 16px;
+			padding: 0;
+			width: 210px;
+
+			> .ui-user-card {
+				border-radius: 4px;
+				background: #FFFBFB;
+			}
+		}
 	}
 }
 
