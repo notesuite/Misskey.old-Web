@@ -1,6 +1,7 @@
 extends ../page-base
 
 block title
+	- console.log(locale.sites.mobile.pages)
 	=locale.sites.mobile.pages._i._settings._ui_language.page_title
 
 block header
@@ -16,7 +17,7 @@ block forms
 			div.ui-select-wrapper
 				select.ui-select(name='lang')
 					option(value='_auto', selected= userSettings.uiLanguage == null)=locale.sites.mobile.pages._i._settings._ui_language.auto
-					optgroup(label=locale.sites.mobile.pages._i._settings.ui_language_page.specify)
+					optgroup(label=locale.sites.mobile.pages._i._settings._ui_language.specify)
 						option(value='ja', selected= userSettings.uiLanguage == 'ja')= "🇯🇵 日本語 (" + locale.common.languages.japanese + ")"
 						option(value='en', selected= userSettings.uiLanguage == 'en')= "🇺🇸 English (" + locale.common.languages.english + ")"
 						option(value='_homu', selected= userSettings.uiLanguage == '_homu')= "ほむ (ほむ)"

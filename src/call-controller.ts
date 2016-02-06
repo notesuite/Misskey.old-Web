@@ -1,5 +1,6 @@
 import * as express from 'express';
 import config from './config';
+const objectAssignDeep = require('object-assign-deep');
 
 /* tslint:disable:no-eval */
 
@@ -110,7 +111,7 @@ export default function callController(
 
 			s2 += ';';
 
-			s2 += 'Object.assign(res.locals.locale.sites[res.locals.ua].pages, addLocale);';
+			s2 += 'res.locals.locale.sites[res.locals.ua].pages = objectAssignDeep(res.locals.locale.sites[res.locals.ua].pages, addLocale);';
 
 			eval(s2);
 		}
