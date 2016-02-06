@@ -197,6 +197,12 @@
 						"enable_notification_sound_when_receiving_new_post": "ほむ",
 						"read_timeline_automatically": "ほむ",
 						"enable_sushi": "ほむ"
+					},
+					"_talk": {
+						"_group": {
+						},
+						"_user": {
+						}
 					}
 				},
 				"_search": {
@@ -372,6 +378,12 @@
 							"form": {
 								"title": "ほむ"
 							}
+						}
+					},
+					"_talk": {
+						"_group": {
+						},
+						"_user": {
 						}
 					}
 				},

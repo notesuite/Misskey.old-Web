@@ -199,6 +199,12 @@
 						"enable_notification_sound_when_receiving_new_post": "Enable the notification sound when receive a new post",
 						"read_timeline_automatically": "Read the timeline more automatically",
 						"enable_sushi": "Enable Sushi (Environment-dependent)"
+					},
+					"_talk": {
+						"_group": {
+						},
+						"_user": {
+						}
 					}
 				},
 				"_search": {
@@ -374,6 +380,12 @@
 							"form": {
 								"title": "Overlay"
 							}
+						}
+					},
+					"_talk": {
+						"_group": {
+						},
+						"_user": {
 						}
 					}
 				},

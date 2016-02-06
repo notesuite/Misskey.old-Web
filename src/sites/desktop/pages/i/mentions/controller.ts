@@ -10,7 +10,7 @@ module.exports = (req: express.Request, res: express.Response): void => {
 	generateHomeWidgets(me, res.locals.locale, 'mentions').then((widgets: any) => {
 		res.locals.display({
 			widgets
-		});
+		}, 'home');
 	}, (err: any) => {
 		throw err;
 	});
