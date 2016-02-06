@@ -52,10 +52,11 @@ module.exports = (type) ->
 				if left-overflow < 0 then left-overflow = 0
 				if top + window.inner-height > $left.offset!.top + $left-body.outer-height!
 					margin = top - left-overflow
-					if margin + $left-body.outer-height! > $ document .height! - 64
-						$left-body.css \margin-top "#{($ document .height! - 64) - $left-body.outer-height!}px"
-					else
-						$left-body.css \margin-top "#{margin}px"
+					#if margin + $left-body.outer-height! > $ document .height! - 64
+					#	$left-body.css \margin-top "#{($ document .height! - 64) - $left-body.outer-height!}px"
+					#else
+					#	$left-body.css \margin-top "#{margin}px"
+					$left-body.css \margin-top "#{margin}px"
 				else
 					$left-body.css \margin-top 0
 
@@ -66,10 +67,11 @@ module.exports = (type) ->
 				if right-overflow < 0 then right-overflow = 0
 				if top + window.inner-height > $right.offset!.top + $right-body.outer-height!
 					margin = top - right-overflow
-					if margin + $right-body.outer-height! > $ document .height! - 64
-						$right-body.css \margin-top "#{($ document .height! - 64) - $right-body.outer-height!}px"
-					else
-						$right-body.css \margin-top "#{margin}px"
+					#if margin + $right-body.outer-height! > $ document .height! - 64
+					#	$right-body.css \margin-top "#{($ document .height! - 64) - $right-body.outer-height!}px"
+					#else
+					#	$right-body.css \margin-top "#{margin}px"
+					$right-body.css \margin-top "#{margin}px"
 				else
 					$right-body.css \margin-top 0
 
