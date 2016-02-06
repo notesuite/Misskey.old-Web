@@ -112,6 +112,8 @@
 				}
 			},
 			"pages": {
+				"_about": {
+				},
 				"_home": {
 					"my_status_widget": {
 						"name": "ステータス",
@@ -247,6 +249,8 @@
 				}
 			},
 			"pages": {
+				"_about": {
+				},
 				"_entrance": {
 					"account": "アカウント",
 					"screen_name": "ユーザーID",

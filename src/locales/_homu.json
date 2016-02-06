@@ -110,6 +110,8 @@
 				}
 			},
 			"pages": {
+				"_about": {
+				},
 				"_home": {
 					"my_status_widget": {
 						"name": "ほむ",
@@ -245,6 +247,8 @@
 				}
 			},
 			"pages": {
+				"_about": {
+				},
 				"_entrance": {
 					"account": "ほむ",
 					"screen_name": "ほむ",
