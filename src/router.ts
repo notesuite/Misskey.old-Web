@@ -23,6 +23,9 @@ export default function router(app: express.Express): void {
 		res.header('X-XSS-Protection', '1; mode=block');
 		res.header('X-Content-Type-Options', 'nosniff');
 
+		// See http://web-tan.forum.impressrd.jp/e/2013/05/17/15269
+		res.header('Vary', 'Accept-Language, User-Agent, Cookie');
+
 		res.locals.isLogin =
 			req.hasOwnProperty('session') &&
 			req.session !== null &&
