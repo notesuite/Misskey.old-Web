@@ -278,6 +278,10 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			title = entities.decode(title);
 		}
 
+		let image: string = nullOrEmpty(ogImage)
+			? $('link[rel="image_src"]').attr('href')
+			: ogImage;
+
 		// OGPで失敗したらmetaタグのdescriptionから拝借
 		let description: string = nullOrEmpty(ogDescription)
 			? $('meta[name="description"]').attr('content')
@@ -318,7 +322,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			lang: lang,
 			description: description,
 			type: ogType,
-			image: ogImage,
+			image: image,
 			siteName: siteName
 		});
 
