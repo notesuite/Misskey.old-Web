@@ -70,7 +70,16 @@ $ ->
 				e.prevent-default!
 				toggle-misskey-menu!
 
-$ window .on \scroll (e) ->
+$ window .on \scroll on-scroll
+
+$ window .load ->
+	if not NOUI
+		$ \body .css \margin-top "#{$ \#misskey-header .outer-height!}px"
+
+	WavesEffect.attach-to-class \ui-waves-effect
+	on-scroll!
+
+function on-scroll
 	t = $ window .scroll-top!
 	opacity = t / 128
 	if opacity > 0.3 then opacity = 0.3
@@ -80,12 +89,6 @@ $ window .on \scroll (e) ->
 		$ \#misskey-go-top-button .remove-class \hidden
 	else
 		$ \#misskey-go-top-button .add-class \hidden
-
-$ window .load ->
-	if not NOUI
-		$ \body .css \margin-top "#{$ \#misskey-header .outer-height!}px"
-
-	WavesEffect.attach-to-class \ui-waves-effect
 
 ################################
 
