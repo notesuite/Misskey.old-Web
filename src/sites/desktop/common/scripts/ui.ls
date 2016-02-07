@@ -41,6 +41,11 @@ $ ->
 	if LOGIN
 		post-form = new PostForm
 
+	$ \#misskey-go-top-button .click ->
+		$ 'html, body' .animate {
+			scroll-top: 0
+		} 300ms \swing
+
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!
 		if tag != \input and tag != \textarea
@@ -70,6 +75,11 @@ $ window .on \scroll (e) ->
 	opacity = t / 128
 	if opacity > 0.3 then opacity = 0.3
 	$ \#misskey-header .css \box-shadow "0 0 1px rgba(0, 0, 0, #{opacity})"
+
+	if t > 700px
+		$ \#misskey-go-top-button .remove-class \hidden
+	else
+		$ \#misskey-go-top-button .add-class \hidden
 
 $ window .load ->
 	if not NOUI

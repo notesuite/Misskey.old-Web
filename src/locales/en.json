@@ -35,6 +35,7 @@
 					"title": "Please enable JavaScript",
 					"text": "JavaScript seems to be disabled. JavaScript is required to use Misskey."
 				},
+				"go_to_top": "Go to top",
 				"connecting_stream": "Connecting to stream...",
 				"connected_stream": "Connected",
 				"reconnecting_stream": "Disconnected from stream. Reconnecting...",
