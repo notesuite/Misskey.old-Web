@@ -41,9 +41,6 @@ $ ->
 	if LOGIN
 		post-form = new PostForm
 
-		update-header-statuses!
-		set-interval update-header-statuses, 10000ms
-
 	$ document .keypress (e) ->
 		tag = e.target.tag-name.to-lower-case!
 		if tag != \input and tag != \textarea
@@ -154,6 +151,7 @@ function init-header
 			$dropdown.find '.bg' .attr \data-show \false
 
 		function open
+			$dropdown.find '.body' .css \display \block
 			$dropdown.attr \data-active \true
 			$dropdown.find 'button i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
 			$dropdown.find '.body' .css \top ($ \#misskey-header .outer-height!)
@@ -532,31 +530,6 @@ class StatusPostForm
 		THIS.post-form.tab.select \status no
 		THIS.post-form.active-tab = \status
 		$ \#misskey-post-form-status-tab-page .find \textarea .focus!
-
-function update-header-statuses
-	$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
-	.done (data) ->
-		$ '#misskey-header .home a .unread-count' .remove!
-		if data != 0
-			$ '#misskey-header .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
-	.done (data) ->
-		$ '#misskey-header .mentions a .unread-count' .remove!
-		if data != 0
-			$ '#misskey-header .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
-	.done (data) ->
-		$ '#misskey-header .talks a .unread-count' .remove!
-		if data != 0
-			$ '#misskey-header .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
-	.done (data) ->
-		$ '#misskey-header .notifications .header span .unread-count' .remove!
-		if data != 0
-			$ '#misskey-header .notifications .header span' .append $ "<span class=\"unread-count\">#{data}</span>"
 
 function update-header-clock
 	s = (new Date!).get-seconds!

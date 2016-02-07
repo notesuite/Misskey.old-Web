@@ -2,36 +2,9 @@ $ = require 'jquery/dist/jquery'
 require './main.js'
 require '../../../common/kronos.js'
 
-function update-statuses
-	$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .home a .unread-count' .remove!
-			$ '#misskey-nav .home a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .mentions a .unread-count' .remove!
-			$ '#misskey-nav .mentions a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .notifications a .unread-count' .remove!
-			$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
-	$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
-	.done (data) ->
-		if data != 0
-			$ '#misskey-nav .talks a .unread-count' .remove!
-			$ '#misskey-nav .talks a' .append $ "<span class=\"unread-count\">#{data}</span>"
-
 $ ->
 	if not NOUI
 		SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
-		update-statuses!
-		set-interval update-statuses, 10000ms
 		init-view-position!
 
 $ window .load ->

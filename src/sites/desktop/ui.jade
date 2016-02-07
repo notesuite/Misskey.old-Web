@@ -102,7 +102,7 @@ block body
 											= me.screenName
 											i.fa.fa-angle-down
 										img.avatar(src= me.avatarUrl + '?size=64&quality=' + userSettings.displayImageQuality, alt='avatar')
-									div.body
+									div.body(style={display: 'none'})
 										ul
 											li: a.ui-waves-effect(href= config.url + '/' + me.screenName)
 												i.fa.fa-user
