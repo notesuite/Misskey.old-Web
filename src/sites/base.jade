@@ -51,6 +51,14 @@ html(
 		link(rel='dns-prefetch', href= config.apiUrl)
 		link(rel='stylesheet', href= stylePath)
 		style!= eeStyle
+		script!= setScript('CONFIG', JSON.stringify(config))
+		script!= setScript('LANG', '"' + lang + '"')
+		script!= setScript('NOUI', noui.toString())
+		script!= setScript('LOGIN', login.toString())
+		script!= escapeScript('ME', JSON.stringify(me))
+		script!= escapeScript('USER_SETTINGS', JSON.stringify(userSettings))
+		script!= setScript('LOCALE', JSON.stringify(locale))
+		script(src= scriptPath)
 		script(type='application/ld+json').
 			{
 			  "@context": "http://schema.org",
@@ -66,15 +74,6 @@ html(
 	
 	body
 		block root-body
-		
-		script!= setScript('CONFIG', JSON.stringify(config))
-		script!= setScript('LANG', '"' + lang + '"')
-		script!= setScript('NOUI', noui.toString())
-		script!= setScript('LOGIN', login.toString())
-		script!= escapeScript('ME', JSON.stringify(me))
-		script!= escapeScript('USER_SETTINGS', JSON.stringify(userSettings))
-		script!= setScript('LOCALE', JSON.stringify(locale))
-		script(src= scriptPath)
 		
 		script.
 			(function(d){
