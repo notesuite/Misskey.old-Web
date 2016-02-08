@@ -258,58 +258,49 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 
 		const $: any = result.$;
 
-		const getOGPdata = (name: string): string => $(`meta[property="og:${name}"]`).attr('content');
+		const title = or(
+			$('meta[property="misskey:title"]').attr('content'),
+			$('meta[property="og:title"]').attr('content'),
+			$('meta[property="twitter:title"]').attr('content'),
+			$('title').text());
 
-		// 各種OGP情報
-		const ogTitle = getOGPdata('title');
-		const ogType = getOGPdata('type');
-		const ogImage = getOGPdata('image');
-		const ogDescription = getOGPdata('description');
-		const ogSiteName = getOGPdata('site_name');
-
-		// OGPで失敗したらtitleから拝借
-		let title: string = nullOrEmpty(ogTitle)
-			? $('title').text()
-			: ogTitle;
-
-		if (nullOrEmpty(title)) {
+		if (title === null) {
 			return res.sendStatus(204);
-		} else {
-			title = entities.decode(title);
 		}
 
-		let image: string = nullOrEmpty(ogImage)
-			? $('link[rel="image_src"]').attr('href')
-			: ogImage;
-
-		// OGPで失敗したらmetaタグのdescriptionから拝借
-		let description: string = nullOrEmpty(ogDescription)
-			? $('meta[name="description"]').attr('content')
-			: ogDescription;
-
-		if (!nullOrEmpty(description)) {
-			description = entities.decode(description);
-		}
-
-		let siteName: string = nullOrEmpty(ogSiteName)
-			? null
-			: ogSiteName;
-
-		if (!nullOrEmpty(siteName)) {
-			siteName = entities.decode(siteName);
-		}
-
-		// Language
 		const lang: string = $('html').attr('lang');
 
-		// Favicon
-		const shortcutIconPath: string = $('link[rel="shortcut icon"]').attr('href');
-		const iconPath: string = $('link[rel="icon"]').attr('href');
-		const icon: string = nullOrEmpty(shortcutIconPath)
-			? nullOrEmpty(iconPath)
-				? URL.resolve(url.href, '/favicon.ico')
-				: URL.resolve(url.href, iconPath)
-			: URL.resolve(url.href, shortcutIconPath);
+		const type = or(
+			$('meta[property="misskey:type"]').attr('content'),
+			$('meta[property="og:type"]').attr('content'));
+
+		const image = or(
+			$('meta[property="misskey:image"]').attr('content'),
+			$('meta[property="og:image"]').attr('content'),
+			$('meta[property="twitter:image"]').attr('content'),
+			$('link[rel="image_src"]').attr('href'),
+			$('link[rel="apple-touch-icon"]').attr('href'),
+			$('link[rel="apple-touch-icon image_src"]').attr('href'));
+
+		let description = or(
+			$('meta[property="misskey:summary"]').attr('content'),
+			$('meta[property="og:description"]').attr('content'),
+			$('meta[property="twitter:description"]').attr('content'),
+			$('meta[name="description"]').attr('content'));
+		description = description !== null ? entities.decode(description) : null;
+
+		let siteName = or(
+			$('meta[property="misskey:site-name"]').attr('content'),
+			$('meta[property="og:site_name"]').attr('content'),
+			$('meta[name="application-name"]').attr('content'));
+		siteName = siteName !== null ? entities.decode(siteName) : null;
+
+		let icon = or(
+			$('meta[property="misskey:site-icon"]').attr('content'),
+			$('link[rel="shortcut icon"]').attr('href'),
+			$('link[rel="icon"]').attr('href'),
+			'/favicon.ico');
+		icon = icon !== null ? URL.resolve(url.href, icon) : null;
 
 		const compiler: (locals: any) => string = jade.compileFile(
 			`${__dirname}/summary.jade`);
@@ -321,7 +312,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			icon: icon,
 			lang: lang,
 			description: description,
-			type: ogType,
+			type: type,
 			image: image,
 			siteName: siteName
 		});
@@ -348,4 +339,17 @@ function nullOrEmpty(val: string): boolean {
 	} else {
 		return false;
 	}
+}
+
+function or(...xs: string[]): string {
+	'use strict';
+
+	for (let i = 0; i < xs.length; i++) {
+		const x = xs[i];
+		if (!nullOrEmpty(x)) {
+			return x;
+		}
+	}
+
+	return null;
 }
