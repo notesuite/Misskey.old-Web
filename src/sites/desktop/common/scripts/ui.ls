@@ -34,7 +34,9 @@ function ad-block-detected
 ################################
 
 $ ->
-	if not NOUI
+	if NOUI
+		$ \body .css \margin-top 0
+	else
 		init-header!
 		$ \body .css \margin-top "#{$ '#misskey-header' .outer-height!}px"
 
