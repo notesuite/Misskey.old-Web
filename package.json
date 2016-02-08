@@ -38,7 +38,7 @@
     "dtsm": "0.13.0",
     "event-stream": "3.3.2",
     "glob": "6.0.4",
-    "gulp": "3.9.0",
+    "gulp": "3.9.1",
     "gulp-less": "3.0.5",
     "gulp-less-json-variables": "1.0.4",
     "gulp-livescript": "3.0.0",
