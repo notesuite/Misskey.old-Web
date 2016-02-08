@@ -15,6 +15,39 @@ timeline = null
 timeline-loading = no
 
 module.exports = (type) ->
+	$ window .on 'load scroll resize' ->
+		top = $ window .scroll-top!
+
+		if $ \#left-contents .length != 0
+			$left = $ \#left-contents
+			$left-body = $left.children \.body
+			left-overflow = ($left.offset!.top + $left-body.outer-height!) - window.inner-height
+			if left-overflow < 0 then left-overflow = 0
+			if top + window.inner-height > $left.offset!.top + $left-body.outer-height!
+				margin = top - left-overflow
+				#if margin + $left-body.outer-height! > $ document .height! - 64
+				#	$left-body.css \margin-top "#{($ document .height! - 64) - $left-body.outer-height!}px"
+				#else
+				#	$left-body.css \margin-top "#{margin}px"
+				$left-body.css \margin-top "#{margin}px"
+			else
+				$left-body.css \margin-top 0
+
+		if $ \#right-contents .length != 0
+			$right = $ \#right-contents
+			$right-body = $right.children \.body
+			right-overflow = ($right.offset!.top + $right-body.outer-height!) - window.inner-height
+			if right-overflow < 0 then right-overflow = 0
+			if top + window.inner-height > $right.offset!.top + $right-body.outer-height!
+				margin = top - right-overflow
+				#if margin + $right-body.outer-height! > $ document .height! - 64
+				#	$right-body.css \margin-top "#{($ document .height! - 64) - $right-body.outer-height!}px"
+				#else
+				#	$right-body.css \margin-top "#{margin}px"
+				$right-body.css \margin-top "#{margin}px"
+			else
+				$right-body.css \margin-top 0
+
 	$ ->
 		try
 			Notification.request-permission!
@@ -42,42 +75,9 @@ module.exports = (type) ->
 		$ '#widget-timeline .timeline > .read-more' .click ->
 			read-more!
 
-		$ window .scroll ->
-			top = $ window .scroll-top!
-
-			if $ \#left-contents .length != 0
-				$left = $ \#left-contents
-				$left-body = $left.children \.body
-				left-overflow = ($left.offset!.top + $left-body.outer-height!) - window.inner-height
-				if left-overflow < 0 then left-overflow = 0
-				if top + window.inner-height > $left.offset!.top + $left-body.outer-height!
-					margin = top - left-overflow
-					#if margin + $left-body.outer-height! > $ document .height! - 64
-					#	$left-body.css \margin-top "#{($ document .height! - 64) - $left-body.outer-height!}px"
-					#else
-					#	$left-body.css \margin-top "#{margin}px"
-					$left-body.css \margin-top "#{margin}px"
-				else
-					$left-body.css \margin-top 0
-
-			if $ \#right-contents .length != 0
-				$right = $ \#right-contents
-				$right-body = $right.children \.body
-				right-overflow = ($right.offset!.top + $right-body.outer-height!) - window.inner-height
-				if right-overflow < 0 then right-overflow = 0
-				if top + window.inner-height > $right.offset!.top + $right-body.outer-height!
-					margin = top - right-overflow
-					#if margin + $right-body.outer-height! > $ document .height! - 64
-					#	$right-body.css \margin-top "#{($ document .height! - 64) - $right-body.outer-height!}px"
-					#else
-					#	$right-body.css \margin-top "#{margin}px"
-					$right-body.css \margin-top "#{margin}px"
-				else
-					$right-body.css \margin-top 0
-
 		# Read more automatically
 		if USER_SETTINGS.read-timeline-automatically
-			$ window .scroll ->
+			$ window .on \scroll ->
 				current = $ window .scroll-top! + window.inner-height
 				if current > $ document .height! - 16 # 遊び
 					read-more!

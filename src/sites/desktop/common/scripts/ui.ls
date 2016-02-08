@@ -70,14 +70,13 @@ $ ->
 				e.prevent-default!
 				toggle-misskey-menu!
 
-$ window .on \scroll on-scroll
+$ window .on 'load scroll resize' on-scroll
 
 $ window .load ->
 	if not NOUI
 		$ \body .css \margin-top "#{$ \#misskey-header .outer-height!}px"
 
 	WavesEffect.attach-to-class \ui-waves-effect
-	on-scroll!
 
 function on-scroll
 	t = $ window .scroll-top!
