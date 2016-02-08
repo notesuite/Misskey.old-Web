@@ -86,6 +86,10 @@
 					"attach_file_from_pc": "ほむ",
 					"attach_file_from_album": "ほむ",
 					"read_more_talk": "ほむ",
+					"repost": "ほむ",
+					"unrepost": "ほむを取り消し",
+					"like": "ほむ",
+					"unlike": "ほむを取り消し",
 					"repost_dialog": {
 						"title": "ほむ",
 						"accept": "ほむ",

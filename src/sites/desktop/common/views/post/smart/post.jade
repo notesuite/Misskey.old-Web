@@ -75,12 +75,12 @@ mixin core(post, isRepost, repost)
 						a.count(href= config.url + '/' + post.user.screenName + '/' + post.id)
 							= post.repliesCount != 0 ? post.repliesCount : ''
 					li.repost
-						button(title= post.isReposted ? 'シェアを取り消し' : 'シェア')
+						button(title= post.isReposted ? locale.sites.desktop.common.post.unrepost : locale.sites.desktop.common.post.repost)
 							i.fa.fa-retweet
 						a.count(href= config.url + '/' + post.user.screenName + '/' + post.id + '/reposts')
 							= post.repostsCount != 0 ? post.repostsCount : ''
 					li.like
-						button(title= post.isLiked ? 'Unlike' : 'Like')
+						button(title= post.isLiked ? locale.sites.desktop.common.post.unlike : locale.sites.desktop.common.post.like)
 							if userSettings.enableSushi
 								i.fa
 									| 🍣

@@ -87,6 +87,10 @@
 					"attach_file_from_pc": "PCからファイルを添付",
 					"attach_file_from_album": "アルバムからファイルを添付",
 					"read_more_talk": "これより前の会話をもっと見る...",
+					"repost": "Repost",
+					"unrepost": "Repostを取り消し",
+					"like": "Like",
+					"unlike": "Likeを取り消し",
 					"repost_dialog": {
 						"title": "この投稿をRepostしますか？",
 						"accept": "Repost",
