@@ -1,8 +1,9 @@
 import * as express from 'express';
 import config from './config';
-const objectAssignDeep = require('object-assign-deep');
 
-/* tslint:disable:no-eval */
+/* tslint:disable:no-unused-variable */
+const objectAssignDeep = require('object-assign-deep');
+/* tslint:enable:no-unused-variable */
 
 export default function callController(
 	req: express.Request,
@@ -41,6 +42,8 @@ export default function callController(
 			eeStyle = 'html { filter: invert(100%); -webkit-filter: invert(100%); }';
 		}
 		res.locals.eeStyle = eeStyle;
+
+		/* tslint:disable:no-eval */
 
 		const locale = res.locals.locale;
 
