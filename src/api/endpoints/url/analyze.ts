@@ -258,15 +258,15 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 
 		const $: any = result.$;
 
-		const title = or(
+		let title = or(
 			$('meta[property="misskey:title"]').attr('content'),
 			$('meta[property="og:title"]').attr('content'),
 			$('meta[property="twitter:title"]').attr('content'),
 			$('title').text());
-
 		if (title === null) {
 			return res.sendStatus(204);
 		}
+		title = clip(entities.decode(title), 100);
 
 		const lang: string = $('html').attr('lang');
 
@@ -287,7 +287,13 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			$('meta[property="og:description"]').attr('content'),
 			$('meta[property="twitter:description"]').attr('content'),
 			$('meta[name="description"]').attr('content'));
-		description = description !== null ? entities.decode(description) : null;
+		description = description !== null
+			? clip(entities.decode(description), 300)
+			: null;
+
+		if (title === description) {
+			description = null;
+		}
 
 		let siteName = or(
 			$('meta[property="misskey:site-name"]').attr('content'),
@@ -352,4 +358,20 @@ function or(...xs: string[]): string {
 	}
 
 	return null;
+}
+
+function clip(s: string, max: number): string {
+	'use strict';
+
+	if (nullOrEmpty(s)) {
+		return s;
+	}
+
+	s = s.trim();
+
+	if (s.length > max) {
+		return s.substr(0, max) + '...';
+	} else {
+		return s;
+	}
 }
