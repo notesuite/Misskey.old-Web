@@ -48,12 +48,8 @@ block content
 							p#screen-name(itemprop='alternateName')= '@' + user.screenName
 						table.count-table
 							tr
-								th= locale.sites.desktop.pages._user.posts_count
-								th= locale.sites.desktop.pages._user.likes_count
-								th= locale.sites.desktop.pages._user.liked_count
+								th= locale.sites.desktop.pages._user.liked
 							tr
-								td= comma(user.postsCount)
-								td= comma(user.likesCount)
 								td= comma(user.likedCount)
 			nav#header-nav(role='navigation')
 				div.main
@@ -67,17 +63,25 @@ block content
 								else
 									span.no-comment no comment
 					ul#main-nav
-						li.active
-							i.fa.fa-comment
-							= locale.sites.desktop.pages._user.posts
-						li
-							i.fa.fa-thumbs-o-up
-							= locale.sites.desktop.pages._user.likes
-						li
-							i.fa.fa-heart-o
-							= locale.sites.desktop.pages._user.following
-						li
-							i.fa.fa-users
-							= locale.sites.desktop.pages._user.followers
+						li.active: a(href= config.url + '/' + user.screenName)
+							p.caption
+								i.fa.fa-comment
+								= locale.sites.desktop.pages._user.posts
+							p.count= comma(user.postsCount)
+						li: a(href= config.url + '/' + user.screenName + '/likes')
+							p.caption
+								i.fa.fa-thumbs-o-up
+								= locale.sites.desktop.pages._user.likes
+							p.count= comma(user.likesCount)
+						li: a(href= config.url + '/' + user.screenName + '/following')
+							p.caption
+								i.fa.fa-heart-o
+								= locale.sites.desktop.pages._user.following
+							p.count= comma(user.followingCount)
+						li: a(href= config.url + '/' + user.screenName + '/followers')
+							p.caption
+								i.fa.fa-users
+								= locale.sites.desktop.pages._user.followers
+							p.count= comma(user.followersCount)
 		div#contents
 			block contents

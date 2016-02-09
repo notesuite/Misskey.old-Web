@@ -221,11 +221,10 @@
 					}
 				},
 				"_user": {
-					"posts_count": "投稿",
-					"likes_count": "Likeした",
-					"liked_count": "Likeされた",
 					"posts": "投稿",
-					"likes": "Like",
+					"likes": "Likeした",
+					"liked": "Likeされた",
+					"posts": "投稿",
 					"following": "フォロー",
 					"followers": "フォロワー",
 					"_home": {
