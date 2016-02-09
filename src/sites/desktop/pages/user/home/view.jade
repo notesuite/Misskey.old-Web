@@ -29,6 +29,26 @@ block contents
 				p
 					| このユーザーをフォローするにはログインしてください
 		
+		if user.location != null && user.location != ''
+			p.location
+				i.fa.fa-map-marker
+				= user.location
+		
+		if user.url != null && user.url != ''
+			p.url
+				i.fa.fa-link
+				a(href= user.url, target='_blank')= user.url
+		
+		if user.tags.length > 0
+			ul.tags
+				each tag in user.tags
+					li.tag: a(href= config.searchUrl + '/user-tag/' + tag)
+						i.fa.fa-tag
+						= tag
+		else
+			p.empty-tags
+				| タグは設定されていません。
+		
 		if photoPosts != null && photoPosts.length > 0
 			section#photos
 				h2
@@ -41,13 +61,13 @@ block contents
 								a(href= config.url + '/' + user.screenName + '/' + post.id)
 	div#main-content
 		ul.nav
-			li.active
+			li.active: a(href= config.url + '/' + user.screenName + '/')
 				i.fa.fa-comment
 				= locale.sites.desktop.pages._user._home.timeline
-			li
+			li: a(href= config.url + '/' + user.screenName + '/')
 				i.fa.fa-comments-o
 				= locale.sites.desktop.pages._user._home.all
-			li
+			li: a(href= config.url + '/' + user.screenName + '/')
 				i.fa.fa-fire
 				= locale.sites.desktop.pages._user._home.popular
 		div#timeline

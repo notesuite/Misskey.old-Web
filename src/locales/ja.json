@@ -228,7 +228,9 @@
 					"following": "フォロー",
 					"followers": "フォロワー",
 					"_home": {
-						"timeline": "タイムライン"
+						"timeline": "タイムライン",
+						"all": "すべて",
+						"popular": "人気"
 					}
 				}
 			}
