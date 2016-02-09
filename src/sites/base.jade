@@ -1,10 +1,10 @@
 doctype html
 
+!= '<!-- Thank you for using Misskey! <3 @syuilo -->'
+
 - var htmlSchema = 'http://schema.org/WebPage';
 
 block vars
-
-!= '<!-- このセッションは ' + workerId + ' が担当しました -->'
 
 html(
 		lang=lang,
@@ -93,4 +93,4 @@ html(
 			ga('create', 'UA-57628372-1', 'auto');
 			ga('send', 'pageview');
 	
-!= '\r\n<!-- Misskeyの開発に興味がありますか？ Gitリポジトリはこちらです: https://github.com/MissKernel/Misskey -->'
+		!= '<!-- このセッションは ' + workerId + ' が担当しました -->'
