@@ -221,7 +221,15 @@
 					}
 				},
 				"_user": {
+					"posts_count": "投稿",
+					"likes_count": "Likeした",
+					"liked_count": "Likeされた",
+					"posts": "投稿",
+					"likes": "Like",
+					"following": "フォロー",
+					"followers": "フォロワー",
 					"_home": {
+						"timeline": "タイムライン"
 					}
 				}
 			}

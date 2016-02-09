@@ -48,13 +48,13 @@ block content
 							p#screen-name(itemprop='alternateName')= '@' + user.screenName
 						table.count-table
 							tr
-								th Posts
-								th Following
-								th Followers
+								th= locale.sites.desktop.pages._user.posts_count
+								th= locale.sites.desktop.pages._user.likes_count
+								th= locale.sites.desktop.pages._user.liked_count
 							tr
-								td: a(href='/' + user.screenName)= comma(user.postsCount)
-								td: a#following(href='/' + user.screenName + '/following')= comma(user.followingCount)
-								td: a#followers(href='/' + user.screenName + '/followers')= comma(user.followersCount)
+								td= comma(user.postsCount)
+								td= comma(user.likesCount)
+								td= comma(user.likedCount)
 			nav#header-nav(role='navigation')
 				div.main
 					div#avatar-area
@@ -69,15 +69,15 @@ block content
 					ul#main-nav
 						li.active
 							i.fa.fa-comment
-							| タイムライン
+							= locale.sites.desktop.pages._user.posts
 						li
-							i.fa.fa-comments-o
-							| すべて
+							i.fa.fa-thumbs-o-up
+							= locale.sites.desktop.pages._user.likes
 						li
-							i.fa.fa-picture-o
-							| 写真付き
+							i.fa.fa-heart-o
+							= locale.sites.desktop.pages._user.following
 						li
-							i.fa.fa-fire
-							| 人気
+							i.fa.fa-users
+							= locale.sites.desktop.pages._user.followers
 		div#contents
 			block contents

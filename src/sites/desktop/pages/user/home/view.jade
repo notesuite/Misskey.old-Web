@@ -44,6 +44,16 @@ block contents
 							li.photo(style='background-image: url("' + photo.thumbnailUrl + '")', title= post.createdAt)
 								a(href= config.url + '/' + user.screenName + '/' + post.id)
 	div#main-content
+		ul.nav
+			li.active
+				i.fa.fa-comment
+				= locale.sites.desktop.pages._user._home.timeline
+			li
+				i.fa.fa-comments-o
+				= locale.sites.desktop.pages._user._home.all
+			li
+				i.fa.fa-fire
+				= locale.sites.desktop.pages._user._home.popular
 		div#timeline
 			if timeline.length > 0
 				div.posts
