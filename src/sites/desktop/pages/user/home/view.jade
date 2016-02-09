@@ -29,10 +29,6 @@ block contents
 				p
 					| このユーザーをフォローするにはログインしてください
 		
-		p#liked-count
-			i.fa.fa-star
-			= comma(user.likedCount)
-		
 		if photoPosts != null && photoPosts.length > 0
 			section#photos
 				h2
