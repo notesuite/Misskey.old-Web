@@ -16,7 +16,7 @@ block content
 					div.swiper-wrapper
 						div.swiper-slide
 							a.avatar-anchor(href= config.url + '/' + user.screenName)
-								img.avatar(src= user.avatarThumbnailUrl, alt='avatar')
+								img.avatar(src= user.avatarUrl + '?size=92&quality=' + userSettings.displayImageQuality, alt='avatar')
 							h1.name
 								= user.name
 								if user.isVerified
