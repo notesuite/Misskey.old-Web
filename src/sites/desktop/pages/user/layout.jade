@@ -46,6 +46,16 @@ block content
 								if user.isVerified
 									img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
 							p#screen-name(itemprop='alternateName')= '@' + user.screenName
+							if login
+								if me.id != user.id
+									if user.isFollowed
+										p#friend-status
+											i.fa.fa-heart
+											| フォローされています
+								else
+									p#friend-status
+										i.fa.fa-smile-o
+										| You
 						table.count-table
 							tr
 								th= locale.sites.desktop.pages._user.liked
@@ -83,5 +93,20 @@ block content
 								i.fa.fa-users
 								= locale.sites.desktop.pages._user.followers
 							p.count= comma(user.followersCount)
+
+					div#friend-form
+						if login
+							if me.id != user.id
+								if user.isFollowing
+									button#friend-button.following
+										i.fa.fa-minus-circle
+										span.text フォロー中
+								else
+									button#friend-button.not-following
+										i.fa.fa-plus
+										span.text フォローする
+						else
+							p
+								| このユーザーをフォローするにはログインしてください
 		div#contents
 			block contents

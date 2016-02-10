@@ -6,28 +6,6 @@ block title
 
 block contents
 	div#sub-contents
-		div#friend-form
-			if login
-				if me.id != user.id
-					if user.isFollowed
-						p#friend-status
-							i.fa.fa-heart
-							| フォローされています
-					if user.isFollowing
-						button#friend-button.following
-							i.fa.fa-minus-circle
-							span.text フォロー中
-					else
-						button#friend-button.not-following
-							i.fa.fa-plus
-							span.text フォローする
-				else
-					p#friend-status
-						i.fa.fa-smile-o
-						| You
-			else
-				p
-					| このユーザーをフォローするにはログインしてください
 		
 		if user.location != null && user.location != ''
 			p.location
