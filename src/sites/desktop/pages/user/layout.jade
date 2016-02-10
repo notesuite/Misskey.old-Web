@@ -100,11 +100,11 @@ block content
 								if user.isFollowing
 									button#friend-button.following
 										i.fa.fa-minus-circle
-										span.text フォロー中
+										span.text= locale.sites.desktop.pages._user.unfollow
 								else
 									button#friend-button.not-following
 										i.fa.fa-plus
-										span.text フォローする
+										span.text= locale.sites.desktop.pages._user.follow
 						else
 							p
 								| このユーザーをフォローするにはログインしてください

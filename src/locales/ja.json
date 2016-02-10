@@ -227,6 +227,8 @@
 					"posts": "投稿",
 					"following": "フォロー",
 					"followers": "フォロワー",
+					"follow": "フォロー",
+					"unfollow": "フォロー解除",
 					"_home": {
 						"timeline": "タイムライン",
 						"all": "すべて",
