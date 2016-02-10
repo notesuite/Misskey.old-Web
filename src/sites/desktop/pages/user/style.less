@@ -408,6 +408,19 @@ main {
 							background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
 							background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
 							border: solid 1px #ddd;
+
+							&:hover {
+								border: solid 1px #ccc;
+							}
+
+							&:active {
+								background: #f2f2f2;
+								box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) inset;
+							}
+
+							&:focus {
+								border: solid 1px @theme-color;
+							}
 						}
 
 						&:disabled {
