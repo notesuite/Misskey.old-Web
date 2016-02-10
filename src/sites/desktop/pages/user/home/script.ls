@@ -21,8 +21,9 @@ $ window .on 'load scroll resize' ->
 	sub-overflow = (sub-top + sub-height) - window-height
 	if sub-overflow < 0 then sub-overflow = 0
 	if window-top + window-height > sub-top + sub-height and window-top + window-top-margin > top-margin
-		padding = window-height - sub-height - window-top-margin
+		padding =  window-height - sub-height - window-top-margin
 		if padding < 0 then padding = 0
+		if window-height > sub-top + sub-height then padding -= window-height - (sub-top + sub-height)
 		margin = window-top - sub-overflow - padding
 		$sub-body.css \margin-top "#{margin}px"
 	else
