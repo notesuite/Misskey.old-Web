@@ -13,9 +13,9 @@ block contents
 					= user.location
 			
 			if user.url != null && user.url != ''
-				p.url
+				a.url(href= user.url, target='_blank')
 					i.fa.fa-link
-					a(href= user.url, target='_blank')= user.url
+					= user.url
 			
 			if user.tags.length > 0
 				ul.tags
