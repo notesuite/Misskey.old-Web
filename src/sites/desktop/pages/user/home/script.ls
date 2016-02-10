@@ -6,6 +6,28 @@ Timeline = require '../../../common/scripts/timeline-core.js'
 timeline = null
 timeline-loading = no
 
+$ window .on 'load scroll resize' ->
+	window-top = $ window .scroll-top!
+	window-height = window.inner-height
+	window-top-margin = $ \#misskey-header .outer-height!
+
+	$sub = $ \#sub-contents
+	$sub-body = $sub.children \.body
+	sub-top = $sub.offset!.top
+	sub-height = $sub-body.outer-height!
+
+	top-margin = sub-top
+
+	sub-overflow = (sub-top + sub-height) - window-height
+	if sub-overflow < 0 then sub-overflow = 0
+	if window-top + window-height > sub-top + sub-height and window-top + window-top-margin > top-margin
+		padding = window-height - sub-height - window-top-margin
+		if padding < 0 then padding = 0
+		margin = window-top - sub-overflow - padding
+		$sub-body.css \margin-top "#{margin}px"
+	else
+		$sub-body.css \margin-top 0
+
 $ ->
 	$ \#left-sub-contents .css \padding-top "#{$ \#comment .outer-height! - 16px}px"
 

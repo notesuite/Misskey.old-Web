@@ -6,41 +6,63 @@ block title
 
 block contents
 	div#sub-contents
-		
-		if user.location != null && user.location != ''
-			p.location
-				i.fa.fa-map-marker
-				= user.location
-		
-		if user.url != null && user.url != ''
-			p.url
-				i.fa.fa-link
-				a(href= user.url, target='_blank')= user.url
-		
-		if user.tags.length > 0
-			ul.tags
-				each tag in user.tags
-					li.tag: a(href= config.searchUrl + '/user-tag/' + tag)
-						i.fa.fa-tag
-						= tag
-		else
-			p.empty-tags
-				| タグは設定されていません。
-		
-		p.created-at
-			i.fa.fa-calendar
-			time= user.createdAt
-		
-		if photoPosts != null && photoPosts.length > 0
-			section#photos
-				h2
-					i.fa.fa-camera
-					| Photos
-				ol.photos
-					each post in photoPosts
-						each photo in post.photos
-							li.photo(style='background-image: url("' + photo.thumbnailUrl + '")', title= post.createdAt)
-								a(href= config.url + '/' + user.screenName + '/' + post.id)
+		div.body
+			if user.location != null && user.location != ''
+				p.location
+					i.fa.fa-map-marker
+					= user.location
+			
+			if user.url != null && user.url != ''
+				p.url
+					i.fa.fa-link
+					a(href= user.url, target='_blank')= user.url
+			
+			if user.tags.length > 0
+				ul.tags
+					each tag in user.tags
+						li.tag: a(href= config.searchUrl + '/user-tag/' + tag)
+							i.fa.fa-tag
+							= tag
+			else
+				p.empty-tags
+					| タグは設定されていません。
+			
+			p.created-at
+				i.fa.fa-calendar
+				time= user.createdAt
+			
+			if photoPosts != null && photoPosts.length > 0
+				section#photos
+					h2
+						i.fa.fa-camera
+						| Photos
+					ol.photos
+						each post in photoPosts
+							each photo in post.photos
+								li.photo(style='background-image: url("' + photo.thumbnailUrl + '")', title= post.createdAt)
+									a(href= config.url + '/' + user.screenName + '/' + post.id)
+			p 0
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p a
+			p b
 	div#main-content
 		ul.nav
 			li.active: a(href= config.url + '/' + user.screenName + '/')
