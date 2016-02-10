@@ -1,12 +1,14 @@
 @import "../style";
 
 #main-content {
+	flex: 1 1;
+	padding: 16px;
+
 	> .nav {
 		display: block;
-		margin: 0;
+		margin: -12px 0 0 0;
 		padding: 0;
 		list-style: none;
-		background: #FFFBFB;
 
 		&:after {
 			content: "";
@@ -22,7 +24,8 @@
 
 			> a {
 				display: block;
-				padding: 8px;
+				padding: 8px 12px;
+				color: #94836F;
 
 				> i {
 					margin-right: 4px;
@@ -33,5 +36,40 @@
 
 	#timeline {
 		@import "../../../common/styles/timeline";
+	}
+}
+
+#sub-contents {
+	flex: 1 1 300px;
+	max-width: 300px;
+	padding: 16px;
+	text-align: center;
+	color: #94836F;
+
+	.location {
+		display: block;
+		margin: 1em;
+
+		i {
+			margin-right: 4px;
+		}
+	}
+
+	.url {
+		display: block;
+		margin: 1em;
+		
+		i {
+			margin-right: 4px;
+		}
+	}
+
+	.created-at {
+		display: block;
+		margin: 1em;
+
+		i {
+			margin-right: 4px;
+		}
 	}
 }
