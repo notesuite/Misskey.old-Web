@@ -27,6 +27,10 @@ block contents
 			p.empty-tags
 				| タグは設定されていません。
 		
+		p.created-at
+			i.fa.fa-calendar
+			time= user.createdAt
+		
 		if photoPosts != null && photoPosts.length > 0
 			section#photos
 				h2
