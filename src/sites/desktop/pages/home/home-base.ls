@@ -16,15 +16,19 @@ timeline-loading = no
 
 module.exports = (type) ->
 	$ window .on 'load scroll resize' ->
-		top = $ window .scroll-top!
+		window-top = $ window .scroll-top!
+		window-height = window.inner-height
 
 		if $ \#left-contents .length != 0
 			$left = $ \#left-contents
 			$left-body = $left.children \.body
-			left-overflow = ($left.offset!.top + $left-body.outer-height!) - window.inner-height
+			left-top = $left.offset!.top
+			left-height = $left-body.outer-height!
+
+			left-overflow = (left-top + left-height) - window-height
 			if left-overflow < 0 then left-overflow = 0
-			if top + window.inner-height > $left.offset!.top + $left-body.outer-height!
-				margin = top - left-overflow
+			if window-top + window-height > left-top + left-height
+				margin = window-top - left-overflow
 				#if margin + $left-body.outer-height! > $ document .height! - 64
 				#	$left-body.css \margin-top "#{($ document .height! - 64) - $left-body.outer-height!}px"
 				#else
@@ -36,10 +40,13 @@ module.exports = (type) ->
 		if $ \#right-contents .length != 0
 			$right = $ \#right-contents
 			$right-body = $right.children \.body
-			right-overflow = ($right.offset!.top + $right-body.outer-height!) - window.inner-height
+			right-top = $right.offset!.top
+			right-height = $right-body.outer-height!
+
+			right-overflow = (right-top + right-height) - window-height
 			if right-overflow < 0 then right-overflow = 0
-			if top + window.inner-height > $right.offset!.top + $right-body.outer-height!
-				margin = top - right-overflow
+			if window-top + window-height > right-top + right-height
+				margin = window-top - right-overflow
 				#if margin + $right-body.outer-height! > $ document .height! - 64
 				#	$right-body.css \margin-top "#{($ document .height! - 64) - $right-body.outer-height!}px"
 				#else
