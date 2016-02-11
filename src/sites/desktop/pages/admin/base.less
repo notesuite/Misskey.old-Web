@@ -1,0 +1,50 @@
+html {
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	background: #121212;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+nav {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	border-right: solid 1px #2b2b2b;
+
+	> ul {
+		display: block;
+		margin: 16px 0;
+		padding: 0;
+		list-style: none;
+
+		> li {
+			display: block;
+			margin: 0;
+			padding: 0;
+
+			> a {
+				padding: 16px 32px;
+
+				> i {
+					margin-right: 8px;
+				}
+			}
+		}
+	}
+}
