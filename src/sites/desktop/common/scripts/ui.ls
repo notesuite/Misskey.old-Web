@@ -456,12 +456,21 @@ class StatusPostForm
 				THIS.submit!
 
 		THIS.$textarea.on \paste (event) ->
-			items = (event.clipboard-data || event.original-event.clipboard-data).items
+			PASTE = @
+			data = event.original-event.clipboard-data
+			items = data.items
 			for i from 0 to items.length - 1
 				item = items[i]
-				if item.kind == \file && item.type.index-of \image != -1
-					file = item.get-as-file!
-					THIS.upload-file file
+				switch (item.kind)
+					| \file =>
+						file = item.get-as-file!
+						THIS.upload-file file
+					| \string =>
+						text = data.get-data \text/plain
+						if /^https?:\/\//.test text
+							event.prevent-default!
+							text = encodeURI text
+							PASTE.value = (PASTE.value.slice(0, PASTE.selection-start) + text + PASTE.value.slice(PASTE.selection-start + Math.abs(PASTE.selection-end - PASTE.selection-start)))
 
 		THIS.$form.find '.attach-from-album' .click ->
 			album = new AlbumDialog
