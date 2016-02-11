@@ -8,7 +8,7 @@ block header
 	= file.name
 
 block action
-	a.action: i.fa.fa-download
+	a.action(href= file.url + '?download', download= file.name): i.fa.fa-download
 
 block content
 	- function bytesToSize(bytes) {
@@ -30,6 +30,19 @@ block content
 					img(src= file.url, alt='')
 				default
 					i.fa.fa-file-o
+		case file.mimeType
+			when 'image/jpeg'
+			when 'image/png'
+			when 'image/gif'
+			when 'image/webp'
+			when 'image/tiff'
+			when 'image/bmp'
+				footer
+					p.size
+						span.width= file.properties.width
+						span.time ×
+						span.height= file.properties.height
+						span.px px
 	div#info
 		p.mime-type
 			case file.mimeType
@@ -52,12 +65,12 @@ block content
 			time(datetime= file.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')
 				= file.createdAt
 	div#menu
-		button
+		a.button(href= file.url + '?download', download= file.name)
 			i.fa.fa-download
 			=locale.sites.mobile.pages._i._album._file.download
-		button
+		button.button
 			i.fa.fa-pencil
 			=locale.sites.mobile.pages._i._album._file.rename
-		button
+		button.button
 			i.fa.fa-trash
 			=locale.sites.mobile.pages._i._album._file.delete

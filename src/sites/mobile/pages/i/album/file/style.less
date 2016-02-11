@@ -19,6 +19,24 @@ html, #misskey-main {
 			margin: 0 auto;
 		}
 	}
+
+	> footer {
+		padding: 8px 8px 0 8px;
+		font-size: 0.8em;
+		color: #888;
+
+		> .size {
+			margin: 0;
+
+			.time {
+				margin: 0 4px;
+			}
+
+			.px {
+				margin-left: 8px;
+			}
+		}
+	}
 }
 
 #info {
@@ -40,7 +58,7 @@ html, #misskey-main {
 		color: #9D9D9D;
 
 		> i {
-			margin-right: 2px;
+			margin-right: 4px;
 		}
 	}
 
@@ -67,7 +85,7 @@ html, #misskey-main {
 	padding: 14px;
 	border-top: solid 1px #dfdfdf;
 
-	button {
+	.button {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
@@ -78,7 +96,8 @@ html, #misskey-main {
 		margin: 0 0 12px 0;
 		color: #333;
 		text-align: center;
-		text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+		text-decoration: none;
 		white-space: nowrap;
 		background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
 		background-image: linear-gradient(#fafafa, #eaeaea);
