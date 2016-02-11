@@ -51,7 +51,9 @@
 
 		.location {
 			display: block;
-			margin: 1em;
+			margin: 0;
+			padding: 1em;
+			border-bottom: solid 1px #DED8D2;
 
 			i {
 				margin-right: 4px;
@@ -60,18 +62,24 @@
 
 		.url {
 			display: block;
-			margin: 1em;
-			color: inherit;
+			margin: 0;
+			padding: 1em;
+			border-bottom: solid 1px #DED8D2;
 
-			i {
-				margin-right: 4px;
+			> a {
+				color: inherit;
+
+				i {
+					margin-right: 4px;
+				}
 			}
 		}
 
 		.tags {
 			display: block;
-			margin: 1em;
-			padding: 0;
+			margin: 0;
+			padding: ~"calc(1em - 8px)";
+			border-bottom: solid 1px #DED8D2;
 			list-style: none;
 
 			.tag {
@@ -92,7 +100,8 @@
 
 		.created-at {
 			display: block;
-			margin: 1em;
+			margin: 0;
+			padding: 1em;
 
 			i {
 				margin-right: 4px;
