@@ -8,9 +8,6 @@ block meta
 	meta(name='description', content= user.name + 'さんをフォローしているユーザー')
 	meta(name='keywords', content='Misskey,' + user.screenName)
 
-block assets
-	script!= 'var USER = ' + JSON.stringify(user) + ';'
-
 block content
 	-
 		function comma(str) {

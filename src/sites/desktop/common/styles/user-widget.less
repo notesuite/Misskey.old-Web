@@ -1,0 +1,182 @@
+@import "../../common";
+
+.user-widget {
+	display: block;
+	width: 250px;
+	min-height: 190px;
+	text-align: center;
+	background-clip: content-box;
+	background: #fff;
+	border-radius: 3px;
+	overflow: hidden;
+
+	> .main {
+		display: block;
+		position: relative;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+		transition: left 1s cubic-bezier(0, 1, 0, 1);
+
+		.banner {
+			display: block;
+			position: absolute;
+			z-index: 0;
+			width: 100%;
+			height: 64px;
+			background-color: #fbfbfb;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+			border-radius: 3px 3px 0 0;
+		}
+
+		.nav-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: block;
+			position: absolute;
+			top: 72px;
+			left: 8px;
+			box-sizing: border-box;
+			padding: 4px 8px;
+			margin: 0;
+			font-size: 1em;
+			line-height: 20px;
+			color: #777;
+			outline: none;
+			border: none;
+			background: transparent;
+			box-shadow: none;
+			transition: none;
+			cursor: pointer;
+
+			&:hover {
+				color: #555;
+			}
+
+			&:active {
+				color: #333;
+			}
+		}
+
+		.friend-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: block;
+			position: absolute;
+			top: 72px;
+			right: 8px;
+			box-sizing: border-box;
+			padding: 4px 16px;
+			margin: 0;
+			font-size: 1em;
+			line-height: 20px;
+			outline: none;
+			border: none;
+			border-radius: 3px;
+			box-shadow: none;
+			transition: none;
+			cursor: pointer;
+
+			&.following {
+				color: contrast(@theme-color, #000, #fff, 70%);
+				background: @theme-color;
+
+				&:hover {
+					background: lighten(@theme-color, 10%);
+				}
+
+				&:active {
+					background: darken(@theme-color, 10%);
+				}
+			}
+
+			&.not-following {
+				padding: 3px 15px;
+				color: @theme-color;
+				background: transparent;
+				border: solid 1px @theme-color;
+
+				&:hover {
+					background: fade(@theme-color, 15%);
+				}
+
+				&:active {
+					background: fade(@theme-color, 30%);
+				}
+			}
+
+			* {
+				pointer-events: none;
+			}
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: wait;
+			}
+
+			> i {
+				vertical-align: middle;
+			}
+		}
+
+		.avatar-anchor {
+			display: block;
+			position: relative;
+			z-index: 1;
+			width: 88px;
+			height: 88px;
+			margin: 20px auto 10px auto;
+			border-radius: 100%;
+
+			.avatar {
+				display: block;
+				width: 88px;
+				height: 88px;
+				margin: 0;
+				border-radius: 100%;
+			}
+		}
+
+		.name {
+			display: block;
+			margin: 8px;
+			font-size: 1em;
+			line-height: 1em;
+			color: #222;
+
+			> a {
+				color: inherit;
+
+				> .verified-icon {
+					display: inline;
+					vertical-align: -11%;
+					margin-left: 0.125em;
+					width: 1em;
+					height: 1em;
+				}
+			}
+		}
+
+		.screen-name {
+			display: block;
+			margin: 8px;
+			font-size: 0.9em;
+			line-height: 1em;
+			color: #7a7a7a;
+		}
+
+		.comment {
+			display: block;
+			margin: 16px 0;
+			padding: 8px;
+			word-wrap: break-word;
+			font-size: 0.8em;
+			color: #444;
+			border-top: solid 1px rgba(0, 0, 0, 0.1);
+		}
+	}
+}

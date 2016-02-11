@@ -4,4 +4,4 @@ init-user-widget = require '../../../common/scripts/init-user-widget.js'
 
 $ ->
 	$ 'main > .users > .user' .each ->
-		init-user-widget ($ @).children '.ui-user-widget'
+		init-user-widget ($ @).children '.user-widget'
