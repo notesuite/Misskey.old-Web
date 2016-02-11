@@ -309,7 +309,12 @@
 					"_album": {
 						"page_title": "ほむ - Misskey",
 						"page_header_title": "ほむ",
-						"upload": "ほむ"
+						"upload": "ほむ",
+						"_file": {
+							"download": "ほむ",
+							"rename": "ほむ",
+							"delete": "ほむ"
+						}
 					},
 					"_post": {
 						"page_title": "ほむ - Misskey",

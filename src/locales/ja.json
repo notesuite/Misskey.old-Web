@@ -322,7 +322,12 @@
 					"_album": {
 						"page_title": "アルバム - Misskey",
 						"page_header_title": "アルバム",
-						"upload": "アップロード"
+						"upload": "アップロード",
+						"_file": {
+							"download": "ダウンロード",
+							"rename": "名前を変更",
+							"delete": "削除"
+						}
 					},
 					"_post": {
 						"page_title": "新規投稿 - Misskey",

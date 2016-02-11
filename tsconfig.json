@@ -99,6 +99,7 @@
 		"src/sites/mobile/pages/i/post/controller.ts",
 		"src/sites/mobile/pages/i/upload/controller.ts",
 		"src/sites/mobile/pages/i/album/controller.ts",
+		"src/sites/mobile/pages/i/album/file/controller.ts",
 		"src/sites/mobile/pages/i/settings/controller.ts",
 		"src/sites/mobile/pages/i/settings/avatar/controller.ts",
 		"src/sites/mobile/pages/i/settings/banner/controller.ts",

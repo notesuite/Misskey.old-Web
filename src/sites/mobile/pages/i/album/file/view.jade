@@ -1,0 +1,63 @@
+extends ../../../../ui
+
+block title
+	= file.name
+
+block header
+	i.fa.fa-file-o
+	= file.name
+
+block action
+	a.action: i.fa.fa-download
+
+block content
+	- function bytesToSize(bytes) {
+	-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+	-    if (bytes == 0) return '0Byte';
+	-    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+	-    return Math.round(bytes / Math.pow(1024, i), 2) + sizes[i];
+	- };
+
+	div#preview
+		a(href= file.url)
+			case file.mimeType
+				when 'image/jpeg'
+				when 'image/png'
+				when 'image/gif'
+				when 'image/webp'
+				when 'image/tiff'
+				when 'image/bmp'
+					img(src= file.url, alt='')
+				default
+					i.fa.fa-file-o
+	div#info
+		p.mime-type
+			case file.mimeType
+				when 'image/jpeg'
+				when 'image/png'
+				when 'image/gif'
+				when 'image/webp'
+				when 'image/tiff'
+				when 'image/bmp'
+					i.fa.fa-file-image-o
+				default
+					i.fa.fa-file-o
+			= file.mimeType
+		p.separator(role='presentation')
+		p.data-size
+			= bytesToSize(file.dataSize)
+		p.separator(role='presentation')
+		p.created-at
+			i.fa.fa-clock-o
+			time(datetime= file.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')
+				= file.createdAt
+	div#menu
+		button
+			i.fa.fa-download
+			=locale.sites.mobile.pages._i._album._file.download
+		button
+			i.fa.fa-pencil
+			=locale.sites.mobile.pages._i._album._file.rename
+		button
+			i.fa.fa-trash
+			=locale.sites.mobile.pages._i._album._file.delete

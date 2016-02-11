@@ -97,6 +97,7 @@ export default function router(app: express.Express): void {
 
 	app.param('userScreenName', paramUserScreenName);
 	app.param('postId', paramPostId);
+	app.param('fileId', paramFileId);
 	app.param('talkGroupId', paramTalkGroupId);
 
 	app.get('/', (req, res) => {
@@ -261,6 +262,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/album');
 	});
 
+	app.get('/i/album/file/:fileId', (req, res) => {
+		callController(req, res, 'i/album/file');
+	});
+
 	app.get('/i/upload', (req, res) => {
 		callController(req, res, 'i/upload');
 	});
@@ -392,6 +397,27 @@ function paramPostId(
 		if (err.body === 'not-found') {
 			res.status(404);
 			callController(req, res, 'post-not-found');
+		}
+	});
+}
+
+function paramFileId(
+	req: express.Request,
+	res: express.Response,
+	next: () => void,
+	fileId: string
+): void {
+	'use strict';
+
+	requestApi('album/files/show', {
+		'file-id': fileId
+	}, res.locals.isLogin ? req.user : null).then((file: Object) => {
+		res.locals.file = file;
+		next();
+	}, (err: any) => {
+		if (err.body === 'not-found') {
+			res.status(404);
+			callController(req, res, 'i/album/file-not-found');
 		}
 	});
 }
