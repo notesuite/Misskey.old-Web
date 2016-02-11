@@ -1,0 +1,35 @@
+- function bytesToSize(bytes) {
+-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+-    if (bytes == 0) return '0Byte';
+-    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+-    return Math.round(bytes / Math.pow(1024, i), 2) + sizes[i];
+- };
+
+li.item.file(
+		data-file-id= file.id
+		data-mimetype= file.mimeType
+		data-folder-id= file.folder === null ? 'null' : file.folder
+		data-created-at= file.createdAt
+		data-data= JSON.stringify(file))
+	a(href= config.url + '/i/album/file/' + file.id)
+		case file.mimeType
+			when 'image/jpeg'
+			when 'image/png'
+			when 'image/gif'
+			when 'image/webp'
+			when 'image/tiff'
+			when 'image/bmp'
+				div.thumbnail(style={'background-image': 'url(#{file.thumbnailUrl})'})
+			default
+				div.thumbnail
+					i.fa.fa-file-o
+		div.body
+			p.name= file.name
+			footer
+				p.data-size
+					= bytesToSize(file.dataSize)
+				p.separator(role='presentation')
+				p.created-at
+					i.fa.fa-clock-o
+					time(datetime= file.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')
+						= file.createdAt

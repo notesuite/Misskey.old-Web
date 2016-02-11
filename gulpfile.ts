@@ -69,6 +69,8 @@ task('copy:frontside-templates', () => {
 	return es.merge(
 		src('./src/sites/**/common/views/**/*.jade')
 			.pipe(dest('./tmp/')),
+		src('./src/sites/**/pages/**/*.jade')
+			.pipe(dest('./tmp/')),
 		src('./src/sites/**/common/widgets/**/*.jade')
 			.pipe(dest('./tmp/')),
 		src('./src/sites/common/**/*.jade')

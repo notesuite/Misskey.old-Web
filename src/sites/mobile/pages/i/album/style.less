@@ -4,3 +4,86 @@ html, #misskey-main {
 	color: #8C8079;
 	background: #fff;
 }
+
+#files {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	> .file {
+		display: block;
+		margin: 0;
+		padding: 0;
+		background: #fff;
+
+		> a {
+			display: block;
+			padding: 16px;
+			border-bottom: solid 1px #eee;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			> .thumbnail {
+				display: block;
+				float: left;
+				width: 64px;
+				height: 64px;
+				background-size: cover;
+				background-position: center center;
+			}
+
+			> .body {
+				display: block;
+				float: left;
+				width: ~"calc(100% - 72px)";
+				margin-left: 8px;
+
+				> .name {
+					display: block;
+					margin: 0;
+					padding: 0;
+					font-weight: bold;
+					color: #555;
+					text-overflow: ellipsis;
+					word-wrap: break-word;
+				}
+
+				> footer {
+					display: block;
+					margin: 4px 0 0 0;
+					font-size: 0.8em;
+
+					> .separator {
+						display: inline;
+						margin: 0;
+						padding: 0 4px;
+						color: #CDCDCD;
+					}
+
+					> .data-size {
+						display: inline;
+						margin: 0;
+						padding: 0;
+						color: #9D9D9D;
+					}
+
+					> .created-at {
+						display: inline;
+						margin: 0;
+						padding: 0;
+						color: #BDBDBD;
+
+						> i {
+							margin-right: 2px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

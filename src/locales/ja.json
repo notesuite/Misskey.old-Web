@@ -319,6 +319,11 @@
 					}
 				},
 				"_i": {
+					"_album": {
+						"page_title": "アルバム - Misskey",
+						"page_header_title": "アルバム",
+						"upload": "アップロード"
+					},
 					"_post": {
 						"page_title": "新規投稿 - Misskey",
 						"page_header_title": "新規投稿",

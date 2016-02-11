@@ -308,6 +308,11 @@
 					}
 				},
 				"_i": {
+					"_album": {
+						"page_title": "Album - Misskey",
+						"page_header_title": "Album",
+						"upload": "Upload"
+					},
 					"_post": {
 						"page_title": "New post - Misskey",
 						"page_header_title": "New post",
