@@ -1,0 +1,15 @@
+extends ../../../ui
+
+block title
+	=locale.sites.mobile.pages._i._upload.page_title
+
+block header
+	i.fa.fa-upload
+	=locale.sites.mobile.pages._i._upload.page_header_title
+
+block content
+	div#main-container
+		main(role='main')
+			div#form
+				input#file.ui-input-file(name='file', type='file', accept='*', multiple)
+				ol#files

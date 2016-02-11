@@ -236,6 +236,7 @@
 				"account_suspended": "ほむ",
 				"managed_by": "ほ{name}む",
 				"nav": {
+					"album": "ほむ",
 					"post": "ほむ",
 					"home": "ほむ",
 					"mentions": "ほむ",
@@ -243,6 +244,7 @@
 					"talks": "ほむ",
 					"search": "ほむ",
 					"settings": "ほむ",
+					"upload": "ほむ",
 					"about_misskey": "ほむ"
 				},
 				"post": {
@@ -310,6 +312,13 @@
 						"post": "ほむ",
 						"posting": "ほむ...",
 						"failed": "ほむ。"
+					},
+					"_upload": {
+						"page_title": "ほむ - Misskey",
+						"page_header_title": "ほむ",
+						"uploading": "ほむ...",
+						"success": "ほむ",
+						"failed": "ほむ"
 					},
 					"_settings": {
 						"page_title": "ほむ",

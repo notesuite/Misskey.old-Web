@@ -249,6 +249,7 @@
 				"account_suspended": "あなたのアカウントは凍結されています",
 				"managed_by": "このセッションは{name}が担当しました",
 				"nav": {
+					"album": "アルバム",
 					"post": "投稿",
 					"home": "ホーム",
 					"mentions": "自分宛て",
@@ -256,6 +257,7 @@
 					"talks": "トーク",
 					"search": "検索",
 					"settings": "設定",
+					"upload": "アップロード",
 					"about_misskey": "Misskeyについて"
 				},
 				"post": {
@@ -323,6 +325,13 @@
 						"post": "投稿",
 						"posting": "投稿中...",
 						"failed": "投稿に失敗しました。再度お試しください。"
+					},
+					"_upload": {
+						"page_title": "アップロード - Misskey",
+						"page_header_title": "アップロード",
+						"uploading": "アップロード中...",
+						"success": "アップロード完了",
+						"failed": "アップロード失敗"
 					},
 					"_settings": {
 						"page_title": "設定 - Misskey",

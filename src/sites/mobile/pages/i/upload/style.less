@@ -1,0 +1,84 @@
+@import "../../../common/styles/ui";
+
+html, #misskey-main {
+	color: #8C8079;
+	background: #F1E9E2;
+}
+
+#main-container {
+	padding: 8px;
+
+	> main {
+		display: block;
+		box-sizing: border-box;
+		margin: 0 auto;
+		max-width: 500px;
+
+		> #form {
+			padding: 8px 12px;
+			background: #fff;
+			border-radius: 8px;
+
+			#file {
+				margin: 0;
+			}
+
+			#files {
+				display: block;
+				margin: 8px 0 0 0;
+				padding: 0;
+				list-style: none;
+
+				&:empty {
+					display: none;
+				}
+
+				> li {
+					display: block;
+					margin: 0;
+					padding: 8px;
+					border-top: solid 1px #ECE6E4;
+
+					p {
+						display: block;
+						margin: 0;
+
+						.status {
+							margin-left: 8px;
+							opacity: 0.7;
+						}
+					}
+				}
+			}
+
+			progress {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: none;
+				margin: 8px 0;
+				width: 100%;
+				height: 8px;
+				border: none;
+				border-radius: 4px;
+				overflow: hidden;
+
+				&::-webkit-progress-value {
+					background-color: @theme-color;
+				}
+
+				&::-webkit-progress-bar {
+					background-color: #fff;
+				}
+
+				&:not([value])::-webkit-progress-bar {
+					background-image: url("@{resources-url}/mobile/common/images/indeter.gif");
+				}
+			}
+		}
+	}
+
+	@media (min-width: 516px) {
+		padding: 16px 8px;
+	}
+}

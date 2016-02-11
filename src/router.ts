@@ -261,6 +261,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/album');
 	});
 
+	app.get('/i/upload', (req, res) => {
+		callController(req, res, 'i/upload');
+	});
+
 	app.get('/i/settings', (req, res) =>
 		callController(req, res, 'i/settings'));
 

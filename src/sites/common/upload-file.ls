@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 
-module.exports = (file, $progress, uploading, success, failed) ->
+module.exports = (file, $progress, uploading, success, failed, always) ->
 	data = new FormData!
 		..append \file file
 	$.ajax "#{CONFIG.web-api-url}/web/album/upload" {
@@ -18,9 +18,14 @@ module.exports = (file, $progress, uploading, success, failed) ->
 			XHR
 	}
 	.done (file) ->
-		success file
+		if success?
+			success file
 	.fail (data) ->
-		failed!
+		if failed?
+			failed!
+	.always ->
+		if always?
+			always!
 
 	function progress e
 		percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100

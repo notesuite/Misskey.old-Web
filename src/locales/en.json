@@ -238,6 +238,7 @@
 				"account_suspended": "Your account has been suspended",
 				"managed_by": "Managed by {name}",
 				"nav": {
+					"album": "Album",
 					"post": "Post",
 					"home": "Home",
 					"mentions": "Mentions",
@@ -245,6 +246,7 @@
 					"talks": "Talks",
 					"search": "Search",
 					"settings": "Settings",
+					"upload": "Upload",
 					"about_misskey": "About Misskey"
 				},
 				"post": {
@@ -312,6 +314,13 @@
 						"post": "Post",
 						"posting": "Sending...",
 						"failed": "Post failed. Please try again."
+					},
+					"_upload": {
+						"page_title": "Upload - Misskey",
+						"page_header_title": "Upload",
+						"uploading": "Uploading...",
+						"success": "Success",
+						"failed": "Failed"
 					},
 					"_settings": {
 						"page_title": "Settings - Misskey",
