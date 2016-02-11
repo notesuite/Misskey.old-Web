@@ -86,7 +86,7 @@ function on-scroll
 	if opacity > 0.3 then opacity = 0.3
 	$ \#misskey-header .css \box-shadow "0 0 1px rgba(0, 0, 0, #{opacity})"
 
-	if t > 700px
+	if t > 500px
 		$ \#misskey-go-top-button .remove-class \hidden
 	else
 		$ \#misskey-go-top-button .add-class \hidden
