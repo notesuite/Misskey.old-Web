@@ -37,9 +37,9 @@ block content
 							a(href='/i/album/folder/' + parentFolder.id)= parentFolder.name
 				li.separator: i.fa.fa-angle-right
 				li.folder
-					= folder.name
+					a(href='/i/album/folder/' + folder.id)= folder.name
 			li.separator: i.fa.fa-angle-right
-			li.item
+			li.file
 				= file.name
 
 	div#preview

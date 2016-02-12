@@ -315,6 +315,11 @@
 						"create_folder": "ほむ",
 						"create_folder_dialog": "ほむ",
 						"create_folder_failed": "ほむ",
+						"_folder": {
+							"rename": "ほむ",
+							"rename_dialog": "ほむほむ",
+							"rename_failed": "ほむ"
+						},
 						"_file": {
 							"download": "ほむ",
 							"rename": "ほむ",

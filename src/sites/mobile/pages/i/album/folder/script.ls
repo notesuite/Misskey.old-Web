@@ -33,6 +33,21 @@ $ ->
 		.fail ->
 	.fail ->
 
+	$rename-folder-button = $ '#album-extended-nav .rename-folder'
+	$rename-folder-button.click ->
+		name = window.prompt LOCALE.sites.mobile.pages._i._album._folder.rename_dialog, FOLDER.name
+		if name? and name != '' and name != FOLDER.name
+			$rename-folder-button.attr \disabled on
+			$.ajax "#{CONFIG.web-api-url}/album/folders/rename" {
+				data:
+					'name': name
+					'folder-id': FOLDER.id
+			} .done (folder) ->
+				location.reload!
+			.fail (data) ->
+				$rename-folder-button.attr \disabled off
+				window.alert LOCALE.sites.mobile.pages._i._album._folder.rename_failed
+
 	$create-folder-button = $ '#album-extended-nav .create-folder'
 	$create-folder-button.click ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album.create_folder_dialog

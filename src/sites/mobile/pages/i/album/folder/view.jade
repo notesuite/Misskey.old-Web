@@ -4,7 +4,7 @@ block title
 	= folder.name
 
 block header
-	i.fa.fa-folder
+	i.fa.fa-folder-open
 	= folder.name
 
 block action
@@ -13,6 +13,9 @@ block action
 block nav-extend
 	div#album-extended-nav
 		p.caption= locale.sites.mobile.pages._i._album.extended_nav
+		button.button.rename-folder
+			i.fa.fa-pencil
+			= locale.sites.mobile.pages._i._album._folder.rename
 		button.button.create-folder
 			i.fa.fa-plus
 			= locale.sites.mobile.pages._i._album.create_folder

@@ -317,6 +317,11 @@
 						"create_folder": "Create a folder",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",
 						"create_folder_failed": "フォルダの作成に失敗しました",
+						"_folder": {
+							"rename": "Rename the folder",
+							"rename_dialog": "新しい名前を入力してください",
+							"rename_failed": "名前の変更に失敗しました。"
+						},
 						"_file": {
 							"download": "Download",
 							"rename": "Rename",
