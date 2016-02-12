@@ -326,6 +326,8 @@
 						"_file": {
 							"download": "ダウンロード",
 							"rename": "名前を変更",
+							"rename_dialog": "新しい名前を入力してください",
+							"rename_failed": "名前の変更に失敗しました。",
 							"delete": "削除"
 						}
 					},
