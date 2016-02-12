@@ -31,21 +31,26 @@ block content
 					i.fa.fa-cloud
 					= locale.sites.mobile.pages._i._album.nav_root
 			if folder.parent != null
-				each parentFolder in folder.parent
+				mixin x(folder)
+					if folder.parent != null
+						+x(folder.parent)
 					li.separator: i.fa.fa-angle-right
 					li.folder
-						a(href='/i/album/folder/' + parentFolder.id)= parentFolder.name
+						a(href='/i/album/folder/' + folder.id)= folder.name
+				+x(folder.parent)
 			li.separator: i.fa.fa-angle-right
 			li.folder
 				= folder.name
 	if folder.parent != null
 		a#up(href='/i/album/folder/' + folder.parent.id)
-			i.fa.fa-level-up.fa-flip-horizontal
-			| ..
+			p
+				i.fa.fa-level-up.fa-flip-horizontal
+				| ..
 	else
 		a#up(href='/i/album')
-			i.fa.fa-level-up.fa-flip-horizontal
-			| ..
+			p
+				i.fa.fa-level-up.fa-flip-horizontal
+				| ..
 	div#loading.
 		<div class="spinner">
 			<div class="dot1"></div>
