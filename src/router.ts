@@ -98,6 +98,7 @@ export default function router(app: express.Express): void {
 	app.param('userScreenName', paramUserScreenName);
 	app.param('postId', paramPostId);
 	app.param('fileId', paramFileId);
+	app.param('folderId', paramFolderId);
 	app.param('talkGroupId', paramTalkGroupId);
 
 	app.get('/', (req, res) => {
@@ -266,6 +267,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/album/file');
 	});
 
+	app.get('/i/album/folder/:folderId', (req, res) => {
+		callController(req, res, 'i/album/folder');
+	});
+
 	app.get('/i/upload', (req, res) => {
 		callController(req, res, 'i/upload');
 	});
@@ -418,6 +423,27 @@ function paramFileId(
 		if (err.body === 'not-found') {
 			res.status(404);
 			callController(req, res, 'i/album/file-not-found');
+		}
+	});
+}
+
+function paramFolderId(
+	req: express.Request,
+	res: express.Response,
+	next: () => void,
+	folderId: string
+): void {
+	'use strict';
+
+	requestApi('album/folders/show', {
+		'folder-id': folderId
+	}, res.locals.isLogin ? req.user : null).then((folder: Object) => {
+		res.locals.folder = folder;
+		next();
+	}, (err: any) => {
+		if (err.body === 'not-found') {
+			res.status(404);
+			callController(req, res, 'i/album/folder-not-found');
 		}
 	});
 }

@@ -1,0 +1,36 @@
+extends ../../../../ui
+
+block title
+	= folder.name
+
+block header
+	i.fa.fa-folder
+	= folder.name
+
+block action
+	a.action(href= config.url + '/i/upload'): i.fa.fa-upload
+
+block nav-extend
+	div#album-extended-nav
+		p.caption= locale.sites.mobile.pages._i._album.extended_nav
+		button.button.create-folder
+			i.fa.fa-plus
+			= locale.sites.mobile.pages._i._album.create_folder
+
+block assets
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var FOLDER = ' + JSON.stringify(folder) + '; Object.freeze(FOLDER);') + '"));'
+
+block content
+	nav#nav
+		ol.items
+			li.root
+				a(href='/i/album')
+					i.fa.fa-cloud
+					= locale.sites.mobile.pages._i._album.nav_root
+	div#loading.
+		<div class="spinner">
+			<div class="dot1"></div>
+			<div class="dot2"></div>
+		</div>
+	ol#folders
+	ol#files
