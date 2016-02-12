@@ -312,6 +312,7 @@
 						"page_title": "Album - Misskey",
 						"page_header_title": "Album",
 						"upload": "Upload",
+						"nav_root": "Album",
 						"_file": {
 							"download": "Download",
 							"rename": "Rename",

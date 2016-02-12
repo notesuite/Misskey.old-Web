@@ -323,6 +323,7 @@
 						"page_title": "アルバム - Misskey",
 						"page_header_title": "アルバム",
 						"upload": "アップロード",
+						"nav_root": "アルバム",
 						"_file": {
 							"download": "ダウンロード",
 							"rename": "名前を変更",

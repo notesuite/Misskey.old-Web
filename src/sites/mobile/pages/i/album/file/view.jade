@@ -32,6 +32,14 @@ block content
 	-    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
 	-    return Math.round(bytes / Math.pow(1024, i), 2) + sizes[i];
 	- };
+	
+	nav#nav
+		ol.items
+			li.item
+				a(href='/i/album')= locale.sites.mobile.pages._i._album.nav_root
+			li.separator: i.fa.fa-angle-right
+			li.item
+				= file.name
 
 	div#preview
 		a(href= file.url)
