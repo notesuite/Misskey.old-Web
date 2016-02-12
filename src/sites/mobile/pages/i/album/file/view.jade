@@ -35,8 +35,10 @@ block content
 	
 	nav#nav
 		ol.items
-			li.item
-				a(href='/i/album')= locale.sites.mobile.pages._i._album.nav_root
+			li.root
+				a(href='/i/album')
+					i.fa.fa-cloud
+					= locale.sites.mobile.pages._i._album.nav_root
 			li.separator: i.fa.fa-angle-right
 			li.item
 				= file.name
