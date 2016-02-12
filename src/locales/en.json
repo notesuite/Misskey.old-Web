@@ -315,7 +315,11 @@
 						"_file": {
 							"download": "Download",
 							"rename": "Rename",
-							"delete": "Delete"
+							"rename_dialog": "新しい名前を入力してください",
+							"rename_failed": "名前の変更に失敗しました。",
+							"delete": "Delete",
+							"delete_dialog": "ファイルを削除しますか？",
+							"delete_failed": "削除に失敗しました。"
 						}
 					},
 					"_post": {

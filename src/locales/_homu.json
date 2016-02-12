@@ -313,7 +313,11 @@
 						"_file": {
 							"download": "ほむ",
 							"rename": "ほむ",
-							"delete": "ほむ"
+							"rename_dialog": "ほむ",
+							"rename_failed": "ほむ",
+							"delete": "ほむ",
+							"delete_dialog": "ほむ？",
+							"delete_failed": "ほむ"
 						}
 					},
 					"_post": {

@@ -16,3 +16,16 @@ $ ->
 			.fail (data) ->
 				$rename.attr \disabled off
 				window.alert LOCALE.sites.mobile.pages._i._album._file.rename_failed
+
+	$delete = $ \#delete
+	$delete.click ->
+		if window.confirm LOCALE.sites.mobile.pages._i._album._file.delete_dialog
+			$delete.attr \disabled on
+			$.ajax "#{CONFIG.web-api-url}/album/files/delete" {
+				data:
+					'file-id': FILE.id
+			} .done (post) ->
+				location.href = CONFIG.url + '/i/album'
+			.fail (data) ->
+				$delete.attr \disabled off
+				window.alert LOCALE.sites.mobile.pages._i._album._file.delete_failed
