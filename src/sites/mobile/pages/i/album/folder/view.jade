@@ -44,16 +44,24 @@ block content
 	nav#nav
 		ol.items
 			li.root
-				a(href='/i/album')
-					i.fa.fa-cloud
-					= locale.sites.mobile.pages._i._album.nav_root
+				if choose != undefined && choose != null
+					a(href= '/i/album?choose=' + choose)
+						i.fa.fa-cloud
+						= locale.sites.mobile.pages._i._album.nav_root
+				else
+					a(href='/i/album')
+						i.fa.fa-cloud
+						= locale.sites.mobile.pages._i._album.nav_root
 			if folder.parent != null
 				mixin x(folder)
 					if folder.parent != null
 						+x(folder.parent)
 					li.separator: i.fa.fa-angle-right
 					li.folder
-						a(href='/i/album/folder/' + folder.id)= folder.name
+						if choose != undefined && choose != null
+							a(href='/i/album/folder/' + folder.id + '?choose=' + choose)= folder.name
+						else
+							a(href='/i/album/folder/' + folder.id)= folder.name
 				+x(folder.parent)
 			li.separator: i.fa.fa-angle-right
 			li.folder
