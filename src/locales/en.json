@@ -315,6 +315,7 @@
 						"nav_root": "Album",
 						"load_more": "Load more",
 						"loading": "Loading...",
+						"no_files": "No files",
 						"extended_nav": "Album menu",
 						"create_folder": "Create a folder",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",

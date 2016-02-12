@@ -326,6 +326,7 @@
 						"nav_root": "アルバム",
 						"load_more": "さらに読み込む",
 						"loading": "読み込み中...",
+						"no_files": "ファイルはありません",
 						"extended_nav": "アルバムメニュー",
 						"create_folder": "フォルダを作成",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",

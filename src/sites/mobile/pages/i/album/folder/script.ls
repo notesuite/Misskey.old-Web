@@ -27,6 +27,8 @@ $ ->
 			}
 			.done (files) ->
 				$ \#loading .remove!
+				if files.length == 0
+					$ \#no-files .css \display \block
 				if files.length == 21
 					$ \#load-more .css \display \block
 					files.pop!
