@@ -252,6 +252,16 @@ html, #misskey-main {
 			padding: 0;
 			border-bottom: solid 1px #eee;
 
+			&:hover {
+				> .body {
+					> .body {
+						> .name {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+
 			> .body {
 				position: relative;
 				box-sizing: border-box;
