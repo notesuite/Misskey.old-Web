@@ -319,7 +319,8 @@
 							"rename_failed": "名前の変更に失敗しました。",
 							"delete": "Delete",
 							"delete_dialog": "ファイルを削除しますか？",
-							"delete_failed": "削除に失敗しました。"
+							"delete_failed": "削除に失敗しました。",
+							"hash": "Hash value of the file"
 						}
 					},
 					"_post": {

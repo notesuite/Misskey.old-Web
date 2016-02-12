@@ -317,7 +317,8 @@
 							"rename_failed": "ほむ",
 							"delete": "ほむ",
 							"delete_dialog": "ほむ？",
-							"delete_failed": "ほむ"
+							"delete_failed": "ほむ",
+							"hash": "ほむ値"
 						}
 					},
 					"_post": {
