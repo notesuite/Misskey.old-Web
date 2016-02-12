@@ -12,7 +12,9 @@ block action
 
 block nav-extend
 	div#album-extended-nav
-		p.caption= locale.sites.mobile.pages._i._album.extended_nav
+		p.caption
+			i.fa.fa-angle-down
+			= locale.sites.mobile.pages._i._album.extended_nav
 		button.button.create-folder
 			i.fa.fa-plus
 			= locale.sites.mobile.pages._i._album.create_folder

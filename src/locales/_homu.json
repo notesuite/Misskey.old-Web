@@ -318,7 +318,8 @@
 						"_folder": {
 							"rename": "ほむ",
 							"rename_dialog": "ほむほむ",
-							"rename_failed": "ほむ"
+							"rename_failed": "ほむ",
+							"move": "ほむ"
 						},
 						"_file": {
 							"download": "ほむ",
