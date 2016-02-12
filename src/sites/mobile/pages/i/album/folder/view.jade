@@ -38,6 +38,14 @@ block content
 			li.separator: i.fa.fa-angle-right
 			li.folder
 				= folder.name
+	if folder.parent != null
+		a#up(href='/i/album/folder/' + folder.parent.id)
+			i.fa.fa-level-up.fa-flip-horizontal
+			| ..
+	else
+		a#up(href='/i/album')
+			i.fa.fa-level-up.fa-flip-horizontal
+			| ..
 	div#loading.
 		<div class="spinner">
 			<div class="dot1"></div>
