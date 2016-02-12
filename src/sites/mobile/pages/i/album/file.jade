@@ -9,10 +9,7 @@ include ./file-icon
 
 li.item.file(
 		data-file-id= file.id
-		data-mimetype= file.mimeType
-		data-folder-id= file.folder === null ? 'null' : file.folder
-		data-created-at= file.createdAt
-		data-data= JSON.stringify(file))
+		data-cursor= file.cursor)
 	- var url = config.url + '/i/album/file/' + file.id
 	a(href= url)
 		div.body

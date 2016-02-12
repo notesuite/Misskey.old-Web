@@ -235,7 +235,6 @@ html, #misskey-main {
 	}
 }
 
-
 #files {
 	display: block;
 	margin: 0;
@@ -336,5 +335,29 @@ html, #misskey-main {
 				}
 			}
 		}
+	}
+}
+
+#load-more {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: none;
+	box-sizing: border-box;
+	padding: 16px;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	color: #777;
+	font-size: 1em;
+	background: transparent;
+	border: none;
+
+	&:disabled {
+		opacity: 0.5;
+	}
+
+	* {
+		pointer-events: none;
 	}
 }

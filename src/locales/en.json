@@ -313,6 +313,8 @@
 						"page_header_title": "Album",
 						"upload": "Upload",
 						"nav_root": "Album",
+						"load_more": "Load more",
+						"loading": "Loading...",
 						"extended_nav": "Album menu",
 						"create_folder": "Create a folder",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",

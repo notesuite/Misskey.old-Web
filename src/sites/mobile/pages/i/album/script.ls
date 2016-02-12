@@ -17,19 +17,50 @@ $ ->
 			}
 			$folders.prepend $folder
 		if CHOOSE != \folder
-			$.ajax "#{CONFIG.web-api-url}/album/files/list"
+			$.ajax "#{CONFIG.web-api-url}/album/files/list" {
+				data:
+					'limit': 21
+			}
 			.done (files) ->
+				if files.length == 21
+					$ \#load-more .css \display \block
+					files.pop!
 				$ \#loading .remove!
 				files.for-each (file) ->
 					$file = $ file-render {
 						file
 						config: CONFIG
 					}
-					$files.prepend $file
+					$files.append $file
 			.fail ->
 		else
 			$ \#loading .remove!
 	.fail ->
+
+	$load-more-button = $ \#load-more
+	$load-more-button.click ->
+		$load-more-button.attr \disabled on
+		$load-more-button.text LOCALE.sites.mobile.pages._i._album.loading
+		$.ajax "#{CONFIG.web-api-url}/album/files/list" {
+			data:
+				'limit': 21
+				'max-cursor': $ '#files > .file:last-child' .attr \data-cursor
+		}
+		.done (files) ->
+			if files.length == 21
+				$ \#load-more .css \display \block
+				files.pop!
+			else
+				$ \#load-more .css \display \none
+			files.for-each (file) ->
+				$file = $ file-render {
+					file
+					config: CONFIG
+				}
+				$files.append $file
+		.always ->
+			$load-more-button.attr \disabled off
+			$load-more-button.text LOCALE.sites.mobile.pages._i._album.load_more
 
 	$create-folder-button = $ '#album-extended-nav .create-folder'
 	$create-folder-button.click ->

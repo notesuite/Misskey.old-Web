@@ -23,9 +23,13 @@ $ ->
 			$.ajax "#{CONFIG.web-api-url}/album/files/list" {
 				data:
 					'folder-id': FOLDER.id
+					'limit': 21
 			}
 			.done (files) ->
 				$ \#loading .remove!
+				if files.length == 21
+					$ \#load-more .css \display \block
+					files.pop!
 				files.for-each (file) ->
 					$file = $ file-render {
 						file
@@ -36,6 +40,31 @@ $ ->
 		else
 			$ \#loading .remove!
 	.fail ->
+
+	$load-more-button = $ \#load-more
+	$load-more-button.click ->
+		$load-more-button.attr \disabled on
+		$load-more-button.text LOCALE.sites.mobile.pages._i._album.loading
+		$.ajax "#{CONFIG.web-api-url}/album/files/list" {
+			data:
+				'limit': 21
+				'max-cursor': $ '#files > .file:last-child' .attr \data-cursor
+		}
+		.done (files) ->
+			if files.length == 21
+				$ \#load-more .css \display \block
+				files.pop!
+			else
+				$ \#load-more .css \display \none
+			files.for-each (file) ->
+				$file = $ file-render {
+					file
+					config: CONFIG
+				}
+				$files.append $file
+		.always ->
+			$load-more-button.attr \disabled off
+			$load-more-button.text LOCALE.sites.mobile.pages._i._album.load_more
 
 	$rename-folder-button = $ '#album-extended-nav .rename-folder'
 	$rename-folder-button.click ->
