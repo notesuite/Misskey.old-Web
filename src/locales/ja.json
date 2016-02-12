@@ -324,6 +324,10 @@
 						"page_header_title": "アルバム",
 						"upload": "アップロード",
 						"nav_root": "アルバム",
+						"extended_nav": "アルバムメニュー",
+						"create_folder": "フォルダを作成",
+						"create_folder_dialog": "作成するフォルダの名前を決めてください",
+						"create_folder_failed": "フォルダの作成に失敗しました",
 						"_file": {
 							"download": "ダウンロード",
 							"rename": "名前を変更",

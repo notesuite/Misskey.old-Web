@@ -1,0 +1,8 @@
+li.item.folder(
+		data-folder-id= folder.id
+		data-data= JSON.stringify(folder))
+	a(href= config.url + '/i/album/folder/' + folder.id)
+		p.name
+			i.fa.fa-folder
+			= folder.name
+		i.fa.fa-angle-right

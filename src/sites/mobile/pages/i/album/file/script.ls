@@ -11,7 +11,7 @@ $ ->
 				data:
 					'file-id': FILE.id
 					'name': name
-			} .done (post) ->
+			} .done ->
 				location.reload!
 			.fail (data) ->
 				$rename.attr \disabled off
@@ -24,7 +24,7 @@ $ ->
 			$.ajax "#{CONFIG.web-api-url}/album/files/delete" {
 				data:
 					'file-id': FILE.id
-			} .done (post) ->
+			} .done ->
 				location.href = CONFIG.url + '/i/album'
 			.fail (data) ->
 				$delete.attr \disabled off

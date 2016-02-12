@@ -10,6 +10,13 @@ block header
 block action
 	a.action(href= config.url + '/i/upload'): i.fa.fa-upload
 
+block nav-extend
+	div#album-extended-nav
+		p.caption= locale.sites.mobile.pages._i._album.extended_nav
+		button.button.create-folder
+			i.fa.fa-plus
+			= locale.sites.mobile.pages._i._album.create_folder
+
 block content
 	nav#nav
 		ol.items
@@ -22,4 +29,5 @@ block content
 			<div class="dot1"></div>
 			<div class="dot2"></div>
 		</div>
+	ol#folders
 	ol#files

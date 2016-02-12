@@ -20,6 +20,7 @@ block body
 						a.me(href= config.url + '/' + me.screenName)
 							img.avatar(src= me.avatarUrl + '?size=128&quality=' + userSettings.displayImageQuality, alt='avatar')
 							p.name= me.name
+					block nav-extend
 					div.links
 						ul
 							li.post: a(href= config.url + '/i/post')

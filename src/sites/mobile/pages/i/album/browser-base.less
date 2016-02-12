@@ -1,0 +1,248 @@
+@import "../../../common/styles/ui";
+@import (multiple) "./nav";
+
+html, #misskey-main {
+	color: #8C8079;
+	background: #fff;
+}
+
+#album-extended-nav {
+	padding: 12px;
+	margin-left: 16px;
+	margin-bottom: 16px;
+	background: #fff;
+	border-radius: 8px 0 0 8px;
+
+	.caption {
+		display: block;
+		margin: 0;
+		color: #555;
+	}
+
+	.button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px 16px;
+		margin: 12px 0 0 0;
+		color: #333;
+		font-size: 0.9em;
+		text-align: center;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		white-space: nowrap;
+		background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+		background-image: linear-gradient(#fafafa, #eaeaea);
+		border: 1px solid #ddd;
+		border-bottom-color: #cecece;
+		border-radius: 3px;
+
+		&:active {
+			background-color: #767676;
+			background-image: none;
+			border-color: #444;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.075),inset 0 0 5px rgba(0,0,0,0.2);
+		}
+
+		> i {
+			margin-right: 4px;
+		}
+	}
+}
+
+#loading {
+	.spinner {
+		margin: 100px auto;
+		width: 40px;
+		height: 40px;
+		position: relative;
+		text-align: center;
+
+		-webkit-animation: sk-rotate 2.0s infinite linear;
+		animation: sk-rotate 2.0s infinite linear;
+	}
+
+	.dot1, .dot2 {
+		width: 60%;
+		height: 60%;
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.3);
+		border-radius: 100%;
+
+		-webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+		animation: sk-bounce 2.0s infinite ease-in-out;
+	}
+
+	.dot2 {
+		top: auto;
+		bottom: 0;
+		-webkit-animation-delay: -1.0s;
+		animation-delay: -1.0s;
+	}
+
+	@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+	@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+	@-webkit-keyframes sk-bounce {
+		0%, 100% { -webkit-transform: scale(0.0) }
+		50% { -webkit-transform: scale(1.0) }
+	}
+
+	@keyframes sk-bounce {
+		0%, 100% {
+			transform: scale(0.0);
+			-webkit-transform: scale(0.0);
+		} 50% {
+			transform: scale(1.0);
+			-webkit-transform: scale(1.0);
+		}
+	}
+}
+
+
+#folders {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	&:empty {
+		display: none;
+	}
+
+	> .folder {
+		display: block;
+		position: relative;
+		margin: 0;
+		padding: 0;
+		background: #fff;
+
+		> a {
+			display: block;
+			padding: 16px;
+			border-bottom: solid 1px #eee;
+			color: #777;
+
+			.name {
+				display: block;
+				margin: 0;
+				padding: 0;
+
+				> i {
+					margin-right: 6px;
+				}
+			}
+
+			i.fa.fa-angle-right {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 8px;
+				margin: auto 0 auto 0;
+				width: 1em;
+				height: 1em;
+			}
+		}
+	}
+}
+
+
+#files {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	> .file {
+		display: block;
+		margin: 0;
+		padding: 0;
+		background: #fff;
+
+		> a {
+			display: block;
+			padding: 16px;
+			border-bottom: solid 1px #eee;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			> .thumbnail {
+				display: block;
+				float: left;
+				width: 64px;
+				height: 64px;
+				background-size: cover;
+				background-position: center center;
+			}
+
+			> .body {
+				display: block;
+				float: left;
+				width: ~"calc(100% - 74px)";
+				margin-left: 10px;
+
+				> .name {
+					display: block;
+					margin: 0;
+					padding: 0;
+					font-size: 0.9em;
+					font-weight: bold;
+					color: #555;
+					text-overflow: ellipsis;
+					word-wrap: break-word;
+				}
+
+				> footer {
+					display: block;
+					margin: 4px 0 0 0;
+					font-size: 0.7em;
+
+					> .separator {
+						display: inline;
+						margin: 0;
+						padding: 0 4px;
+						color: #CDCDCD;
+					}
+
+					> .mime-type {
+						display: inline;
+						margin: 0;
+						padding: 0;
+						color: #9D9D9D;
+
+						> i {
+							margin-right: 4px;
+						}
+					}
+
+					> .data-size {
+						display: inline;
+						margin: 0;
+						padding: 0;
+						color: #9D9D9D;
+					}
+
+					> .created-at {
+						display: inline;
+						margin: 0;
+						padding: 0;
+						color: #BDBDBD;
+
+						> i {
+							margin-right: 2px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
