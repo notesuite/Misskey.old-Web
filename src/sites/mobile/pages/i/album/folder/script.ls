@@ -35,7 +35,7 @@ $ ->
 						file
 						config: CONFIG
 					}
-					$files.prepend $file
+					$files.append $file
 			.fail ->
 		else
 			$ \#loading .remove!
