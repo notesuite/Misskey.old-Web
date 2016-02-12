@@ -52,7 +52,7 @@ $ ->
 				$rename-folder-button.attr \disabled off
 				window.alert LOCALE.sites.mobile.pages._i._album._folder.rename_failed
 
-	$create-folder-button = $ '#album-extended-nav .create-folder'
+	$create-folder-button = $ '#album-extended-nav .create-folder, .up-and-new-folder-nav .new-folder'
 	$create-folder-button.click ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album.create_folder_dialog
 		if name? and name != ''
@@ -69,6 +69,7 @@ $ ->
 
 	if CHOOSE == \folder
 		$ \body .css \margin-top ($ \#plz-choose-folder .outer-height!) + 'px'
+		$ \body .css \margin-bottom ($ \#choose-folder .outer-height!) + 'px'
 		$choose-button = $ \#choose-folder-button
 		$choose-button.click ->
 			window.opener.MISSKEY_CHOOSE_ALBUM_FOLDER_CALLBACK FOLDER

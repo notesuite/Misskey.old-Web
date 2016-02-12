@@ -36,15 +36,18 @@ block content
 				a(href='/i/album')
 					i.fa.fa-cloud
 					= locale.sites.mobile.pages._i._album.nav_root
-	if choose === 'folder'
-		div#choose-folder
-			button#choose-folder-button
-				i.fa.fa-check
-				= locale.sites.mobile.pages._i._album.choose_folder
+
 	div#loading.
 		<div class="spinner">
 			<div class="dot1"></div>
 			<div class="dot2"></div>
 		</div>
+
 	ol#folders
 	ol#files
+
+	if choose === 'folder'
+		div#choose-folder
+			button#choose-folder-button
+				i.fa.fa-check
+				= locale.sites.mobile.pages._i._album.choose_folder

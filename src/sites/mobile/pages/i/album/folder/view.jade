@@ -58,25 +58,27 @@ block content
 			li.separator: i.fa.fa-angle-right
 			li.folder
 				= folder.name
-	if choose === 'folder'
-		div#choose-folder
-			button#choose-folder-button
-				i.fa.fa-check
-				= locale.sites.mobile.pages._i._album.choose_folder
-	if folder.parent != null
-		a#up(href='/i/album/folder/' + folder.parent.id)
-			p
-				i.fa.fa-level-up.fa-flip-horizontal
-				| ..
-	else
-		a#up(href='/i/album')
-			p
-				i.fa.fa-level-up.fa-flip-horizontal
-				| ..
+	div.up-and-new-folder-nav
+		div.body
+			- var parentUrl = folder.parent != null ? '/i/album/folder/' + folder.parent.id : '/i/album';
+			- if (choose !== undefined && choose !== null) { parentUrl += '?choose=' + choose; }
+			a#up(href= parentUrl)
+				p
+					i.fa.fa-level-up.fa-flip-horizontal
+					| ..
+			button.new-folder
+				i.fa.fa-plus
 	div#loading.
 		<div class="spinner">
 			<div class="dot1"></div>
 			<div class="dot2"></div>
 		</div>
+
 	ol#folders
 	ol#files
+
+	if choose === 'folder'
+		div#choose-folder
+			button#choose-folder-button
+				i.fa.fa-check
+				= locale.sites.mobile.pages._i._album.choose_folder

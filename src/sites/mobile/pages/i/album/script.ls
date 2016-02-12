@@ -47,6 +47,7 @@ $ ->
 
 	if CHOOSE == \folder
 		$ \body .css \margin-top ($ \#plz-choose-folder .outer-height!) + 'px'
+		$ \body .css \margin-bottom ($ \#choose-folder .outer-height!) + 'px'
 		$choose-button = $ \#choose-folder-button
 		$choose-button.click ->
 			window.opener.MISSKEY_CHOOSE_ALBUM_FOLDER_CALLBACK null

@@ -136,8 +136,16 @@ html, #misskey-main {
 }
 
 #choose-folder {
-	padding: 0 8px;
-	
+	display: block;
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 8px;
+	background: #fff;
+	border-top: solid 1px #dfdfdf;
+
 	#choose-folder-button {
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -145,8 +153,9 @@ html, #misskey-main {
 		display: block;
 		box-sizing: border-box;
 		width: 100%;
+		max-width: 500px;
 		padding: 10px 16px;
-		margin: 12px 0 0 0;
+		margin: 0 auto;
 		color: #333;
 		font-size: 0.9em;
 		text-align: center;
@@ -191,28 +200,36 @@ html, #misskey-main {
 
 		> a {
 			display: block;
-			padding: 16px;
+			padding: 0;
 			border-bottom: solid 1px #eee;
 			color: #777;
 
-			.name {
-				display: block;
-				margin: 0;
-				padding: 0;
+			> .body {
+				position: relative;
+				box-sizing: border-box;
+				max-width: 500px;
+				margin: 0 auto;
+				padding: 16px;
 
-				> i {
-					margin-right: 6px;
+				.name {
+					display: block;
+					margin: 0;
+					padding: 0;
+
+					> i {
+						margin-right: 6px;
+					}
 				}
-			}
 
-			i.fa.fa-angle-right {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				right: 8px;
-				margin: auto 0 auto 0;
-				width: 1em;
-				height: 1em;
+				i.fa.fa-angle-right {
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					right: 8px;
+					margin: auto 0 auto 0;
+					width: 1em;
+					height: 1em;
+				}
 			}
 		}
 	}
@@ -233,79 +250,87 @@ html, #misskey-main {
 
 		> a {
 			display: block;
-			padding: 16px;
+			padding: 0;
 			border-bottom: solid 1px #eee;
 
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
-
-			> .thumbnail {
-				display: block;
-				float: left;
-				width: 64px;
-				height: 64px;
-				background-size: cover;
-				background-position: center center;
-			}
-
 			> .body {
-				display: block;
-				float: left;
-				width: ~"calc(100% - 74px)";
-				margin-left: 10px;
+				position: relative;
+				box-sizing: border-box;
+				max-width: 500px;
+				margin: 0 auto;
+				padding: 16px;
 
-				> .name {
+				&:after {
+					content: "";
 					display: block;
-					margin: 0;
-					padding: 0;
-					font-size: 0.9em;
-					font-weight: bold;
-					color: #555;
-					text-overflow: ellipsis;
-					word-wrap: break-word;
+					clear: both;
 				}
 
-				> footer {
+				> .thumbnail {
 					display: block;
-					margin: 4px 0 0 0;
-					font-size: 0.7em;
+					float: left;
+					width: 64px;
+					height: 64px;
+					background-size: cover;
+					background-position: center center;
+				}
 
-					> .separator {
-						display: inline;
-						margin: 0;
-						padding: 0 4px;
-						color: #CDCDCD;
-					}
+				> .body {
+					display: block;
+					float: left;
+					width: ~"calc(100% - 74px)";
+					margin-left: 10px;
 
-					> .mime-type {
-						display: inline;
+					> .name {
+						display: block;
 						margin: 0;
 						padding: 0;
-						color: #9D9D9D;
+						font-size: 0.9em;
+						font-weight: bold;
+						color: #555;
+						text-overflow: ellipsis;
+						word-wrap: break-word;
+					}
 
-						> i {
-							margin-right: 4px;
+					> footer {
+						display: block;
+						margin: 4px 0 0 0;
+						font-size: 0.7em;
+
+						> .separator {
+							display: inline;
+							margin: 0;
+							padding: 0 4px;
+							color: #CDCDCD;
 						}
-					}
 
-					> .data-size {
-						display: inline;
-						margin: 0;
-						padding: 0;
-						color: #9D9D9D;
-					}
+						> .mime-type {
+							display: inline;
+							margin: 0;
+							padding: 0;
+							color: #9D9D9D;
 
-					> .created-at {
-						display: inline;
-						margin: 0;
-						padding: 0;
-						color: #BDBDBD;
+							> i {
+								margin-right: 4px;
+							}
+						}
 
-						> i {
-							margin-right: 2px;
+						> .data-size {
+							display: inline;
+							margin: 0;
+							padding: 0;
+							color: #9D9D9D;
+						}
+
+						> .created-at {
+							display: inline;
+							margin: 0;
+							padding: 0;
+							color: #BDBDBD;
+
+							> i {
+								margin-right: 2px;
+							}
 						}
 					}
 				}

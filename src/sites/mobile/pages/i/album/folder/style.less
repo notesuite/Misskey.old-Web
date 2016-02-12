@@ -1,14 +1,59 @@
 @import "../browser-base";
 
-#up {
-	display: block;
-	padding: 8px 16px;
+.up-and-new-folder-nav {
+	position: relative;
 	border-bottom: solid 1px #eee;
-	color: #777;
 
-	> p {
-		display: inline-block;
-		margin: 0;
-		padding: 0;
+	> .body {
+		position: relative;
+		max-width: 500px;
+		margin: 0 auto;
+
+		#up {
+			display: block;
+			padding: 0 16px;
+			margin-right: 48px;
+			color: #777;
+			line-height: 32px;
+
+			&:hover {
+				> p {
+					text-decoration: underline;
+				}
+			}
+
+			> p {
+				display: inline-block;
+				margin: 0;
+				padding: 0;
+
+				> i {
+					margin-right: 4px;
+				}
+			}
+		}
+
+		.new-folder {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: block;
+			box-sizing: border-box;
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 0;
+			margin: 0;
+			width: 48px;
+			line-height: 32px;
+			color: #777;
+			font-size: 1em;
+			background: transparent;
+			border: none;
+
+			* {
+				pointer-events: none;
+			}
+		}
 	}
 }

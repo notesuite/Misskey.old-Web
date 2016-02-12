@@ -15,28 +15,29 @@ li.item.file(
 		data-data= JSON.stringify(file))
 	- var url = config.url + '/i/album/file/' + file.id
 	a(href= url)
-		case file.mimeType
-			when 'image/jpeg'
-			when 'image/png'
-			when 'image/gif'
-			when 'image/webp'
-			when 'image/tiff'
-			when 'image/bmp'
-				div.thumbnail(style={'background-image': 'url(#{file.thumbnailUrl})'})
-			default
-				div.thumbnail
-					i.fa.fa-file-o
 		div.body
-			p.name= file.name
-			footer
-				p.mime-type
-					+file-icon(file)
-					= file.mimeType
-				p.separator(role='presentation')
-				p.data-size
-					= bytesToSize(file.dataSize)
-				p.separator(role='presentation')
-				p.created-at
-					i.fa.fa-clock-o
-					time(datetime= file.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')
-						= file.createdAt
+			case file.mimeType
+				when 'image/jpeg'
+				when 'image/png'
+				when 'image/gif'
+				when 'image/webp'
+				when 'image/tiff'
+				when 'image/bmp'
+					div.thumbnail(style={'background-image': 'url(#{file.thumbnailUrl})'})
+				default
+					div.thumbnail
+						i.fa.fa-file-o
+			div.body
+				p.name= file.name
+				footer
+					p.mime-type
+						+file-icon(file)
+						= file.mimeType
+					p.separator(role='presentation')
+					p.data-size
+						= bytesToSize(file.dataSize)
+					p.separator(role='presentation')
+					p.created-at
+						i.fa.fa-clock-o
+						time(datetime= file.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')
+							= file.createdAt
