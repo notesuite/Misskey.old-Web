@@ -321,7 +321,8 @@
 							"rename": "Rename the folder",
 							"rename_dialog": "新しい名前を入力してください",
 							"rename_failed": "名前の変更に失敗しました。",
-							"move": "Move the folder"
+							"move": "Move the folder",
+							"delete": "Delete the folder"
 						},
 						"_file": {
 							"download": "Download",

@@ -319,7 +319,8 @@
 							"rename": "ほむ",
 							"rename_dialog": "ほむほむ",
 							"rename_failed": "ほむ",
-							"move": "ほむ"
+							"move": "ほむ",
+							"delete": "ほむ"
 						},
 						"_file": {
 							"download": "ほむ",
