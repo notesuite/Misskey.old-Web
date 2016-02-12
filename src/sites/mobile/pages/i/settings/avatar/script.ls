@@ -16,6 +16,7 @@ $ ->
 		$progress.css \display \block
 		upload-file do
 			file
+			null
 			$progress
 			null
 			crop

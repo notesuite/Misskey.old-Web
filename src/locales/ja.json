@@ -349,6 +349,8 @@
 					"_upload": {
 						"page_title": "アップロード - Misskey",
 						"page_header_title": "アップロード",
+						"upload_to_root": "アルバムにアップロード",
+						"upload_to_folder": "「{name}」フォルダにアップロード",
 						"uploading": "アップロード中...",
 						"success": "アップロード完了",
 						"failed": "アップロード失敗"

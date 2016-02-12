@@ -47,6 +47,7 @@ function upload-new-file(file)
 	$ '#post-form > uploads' .append $progress
 	upload-file do
 		file
+		null
 		$progress
 		(total, uploaded, percentage) ->
 		(file) ->

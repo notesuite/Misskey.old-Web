@@ -338,6 +338,8 @@
 					"_upload": {
 						"page_title": "Upload - Misskey",
 						"page_header_title": "Upload",
+						"upload_to_root": "Upload to Album",
+						"upload_to_folder": "Upload to '{name}' folder",
 						"uploading": "Uploading...",
 						"success": "Success",
 						"failed": "Failed"

@@ -19,60 +19,80 @@ html, #misskey-main {
 			background: #fff;
 			border-radius: 8px;
 
-			#file {
-				margin: 0;
+			h1 {
+				display: block;
+				margin: 0 0 16px 0;
+				padding: 8px;
+				font-size: 1em;
+				color: #868B90;
+				border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+
+				> i {
+					margin-right: 0.25em;
+				}
 			}
 
-			#files {
-				display: block;
-				margin: 8px 0 0 0;
-				padding: 0;
-				list-style: none;
+			.body {
+				padding: 0 4px 0 4px;
+				margin-bottom: 8px;
+				color: #222;
+				font-size: 1em;
 
-				&:empty {
-					display: none;
+				#file {
+					margin: 0;
 				}
 
-				> li {
+				#files {
 					display: block;
-					margin: 0;
-					padding: 8px;
-					border-top: solid 1px #ECE6E4;
+					margin: 8px 0 0 0;
+					padding: 0;
+					list-style: none;
 
-					p {
+					&:empty {
+						display: none;
+					}
+
+					> li {
 						display: block;
 						margin: 0;
+						padding: 8px;
+						border-top: solid 1px #ECE6E4;
 
-						.status {
-							margin-left: 8px;
-							opacity: 0.7;
+						p {
+							display: block;
+							margin: 0;
+
+							.status {
+								margin-left: 8px;
+								opacity: 0.7;
+							}
 						}
 					}
 				}
-			}
 
-			progress {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				display: block;
-				margin: 8px 0 0 0;
-				width: 100%;
-				height: 8px;
-				border: none;
-				border-radius: 4px;
-				overflow: hidden;
+				progress {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					display: block;
+					margin: 8px 0 0 0;
+					width: 100%;
+					height: 8px;
+					border: none;
+					border-radius: 4px;
+					overflow: hidden;
 
-				&::-webkit-progress-value {
-					background-color: @theme-color;
-				}
+					&::-webkit-progress-value {
+						background-color: @theme-color;
+					}
 
-				&::-webkit-progress-bar {
-					background-color: #fff;
-				}
+					&::-webkit-progress-bar {
+						background-color: #fff;
+					}
 
-				&:not([value])::-webkit-progress-bar {
-					background-image: url("@{resources-url}/mobile/common/images/indeter.gif");
+					&:not([value])::-webkit-progress-bar {
+						background-image: url("@{resources-url}/mobile/common/images/indeter.gif");
+					}
 				}
 			}
 		}

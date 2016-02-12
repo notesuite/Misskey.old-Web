@@ -169,6 +169,7 @@ class Album
 		THIS.$album-uploads.find \ol .append $info
 		upload-file do
 			file
+			null
 			$progress-bar
 			null
 			(file-obj) ->

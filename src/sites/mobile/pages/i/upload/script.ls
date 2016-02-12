@@ -28,6 +28,7 @@ $ ->
 
 		upload-file do
 			file
+			if FOLDER? then FOLDER.id else null
 			$progress
 			null
 			(file-obj) ->

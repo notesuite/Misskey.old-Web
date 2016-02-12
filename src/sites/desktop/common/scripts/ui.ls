@@ -500,6 +500,7 @@ class StatusPostForm
 		THIS.$form.find '> .uploads' .append $info
 		upload-file do
 			file
+			null
 			$progress
 			null
 			(file) ->

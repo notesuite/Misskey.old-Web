@@ -179,8 +179,10 @@ class Post
 		$info = $ "<li><p class='name'>#{name}</p><progress></progress></li>"
 		$progress-bar = $info.find \progress
 		THIS.$reply-form.find '.uploads' .append $info
-		window.upload-file do
+		upload-file do
 			file
+			null
+			null
 			(total, uploaded, percentage) ->
 				if percentage == 100
 					$progress-bar

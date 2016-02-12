@@ -320,6 +320,7 @@ class Post
 		THIS.$reply-form.find '.uploads' .append $info
 		upload-file do
 			file
+			null
 			$progress
 			(total, uploaded, percentage) ->
 			(file) ->

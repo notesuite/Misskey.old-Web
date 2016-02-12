@@ -7,9 +7,17 @@ block header
 	i.fa.fa-upload
 	=locale.sites.mobile.pages._i._upload.page_header_title
 
+block assets
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var FOLDER = ' + JSON.stringify(folder) + '; Object.freeze(FOLDER);') + '"));'
+
 block content
 	div#main-container
 		main(role='main')
 			div#form
-				input#file.ui-input-file(name='file', type='file', accept='*', multiple)
-				ol#files
+				if folder == null
+					h1= locale.sites.mobile.pages._i._upload.upload_to_root
+				else
+					h1= locale.sites.mobile.pages._i._upload.upload_to_folder.replace('{name}', folder.name)
+				div.body
+					input#file.ui-input-file(name='file', type='file', accept='*', multiple)
+					ol#files

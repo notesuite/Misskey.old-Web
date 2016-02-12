@@ -336,6 +336,8 @@
 					"_upload": {
 						"page_title": "ほむ - Misskey",
 						"page_header_title": "ほむ",
+						"upload_to_root": "ほむ",
+						"upload_to_folder": "「{name}」フォルダにほむ",
 						"uploading": "ほむ...",
 						"success": "ほむ",
 						"failed": "ほむ"

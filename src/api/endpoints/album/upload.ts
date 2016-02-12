@@ -6,6 +6,7 @@ import requestApi from '../../../core/request-api';
 export default function upload(req: express.Request, res: express.Response): void {
 	'use strict';
 	const file: Express.Multer.File = (<any>req).file;
+	const folder: string = req.body.folder;
 	const data: any = {};
 	data.file = {
 		value: fs.readFileSync(file.path),
@@ -14,6 +15,9 @@ export default function upload(req: express.Request, res: express.Response): voi
 			contentType: file.mimetype
 		}
 	};
+	if (folder !== undefined && folder !== null) {
+		data['folder-id'] = folder;
+	}
 	fs.unlink(file.path);
 	requestApi('album/files/upload', data, req.user, true).then((albumFile: Object) => {
 		res.send(albumFile);

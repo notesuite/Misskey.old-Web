@@ -1,8 +1,9 @@
 $ = require 'jquery/dist/jquery'
 
-module.exports = (file, $progress, uploading, success, failed, always) ->
+module.exports = (file, folder, $progress, uploading, success, failed, always) ->
 	data = new FormData!
 		..append \file file
+		..append \folder folder
 	$.ajax "#{CONFIG.web-api-url}/web/album/upload" {
 		+async
 		-process-data
