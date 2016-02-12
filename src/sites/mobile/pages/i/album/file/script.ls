@@ -29,3 +29,17 @@ $ ->
 			.fail (data) ->
 				$delete.attr \disabled off
 				window.alert LOCALE.sites.mobile.pages._i._album._file.delete_failed
+
+	$move = $ \#move
+	$move.click ->
+		window.MISSKEY_CHOOSE_ALBUM_FOLDER_CALLBACK = (folder) ->
+			$move.attr \disabled on
+			$.ajax "#{CONFIG.web-api-url}/album/files/move" {
+				data:
+					'file-id': FILE.id
+					'folder-id': if folder? then folder.id else \null
+			} .done ->
+				location.reload!
+			.fail (data) ->
+				$move.attr \disabled off
+		window.open CONFIG.url + '/i/album?choose=folder'

@@ -12,19 +12,23 @@ $ ->
 		folders.for-each (folder) ->
 			$folder = $ folder-render {
 				folder
+				choose: CHOOSE
 				config: CONFIG
 			}
 			$folders.prepend $folder
-		$.ajax "#{CONFIG.web-api-url}/album/files/list"
-		.done (files) ->
+		if CHOOSE != \folder
+			$.ajax "#{CONFIG.web-api-url}/album/files/list"
+			.done (files) ->
+				$ \#loading .remove!
+				files.for-each (file) ->
+					$file = $ file-render {
+						file
+						config: CONFIG
+					}
+					$files.prepend $file
+			.fail ->
+		else
 			$ \#loading .remove!
-			files.for-each (file) ->
-				$file = $ file-render {
-					file
-					config: CONFIG
-				}
-				$files.prepend $file
-		.fail ->
 	.fail ->
 
 	$create-folder-button = $ '#album-extended-nav .create-folder'
@@ -40,3 +44,10 @@ $ ->
 			.fail (data) ->
 				$create-folder-button.attr \disabled off
 				window.alert LOCALE.sites.mobile.pages._i._album.create_folder_failed
+
+	if CHOOSE == \folder
+		$ \body .css \margin-top ($ \#plz-choose-folder .outer-height!) + 'px'
+		$choose-button = $ \#choose-folder-button
+		$choose-button.click ->
+			window.opener.MISSKEY_CHOOSE_ALBUM_FOLDER_CALLBACK null
+			window.close!

@@ -315,6 +315,7 @@
 						"create_folder": "ほむ",
 						"create_folder_dialog": "ほむ",
 						"create_folder_failed": "ほむ",
+						"plz_choose_folder": "ほむを選択してください",
 						"_folder": {
 							"rename": "ほむ",
 							"rename_dialog": "ほむほむ",
@@ -330,6 +331,7 @@
 							"delete": "ほむ",
 							"delete_dialog": "ほむ？",
 							"delete_failed": "ほむ",
+							"move": "ほむ",
 							"hash": "ほむ値"
 						}
 					},

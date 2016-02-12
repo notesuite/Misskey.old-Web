@@ -317,6 +317,7 @@
 						"create_folder": "Create a folder",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",
 						"create_folder_failed": "フォルダの作成に失敗しました",
+						"plz_choose_folder": "Choose an folder",
 						"_folder": {
 							"rename": "Rename the folder",
 							"rename_dialog": "新しい名前を入力してください",
@@ -332,6 +333,7 @@
 							"delete": "Delete",
 							"delete_dialog": "ファイルを削除しますか？",
 							"delete_failed": "削除に失敗しました。",
+							"move": "Move",
 							"hash": "Hash value of the file"
 						}
 					},

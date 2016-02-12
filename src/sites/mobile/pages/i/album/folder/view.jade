@@ -30,9 +30,17 @@ block nav-extend
 			= locale.sites.mobile.pages._i._album.create_folder
 
 block assets
+	if choose !== undefined && choose !== null
+		script!= 'var CHOOSE = "' + choose + '"; Object.freeze(CHOOSE);'
+	else
+		script!= 'var CHOOSE = null; Object.freeze(CHOOSE);'
 	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var FOLDER = ' + JSON.stringify(folder) + '; Object.freeze(FOLDER);') + '"));'
 
 block content
+	if choose === 'folder'
+		p#plz-choose-folder
+			i.fa.fa-info-circle
+			= locale.sites.mobile.pages._i._album.plz_choose_folder
 	nav#nav
 		ol.items
 			li.root
@@ -50,6 +58,11 @@ block content
 			li.separator: i.fa.fa-angle-right
 			li.folder
 				= folder.name
+	if choose === 'folder'
+		div#choose-folder
+			button#choose-folder-button
+				i.fa.fa-check
+				= locale.sites.mobile.pages._i._album.choose_folder
 	if folder.parent != null
 		a#up(href='/i/album/folder/' + folder.parent.id)
 			p

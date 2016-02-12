@@ -1,7 +1,9 @@
 li.item.folder(
 		data-folder-id= folder.id
 		data-data= JSON.stringify(folder))
-	a(href= config.url + '/i/album/folder/' + folder.id)
+	- var url = config.url + '/i/album/folder/' + folder.id
+	- if (choose !== undefined && choose !== null) { url += '?choose=' + choose; }
+	a(href= url)
 		p.name
 			i.fa.fa-folder
 			= folder.name

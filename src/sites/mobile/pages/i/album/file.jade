@@ -13,7 +13,8 @@ li.item.file(
 		data-folder-id= file.folder === null ? 'null' : file.folder
 		data-created-at= file.createdAt
 		data-data= JSON.stringify(file))
-	a(href= config.url + '/i/album/file/' + file.id)
+	- var url = config.url + '/i/album/file/' + file.id
+	a(href= url)
 		case file.mimeType
 			when 'image/jpeg'
 			when 'image/png'
