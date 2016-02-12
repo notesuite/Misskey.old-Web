@@ -26,21 +26,35 @@ html, #misskey-main {
 		color: #888;
 		text-align: center;
 
+		> .separator {
+			display: inline;
+			margin: 0;
+			padding: 0 4px;
+		}
+
 		> .size {
+			display: inline;
 			margin: 0;
 
 			.time {
-				margin: 0 4px;
+				margin: 0 2px;
 			}
 
 			.px {
-				margin-left: 8px;
+				margin-left: 4px;
 			}
+		}
+
+		> .aspect-ratio {
+			display: inline;
+			margin: 0;
+			opacity: 0.7;
 		}
 	}
 }
 
 #info {
+	position: relative;
 	padding: 14px;
 	font-size: 0.8em;
 	border-top: solid 1px #dfdfdf;
@@ -79,6 +93,17 @@ html, #misskey-main {
 		> i {
 			margin-right: 2px;
 		}
+	}
+
+	> .lock {
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 14px;
+		height: 1em;
+		margin: auto 0 auto 0;
+		color: #9D9D9D;
 	}
 }
 

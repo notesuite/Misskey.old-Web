@@ -40,12 +40,23 @@ block content
 			when 'image/webp'
 			when 'image/tiff'
 			when 'image/bmp'
+				- var getGcd = function(a, b) { return (!b) ? a : getGcd(b, a % b); };
+				- var gcd = getGcd(file.properties.width, file.properties.height);
+				- var aspectRatioW = file.properties.width / gcd;
+				- var aspectRatioH = file.properties.height / gcd;
 				footer
 					p.size
 						span.width= file.properties.width
 						span.time ×
 						span.height= file.properties.height
 						span.px px
+					p.separator(role='presentation')
+					p.aspect-ratio
+						| (
+						span.w= aspectRatioW
+						span.colon :
+						span.h= aspectRatioH
+						| )
 	div#info
 		p.mime-type
 			case file.mimeType
@@ -67,6 +78,10 @@ block content
 			i.fa.fa-clock-o
 			time(datetime= file.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')
 				= file.createdAt
+		if file.isPrivate
+			i.lock.fa.fa-lock
+		else
+			i.lock.fa.fa-unlock
 	div#menu
 		a.button#download(href= file.url + '?download', download= file.name)
 			i.fa.fa-download
