@@ -7,6 +7,7 @@ $ ->
 
 	$.ajax "#{CONFIG.web-api-url}/album/files/list"
 	.done (files) ->
+		$ \#loading .remove!
 		files.for-each (file) ->
 			$file = $ file-render {
 				file
