@@ -1,3 +1,5 @@
+include ./file-icon
+
 - function bytesToSize(bytes) {
 -    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
 -    if (bytes == 0) return '0Byte';
@@ -26,6 +28,10 @@ li.item.file(
 		div.body
 			p.name= file.name
 			footer
+				p.mime-type
+					+file-icon(file)
+					= file.mimeType
+				p.separator(role='presentation')
 				p.data-size
 					= bytesToSize(file.dataSize)
 				p.separator(role='presentation')

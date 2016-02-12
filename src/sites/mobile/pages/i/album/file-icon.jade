@@ -1,0 +1,11 @@
+mixin file-icon(file)
+	case file.mimeType
+		when 'image/jpeg'
+		when 'image/png'
+		when 'image/gif'
+		when 'image/webp'
+		when 'image/tiff'
+		when 'image/bmp'
+			i.fa.fa-file-image-o
+		default
+			i.fa.fa-file-o
