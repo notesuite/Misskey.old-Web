@@ -27,6 +27,14 @@ block content
 				a(href='/i/album')
 					i.fa.fa-cloud
 					= locale.sites.mobile.pages._i._album.nav_root
+			if folder.parent != null
+				each parentFolder in folder.parent
+					li.separator: i.fa.fa-angle-right
+					li.folder
+						a(href='/i/album/folder/' + parentFolder.id)= parentFolder.name
+			li.separator: i.fa.fa-angle-right
+			li.folder
+				= folder.name
 	div#loading.
 		<div class="spinner">
 			<div class="dot1"></div>

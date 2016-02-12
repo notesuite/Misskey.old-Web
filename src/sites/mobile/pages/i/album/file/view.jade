@@ -10,6 +10,7 @@ block header
 
 block assets
 	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var FILE = ' + JSON.stringify(file) + '; Object.freeze(FILE);') + '"));'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var FOLDER = ' + JSON.stringify(folder) + '; Object.freeze(FOLDER);') + '"));'
 
 block action
 	a.action(href= file.url + '?download', download= file.name): i.fa.fa-download
@@ -28,6 +29,15 @@ block content
 				a(href='/i/album')
 					i.fa.fa-cloud
 					= locale.sites.mobile.pages._i._album.nav_root
+			if folder != null
+				if folder.parent != null
+					each parentFolder in folder.parent
+						li.separator: i.fa.fa-angle-right
+						li.folder
+							a(href='/i/album/folder/' + parentFolder.id)= parentFolder.name
+				li.separator: i.fa.fa-angle-right
+				li.folder
+					= folder.name
 			li.separator: i.fa.fa-angle-right
 			li.item
 				= file.name
