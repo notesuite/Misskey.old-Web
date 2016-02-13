@@ -18,6 +18,7 @@
 		"src/config.ts",
 		"src/server.ts",
 		"src/router.ts",
+		"src/shield-server.ts",
 		"src/resources-server.ts",
 		"src/call-controller.ts",
 		"src/models/user.ts",

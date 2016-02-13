@@ -12,6 +12,8 @@ client.maxDataSize = 1024 * 1024; // 1MiB
 const Entities: any = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 
+import config from '../../../config';
+
 /**
  * 指定されたURLのページのプレビューウィジェットを生成します。
  * @param req MisskeyExpressRequest
@@ -315,11 +317,11 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 		const viewer: string = compiler({
 			url: url,
 			title: title,
-			icon: icon,
+			icon: `${config.publicConfig.shieldUrl}/${icon}`,
 			lang: lang,
 			description: description,
 			type: type,
-			image: image,
+			image: `${config.publicConfig.shieldUrl}/${image}`,
 			siteName: siteName
 		});
 

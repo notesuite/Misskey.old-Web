@@ -12,6 +12,7 @@ forever stopall
 -d admin.misskey.xyz \
 -d authorize.misskey.xyz \
 -d himasaku.misskey.xyz \
+-d shield.misskey.xyz \
 -d resources.misskey.xyz \
 -d begin.misskey.xyz \
 -d login.misskey.xyz \

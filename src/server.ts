@@ -20,6 +20,7 @@ import config from './config';
 
 import api from './api/server';
 import resources from './resources-server';
+import shield from './shield-server';
 import router from './router';
 
 console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
@@ -114,6 +115,7 @@ app.get('/manifest.json', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
 
+shield(app);
 router(app);
 
 let server: http.Server | https.Server;
