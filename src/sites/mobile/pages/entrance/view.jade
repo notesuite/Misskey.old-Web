@@ -19,14 +19,14 @@ block body
 			h1 Misskey
 			p A mini-blog sns.
 		form#login-form(action=config.signinUrl, method='get')
-			h2=locale.sites.mobile.pages.entrance.account
+			h2=locale.sites.mobile.pages._entrance.account
 			label
 				i.fa.fa-at
 				input.ui-input-text(
 					name='screen-name'
 					type='text'
 					pattern='^[0-9A-Za-z\-]{1,20}$'
-					placeholder=locale.sites.mobile.pages.entrance.screen_name
+					placeholder=locale.sites.mobile.pages._entrance.screen_name
 					autofocus
 					required)
 			label
@@ -34,10 +34,10 @@ block body
 				input.ui-input-password(
 					name='password'
 					type='password'
-					placeholder=locale.sites.mobile.pages.entrance.password
+					placeholder=locale.sites.mobile.pages._entrance.password
 					required)
 			button.ui-button(type='submit')
-				=locale.sites.mobile.pages.entrance.signin
+				=locale.sites.mobile.pages._entrance.signin
 		a.register(href=config.registerUrl)
 			i.fa.fa-angle-right
-			=locale.sites.mobile.pages.entrance.register
+			=locale.sites.mobile.pages._entrance.register
