@@ -321,6 +321,7 @@
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",
 						"create_folder_failed": "フォルダの作成に失敗しました",
 						"plz_choose_folder": "Choose an folder",
+						"choose_folder": "Choose this folder",
 						"_folder": {
 							"rename": "Rename the folder",
 							"rename_dialog": "新しい名前を入力してください",
