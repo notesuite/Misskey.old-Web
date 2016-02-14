@@ -43,6 +43,30 @@ $ ->
 	if LOGIN
 		post-form = new PostForm
 
+		$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
+		.done (count) ->
+			$ '#misskey-header .home a .unread-count' .remove!
+			if count != 0
+				$ '#misskey-header .home a' .append $ "<span class=\"unread-count\">#{count}</span>"
+
+		$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
+		.done (count) ->
+			$ '#misskey-header .mentions a .unread-count' .remove!
+			if count != 0
+				$ '#misskey-header .mentions a' .append $ "<span class=\"unread-count\">#{count}</span>"
+
+		$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
+		.done (count) ->
+			$ '#misskey-header .talks a .unread-count' .remove!
+			if count != 0
+				$ '#misskey-header .talks a' .append $ "<span class=\"unread-count\">#{count}</span>"
+
+		$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
+		.done (count) ->
+			$ '#misskey-header .notifications .header span .unread-count' .remove!
+			if count != 0
+				$ '#misskey-header .notifications .header span' .append $ "<span class=\"unread-count\">#{count}</span>"
+
 	$ \#misskey-go-top-button .click ->
 		$ 'html, body' .animate {
 			scroll-top: 0

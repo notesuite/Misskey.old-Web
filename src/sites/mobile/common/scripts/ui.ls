@@ -7,6 +7,31 @@ $ ->
 		SpSlidemenu \#misskey-main \#misskey-nav \#open-misskey-nav-button {direction: \left}
 		init-view-position!
 
+		if LOGIN
+			$.ajax "#{CONFIG.web-api-url}/posts/timeline/unread/count"
+			.done (count) ->
+				if count != 0
+					$ '#misskey-nav .home a .unread-count' .remove!
+					$ '#misskey-nav .home a' .append $ "<span class=\"unread-count\">#{count}</span>"
+
+			$.ajax "#{CONFIG.web-api-url}/posts/mentions/unread/count"
+			.done (count) ->
+				if count != 0
+					$ '#misskey-nav .mentions a .unread-count' .remove!
+					$ '#misskey-nav .mentions a' .append $ "<span class=\"unread-count\">#{count}</span>"
+
+			$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
+			.done (count) ->
+				if count != 0
+					$ '#misskey-nav .notifications a .unread-count' .remove!
+					$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{count}</span>"
+
+			$.ajax "#{CONFIG.web-api-url}/talks/messages/unread/count"
+			.done (count) ->
+				if count != 0
+					$ '#misskey-nav .talks a .unread-count' .remove!
+					$ '#misskey-nav .talks a' .append $ "<span class=\"unread-count\">#{count}</span>"
+
 $ window .load ->
 	if not NOUI
 		init-view-position!
