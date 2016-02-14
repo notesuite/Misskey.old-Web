@@ -15,7 +15,7 @@ block action
 	button.post.action: i.fa.fa-pencil-square-o
 
 block content
-	main
+	main(role='main')
 		div#timeline
 			div.posts
 				if timeline.length > 0
@@ -30,3 +30,15 @@ block content
 				button.read-more
 					i.fa.fa-sort-amount-desc
 					span.text=locale.sites.mobile.pages._home.read_more
+append body
+	if me.screenName == 'syuilo'
+		footer#misskey-footer
+			div#ad.
+				<!-- i-mobile for SmartPhone client script -->
+				<script type="text/javascript">
+					imobile_tag_ver = "0.3"; 
+					imobile_pid = "35353"; 
+					imobile_asid = "777677"; 
+					imobile_type = "inline";
+				</script>
+				<script type="text/javascript" src="https://spad.i-mobile.co.jp/script/adssp.js?20110215"></script>

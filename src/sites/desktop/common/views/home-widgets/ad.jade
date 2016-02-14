@@ -1,2 +1,13 @@
-div.misskey-home-widget#widget-ad(data-widget-id='ad', data-widget-name='AD')
-	p!=locale.sites.desktop.pages._home.ad_widget.text
+if me.screenName == 'syuilo'
+	div.misskey-home-widget#widget-ad(data-widget-id='ad', data-widget-name='AD').
+		<!-- i-mobile for PC client script -->
+		<script type="text/javascript">
+			imobile_pid = "35353"; 
+			imobile_asid = "777673"; 
+			imobile_width = 250; 
+			imobile_height = 250;
+		</script>
+		<script type="text/javascript" src="https://spdeliver.i-mobile.co.jp/script/ads.js?20101001"></script>
+else
+	div.misskey-home-widget#widget-ad(data-widget-id='ad', data-widget-name='AD')
+		p!=locale.sites.desktop.pages._home.ad_widget.text

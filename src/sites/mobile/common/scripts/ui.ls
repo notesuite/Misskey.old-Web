@@ -12,10 +12,13 @@ $ window .load ->
 		init-view-position!
 
 function init-view-position
-	padding = $ 'body > #misskey-header' .outer-height!
-	$ \#misskey-main .css \padding-top "#{padding}px"
-	$ \#misskey-nav .css \margin-top "#{padding}px"
-	$ '#misskey-nav > .slidemenu-body > .slidemenu-content' .css \padding-bottom "#{padding}px"
+	top = $ \#misskey-header .outer-height!
+	bottom = $ \#misskey-footer .outer-height!
+	$ \#misskey-main .css \padding-top "#{top}px"
+	$ \#misskey-main .css \padding-bottom "#{bottom}px"
+	$ \#misskey-nav .css \margin-top "#{top}px"
+	$ \#misskey-nav .css \margin-bottom "#{bottom}px"
+	$ '#misskey-nav > .slidemenu-body > .slidemenu-content' .css \padding-bottom "#{top + bottom}px"
 
 
 ``
