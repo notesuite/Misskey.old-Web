@@ -276,13 +276,14 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			$('meta[property="misskey:type"]').attr('content'),
 			$('meta[property="og:type"]').attr('content'));
 
-		const image = or(
+		let image = or(
 			$('meta[property="misskey:image"]').attr('content'),
 			$('meta[property="og:image"]').attr('content'),
 			$('meta[property="twitter:image"]').attr('content'),
 			$('link[rel="image_src"]').attr('href'),
 			$('link[rel="apple-touch-icon"]').attr('href'),
 			$('link[rel="apple-touch-icon image_src"]').attr('href'));
+		image = image !== null ? wrapMisskeyProxy(URL.resolve(url.href, image)) : null;
 
 		let description = or(
 			$('meta[property="misskey:summary"]').attr('content'),
@@ -308,7 +309,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			$('link[rel="shortcut icon"]').attr('href'),
 			$('link[rel="icon"]').attr('href'),
 			'/favicon.ico');
-		icon = icon !== null ? URL.resolve(url.href, icon) : null;
+		icon = icon !== null ? wrapMisskeyProxy(URL.resolve(url.href, icon)) : null;
 
 		const compiler: (locals: any) => string = jade.compileFile(
 			`${__dirname}/summary.jade`);
@@ -317,11 +318,11 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 		const viewer: string = compiler({
 			url: url,
 			title: title,
-			icon: `${config.publicConfig.shieldUrl}/${icon}`,
+			icon: icon,
 			lang: lang,
 			description: description,
 			type: type,
-			image: `${config.publicConfig.shieldUrl}/${image}`,
+			image: image,
 			siteName: siteName
 		});
 
@@ -329,6 +330,11 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 	}, (err: any) => {
 		res.sendStatus(204);
 	});
+}
+
+function wrapMisskeyProxy(url: string): string {
+	'use strict';
+	return `${config.publicConfig.shieldUrl}/${url}`;
 }
 
 /**
