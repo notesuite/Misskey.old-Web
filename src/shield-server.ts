@@ -16,6 +16,8 @@ export default function router(app: express.Express): void {
 		client.fetch(url).then((result: any) => {
 			if (result.error !== undefined && result.error !== null) {
 				return res.sendStatus(204);
+			} else if (result.response.statusCode !== 200) {
+				return res.sendStatus(204);
 			}
 
 			const contentType: string = result.response.headers['content-type'];
@@ -25,6 +27,8 @@ export default function router(app: express.Express): void {
 			}
 
 			res.send(result.response.body);
+		}, (err: any) => {
+			res.sendStatus(204);
 		});
 	});
 }
