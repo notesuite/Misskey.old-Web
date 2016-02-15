@@ -111,7 +111,7 @@ block content
 				ul#tags
 					each tag in file.tags
 						li.tag: a(style={background: tag.color, color: contrast(tag.color)})= tag.name
-			select#tag-selector(multiple)
+			select#tag-selector(size='1', multiple)
 				each tag in albumTags
 					if file.tags.map(function(tag) { return tag.id; }).indexOf(tag.id) != -1
 						option(value= tag.id, selected)= tag.name
