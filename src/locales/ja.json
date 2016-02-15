@@ -269,6 +269,11 @@
 			"pages": {
 				"_about": {
 				},
+				"_color": {
+					"page_title": "色を選択 - Misskey",
+					"title": "色を選択してください",
+					"ok": "決定"
+				},
 				"_entrance": {
 					"account": "アカウント",
 					"screen_name": "ユーザーID",
@@ -331,6 +336,7 @@
 						"create_folder": "フォルダを作成",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",
 						"create_folder_failed": "フォルダの作成に失敗しました",
+						"tag_manager": "タグマネージャー",
 						"plz_choose_folder": "フォルダを選択してください",
 						"choose_folder": "このフォルダで決定",
 						"_folder": {
@@ -350,6 +356,15 @@
 							"delete_failed": "削除に失敗しました。",
 							"move": "移動",
 							"hash": "ファイルのハッシュ値"
+						},
+						"_tags": {
+							"page_title": "タグの管理 - Misskey アルバム",
+							"page_header_title": "タグの管理",
+							"add": "タグを作成",
+							"enter_name": "名前を入力してください",
+							"add_failed": "作成に失敗しました",
+							"rename_dialog": "タグ「{name}」の新しい名前を入力",
+							"delete_dialog": "タグ「{name}」を削除してもよろしいですか？"
 						}
 					},
 					"_post": {

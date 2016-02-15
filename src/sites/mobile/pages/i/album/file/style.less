@@ -115,6 +115,43 @@ html, #misskey-main {
 	}
 }
 
+#tag {
+	padding: 0 14px 14px 14px;
+
+	> .body {
+		max-width: 500px;
+		margin: 0 auto;
+
+		#tags {
+			display: block;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			border-bottom: solid 1px #eee;
+
+			> .tag {
+				display: inline-block;
+				margin: 0 8px 8px 0;
+
+				> a {
+					display: inline-block;
+					padding: 4px 8px;
+					border-radius: 2px;
+					border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+
+					> i {
+						margin-right: 4px;
+					}
+				}
+			}
+		}
+
+		#tag-selector {
+			width: 100%;
+		}
+	}
+}
+
 #menu {
 	padding: 14px;
 	border-top: solid 1px #dfdfdf;

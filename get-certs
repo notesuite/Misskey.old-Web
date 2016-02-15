@@ -23,6 +23,7 @@ forever stopall
 -d talk.misskey.xyz \
 -d forum.misskey.xyz \
 -d dev.misskey.xyz \
+-d color.misskey.xyz \
 -d share.misskey.xyz \
 -d widgets.misskey.xyz \
 --server https://acme-v01.api.letsencrypt.org/directory

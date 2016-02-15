@@ -258,6 +258,11 @@
 			"pages": {
 				"_about": {
 				},
+				"_color": {
+					"page_title": "Choose color - Misskey",
+					"title": "Choose color",
+					"ok": "OK"
+				},
 				"_entrance": {
 					"account": "Account",
 					"screen_name": "User ID",
@@ -320,6 +325,7 @@
 						"create_folder": "Create a folder",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",
 						"create_folder_failed": "フォルダの作成に失敗しました",
+						"tag_manager": "Tag manager",
 						"plz_choose_folder": "Choose an folder",
 						"choose_folder": "Choose this folder",
 						"_folder": {
@@ -339,6 +345,15 @@
 							"delete_failed": "削除に失敗しました。",
 							"move": "Move",
 							"hash": "Hash value of the file"
+						},
+						"_tags": {
+							"page_title": "タグ - Misskey",
+							"page_header_title": "タグ",
+							"add": "タグを作成",
+							"enter_name": "名前を入力してください",
+							"add_failed": "作成に失敗しました",
+							"rename_dialog": "タグ「{name}」の新しい名前を入力",
+							"delete_dialog": "タグ「{name}」を削除してもよろしいですか？"
 						}
 					},
 					"_post": {

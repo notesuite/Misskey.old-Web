@@ -1,0 +1,35 @@
+extends ../../../../ui
+
+block title
+	= locale.sites.mobile.pages._i._album._tags.page_title
+
+block header
+	i.fa.fa-tags
+	= locale.sites.mobile.pages._i._album._tags.page_header_title
+
+block assets
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var TAGS = ' + JSON.stringify(tags) + '; Object.freeze(TAGS);') + '"));'
+
+block content
+	- function contrast(color) {
+	-   var r = parseInt(color.substr(1, 2), 16);
+	-   var g = parseInt(color.substr(3, 2), 16);
+	-   var b = parseInt(color.substr(5, 2), 16);
+	-   return r + g + b > 384 ? '#000' : '#fff';
+	- }
+	
+	div.add-container
+		button.button#add
+			i.fa.fa-plus
+			=locale.sites.mobile.pages._i._album._tags.add
+	
+	ul#tags
+		each tag in tags
+			li.tag(data-id= tag.id, data-name= tag.name)
+				div.body
+					a(style={background: tag.color, color: contrast(tag.color)})
+						= tag.name
+					div.actions
+						button.rename: i.fa.fa-pencil
+						button.recolor: i.fa.fa-paint-brush
+						button.delete: i.fa.fa-trash

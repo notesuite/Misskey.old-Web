@@ -109,6 +109,10 @@ export default function router(app: express.Express): void {
 		}
 	});
 
+	app.get(`/subdomain/${config.publicConfig.colorDomain}/`, (req, res) => {
+		callController(req, res, 'color');
+	});
+
 	app.get(`/subdomain/${config.publicConfig.registerDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
 			res.redirect(config.publicConfig.url);
@@ -269,6 +273,10 @@ export default function router(app: express.Express): void {
 
 	app.get('/i/album/folder/:folderId', (req, res) => {
 		callController(req, res, 'i/album/folder');
+	});
+
+	app.get('/i/album/tags', (req, res) => {
+		callController(req, res, 'i/album/tags');
 	});
 
 	app.get('/i/upload', (req, res) => {

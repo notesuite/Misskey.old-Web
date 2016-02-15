@@ -256,6 +256,11 @@
 			"pages": {
 				"_about": {
 				},
+				"_color": {
+					"page_title": "ほむ - Misskey",
+					"title": "ほむほむ",
+					"ok": "ほむ"
+				},
 				"_entrance": {
 					"account": "ほむ",
 					"screen_name": "ほむ",
@@ -318,6 +323,7 @@
 						"create_folder": "ほむ",
 						"create_folder_dialog": "ほむ",
 						"create_folder_failed": "ほむ",
+						"tag_manager": "ほむ",
 						"plz_choose_folder": "ほむを選択してください",
 						"choose_folder": "ほむ",
 						"_folder": {
@@ -337,6 +343,15 @@
 							"delete_failed": "ほむ",
 							"move": "ほむ",
 							"hash": "ほむ値"
+						},
+						"_tags": {
+							"page_title": "ほむ - Misskey",
+							"page_header_title": "ほむ",
+							"add": "ほむ",
+							"enter_name": "ほむほむ",
+							"add_failed": "ほむほむ",
+							"rename_dialog": "ほむ「{name}」のほむほむをほむ",
+							"delete_dialog": "ほむ「{name}」をほむほむ？"
 						}
 					},
 					"_post": {

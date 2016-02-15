@@ -82,6 +82,8 @@ export interface IConfig {
 		webStreamingUrl: string;
 		developerCenterHost: string;
 		developerCenterUrl: string;
+		colorDomain: string;
+		colorUrl: string;
 		shareDomain: string;
 		shareUrl: string;
 		widgetsDomain: string;

@@ -2,6 +2,17 @@ $ = require 'jquery/dist/jquery'
 require '../../../../common/scripts/ui.js'
 
 $ ->
+	$tag-selector = $ \#tag-selector
+	$tag-selector.change ->
+		tags = $tag-selector.val!
+
+		$.ajax "#{CONFIG.web-api-url}/album/files/update-tag" {
+			data:
+				'file-id': FILE.id
+				'tags': tags.join \,
+		} .done ->
+			location.reload!
+
 	$rename = $ \#rename
 	$rename.click ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album._file.rename_dialog, FILE.name

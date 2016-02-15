@@ -1,0 +1,25 @@
+extends ../../base
+
+block title
+	=locale.sites.mobile.pages._color.page_title
+
+block body
+	main
+		h1
+			i.fa.fa-paint-brush
+			=locale.sites.mobile.pages._color.title
+		
+		ul#colors
+			li.color(style={background: '#f11940'}, data-color='#f11940')
+			li.color(style={background: '#ff9914'}, data-color='#ff9914')
+			li.color(style={background: '#bfee0d'}, data-color='#bfee0d')
+			li.color(style={background: '#6deea3'}, data-color='#6deea3')
+			li.color(style={background: '#73c2da'}, data-color='#73c2da')
+			li.color(style={background: '#8257cf'}, data-color='#8257cf')
+			li.color(style={background: '#778fa1'}, data-color='#778fa1')
+		
+		input#color-hex(type='text', placeholder='#RRGGBB')
+		
+		button.ui-button#submit
+			i.fa.fa-check
+			=locale.sites.mobile.pages._color.ok

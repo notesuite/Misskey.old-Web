@@ -22,8 +22,11 @@ block nav-extend
 			i.fa.fa-angle-down
 			= locale.sites.mobile.pages._i._album.extended_nav
 		button.button.create-folder
-			i.fa.fa-plus
+			i.fa.fa-folder
 			= locale.sites.mobile.pages._i._album.create_folder
+		a.button.tag-edit(href='/i/album/tags')
+			i.fa.fa-tags
+			= locale.sites.mobile.pages._i._album.tag_manager
 
 block content
 	if choose === 'folder'

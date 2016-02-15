@@ -23,6 +23,13 @@ block content
 	-    return Math.round(bytes / Math.pow(1024, i), 2) + sizes[i];
 	- };
 	
+	- function contrast(color) {
+	-   var r = parseInt(color.substr(1, 2), 16);
+	-   var g = parseInt(color.substr(3, 2), 16);
+	-   var b = parseInt(color.substr(5, 2), 16);
+	-   return r + g + b > 384 ? '#000' : '#fff';
+	- }
+	
 	nav#nav
 		ol.items
 			li.root
@@ -98,6 +105,18 @@ block content
 				i.lock.fa.fa-lock
 			else
 				i.lock.fa.fa-unlock
+	div#tag
+		div.body
+			if file.tags.length > 0
+				ul#tags
+					each tag in file.tags
+						li.tag: a(style={background: tag.color, color: contrast(tag.color)})= tag.name
+			select#tag-selector(multiple)
+				each tag in albumTags
+					if file.tags.map(function(tag) { return tag.id; }).indexOf(tag.id) != -1
+						option(value= tag.id, selected)= tag.name
+					else
+						option(value= tag.id)= tag.name
 	div#menu
 		div.body
 			a.button#download(href= file.url + '?download', download= file.name)
