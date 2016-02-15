@@ -3,6 +3,8 @@ require '../../../../../common/scripts/ui.js'
 choose-color = require '../../../../../common/scripts/choose-color.js'
 
 $ ->
+	$ \body .css \margin-bottom ($ \#submit-container .outer-height!) + 'px'
+
 	$new = $ \#new
 	$new.click ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album._file._edit_tag.enter_name
