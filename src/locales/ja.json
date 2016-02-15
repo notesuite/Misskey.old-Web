@@ -336,7 +336,7 @@
 						"create_folder": "フォルダを作成",
 						"create_folder_dialog": "作成するフォルダの名前を決めてください",
 						"create_folder_failed": "フォルダの作成に失敗しました",
-						"tag_manager": "タグマネージャー",
+						"tag_manager": "タグの管理",
 						"plz_choose_folder": "フォルダを選択してください",
 						"choose_folder": "このフォルダで決定",
 						"_folder": {
@@ -351,11 +351,18 @@
 							"rename": "名前を変更",
 							"rename_dialog": "新しい名前を入力してください",
 							"rename_failed": "名前の変更に失敗しました。",
+							"tag_edit": "タグ編集",
 							"delete": "削除",
 							"delete_dialog": "ファイルを削除しますか？",
 							"delete_failed": "削除に失敗しました。",
 							"move": "移動",
-							"hash": "ファイルのハッシュ値"
+							"hash": "ファイルのハッシュ値",
+							"_edit_tag": {
+								"new": "タグを作成",
+								"enter_name": "名前を入力してください",
+								"new_failed": "作成に失敗しました",
+								"submit": "完了"
+							}
 						},
 						"_tags": {
 							"page_title": "タグの管理 - Misskey アルバム",

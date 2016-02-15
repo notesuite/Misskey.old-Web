@@ -340,11 +340,18 @@
 							"rename": "Rename",
 							"rename_dialog": "新しい名前を入力してください",
 							"rename_failed": "名前の変更に失敗しました。",
+							"tag_edit": "Edit tag",
 							"delete": "Delete",
 							"delete_dialog": "ファイルを削除しますか？",
 							"delete_failed": "削除に失敗しました。",
 							"move": "Move",
-							"hash": "Hash value of the file"
+							"hash": "Hash value of the file",
+							"_edit_tag": {
+								"new": "Create a new tag",
+								"enter_name": "名前を入力してください",
+								"new_failed": "作成に失敗しました",
+								"submit": "Accept"
+							}
 						},
 						"_tags": {
 							"page_title": "タグ - Misskey",

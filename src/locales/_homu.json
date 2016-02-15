@@ -338,11 +338,18 @@
 							"rename": "ほむ",
 							"rename_dialog": "ほむ",
 							"rename_failed": "ほむ",
+							"tag_edit": "ほむ",
 							"delete": "ほむ",
 							"delete_dialog": "ほむ？",
 							"delete_failed": "ほむ",
 							"move": "ほむ",
-							"hash": "ほむ値"
+							"hash": "ほむ値",
+							"_edit_tag": {
+								"new": "ほむ",
+								"enter_name": "ほむほむ",
+								"new_failed": "ほむほむ",
+								"submit": "ほむ"
+							}
 						},
 						"_tags": {
 							"page_title": "ほむ - Misskey",

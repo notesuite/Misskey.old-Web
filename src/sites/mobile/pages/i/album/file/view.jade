@@ -27,7 +27,8 @@ block content
 	-   var r = parseInt(color.substr(1, 2), 16);
 	-   var g = parseInt(color.substr(3, 2), 16);
 	-   var b = parseInt(color.substr(5, 2), 16);
-	-   return r + g + b > 384 ? '#000' : '#fff';
+	-   var luminance = Math.floor(0.298912 * r + 0.586611 * g + 0.114478 * b);
+	-   return luminance < 140 ? '#fff' : '#000';
 	- }
 	
 	nav#nav
@@ -105,18 +106,14 @@ block content
 				i.lock.fa.fa-lock
 			else
 				i.lock.fa.fa-unlock
-	div#tag
-		div.body
-			if file.tags.length > 0
+				
+	if file.tags.length > 0
+		div#tag
+			div.body
 				ul#tags
 					each tag in file.tags
 						li.tag: a(style={background: tag.color, color: contrast(tag.color)})= tag.name
-			select#tag-selector(size='1', multiple)
-				each tag in albumTags
-					if file.tags.map(function(tag) { return tag.id; }).indexOf(tag.id) != -1
-						option(value= tag.id, selected)= tag.name
-					else
-						option(value= tag.id)= tag.name
+						
 	div#menu
 		div.body
 			a.button#download(href= file.url + '?download', download= file.name)
@@ -125,16 +122,21 @@ block content
 			button.button#rename
 				i.fa.fa-pencil
 				=locale.sites.mobile.pages._i._album._file.rename
+			button.button#tag-edit
+				i.fa.fa-tags
+				=locale.sites.mobile.pages._i._album._file.tag_edit
 			button.button#move
 				i.fa.fa-folder-open
 				=locale.sites.mobile.pages._i._album._file.move
 			button.button#delete
 				i.fa.fa-trash
 				=locale.sites.mobile.pages._i._album._file.delete
+				
 	div#hash
 		div.body
 			p.caption
 				i.fa.fa-hashtag
 				= locale.sites.mobile.pages._i._album._file.hash
 			code.hash= file.hash
+			
 	footer

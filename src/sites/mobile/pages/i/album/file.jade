@@ -11,7 +11,8 @@ include ./file-icon
 -   var r = parseInt(color.substr(1, 2), 16);
 -   var g = parseInt(color.substr(3, 2), 16);
 -   var b = parseInt(color.substr(5, 2), 16);
--   return r + g + b > 384 ? '#000' : '#fff';
+-   var luminance = Math.floor(0.298912 * r + 0.586611 * g + 0.114478 * b);
+-   return luminance < 140 ? '#fff' : '#000';
 - }
 
 li.item.file(

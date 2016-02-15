@@ -1,0 +1,45 @@
+extends ../../../../../ui
+include ../../file-icon
+
+block title
+	= file.name
+
+block header
+	+file-icon(file)
+	= file.name
+
+block assets
+	script!= 'var IS_DIALOG = ' + isDialog + '; Object.freeze(IS_DIALOG);'
+	script!= 'eval(decodeURIComponent("' + encodeURIComponent('var FILE = ' + JSON.stringify(file) + '; Object.freeze(FILE);') + '"));'
+
+block content
+	- function contrast(color) {
+	-   var r = parseInt(color.substr(1, 2), 16);
+	-   var g = parseInt(color.substr(3, 2), 16);
+	-   var b = parseInt(color.substr(5, 2), 16);
+	-   var luminance = Math.floor(0.298912 * r + 0.586611 * g + 0.114478 * b);
+	-   return luminance < 140 ? '#fff' : '#000';
+	- }
+	
+	div.new-container
+		button.button#new
+			i.fa.fa-plus
+			=locale.sites.mobile.pages._i._album._file._edit_tag.new
+
+	ul#tags
+		each tag in albumTags
+			if file.tags.map(function(tag) { return tag.id; }).indexOf(tag.id) != -1
+				li.tag.selected(data-id= tag.id)
+					div.body
+						i.fa.fa-check
+						p(style={background: tag.color, color: contrast(tag.color)})= tag.name
+			else
+				li.tag(data-id= tag.id)
+					div.body
+						i.fa.fa-check
+						p(style={background: tag.color, color: contrast(tag.color)})= tag.name
+	
+	div#submit-container
+		button#submit
+			i.fa.fa-check
+			= locale.sites.mobile.pages._i._album._file._edit_tag.submit

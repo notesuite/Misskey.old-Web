@@ -102,6 +102,7 @@
 		"src/sites/mobile/pages/i/upload/controller.ts",
 		"src/sites/mobile/pages/i/album/controller.ts",
 		"src/sites/mobile/pages/i/album/file/controller.ts",
+		"src/sites/mobile/pages/i/album/file/edit-tag/controller.ts",
 		"src/sites/mobile/pages/i/album/folder/controller.ts",
 		"src/sites/mobile/pages/i/album/tags/controller.ts",
 		"src/sites/mobile/pages/i/settings/controller.ts",

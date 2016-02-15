@@ -271,6 +271,10 @@ export default function router(app: express.Express): void {
 		callController(req, res, 'i/album/file');
 	});
 
+	app.get('/i/album/file/:fileId/edit-tag', (req, res) => {
+		callController(req, res, 'i/album/file/edit-tag');
+	});
+
 	app.get('/i/album/folder/:folderId', (req, res) => {
 		callController(req, res, 'i/album/folder');
 	});

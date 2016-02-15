@@ -1,0 +1,136 @@
+@import "../../../../../common/styles/ui";
+
+html, #misskey-main {
+	color: #000;
+	background: #fff;
+}
+
+.new-container {
+	box-sizing: border-box;
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 12px;
+
+	.button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px 16px;
+		margin: 0;
+		color: #333;
+		font-size: 0.9em;
+		text-align: center;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		white-space: nowrap;
+		background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+		background-image: linear-gradient(#fafafa, #eaeaea);
+		border: 1px solid #ddd;
+		border-bottom-color: #cecece;
+		border-radius: 3px;
+
+		&:active {
+			background-color: #767676;
+			background-image: none;
+			border-color: #444;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.075),inset 0 0 5px rgba(0,0,0,0.2);
+		}
+
+		> i {
+			margin-right: 4px;
+		}
+	}
+}
+
+#tags {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-bottom: solid 1px #eee;
+
+	> .tag {
+		display: block;
+		border-top: solid 1px #eee;
+
+		&.selected {
+			> .body {
+				> i {
+					visibility: visible;
+				}
+			}
+		}
+
+		> .body {
+			display: block;
+			box-sizing: border-box;
+			position: relative;
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 6px 10px;
+			border-radius: 3px;
+
+			> i {
+				margin-right: 8px;
+				visibility: hidden;
+				color: #4F5A6D;
+			}
+
+			> p {
+				display: inline-block;
+				margin: 0;
+				padding: 6px 10px;
+				border-radius: 3px;
+			}
+		}
+	}
+}
+
+#submit-container {
+	display: block;
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 8px;
+	background: #fff;
+	border-top: solid 1px #dfdfdf;
+
+	#submit {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 500px;
+		padding: 10px 16px;
+		margin: 0 auto;
+		color: #333;
+		font-size: 0.9em;
+		text-align: center;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		white-space: nowrap;
+		background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+		background-image: linear-gradient(#fafafa, #eaeaea);
+		border: 1px solid #ddd;
+		border-bottom-color: #cecece;
+		border-radius: 3px;
+
+		&:active {
+			background-color: #767676;
+			background-image: none;
+			border-color: #444;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.075),inset 0 0 5px rgba(0,0,0,0.2);
+		}
+
+		> i {
+			margin-right: 4px;
+		}
+	}
+}
