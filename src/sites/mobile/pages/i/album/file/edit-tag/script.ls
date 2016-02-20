@@ -3,6 +3,7 @@ require '../../../../../common/scripts/ui.js'
 choose-color = require '../../../../../common/scripts/choose-color.js'
 
 $ ->
+	$ \body .css \margin-top ($ '#misskey-main > h1' .outer-height!) + 'px'
 	$ \body .css \margin-bottom ($ \#submit-container .outer-height!) + 'px'
 
 	$new = $ \#new

@@ -347,6 +347,7 @@
 							"move": "Move",
 							"hash": "Hash value of the file",
 							"_edit_tag": {
+								"choose_tags": "Choose an tag",
 								"new": "Create a new tag",
 								"enter_name": "名前を入力してください",
 								"new_failed": "作成に失敗しました",
