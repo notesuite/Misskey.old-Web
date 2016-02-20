@@ -62,8 +62,6 @@ export interface IConfig {
 		resourcesDomain: string;
 		resourcesHost: string;
 		resourcesUrl: string;
-		shieldUrl: string;
-		shieldDomain: string;
 		aboutUrl: string;
 		aboutDomain: string;
 		searchDomain: string;
