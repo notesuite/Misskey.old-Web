@@ -283,7 +283,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			$('link[rel="image_src"]').attr('href'),
 			$('link[rel="apple-touch-icon"]').attr('href'),
 			$('link[rel="apple-touch-icon image_src"]').attr('href'));
-		image = image !== null ? wrapMisskeyProxy(URL.resolve(url.href, image)) : null;
+		image = image !== null ? URL.resolve(url.href, image) : null;
 
 		let description = or(
 			$('meta[property="misskey:summary"]').attr('content'),
@@ -309,7 +309,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			$('link[rel="shortcut icon"]').attr('href'),
 			$('link[rel="icon"]').attr('href'),
 			'/favicon.ico');
-		icon = icon !== null ? wrapMisskeyProxy(URL.resolve(url.href, icon)) : null;
+		icon = icon !== null ? URL.resolve(url.href, icon) : null;
 
 		const compiler: (locals: any) => string = jade.compileFile(
 			`${__dirname}/summary.jade`);
@@ -330,11 +330,6 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 	}, (err: any) => {
 		res.sendStatus(204);
 	});
-}
-
-function wrapMisskeyProxy(url: string): string {
-	'use strict';
-	return `${config.publicConfig.shieldUrl}/${url}`;
 }
 
 /**
