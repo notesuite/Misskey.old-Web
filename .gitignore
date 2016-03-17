@@ -5,4 +5,5 @@
 npm-debug.log
 /tmp
 /uploads
+/storage
 # /src/sites/common/common.less
