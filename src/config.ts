@@ -1,19 +1,56 @@
-export const homeDirPath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-export const configDirName = '.misskey';
-export const configFileName = 'web.json';
-export const configDirectoryPath = `${homeDirPath}/${configDirName}`;
-export const configPath = `${configDirectoryPath}/${configFileName}`;
+//////////////////////////////////////////////////
+// CONFIGURATION MANAGER
+//////////////////////////////////////////////////
+
+// Detect home path
+const home = process.env[
+	process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
+
+// Name of directory that includes config file
+const dirName = '.misskey';
+
+// Name of config file
+const fileName = 'web.json';
+
+// Resolve paths...
+const dirPath = `${home}/${dirName}`;
+const path = `${dirPath}/${fileName}`;
+
+//////////////////////////////////////////////////
+// CONFIGURATION LOADER
+
+function loadConfig(): IConfig {
+	// Read config file
+	let conf = <IConfig>require(path);
+
+	const domain = conf.public.domain;
+	const domains = conf.public.domains;
+
+	const scheme = conf.https.enable ? 'https://' : 'http://';
+	conf.public.url = `${scheme}${conf.public.domain}`;
+
+	// Define URLs
+	(<any>conf).public.urls = {
+		admin: `${scheme}${domains.admin}.${domain}`,
+		i: `${scheme}${domains.i}.${domain}`,
+		api: `${scheme}${domains.api}.${domain}`,
+		webApi: `${scheme}${domains.webApi}.${domain}`,
+		resources: `${scheme}${domains.resources}.${domain}`,
+		signup: `${scheme}${domains.signup}.${domain}`,
+		signin: `${scheme}${domains.signin}.${domain}`,
+		signout: `${scheme}${domains.signout}.${domain}`,
+		search: `${scheme}${domains.search}.${domain}`,
+		talk: `${scheme}${domains.talk}.${domain}`,
+		color: `${scheme}${domains.color}.${domain}`
+	};
+
+	return conf;
+}
 
 export default loadConfig();
 
-function loadConfig(): IConfig {
-	'use strict';
-	try {
-		return <IConfig>require(configPath);
-	} catch (e) {
-		return null;
-	}
-}
+//////////////////////////////////////////////////
+// CONFIGURATION INTERFACE DEFINITION
 
 export interface IConfig {
 	mongo: {
@@ -21,7 +58,7 @@ export interface IConfig {
 		options: {
 			user: string;
 			pass: string;
-		};
+		}
 	};
 	redis: {
 		host: string;
@@ -37,55 +74,50 @@ export interface IConfig {
 		keyPath: string;
 		certPath: string;
 	};
-	apiPasskey: string;
-	apiServerIp: string;
-	apiServerPort: number;
+	api: {
+		passkey: string;
+		ip: string;
+		port: number;
+	};
+	bindIp: string;
 	cookiePass: string;
 	sessionKey: string;
 	sessionSecret: string;
-	googleRecaptchaSecret: string;
-	publicConfig: {
-		themeColor: string;
+	recaptchaSecretKey: string;
+	public: {
 		domain: string;
-		host: string;
 		url: string;
-		adminUrl: string;
-		adminDomain: string;
-		authorizeUrl: string;
-		authorizeDomain: string;
-		registerUrl: string;
-		registerDomain: string;
-		signinDomain: string;
-		signinUrl: string;
-		signoutDomain: string;
-		signoutUrl: string;
-		resourcesDomain: string;
-		resourcesHost: string;
-		resourcesUrl: string;
-		aboutUrl: string;
-		aboutDomain: string;
-		searchDomain: string;
-		searchUrl: string;
-		helpUrl: string;
-		helpDomain: string;
-		talkDomain: string;
-		talkUrl: string;
-		forumDomain: string;
-		forumUrl: string;
-		apiHost: string;
-		apiUrl: string;
-		webApiDomain: string;
-		webApiHost: string;
-		webApiUrl: string;
-		webStreamingUrl: string;
-		developerCenterHost: string;
-		developerCenterUrl: string;
-		colorDomain: string;
-		colorUrl: string;
-		shareDomain: string;
-		shareUrl: string;
-		widgetsDomain: string;
-		widgetsUrl: string;
-		googleRecaptchaSiteKey: string;
+		themeColor: string;
+		recaptchaSiteKey: string;
+		domains: {
+			admin: string;
+			i: string;
+			api: string;
+			webApi: string;
+			resources: string;
+			signup: string;
+			signin: string;
+			signout: string;
+			search: string;
+			color: string;
+			talk: string;
+			help: string;
+			about: string;
+		};
+		urls: {
+			admin: string;
+			i: string;
+			api: string;
+			webApi: string;
+			resources: string;
+			signup: string;
+			signin: string;
+			signout: string;
+			search: string;
+			color: string;
+			talk: string;
+			help: string;
+			about: string;
+		};
 	};
 }

@@ -1,3 +1,7 @@
+//////////////////////////////////////////////////
+// WEB SERVER
+//////////////////////////////////////////////////
+
 import * as cluster from 'cluster';
 import * as fs from 'fs';
 import * as http from 'http';
@@ -5,16 +9,14 @@ import * as https from 'https';
 import * as path from 'path';
 import * as express from 'express';
 import * as expressSession from 'express-session';
-import * as mongoose from 'mongoose';
 import * as MongoStore from 'connect-mongo';
-const _MongoStore: MongoStore.MongoStoreFactory = MongoStore(expressSession);
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
 const vhost: any = require('vhost');
 
-import namingWorkerId from './core/naming-worker-id';
+import name from './core/naming-worker-id';
 
 import config from './config';
 
@@ -22,16 +24,19 @@ import api from './api/server';
 import resources from './resources-server';
 import router from './router';
 
-console.log(`Init ${namingWorkerId(cluster.worker.id)} server...`);
+const worker = cluster.worker;
 
-// Global options
-const sessionExpires: number = 1000 * 60 * 60 * 24 * 365;
+console.log(`Init ${name(worker.id)} server...`);
+
+//////////////////////////////////////////////////
+// SERVER OPTIONS
+
+const store = MongoStore(expressSession);
+
+const sessionExpires = 1000 * 60 * 60 * 24 * 365; // One Year
 const subdomainOptions = {
-	base: config.publicConfig.host
+	base: config.public.domain
 };
-
-// Init DB connection
-const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 const session: any = {
 	name: config.sessionKey,
@@ -46,12 +51,14 @@ const session: any = {
 		expires: new Date(Date.now() + sessionExpires),
 		maxAge: sessionExpires
 	},
-	store: new _MongoStore({
+	store: new store({
 		mongooseConnection: db
 	})
 };
 
-// Init server
+//////////////////////////////////////////////////
+// INIT SERVER PHASE
+
 const app: express.Express = express();
 app.disable('x-powered-by');
 app.locals.compileDebug = false;
@@ -114,7 +121,11 @@ app.get('/manifest.json', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
 
+// Main routing
 router(app);
+
+//////////////////////////////////////////////////
+// LISTEN PHASE
 
 let server: http.Server | https.Server;
 let port: number;
@@ -126,6 +137,7 @@ if (config.https.enable) {
 		cert: fs.readFileSync(config.https.certPath)
 	}, app);
 
+	// 非TLSはリダイレクト
 	http.createServer((req, res) => {
 		res.writeHead(301, {
 			Location: config.publicConfig.url + req.url
@@ -142,5 +154,5 @@ server.listen(port, () => {
 	const listenport: number = server.address().port;
 
 	console.log(
-		`\u001b[1;32m${namingWorkerId(cluster.worker.id)} is now listening at ${listenhost}:${listenport}\u001b[0m`);
+		`\u001b[1;32m${name(worker.id)} is now listening at ${listenhost}:${listenport}\u001b[0m`);
 });
