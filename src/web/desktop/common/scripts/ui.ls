@@ -399,7 +399,7 @@ class PostForm
 				, 300ms
 			, i * 50
 
-		$contents = $ '#misskey-contents'
+		$contents = $ \#misskey-global
 		$ {blur-radius: 0} .animate {blur-radius: 5}, {
 			duration: 100ms
 			easing: \linear
@@ -439,7 +439,7 @@ class PostForm
 			if ($ \#misskey-post-form .css \opacity) === '0'
 				$ \#misskey-post-form-container .css \display \none
 
-		$contents = $ '#misskey-contents'
+		$contents = $ \#misskey-global
 		$ {blur-radius: 5} .animate {blur-radius: 0}, {
 			duration: 100ms
 			easing: \linear
