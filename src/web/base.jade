@@ -49,6 +49,7 @@ html(
 		link(rel='dns-prefetch', href= config.searchUrl)
 		link(rel='dns-prefetch', href= config.talkUrl)
 		link(rel='dns-prefetch', href= config.apiUrl)
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
 		link(rel='stylesheet', href= stylePath)
 		script!= setScript('CONFIG', JSON.stringify(config))
 		script!= setScript('LANG', '"' + lang + '"')
@@ -73,15 +74,5 @@ html(
 	
 	body
 		block root-body
-		
-		script.
-			(function(d){
-			    var c = d.createElement('link');
-			        c.type = 'text/css';
-			        c.rel  = 'stylesheet';
-			        c.href = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
-			    var s = d.getElementsByTagName('script')[0];
-			        s.parentNode.insertBefore(c, s);
-			})(document);
 		
 		!= '<!-- このセッションは ' + workerId + ' が担当しました -->'
