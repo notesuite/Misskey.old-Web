@@ -3,10 +3,10 @@ require '../../../common/scripts/ui.ls'
 $ = require 'jquery/dist/jquery'
 
 Tab = require '../../../common/scripts/lib/tab.js'
-AlbumDialog = require '../../../common/scripts/album-dialog.js'
-show-modal-window = require '../../../common/scripts/modal-window.js'
-show-modal-dialog = require '../../../common/scripts/modal-dialog.js'
-avatar-form = require '../../../common/scripts/avatar-form.js'
+AlbumDialog = require '../../../common/scripts/album-dialog.ls'
+show-modal-window = require '../../../common/scripts/modal-window.ls'
+show-modal-dialog = require '../../../common/scripts/modal-dialog.ls'
+avatar-form = require '../../../common/scripts/avatar-form.ls'
 
 function chain-case-to-camel-case p
 	p.replace /-./g (s) -> s.char-at 1 .to-upper-case!

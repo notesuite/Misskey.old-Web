@@ -1,5 +1,5 @@
 $ = require 'jquery/dist/jquery'
-show-modal-dialog = require '../../../../common/scripts/modal-dialog.js'
+show-modal-dialog = require '../../../../common/scripts/modal-dialog.ls'
 require '../main.ls'
 
 $ ->

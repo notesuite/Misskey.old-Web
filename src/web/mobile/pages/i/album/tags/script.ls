@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 require '../../../../common/scripts/ui.ls'
-choose-color = require '../../../../common/scripts/choose-color.js'
+choose-color = require '../../../../common/scripts/choose-color.ls'
 
 $ ->
 	$add = $ \#add

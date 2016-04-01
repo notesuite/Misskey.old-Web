@@ -2,7 +2,7 @@ $ = require 'jquery/dist/jquery'
 require '../../../common/scripts/main.ls'
 require '../../../../common/kronos.ls'
 upload-file = require '../../../../common/upload-file.ls'
-Stream = require '../../../common/scripts/talk-stream-core.js'
+Stream = require '../../../common/scripts/talk-stream-core.ls'
 
 no-history = no
 now-loading = no

@@ -1,5 +1,5 @@
 require '../../../common/scripts/ui.ls'
-require '../script.js'
+require '../script.ls'
 $ = require 'jquery/dist/jquery'
 Timeline = require '../../../common/scripts/timeline-core.ls'
 
