@@ -4,6 +4,8 @@
 [![][david-dev-badge]][david-dev-link]
 [![][mit-badge]][mit]
 
+Misskey-Web is Misskey official client for web.
+
 ## External dependencies
 * GraphicsMagick
 
