@@ -5,7 +5,7 @@ Timeline = require '../../common/scripts/timeline-core.ls'
 notification-compiler = require '../../common/views/notification/smart/render.jade'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
 recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
-get-post-summary = require '../../../common/scripts/get-post-summary.ls'
+get-post-summary = require '../../../common/scripts/get-post-summary.ts'
 ui-window = require '../../common/scripts/window.ls'
 
 is-active = yes
