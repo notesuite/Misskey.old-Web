@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
-upload-file = require '../../../common/upload-file.js'
+upload-file = require '../../../common/upload-file.ls'
 file-compiler = require '../views/album/file.jade'
 
 class Album

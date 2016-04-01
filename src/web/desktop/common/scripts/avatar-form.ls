@@ -1,8 +1,8 @@
 $ = require 'jquery/dist/jquery'
 require 'cropper'
 
-show-modal-window = require './modal-window.js'
-show-modal-dialog = require './modal-dialog.js'
+show-modal-window = require './modal-window.ls'
+show-modal-dialog = require './modal-dialog.ls'
 
 module.exports = (file) ->
 	$crop-form = $ '<form class="crop-form">

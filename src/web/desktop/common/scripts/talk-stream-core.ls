@@ -1,7 +1,7 @@
 $ = require 'jquery/dist/jquery'
 marked = require 'marked'
-imageviewer = require './image-viewer.js'
-urldecorator = require '../../../common/urldecorator.js'
+imageviewer = require './image-viewer.ls'
+urldecorator = require '../../../common/urldecorator.ls'
 message-compiler = require '../views/talk/render.jade'
 
 marked.set-options {

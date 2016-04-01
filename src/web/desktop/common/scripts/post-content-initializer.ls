@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
-urldecorator = require '../../../common/urldecorator.js'
-imageviewer = require './image-viewer.js'
+urldecorator = require '../../../common/urldecorator.ls'
+imageviewer = require './image-viewer.ls'
 
 module.exports = (post-type, $content) ->
 	switch (post-type)

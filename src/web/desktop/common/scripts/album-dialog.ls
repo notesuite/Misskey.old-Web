@@ -2,7 +2,7 @@ $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 album-dialog-compiler = require '../views/album-dialog.jade'
 file-compiler = require '../views/album/file.jade'
-Album = require './album-core.js'
+Album = require './album-core.ls'
 
 class AlbumDialog
 	->

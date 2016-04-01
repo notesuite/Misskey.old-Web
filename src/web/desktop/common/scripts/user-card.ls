@@ -1,7 +1,7 @@
 $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
-tooltip = require './tooltiper.js'
-ui-window = require './window'
+tooltip = require './tooltiper.ls'
+ui-window = require './window.ls'
 card-popup-render = require '../views/user-card.jade'
 
 module.exports = ($trigger) ->

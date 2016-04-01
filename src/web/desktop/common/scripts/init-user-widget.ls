@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
-tooltip = require './tooltiper.js'
+tooltip = require './tooltiper.ls'
 
 module.exports = ($widget) ->
 	user = JSON.parse $widget.attr \data-user
