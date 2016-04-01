@@ -7,7 +7,7 @@
 Misskey-Web is *Misskey* official client for the Web. run on [Node.js](https://github.com/nodejs/node)!
 
 ## External dependencies
-* GraphicsMagick
+* GraphicsMagick (for trimming, compress, etc etc)
 
 ## How to build
 1. `git clone git://github.com/MissKernel/Misskey-Web.git`
