@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import config from '../config';
+import config from '../../config';
 
 const Schema: typeof mongoose.Schema = mongoose.Schema;
 

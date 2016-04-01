@@ -2,20 +2,15 @@
 // WEB ROUTER
 //////////////////////////////////////////////////
 
-import * as cluster from 'cluster';
 import * as express from 'express';
 import * as path from 'path';
 const acceptLanguage: any = require('accept-language');
 acceptLanguage.languages(['en', 'ja']);
 
-import { User } from './models/user';
-import { UserSettings, IUserSettings, guestUserSettings } from './models/user-settings';
-import namingWorkerId from './core/naming-worker-id';
+import { User } from './db/models/user';
 import requestApi from './core/request-api';
 import login from './core/login';
 import config from './config';
-
-const workerId: string = namingWorkerId(cluster.worker.id);
 
 export default function router(app: express.Express): void {
 

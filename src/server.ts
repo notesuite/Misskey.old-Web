@@ -18,7 +18,11 @@ const acceptLanguage: any = require('accept-language');
 
 const vhost: any = require('vhost');
 
+import db from './db/db';
+import { User } from './db/models/user';
+import { UserSettings, IUserSettings, guestUserSettings } from './db/models/user-settings';
 import name from './core/naming-worker-id';
+import requestApi from './core/request-api';
 import uatype from './detect-ua';
 
 import config from './config';
@@ -53,7 +57,7 @@ const session: any = {
 	saveUninitialized: true,
 	cookie: {
 		path: '/',
-		domain: `.${config.public.host}`,
+		domain: `.${config.public.domain}`,
 		httpOnly: true,
 		secure: config.https.enable,
 		expires: new Date(Date.now() + sessionExpires),
@@ -75,10 +79,10 @@ app.locals.cache = true;
 app.set('view engine', 'jade');
 
 // Init API server
-app.use(vhost(config.public.webApiHost, api(session)));
+app.use(vhost(config.public.hosts.webApi, api(session)));
 
 // Init static resources server
-app.use(vhost(config.public.resourcesHost, resources()));
+app.use(vhost(config.public.hosts.resources, resources()));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
@@ -134,7 +138,7 @@ app.use((req, res, next) => {
 	res.locals.noui = noui;
 	res.locals.login = res.locals.isLogin;
 	res.locals.ua = ua;
-	res.locals.workerId = workerId;
+	res.locals.workerId = worker.id;
 
 	if (res.locals.isLogin) {
 		const userId: string = (<any>req).session.userId;
