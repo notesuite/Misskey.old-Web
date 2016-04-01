@@ -11,6 +11,7 @@ const es = require('event-stream');
 const stylus = require('gulp-stylus');
 const cssnano = require('gulp-cssnano');
 const uglify = require('gulp-uglify');
+const tsify = require('tsify');
 
 task('build', [
 	'build:ts',
@@ -42,6 +43,7 @@ task('build:frontside-scripts', ['build:ts'], done => {
 	glob('./src/web/**/*.ls', (err: Error, files: string[]) => {
 		const tasks = files.map(entry => {
 			return browserify({ entries: [entry] })
+				.plugin(tsify)
 				.bundle()
 				.pipe(source(entry.replace('src/web', 'resources').replace('.ls', '.js')))
 				.pipe(buffer())
