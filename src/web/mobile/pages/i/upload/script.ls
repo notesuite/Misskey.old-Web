@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 require '../../../common/scripts/ui.ls'
-upload-file = require '../../../../common/upload-file.js'
+upload-file = require '../../../../common/upload-file.ls'
 
 $ ->
 	$input = $ \#file

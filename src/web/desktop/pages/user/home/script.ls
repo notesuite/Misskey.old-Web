@@ -1,7 +1,7 @@
 require '../../../common/scripts/ui.ls'
 require '../script.js'
 $ = require 'jquery/dist/jquery'
-Timeline = require '../../../common/scripts/timeline-core.js'
+Timeline = require '../../../common/scripts/timeline-core.ls'
 
 timeline = null
 timeline-loading = no

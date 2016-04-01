@@ -1,6 +1,6 @@
-require '../base.js'
+require '../base.ls'
 $ = require 'jquery/dist/jquery'
-UsersList = require '../../../common/widgets/users-list/script.js'
+UsersList = require '../../../common/widgets/users-list/script.ls'
 
 $ ->
 	users-list = new UsersList $ \#following

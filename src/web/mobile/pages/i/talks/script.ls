@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 require '../../../common/scripts/ui.ls'
-require '../../../../common/kronos.js'
+require '../../../../common/kronos.ls'
 
 $ ->
 	$ '#search input' .bind \input ->

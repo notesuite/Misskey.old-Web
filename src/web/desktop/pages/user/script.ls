@@ -1,10 +1,10 @@
 require '../../common/scripts/ui.ls'
 $ = require 'jquery/dist/jquery'
 
-show-modal-window = require '../../common/scripts/modal-window.js'
-AlbumDialog = require '../../common/scripts/album-dialog.js'
-avatar-form = require '../../common/scripts/avatar-form.js'
-banner-form = require '../../common/scripts/banner-form.js'
+show-modal-window = require '../../common/scripts/modal-window.ls'
+AlbumDialog = require '../../common/scripts/album-dialog.ls'
+avatar-form = require '../../common/scripts/avatar-form.ls'
+banner-form = require '../../common/scripts/banner-form.ls'
 
 $ ->
 	is-me = LOGIN and ME.id == USER.id

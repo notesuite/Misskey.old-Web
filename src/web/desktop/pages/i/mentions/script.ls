@@ -1,3 +1,3 @@
-home-base = require '../../home/home-base.js'
+home-base = require '../../home/home-base.ls'
 
 home-base \mentions

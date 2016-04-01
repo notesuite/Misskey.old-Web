@@ -1,1 +1,1 @@
-require '../_article-base/script.js'
+require '../_article-base/script.ls'

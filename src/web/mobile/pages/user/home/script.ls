@@ -1,6 +1,6 @@
-require '../base.js'
+require '../base.ls'
 $ = require 'jquery/dist/jquery'
-Timeline = require '../../../common/scripts/timeline-core.js'
+Timeline = require '../../../common/scripts/timeline-core.ls'
 
 $ ->
 	timeline = new Timeline $ '#timeline'

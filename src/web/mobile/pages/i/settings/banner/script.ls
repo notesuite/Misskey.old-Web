@@ -1,7 +1,7 @@
 $ = require 'jquery/dist/jquery'
 require 'cropper'
 require '../../../../common/scripts/ui.ls'
-upload-file = require '../../../../../common/upload-file.js'
+upload-file = require '../../../../../common/upload-file.ls'
 
 $ ->
 	$form = $ \#form
