@@ -1,4 +1,4 @@
-import { User } from '../../../models/user';
+import { User } from '../../../db/models/user';
 import generateHomewidgets from './generate-homewidgets';
 
 export default function generateLayoutedHomewidgets(me: User, locale: any, tlsource: string): Promise<any> {

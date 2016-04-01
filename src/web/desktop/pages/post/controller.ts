@@ -1,6 +1,6 @@
 import * as express from 'express';
-import { User } from '../../../../models/user';
-import { Post } from '../../../../models/post';
+import { User } from '../../../../db/models/user';
+import { Post } from '../../../../db/models/post';
 import requestApi from '../../../../core/request-api';
 const getPostSuumary = require('../../../common/scripts/get-post-summary');
 

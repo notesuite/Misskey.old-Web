@@ -16,13 +16,13 @@ export default function callController(
 	res.locals.display = (data: any = {}, addLocalePagePath: string = null): void => {
 		const viewPath: string = `${__dirname}/sites/${res.locals.ua}/pages/${path}/view`;
 		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
-			data.stylePath = `${config.public.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${data.overrideTheme}.css`;
+			data.stylePath = `${config.public.urls.resources}/${res.locals.ua}/pages/${path}/style.${data.overrideTheme}.css`;
 		} else if (res.locals.isLogin && req.user._settings.theme !== null) {
-			data.stylePath = `${config.public.resourcesUrl}/${res.locals.ua}/pages/${path}/style.${req.user._settings.theme}.css`;
+			data.stylePath = `${config.public.urls.resources}/${res.locals.ua}/pages/${path}/style.${req.user._settings.theme}.css`;
 		} else {
-			data.stylePath = `${config.public.resourcesUrl}/${res.locals.ua}/pages/${path}/style.css`;
+			data.stylePath = `${config.public.urls.resources}/${res.locals.ua}/pages/${path}/style.css`;
 		}
-		data.scriptPath = `${config.public.resourcesUrl}/${res.locals.ua}/pages/${path}/script.js`;
+		data.scriptPath = `${config.public.urls.resources}/${res.locals.ua}/pages/${path}/script.js`;
 		delete res.locals.display;
 
 		/* tslint:disable:no-eval */

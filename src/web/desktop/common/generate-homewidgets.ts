@@ -1,6 +1,6 @@
 const jade: any = require('jade');
 
-import { User } from '../../../models/user';
+import { User } from '../../../db/models/user';
 import generateHomewidgetTimeline from './generate-homewidget-timeline';
 import config from '../../../config';
 

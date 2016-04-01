@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { User } from '../../../../models/user';
+import { User } from '../../../../db/models/user';
 import requestApi from '../../../../core/request-api';
 
 module.exports = (req: express.Request, res: express.Response): void => {

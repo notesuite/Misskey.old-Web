@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { UserSettings, IUserSettings } from '../../../models/user-settings';
+import { UserSettings, IUserSettings } from '../../../db/models/user-settings';
 
 export default function updateHomeLayout(req: express.Request, res: express.Response): void {
 	'use strict';

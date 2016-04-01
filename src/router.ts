@@ -4,12 +4,11 @@
 
 import * as express from 'express';
 import * as path from 'path';
-const acceptLanguage: any = require('accept-language');
-acceptLanguage.languages(['en', 'ja']);
 
 import { User } from './db/models/user';
 import requestApi from './core/request-api';
 import login from './core/login';
+import callController from './call-controller';
 import config from './config';
 
 export default function router(app: express.Express): void {
@@ -28,95 +27,15 @@ export default function router(app: express.Express): void {
 		}
 	});
 
-	app.get(`/subdomain/${config.public.colorDomain}/`, (req, res) => {
-		callController(req, res, 'color');
-	});
-
-	app.get(`/subdomain/${config.public.registerDomain}/`, (req, res) => {
-		if (res.locals.isLogin) {
-			res.redirect(config.public.url);
-		} else {
-			callController(req, res, 'register');
-		}
-	});
-
-	app.post(`/subdomain/${config.public.signinDomain}/`, (req, res) => {
-		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
-			res.sendStatus(200);
-		}, (err: any) => {
-			res.status(err.statusCode).send(err.body);
-		});
-	});
-
-	app.get(`/subdomain/${config.public.signinDomain}/`, (req, res) => {
-		if (res.locals.isLogin) {
-			res.redirect(config.public.url);
-		} else if (req.query.hasOwnProperty('screen-name') && req.query.hasOwnProperty('password')) {
-			login(req.query['screen-name'], req.query['password'], req.session).then(() => {
-				res.redirect(config.public.url);
-			}, (err: any) => {
-				res.status(err.statusCode).send(err.body);
-			});
-		} else {
-			callController(req, res, 'login');
-		}
-	});
-
-	app.get(`/subdomain/${config.public.signoutDomain}/`, (req, res) => {
-		if (res.locals.isLogin) {
-			req.session.destroy(() => {
-				res.redirect(config.public.url);
-			});
-		} else {
-			res.redirect(config.public.url);
-		}
-	});
+	//////////////////////////////////////////////////
+	// GENERAL
 
 	app.get('/terms-of-use', (req, res) => {
 		callController(req, res, 'terms-of-use');
 	});
 
-	app.get('/welcome', (req, res) => {
-		callController(req, res, 'welcome');
-	});
-
-	app.get(`/subdomain/${config.public.searchDomain}/`, (req, res) => {
-		if (req.query.hasOwnProperty('q')) {
-			callController(req, res, 'search/result');
-		} else {
-			callController(req, res, 'search/index');
-		}
-	});
-
-	app.get(`/subdomain/${config.public.adminDomain}/`, (req, res) => {
-		if (res.locals.isLogin) {
-			callController(req, res, 'admin');
-		} else {
-			callController(req, res, 'login');
-		}
-	});
-
-	app.get(`/subdomain/${config.public.shareDomain}/`, (req, res) => {
-		callController(req, res, 'share');
-	});
-
-	app.get(`/subdomain/${config.public.shareDomain}/script.js`, (req, res) => {
-		res.header('Access-Control-Allow-Origin', '*');
-		res.header('Access-Control-Allow-Credentials', 'false');
-		res.sendFile(path.resolve(`${__dirname}/share/script.js`));
-	});
-
-	app.get(`/subdomain/${config.public.aboutDomain}/`, (req, res) => {
-		callController(req, res, 'about');
-	});
-
-	app.get(`/subdomain/${config.public.aboutDomain}/license`, (req, res) => {
-		callController(req, res, 'about/license');
-	});
-
-	app.get(`/subdomain/${config.public.aboutDomain}/technologies`, (req, res) => {
-		callController(req, res, 'about/technologies');
-	});
+	//////////////////////////////////////////////////
+	// I
 
 	app.get('/i/*', (req, res, next) => {
 		if (res.locals.isLogin) {
@@ -136,50 +55,6 @@ export default function router(app: express.Express): void {
 
 	app.get('/i/notifications', (req, res) => {
 		callController(req, res, 'i/notifications');
-	});
-
-	app.get(`/subdomain/${config.public.talkDomain}/*`, (req, res, next) => {
-		if (req.headers.hasOwnProperty('referer')) {
-			const referer = req.headers['referer'];
-			if ((new RegExp(`^https?://(.+\.)?${config.public.host}/?\$`)).test(referer)) {
-				res.header('X-Frame-Options', '');
-			} else {
-				res.header('X-Frame-Options', 'DENY');
-			}
-		} else {
-			res.header('X-Frame-Options', 'DENY');
-		}
-
-		next();
-	});
-
-	app.get(`/subdomain/${config.public.talkDomain}/`, (req, res) => {
-		callController(req, res, 'i/talks');
-	});
-
-	app.get(`/subdomain/${config.public.talkDomain}/i/users`, (req, res) => {
-		callController(req, res, 'i/talks/users');
-	});
-
-	app.get(`/subdomain/${config.public.talkDomain}/i/groups`, (req, res) => {
-		callController(req, res, 'i/talks/groups');
-	});
-
-	app.get(`/subdomain/${config.public.talkDomain}/i/group/create`, (req, res) => {
-		callController(req, res, 'i/talks/group/create');
-	});
-
-	app.get(`/subdomain/${config.public.talkDomain}/:userScreenName`, (req, res) => {
-		callController(req, res, 'i/talk/user');
-	});
-
-	app.get(`/subdomain/${config.public.talkDomain}/\:group/:talkGroupId`,
-		(req, res) => {
-		callController(req, res, 'i/talk/group');
-	});
-
-	app.get(`/subdomain/${config.public.forumDomain}/`, (req, res) => {
-		callController(req, res, 'forum');
 	});
 
 	app.get('/i/album', (req, res) => {
@@ -244,6 +119,169 @@ export default function router(app: express.Express): void {
 
 	app.get('/i/home-customize', (req, res) =>
 		callController(req, res, 'i/home-customize'));
+
+	//////////////////////////////////////////////////
+	// COLOR
+
+	const colorDomain = `/subdomain/${config.public.domains.color}`;
+
+	app.get(`${colorDomain}/`, (req, res) => {
+		callController(req, res, 'color');
+	});
+
+	//////////////////////////////////////////////////
+	// SIGNUP
+
+	const signupDomain = `/subdomain/${config.public.domains.signup}`;
+
+	app.get(`${signupDomain}/`, (req, res) => {
+		if (res.locals.isLogin) {
+			res.redirect(config.public.url);
+		} else {
+			callController(req, res, 'signup');
+		}
+	});
+
+	//////////////////////////////////////////////////
+	// SIGNIN
+
+	const signinDomain = `/subdomain/${config.public.domains.signin}`;
+
+	app.post(`${signinDomain}/`, (req, res) => {
+		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
+			res.sendStatus(200);
+		}, (err: any) => {
+			res.status(err.statusCode).send(err.body);
+		});
+	});
+
+	app.get(`${signinDomain}/`, (req, res) => {
+		if (res.locals.isLogin) {
+			res.redirect(config.public.url);
+		} else if (req.query.hasOwnProperty('screen-name') && req.query.hasOwnProperty('password')) {
+			login(req.query['screen-name'], req.query['password'], req.session).then(() => {
+				res.redirect(config.public.url);
+			}, (err: any) => {
+				res.status(err.statusCode).send(err.body);
+			});
+		} else {
+			callController(req, res, 'login');
+		}
+	});
+
+	//////////////////////////////////////////////////
+	// SIGNOUT
+
+	const signoutDomain = `/subdomain/${config.public.domains.signout}`;
+
+	app.get(`${signoutDomain}/`, (req, res) => {
+		if (res.locals.isLogin) {
+			req.session.destroy(() => {
+				res.redirect(config.public.url);
+			});
+		} else {
+			res.redirect(config.public.url);
+		}
+	});
+
+	//////////////////////////////////////////////////
+	// SEARCH
+
+	const searchDomain = `/subdomain/${config.public.domains.search}`;
+
+	app.get(`${searchDomain}/`, (req, res) => {
+		if (req.query.hasOwnProperty('q')) {
+			callController(req, res, 'search/result');
+		} else {
+			callController(req, res, 'search/index');
+		}
+	});
+
+	//////////////////////////////////////////////////
+	// SHARE
+
+	const shareDomain = `/subdomain/${config.public.domains.share}`;
+
+	app.get(`${shareDomain}/`, (req, res) => {
+		callController(req, res, 'share');
+	});
+
+	app.get(`${shareDomain}/script.js`, (req, res) => {
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Credentials', 'false');
+		res.sendFile(path.resolve(`${__dirname}/share/script.js`));
+	});
+
+	//////////////////////////////////////////////////
+	// ABOUT
+
+	const aboutDomain = `/subdomain/${config.public.domains.about}`;
+
+	app.get(`${aboutDomain}/`, (req, res) => {
+		callController(req, res, 'about');
+	});
+
+	app.get(`${aboutDomain}/license`, (req, res) => {
+		callController(req, res, 'about/license');
+	});
+
+	app.get(`${aboutDomain}/technologies`, (req, res) => {
+		callController(req, res, 'about/technologies');
+	});
+
+	//////////////////////////////////////////////////
+	// TALK
+
+	const talkDomain = `/subdomain/${config.public.domains.talk}`;
+
+	app.get(`${talkDomain}/*`, (req, res, next) => {
+		if (req.headers.hasOwnProperty('referer')) {
+			const referer = req.headers['referer'];
+			if ((new RegExp(`^https?://(.+\.)?${config.public.host}/?\$`)).test(referer)) {
+				res.header('X-Frame-Options', '');
+			} else {
+				res.header('X-Frame-Options', 'DENY');
+			}
+		} else {
+			res.header('X-Frame-Options', 'DENY');
+		}
+
+		next();
+	});
+
+	app.get(`${talkDomain}/`, (req, res) => {
+		callController(req, res, 'i/talks');
+	});
+
+	app.get(`${talkDomain}/i/users`, (req, res) => {
+		callController(req, res, 'i/talks/users');
+	});
+
+	app.get(`${talkDomain}/i/groups`, (req, res) => {
+		callController(req, res, 'i/talks/groups');
+	});
+
+	app.get(`${talkDomain}/i/group/create`, (req, res) => {
+		callController(req, res, 'i/talks/group/create');
+	});
+
+	app.get(`${talkDomain}/:userScreenName`, (req, res) => {
+		callController(req, res, 'i/talk/user');
+	});
+
+	app.get(`${talkDomain}/\:group/:talkGroupId`,
+		(req, res) => {
+		callController(req, res, 'i/talk/group');
+	});
+
+	//////////////////////////////////////////////////
+	// FORUM
+
+	const forumDomain = `/subdomain/${config.public.domains.forum}`;
+
+	app.get(`${forumDomain}/`, (req, res) => {
+		callController(req, res, 'forum');
+	});
 
 	app.get('/:userScreenName', (req, res) => {
 		callController(req, res, 'user/home');

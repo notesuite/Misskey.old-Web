@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { User } from '../../../../models/user';
+import { User } from '../../../../db/models/user';
 import generateLayoutedHomeWidgets from '../../common/generate-layouted-homewidgets';
 
 module.exports = (req: express.Request, res: express.Response): void => {

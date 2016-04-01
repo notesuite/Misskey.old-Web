@@ -1,8 +1,8 @@
 import * as SocketIO from 'socket.io';
 import * as cookie from 'cookie';
 
-import { User } from '../../models/user';
-import { UserSettings, IUserSettings } from '../../models/user-settings';
+import { User } from '../../db/models/user';
+import { UserSettings, IUserSettings } from '../../db/models/user-settings';
 import requestApi from '../../core/request-api';
 import config from '../../config';
 

@@ -1,7 +1,7 @@
 const jade: any = require('jade');
 
-import { User } from '../../../models/user';
-import { Post } from '../../../models/post';
+import { User } from '../../../db/models/user';
+import { Post } from '../../../db/models/post';
 import requestApi from '../../../core/request-api';
 
 import config from '../../../config';

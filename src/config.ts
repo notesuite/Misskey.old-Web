@@ -41,6 +41,7 @@ function loadConfig(): IConfig {
 		signin: `${domains.signin}.${domain}`,
 		signout: `${domains.signout}.${domain}`,
 		share: `${domains.share}.${domain}`,
+		forum: `${domains.forum}.${domain}`,
 		search: `${domains.search}.${domain}`,
 		talk: `${domains.talk}.${domain}`,
 		help: `${domains.help}.${domain}`,
@@ -58,10 +59,11 @@ function loadConfig(): IConfig {
 		signup: `${scheme}${domains.signup}.${domain}`,
 		signin: `${scheme}${domains.signin}.${domain}`,
 		signout: `${scheme}${domains.signout}.${domain}`,
-		share: `${domains.share}.${domain}`,
+		share: `${scheme}${domains.share}.${domain}`,
+		forum: `${scheme}${domains.forum}.${domain}`,
 		search: `${scheme}${domains.search}.${domain}`,
 		talk: `${scheme}${domains.talk}.${domain}`,
-		help: `${domains.help}.${domain}`,
+		help: `${scheme}${domains.help}.${domain}`,
 		color: `${scheme}${domains.color}.${domain}`
 	};
 
@@ -85,6 +87,7 @@ interface Domains {
 	share: string;
 	search: string;
 	color: string;
+	forum: string;
 	talk: string;
 	help: string;
 	about: string;
