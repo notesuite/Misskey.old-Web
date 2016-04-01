@@ -14,15 +14,23 @@ import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
+const acceptLanguage: any = require('accept-language');
+
 const vhost: any = require('vhost');
 
 import name from './core/naming-worker-id';
+import uatype from './detect-ua';
 
 import config from './config';
 
 import api from './api/server';
 import resources from './resources-server';
 import router from './router';
+
+acceptLanguage.languages([
+	'en',
+	'ja'
+]);
 
 const worker = cluster.worker;
 
@@ -45,7 +53,7 @@ const session: any = {
 	saveUninitialized: true,
 	cookie: {
 		path: '/',
-		domain: `.${config.publicConfig.host}`,
+		domain: `.${config.public.host}`,
 		httpOnly: true,
 		secure: config.https.enable,
 		expires: new Date(Date.now() + sessionExpires),
@@ -67,18 +75,18 @@ app.locals.cache = true;
 app.set('view engine', 'jade');
 
 // Init API server
-app.use(vhost(config.publicConfig.webApiHost, api(session)));
+app.use(vhost(config.public.webApiHost, api(session)));
 
 // Init static resources server
-app.use(vhost(config.publicConfig.resourcesHost, resources()));
+app.use(vhost(config.public.resourcesHost, resources()));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
 
-// CORS
 app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', config.publicConfig.url);
+	// CORS
+	res.header('Access-Control-Allow-Origin', config.public.url);
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 	res.header('Access-Control-Allow-Headers', 'Content-Type, csrf-token');
 	res.header('Access-Control-Allow-Credentials', 'true');
@@ -87,6 +95,75 @@ app.use((req, res, next) => {
 	if (req.method === 'OPTIONS') {
 		res.sendStatus(200);
 	} else {
+		next();
+	}
+
+	// Security headers
+	res.header('X-Frame-Options', 'SAMEORIGIN');
+	res.header('X-XSS-Protection', '1; mode=block');
+	res.header('X-Content-Type-Options', 'nosniff');
+
+	// HSTS
+	if (config.https.enable) {
+		res.header(
+			'Strict-Transport-Security',
+			'max-age=10886400; includeSubDomains; preload');
+	}
+
+	// See http://web-tan.forum.impressrd.jp/e/2013/05/17/15269
+	res.header('Vary', 'Accept-Language, User-Agent, Cookie');
+
+	res.locals.isLogin =
+		req.hasOwnProperty('session') &&
+		req.session !== null &&
+		req.session.hasOwnProperty('userId') &&
+		(<any>req.session).userId !== null;
+
+	const ua: string = uatype(req.headers['user-agent']);
+	const noui: boolean = req.query.hasOwnProperty('noui');
+	const cookieLang: boolean = req.cookies['ui-language'];
+	const browserAcceptLanguageString: string = req.headers['accept-language'];
+
+	const browserAcceptLanguage = browserAcceptLanguageString !== undefined && browserAcceptLanguageString !== null
+		? acceptLanguage.get(browserAcceptLanguageString)
+		: 'en';
+
+	res.locals.config = config.public;
+	res.locals.cookie = req.cookies;
+	res.locals.pagePath = req.path;
+	res.locals.noui = noui;
+	res.locals.login = res.locals.isLogin;
+	res.locals.ua = ua;
+	res.locals.workerId = workerId;
+
+	if (res.locals.isLogin) {
+		const userId: string = (<any>req).session.userId;
+		requestApi('account/show', {}, userId).then((user: User) => {
+			UserSettings.findOne({
+				userId: userId
+			}, (err: any, settings: IUserSettings) => {
+				const lang = settings.uiLanguage !== null
+					? settings.uiLanguage
+					: browserAcceptLanguage;
+				req.user = Object.assign({}, user, {_settings: settings.toObject()});
+				res.locals.me = user;
+				res.locals.userSettings = settings.toObject();
+				res.locals.locale = require(`${__dirname}/locales/${lang}.json`);
+				res.locals.lang = lang;
+				next();
+			});
+		}, (err: any) => {
+			res.status(500).send('API error');
+		});
+	} else {
+		const lang = cookieLang !== undefined
+			? cookieLang
+			: browserAcceptLanguage;
+		req.user = null;
+		res.locals.me = null;
+		res.locals.userSettings = guestUserSettings;
+		res.locals.locale = require(`${__dirname}/locales/${lang}.json`);
+		res.locals.lang = lang;
 		next();
 	}
 });
@@ -104,14 +181,6 @@ app.use((req, res, next) => {
 });
 
 app.use(require('subdomain')(subdomainOptions));
-
-// HSTS
-if (config.https.enable) {
-	app.use((req, res, next) => {
-		res.header('Strict-Transport-Security', 'max-age=10886400; includeSubDomains; preload');
-		next();
-	});
-}
 
 // Statics
 app.get('/favicon.ico', (req, res) => {
@@ -140,7 +209,7 @@ if (config.https.enable) {
 	// 非TLSはリダイレクト
 	http.createServer((req, res) => {
 		res.writeHead(301, {
-			Location: config.publicConfig.url + req.url
+			Location: config.public.url + req.url
 		});
 		res.end();
 	}).listen(config.port.http);

@@ -39,7 +39,7 @@ export default function generateHomewidgetTimeline(me: User, locale: any, tlsour
 				me: me,
 				userSettings: me._settings,
 				locale: locale,
-				config: config.publicConfig
+				config: config.public
 			});
 		}
 	});
