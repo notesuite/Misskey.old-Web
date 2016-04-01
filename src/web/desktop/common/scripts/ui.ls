@@ -4,7 +4,7 @@ moment = require 'moment'
 Sortable = require 'Sortable'
 require 'fuck-adblock'
 
-require './main.js'
+require './main.ls'
 require '../../../common/kronos.ls'
 Tab = require './lib/tab.js'
 WavesEffect = require './lib/waves-effect.js'
