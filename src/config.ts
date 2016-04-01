@@ -29,18 +29,39 @@ function loadConfig(): IConfig {
 	const scheme = conf.https.enable ? 'https://' : 'http://';
 	conf.public.url = `${scheme}${conf.public.domain}`;
 
+	// Define hosts
+	conf.public.hosts = {
+		admin: `${domains.admin}.${domain}`,
+		i: `${domains.i}.${domain}`,
+		about: `${scheme}${domains.about}.${domain}`,
+		api: `${domains.api}.${domain}`,
+		webApi: `${domains.webApi}.${domain}`,
+		resources: `${domains.resources}.${domain}`,
+		signup: `${domains.signup}.${domain}`,
+		signin: `${domains.signin}.${domain}`,
+		signout: `${domains.signout}.${domain}`,
+		share: `${domains.share}.${domain}`,
+		search: `${domains.search}.${domain}`,
+		talk: `${domains.talk}.${domain}`,
+		help: `${domains.help}.${domain}`,
+		color: `${domains.color}.${domain}`
+	};
+
 	// Define URLs
-	(<any>conf).public.urls = {
+	conf.public.urls = {
 		admin: `${scheme}${domains.admin}.${domain}`,
 		i: `${scheme}${domains.i}.${domain}`,
+		about: `${scheme}${domains.about}.${domain}`,
 		api: `${scheme}${domains.api}.${domain}`,
 		webApi: `${scheme}${domains.webApi}.${domain}`,
 		resources: `${scheme}${domains.resources}.${domain}`,
 		signup: `${scheme}${domains.signup}.${domain}`,
 		signin: `${scheme}${domains.signin}.${domain}`,
 		signout: `${scheme}${domains.signout}.${domain}`,
+		share: `${domains.share}.${domain}`,
 		search: `${scheme}${domains.search}.${domain}`,
 		talk: `${scheme}${domains.talk}.${domain}`,
+		help: `${domains.help}.${domain}`,
 		color: `${scheme}${domains.color}.${domain}`
 	};
 
@@ -51,6 +72,23 @@ export default loadConfig();
 
 //////////////////////////////////////////////////
 // CONFIGURATION INTERFACE DEFINITION
+
+interface Domains {
+	admin: string;
+	i: string;
+	api: string;
+	webApi: string;
+	resources: string;
+	signup: string;
+	signin: string;
+	signout: string;
+	share: string;
+	search: string;
+	color: string;
+	talk: string;
+	help: string;
+	about: string;
+}
 
 export interface IConfig {
 	mongo: {
@@ -89,35 +127,8 @@ export interface IConfig {
 		url: string;
 		themeColor: string;
 		recaptchaSiteKey: string;
-		domains: {
-			admin: string;
-			i: string;
-			api: string;
-			webApi: string;
-			resources: string;
-			signup: string;
-			signin: string;
-			signout: string;
-			search: string;
-			color: string;
-			talk: string;
-			help: string;
-			about: string;
-		};
-		urls: {
-			admin: string;
-			i: string;
-			api: string;
-			webApi: string;
-			resources: string;
-			signup: string;
-			signin: string;
-			signout: string;
-			search: string;
-			color: string;
-			talk: string;
-			help: string;
-			about: string;
-		};
+		domains: Domains;
+		hosts: Domains;
+		urls: Domains;
 	};
 }
