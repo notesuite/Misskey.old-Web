@@ -1,4 +1,4 @@
-require '../../home/script.js'
+require '../../home/script.ls'
 $ = require 'jquery/dist/jquery'
 Sortable = require 'Sortable'
 

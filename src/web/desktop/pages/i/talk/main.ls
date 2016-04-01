@@ -1,5 +1,5 @@
 $ = require 'jquery/dist/jquery'
-require '../../../common/scripts/main.js'
+require '../../../common/scripts/main.ls'
 require '../../../../common/kronos.js'
 upload-file = require '../../../../common/upload-file.js'
 Stream = require '../../../common/scripts/talk-stream-core.js'

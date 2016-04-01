@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 show-modal-dialog = require '../../../../common/scripts/modal-dialog.js'
-require '../main.js'
+require '../main.ls'
 
 $ ->
 	$ 'main > header > .body > .nav > button' .click ->

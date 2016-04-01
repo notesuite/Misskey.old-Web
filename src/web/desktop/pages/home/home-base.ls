@@ -1,12 +1,12 @@
 require '../../common/scripts/ui.ls'
 $ = require 'jquery/dist/jquery'
 moment = require 'moment'
-Timeline = require '../../common/scripts/timeline-core.js'
+Timeline = require '../../common/scripts/timeline-core.ls'
 notification-compiler = require '../../common/views/notification/smart/render.jade'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
 recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
-get-post-summary = require '../../../common/scripts/get-post-summary'
-ui-window = require '../../common/scripts/window'
+get-post-summary = require '../../../common/scripts/get-post-summary.ls'
+ui-window = require '../../common/scripts/window.ls'
 
 is-active = yes
 unread-count = 0

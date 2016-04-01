@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
-require '../../common/scripts/main.js'
+require '../../common/scripts/main.ls'
 
 window.on-recaptchaed = ->
 	$ \#recaptcha .find '> .caption > i' .attr \class 'fa fa-toggle-on'
