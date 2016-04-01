@@ -1,13 +1,13 @@
 $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 Sortable = require 'Sortable'
-upload-file = require '../../../common/upload-file.js'
-sncompleter = require './sncompleter.js'
-post-content-initializer = require './post-content-initializer.js'
+upload-file = require '../../../common/upload-file.ls'
+sncompleter = require './sncompleter.ls'
+post-content-initializer = require './post-content-initializer.ls'
 post-compiler = require '../views/post/smart/render.jade'
 sub-post-compiler = require '../views/post/smart/sub-post-render.jade'
-AlbumDialog = require './album-dialog.js'
-user-card = require './user-card.js'
+AlbumDialog = require './album-dialog.ls'
+user-card = require './user-card.ls'
 
 class Post
 	(post = null) ->
