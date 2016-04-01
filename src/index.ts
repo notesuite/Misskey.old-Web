@@ -31,10 +31,16 @@ import name from './core/naming-worker-id';
 
 (<any>Error).stackTraceLimit = Infinity;
 
+const env = process.env.NODE_ENV;
+
 // Master
 if (cluster.isMaster) {
 	console.log('Welcome to Misskey!');
-	console.log(`environment: ${process.env.NODE_ENV}`);
+	console.log(`environment: ${env}`);
+
+	if (env !== 'production') {
+		console.log('■　注意！　このMisskey-Webはproductionモードで起動していません。本番環境で使用しないでください。');
+	}
 
 	// Count the machine's CPUs
 	const cpuCount: number = require('os').cpus().length;
