@@ -15,10 +15,10 @@ export default function requestApi(
 
 	return new Promise<any>((resolve, reject) => {
 		const options: request.Options = {
-			url: `http://${config.apiServerIp}:${config.apiServerPort}/${endpoint}`,
+			url: `http://${config.api.ip}:${config.api.port}/${endpoint}`,
 			method: 'POST',
 			headers: {
-				'passkey': config.apiPasskey,
+				'passkey': config.api.passkey,
 				'user-id': userId
 			}
 		};

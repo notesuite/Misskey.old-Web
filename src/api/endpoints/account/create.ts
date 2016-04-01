@@ -11,7 +11,7 @@ export default function create(req: express.Request, res: express.Response): voi
 		url: 'https://www.google.com/recaptcha/api/siteverify',
 		method: 'POST',
 		form: {
-			'secret': config.googleRecaptchaSecret,
+			'secret': config.recaptchaSecretKey,
 			'response': req.body['g-recaptcha-response']
 		}
 	}, (err: any, response: http.IncomingMessage, body: any) => {

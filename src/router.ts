@@ -237,7 +237,7 @@ export default function router(app: express.Express): void {
 	app.get(`${talkDomain}/*`, (req, res, next) => {
 		if (req.headers.hasOwnProperty('referer')) {
 			const referer = req.headers['referer'];
-			if ((new RegExp(`^https?://(.+\.)?${config.public.host}/?\$`)).test(referer)) {
+			if ((new RegExp(`^https?://(.+\.)?${config.public.domain}/?\$`)).test(referer)) {
 				res.header('X-Frame-Options', '');
 			} else {
 				res.header('X-Frame-Options', 'DENY');
