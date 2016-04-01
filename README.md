@@ -4,7 +4,7 @@
 [![][david-dev-badge]][david-dev-link]
 [![][mit-badge]][mit]
 
-Misskey-Web is Misskey official client for the Web.
+Misskey-Web is *Misskey* official client for the Web. run on [Node.js](https://github.com/nodejs/node)!
 
 ## External dependencies
 * GraphicsMagick
