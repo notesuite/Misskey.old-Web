@@ -3,7 +3,7 @@ $ = require 'jquery/dist/jquery'
 require 'jquery.transit'
 Timeline = require '../../common/scripts/timeline-core.ls'
 notification-render = require '../../common/views/notification/render.jade'
-get-post-summary = require '../../../common/scripts/get-post-summary.ts'
+get-post-summary = require '../../../common/get-post-summary.ls'
 
 is-active = yes
 unread-count = 0

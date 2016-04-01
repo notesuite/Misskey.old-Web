@@ -39,7 +39,7 @@ task('copy:bower_components', () => {
 		.pipe(dest('./built/resources/bower_components/'));
 });
 
-task('build:frontside-scripts', ['build:ts'], done => {
+task('build:frontside-scripts', done => {
 	glob('./src/web/**/*.ls', (err: Error, files: string[]) => {
 		const tasks = files.map(entry => {
 			return browserify({ entries: [entry] })
