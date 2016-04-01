@@ -1,4 +1,4 @@
-require '../../common/scripts/ui.js'
+require '../../common/scripts/ui.ls'
 $ = require 'jquery/dist/jquery'
 moment = require 'moment'
 Timeline = require '../../common/scripts/timeline-core.js'

@@ -1,5 +1,5 @@
 $ = require 'jquery/dist/jquery'
-urldecorator = require './urldecorator.js'
+urldecorator = require './urldecorator.ls'
 
 module.exports = (post-type, $content) ->
 	switch (post-type)

@@ -1,5 +1,5 @@
 $ = require 'jquery/dist/jquery'
-require '../../../common/scripts/ui.js'
+require '../../../common/scripts/ui.ls'
 upload-file = require '../../../../common/upload-file.js'
 
 $ ->

@@ -1,4 +1,4 @@
-require '../../../common/scripts/ui.js'
+require '../../../common/scripts/ui.ls'
 $ = require 'jquery/dist/jquery'
 notification-compiler = require '../../../common/views/notification/render.jade'
 

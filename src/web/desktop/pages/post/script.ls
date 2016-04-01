@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
 Sortable = require 'Sortable'
-require '../../common/scripts/ui.js'
+require '../../common/scripts/ui.ls'
 sncompleter = require '../../common/scripts/sncompleter.js'
 tooltiper = require '../../common/scripts/tooltiper.js'
 AlbumDialog = require '../../common/scripts/album-dialog.js'

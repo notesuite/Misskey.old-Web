@@ -1,4 +1,4 @@
-require '../../../common/scripts/ui.js'
+require '../../../common/scripts/ui.ls'
 Album = require '../../../common/scripts/album-core.js'
 $ = require 'jquery/dist/jquery'
 

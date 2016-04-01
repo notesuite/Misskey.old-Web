@@ -1,5 +1,5 @@
 $ = require 'jquery/dist/jquery'
-require '../../common/scripts/ui.js'
+require '../../common/scripts/ui.ls'
 post-content-initializer = require '../../common/scripts/post-content-initializer.js'
 
 $ ->

@@ -1,6 +1,6 @@
 $ = require 'jquery/dist/jquery'
-require './main.js'
-require '../../../common/kronos.js'
+require './main.ls'
+require '../../../common/kronos.ls'
 
 $ ->
 	if not NOUI
