@@ -1,16 +1,18 @@
 {
-	"compileOnSave": false,
 	"compilerOptions": {
 		"noEmitOnError": true,
 		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
 		"sourceMap": false,
-		"target": "ES6",
+		"target": "es6",
 		"module": "commonjs",
 		"removeComments": true,
 		"noLib": true,
 		"outDir": "built",
 		"rootDir": "src"
 	},
+	"compileOnSave": false,
 	"atom": {
 		"rewriteTsconfig": true
 	},

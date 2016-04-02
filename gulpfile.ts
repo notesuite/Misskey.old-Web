@@ -1,5 +1,7 @@
 /// <reference path="./typings/bundle.d.ts" />
 
+(<any>Error).stackTraceLimit = Infinity;
+
 import {task, src, dest} from 'gulp';
 import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
