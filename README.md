@@ -7,6 +7,9 @@
 Misskey-Web is *Misskey* official client for the Web. run on [Node.js](https://github.com/nodejs/node)!
 
 ## External dependencies
+* Node.js
+* npm
+* MongoDB
 * GraphicsMagick (for trimming, compress, etc etc)
 
 ## How to build
