@@ -23,13 +23,10 @@
     "transform": [
       "browserify-livescript",
       "debowerify",
-      [
-        "jadeify",
-        {
-          "compileDebug": false,
-          "pretty": false
-        }
-      ]
+      ["jadeify", {
+        "compileDebug": false,
+        "pretty": false
+      }]
     ]
   },
   "devDependencies": {
