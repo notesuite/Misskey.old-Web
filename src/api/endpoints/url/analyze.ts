@@ -19,9 +19,7 @@ import config from '../../../config';
  * @param req MisskeyExpressRequest
  * @param res MisskeyExpressResponse
  */
-export default function analyze(req: express.Request, res: express.Response): void {
-	'use strict';
-
+export default function (req: express.Request, res: express.Response): void {
 	const urlStr: string = req.body.url;
 	const url: URL.Url = URL.parse(urlStr, true);
 

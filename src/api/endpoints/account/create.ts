@@ -4,9 +4,7 @@ import * as request from 'request';
 import requestApi from '../../../core/request-api';
 import config from '../../../config';
 
-export default function create(req: express.Request, res: express.Response): void {
-	'use strict';
-
+export default function (req: express.Request, res: express.Response): void {
 	request({
 		url: 'https://www.google.com/recaptcha/api/siteverify',
 		method: 'POST',

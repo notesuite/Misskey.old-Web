@@ -1,11 +1,10 @@
 import * as express from 'express';
 import { UserSettings, IUserSettings } from '../../../db/models/user-settings';
 
-export default function updateHomeLayout(
+export default function (
 	req: express.Request,
 	res: express.Response
 ): void {
-	'use strict';
 
 	const key: string = req.body['key'].trim();
 	const value: string = req.body['value'].trim();

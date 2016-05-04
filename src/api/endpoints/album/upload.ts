@@ -3,8 +3,7 @@ import * as express from 'express';
 
 import requestApi from '../../../core/request-api';
 
-export default function upload(req: express.Request, res: express.Response): void {
-	'use strict';
+export default function (req: express.Request, res: express.Response): void {
 	const file: Express.Multer.File = (<any>req).file;
 	const folder: string = req.body.folder;
 	const data: any = {};

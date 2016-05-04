@@ -1,9 +1,7 @@
 import * as express from 'express';
 import requestApi from '../../../core/request-api';
 
-export default function reply(req: express.Request, res: express.Response): void {
-	'use strict';
-
+export default function (req: express.Request, res: express.Response): void {
 	requestApi('posts/reply', {
 		'in-reply-to-post-id': req.body['in-reply-to-post-id'],
 		'text': req.body['text'],

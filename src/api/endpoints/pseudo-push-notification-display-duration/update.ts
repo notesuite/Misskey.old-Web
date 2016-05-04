@@ -1,9 +1,7 @@
 import * as express from 'express';
 import { UserSettings, IUserSettings } from '../../../db/models/user-settings';
 
-export default function updateHomeLayout(req: express.Request, res: express.Response): void {
-	'use strict';
-
+export default function (req: express.Request, res: express.Response): void {
 	const duration: string = req.body['duration'];
 
 	UserSettings.findOne({
