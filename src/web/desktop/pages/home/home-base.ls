@@ -1,6 +1,6 @@
 require '../../common/scripts/ui.ls'
 $ = require 'jquery'
-moment = require 'moment/moment.js'
+moment = require 'moment'
 Timeline = require '../../common/scripts/timeline-core.ls'
 notification-compiler = require '../../common/views/notification/smart/render.jade'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'

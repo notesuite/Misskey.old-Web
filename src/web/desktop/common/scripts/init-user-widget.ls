@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require 'jquery.transit/jquery.transit.js'
+require 'jquery.transit'
 tooltip = require './tooltiper.ls'
 
 module.exports = ($widget) ->

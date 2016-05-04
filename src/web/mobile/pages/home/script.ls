@@ -1,6 +1,6 @@
 require '../../common/scripts/ui.ls'
 $ = require 'jquery'
-require 'jquery.transit/jquery.transit.js'
+require 'jquery.transit'
 Timeline = require '../../common/scripts/timeline-core.ls'
 notification-render = require '../../common/views/notification/render.jade'
 get-post-summary = require '../../../common/get-post-summary.ls'

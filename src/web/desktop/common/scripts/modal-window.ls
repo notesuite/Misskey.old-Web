@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require 'jquery.transit/jquery.transit.js'
+require 'jquery.transit'
 
 module.exports = ($content, can-close = true, on-shown = null, klass = null, on-closed = null) ->
 	default-html-overflow-state = $ \html .css \overflow

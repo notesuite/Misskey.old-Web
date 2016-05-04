@@ -1,5 +1,5 @@
 $ = require 'jquery'
-Sortable = require 'Sortable/Sortable.js'
+Sortable = require 'Sortable'
 require '../../common/scripts/ui.ls'
 sncompleter = require '../../common/scripts/sncompleter.ls'
 tooltiper = require '../../common/scripts/tooltiper.ls'

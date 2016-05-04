@@ -23,7 +23,16 @@ const env = process.env.NODE_ENV;
 const aliasifyConfig = {
 	"aliases": {
 		"config": "./built/_/config.json",
-		"jquery": "./bower_components/jquery/dist/jquery.js"
+		"jquery": "./bower_components/jquery/dist/jquery.js",
+		"jquery.transit": "./bower_components/jquery.transit/jquery.transit.js",
+		"cropper": "./bower_components/cropper/dist/cropper.js",
+		"moment": "./bower_components/moment/moment.js",
+		"Sortable": "./bower_components/Sortable/Sortable.js",
+		"fuck-adblock": "./bower_components/fuck-adblock/fuckadblock.js",
+		"Swiper": "./bower_components/Swiper/dist/js/swiper.js"
+	},
+	appliesTo: {
+		"includeExtensions": ['.js', '.ls']
 	}
 };
 

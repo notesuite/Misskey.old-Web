@@ -1,6 +1,6 @@
 require '../../home/script.ls'
 $ = require 'jquery'
-Sortable = require 'Sortable/Sortable.js'
+Sortable = require 'Sortable'
 
 function update-available-widgets-list
 	$ \#customizer-available-widgets .empty!
