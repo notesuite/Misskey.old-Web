@@ -29,12 +29,12 @@ const project = ts.createProject('tsconfig.json', {
 	typescript: require('typescript')
 });
 
-task('build:ts', () => {
-	return project
+task('build:ts', () =>
+	project
 	.src()
 	.pipe(ts(project))
-	.pipe(dest('./built/'));
-});
+	.pipe(dest('./built/'))
+);
 
 task('build:public-config', ['build:ts'], done => {
 	const config = require('./built/config').default;
