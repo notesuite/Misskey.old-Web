@@ -23,10 +23,13 @@
     "transform": [
       "browserify-livescript",
       "debowerify",
-      ["jadeify", {
-        "compileDebug": false,
-        "pretty": false
-      }]
+      [
+        "jadeify",
+        {
+          "compileDebug": false,
+          "pretty": false
+        }
+      ]
     ]
   },
   "devDependencies": {
@@ -79,6 +82,7 @@
     "object-assign-deep": "0.0.4",
     "redis": "2.6.0-1",
     "request": "2.72.0",
+    "serve-favicon": "2.3.0",
     "socket.io": "1.4.5",
     "subdomain": "1.2.0",
     "vhost": "3.0.2"

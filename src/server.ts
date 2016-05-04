@@ -14,6 +14,7 @@ import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
+import * as favicon from 'serve-favicon';
 const acceptLanguage: any = require('accept-language');
 
 const vhost: any = require('vhost');
@@ -84,10 +85,12 @@ app.use(vhost(config.public.hosts.webApi, api(session)));
 // Init static resources server
 app.use(vhost(config.public.hosts.resources, resources()));
 
+app.use(favicon(`${__dirname}/resources/favicon.ico`));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
 
+// Intercept all requests
 app.use((req, res, next) => {
 	// CORS
 	res.header('Access-Control-Allow-Origin', config.public.url);
@@ -186,10 +189,6 @@ app.use((req, res, next) => {
 
 app.use(require('subdomain')(subdomainOptions));
 
-// Statics
-app.get('/favicon.ico', (req, res) => {
-	res.sendFile(path.resolve(`${__dirname}/favicon.ico`));
-});
 app.get('/manifest.json', (req, res) => {
 	res.sendFile(path.resolve(`${__dirname}/manifest.json`));
 });
