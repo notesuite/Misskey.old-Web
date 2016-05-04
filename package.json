@@ -41,7 +41,6 @@
     "livescript": "1.4.0",
     "tslint": "3.8.0",
     "typescript": "1.8.10",
-    "typescript-require": "0.2.9-1",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0"
   },
