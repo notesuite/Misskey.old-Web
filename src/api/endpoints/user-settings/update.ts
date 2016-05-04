@@ -23,12 +23,14 @@ export default function (
 		userId: req.user
 	}, (findErr: any, settings: IUserSettings) => {
 		if (findErr !== null) {
-			return res.sendStatus(500);
+			res.sendStatus(500);
+			return;
 		}
 		(<any>settings)[key] = value;
 		settings.save((saveErr: any, savedSettings: IUserSettings) => {
 			if (saveErr !== null) {
-				return res.sendStatus(500);
+				res.sendStatus(500);
+				return;
 			} else {
 				res.sendStatus(200);
 			}

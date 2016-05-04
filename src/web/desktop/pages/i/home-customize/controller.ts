@@ -2,7 +2,6 @@ import * as express from 'express';
 import generateHomewidgets from '../../../common/generate-homewidgets';
 
 module.exports = (req: express.Request, res: express.Response): void => {
-	
 	const widgetCatalog = [
 		'timeline',
 		'my-status',
@@ -27,6 +26,8 @@ module.exports = (req: express.Request, res: express.Response): void => {
 	const unuseWidgets = widgetCatalog.map(widgetName => {
 		if (useWidgets.indexOf(widgetName) === -1) {
 			return widgetName;
+		} else {
+			return null;
 		}
 	});
 	generateHomewidgets(me, res.locals.locale, unuseWidgets, 'home').then((unuses: string[]) => {

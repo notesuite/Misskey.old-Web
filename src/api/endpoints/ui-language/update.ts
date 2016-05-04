@@ -8,7 +8,8 @@ export default function (req: express.Request, res: express.Response): void {
 		userId: req.user
 	}, (findErr: any, settings: IUserSettings) => {
 		if (findErr !== null) {
-			return res.sendStatus(500);
+			res.sendStatus(500);
+			return;
 		}
 		if (lang === '_auto') {
 			settings.uiLanguage = null;
@@ -17,7 +18,8 @@ export default function (req: express.Request, res: express.Response): void {
 		}
 		settings.save((saveErr: any, savedSettings: IUserSettings) => {
 			if (saveErr !== null) {
-				return res.sendStatus(500);
+				res.sendStatus(500);
+				return;
 			}
 			req.session.save(() => {
 				res.sendStatus(200);

@@ -12,8 +12,6 @@ client.maxDataSize = 1024 * 1024; // 1MiB
 const Entities: any = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 
-import config from '../../../config';
-
 /**
  * 指定されたURLのページのプレビューウィジェットを生成します。
  * @param req MisskeyExpressRequest
@@ -55,12 +53,12 @@ export default function (req: express.Request, res: express.Response): void {
 }
 
 function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
-	
 	const title: string = decodeURI(url.pathname.split('/')[2]);
 
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			return res.sendStatus(500);
+			res.sendStatus(500);
+			return;
 		}
 
 		const $: any = result.$;
@@ -89,12 +87,13 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 }
 
 function analyzeMobileWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
-	
+
 	const title: string = decodeURI(url.pathname.split('/')[2]);
 
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			return res.sendStatus(500);
+			res.sendStatus(500);
+			return;
 		}
 
 		const $: any = result.$;
@@ -123,9 +122,9 @@ function analyzeMobileWikipedia(req: express.Request, res: express.Response, url
 }
 
 function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Url): void {
-	
+
 	function getVideoId(): string {
-		
+
 		switch (url.hostname) {
 			case 'www.youtube.com':
 			case 'youtube.com':
@@ -150,7 +149,7 @@ function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Ur
 }
 
 function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL.Url): void {
-	
+
 	request({
 		url: 'http://soundcloud.com/oembed',
 		method: 'get',
@@ -160,9 +159,9 @@ function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL
 		}
 	}, (err, response, body) => {
 		if (err !== null) {
-			return res.sendStatus(204);
+			res.sendStatus(204);
 		} else if (response.statusCode !== 200) {
-			return res.sendStatus(204);
+			res.sendStatus(204);
 		} else {
 			const parsed: any = JSON.parse(body);
 			const html: string = parsed.html;
@@ -173,10 +172,11 @@ function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL
 }
 
 function analyzeGithubGist(req: express.Request, res: express.Response, url: URL.Url): void {
-	
+
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			return res.sendStatus(204);
+			res.sendStatus(204);
+			return;
 		}
 
 		const $: any = result.$;
@@ -190,9 +190,9 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 
 		request(resolvedRawUrl, (getRawErr: any, getRawResponse: any, raw: any) => {
 			if (getRawErr !== null) {
-				return res.sendStatus(204);
+				res.sendStatus(204);
 			} else if (getRawResponse.statusCode !== 200) {
-				return res.sendStatus(204);
+				res.sendStatus(204);
 			} else {
 				const compiler: (locals: any) => string = jade.compileFile(
 					`${__dirname}/gist.jade`);
@@ -213,7 +213,7 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 }
 
 function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url): void {
-	
+
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://i.gyazo.com/${imageId}.png`;
 
@@ -234,18 +234,20 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
  * @param url url
  */
 function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Url): void {
-	
+
 	// リクエスト送信
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
-			return res.sendStatus(204);
+			res.sendStatus(204);
+			return;
 		}
 
 		const contentType: string = result.response.headers['content-type'];
 
 		// HTMLじゃなかった場合は中止
 		if (contentType.indexOf('text/html') === -1) {
-			return res.sendStatus(204);
+			res.sendStatus(204);
+			return;
 		}
 
 		const $: any = result.$;
@@ -256,7 +258,8 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			$('meta[property="twitter:title"]').attr('content'),
 			$('title').text());
 		if (title === null) {
-			return res.sendStatus(204);
+			res.sendStatus(204);
+			return;
 		}
 		title = clip(entities.decode(title), 100);
 
@@ -327,7 +330,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
  * @param val: 文字列
  */
 function nullOrEmpty(val: string): boolean {
-	
+
 	if (val === undefined) {
 		return true;
 	} else if (val === null) {
@@ -340,7 +343,7 @@ function nullOrEmpty(val: string): boolean {
 }
 
 function or(...xs: string[]): string {
-	
+
 	for (let i = 0; i < xs.length; i++) {
 		const x = xs[i];
 		if (!nullOrEmpty(x)) {
@@ -352,7 +355,7 @@ function or(...xs: string[]): string {
 }
 
 function clip(s: string, max: number): string {
-	
+
 	if (nullOrEmpty(s)) {
 		return s;
 	}

@@ -17,7 +17,8 @@ export default function (req: express.Request, res: express.Response): void {
 			'file-id': avaterFileId
 		}, req.user).then((file: any) => {
 			if (file.dataSize > ((1024 * 1024) * 10)) {
-				return res.status(500).send('big-data');
+				res.status(500).send('big-data');
+				return;
 			}
 			request({
 				url: file.url,
@@ -25,14 +26,16 @@ export default function (req: express.Request, res: express.Response): void {
 			}, (getFileErr: any, response: http.IncomingMessage, body: Buffer) => {
 				if (getFileErr !== null) {
 					console.error(getFileErr);
-					return res.status(500).send('something-happened');
+					res.status(500).send('something-happened');
+					return;
 				}
 				gm(body, file.name)
 				.crop(trimW, trimH, trimX, trimY)
 				.toBuffer('png', (err: Error, buffer: Buffer) => {
 					if (err !== null) {
 						console.error(err);
-						return res.status(500).send('something-happened');
+						res.status(500).send('something-happened');
+						return;
 					}
 					requestApi('album/files/upload', {
 						file: {
