@@ -2,6 +2,7 @@
 
 (<any>Error).stackTraceLimit = Infinity;
 
+import * as fs from 'fs';
 import {task, src, dest} from 'gulp';
 import * as glob from 'glob';
 import * as ts from 'gulp-typescript';
@@ -13,6 +14,8 @@ const es = require('event-stream');
 const stylus = require('gulp-stylus');
 const cssnano = require('gulp-cssnano');
 const uglify = require('gulp-uglify');
+
+const env = process.env.NODE_ENV;
 
 task('build', [
 	'build:ts',
@@ -35,32 +38,62 @@ task('build:ts', () =>
 		.pipe(dest('./built/'))
 );
 
+task('build:public-config', ['build:ts'], done => {
+	const config = require('./built/config').default;
+	fs.mkdir('./built/_', e => {
+		if (!e || (e && e.code === 'EEXIST')) {
+			fs.writeFile('./built/_/config.json', JSON.stringify(config.public), done);
+		} else {
+			console.error(e);
+		}
+	});
+});
+
 task('copy:bower_components', () => {
 	return src('./bower_components/**/*')
 		.pipe(dest('./built/resources/bower_components/'));
 });
 
-task('build:frontside-scripts', done => {
+task('build:frontside-scripts', ['build:public-config'], done => {
 	glob('./src/web/**/*.ls', (err: Error, files: string[]) => {
 		const tasks = files.map(entry => {
-			return browserify({ entries: [entry] })
+			let bundle =
+				browserify({
+					entries: [entry],
+					paths: [
+						__dirname + '/built/_'
+					]
+				})
 				.bundle()
-				.pipe(source(entry.replace('src/web', 'resources').replace('.ls', '.js')))
-				.pipe(buffer())
-				.pipe(uglify())
-				.pipe(dest('./built'));
+				.pipe(source(entry.replace('src/web', 'resources').replace('.ls', '.js')));
+
+			if (env === 'production') {
+				bundle = bundle
+					.pipe(buffer())
+					.pipe(uglify())
+			}
+
+			return bundle
+				.pipe(gulp.dest('./built'));
 		});
+
 		es.merge(tasks).on('end', done);
 	});
 });
 
 task('build:frontside-styles', ['copy:bower_components'], () => {
-	return src('./src/web/**/*.styl')
-		.pipe(stylus())
-		.pipe(cssnano({
-			safe: true // 高度な圧縮は無効にする (一部デザインが不適切になる場合があるため)
-		}))
-		.pipe(dest('./built/resources/'));
+	let styl = gulp.src('./src/web/**/*.styl')
+		.pipe(stylus());
+
+	if (env === 'production') {
+		styl = styl
+			.pipe(cssnano({
+				safe: true // 高度な圧縮は無効にする (一部デザインが不適切になる場合があるため)
+			}))
+	}
+
+	return styl
+		.pipe(gulp.dest('./built/resources/'));
 });
 
 task('build-copy', ['build:ts', 'build:frontside-scripts', 'build:frontside-styles'], () => {
