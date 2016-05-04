@@ -28,6 +28,7 @@ const aliasifyConfig = {
 		"cropper": "./bower_components/cropper/dist/cropper.js",
 		"moment": "./bower_components/moment/moment.js",
 		"Sortable": "./bower_components/Sortable/Sortable.js",
+		"fastclick": "./bower_components/fastclick/lib/fastclick.js",
 		"fuck-adblock": "./bower_components/fuck-adblock/fuckadblock.js",
 		"Swiper": "./bower_components/Swiper/dist/js/swiper.js"
 	},
