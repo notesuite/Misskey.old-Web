@@ -69,7 +69,7 @@
     "express": "4.13.4",
     "express-minify": "0.2.0",
     "express-session": "1.13.0",
-    "gm": "1.22.1",
+    "gm": "1.22.0",
     "html-entities": "1.2.0",
     "jade": "1.11.0",
     "marked": "0.3.5",
