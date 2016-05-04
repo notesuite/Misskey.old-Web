@@ -1,6 +1,6 @@
 $ = require 'jquery'
-require 'jquery.transit'
-Sortable = require 'Sortable'
+require 'jquery.transit/jquery.transit.js'
+Sortable = require 'Sortable/Sortable.js'
 upload-file = require '../../../common/upload-file.ls'
 sncompleter = require './sncompleter.ls'
 post-content-initializer = require './post-content-initializer.ls'

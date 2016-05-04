@@ -14,8 +14,18 @@ const es = require('event-stream');
 const stylus = require('gulp-stylus');
 const cssnano = require('gulp-cssnano');
 const uglify = require('gulp-uglify');
+const ls = require('browserify-livescript');
+const jadeify = require('jadeify');
+const aliasify = require('aliasify');
 
 const env = process.env.NODE_ENV;
+
+const aliasifyConfig = {
+	"aliases": {
+		"config": "./built/_/config.json",
+		"jquery": "./bower_components/jquery/dist/jquery.js"
+	}
+};
 
 task('build', [
 	'build:ts',
@@ -57,10 +67,13 @@ task('build:frontside-scripts', ['build:public-config'], done => {
 		const tasks = files.map(entry => {
 			let bundle =
 				browserify({
-					entries: [entry],
-					paths: [
-						__dirname + '/built/_'
-					]
+					entries: [entry]
+				})
+				.transform(aliasify, aliasifyConfig)
+				.transform(ls)
+				.transform(jadeify, {
+					"compileDebug": false,
+					"pretty": false
 				})
 				.bundle()
 				.pipe(source(entry.replace('src/web', 'resources').replace('.ls', '.js')));

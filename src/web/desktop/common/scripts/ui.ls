@@ -1,8 +1,8 @@
 $ = require 'jquery'
-require 'jquery.transit'
-moment = require 'moment'
-Sortable = require 'Sortable'
-require 'fuck-adblock'
+require 'jquery.transit/jquery.transit.js'
+moment = require 'moment/moment.js'
+Sortable = require 'Sortable/Sortable.js'
+require 'fuck-adblock/fuckadblock.js'
 
 require './main.ls'
 require '../../../common/kronos.ls'

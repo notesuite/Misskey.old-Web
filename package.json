@@ -19,24 +19,11 @@
     "test": "gulp test"
   },
   "license": "MIT",
-  "browserify": {
-    "transform": [
-      "browserify-livescript",
-      "debowerify",
-      [
-        "jadeify",
-        {
-          "compileDebug": false,
-          "pretty": false
-        }
-      ]
-    ]
-  },
   "devDependencies": {
+    "aliasify": "^2.0.0",
     "bower": "1.7.9",
     "browserify": "13.0.0",
     "browserify-livescript": "0.2.3",
-    "debowerify": "1.4.1",
     "dtsm": "1.0.0",
     "event-stream": "3.3.2",
     "glob": "7.0.3",

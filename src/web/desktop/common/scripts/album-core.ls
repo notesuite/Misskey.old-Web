@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require 'jquery.transit'
+require 'jquery.transit/jquery.transit.js'
 upload-file = require '../../../common/upload-file.ls'
 file-compiler = require '../views/album/file.jade'
 

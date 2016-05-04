@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require 'jquery.transit'
+require 'jquery.transit/jquery.transit.js'
 post-content-initializer = require './post-content-initializer.ls'
 post-compiler = require '../views/post/smart/render.jade'
 

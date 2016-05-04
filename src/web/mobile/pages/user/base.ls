@@ -1,6 +1,6 @@
 require '../../common/scripts/ui.ls'
 $ = require 'jquery'
-require 'Swiper'
+require 'Swiper/dist/swiper.js'
 
 $ ->
 	is-me = LOGIN and ME.id == USER.id

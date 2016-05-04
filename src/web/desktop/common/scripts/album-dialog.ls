@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require 'jquery.transit'
+require 'jquery.transit/jquery.transit.js'
 album-dialog-compiler = require '../views/album-dialog.jade'
 file-compiler = require '../views/album/file.jade'
 Album = require './album-core.ls'

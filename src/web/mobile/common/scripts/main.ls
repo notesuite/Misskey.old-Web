@@ -1,5 +1,5 @@
 $ = require 'jquery'
-attach-fast-click = require 'fastclick'
+attach-fast-click = require 'fastclick/lib/fastclick.js'
 
 window.CSRF_TOKEN = $ 'meta[name="csrf-token"]' .attr \content
 

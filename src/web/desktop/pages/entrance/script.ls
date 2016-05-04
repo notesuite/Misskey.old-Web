@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require 'jquery.transit'
+require 'jquery.transit/jquery.transit.js'
 require '../../common/scripts/main.ls'
 
 $ ->
