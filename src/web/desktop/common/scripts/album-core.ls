@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require 'jquery.transit'
 upload-file = require '../../../common/upload-file.ls'
 file-compiler = require '../views/album/file.jade'

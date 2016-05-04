@@ -1,5 +1,5 @@
 require '../../home/script.ls'
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 Sortable = require 'Sortable'
 
 function update-available-widgets-list

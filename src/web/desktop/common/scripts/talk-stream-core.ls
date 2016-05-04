@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 marked = require 'marked'
 imageviewer = require './image-viewer.ls'
 urldecorator = require '../../../common/urldecorator.ls'

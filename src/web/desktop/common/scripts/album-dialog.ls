@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require 'jquery.transit'
 album-dialog-compiler = require '../views/album-dialog.jade'
 file-compiler = require '../views/album/file.jade'

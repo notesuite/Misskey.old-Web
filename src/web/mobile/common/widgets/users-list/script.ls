@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 user-compiler = require './user-render.jade'
 
 class UsersList

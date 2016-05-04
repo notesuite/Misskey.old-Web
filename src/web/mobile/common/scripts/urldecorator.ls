@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 module.exports = ($url) ->
 	parser = document.create-element \a

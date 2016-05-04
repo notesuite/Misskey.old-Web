@@ -1,5 +1,5 @@
 require '../base.ls'
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 UsersList = require '../../../common/widgets/users-list/script.ls'
 
 $ ->

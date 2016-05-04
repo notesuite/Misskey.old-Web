@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 module.exports = ->
 	$ \body .find \a .each ->

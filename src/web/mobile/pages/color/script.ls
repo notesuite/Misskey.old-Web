@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 $ ->
 	$ \body .css \margin-top ($ 'main > h1' .outer-height!) + 'px'

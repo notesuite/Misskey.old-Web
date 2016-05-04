@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require '../../../../common/scripts/ui.ls'
 
 $ ->

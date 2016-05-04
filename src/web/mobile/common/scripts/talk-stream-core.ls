@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 marked = require 'marked'
 urldecorator = require '../../../common/urldecorator.ls'
 message-compiler = require '../views/talk/render.jade'

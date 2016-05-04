@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 module.exports = ($elem) ->
 	if !$elem? or $elem.length == 0

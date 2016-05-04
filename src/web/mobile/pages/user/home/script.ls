@@ -1,5 +1,5 @@
 require '../base.ls'
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 Timeline = require '../../../common/scripts/timeline-core.ls'
 
 $ ->

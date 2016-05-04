@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 window.CSRF_TOKEN = $ 'meta[name="csrf-token"]' .attr \content
 

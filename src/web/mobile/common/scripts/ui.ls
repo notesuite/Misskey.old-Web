@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require './main.ls'
 require '../../../common/kronos.ls'
 

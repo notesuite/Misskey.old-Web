@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require 'jquery.transit'
 tooltip = require './tooltiper.ls'
 

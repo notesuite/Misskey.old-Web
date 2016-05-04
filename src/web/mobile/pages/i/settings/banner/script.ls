@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require 'cropper'
 require '../../../../common/scripts/ui.ls'
 upload-file = require '../../../../../common/upload-file.ls'

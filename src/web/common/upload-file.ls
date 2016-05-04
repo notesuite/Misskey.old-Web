@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 module.exports = (file, folder, $progress, uploading, success, failed, always) ->
 	data = new FormData!

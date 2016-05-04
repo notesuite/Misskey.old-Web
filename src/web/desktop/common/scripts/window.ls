@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 
 module.exports = ($content, title, width, height, can-popout = false) ->
 	$window = $ '''

@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require '../../../common/scripts/ui.ls'
 init-user-widget = require '../../../common/scripts/init-user-widget.ls'
 

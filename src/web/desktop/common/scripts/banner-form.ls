@@ -1,4 +1,4 @@
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 require 'cropper'
 
 show-modal-window = require './modal-window.ls'

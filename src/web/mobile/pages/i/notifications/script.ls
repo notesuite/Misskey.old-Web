@@ -1,5 +1,5 @@
 require '../../../common/scripts/ui.ls'
-$ = require 'jquery/dist/jquery'
+$ = require 'jquery'
 notification-compiler = require '../../../common/views/notification/render.jade'
 
 function delete-all
