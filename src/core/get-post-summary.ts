@@ -8,16 +8,16 @@ module.exports = function analyze(locale: any, post: any): string {
 				text += ' ';
 			}
 			switch (locale) {
-				case 'ja':
-					text += `(${post.files.length}個のファイル)`;
-					break;
-				default:
-					if (post.files.length > 1) {
-						text += `(${post.files.length} files)`;
-					} else {
-						text += `(${post.files.length} file)`;
-					}
-					break;
+			case 'ja':
+				text += `(${post.files.length}個のファイル)`;
+				break;
+			default:
+				if (post.files.length > 1) {
+					text += `(${post.files.length} files)`;
+				} else {
+					text += `(${post.files.length} file)`;
+				}
+				break;
 			}
 		}
 		return text;
