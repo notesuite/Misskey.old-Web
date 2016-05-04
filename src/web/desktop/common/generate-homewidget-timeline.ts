@@ -10,8 +10,7 @@ import config from '../../../config';
  * @param tlsource 'home' or 'mentions'
  */
 export default function generateHomewidgetTimeline(me: User, locale: any, tlsource: string): Promise<string> {
-	'use strict';
-
+	
 	const compiler: (locals?: any) => string = jade.compileFile(
 		`${__dirname}/views/home-widgets/timeline.jade`, {
 			cache: true

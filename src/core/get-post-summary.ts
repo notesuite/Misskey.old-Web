@@ -1,6 +1,5 @@
 module.exports = function analyze(locale: any, post: any): string {
-	'use strict';
-	switch (post.type) {
+		switch (post.type) {
 		case 'status':
 		case 'reply':
 			let text = !isEmpty(post.text) ? post.text : '';
@@ -30,6 +29,5 @@ module.exports = function analyze(locale: any, post: any): string {
 };
 
 function isEmpty(x: any): boolean {
-	'use strict';
-	return x === undefined || x === null;
+		return x === undefined || x === null;
 }

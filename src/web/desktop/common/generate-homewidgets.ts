@@ -5,15 +5,13 @@ import generateHomewidgetTimeline from './generate-homewidget-timeline';
 import config from '../../../config';
 
 export default function generateHomewidgets(me: User, locale: any, widgets: string[], tlsource: string): Promise<any> {
-	'use strict';
-
+	
 	return Promise.all(widgets.map((widget: string) => {
 		return generateWidget(widget);
 	}));
 
 	function generateWidget(widget: string): Promise<string> {
-		'use strict';
-
+		
 		if (widget === undefined || widget === null) {
 			return Promise.resolve(null);
 		}

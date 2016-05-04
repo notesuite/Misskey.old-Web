@@ -5,8 +5,7 @@ const upload: any = multer({ dest: 'uploads/' });
 import requestApi from '../core/request-api';
 
 export default function router(app: express.Express): void {
-	'use strict';
-
+	
 	app.use((req, res, next) => {
 		res.locals.isLogin =
 			req.hasOwnProperty('session') &&

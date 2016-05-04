@@ -2,8 +2,7 @@ import requestApi from '../core/request-api';
 import { UserSettings, IUserSettings } from '../db/models/user-settings';
 
 export default function login(screenName: string, password: string, session: any): Promise<void> {
-	'use strict';
-
+	
 	return new Promise<void>((resove, reject) => {
 		requestApi('login', {
 			'screen-name': screenName,

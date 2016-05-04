@@ -17,8 +17,7 @@ interface MKGroupSocket extends MKSocket {
 }
 
 function createRedisClient(): redis.RedisClient {
-	'use strict';
-
+	
 	return redis.createClient(
 		6379, config.redis.host, <redis.ClientOpts>{
 		auth_pass: config.redis.password,
@@ -50,8 +49,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 		});
 
 		function onStreamMessage(_: any, contentString: string): void {
-			'use strict';
-			streamingMessageHandler(socket, contentString);
+						streamingMessageHandler(socket, contentString);
 		}
 	});
 
@@ -78,15 +76,13 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 		});
 
 		function onStreamMessage(_: any, contentString: string): void {
-			'use strict';
-			streamingMessageHandler(socket, contentString);
+						streamingMessageHandler(socket, contentString);
 		}
 	});
 };
 
 function streamingMessageHandler(socket: MKSocket, contentString: string): void {
-	'use strict';
-
+	
 	const content: any = JSON.parse(contentString);
 
 	switch (content.type) {

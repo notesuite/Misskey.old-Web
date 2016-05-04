@@ -329,8 +329,7 @@ function paramUserScreenName(
 	next: () => void,
 	screenName: string
 ): void {
-	'use strict';
-
+	
 	requestApi('users/show', {
 		'screen-name': screenName
 	}, res.locals.isLogin ? req.user : null).then((user: User) => {
@@ -355,8 +354,7 @@ function paramPostId(
 	next: () => void,
 	postId: string
 ): void {
-	'use strict';
-
+	
 	requestApi('posts/show', {
 		'post-id': postId
 	}, res.locals.isLogin ? req.user : null).then((post: Object) => {
@@ -381,8 +379,7 @@ function paramFileId(
 	next: () => void,
 	fileId: string
 ): void {
-	'use strict';
-
+	
 	requestApi('album/files/show', {
 		'file-id': fileId
 	}, res.locals.isLogin ? req.user : null).then((file: Object) => {
@@ -402,8 +399,7 @@ function paramFolderId(
 	next: () => void,
 	folderId: string
 ): void {
-	'use strict';
-
+	
 	requestApi('album/folders/show', {
 		'folder-id': folderId
 	}, res.locals.isLogin ? req.user : null).then((folder: Object) => {
@@ -423,8 +419,7 @@ function paramTalkGroupId(
 	next: () => void,
 	groupId: string
 ): void {
-	'use strict';
-
+	
 	requestApi('talks/group/show', {
 		'group-id': groupId
 	}, req.user).then((group: Object) => {

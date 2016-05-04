@@ -5,8 +5,7 @@ import requestApi from '../../../../core/request-api';
 const getPostSuumary = require('../../../core/get-post-summary');
 
 module.exports = (req: express.Request, res: express.Response): void => {
-	'use strict';
-
+	
 	const user: User = res.locals.user;
 	const post: any = res.locals.post;
 	const me: User = req.user;

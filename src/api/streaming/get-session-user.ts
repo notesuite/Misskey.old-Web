@@ -7,8 +7,7 @@ import requestApi from '../../core/request-api';
 import config from '../../config';
 
 export default function getSessionUser(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
-	'use strict';
-	return new Promise<Object>((resolve, reject) => {
+		return new Promise<Object>((resolve, reject) => {
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
 

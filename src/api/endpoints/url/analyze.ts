@@ -55,8 +55,7 @@ export default function (req: express.Request, res: express.Response): void {
 }
 
 function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
-
+	
 	const title: string = decodeURI(url.pathname.split('/')[2]);
 
 	client.fetch(url.href).then((result: any) => {
@@ -90,8 +89,7 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 }
 
 function analyzeMobileWikipedia(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
-
+	
 	const title: string = decodeURI(url.pathname.split('/')[2]);
 
 	client.fetch(url.href).then((result: any) => {
@@ -125,11 +123,9 @@ function analyzeMobileWikipedia(req: express.Request, res: express.Response, url
 }
 
 function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
-
+	
 	function getVideoId(): string {
-		'use strict';
-
+		
 		switch (url.hostname) {
 			case 'www.youtube.com':
 			case 'youtube.com':
@@ -154,8 +150,7 @@ function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Ur
 }
 
 function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
-
+	
 	request({
 		url: 'http://soundcloud.com/oembed',
 		method: 'get',
@@ -178,8 +173,7 @@ function analyzeSoundcloud(req: express.Request, res: express.Response, url: URL
 }
 
 function analyzeGithubGist(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
-
+	
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
 			return res.sendStatus(204);
@@ -219,8 +213,7 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 }
 
 function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
-
+	
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://i.gyazo.com/${imageId}.png`;
 
@@ -241,8 +234,7 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
  * @param url url
  */
 function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Url): void {
-	'use strict';
-
+	
 	// リクエスト送信
 	client.fetch(url.href).then((result: any) => {
 		if (result.error !== undefined && result.error !== null) {
@@ -335,8 +327,7 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
  * @param val: 文字列
  */
 function nullOrEmpty(val: string): boolean {
-	'use strict';
-
+	
 	if (val === undefined) {
 		return true;
 	} else if (val === null) {
@@ -349,8 +340,7 @@ function nullOrEmpty(val: string): boolean {
 }
 
 function or(...xs: string[]): string {
-	'use strict';
-
+	
 	for (let i = 0; i < xs.length; i++) {
 		const x = xs[i];
 		if (!nullOrEmpty(x)) {
@@ -362,8 +352,7 @@ function or(...xs: string[]): string {
 }
 
 function clip(s: string, max: number): string {
-	'use strict';
-
+	
 	if (nullOrEmpty(s)) {
 		return s;
 	}

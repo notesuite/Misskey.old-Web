@@ -2,8 +2,7 @@ import * as express from 'express';
 import requestApi from '../../../../../../core/request-api';
 
 module.exports = (req: express.Request, res: express.Response): void => {
-	'use strict';
-
+	
 	const group = res.locals.talkGroup;
 
 	requestApi('talks/messages/stream', {

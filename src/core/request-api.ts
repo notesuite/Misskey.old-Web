@@ -9,8 +9,7 @@ export default function requestApi(
 	user: any = null,
 	withFile: boolean = false
 ): Promise<any> {
-	'use strict';
-
+	
 	const userId: string = user !== null ? typeof user === 'string' ? user : user.id : null;
 
 	return new Promise<any>((resolve, reject) => {
