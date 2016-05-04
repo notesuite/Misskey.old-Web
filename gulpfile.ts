@@ -74,7 +74,7 @@ task('build:frontside-scripts', ['build:public-config'], done => {
 			}
 
 			return bundle
-				.pipe(gulp.dest('./built'));
+				.pipe(dest('./built'));
 		});
 
 		es.merge(tasks).on('end', done);
@@ -82,7 +82,7 @@ task('build:frontside-scripts', ['build:public-config'], done => {
 });
 
 task('build:frontside-styles', ['copy:bower_components'], () => {
-	let styl = gulp.src('./src/web/**/*.styl')
+	let styl = src('./src/web/**/*.styl')
 		.pipe(stylus());
 
 	if (env === 'production') {
@@ -93,7 +93,7 @@ task('build:frontside-styles', ['copy:bower_components'], () => {
 	}
 
 	return styl
-		.pipe(gulp.dest('./built/resources/'));
+		.pipe(dest('./built/resources/'));
 });
 
 task('build-copy', ['build:ts', 'build:frontside-scripts', 'build:frontside-styles'], () => {
@@ -113,12 +113,12 @@ task('build-copy', ['build:ts', 'build:frontside-scripts', 'build:frontside-styl
 	);
 });
 
-gulp.task('test', [
+task('test', [
 	'lint'
 ]);
 
-gulp.task('lint', () =>
-	gulp.src('./src/**/*.ts')
+task('lint', () =>
+	src('./src/**/*.ts')
 		.pipe(tslint({
 			tslint: require('tslint')
 		}))
