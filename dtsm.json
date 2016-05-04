@@ -87,6 +87,9 @@
     },
     "csurf/csurf.d.ts": {
       "ref": "08ed4e9f1869e37e29514d862e0158b40e550232"
+    },
+    "serve-favicon/serve-favicon.d.ts": {
+      "ref": "73f7bb99692823f1811817f9753a02b57af5305e"
     }
   }
 }
