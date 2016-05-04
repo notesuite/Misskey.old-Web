@@ -112,3 +112,15 @@ task('build-copy', ['build:ts', 'build:frontside-scripts', 'build:frontside-styl
 		]).pipe(dest('./built/resources/'))
 	);
 });
+
+gulp.task('test', [
+	'lint'
+]);
+
+gulp.task('lint', () =>
+	gulp.src('./src/**/*.ts')
+		.pipe(tslint({
+			tslint: require('tslint')
+		}))
+		.pipe(tslint.report('verbose'))
+);
