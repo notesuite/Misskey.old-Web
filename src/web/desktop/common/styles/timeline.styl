@@ -27,7 +27,7 @@
 
 		&:focus {
 			z-index: 1;
-			box-shadow: 0 0 0 2px fade(@theme-color, 50%);
+			box-shadow: 0 0 0 2px fade($theme-color, 50%);
 		}
 
 		&:first-child {
@@ -70,14 +70,14 @@
 				opacity: 1;
 
 				> button {
-					color: @theme-color;
+					color: $theme-color;
 
 					&:hover {
-						color: lighten(@theme-color, 10%);
+						color: lighten($theme-color, 10%);
 					}
 
 					&:active {
-						color: darken(@theme-color, 10%);
+						color: darken($theme-color, 10%);
 					}
 				}
 			}
@@ -88,14 +88,14 @@
 				opacity: 1;
 
 				> button {
-					color: @theme-color;
+					color: $theme-color;
 
 					&:hover {
-						color: lighten(@theme-color, 10%);
+						color: lighten($theme-color, 10%);
 					}
 
 					&:active {
-						color: darken(@theme-color, 10%);
+						color: darken($theme-color, 10%);
 					}
 				}
 			}
@@ -181,7 +181,7 @@
 
 						&:active {
 							text-decoration: underline;
-							color: darken(@theme-color, 10%);
+							color: darken($theme-color, 10%);
 							transition: all 0s ease;
 						}
 					}
@@ -228,7 +228,7 @@
 						color: #B7A793;
 
 						&:active {
-							color: @theme-color;
+							color: $theme-color;
 							text-decoration: underline;
 						}
 
@@ -410,20 +410,20 @@
 					transition: border 0.2s ease, color 0.2s ease;
 
 					&:hover {
-						border: solid 1px @theme-color;
+						border: solid 1px $theme-color;
 
 						& + .design-allow:before {
-							border-right: solid 12px @theme-color;
+							border-right: solid 12px $theme-color;
 						}
 					}
 
 					&:focus {
-						color: darken(@theme-color, 20%);
+						color: darken($theme-color, 20%);
 						outline: none;
-						border: solid 1px @theme-color;
+						border: solid 1px $theme-color;
 
 						& + .design-allow:before {
-							border-right: solid 12px @theme-color;
+							border-right: solid 12px $theme-color;
 						}
 					}
 				}
@@ -558,11 +558,11 @@
 					}
 
 					&:hover {
-						color: @theme-color;
+						color: $theme-color;
 					}
 
 					&:active {
-						color: darken(@theme-color, 10%);
+						color: darken($theme-color, 10%);
 						transition: color 0s ease;
 					}
 				}
@@ -716,7 +716,7 @@
 				}
 
 				&:active {
-					color: @theme-color;
+					color: $theme-color;
 					text-decoration: underline;
 				}
 			}
@@ -793,12 +793,12 @@
 
 	&:hover {
 		background: #fff;
-		//color: @theme-color;
+		//color: $theme-color;
 	}
 
 	&:active {
 		background: #E8E3E1;
-		//color: @theme-color;
+		//color: $theme-color;
 	}
 
 	&:disabled {

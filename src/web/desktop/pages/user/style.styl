@@ -324,17 +324,17 @@ main {
 						cursor: pointer;
 
 						&.active {
-							color: @theme-color;
-							border-bottom: solid 3px @theme-color;
+							color: $theme-color;
+							border-bottom: solid 3px $theme-color;
 
 							&:hover {
-								color: @theme-color;
+								color: $theme-color;
 							}
 						}
 
 
 						&:hover {
-							color: @theme-color;
+							color: $theme-color;
 						}
 
 						a {
@@ -393,11 +393,11 @@ main {
 						&.following {
 							color: #fff;
 							font-weight: bold;
-							background: @theme-color;
-							background: -moz-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-							background: -webkit-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-							background: linear-gradient(to bottom, @theme-color 0%, darken(@theme-color, 10%) 100%);
-							border: solid 1px darken(@theme-color, 10%);
+							background: $theme-color;
+							background: -moz-linear-gradient(top, $theme-color 0%, darken($theme-color, 10%) 100%);
+							background: -webkit-linear-gradient(top, $theme-color 0%, darken($theme-color, 10%) 100%);
+							background: linear-gradient(to bottom, $theme-color 0%, darken($theme-color, 10%) 100%);
+							border: solid 1px darken($theme-color, 10%);
 						}
 
 						&.not-following {
@@ -419,7 +419,7 @@ main {
 							}
 
 							&:focus {
-								border: solid 1px @theme-color;
+								border: solid 1px $theme-color;
 							}
 						}
 
@@ -525,26 +525,26 @@ body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 			}
 
 			&:hover {
-				color: @theme-color;
+				color: $theme-color;
 			}
 
 			&:active {
-				color: darken(@theme-color, 10%);
+				color: darken($theme-color, 10%);
 				transition: color 0s ease;
 			}
 
 			&.ok {
 				color: #fff;
-				background: @theme-color;
+				background: $theme-color;
 
 				&:hover {
 					color: #fff;
-					background: lighten(@theme-color, 10%);
+					background: lighten($theme-color, 10%);
 				}
 
 				&:active {
 					color: #fff;
-					background: darken(@theme-color, 10%);
+					background: darken($theme-color, 10%);
 					transition: color 0s ease;
 				}
 			}
@@ -559,11 +559,11 @@ body > .ui-modal-window-container > .ui-modal-window > .crop-form {
 		}
 
 		.cropper-view-box {
-			outline-color: @theme-color;
+			outline-color: $theme-color;
 		}
 
 		.cropper-line, .cropper-point {
-			background-color: @theme-color;
+			background-color: $theme-color;
 		}
 
 		.cropper-bg {

@@ -80,12 +80,12 @@ input[type=text] {
 	transition: all .5s ease;
 
 	&:hover {
-		border-bottom: solid 2px @theme-color;
+		border-bottom: solid 2px $theme-color;
 		transition: all .2s ease;
 	}
 
 	&:focus {
-		border-bottom: solid 2px @theme-color;
+		border-bottom: solid 2px $theme-color;
 		transition: all .1s ease;
 	}
 }
@@ -120,11 +120,11 @@ button {
 	}
 
 	&:hover {
-		color: @theme-color;
+		color: $theme-color;
 	}
 
 	&:active {
-		color: darken(@theme-color, 10%);
+		color: darken($theme-color, 10%);
 		transition: color 0s ease;
 	}
 }

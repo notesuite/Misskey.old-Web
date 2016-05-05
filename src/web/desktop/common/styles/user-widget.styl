@@ -82,30 +82,30 @@
 			cursor: pointer;
 
 			&.following {
-				color: contrast(@theme-color, #000, #fff, 70%);
-				background: @theme-color;
+				color: contrast($theme-color, #000, #fff, 70%);
+				background: $theme-color;
 
 				&:hover {
-					background: lighten(@theme-color, 10%);
+					background: lighten($theme-color, 10%);
 				}
 
 				&:active {
-					background: darken(@theme-color, 10%);
+					background: darken($theme-color, 10%);
 				}
 			}
 
 			&.not-following {
 				padding: 3px 15px;
-				color: @theme-color;
+				color: $theme-color;
 				background: transparent;
-				border: solid 1px @theme-color;
+				border: solid 1px $theme-color;
 
 				&:hover {
-					background: fade(@theme-color, 15%);
+					background: fade($theme-color, 15%);
 				}
 
 				&:active {
-					background: fade(@theme-color, 30%);
+					background: fade($theme-color, 30%);
 				}
 			}
 

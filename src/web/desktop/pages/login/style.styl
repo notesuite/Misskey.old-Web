@@ -94,12 +94,12 @@ main {
 
 			> p {
 				margin: 0 0 4px 0;
-				color: darken(@theme-color, 20%);
+				color: darken($theme-color, 20%);
 				font-size: 0.95em;
 
 				> i {
 					margin-right: 0.25em;
-					color: @theme-color;
+					color: $theme-color;
 				}
 			}
 		}
@@ -137,8 +137,8 @@ main {
 			}
 
 			&:focus {
-				color: darken(@theme-color, 20%);
-				border: solid 1px @theme-color;
+				color: darken($theme-color, 20%);
+				border: solid 1px $theme-color;
 				transition: all 0s ease;
 			}
 		}
@@ -160,7 +160,7 @@ main {
 			border: none;
 			border-radius: 3px;
 			box-shadow: none;
-			background: @theme-color;
+			background: $theme-color;
 
 			* {
 				pointer-events: none;
@@ -194,11 +194,11 @@ main {
 			}
 
 			&:hover {
-				background: darken(@theme-color, 5%);
+				background: darken($theme-color, 5%);
 			}
 
 			&:active {
-				background: darken(@theme-color, 10%);
+				background: darken($theme-color, 10%);
 			}
 		}
 
@@ -237,7 +237,7 @@ body > header {
 	display: block;
 	box-sizing: border-box;
 	height: 8px;
-	background-color: @theme-color;
+	background-color: $theme-color;
 	background-image: url("@{resources-url}/common/background-overlay.svg");
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -252,7 +252,7 @@ body > footer {
 	text-align: center;
 	font-size: 0.9em;
 	color: #fff;
-	background-color: @theme-color;
+	background-color: $theme-color;
 	background-image: url("@{resources-url}/common/background-overlay.svg");
 	background-repeat: no-repeat;
 	background-position: center center;

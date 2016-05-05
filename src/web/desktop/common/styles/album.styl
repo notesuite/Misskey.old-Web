@@ -63,15 +63,15 @@
 				}
 
 				&:hover {
-					color: @theme-color;
+					color: $theme-color;
 				}
 
 				&:focus {
-					color: @theme-color;
+					color: $theme-color;
 				}
 
 				&:active {
-					color: darken(@theme-color, 10%);
+					color: darken($theme-color, 10%);
 				}
 
 				i {
@@ -103,8 +103,8 @@
 			z-index: 1;
 			width: 0;
 			height: 0;
-			border: solid 1px @theme-color;
-			background: fade(@theme-color, 50%);
+			border: solid 1px $theme-color;
+			background: fade($theme-color, 50%);
 			opacity: 0;
 		}
 
@@ -142,21 +142,21 @@
 
 				&[data-selected=true] {
 					> .content {
-						//border: solid 4px @theme-color;
-						outline: solid 4px @theme-color;
+						//border: solid 4px $theme-color;
+						outline: solid 4px $theme-color;
 
 						&:hover {
-							//border: solid 4px lighten(@theme-color, 20%);
-							outline: solid 4px lighten(@theme-color, 10%);
+							//border: solid 4px lighten($theme-color, 20%);
+							outline: solid 4px lighten($theme-color, 10%);
 
 							> .name {
-								background: lighten(@theme-color, 10%);
+								background: lighten($theme-color, 10%);
 							}
 						}
 
 						> .name {
-							color: contrast(@theme-color, #000, #fff, 70%);
-							background: @theme-color;
+							color: contrast($theme-color, #000, #fff, 70%);
+							background: $theme-color;
 						}
 					}
 				}
@@ -258,7 +258,7 @@
 					overflow: hidden;
 
 					&::-webkit-progress-value {
-						background-color: @theme-color;
+						background-color: $theme-color;
 					}
 
 					&::-webkit-progress-bar {
@@ -322,7 +322,7 @@
 					border: none;
 					border-radius: 0;
 					box-shadow: none;
-					background: @theme-color;
+					background: $theme-color;
 					transition: all .1s ease;
 					cursor: pointer;
 
@@ -331,15 +331,15 @@
 					}
 
 					&:hover {
-						background: lighten(@theme-color, 10%);
+						background: lighten($theme-color, 10%);
 					}
 
 					&:focus {
-						background: lighten(@theme-color, 10%);
+						background: lighten($theme-color, 10%);
 					}
 
 					&:active {
-						background: darken(@theme-color, 10%);
+						background: darken($theme-color, 10%);
 					}
 
 					i {
@@ -374,15 +374,15 @@
 				}
 
 				&:hover {
-					color: @theme-color;
+					color: $theme-color;
 				}
 
 				&:focus {
-					color: @theme-color;
+					color: $theme-color;
 				}
 
 				&:active {
-					color: darken(@theme-color, 10%);
+					color: darken($theme-color, 10%);
 				}
 			}
 		}
@@ -424,8 +424,8 @@
 			color: #4D5965;
 
 			&:hover {
-				background: @theme-color;
-				color: contrast(@theme-color, #000, #fff, 70%);
+				background: $theme-color;
+				color: contrast($theme-color, #000, #fff, 70%);
 			}
 
 			> * {

@@ -14,12 +14,12 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: default;*/
-	-webkit-tap-highlight-color: fade(@theme-color, 70%);
+	-webkit-tap-highlight-color: fade($theme-color, 70%);
 
 	touch-action: manipulation;
 
 	&:focus {
-		/*outline: solid 2px @theme-color;*/
+		/*outline: solid 2px $theme-color;*/
 		outline: none;
 	}
 
@@ -54,7 +54,7 @@
 		}
 
 		&:active {
-			background: @theme-color;
+			background: $theme-color;
 		}
 	}
 
@@ -72,12 +72,12 @@ html, body {
 
 a {
 	text-decoration: none;
-	color: @theme-color;
+	color: $theme-color;
 	transition: color 0.1s ease;
 	cursor: pointer;
 
 	&:hover {
-		color: darken(@theme-color, 10%);
+		color: darken($theme-color, 10%);
 		text-decoration: underline;
 	}
 

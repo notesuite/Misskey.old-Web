@@ -50,13 +50,13 @@ body {
 	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
 
 	&:hover {
-		border-bottom: solid 2px @theme-color;
+		border-bottom: solid 2px $theme-color;
 		transition: all .2s ease;
 	}
 
 	&:focus {
-		color: @theme-color;
-		border-bottom: solid 2px @theme-color;
+		color: $theme-color;
+		border-bottom: solid 2px $theme-color;
 		transition: all .1s ease;
 	}
 }
@@ -190,17 +190,17 @@ main {
 				font-family: FontAwesome, '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 
 				&:hover {
-					color: @theme-color;
+					color: $theme-color;
 					transition: all .2s ease;
 				}
 
 				&:focus {
-					color: @theme-color;
+					color: $theme-color;
 					transition: all .2s ease;
 				}
 
 				&:active {
-					color: darken(@theme-color, 30%);
+					color: darken($theme-color, 30%);
 					transition: all .2s ease;
 				}
 			}
@@ -226,7 +226,7 @@ main {
 			border: 0;
 			border-radius: 0;
 			box-shadow: none;
-			background: @theme-color;
+			background: $theme-color;
 			overflow: hidden;
 			cursor: pointer;
 
@@ -244,12 +244,12 @@ main {
 
 			&:hover {
 				text-decoration: none;
-				background: darken(@theme-color, 5%);
+				background: darken($theme-color, 5%);
 			}
 
 			&:active {
 				text-decoration: none;
-				background: darken(@theme-color, 10%);
+				background: darken($theme-color, 10%);
 			}
 
 			.waves-ripple {

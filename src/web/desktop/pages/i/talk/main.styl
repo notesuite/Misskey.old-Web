@@ -169,12 +169,12 @@ main {
 
 								&:hover {
 									color: #fff;
-									background-color: @theme-color;
+									background-color: $theme-color;
 								}
 
 								&:active {
 									color: #fff;
-									background-color: darken(@theme-color, 10%);
+									background-color: darken($theme-color, 10%);
 								}
 
 								> i {
@@ -351,7 +351,7 @@ main {
 							}
 
 							.url {
-								color: @theme-color;
+								color: $theme-color;
 								text-decoration: none;
 
 								&, * {
@@ -734,7 +734,7 @@ main {
 		font-weight: normal;
 		text-decoration: none;
 		color: #fff;
-		background: @theme-color;
+		background: $theme-color;
 		outline: none;
 		border: none;
 		border-radius: 0;
@@ -742,11 +742,11 @@ main {
 		transition: background 0.05s ease;
 
 		&:hover {
-			background: lighten(@theme-color, 10%);
+			background: lighten($theme-color, 10%);
 		}
 
 		&:active {
-			background: darken(@theme-color, 10%);
+			background: darken($theme-color, 10%);
 		}
 
 		* {
@@ -835,11 +835,11 @@ main {
 		}
 
 		&:hover {
-			color: @theme-color;
+			color: $theme-color;
 		}
 
 		&:active {
-			color: darken(@theme-color, 10%);
+			color: darken($theme-color, 10%);
 			transition: color 0s ease;
 		}
 	}
@@ -880,7 +880,7 @@ main {
 
 	> .title {
 		margin: 1em 0;
-		color: @theme-color;
+		color: $theme-color;
 		// color: #43A4EC;
 		font-weight: bold;
 
@@ -926,11 +926,11 @@ main {
 			}
 
 			&:hover {
-				color: @theme-color;
+				color: $theme-color;
 			}
 
 			&:active {
-				color: darken(@theme-color, 10%);
+				color: darken($theme-color, 10%);
 				transition: color 0s ease;
 			}
 		}
@@ -970,8 +970,8 @@ main {
 		}
 
 		&:focus {
-			color: darken(@theme-color, 20%);
-			border: solid 1px @theme-color;
+			color: darken($theme-color, 20%);
+			border: solid 1px $theme-color;
 			transition: color 0, border 0;
 		}
 	}
@@ -1059,11 +1059,11 @@ main {
 						}
 
 						&:hover {
-							color: @theme-color;
+							color: $theme-color;
 						}
 
 						&:active {
-							color: darken(@theme-color, 10%);
+							color: darken($theme-color, 10%);
 							transition: color 0s ease;
 						}
 					}

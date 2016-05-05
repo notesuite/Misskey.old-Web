@@ -31,7 +31,7 @@ html, #misskey-main {
 				bottom: 8px;
 
 				.swiper-pagination-bullet.swiper-pagination-bullet-active {
-					background: @theme-color;
+					background: $theme-color;
 				}
 
 				.swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
@@ -258,11 +258,11 @@ html, #misskey-main {
 				&.following {
 					color: #fff;
 					font-weight: bold;
-					background: @theme-color;
-					background: -moz-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-					background: -webkit-linear-gradient(top, @theme-color 0%, darken(@theme-color, 10%) 100%);
-					background: linear-gradient(to bottom, @theme-color 0%, darken(@theme-color, 10%) 100%);
-					border: solid 1px darken(@theme-color, 10%);
+					background: $theme-color;
+					background: -moz-linear-gradient(top, $theme-color 0%, darken($theme-color, 10%) 100%);
+					background: -webkit-linear-gradient(top, $theme-color 0%, darken($theme-color, 10%) 100%);
+					background: linear-gradient(to bottom, $theme-color 0%, darken($theme-color, 10%) 100%);
+					border: solid 1px darken($theme-color, 10%);
 				}
 
 				&.not-following {

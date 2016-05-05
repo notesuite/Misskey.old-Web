@@ -10,72 +10,72 @@
 
 	&[data-is-liked='true'] > .main {
 		&:hover > .footer > .actions > .like > button {
-			color: @theme-color;
+			color: $theme-color;
 		}
 
 		> .footer > .actions > .like {
 			> button {
-				color: @theme-color;
+				color: $theme-color;
 
 				&:hover {
-					color: darken(@theme-color, 10%);
+					color: darken($theme-color, 10%);
 				}
 
 				&:active {
-					color: darken(@theme-color, 20%);
+					color: darken($theme-color, 20%);
 				}
 			}
 
 			> .count {
-				color: @theme-color;
+				color: $theme-color;
 			}
 		}
 	}
 
 	&[data-is-reposted='true'] > .main {
 		&:hover > .footer > .actions > .repost > button {
-			color: @theme-color;
+			color: $theme-color;
 		}
 
 		> .footer > .actions > .repost {
 			> button {
-				color: @theme-color;
+				color: $theme-color;
 
 				&:hover {
-					color: darken(@theme-color, 10%);
+					color: darken($theme-color, 10%);
 				}
 
 				&:active {
-					color: darken(@theme-color, 20%);
+					color: darken($theme-color, 20%);
 				}
 			}
 
 			> .count {
-				color: @theme-color;
+				color: $theme-color;
 			}
 		}
 	}
 
 	&[data-is-pinned='true'] > .main {
 		&:hover > .footer > .actions > .pin > button {
-			color: @theme-color;
+			color: $theme-color;
 		}
 
 		> .footer > .actions > .pin {
 			> button {
-				color: @theme-color;
+				color: $theme-color;
 
 				&:hover {
-					color: darken(@theme-color, 10%);
+					color: darken($theme-color, 10%);
 				}
 
 				&:active {
-					color: darken(@theme-color, 20%);
+					color: darken($theme-color, 20%);
 				}
 			}
 
 			> .count {
-				color: @theme-color;
+				color: $theme-color;
 			}
 		}
 	}
@@ -340,7 +340,7 @@
 				}
 
 				.screen-name {
-					color: @theme-color;
+					color: $theme-color;
 					text-decoration: none;
 
 					&:hover {
@@ -348,7 +348,7 @@
 					}
 
 					&:active {
-						color: darken(@theme-color, 20%);
+						color: darken($theme-color, 20%);
 					}
 				}
 
@@ -582,20 +582,20 @@
 				transition: border 0.2s ease, color 0.2s ease;
 
 				&:hover {
-					border: solid 1px @theme-color;
+					border: solid 1px $theme-color;
 
 					& + .design-allow:before {
-						border-right: solid 12px @theme-color;
+						border-right: solid 12px $theme-color;
 					}
 				}
 
 				&:focus {
-					color: darken(@theme-color, 20%);
+					color: darken($theme-color, 20%);
 					outline: none;
-					border: solid 1px @theme-color;
+					border: solid 1px $theme-color;
 
 					& + .design-allow:before {
-						border-right: solid 12px @theme-color;
+						border-right: solid 12px $theme-color;
 					}
 				}
 			}
@@ -730,11 +730,11 @@
 				}
 
 				&:hover {
-					color: @theme-color;
+					color: $theme-color;
 				}
 
 				&:active {
-					color: darken(@theme-color, 10%);
+					color: darken($theme-color, 10%);
 					transition: color 0s ease;
 				}
 			}
@@ -967,17 +967,17 @@
 						}
 
 						.screen-name {
-							color: @theme-color;
+							color: $theme-color;
 							text-decoration: none;
 							transition: text-shadow 0.2s ease;
 
 							&:hover {
-								color: darken(@theme-color, 10%);
-								text-shadow: 0 0 4px fade(@theme-color, 30%);
+								color: darken($theme-color, 10%);
+								text-shadow: 0 0 4px fade($theme-color, 30%);
 							}
 
 							&:active {
-								color: darken(@theme-color, 20%);
+								color: darken($theme-color, 20%);
 							}
 						}
 

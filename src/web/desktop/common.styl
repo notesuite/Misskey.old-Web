@@ -15,10 +15,10 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: default;*/
-	-webkit-tap-highlight-color: fade(@theme-color, 70%);
+	-webkit-tap-highlight-color: fade($theme-color, 70%);
 
 	&:focus {
-		/*outline: solid 2px @theme-color;*/
+		/*outline: solid 2px $theme-color;*/
 		outline: none;
 	}
 
@@ -53,7 +53,7 @@
 		}
 
 		&:active {
-			background: @theme-color;
+			background: $theme-color;
 		}
 	}
 
@@ -79,7 +79,7 @@ button {
 
 a {
 	text-decoration: none;
-	color: @theme-color;
+	color: $theme-color;
 	cursor: pointer;
 
 	&:hover {

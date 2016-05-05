@@ -79,7 +79,7 @@ body {
 
 				&:hover {
 					text-decoration: none;
-					color: @theme-color;
+					color: $theme-color;
 				}
 			}
 		}
@@ -128,7 +128,7 @@ body {
 		background-position: center center;
 		background-size: auto 24px;
 		//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
-		//border-top: solid 3px @theme-color;
+		//border-top: solid 3px $theme-color;
 		//border-bottom: solid 3px rgba(0, 0, 0, 0.1);
 		//box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 		background-clip: content-box;
@@ -181,10 +181,10 @@ body {
 								background-clip: padding-box !important;
 
 								&.active {
-									background: @theme-color;
+									background: $theme-color;
 
 									> a {
-										color: contrast(@theme-color, #000, #fff, 70%) !important;
+										color: contrast($theme-color, #000, #fff, 70%) !important;
 										border-bottom: none !important;
 
 										&:hover {
@@ -231,8 +231,8 @@ body {
 										margin-left: 8px;
 										padding: 2px 4px;
 										font-size: 0.8em;
-										color: contrast(@theme-color, #000, #fff, 70%);
-										background: @theme-color;
+										color: contrast($theme-color, #000, #fff, 70%);
+										background: $theme-color;
 										border-radius: 2px;
 									}
 								}
@@ -369,13 +369,13 @@ body {
 									transition: none;
 
 									&:hover {
-										color: contrast(@theme-color, #000, #fff, 70%);
-										background: @theme-color;
+										color: contrast($theme-color, #000, #fff, 70%);
+										background: $theme-color;
 									}
 
 									&:active {
-										color: contrast(@theme-color, #000, #fff, 70%);
-										background: darken(@theme-color, 10%);
+										color: contrast($theme-color, #000, #fff, 70%);
+										background: darken($theme-color, 10%);
 									}
 
 									.avatar {
@@ -540,8 +540,8 @@ body {
 
 									&:hover, &:active {
 										text-decoration: none;
-										background: @theme-color;
-										color: contrast(@theme-color, #000, #fff, 70%);
+										background: $theme-color;
+										color: contrast($theme-color, #000, #fff, 70%);
 									}
 								}
 							}
@@ -594,7 +594,7 @@ body {
 							line-height: 48px;
 
 							> .unread-count {
-								color: contrast(@theme-color, #000, #fff, 70%) !important;
+								color: contrast($theme-color, #000, #fff, 70%) !important;
 								display: inline-block;
 								position: relative;
 								z-index: 1;
@@ -604,7 +604,7 @@ body {
 								vertical-align: super;
 								font-size: 0.7em;
 								line-height: 1em;
-								background: @theme-color;
+								background: $theme-color;
 								border-radius: 2px;
 							}
 						}
@@ -762,8 +762,8 @@ body {
 						font-size: 1.2em;
 						font-weight: normal;
 						text-decoration: none;
-						color: contrast(@theme-color, #000, #fff, 70%);
-						background: @theme-color !important;
+						color: contrast($theme-color, #000, #fff, 70%);
+						background: $theme-color !important;
 						outline: none;
 						border: none;
 						border-radius: 2px;
@@ -777,11 +777,11 @@ body {
 						}
 
 						&:hover {
-							background: lighten(@theme-color, 10%) !important;
+							background: lighten($theme-color, 10%) !important;
 						}
 
 						&:active {
-							background: darken(@theme-color, 10%) !important;
+							background: darken($theme-color, 10%) !important;
 							transition: background 0s ease;
 						}
 					}
@@ -1152,10 +1152,10 @@ body {
 
 			&.active {
 				background: #fff;
-				color: @theme-color;
+				color: $theme-color;
 
 				&:hover {
-					color: @theme-color;
+					color: $theme-color;
 				}
 			}
 
@@ -1216,7 +1216,7 @@ body {
 					}
 
 					&:focus {
-						color: darken(@theme-color, 20%);
+						color: darken($theme-color, 20%);
 					}
 				}
 
@@ -1297,7 +1297,7 @@ body {
 					overflow: hidden;
 
 					&::-webkit-progress-value {
-						background-color: @theme-color;
+						background-color: $theme-color;
 					}
 
 					&::-webkit-progress-bar {
@@ -1342,11 +1342,11 @@ body {
 						}
 
 						&:hover {
-							color: @theme-color;
+							color: $theme-color;
 						}
 
 						&:active {
-							color: darken(@theme-color, 10%);
+							color: darken($theme-color, 10%);
 							transition: color 0s ease;
 						}
 					}
@@ -1366,7 +1366,7 @@ body {
 					font-weight: normal;
 					text-decoration: none;
 					color: #fff;
-					background: @theme-color;
+					background: $theme-color;
 					outline: none;
 					border: none;
 					border-radius: 0;
@@ -1388,16 +1388,16 @@ body {
 					}
 
 					&:hover {
-						background: lighten(@theme-color, 10%);
+						background: lighten($theme-color, 10%);
 					}
 
 					&:active {
-						background: darken(@theme-color, 10%);
+						background: darken($theme-color, 10%);
 						transition: background 0s ease;
 					}
 
 					&:focus {
-						outline: solid 2px fade(@theme-color, 50%);
+						outline: solid 2px fade($theme-color, 50%);
 					}
 
 					&.updating {
@@ -1450,7 +1450,7 @@ body {
 
 	> .title {
 		margin: 1em 0;
-		color: @theme-color;
+		color: $theme-color;
 		// color: #43A4EC;
 		font-weight: bold;
 
@@ -1496,11 +1496,11 @@ body {
 			}
 
 			&:hover {
-				color: @theme-color;
+				color: $theme-color;
 			}
 
 			&:active {
-				color: darken(@theme-color, 10%);
+				color: darken($theme-color, 10%);
 				transition: color 0s ease;
 			}
 		}
@@ -1530,7 +1530,7 @@ body {
 
 	> h1 {
 		margin: 1em 0;
-		color: @theme-color;
+		color: $theme-color;
 		font-size: 1em;
 		font-weight: bold;
 
@@ -1593,14 +1593,14 @@ body {
 	transition: color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 
 	&:hover {
-		border-color: @theme-color;
+		border-color: $theme-color;
 		//box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1) inset;
 		transition: border 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	&:focus {
-		color: darken(@theme-color, 20%);
-		border-color: @theme-color;
+		color: darken($theme-color, 20%);
+		border-color: $theme-color;
 		//box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2) inset;
 		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
 	}
@@ -1627,7 +1627,7 @@ body {
 	transition: all 0.2s ease;
 
 	&:hover {
-		color: darken(@theme-color, 20%);
+		color: darken($theme-color, 20%);
 	}
 }
 
@@ -1661,11 +1661,11 @@ body {
 	}
 
 	&:hover {
-		color: @theme-color;
+		color: $theme-color;
 	}
 
 	&:active {
-		color: darken(@theme-color, 10%);
+		color: darken($theme-color, 10%);
 		transition: color 0s ease;
 	}
 }
@@ -1921,13 +1921,13 @@ body {
 				&:hover,
 				&:focus {
 					color: #fff;
-					background: @theme-color;
+					background: $theme-color;
 					text-decoration: none;
 				}
 
 				&:active {
 					color: #fff;
-					background: darken(@theme-color, 10%);
+					background: darken($theme-color, 10%);
 				}
 
 				* {
@@ -2071,30 +2071,30 @@ body {
 			cursor: pointer;
 
 			&.following {
-				color: contrast(@theme-color, #000, #fff, 70%);
-				background: @theme-color;
+				color: contrast($theme-color, #000, #fff, 70%);
+				background: $theme-color;
 
 				&:hover {
-					background: lighten(@theme-color, 10%);
+					background: lighten($theme-color, 10%);
 				}
 
 				&:active {
-					background: darken(@theme-color, 10%);
+					background: darken($theme-color, 10%);
 				}
 			}
 
 			&.not-following {
 				padding: 3px 15px;
-				color: @theme-color;
+				color: $theme-color;
 				background: transparent;
-				border: solid 1px @theme-color;
+				border: solid 1px $theme-color;
 
 				&:hover {
-					background: fade(@theme-color, 15%);
+					background: fade($theme-color, 15%);
 				}
 
 				&:active {
-					background: fade(@theme-color, 30%);
+					background: fade($theme-color, 30%);
 				}
 			}
 
@@ -2256,7 +2256,7 @@ body {
 
 						&:hover {
 							text-decoration: none;
-							color: @theme-color;
+							color: $theme-color;
 						}
 					}
 				}
