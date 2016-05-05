@@ -1,4 +1,4 @@
-@import (reference, multiple) "../../../common/common";
+@require "../../../common";
 
 .post {
 	position: relative;
@@ -143,7 +143,7 @@
 		}
 
 		> .content {
-			@import (multiple) "./post-content";
+			@import "./post-content";
 			overflow: hidden;
 			word-wrap: break-word;
 		}
@@ -224,7 +224,7 @@
 		}
 
 		> .reply-source {
-			.sub-article;
+			sub-article()
 			padding-top: 16px;
 			padding-bottom: 0;
 

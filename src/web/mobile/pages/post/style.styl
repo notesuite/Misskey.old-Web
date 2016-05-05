@@ -1,5 +1,5 @@
 @import "../../common/styles/ui";
-@import (reference, multiple) "../../common/styles/post";
+@require "../../common/styles/post";
 
 html, #misskey-main {
 	color: #000;
@@ -16,11 +16,11 @@ main {
 		.post;
 
 		> .post-in-talk {
-			.sub-article;
+			sub-article()
 		}
 
 		> .post-in-replies {
-			.sub-article;
+			sub-article()
 		}
 	}
 }

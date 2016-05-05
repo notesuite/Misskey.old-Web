@@ -1,11 +1,11 @@
 @import "../../common";
 @import "./album";
-@import (inline) "../../../../../bower_components/cropper/dist/cropper.css";
+@import "../../../../../bower_components/cropper/dist/cropper.css";
 
 /* UI
  * ---------------------------------------------------------------- */
-@ui-controll-background-color: #fffbfb;
-@ui-controll-foreground-color: #ABA49E;
+$ui-controll-background-color: #fffbfb;
+$ui-controll-foreground-color: #ABA49E;
 
 body {
 	margin-top: 48px;
@@ -121,8 +121,8 @@ body {
 		//max-height: 3rem;
 		margin: 0;
 		padding: 0;
-		color: @ui-controll-foreground-color;
-		background-color: @ui-controll-background-color;
+		color: $ui-controll-foreground-color;
+		background-color: $ui-controll-background-color;
 		//background-image: url("/resources/common/images/misskey.dark.svg");
 		background-repeat: no-repeat;
 		background-position: center center;
@@ -201,7 +201,7 @@ body {
 									padding: 0 24px;
 									font-size: 1em;
 									font-variant: small-caps;
-									color: @ui-controll-foreground-color;
+									color: $ui-controll-foreground-color;
 									text-decoration: none;
 									transition: none;
 									cursor: pointer;
@@ -211,7 +211,7 @@ body {
 									}
 
 									&:hover {
-										color: darken(@ui-controll-foreground-color, 20%);
+										color: darken($ui-controll-foreground-color, 20%);
 									}
 
 									&:active {
@@ -265,13 +265,13 @@ body {
 								height: 2px;
 								margin-bottom: 3px;
 								border-radius: 4px;
-								background: @ui-controll-foreground-color;
+								background: $ui-controll-foreground-color;
 								transition: opacity 1s cubic-bezier(0, 1, 0, 1), transform 1s cubic-bezier(0, 1, 0, 1);
 							}
 
 							&:hover {
 								.bar {
-									background: darken(@ui-controll-foreground-color, 20%);
+									background: darken($ui-controll-foreground-color, 20%);
 								}
 							}
 
@@ -334,7 +334,7 @@ body {
 						&::-webkit-input-placeholder,
 						&:-ms-input-placeholder,
 						&:-moz-placeholder {
-							color: @ui-controll-foreground-color;
+							color: $ui-controll-foreground-color;
 						}
 					}
 
@@ -448,7 +448,7 @@ body {
 						display: block;
 						margin: 0;
 						padding: 0;
-						color: @ui-controll-foreground-color;
+						color: $ui-controll-foreground-color;
 						border: none;
 						background: transparent;
 						cursor: pointer;
@@ -458,11 +458,11 @@ body {
 						}
 
 						&:hover {
-							color: darken(@ui-controll-foreground-color, 20%);
+							color: darken($ui-controll-foreground-color, 20%);
 						}
 
 						&:active {
-							color: darken(@ui-controll-foreground-color, 30%);
+							color: darken($ui-controll-foreground-color, 30%);
 						}
 
 						> .screen-name {
@@ -571,7 +571,7 @@ body {
 						display: block;
 						margin: 0;
 						padding: 0;
-						color: @ui-controll-foreground-color;
+						color: $ui-controll-foreground-color;
 						border: none;
 						background: transparent;
 						cursor: pointer;
@@ -581,11 +581,11 @@ body {
 						}
 
 						&:hover {
-							color: darken(@ui-controll-foreground-color, 20%);
+							color: darken($ui-controll-foreground-color, 20%);
 						}
 
 						&:active {
-							color: darken(@ui-controll-foreground-color, 30%);
+							color: darken($ui-controll-foreground-color, 30%);
 						}
 
 						> span {
@@ -696,7 +696,7 @@ body {
 						}
 
 						> .main {
-							@import (multiple) "./notifications-base";
+							@import "./notifications-base";
 
 							.loading {
 								margin: 100px auto 100px auto;
@@ -827,7 +827,7 @@ body {
 							display: table-cell;
 							vertical-align: middle;
 							height: 48px;
-							color: @ui-controll-foreground-color;
+							color: $ui-controll-foreground-color;
 
 							> .yyyymmdd {
 								opacity: 0.7;
@@ -871,9 +871,9 @@ body {
 	width: 64px;
 	height: 64px;
 	font-size: 1.5em;
-	color: @ui-controll-foreground-color;
+	color: $ui-controll-foreground-color;
 	border: none;
-	background: @ui-controll-background-color;
+	background: $ui-controll-background-color;
 	cursor: pointer;
 	opacity: 1;
 	transition: opacity 0.5s ease;
@@ -883,11 +883,11 @@ body {
 	}
 
 	&:hover {
-		color: darken(@ui-controll-foreground-color, 10%);
+		color: darken($ui-controll-foreground-color, 10%);
 	}
 
 	&:active {
-		color: darken(@ui-controll-foreground-color, 20%);
+		color: darken($ui-controll-foreground-color, 20%);
 	}
 
 	&.hidden {

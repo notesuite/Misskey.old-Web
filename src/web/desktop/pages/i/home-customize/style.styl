@@ -70,16 +70,16 @@
 	color: #fff;
 	background: rgba(0, 0, 0, 0.7);
 
-	@nav-height: 50px;
-	@nav-vertical-padding: 8px;
+	$nav-height: 50px;
+	$nav-vertical-padding: 8px;
 
 	#customizer-nav {
 		box-sizing: border-box;
 		margin: 0 auto;
-		padding: @nav-vertical-padding 0;
+		padding: $nav-vertical-padding 0;
 		max-width: 1200px;
 		width: 100%;
-		height: @nav-height;
+		height: $nav-height;
 
 		&:after {
 			content: "";
@@ -94,7 +94,7 @@
 				display: inline-block;
 				vertical-align: top;
 				margin: 0 8px;
-				line-height: @nav-height - (@nav-vertical-padding * 2);
+				line-height: $nav-height - ($nav-vertical-padding * 2);
 			}
 
 			select {
@@ -105,7 +105,7 @@
 				min-width: 16em;
 				padding: 0 16px;
 				vertical-align: top;
-				line-height: @nav-height - (@nav-vertical-padding * 2) - 4px;
+				line-height: $nav-height - ($nav-vertical-padding * 2) - 4px;
 				color: #fff;
 				background: transparent;
 				border: 2px solid rgba(255, 255, 255, 0.5);
@@ -138,7 +138,7 @@
 				box-sizing: border-box;
 				margin: 0 8px;
 				padding: 0 12px;
-				line-height: @nav-height - (@nav-vertical-padding * 2);
+				line-height: $nav-height - ($nav-vertical-padding * 2);
 				font-size: 1em;
 				font-weight: normal;
 				text-decoration: none;
@@ -181,7 +181,7 @@
 				box-sizing: border-box;
 				margin: 0 8px;
 				padding: 0 12px;
-				line-height: @nav-height - (@nav-vertical-padding * 2);
+				line-height: $nav-height - ($nav-vertical-padding * 2);
 				font-size: 1em;
 				font-weight: normal;
 				text-decoration: none;

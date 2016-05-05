@@ -132,12 +132,12 @@
 		}
 
 		> .sub-post {
-			.sub-article;
+			sub-article()
 		}
 	}
 
 	> .reply-source {
-		.sub-article;
+		sub-article()
 		background: #fdfdfd;
 	}
 
@@ -295,7 +295,7 @@
 		}
 
 		> .content {
-			@import (multiple) "./post-content";
+			@import "./post-content";
 			padding: 0 38px;
 
 			> .text {
@@ -754,13 +754,13 @@
 		}
 
 		> .sub-post {
-			.sub-article;
+			sub-article()
 
 			> .replies {
 				padding-left: 16px;
 
 				> .sub-post {
-					.sub-article;
+					sub-article()
 					border-bottom: none;
 				}
 			}

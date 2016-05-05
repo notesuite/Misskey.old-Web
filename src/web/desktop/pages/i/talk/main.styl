@@ -1,6 +1,6 @@
 @import "../../../common";
 
-@me-balloon-color: #23A7B6;
+$me-balloon-color: #23A7B6;
 
 html {
 	background: #fff;
@@ -446,14 +446,14 @@ main {
 					float: right;
 
 					> .balloon {
-						background: @me-balloon-color;
+						background: $me-balloon-color;
 
 						&:before {
 							right: -14px;
 							border-top: solid 8px transparent;
 							border-right: solid 8px transparent;
 							border-bottom: solid 8px transparent;
-							border-left: solid 8px @me-balloon-color;
+							border-left: solid 8px $me-balloon-color;
 						}
 
 						> .content {

@@ -2,7 +2,7 @@
 @import "../../../common/styles/ui";
 
 html {
-	background: @ui-background-color;
+	background: $ui-background-color;
 }
 
 #misskey-contents {
@@ -420,7 +420,7 @@ html {
 }
 
 .checkbox {
-	@checkbox-size: 28px;
+	$checkbox-size: 28px;
 
 	display: block;
 
@@ -472,11 +472,11 @@ html {
 
 			&:before {
 				border: solid 2px $theme-color;
-				box-shadow: 0 0 0 (@checkbox-size / 2) $theme-color inset;
+				box-shadow: 0 0 0 ($checkbox-size / 2) $theme-color inset;
 			}
 
 			&:after {
-				width: @checkbox-size;
+				width: $checkbox-size;
 				opacity: 1;
 			}
 		}
@@ -500,7 +500,7 @@ html {
 		display: block;
 		position: relative;
 		margin: 0;
-		padding: 16px 0 16px (@checkbox-size + 8px);
+		padding: 16px 0 16px ($checkbox-size + 8px);
 		color: #777;
 
 		&:before {
@@ -512,8 +512,8 @@ html {
 			bottom: 0;
 			left: 0;
 			margin: auto 0;
-			width: @checkbox-size;
-			height: @checkbox-size;
+			width: $checkbox-size;
+			height: $checkbox-size;
 			border: solid 2px #ddd;
 			box-shadow: 0 0 0 0 $theme-color inset;
 			transition: border 1s cubic-bezier(0,1,0,1), box-shadow 1s cubic-bezier(0,1,0,1);
@@ -530,8 +530,8 @@ html {
 			left: 0;
 			margin: auto 0;
 			width: 0;
-			height: @checkbox-size;
-			line-height: @checkbox-size;
+			height: $checkbox-size;
+			line-height: $checkbox-size;
 			text-align: center;
 			color: contrast($theme-color, #000, #fff, 70%);
 			opacity: 0;

@@ -1,6 +1,6 @@
-@import (reference, multiple) "../../../common/common";
+@require "../../../common";
 
-@background: #fffbfb;
+$background: #fffbfb;
 
 > .posts {
 	margin: 0;
@@ -20,7 +20,7 @@
 		position: relative;
 		margin: 0 0 1px 0;
 		padding: 12px 0;
-		background: @background;
+		background: $background;
 		border: none;
 		transition: margin 0.2s ease, border-radius 0.2s ease, border-bottom-left-radius 0.2s ease, border-bottom-right-radius 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease;
 		font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
@@ -242,7 +242,7 @@
 			}
 
 			> .content {
-				@import (multiple) "./post-content";
+				@import "./post-content";
 				overflow: hidden;
 			}
 		}
@@ -579,7 +579,7 @@
 			padding: 0;
 
 			> .sub-post {
-				.timeline-sub-article;
+				timeline-sub-article()
 			}
 		}
 
@@ -605,12 +605,12 @@
 				}
 
 				> .sub-post {
-					.timeline-sub-article;
+					timeline-sub-article()
 				}
 			}
 
 			> .reply-source {
-				.timeline-sub-article;
+				timeline-sub-article()
 				padding-top: 16px;
 				padding-bottom: 0;
 
@@ -739,7 +739,7 @@
 	&.status,
 	&.reply {
 		> .main {
-			@import (multiple) "./post-content";
+			@import "./post-content";
 
 			> .text {
 				font-size: 0.9em;
@@ -785,7 +785,7 @@
 	font-size: 1.05em;
 	color: #826D64;
 	cursor: pointer;
-	background: @background;
+	background: $background;
 	outline: none;
 	border: none;
 	border-bottom-left-radius: 8px;
