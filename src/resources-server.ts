@@ -2,7 +2,7 @@ import * as express from 'express';
 const cors: any = require('cors');
 
 export default function server(): express.Express {
-	
+
 	// Init server
 	const app: express.Express = express();
 	app.disable('x-powered-by');
