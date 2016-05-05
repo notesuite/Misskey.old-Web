@@ -23,6 +23,14 @@ Misskey-Web is *Misskey* official client for the Web. run on [Node.js](https://g
 ## How to start Misskey Web server
 `npm start`
 
+## People
+
+The original author of Misskey is [syuilo](https://github.com/syuilo)
+
+The current lead maintainer is [syuilo](https://github.com/syuilo)
+
+[List of all contributors](https://github.com/MissKernel/Misskey-Web/graphs/contributors)
+
 ## License
 The MIT License. See [LICENSE](LICENSE).
 
