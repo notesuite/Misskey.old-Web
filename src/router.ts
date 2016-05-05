@@ -329,7 +329,7 @@ function paramUserScreenName(
 	next: () => void,
 	screenName: string
 ): void {
-	
+
 	requestApi('users/show', {
 		'screen-name': screenName
 	}, res.locals.isLogin ? req.user : null).then((user: User) => {
@@ -354,7 +354,7 @@ function paramPostId(
 	next: () => void,
 	postId: string
 ): void {
-	
+
 	requestApi('posts/show', {
 		'post-id': postId
 	}, res.locals.isLogin ? req.user : null).then((post: Object) => {
@@ -379,7 +379,7 @@ function paramFileId(
 	next: () => void,
 	fileId: string
 ): void {
-	
+
 	requestApi('album/files/show', {
 		'file-id': fileId
 	}, res.locals.isLogin ? req.user : null).then((file: Object) => {
@@ -399,7 +399,7 @@ function paramFolderId(
 	next: () => void,
 	folderId: string
 ): void {
-	
+
 	requestApi('album/folders/show', {
 		'folder-id': folderId
 	}, res.locals.isLogin ? req.user : null).then((folder: Object) => {
@@ -419,7 +419,7 @@ function paramTalkGroupId(
 	next: () => void,
 	groupId: string
 ): void {
-	
+
 	requestApi('talks/group/show', {
 		'group-id': groupId
 	}, req.user).then((group: Object) => {
