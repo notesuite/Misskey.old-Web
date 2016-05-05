@@ -222,8 +222,8 @@ if (config.https.enable) {
 }
 
 server.listen(port, () => {
-	const listenhost: string = server.address().address;
-	const listenport: number = server.address().port;
+	const listenhost = server.address().address;
+	const listenport = server.address().port;
 
 	console.log(
 		`\u001b[1;32m${name(worker.id)} is now listening at ${listenhost}:${listenport}\u001b[0m`);
