@@ -72,7 +72,7 @@ const session: any = {
 //////////////////////////////////////////////////
 // INIT SERVER PHASE
 
-const app: express.Express = express();
+const app = express();
 app.disable('x-powered-by');
 app.locals.compileDebug = false;
 app.locals.cache = true;
