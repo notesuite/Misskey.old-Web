@@ -1,3 +1,7 @@
+//////////////////////////////////////////////////
+// MISSKEY-WEB BUILDER
+//////////////////////////////////////////////////
+
 'use strict';
 
 Error.stackTraceLimit = Infinity;
@@ -38,12 +42,17 @@ const aliasifyConfig = {
 };
 
 gulp.task('build', [
+	'test',
 	'build:ts',
 	'copy:bower_components',
 	'build:frontside-scripts',
 	'build:frontside-styles',
 	'build-copy'
-]);
+], () => {
+	if (env !== 'production') {
+		console.log('■　注意！　開発モードでのビルドです。');
+	}
+});
 
 const project = ts.createProject('tsconfig.json', {
 	typescript: require('typescript')
@@ -75,6 +84,8 @@ gulp.task('copy:bower_components', () => {
 gulp.task('build:frontside-scripts', ['build:public-config'], done => {
 	glob('./src/web/**/*.ls', (err, files) => {
 		const tasks = files.map(entry => {
+			console.log(entry);
+
 			let bundle =
 				browserify({
 					entries: [entry]
