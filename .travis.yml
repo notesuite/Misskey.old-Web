@@ -3,3 +3,7 @@ node_js:
   - "6.1.0"
 before_script:
   - "npm run dtsm"
+cache:
+  directories:
+    - node_modules
+    - $HOME/.dtsm
