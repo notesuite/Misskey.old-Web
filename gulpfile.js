@@ -128,7 +128,11 @@ gulp.task('build:frontside-styles', ['copy:bower_components'], () => {
 		.pipe(gulp.dest('./built/resources/'));
 });
 
-gulp.task('build-copy', ['build:ts', 'build:frontside-scripts', 'build:frontside-styles'], () => {
+gulp.task('build-copy', [
+	'build:ts',
+	'build:frontside-scripts',
+	'build:frontside-styles'
+], () => {
 	return es.merge(
 		gulp.src([
 			'./src/web/**/*.styl',
