@@ -31,7 +31,7 @@ function loadConfig(): IConfig {
 		console.log('Loaded config');
 	} catch (e) {
 		console.error('Failed to load config: ' + e);
-		process.exit();
+		process.exit(1);
 	}
 
 	const host = conf.host;
