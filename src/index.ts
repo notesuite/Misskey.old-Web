@@ -65,3 +65,7 @@ cluster.on('exit', (worker: cluster.Worker) => {
 	console.log(`\u001b[1;31m[${name(worker.id)}] died :(\u001b[0m`);
 	cluster.fork();
 });
+
+process.on('exit', () => {
+	console.log('Bye.');
+});
