@@ -1,0 +1,74 @@
+#===========================#
+# Misskey Web Configuration #
+#===========================#
+
+# 動かすことになるドメイン
+host: "misskey.xyz"
+
+# サイトテーマカラー
+themeColor: "#ec6b43"
+
+# ユーザーのクライアントに関する設定をストアするDB(Mongo)の情報
+mongo:
+  uri: <string>
+  options:
+   user: <string>
+   pass: <string>
+
+# 2016年5月現在、APIがストリーミングを提供していないため直接APIサーバーのRedisに繋ぐ必要があるので、その情報
+redis:
+  host: <string>
+  pass: <string>
+
+# Web待ち受けポート
+port:
+  http: 80
+  https: 443
+  streaming: 3000
+
+# TLS設定
+https:
+  enable: <boolean>
+  # 以下証明書設定。 enable が false の場合は省略
+  keyPath: <string>
+  certPath: <string>
+
+# APIサーバー設定
+api:
+  host: <string>
+  port: <string>
+  pass: <string>
+
+# よく分からない
+cookiePass: <string>
+
+# セッションIDを保存するCookieのキー
+sessionKey: "hmsk"
+
+# よく分からない
+sessionSecret: <string>
+
+# reCAPTCHA シークレット
+googleRecaptchaSecret: <string>
+
+# reCAPTCHA サイトキー
+googleRecaptchaSiteKey: <string>
+
+# サブドメイン設定 基本的に弄る必要はないと思われる
+domains:
+  admin: "admin"
+  signup: "signup"
+  signin: "login"
+  signout: "logout"
+  resources: "resources"
+  about: "about"
+  search: "search"
+  help: "help"
+  talk: "talk"
+  forum: "forum"
+  webApi: "himasaku"
+  api: "api"
+  developer: "dev"
+  color: "color"
+  share: "share"
+  widgets: "widgets"
