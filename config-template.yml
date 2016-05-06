@@ -49,10 +49,10 @@ sessionKey: "hmsk"
 sessionSecret: <string>
 
 # reCAPTCHA シークレット
-googleRecaptchaSecret: <string>
+recaptchaSecret: <string>
 
 # reCAPTCHA サイトキー
-googleRecaptchaSiteKey: <string>
+recaptchaSiteKey: <string>
 
 # サブドメイン設定 基本的に弄る必要はないと思われる
 domains:
