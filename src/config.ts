@@ -2,15 +2,18 @@
 // CONFIGURATION MANAGER
 //////////////////////////////////////////////////
 
+import * as fs from 'fs';
+import * as yaml from 'js-yaml';
+
 // Detect home path
 const home = process.env[
 	process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
 
 // Name of directory that includes config file
-const dirName = '.misskey';
+const dirName = '.misskey-web';
 
 // Name of config file
-const fileName = 'web.json';
+const fileName = 'config.yml';
 
 // Resolve paths...
 const dirPath = `${home}/${dirName}`;
@@ -20,17 +23,29 @@ const path = `${dirPath}/${fileName}`;
 // CONFIGURATION LOADER
 
 function loadConfig(): IConfig {
-	// Read config file
-	let conf = <IConfig>require(path);
+	let conf: IConfig;
 
-	const domain = conf.public.domain;
-	const domains = conf.public.domains;
+	try {
+		// Load and parse the config
+		conf = <IConfig>yaml.safeLoad(fs.readFileSync(path, 'utf8'));
+		console.log('Loaded config');
+	} catch (e) {
+		console.error('Failed to load config: ' + e);
+		process.exit();
+	}
 
-	const scheme = conf.https.enable ? 'https://' : 'http://';
-	conf.public.url = `${scheme}${conf.public.domain}`;
+	const host = conf.host;
+	const domains = conf.domains;
+
+	const scheme = conf.https.enable ? 'https' : 'http';
+	const port = conf.https.enable
+		? conf.port.https === 443 ? '' : ':' + conf.port.https
+		: conf.port.http === 80 ? '' : ':' + conf.port.http;
+
+	conf.url = `${scheme}://${host}` + port;
 
 	// Define hosts
-	conf.public.hosts = {
+	conf.hosts = {
 		admin: `${domains.admin}.${domain}`,
 		i: `${domains.i}.${domain}`,
 		about: `${scheme}${domains.about}.${domain}`,
@@ -49,7 +64,7 @@ function loadConfig(): IConfig {
 	};
 
 	// Define URLs
-	conf.public.urls = {
+	conf.urls = {
 		admin: `${scheme}${domains.admin}.${domain}`,
 		i: `${scheme}${domains.i}.${domain}`,
 		about: `${scheme}${domains.about}.${domain}`,
@@ -75,25 +90,33 @@ export default loadConfig();
 //////////////////////////////////////////////////
 // CONFIGURATION INTERFACE DEFINITION
 
-interface Domains {
+type Domains = {
+	about: string;
 	admin: string;
-	i: string;
 	api: string;
-	webApi: string;
+	color: string;
+	forum: string;
+	help: string;
+	i: string;
 	resources: string;
 	signup: string;
 	signin: string;
 	signout: string;
 	share: string;
 	search: string;
-	color: string;
-	forum: string;
 	talk: string;
-	help: string;
-	about: string;
+	webApi: string;
 }
 
 export interface IConfig {
+	api: {
+		pass: string;
+		host: string;
+		port: number;
+	};
+	cookiePass: string;
+	host: string;
+	hosts: Domains;
 	mongo: {
 		uri: string;
 		options: {
@@ -103,7 +126,7 @@ export interface IConfig {
 	};
 	redis: {
 		host: string;
-		password: string;
+		pass: string;
 	};
 	port: {
 		http: number;
@@ -115,23 +138,12 @@ export interface IConfig {
 		keyPath: string;
 		certPath: string;
 	};
-	api: {
-		passkey: string;
-		ip: string;
-		port: number;
-	};
-	bindIp: string;
-	cookiePass: string;
 	sessionKey: string;
 	sessionSecret: string;
 	recaptchaSecretKey: string;
-	public: {
-		domain: string;
-		url: string;
-		themeColor: string;
-		recaptchaSiteKey: string;
-		domains: Domains;
-		hosts: Domains;
-		urls: Domains;
-	};
+	recaptchaSiteKey: string;
+	url: string;
+	themeColor: string;
+	domains: Domains;
+	urls: Domains;
 }

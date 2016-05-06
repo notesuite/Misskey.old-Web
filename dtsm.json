@@ -90,6 +90,9 @@
     },
     "serve-favicon/serve-favicon.d.ts": {
       "ref": "73f7bb99692823f1811817f9753a02b57af5305e"
+    },
+    "js-yaml/js-yaml.d.ts": {
+      "ref": "02ba1e3e95a3cb503656ca0415e0febc3bf8ba71"
     }
   }
 }
