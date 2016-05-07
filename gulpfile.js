@@ -24,6 +24,8 @@ const aliasify = require('aliasify');
 
 const env = process.env.NODE_ENV;
 
+const isProduction = env === 'production';
+
 const aliasifyConfig = {
 	"aliases": {
 		"config": "./built/_/config.json",
@@ -49,7 +51,7 @@ gulp.task('build', [
 	'build:frontside-styles',
 	'build-copy'
 ], () => {
-	if (env !== 'production') {
+	if (!isProduction) {
 		console.log('■　注意！　開発モードでのビルドです。');
 	}
 });
@@ -99,7 +101,7 @@ gulp.task('build:frontside-scripts', ['build:public-config'], done => {
 				.bundle()
 				.pipe(source(entry.replace('src/web', 'resources').replace('.ls', '.js')));
 
-			if (env === 'production') {
+			if (isProduction) {
 				bundle = bundle
 					.pipe(buffer())
 					.pipe(uglify());
@@ -117,7 +119,7 @@ gulp.task('build:frontside-styles', ['copy:bower_components'], () => {
 	let styl = gulp.src('./src/web/**/*.styl')
 		.pipe(stylus());
 
-	if (env === 'production') {
+	if (isProduction) {
 		styl = styl
 			.pipe(cssnano({
 				safe: true // 高度な圧縮は無効にする (一部デザインが不適切になる場合があるため)
