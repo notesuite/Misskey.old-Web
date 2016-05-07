@@ -2,7 +2,7 @@ import * as express from 'express';
 import requestApi from '../../../../../../../core/request-api';
 
 module.exports = (req: express.Request, res: express.Response): void => {
-		const dialog: string = req.query.dialog;
+	const dialog: string = req.query.dialog;
 	let isDialog = false;
 	if (dialog !== undefined && dialog !== null) {
 		res.locals.noui = true;
