@@ -95,7 +95,7 @@ gulp.task('build:public-config', ['build:ts'], done => {
 	const config = require('./built/config').default;
 	fs.mkdir('./built/_', e => {
 		if (!e || (e && e.code === 'EEXIST')) {
-			fs.writeFile('./built/_/config.json', JSON.stringify(config.public), done);
+			fs.writeFile('./built/_/config.json', JSON.stringify(config), done);
 		} else {
 			console.error(e);
 		}
@@ -176,6 +176,7 @@ gulp.task('build-copy', [
 			'./src/web/**/*.jade'
 		]).pipe(gulp.dest('./built/web/')),
 		gulp.src('./src/resources/**/*').pipe(gulp.dest('./built/resources/')),
+		gulp.src('./src/locales/**/*').pipe(gulp.dest('./built/locales/')),
 		gulp.src([
 			'./src/web/**/*',
 			'!./src/web/**/*.js',

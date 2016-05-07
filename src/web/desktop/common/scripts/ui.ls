@@ -4,6 +4,7 @@ moment = require 'moment'
 Sortable = require 'Sortable'
 require 'fuck-adblock'
 
+CONFIG = require 'config'
 require './main.ls'
 require '../../../common/kronos.ls'
 Tab = require './lib/tab.js'

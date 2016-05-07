@@ -1,18 +1,19 @@
 import * as express from 'express';
 import config from './config';
+import callController from './call-controller';
 
 /* tslint:disable:no-unused-variable */
 const objectAssignDeep = require('object-assign-deep');
 /* tslint:enable:no-unused-variable */
 
-export default function callController(
+export default function(
 	req: express.Request,
 	res: express.Response,
 	path: string,
 	options: any = null
 ): void {
 	res.locals.display = (data: any = {}, addLocalePagePath: string = null): void => {
-		const viewPath: string = `${__dirname}/sites/${res.locals.ua}/pages/${path}/view`;
+		const viewPath = `${__dirname}/web/${res.locals.ua}/pages/${path}/view`;
 		if (data.overrideTheme !== undefined && data.overrideTheme !== null) {
 			data.stylePath = `${config.urls.resources}/${res.locals.ua}/pages/${path}/style.${data.overrideTheme}.css`;
 		} else if (res.locals.isLogin && req.user._settings.theme !== null) {
@@ -105,13 +106,13 @@ export default function callController(
 	let controller: any;
 	switch (res.locals.ua) {
 		case 'desktop':
-			controller = require(`./sites/desktop/pages/${path}/controller`);
+			controller = require(`./web/desktop/pages/${path}/controller`);
 			break;
 		case 'mobile':
-			controller = require(`./sites/mobile/pages/${path}/controller`);
+			controller = require(`./web/mobile/pages/${path}/controller`);
 			break;
 		default:
-			controller = require(`./sites/desktop/pages/${path}/controller`);
+			controller = require(`./web/desktop/pages/${path}/controller`);
 			break;
 	}
 

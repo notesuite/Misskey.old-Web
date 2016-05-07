@@ -11,7 +11,7 @@ import login from './core/login';
 import callController from './call-controller';
 import config from './config';
 
-export default function router(app: express.Express): void {
+export default function(app: express.Express): void {
 
 	app.param('userScreenName', paramUserScreenName);
 	app.param('postId', paramPostId);

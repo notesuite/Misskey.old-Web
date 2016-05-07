@@ -67,21 +67,21 @@ function loadConfig(): IConfig {
 
 	// Define URLs
 	conf.urls = {
-		admin: `${scheme}${domains.admin}.${host}`,
-		i: `${scheme}${domains.i}.${host}`,
-		about: `${scheme}${domains.about}.${host}`,
-		api: `${scheme}${domains.api}.${host}`,
-		webApi: `${scheme}${domains.webApi}.${host}`,
-		resources: `${scheme}${domains.resources}.${host}`,
-		signup: `${scheme}${domains.signup}.${host}`,
-		signin: `${scheme}${domains.signin}.${host}`,
-		signout: `${scheme}${domains.signout}.${host}`,
-		share: `${scheme}${domains.share}.${host}`,
-		forum: `${scheme}${domains.forum}.${host}`,
-		search: `${scheme}${domains.search}.${host}`,
-		talk: `${scheme}${domains.talk}.${host}`,
-		help: `${scheme}${domains.help}.${host}`,
-		color: `${scheme}${domains.color}.${host}`
+		admin: `${scheme}://${domains.admin}.${host}`,
+		i: `${scheme}://${domains.i}.${host}`,
+		about: `${scheme}://${domains.about}.${host}`,
+		api: `${scheme}://${domains.api}.${host}`,
+		webApi: `${scheme}://${domains.webApi}.${host}`,
+		resources: `${scheme}://${domains.resources}.${host}`,
+		signup: `${scheme}://${domains.signup}.${host}`,
+		signin: `${scheme}://${domains.signin}.${host}`,
+		signout: `${scheme}://${domains.signout}.${host}`,
+		share: `${scheme}://${domains.share}.${host}`,
+		forum: `${scheme}://${domains.forum}.${host}`,
+		search: `${scheme}://${domains.search}.${host}`,
+		talk: `${scheme}://${domains.talk}.${host}`,
+		help: `${scheme}://${domains.help}.${host}`,
+		color: `${scheme}://${domains.color}.${host}`
 	};
 
 	return conf;
@@ -116,6 +116,7 @@ export interface IConfig {
 		host: string;
 		port: number;
 	};
+	bindIp: string;
 	cookiePass: string;
 	host: string;
 	hosts: Domains;

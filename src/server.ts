@@ -15,9 +15,9 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
 import * as favicon from 'serve-favicon';
-const acceptLanguage: any = require('accept-language');
+const acceptLanguage = require('accept-language');
 
-const vhost: any = require('vhost');
+const vhost = require('vhost');
 
 import db from './db/db';
 import { User } from './db/models/user';
@@ -51,7 +51,7 @@ const subdomainOptions = {
 	base: config.host
 };
 
-const session: any = {
+const session = {
 	name: config.sessionKey,
 	secret: config.sessionSecret,
 	resave: false,
@@ -89,6 +89,11 @@ app.use(favicon(`${__dirname}/resources/favicon.ico`));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
+
+// CSRF
+app.use(csrf({
+	cookie: true
+}));
 
 // Intercept all requests
 app.use((req, res, next) => {
@@ -143,6 +148,8 @@ app.use((req, res, next) => {
 	res.locals.ua = ua;
 	res.locals.workerId = worker.id;
 
+	res.locals.csrftoken = req.csrfToken();
+
 	if (res.locals.isLogin) {
 		const userId: string = (<any>req).session.userId;
 		requestApi('account/show', {}, userId).then((user: User) => {
@@ -178,15 +185,6 @@ app.use((req, res, next) => {
 // Session settings
 app.use(expressSession(session));
 
-// CSRF
-app.use(csrf({
-	cookie: false
-}));
-app.use((req, res, next) => {
-	res.locals.csrftoken = req.csrfToken();
-	next();
-});
-
 app.use(require('subdomain')(subdomainOptions));
 
 app.get('/manifest.json', (req, res) => {
@@ -221,7 +219,7 @@ if (config.https.enable) {
 	server = http.createServer(app);
 }
 
-server.listen(port, () => {
+server.listen(port, config.bindIp, () => {
 	const listenhost = server.address().address;
 	const listenport = server.address().port;
 
