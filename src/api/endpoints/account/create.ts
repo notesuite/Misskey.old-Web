@@ -9,7 +9,7 @@ export default function (req: express.Request, res: express.Response): void {
 		url: 'https://www.google.com/recaptcha/api/siteverify',
 		method: 'POST',
 		form: {
-			'secret': config.recaptchaSecretKey,
+			'secret': config.recaptcha.secretKey,
 			'response': req.body['g-recaptcha-response']
 		}
 	}, (err: any, response: http.IncomingMessage, body: any) => {

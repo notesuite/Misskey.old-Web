@@ -143,8 +143,10 @@ export interface IConfig {
 	};
 	sessionKey: string;
 	sessionSecret: string;
-	recaptchaSecretKey: string;
-	recaptchaSiteKey: string;
+	recaptcha: {
+		siteKey: string;
+		secretKey: string;
+	};
 	url: string;
 	themeColor: string;
 	domains: Domains;

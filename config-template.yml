@@ -49,11 +49,13 @@ sessionKey: "hmsk"
 # よく分からない
 sessionSecret: <string>
 
-# reCAPTCHA シークレット
-recaptchaSecret: <string>
-
-# reCAPTCHA サイトキー
-recaptchaSiteKey: <string>
+# reCAPTCHA設定
+# SEE: https://www.google.com/recaptcha/intro/index.html
+recaptcha:
+  # サイトキー
+  siteKey: <string>
+  # シークレット
+  secret: <string>
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ここから下は特に弄る必要は無いと思われます
