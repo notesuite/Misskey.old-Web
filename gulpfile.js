@@ -156,7 +156,7 @@ gulp.task('build:frontside-styles', ['copy:bower_components'], () => {
 			? cssnano({
 				safe: true // 高度な圧縮は無効にする (一部デザインが不適切になる場合があるため)
 			})
-			: gutil.noop());
+			: gutil.noop())
 		.pipe(gulp.dest('./built/resources/'));
 });
 
