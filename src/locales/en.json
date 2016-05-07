@@ -140,7 +140,7 @@
 						"text": "Stop, No destination reply."
 					}
 				},
-				"_register": {
+				"_signup": {
 					"page_title": "Begin - Misskey",
 					"title": "Create a Misskey account",
 					"screen_name_caption": "User ID",
@@ -167,7 +167,7 @@
 					"logging": "Logging in...",
 					"signin": "I already have my account"
 				},
-				"_login": {
+				"_signin": {
 					"page_title": "Sign in - Misskey",
 					"title": "Sign in to Misskey",
 					"signin": "Sign in",
@@ -270,7 +270,7 @@
 					"signin": "Sign in",
 					"register": "Create an account"
 				},
-				"_register": {
+				"_signup": {
 					"page_title": "Register - Misskey",
 					"title": "Create your Misskey account",
 					"screen_name_caption": "User ID",

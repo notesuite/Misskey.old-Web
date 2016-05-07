@@ -138,7 +138,7 @@
 						"text": "ほむ"
 					}
 				},
-				"_register": {
+				"_signup": {
 					"page_title": "ほむ",
 					"title": "ほむ",
 					"screen_name_caption": "ほむ",
@@ -165,7 +165,7 @@
 					"logging": "ほむ",
 					"signin": "ほむ"
 				},
-				"_login": {
+				"_signin": {
 					"page_title": "ほむ",
 					"title": "ほむ",
 					"signin": "ほむ",
@@ -268,7 +268,7 @@
 					"signin": "ほむ",
 					"register": "ほむ"
 				},
-				"_register": {
+				"_signup": {
 					"page_title": "ほむ",
 					"title": "ほむ",
 					"screen_name_caption": "ほむ",

@@ -140,7 +140,7 @@
 						"text": "止めよう、空中リプライ"
 					}
 				},
-				"_register": {
+				"_signup": {
 					"page_title": "Misskeyを始める",
 					"title": "Misskeyアカウントを作成",
 					"screen_name_caption": "ユーザーID",
@@ -167,7 +167,7 @@
 					"logging": "ログイン中...",
 					"signin": "既にアカウントをお持ちの方はこちら"
 				},
-				"_login": {
+				"_signin": {
 					"page_title": "ログイン - Misskey",
 					"title": "Misskeyにログイン",
 					"signin": "ログイン",
@@ -281,7 +281,7 @@
 					"signin": "ログイン",
 					"register": "アカウントを作成する"
 				},
-				"_register": {
+				"_signup": {
 					"page_title": "Misskeyを始める",
 					"title": "Misskeyアカウントを作成",
 					"screen_name_caption": "ユーザーID",

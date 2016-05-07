@@ -64,10 +64,13 @@ text-input() {
 main {
 	display: block;
 	position: relative;
-	max-width: 1200px;
-	margin: 0 auto;
+	height: 100%;
 
 	header {
+		display: block;
+		box-sizing: border-box;
+		max-width: 1200px;
+		margin: 0 auto;
 		padding: 32px 64px;
 		color: #fff;
 
@@ -97,35 +100,30 @@ main {
 		}
 	}
 
-	#trends {
+	.body {
 		box-sizing: border-box;
-		padding-left: 32px;
-		width: calc(100% - 440px);
-		word-wrap: break-word;
-
-		> * {
-			margin: 0 0.5em;
-			font-size: 2em;
-			text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);
-		}
-	}
-
-	.contents {
 		position: absolute;
 		top: 0;
 		right: 0;
-		box-sizing: border-box;
+		width: 35%;
+		min-width: 500px;
+		height: 100%;
 		padding: 64px;
-		// background: rgba(0, 0, 0, 0.3);
-		border-radius: 8px;
+		background-image: url("/entrance.blur.jpg");
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		border-left: solid 16px $theme-color;
 
 		#login-form {
 			display: block;
 			box-sizing: border-box;
-			margin: 0;
+			margin: 0 auto;
 			padding: 24px 32px 0 32px;
 			width: 310px;
 			background: #fff;
+			border: solid 8px rgba(0, 0, 0, 0.05);
 			transform-origin: center top;
 			transform: perspective(512px);
 
@@ -170,7 +168,7 @@ main {
 				}
 			}
 
-			input[type=submit] {
+			[type=submit] {
 				-webkit-appearance: none;
 				-moz-appearance: none;
 				appearance: none;
@@ -213,7 +211,7 @@ main {
 			display: block;
 			position: relative;
 			box-sizing: border-box;
-			margin: 24px 0 0 0;
+			margin: 24px auto 0 auto;
 			padding: 18px 18px 18px 36px;
 			width: 310px;
 			line-height: 1em;

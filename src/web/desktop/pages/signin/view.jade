@@ -1,13 +1,13 @@
 extends ../../base
 
 block title
-	=locale.sites.desktop.pages._login.page_title
+	=locale.sites.desktop.pages._signin.page_title
 	
 block body
 	header
 	main
 		header
-			h1=locale.sites.desktop.pages._login.title
+			h1=locale.sites.desktop.pages._signin.title
 		form#form
 			div.avatar-container
 				div.hr(role='presentation')
@@ -16,7 +16,7 @@ block body
 				label
 					p
 						i.fa.fa-at
-						=locale.sites.desktop.pages._login.screen_name_caption
+						=locale.sites.desktop.pages._signin.screen_name_caption
 					input#id(name='screen-name'
 						type='text'
 						pattern='^[0-9A-Za-z\-]+$'
@@ -27,7 +27,7 @@ block body
 				label
 					p
 						i.fa.fa-lock
-						=locale.sites.desktop.pages._login.password_caption
+						=locale.sites.desktop.pages._signin.password_caption
 					input(name='password'
 						type='password'
 						placeholder='Password'
@@ -38,12 +38,12 @@ block body
 					span
 				button(type='submit')
 					i.fa.fa-sign-in
-					span.text=locale.sites.desktop.pages._login.signin
+					span.text=locale.sites.desktop.pages._signin.signin
 				a.register(href=config.registerUrl)
 					i.fa.fa-angle-right
-					=locale.sites.desktop.pages._login.register
+					=locale.sites.desktop.pages._signin.register
 				a.forgot-password(href=config.helpUrl + '/forgot-password')
 					i.fa.fa-angle-right
-					=locale.sites.desktop.pages._login.forgot_password
+					=locale.sites.desktop.pages._signin.forgot_password
 	footer
 		a.misskey(href=config.url) Misskey

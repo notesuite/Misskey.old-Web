@@ -17,7 +17,7 @@ $ ->
 
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
-			..find \span .text LOCALE.sites.desktop.pages._login.signing_in
+			..find \span .text LOCALE.sites.desktop.pages._signin.signing_in
 			..find \i .attr \class 'fa fa-spinner fa-pulse'
 
 		$form.find \input .attr \disabled on
@@ -36,7 +36,7 @@ $ ->
 
 			$submit-button
 				..attr \disabled off
-				.find \span .text LOCALE.sites.desktop.pages._login.signin
+				.find \span .text LOCALE.sites.desktop.pages._signin.signin
 				..find \i .attr \class 'fa fa-sign-in'
 
 			$form.find \input .attr \disabled off
@@ -44,8 +44,8 @@ $ ->
 			$ \html .remove-class \logging
 
 			text = switch (err.response-text)
-				| \user-not-found => LOCALE.sites.desktop.pages._login.failed_1
-				| \failed => LOCALE.sites.desktop.pages._login.failed_2
+				| \user-not-found => LOCALE.sites.desktop.pages._signin.failed_1
+				| \failed => LOCALE.sites.desktop.pages._signin.failed_2
 
 			$form.find '.info'
 				..children \i .attr \class 'fa fa-exclamation-triangle'

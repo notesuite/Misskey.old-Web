@@ -182,7 +182,7 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 		const $: any = result.$;
 
 		const avatarUrl: string = $('meta[property="og:image"]').attr('content');
-		const userName: string = $('meta[name="octolytics-dimension-owner_login"]').attr('content');
+		const userName: string = $('meta[name="octolytics-dimension-owner_signin"]').attr('content');
 		const fileName: string = $('.gist-header-title > a').text();
 		const description: string = $('meta[property="og:description"]').attr('content');
 		const $rawButton = $('#gist-pjax-container .js-gist-file-update-container > .file > .file-header > .file-actions > .btn');

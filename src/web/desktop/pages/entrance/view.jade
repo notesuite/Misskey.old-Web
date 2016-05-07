@@ -21,7 +21,7 @@ block body
 			div.yuppie
 				p
 					| A mini-blog sns. find your likes!!!
-		div.contents
+		div.body
 			form#login-form
 				h2
 					| Account
@@ -41,7 +41,8 @@ block body
 						placeholder='Password'
 						autocomplete='off'
 						required)
-				input(type='submit', value!='SIGN IN &#xf105;')
-			a#new(href=config.registerUrl)
+				button(type='submit')
+					| Sign in
+			a#new(href=config.urls.signup)
 				i.fa.fa-pencil-square-o
 				| Create account
