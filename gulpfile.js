@@ -27,6 +27,9 @@ const env = process.env.NODE_ENV;
 
 const isProduction = env === 'production';
 
+/*
+ * Browserifyのモジュールエイリアス
+ */
 const aliasifyConfig = {
 	"aliases": {
 		"config": "./built/_/config.json",
@@ -48,6 +51,8 @@ const project = ts.createProject('tsconfig.json', {
 	typescript: require('typescript')
 });
 
+//////////////////////////////////////////////////
+// Full build
 gulp.task('build', [
 	'lobby',
 	'test',
@@ -64,20 +69,26 @@ gulp.task('build', [
 	}
 });
 
+//////////////////////////////////////////////////
+// LOG INFO
 gulp.task('lobby', () => {
 	gutil.log('Misskey-Webのビルドを開始します。時間がかかる場合があります。');
 	gutil.log('ENV: ' + env);
 });
 
+//////////////////////////////////////////////////
+// TypeScriptのビルド
 gulp.task('build:ts', () => {
 	gutil.log('TypeScriptをコンパイルします...');
 
 	return project
-	.src()
-	.pipe(ts(project))
-	.pipe(gulp.dest('./built/'));
+		.src()
+		.pipe(ts(project))
+		.pipe(gulp.dest('./built/'));
 });
 
+//////////////////////////////////////////////////
+// configのデプロイ
 gulp.task('build:public-config', ['build:ts'], done => {
 	gutil.log('設定情報を読み込み配置します...');
 
@@ -91,6 +102,8 @@ gulp.task('build:public-config', ['build:ts'], done => {
 	});
 });
 
+//////////////////////////////////////////////////
+// Bowerのパッケージのコピー
 gulp.task('copy:bower_components', () => {
 	gutil.log('Bower経由のパッケージを配置します...');
 
@@ -98,6 +111,8 @@ gulp.task('copy:bower_components', () => {
 		.pipe(gulp.dest('./built/resources/bower_components/'));
 });
 
+//////////////////////////////////////////////////
+// フロントサイドのスクリプトのビルド
 gulp.task('build:frontside-scripts', ['build:public-config'], done => {
 	gutil.log('フロントサイドのスクリプトを構築します...');
 
@@ -130,23 +145,23 @@ gulp.task('build:frontside-scripts', ['build:public-config'], done => {
 	});
 });
 
+//////////////////////////////////////////////////
+// フロントサイドのスタイルのビルド
 gulp.task('build:frontside-styles', ['copy:bower_components'], () => {
 	gutil.log('フロントサイドのスタイルを構築します...');
 
-	let styl = gulp.src('./src/web/**/*.styl')
-		.pipe(stylus());
-
-	if (isProduction) {
-		styl = styl
-			.pipe(cssnano({
+	return gulp.src('./src/web/**/*.styl')
+		.pipe(stylus())
+		.pipe(isProduction
+			? cssnano({
 				safe: true // 高度な圧縮は無効にする (一部デザインが不適切になる場合があるため)
-			}));
-	}
-
-	return styl
+			})
+			: gutil.noop());
 		.pipe(gulp.dest('./built/resources/'));
 });
 
+//////////////////////////////////////////////////
+// その他のリソースのコピー
 gulp.task('build-copy', [
 	'build:ts',
 	'build:frontside-scripts',
@@ -170,10 +185,14 @@ gulp.task('build-copy', [
 	);
 });
 
+//////////////////////////////////////////////////
+// テスト
 gulp.task('test', [
 	'lint'
 ]);
 
+//////////////////////////////////////////////////
+// Lint
 gulp.task('lint', () => {
 	gutil.log('構文の正当性を確認します...');
 
