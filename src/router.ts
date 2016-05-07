@@ -132,11 +132,11 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// SIGNUP
 
-	const signupDomain = `/subdomain/${config.public.domains.signup}`;
+	const signupDomain = `/subdomain/${config.domains.signup}`;
 
 	app.get(`${signupDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
-			res.redirect(config.public.url);
+			res.redirect(config.url);
 		} else {
 			callController(req, res, 'signup');
 		}
@@ -145,7 +145,7 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// SIGNIN
 
-	const signinDomain = `/subdomain/${config.public.domains.signin}`;
+	const signinDomain = `/subdomain/${config.domains.signin}`;
 
 	app.post(`${signinDomain}/`, (req, res) => {
 		login(req.body['screen-name'], req.body['password'], req.session).then(() => {
@@ -157,10 +157,10 @@ export default function router(app: express.Express): void {
 
 	app.get(`${signinDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
-			res.redirect(config.public.url);
+			res.redirect(config.url);
 		} else if (req.query.hasOwnProperty('screen-name') && req.query.hasOwnProperty('password')) {
 			login(req.query['screen-name'], req.query['password'], req.session).then(() => {
-				res.redirect(config.public.url);
+				res.redirect(config.url);
 			}, (err: any) => {
 				res.status(err.statusCode).send(err.body);
 			});
@@ -172,22 +172,22 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// SIGNOUT
 
-	const signoutDomain = `/subdomain/${config.public.domains.signout}`;
+	const signoutDomain = `/subdomain/${config.domains.signout}`;
 
 	app.get(`${signoutDomain}/`, (req, res) => {
 		if (res.locals.isLogin) {
 			req.session.destroy(() => {
-				res.redirect(config.public.url);
+				res.redirect(config.url);
 			});
 		} else {
-			res.redirect(config.public.url);
+			res.redirect(config.url);
 		}
 	});
 
 	//////////////////////////////////////////////////
 	// SEARCH
 
-	const searchDomain = `/subdomain/${config.public.domains.search}`;
+	const searchDomain = `/subdomain/${config.domains.search}`;
 
 	app.get(`${searchDomain}/`, (req, res) => {
 		if (req.query.hasOwnProperty('q')) {
@@ -200,7 +200,7 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// SHARE
 
-	const shareDomain = `/subdomain/${config.public.domains.share}`;
+	const shareDomain = `/subdomain/${config.domains.share}`;
 
 	app.get(`${shareDomain}/`, (req, res) => {
 		callController(req, res, 'share');
@@ -215,7 +215,7 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// ABOUT
 
-	const aboutDomain = `/subdomain/${config.public.domains.about}`;
+	const aboutDomain = `/subdomain/${config.domains.about}`;
 
 	app.get(`${aboutDomain}/`, (req, res) => {
 		callController(req, res, 'about');
@@ -232,12 +232,12 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// TALK
 
-	const talkDomain = `/subdomain/${config.public.domains.talk}`;
+	const talkDomain = `/subdomain/${config.domains.talk}`;
 
 	app.get(`${talkDomain}/*`, (req, res, next) => {
 		if (req.headers.hasOwnProperty('referer')) {
 			const referer = req.headers['referer'];
-			if ((new RegExp(`^https?://(.+\.)?${config.public.domain}/?\$`)).test(referer)) {
+			if ((new RegExp(`^https?://(.+\.)?${config.host}/?\$`)).test(referer)) {
 				res.header('X-Frame-Options', '');
 			} else {
 				res.header('X-Frame-Options', 'DENY');
@@ -277,7 +277,7 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// FORUM
 
-	const forumDomain = `/subdomain/${config.public.domains.forum}`;
+	const forumDomain = `/subdomain/${config.domains.forum}`;
 
 	app.get(`${forumDomain}/`, (req, res) => {
 		callController(req, res, 'forum');

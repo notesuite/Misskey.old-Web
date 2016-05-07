@@ -46,40 +46,40 @@ function loadConfig(): IConfig {
 
 	// Define hosts
 	conf.hosts = {
-		admin: `${domains.admin}.${domain}`,
-		i: `${domains.i}.${domain}`,
-		about: `${scheme}${domains.about}.${domain}`,
-		api: `${domains.api}.${domain}`,
-		webApi: `${domains.webApi}.${domain}`,
-		resources: `${domains.resources}.${domain}`,
-		signup: `${domains.signup}.${domain}`,
-		signin: `${domains.signin}.${domain}`,
-		signout: `${domains.signout}.${domain}`,
-		share: `${domains.share}.${domain}`,
-		forum: `${domains.forum}.${domain}`,
-		search: `${domains.search}.${domain}`,
-		talk: `${domains.talk}.${domain}`,
-		help: `${domains.help}.${domain}`,
-		color: `${domains.color}.${domain}`
+		admin: `${domains.admin}.${host}`,
+		i: `${domains.i}.${host}`,
+		about: `${scheme}${domains.about}.${host}`,
+		api: `${domains.api}.${host}`,
+		webApi: `${domains.webApi}.${host}`,
+		resources: `${domains.resources}.${host}`,
+		signup: `${domains.signup}.${host}`,
+		signin: `${domains.signin}.${host}`,
+		signout: `${domains.signout}.${host}`,
+		share: `${domains.share}.${host}`,
+		forum: `${domains.forum}.${host}`,
+		search: `${domains.search}.${host}`,
+		talk: `${domains.talk}.${host}`,
+		help: `${domains.help}.${host}`,
+		color: `${domains.color}.${host}`
 	};
 
 	// Define URLs
 	conf.urls = {
-		admin: `${scheme}${domains.admin}.${domain}`,
-		i: `${scheme}${domains.i}.${domain}`,
-		about: `${scheme}${domains.about}.${domain}`,
-		api: `${scheme}${domains.api}.${domain}`,
-		webApi: `${scheme}${domains.webApi}.${domain}`,
-		resources: `${scheme}${domains.resources}.${domain}`,
-		signup: `${scheme}${domains.signup}.${domain}`,
-		signin: `${scheme}${domains.signin}.${domain}`,
-		signout: `${scheme}${domains.signout}.${domain}`,
-		share: `${scheme}${domains.share}.${domain}`,
-		forum: `${scheme}${domains.forum}.${domain}`,
-		search: `${scheme}${domains.search}.${domain}`,
-		talk: `${scheme}${domains.talk}.${domain}`,
-		help: `${scheme}${domains.help}.${domain}`,
-		color: `${scheme}${domains.color}.${domain}`
+		admin: `${scheme}${domains.admin}.${host}`,
+		i: `${scheme}${domains.i}.${host}`,
+		about: `${scheme}${domains.about}.${host}`,
+		api: `${scheme}${domains.api}.${host}`,
+		webApi: `${scheme}${domains.webApi}.${host}`,
+		resources: `${scheme}${domains.resources}.${host}`,
+		signup: `${scheme}${domains.signup}.${host}`,
+		signin: `${scheme}${domains.signin}.${host}`,
+		signout: `${scheme}${domains.signout}.${host}`,
+		share: `${scheme}${domains.share}.${host}`,
+		forum: `${scheme}${domains.forum}.${host}`,
+		search: `${scheme}${domains.search}.${host}`,
+		talk: `${scheme}${domains.talk}.${host}`,
+		help: `${scheme}${domains.help}.${host}`,
+		color: `${scheme}${domains.color}.${host}`
 	};
 
 	return conf;

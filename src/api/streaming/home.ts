@@ -16,7 +16,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 			// Connect to Redis
 			const subscriber: redis.RedisClient = redis.createClient(
 				6379, config.redis.host, <redis.ClientOpts>{
-				auth_pass: config.redis.password,
+				auth_pass: config.redis.pass,
 				disable_resubscribing: true
 			});
 

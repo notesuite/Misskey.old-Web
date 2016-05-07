@@ -19,7 +19,7 @@ interface MKGroupSocket extends MKSocket {
 function createRedisClient(): redis.RedisClient {
 	return redis.createClient(
 		6379, config.redis.host, <redis.ClientOpts>{
-		auth_pass: config.redis.password,
+		auth_pass: config.redis.pass,
 		disable_resubscribing: true
 	});
 }
