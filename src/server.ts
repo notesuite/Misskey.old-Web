@@ -106,8 +106,7 @@ app.use((req, res, next) => {
 	// intercept OPTIONS method
 	if (req.method === 'OPTIONS') {
 		res.sendStatus(200);
-	} else {
-		next();
+		return;
 	}
 
 	// Security headers
