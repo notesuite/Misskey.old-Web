@@ -12,7 +12,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	background: #fff;
+	background: #eadeda;
 }
 
 html {
@@ -31,34 +31,30 @@ main {
 	position: relative;
 	padding-bottom: 48px;
 	min-height: calc(100% - (8px + 128px));
-	background: #fff;
-	/* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); */
 
 	h1 {
 		display: block;
 		position: relative;
 		z-index: 1;
-		margin: 0 0 32px 0;
-		padding: 32px 64px 16px 64px;
+		margin: 0;
+		padding: 32px 64px;
 		text-align: center;
-		color: #777;
+		color: rgba(0, 0, 0, 0.6);
 		font-size: 2em;
 		font-weight: normal;
 		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
-		border-bottom: solid 1px #eee;
 	}
 
 	#form {
 		display: block;
 		font-family: 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-
-		.kyoppie {
-			display: block;
-			box-sizing: border-box;
-			margin: 0 auto;
-			padding: 0;
-			width: 302px;
-		}
+		width: 302px;
+		margin: 0 auto;
+		padding: 8px 28px;
+		background: #fff;
+		background-clip: padding-box;
+		border: solid 1px rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
 
 		label {
 			display: block;
@@ -223,10 +219,16 @@ main {
 			}
 		}
 
+	}
+
+	.nav {
+		width: 302px;
+		margin: 0 auto;
+
 		.signin {
 			display: block;
-			margin: 8px 0;
-			color: #888;
+			margin: 16px 0;
+			color: rgba(0, 0, 0, 0.5);
 			font-size: 0.7em;
 
 			> i {

@@ -15,73 +15,72 @@ block body
 		header
 			h1=locale.sites.desktop.pages._signup.title
 		form#form(autocomplete='off')
-			div.kyoppie
-				
-				label#screen-name
-					p.caption
-						i.fa.fa-at
-						=locale.sites.desktop.pages._signup.screen_name_caption
-					input(name=screenNameInputId
-						type='text'
-						pattern='^[0-9A-Za-z\-]{3,20}$'
-						placeholder=locale.sites.desktop.pages._signup.screen_name_placeholder
-						autocomplete='off'
-						autofocus
-						required)
-					p.profile-page-url-preview
-					p.info(data-state='none')
-						i
-						span
-				
-				label#password
-					p.caption
-						i.fa.fa-lock
-						=locale.sites.desktop.pages._signup.password_caption
-					input(name=passwordInputId
-						type='password'
-						placeholder=locale.sites.desktop.pages._signup.password_placeholder
-						autocomplete='off'
-						required)
-					p.info(data-state='none')
-						i
-						span
-				
-				label#retype-password
-					p.caption
-						i.fa.fa-lock
-						=locale.sites.desktop.pages._signup.retype_password_caption
-					input(name=retypePasswordInputId
-						type='password'
-						placeholder=locale.sites.desktop.pages._signup.retype_password_placeholder
-						autocomplete='off'
-						required)
-					p.info(data-state='none')
-						i
-						span
-				
-				label#recaptcha
-					p.caption
-						i.fa.fa-toggle-off
-						=locale.sites.desktop.pages._signup.verify_caption
-					div.g-recaptcha(
-						data-callback='onRecaptchaed'
-						data-expired-callback='onRecaptchaExpired'
-						data-sitekey=config.googleRecaptchaSiteKey)
-				
-				label#agree-tou
-					input(
-						name='agree-tou',
-						type='checkbox',
-						autocomplete='off',
-						required)
-					p!=locale.sites.desktop.pages._signup.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
-				
-				button(type='submit')
-					i.fa.fa-check
-					span=locale.sites.desktop.pages._signup.create
-					
-				a.signin(href=config.signinUrl)
-					i.fa.fa-angle-right
-					=locale.sites.desktop.pages._signup.signin
+			label#screen-name
+				p.caption
+					i.fa.fa-at
+					=locale.sites.desktop.pages._signup.screen_name_caption
+				input(name=screenNameInputId
+					type='text'
+					pattern='^[0-9A-Za-z\-]{3,20}$'
+					placeholder=locale.sites.desktop.pages._signup.screen_name_placeholder
+					autocomplete='off'
+					autofocus
+					required)
+				p.profile-page-url-preview
+				p.info(data-state='none')
+					i
+					span
+			
+			label#password
+				p.caption
+					i.fa.fa-lock
+					=locale.sites.desktop.pages._signup.password_caption
+				input(name=passwordInputId
+					type='password'
+					placeholder=locale.sites.desktop.pages._signup.password_placeholder
+					autocomplete='off'
+					required)
+				p.info(data-state='none')
+					i
+					span
+			
+			label#retype-password
+				p.caption
+					i.fa.fa-lock
+					=locale.sites.desktop.pages._signup.retype_password_caption
+				input(name=retypePasswordInputId
+					type='password'
+					placeholder=locale.sites.desktop.pages._signup.retype_password_placeholder
+					autocomplete='off'
+					required)
+				p.info(data-state='none')
+					i
+					span
+			
+			label#recaptcha
+				p.caption
+					i.fa.fa-toggle-off
+					=locale.sites.desktop.pages._signup.verify_caption
+				div.g-recaptcha(
+					data-callback='onRecaptchaed'
+					data-expired-callback='onRecaptchaExpired'
+					data-sitekey=config.googleRecaptchaSiteKey)
+			
+			label#agree-tou
+				input(
+					name='agree-tou',
+					type='checkbox',
+					autocomplete='off',
+					required)
+				p!=locale.sites.desktop.pages._signup.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+			
+			button(type='submit')
+				i.fa.fa-check
+				span=locale.sites.desktop.pages._signup.create
+
+		div.nav
+			a.signin(href=config.signinUrl)
+				i.fa.fa-angle-right
+				=locale.sites.desktop.pages._signup.signin
 	footer
 		a.misskey(href=config.url) Misskey
