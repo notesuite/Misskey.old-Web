@@ -1,16 +1,13 @@
-#===========================#
-# Misskey Web Configuration #
-#===========================#
+#===============================#
+#   Misskey Web Configuration   #
+#===============================#
 
-# サーバーの管理者
-# ex) Your Name <youremail@example.com>
+# サーバーの管理者情報
+# ex) "Your Name <youremail@example.com>"
 maintainer: <string>
 
 # 動かすことになるドメイン
 host: "misskey.xyz"
-
-# テーマカラー
-themeColor: "#ec6b43"
 
 # ユーザーのクライアントに関する設定をストアするDB(Mongo)の情報
 mongo:
@@ -58,7 +55,14 @@ recaptchaSecret: <string>
 # reCAPTCHA サイトキー
 recaptchaSiteKey: <string>
 
-# サブドメイン設定 基本的に弄る必要はないと思われる
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ここから下は特に弄る必要は無いと思われます
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# テーマカラー
+themeColor: "#ec6b43"
+
+# サブドメイン設定
 domains:
   admin: "admin"
   signup: "signup"
