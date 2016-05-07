@@ -34,6 +34,8 @@ function loadConfig(): IConfig {
 		process.exit(1);
 	}
 
+	validateHost(conf.host);
+
 	const host = conf.host;
 	const domains = conf.domains;
 
@@ -146,4 +148,11 @@ export interface IConfig {
 	themeColor: string;
 	domains: Domains;
 	urls: Domains;
+}
+
+function validateHost(host: string): void {
+	if (host.indexOf(':') !== -1) {
+		console.error('host にはポート情報は含めないでください。必要であれば port にポート情報を記述してください。');
+		process.exit();
+	}
 }
