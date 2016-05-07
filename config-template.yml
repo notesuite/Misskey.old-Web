@@ -2,6 +2,10 @@
 # Misskey Web Configuration #
 #===========================#
 
+# サーバーの管理者
+# ex) Your Name <youremail@example.com>
+maintainer: <string>
+
 # 動かすことになるドメイン
 host: "misskey.xyz"
 

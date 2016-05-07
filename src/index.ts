@@ -27,6 +27,7 @@
  */
 
 import * as cluster from 'cluster';
+import config from './config';
 import name from './core/naming-worker-id';
 
 (<any>Error).stackTraceLimit = Infinity;
@@ -37,6 +38,7 @@ const env = process.env.NODE_ENV;
 if (cluster.isMaster) {
 	console.log('Welcome to Misskey!');
 	console.log(`environment: ${env}`);
+	console.log(`maintainer: ${config.maintainer}`);
 
 	if (env !== 'production') {
 		console.log('■　注意！　このMisskey-Webはproductionモードで起動していません。本番環境で使用しないでください。');

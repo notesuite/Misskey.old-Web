@@ -119,6 +119,7 @@ export interface IConfig {
 	cookiePass: string;
 	host: string;
 	hosts: Domains;
+	maintainer: string;
 	mongo: {
 		uri: string;
 		options: {
