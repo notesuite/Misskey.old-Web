@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Main" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="256px" height="256px" viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
+<g id="Wings">
+	<polygon id="Wing_7_" fill="#A0A384" points="128,37.49 85.574,79.917 128,122.343 	"/>
+	<polygon id="Wing_6_" fill="#CDBC7F" points="133.656,128 218.51,128 176.083,85.574 	"/>
+	<path id="Wing_5_" fill="#D3CBA5" d="M132,124l86.51-86.509c0,0-42.627-42.62-86.51-3.763V124z"/>
+	<path id="Wing_4_" fill="#22554E" d="M124,124L37.49,37.49c0,0-42.62,42.627-3.763,86.51H124z"/>
+	<path id="Wing_3_" fill="#D0663F" d="M132,132l86.509,86.511c0,0,42.621-42.628,3.764-86.511H132z"/>
+	<polygon id="Wing_2_" fill="#D3CBA5" points="128,218.51 170.427,176.083 128,133.656 	"/>
+	<path id="Wing_1_" fill="#A0A384" d="M124,132l-86.51,86.51c0,0,42.627,42.62,86.51,3.763V132z"/>
+	<polygon id="Wing" fill="#223A3C" points="122.343,128 37.49,128 79.917,170.427 	"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
