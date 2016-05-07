@@ -123,7 +123,7 @@ export default function router(app: express.Express): void {
 	//////////////////////////////////////////////////
 	// COLOR
 
-	const colorDomain = `/subdomain/${config.public.domains.color}`;
+	const colorDomain = `/subdomain/${config.domains.color}`;
 
 	app.get(`${colorDomain}/`, (req, res) => {
 		callController(req, res, 'color');

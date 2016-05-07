@@ -25,7 +25,7 @@ export default function(me: User, locale: any, widgets: string[], tlsource: stri
 				return Promise.resolve(compiler({
 					me: me,
 					userSettings: me._settings,
-					config: config.public,
+					config: config,
 					locale: locale
 				}));
 		}

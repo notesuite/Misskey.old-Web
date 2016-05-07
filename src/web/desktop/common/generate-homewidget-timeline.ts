@@ -37,7 +37,7 @@ export default function(me: User, locale: any, tlsource: string): Promise<string
 				me: me,
 				userSettings: me._settings,
 				locale: locale,
-				config: config.public
+				config: config
 			});
 		}
 	});

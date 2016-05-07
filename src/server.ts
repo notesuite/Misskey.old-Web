@@ -48,7 +48,7 @@ const store = MongoStore(expressSession);
 
 const sessionExpires = 1000 * 60 * 60 * 24 * 365; // One Year
 const subdomainOptions = {
-	base: config.public.domain
+	base: config.host
 };
 
 const session: any = {
@@ -58,7 +58,7 @@ const session: any = {
 	saveUninitialized: true,
 	cookie: {
 		path: '/',
-		domain: `.${config.public.domain}`,
+		domain: `.${config.host}`,
 		httpOnly: true,
 		secure: config.https.enable,
 		expires: new Date(Date.now() + sessionExpires),
@@ -80,10 +80,10 @@ app.locals.cache = true;
 app.set('view engine', 'jade');
 
 // Init API server
-app.use(vhost(config.public.hosts.webApi, api(session)));
+app.use(vhost(config.hosts.webApi, api(session)));
 
 // Init static resources server
-app.use(vhost(config.public.hosts.resources, resources()));
+app.use(vhost(config.hosts.resources, resources()));
 
 app.use(favicon(`${__dirname}/resources/favicon.ico`));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -93,7 +93,7 @@ app.use(compression());
 // Intercept all requests
 app.use((req, res, next) => {
 	// CORS
-	res.header('Access-Control-Allow-Origin', config.public.url);
+	res.header('Access-Control-Allow-Origin', config.url);
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 	res.header('Access-Control-Allow-Headers', 'Content-Type, csrf-token');
 	res.header('Access-Control-Allow-Credentials', 'true');
@@ -135,7 +135,7 @@ app.use((req, res, next) => {
 		? acceptLanguage.get(browserAcceptLanguageString)
 		: 'en';
 
-	res.locals.config = config.public;
+	res.locals.config = config;
 	res.locals.cookie = req.cookies;
 	res.locals.pagePath = req.path;
 	res.locals.noui = noui;
@@ -212,7 +212,7 @@ if (config.https.enable) {
 	// 非TLSはリダイレクト
 	http.createServer((req, res) => {
 		res.writeHead(301, {
-			Location: config.public.url + req.url
+			Location: config.url + req.url
 		});
 		res.end();
 	}).listen(config.port.http);
