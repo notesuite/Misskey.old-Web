@@ -8,6 +8,7 @@ Error.stackTraceLimit = Infinity;
 
 const fs = require('fs');
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const glob = require('glob');
 const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
@@ -43,7 +44,12 @@ const aliasifyConfig = {
 	}
 };
 
+const project = ts.createProject('tsconfig.json', {
+	typescript: require('typescript')
+});
+
 gulp.task('build', [
+	'lobby',
 	'test',
 	'build:ts',
 	'copy:bower_components',
@@ -51,23 +57,30 @@ gulp.task('build', [
 	'build:frontside-styles',
 	'build-copy'
 ], () => {
+	gutil.log('ビルドが終了しました。');
+
 	if (!isProduction) {
-		console.log('■　注意！　開発モードでのビルドです。');
+		gutil.log('■　注意！　開発モードでのビルドです。');
 	}
 });
 
-const project = ts.createProject('tsconfig.json', {
-	typescript: require('typescript')
+gulp.task('lobby', () => {
+	gutil.log('Misskey-Webのビルドを開始します。時間がかかる場合があります。');
+	gutil.log('ENV: ' + env);
 });
 
-gulp.task('build:ts', () =>
-	project
+gulp.task('build:ts', () => {
+	gutil.log('TypeScriptをコンパイルします...');
+
+	return project
 	.src()
 	.pipe(ts(project))
-	.pipe(gulp.dest('./built/'))
-);
+	.pipe(gulp.dest('./built/'));
+});
 
 gulp.task('build:public-config', ['build:ts'], done => {
+	gutil.log('設定情報を読み込み配置します...');
+
 	const config = require('./built/config').default;
 	fs.mkdir('./built/_', e => {
 		if (!e || (e && e.code === 'EEXIST')) {
@@ -79,15 +92,17 @@ gulp.task('build:public-config', ['build:ts'], done => {
 });
 
 gulp.task('copy:bower_components', () => {
+	gutil.log('Bower経由のパッケージを配置します...');
+
 	return gulp.src('./bower_components/**/*')
 		.pipe(gulp.dest('./built/resources/bower_components/'));
 });
 
 gulp.task('build:frontside-scripts', ['build:public-config'], done => {
+	gutil.log('フロントサイドのスクリプトを構築します...');
+
 	glob('./src/web/**/*.ls', (err, files) => {
 		const tasks = files.map(entry => {
-			console.log(entry);
-
 			let bundle =
 				browserify({
 					entries: [entry]
@@ -116,6 +131,8 @@ gulp.task('build:frontside-scripts', ['build:public-config'], done => {
 });
 
 gulp.task('build:frontside-styles', ['copy:bower_components'], () => {
+	gutil.log('フロントサイドのスタイルを構築します...');
+
 	let styl = gulp.src('./src/web/**/*.styl')
 		.pipe(stylus());
 
@@ -135,6 +152,8 @@ gulp.task('build-copy', [
 	'build:frontside-scripts',
 	'build:frontside-styles'
 ], () => {
+	gutil.log('必要なリソースをコピーします...');
+
 	return es.merge(
 		gulp.src([
 			'./src/web/**/*.styl',
@@ -155,10 +174,12 @@ gulp.task('test', [
 	'lint'
 ]);
 
-gulp.task('lint', () =>
-	gulp.src('./src/**/*.ts')
+gulp.task('lint', () => {
+	gutil.log('構文の正当性を確認します...');
+
+	return gulp.src('./src/**/*.ts')
 		.pipe(tslint({
 			tslint: require('tslint')
 		}))
-		.pipe(tslint.report('verbose'))
-);
+		.pipe(tslint.report('verbose'));
+});
