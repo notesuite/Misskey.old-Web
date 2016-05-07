@@ -17,7 +17,6 @@ interface MKGroupSocket extends MKSocket {
 }
 
 function createRedisClient(): redis.RedisClient {
-	
 	return redis.createClient(
 		6379, config.redis.host, <redis.ClientOpts>{
 		auth_pass: config.redis.password,
@@ -82,7 +81,7 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 };
 
 function streamingMessageHandler(socket: MKSocket, contentString: string): void {
-	
+
 	const content: any = JSON.parse(contentString);
 
 	switch (content.type) {

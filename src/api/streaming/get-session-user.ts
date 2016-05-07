@@ -6,8 +6,8 @@ import { UserSettings, IUserSettings } from '../../db/models/user-settings';
 import requestApi from '../../core/request-api';
 import config from '../../config';
 
-export default function getSessionUser(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
-		return new Promise<Object>((resolve, reject) => {
+export default function(socket: SocketIO.Socket, sessionStore: any): Promise<Object[]> {
+	return new Promise<Object>((resolve, reject) => {
 		// Get cookies
 		const cookies: { [key: string]: string } = cookie.parse(socket.handshake.headers.cookie);
 

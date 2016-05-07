@@ -30,7 +30,6 @@ module.exports = (io: SocketIO.Server, sessionStore: any) => {
 		});
 
 		function onStreamMessage(_: any, contentString: string): void {
-			
 			// メッセージはJSONなのでパース
 			const content: any = JSON.parse(contentString);
 
