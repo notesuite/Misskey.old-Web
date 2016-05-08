@@ -22,25 +22,23 @@ block body
 				br
 				a(href= config.urls.about) learn more
 		div.body
-			form#login-form
+			form#login
 				h2
 					| Account
 				label
-					i.fa.fa-at
-					input#id(name='screen-name'
+					input(name='screen-name'
 						type='text'
 						pattern='^[0-9A-Za-z\-]+$'
 						placeholder='User name'
-						autocomplete='off'
 						autofocus
 						required)
+					i.fa.fa-at
 				label
-					i.fa.fa-lock
 					input(name='password'
 						type='password'
 						placeholder='Password'
-						autocomplete='off'
 						required)
+					i.fa.fa-lock
 				button(type='submit')
 					| Sign in
 			a#new(href=config.urls.signup)

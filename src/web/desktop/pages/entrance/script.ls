@@ -5,7 +5,7 @@ CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 
 $ ->
-	$ '#login-form' .submit (event) ->
+	$ '#login' .submit (event) ->
 		event.prevent-default!
 		$form = $ @
 			..css {
