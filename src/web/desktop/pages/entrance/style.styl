@@ -7,11 +7,10 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	height: 100%;
 }
 
 html {
-	color: #fff;
+	color: #444;
 	background-color: #444;
 	background-image: url("/entrance.jpg");
 	background-attachment: fixed;
@@ -41,8 +40,7 @@ text-input() {
 	font-size: 1em;
 	color: #000;
 	outline: none;
-	border: none;
-	border-bottom: solid 2px #eee;
+	border: solid 2px #eee;
 	border-radius: 0;
 	box-shadow: none;
 	background: transparent;
@@ -50,13 +48,13 @@ text-input() {
 	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
 
 	&:hover {
-		border-bottom: solid 2px $theme-color;
+		border-color: $theme-color;
 		transition: all .2s ease;
 	}
 
 	&:focus {
 		color: $theme-color;
-		border-bottom: solid 2px $theme-color;
+		border-color: $theme-color;
 		transition: all .1s ease;
 	}
 }
@@ -64,67 +62,54 @@ text-input() {
 main {
 	display: block;
 	position: relative;
-	height: 100%;
+	padding-bottom: 32px;
 
 	header {
 		display: block;
 		box-sizing: border-box;
-		max-width: 1200px;
-		margin: 0 auto;
 		padding: 32px 64px;
+		text-align: center;
 		color: #fff;
 
-		.kyoppie {
+		h1 {
 			display: block;
-
-			h1 {
-				display: inline-block;
-				margin: 0;
-				padding: 0 8px;
-				text-align: left;
-				font-size: 2em;
-				font-weight: normal;
-				background: rgba(0, 0, 0, 0.8);
-			}
+			margin: 0;
+			padding: 0;
+			font-size: 2em;
+			font-weight: normal;
+			color: rgba(0, 0, 0, 0.5);
 		}
 
-		.yuppie {
+		p {
 			display: block;
-
-			p {
-				display: inline-block;
-				margin: 8px 0 0 0;
-				padding: 0 8px;
-				background: rgba(0, 0, 0, 0.8);
-			}
+			margin: 8px 0 0 0;
+			padding: 0;
+			color: rgba(0, 0, 0, 0.4);
 		}
 	}
 
 	.body {
 		box-sizing: border-box;
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 35%;
-		min-width: 500px;
-		height: 100%;
-		padding: 64px;
+		width: 380px;
+		margin: 0 auto;
+		padding: 32px;
 		background-image: url("/entrance.blur.jpg");
 		background-attachment: fixed;
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
-		border-left: solid 16px $theme-color;
+		background-clip: padding-box;
+		//border-left: solid 16px $theme-color;
+		border: solid 2px rgba(0, 0, 0, 0.05);
 
 		#login-form {
 			display: block;
 			box-sizing: border-box;
-			margin: 0 auto;
 			padding: 24px 32px 0 32px;
-			width: 310px;
 			background: #fff;
 			background-clip: padding-box;
-			border: solid 8px rgba(0, 0, 0, 0.05);
+			//border: solid 8px rgba(0, 0, 0, 0.05);
+			border: solid 2px rgba(0, 0, 0, 0.05);
 			transform-origin: center top;
 			transform: perspective(512px);
 
@@ -151,12 +136,14 @@ main {
 
 				i {
 					display: block;
+					pointer-events: none;
 					position: absolute;
 					bottom: 0;
 					top: 0;
-					left: 8px;
+					left: 0;
 					z-index: 1;
 					margin: auto;
+					padding: 0 16px;
 					height: 1em;
 					color: #898786;
 				}
@@ -164,7 +151,7 @@ main {
 				input[type=text],
 				input[type=password] {
 					text-input()
-					padding: 16px 12px 16px 32px;
+					padding: 16px 12px 16px 38px;
 					box-shadow: 0 0 0 1024px #fff inset;
 				}
 			}
@@ -212,9 +199,8 @@ main {
 			display: block;
 			position: relative;
 			box-sizing: border-box;
-			margin: 24px auto 0 auto;
+			margin-top: 24px;
 			padding: 18px 18px 18px 36px;
-			width: 310px;
 			line-height: 1em;
 			font-size: 1em;
 			color: #fff;
