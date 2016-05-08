@@ -58,26 +58,34 @@ const config = require('./built/config').default;
 //////////////////////////////////////////////////
 // Full build
 gulp.task('build', [
-	'lobby',
+	'build-before',
 	'test',
 	'build:ts',
 	'copy:bower_components',
 	'build:frontside-scripts',
 	'build:frontside-styles',
-	'build-copy'
-], () => {
+	'build-copy',
+	'build-after'
+]);
+
+gulp.task('clean-build', [
+	'clean',
+	'build'
+]);
+
+//////////////////////////////////////////////////
+// LOG INFO
+gulp.task('build-before', () => {
+	gutil.log('Misskey-Webのビルドを開始します。時間がかかる場合があります。');
+	gutil.log('ENV: ' + env);
+});
+
+gulp.task('build-after', () => {
 	gutil.log('ビルドが終了しました。');
 
 	if (!isProduction) {
 		gutil.log('■　注意！　開発モードでのビルドです。');
 	}
-});
-
-//////////////////////////////////////////////////
-// LOG INFO
-gulp.task('lobby', () => {
-	gutil.log('Misskey-Webのビルドを開始します。時間がかかる場合があります。');
-	gutil.log('ENV: ' + env);
 });
 
 //////////////////////////////////////////////////
