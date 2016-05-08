@@ -200,7 +200,7 @@ let server: http.Server | https.Server;
 let port: number;
 
 if (config.https.enable) {
-	port = config.port.https;
+	port = config.bindPorts.https;
 	server = https.createServer({
 		key: fs.readFileSync(config.https.keyPath),
 		cert: fs.readFileSync(config.https.certPath)
@@ -212,9 +212,9 @@ if (config.https.enable) {
 			Location: config.url + req.url
 		});
 		res.end();
-	}).listen(config.port.http);
+	}).listen(config.bindPorts.http);
 } else {
-	port = config.port.http;
+	port = config.bindPorts.http;
 	server = http.createServer(app);
 }
 

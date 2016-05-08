@@ -41,8 +41,8 @@ function loadConfig(): IConfig {
 
 	const scheme = conf.https.enable ? 'https' : 'http';
 	const port = conf.https.enable
-		? conf.port.https === 443 ? '' : ':' + conf.port.https
-		: conf.port.http === 80 ? '' : ':' + conf.port.http;
+		? conf.ports.https === 443 ? '' : ':' + conf.ports.https
+		: conf.ports.http === 80 ? '' : ':' + conf.ports.http;
 
 	conf.url = `${scheme}://${host}` + port;
 
@@ -132,7 +132,12 @@ export interface IConfig {
 		host: string;
 		pass: string;
 	};
-	port: {
+	ports: {
+		http: number;
+		https: number;
+		streaming: number;
+	};
+	bindPorts: {
 		http: number;
 		https: number;
 		streaming: number;

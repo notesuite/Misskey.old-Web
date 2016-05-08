@@ -49,4 +49,4 @@ io.use((socket: SocketIO.Socket, next: (err?: any) => void) => {
 require('./home')(io, sessionStore);
 require('./talk')(io, sessionStore);
 
-server.listen(config.port.streaming);
+server.listen(config.bindPorts.streaming);
