@@ -29,9 +29,9 @@ $ ->
 		event.prevent-default!
 		$form = $ @
 			..css {
-				'transform': 'perspective(512px) rotateX(-90deg)'
-				'opacity': '0'
-				'transition': 'all ease-in 0.5s'
+				"transform": "perspective(512px) translateY(-100%) scale(0.7) rotateX(-180deg) rotateZ(" + (Math.floor(Math.random() * 40) - 20) + "deg)",
+				"opacity": "0",
+				"transition": "all ease-in 0.5s"
 			}
 
 		$submit-button = $form.find '[type=submit]'
@@ -47,10 +47,8 @@ $ ->
 			location.reload!
 		.fail ->
 			$submit-button.attr \disabled off
-			set-timeout ->
-				$form.css {
-					'transform': 'perspective(512px) scale(1)'
-					'opacity': '1'
-					'transition': 'all ease 0.7s'
-				}
-			, 500ms
+			$form.css {
+				"transform": "perspective(512px) translateY(0) scale(1)",
+				"opacity": "1",
+				"transition": "all ease 0.7s"
+			}
