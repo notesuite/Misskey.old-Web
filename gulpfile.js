@@ -16,6 +16,7 @@ const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const es = require('event-stream');
+const replace = require('gulp-replace');
 const stylus = require('gulp-stylus');
 const cssnano = require('gulp-cssnano');
 const uglify = require('gulp-uglify');
@@ -50,6 +51,8 @@ const aliasifyConfig = {
 const project = ts.createProject('tsconfig.json', {
 	typescript: require('typescript')
 });
+
+const config = require('./built/config').default;
 
 //////////////////////////////////////////////////
 // Full build
@@ -90,9 +93,8 @@ gulp.task('build:ts', () => {
 //////////////////////////////////////////////////
 // configのデプロイ
 gulp.task('build:public-config', ['build:ts'], done => {
-	gutil.log('設定情報を読み込み配置します...');
+	gutil.log('設定情報を配置します...');
 
-	const config = require('./built/config').default;
 	fs.mkdir('./built/_', e => {
 		if (!e || (e && e.code === 'EEXIST')) {
 			fs.writeFile('./built/_/config.json', JSON.stringify(config), done);
@@ -151,6 +153,7 @@ gulp.task('build:frontside-styles', ['copy:bower_components'], () => {
 	gutil.log('フロントサイドのスタイルを構築します...');
 
 	return gulp.src('./src/web/**/*.styl')
+		.pipe(replace(/url\("#/g, 'url\("' + config.urls.resources))
 		.pipe(stylus())
 		.pipe(isProduction
 			? cssnano({

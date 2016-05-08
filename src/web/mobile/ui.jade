@@ -3,7 +3,7 @@ extends ./base
 block body
 	if !noui
 		- var headerOverlayStyle = userSettings.mobileHeaderOverlay != null
-		-     ? 'url("' + config.resourcesUrl + '/mobile/common/images/header-overlay/' + userSettings.mobileHeaderOverlay + '.svgz")'
+		-     ? 'url("' + config.urls.resources + '/mobile/common/images/header-overlay/' + userSettings.mobileHeaderOverlay + '.svgz")'
 		-     : 'none';
 		header#misskey-header
 			if login && me.isSuspended

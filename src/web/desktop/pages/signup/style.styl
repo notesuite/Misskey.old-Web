@@ -11,12 +11,16 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	height: 100%;
-	background: #eadeda;
 }
 
 html {
 	color: #444;
+	background-color: #fff;
+	background-image: url("#/desktop/pages/signup/bg.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 
 	&.logging {
 		&, * {
@@ -25,34 +29,46 @@ html {
 	}
 }
 
-main {
+body > header {
 	display: block;
 	box-sizing: border-box;
-	position: relative;
-	padding-bottom: 48px;
-	min-height: calc(100% - (8px + 128px));
+	padding: 32px 64px;
+	text-align: center;
+	font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+	color: #fff;
+	border-top: solid 8px $theme-color;
 
 	h1 {
 		display: block;
-		position: relative;
-		z-index: 1;
 		margin: 0;
-		padding: 32px 64px;
-		text-align: center;
-		color: rgba(0, 0, 0, 0.6);
+		padding: 0;
 		font-size: 2em;
 		font-weight: normal;
-		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
+		color: #fff;
 	}
+}
+
+body > main {
+	box-sizing: border-box;
+	width: 434px;
+	margin: 0 auto;
+	padding: 32px;
+	background-image: url("#/desktop/pages/signup/bg.blur.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-clip: padding-box;
+	border: solid 1px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
 
 	#form {
 		display: block;
-		font-family: 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-		width: 302px;
-		margin: 0 auto;
-		padding: 8px 28px;
+		box-sizing: border-box;
+		padding: 24px 32px 0 32px;
 		background: #fff;
 		background-clip: padding-box;
+		//border: solid 8px rgba(0, 0, 0, 0.05);
 		border: solid 1px rgba(0, 0, 0, 0.1);
 		border-radius: 4px;
 
@@ -238,32 +254,6 @@ main {
 	}
 }
 
-body > header {
-	display: block;
-	box-sizing: border-box;
-	height: 8px;
-	background-color: $theme-color;
-	background-image: url("@{resources-url}/common/background-overlay.svg");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-}
-
 body > footer {
-	display: block;
-	box-sizing: border-box;
-	padding: 16px;
-	height: 128px;
 	text-align: center;
-	font-size: 0.9em;
-	color: #fff;
-	background-color: $theme-color;
-	background-image: url("@{resources-url}/common/background-overlay.svg");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-
-	.misskey {
-		color: #fff;
-	}
 }

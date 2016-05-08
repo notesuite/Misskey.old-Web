@@ -44,7 +44,7 @@ block content
 							h1#name-container
 								p#name(itemprop='name')= user.name
 								if user.isVerified
-									img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+									img.verified-icon(src= config.urls.resources + '/common/verified.png', alt='verified', title='認証済み')
 							p#screen-name(itemprop='alternateName')= '@' + user.screenName
 							if login
 								if me.id != user.id

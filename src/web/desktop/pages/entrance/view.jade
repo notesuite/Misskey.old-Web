@@ -14,33 +14,32 @@ block meta
 	meta(property='og:site_name', content='Misskey')
 
 block body
+	header
+		h1 Misskey
+		p
+			| A miniblog-based online social networking service.
+			br
+			a(href= config.urls.about) learn more
 	main
-		header
-			h1 Misskey
-			p
-				| A miniblog-based online social networking service.
-				br
-				a(href= config.urls.about) learn more
-		div.body
-			form#login
-				h2
-					| Account
-				label
-					input(name='screen-name'
-						type='text'
-						pattern='^[0-9A-Za-z\-]+$'
-						placeholder='User name'
-						autofocus
-						required)
-					i.fa.fa-at
-				label
-					input(name='password'
-						type='password'
-						placeholder='Password'
-						required)
-					i.fa.fa-lock
-				button(type='submit')
-					| Sign in
-			a#new(href=config.urls.signup)
-				i.fa.fa-pencil-square-o
-				| Create account
+		form#login
+			h2
+				| Account
+			label
+				input(name='screen-name'
+					type='text'
+					pattern='^[0-9A-Za-z\-]+$'
+					placeholder='User name'
+					autofocus
+					required)
+				i.fa.fa-at
+			label
+				input(name='password'
+					type='password'
+					placeholder='Password'
+					required)
+				i.fa.fa-lock
+			button(type='submit')
+				| Sign in
+		a#new(href=config.urls.signup)
+			i.fa.fa-pencil-square-o
+			| Create account

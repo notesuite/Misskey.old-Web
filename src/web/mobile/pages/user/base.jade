@@ -20,7 +20,7 @@ block content
 							h1.name
 								= user.name
 								if user.isVerified
-									img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title='認証済み')
+									img.verified-icon(src= config.urls.resources + '/common/verified.png', alt='verified', title='認証済み')
 							p.screen-name
 								= user.screenName
 								if login && (me.id != user.id) && user.isFollowed

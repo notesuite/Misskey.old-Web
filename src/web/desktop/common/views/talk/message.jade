@@ -28,7 +28,7 @@ mixin user-message(message)
 					if message.isRead
 						p.read 既読
 					button.delete-button(title='メッセージを削除')
-						img(src=config.resourcesUrl + '/desktop/pages/i/talk/delete.png', alt='Delete')
+						img(src=config.urls.resources + '/desktop/pages/i/talk/delete.png', alt='Delete')
 				div.content
 					if !message.isDeleted
 						if message.text != ''
@@ -63,7 +63,7 @@ mixin group-message(message)
 							| 既読
 							= message.reads.length
 					button.delete-button(title='メッセージを削除')
-						img(src= config.resourcesUrl + '/desktop/pages/i/talk/delete.png', alt='Delete')
+						img(src= config.urls.resources + '/desktop/pages/i/talk/delete.png', alt='Delete')
 				div.content
 					if !message.isDeleted
 						if message.text != ''

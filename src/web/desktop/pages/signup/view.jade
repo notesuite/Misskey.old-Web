@@ -5,21 +5,17 @@ block title
 
 block assets
 	script(src='https://www.google.com/recaptcha/api.js')
-	script!= 'var SCREEN_NAME_INPUT_ID = "' + screenNameInputId + '";'
-	script!= 'var PASSWORD_INPUT_ID = "' + passwordInputId + '";'
-	script!= 'var RETYPE_PASSWORD_INPUT_ID = "' + retypePasswordInputId + '";'
 
 block body
 	header
+		h1=locale.sites.desktop.pages._signup.title
 	main
-		header
-			h1=locale.sites.desktop.pages._signup.title
 		form#form(autocomplete='off')
 			label#screen-name
 				p.caption
 					i.fa.fa-at
 					=locale.sites.desktop.pages._signup.screen_name_caption
-				input(name=screenNameInputId
+				input(name='user-name'
 					type='text'
 					pattern='^[0-9A-Za-z\-]{3,20}$'
 					placeholder=locale.sites.desktop.pages._signup.screen_name_placeholder
@@ -35,7 +31,7 @@ block body
 				p.caption
 					i.fa.fa-lock
 					=locale.sites.desktop.pages._signup.password_caption
-				input(name=passwordInputId
+				input(name='password'
 					type='password'
 					placeholder=locale.sites.desktop.pages._signup.password_placeholder
 					autocomplete='off'
@@ -48,7 +44,7 @@ block body
 				p.caption
 					i.fa.fa-lock
 					=locale.sites.desktop.pages._signup.retype_password_caption
-				input(name=retypePasswordInputId
+				input(name='password-retype'
 					type='password'
 					placeholder=locale.sites.desktop.pages._signup.retype_password_placeholder
 					autocomplete='off'

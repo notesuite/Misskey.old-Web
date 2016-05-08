@@ -60,8 +60,8 @@ $ ->
 		password = $ '#password > input' .val!
 		if password != ''
 			err = switch
-				| password.length < 8chars       => LOCALE.sites.desktop.pages._signup.password_error_1
-				| _                              => null
+				| password.length < 8chars => LOCALE.sites.desktop.pages._signup.password_error_1
+				| _                        => null
 			if err
 				$ '#password > .info'
 					..children \i .attr \class 'fa fa-exclamation-triangle'

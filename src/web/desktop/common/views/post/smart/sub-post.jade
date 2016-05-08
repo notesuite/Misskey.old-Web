@@ -11,7 +11,7 @@ mixin subPost(post)
 			if userSettings.displayUserNameInPost
 				a.name(href= config.url + '/' + post.user.screenName)= post.user.name
 				if post.user.isVerified
-					img.verified-icon(src= config.resourcesUrl + '/common/verified.png', alt='verified', title=locale.common.verified)
+					img.verified-icon(src= config.urls.resources + '/common/verified.png', alt='verified', title=locale.common.verified)
 			if userSettings.displayUserScreenNameInPost
 				span.screen-name= post.user.screenName
 			if userSettings.displayCreatedAtInPost
