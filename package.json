@@ -55,6 +55,7 @@
     "cookie-parser": "1.4.1",
     "cors": "2.7.1",
     "csurf": "1.8.3",
+    "del": "2.2.0",
     "escape-html": "1.0.3",
     "express": "4.13.4",
     "express-minify": "0.2.0",

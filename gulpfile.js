@@ -10,6 +10,7 @@ const fs = require('fs');
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const glob = require('glob');
+const del = require('del');
 const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
 const browserify = require('browserify');
@@ -205,4 +206,15 @@ gulp.task('lint', () => {
 			tslint: require('tslint')
 		}))
 		.pipe(tslint.report('verbose'));
+});
+
+//////////////////////////////////////////////////
+// CLEAN
+gulp.task('clean', cb => {
+	del([
+		'./node_modules',
+		'./typings',
+		'./built',
+		'./tmp'
+	], cb);
 });
