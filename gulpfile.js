@@ -225,6 +225,7 @@ gulp.task('clean', cb => {
 gulp.task('clean-all', ['clean'], cb => {
 	del([
 		'./node_modules',
+		'./bower_components',
 		'./typings'
 	], cb);
 });
