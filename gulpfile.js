@@ -53,7 +53,7 @@ const project = ts.createProject('tsconfig.json', {
 	typescript: require('typescript')
 });
 
-const config = require('./built/config').default;
+const config = require('./src/_config.js').default;
 
 //////////////////////////////////////////////////
 // Full build
@@ -217,9 +217,14 @@ gulp.task('lint', () => {
 // CLEAN
 gulp.task('clean', cb => {
 	del([
-		'./node_modules',
-		'./typings',
 		'./built',
 		'./tmp'
+	], cb);
+});
+
+gulp.task('clean-all', ['clean'], cb => {
+	del([
+		'./node_modules',
+		'./typings'
 	], cb);
 });
