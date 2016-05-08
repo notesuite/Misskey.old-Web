@@ -1,5 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
+
+CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 
 $ ->
@@ -15,7 +17,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 			..attr \disabled on
 
-		$.ajax CONFIG.signin-url, {
+		$.ajax CONFIG.urls.signin, {
 			data: {
 				'screen-name': $form.find '[name="screen-name"]' .val!
 				'password': $form.find '[name="password"]' .val!
