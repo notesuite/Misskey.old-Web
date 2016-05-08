@@ -90,14 +90,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
 
-// CSRF
-app.use(csrf({
-	cookie: true
-}));
-
-// Intercept all requests
+// CORS
 app.use((req, res, next) => {
-	// CORS
 	res.header('Access-Control-Allow-Origin', config.url);
 	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 	res.header('Access-Control-Allow-Headers', 'Content-Type, csrf-token');
@@ -106,8 +100,21 @@ app.use((req, res, next) => {
 	// intercept OPTIONS method
 	if (req.method === 'OPTIONS') {
 		res.sendStatus(200);
-		return;
+	} else {
+		next();
 	}
+});
+
+// Session settings
+app.use(expressSession(session));
+
+// CSRF
+app.use(csrf({
+	cookie: false
+}));
+
+// Intercept all requests
+app.use((req, res, next) => {
 
 	// Security headers
 	res.header('X-Frame-Options', 'SAMEORIGIN');
@@ -180,9 +187,6 @@ app.use((req, res, next) => {
 		next();
 	}
 });
-
-// Session settings
-app.use(expressSession(session));
 
 app.use(require('subdomain')(subdomainOptions));
 
