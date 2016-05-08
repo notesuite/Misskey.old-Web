@@ -26,7 +26,7 @@ $ ->
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \.text .text LOCALE.sites.mobile.pages._home.timeline_loading
-		$.ajax "#{CONFIG.web-api-url}/posts/timeline" {
+		$.ajax "#{CONFIG.urls.web-api}/posts/timeline" {
 			data:
 				limit: 20
 				'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor
@@ -92,7 +92,7 @@ $ ->
 	$ '#misskey-header .post' .click ->
 		text = window.prompt LOCALE.sites.mobile.pages._home.new_post
 		if text? and text != ''
-			$.ajax "#{CONFIG.web-api-url}/posts/create" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/create" {
 				data: {
 					type: \text
 					text

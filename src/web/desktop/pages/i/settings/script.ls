@@ -24,22 +24,22 @@ $ ->
 		$submit-button.attr \disabled on
 		$submit-button.text 'Updating...'
 
-		(data) <- $.ajax "#{CONFIG.web-api-url}/account/name/update" {
+		(data) <- $.ajax "#{CONFIG.urls.web-api}/account/name/update" {
 			data:
 				'name': $form.find '.profile.name' .val!}
 		.done!
 
-		(data) <- $.ajax "#{CONFIG.web-api-url}/account/comment/update" {
+		(data) <- $.ajax "#{CONFIG.urls.web-api}/account/comment/update" {
 			data:
 				'comment': $form.find '.profile.comment' .val!}
 		.done!
 
-		(data) <- $.ajax "#{CONFIG.web-api-url}/account/url/update" {
+		(data) <- $.ajax "#{CONFIG.urls.web-api}/account/url/update" {
 			data:
 				'url': $form.find '.profile.url' .val!}
 		.done!
 
-		(data) <- $.ajax "#{CONFIG.web-api-url}/account/location/update" {
+		(data) <- $.ajax "#{CONFIG.urls.web-api}/account/location/update" {
 			data:
 				'location': $form.find '.profile.location' .val!}
 		.done!
@@ -72,7 +72,7 @@ $ ->
 			fd = new FormData!
 			fd.append \app-id $app.attr \data-app-id
 
-			$.ajax "#{CONFIG.web-api-url}/account/remove-app" {
+			$.ajax "#{CONFIG.urls.web-api}/account/remove-app" {
 				data: fd
 				data-type: \json}
 			.done (data) ->
@@ -103,7 +103,7 @@ function init-checkbox-controll $checkbox
 			value: $checkbox.is \:checked
 		}
 
-		$.ajax "#{CONFIG.web-api-url}/web/user-settings/update" {data}
+		$.ajax "#{CONFIG.urls.web-api}/web/user-settings/update" {data}
 		.always ->
 			$checkbox
 				..attr \disabled off

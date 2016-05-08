@@ -202,7 +202,7 @@ class Post
 		THIS = @
 		if THIS.is-talk and not THIS.is-talk-loaded
 			THIS.is-talk-loaded = true
-			$.ajax "#{CONFIG.web-api-url}/posts/talk/show" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/talk/show" {
 				data:
 					'post-id': THIS.destination-id
 					'limit': 4
@@ -224,7 +224,7 @@ class Post
 		THIS = @
 		if THIS.is-have-replies and not THIS.is-replies-loaded
 			THIS.is-replies-loaded = true
-			$.ajax "#{CONFIG.web-api-url}/posts/replies/show" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/replies/show" {
 				data: {'post-id':THIS.id}}
 			.done (posts) ->
 				posts.for-each (post) ->
@@ -282,7 +282,7 @@ class Post
 			..attr \disabled on
 			..text 'Replying...'
 
-		$.ajax "#{CONFIG.web-api-url}/web/posts/reply" {
+		$.ajax "#{CONFIG.urls.web-api}/web/posts/reply" {
 			data:
 				'text': (THIS.$reply-form.find \textarea .val!)
 				'in-reply-to-post-id': THIS.id
@@ -339,7 +339,7 @@ class Post
 		} 500ms
 		if THIS.check-liked!
 			THIS.$post.attr \data-is-liked \false
-			$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/unlike" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				$button.attr \disabled off
@@ -348,7 +348,7 @@ class Post
 				THIS.$post.attr \data-is-liked \true
 		else
 			THIS.$post.attr \data-is-liked \true
-			$.ajax "#{CONFIG.web-api-url}/posts/like" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/like" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				$button.attr \disabled off
@@ -361,7 +361,7 @@ class Post
 
 		function repost(always, done, fail)
 			THIS.$post.attr \data-is-reposted \true
-			$.ajax "#{CONFIG.web-api-url}/posts/repost" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/repost" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				window.display-message 'Reposted!'

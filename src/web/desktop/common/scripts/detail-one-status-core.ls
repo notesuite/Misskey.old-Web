@@ -134,7 +134,7 @@ window.STATUS_CORE = {}
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
 					..attr \value 'Replying...'
-				$.ajax "#{CONFIG.web-api-url}/web/status/reply-detail-one" {
+				$.ajax "#{CONFIG.urls.web-api}/web/status/reply-detail-one" {
 					data: new FormData $form.0
 					data-type: \text}
 				.done (html) ->
@@ -176,7 +176,7 @@ window.STATUS_CORE = {}
 					..attr \title '読み込み中...'
 					..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-				$.ajax "#{CONFIG.web-api-url}/web/status/get-talk-detail-one-html.plain" {
+				$.ajax "#{CONFIG.urls.web-api}/web/status/get-talk-detail-one-html.plain" {
 					data: {
 						'status-id': $status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-id
 					}
@@ -204,7 +204,7 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 				if check-pinned!
 					$status.attr \data-is-pinned \false
-					$.ajax "#{CONFIG.web-api-url}/account/delete-pinned-status" {
+					$.ajax "#{CONFIG.urls.web-api}/account/delete-pinned-status" {
 						data: {}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
@@ -215,7 +215,7 @@ window.STATUS_CORE = {}
 						$status.attr \data-is-pinned \true
 				else
 					$status.attr \data-is-pinned \true
-					$.ajax "#{CONFIG.web-api-url}/account/update-pinned-post" {
+					$.ajax "#{CONFIG.urls.web-api}/account/update-pinned-post" {
 						data: {'status-id': $status.attr \data-id}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
@@ -231,7 +231,7 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 				if check-favorited!
 					$status.attr \data-is-favorited \false
-					$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/unlike" {
 						data: {'post-id': $status.attr \data-id}}
 					.done ->
 						$button.attr \disabled off
@@ -240,7 +240,7 @@ window.STATUS_CORE = {}
 						$status.attr \data-is-favorited \true
 				else
 					$status.attr \data-is-favorited \true
-					$.ajax "#{CONFIG.web-api-url}/posts/like" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/like" {
 						data: {'post-id': $status.attr \data-id}}
 					.done ->
 						$button.attr \disabled off
@@ -256,7 +256,7 @@ window.STATUS_CORE = {}
 			..find 'article > .main > .main > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
 					$status.attr \data-is-reposted \false
-					$.ajax "#{CONFIG.web-api-url}/posts/unrepost" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/unrepost" {
 						data: {'post-id': $status.attr \data-id}
 						data-type: \json
 						xhr-fields: {+withCredentials}}
@@ -283,7 +283,7 @@ window.STATUS_CORE = {}
 					..attr \disabled on
 					..attr \data-reposting \true
 				$status.attr \data-is-reposted \true
-				$.ajax "#{CONFIG.web-api-url}/post/repost" {
+				$.ajax "#{CONFIG.urls.web-api}/post/repost" {
 					data:
 						'post-id': $status.attr \data-id
 						text: $status.find '.repost-form > form > .comment-form > input[name=text]' .val!

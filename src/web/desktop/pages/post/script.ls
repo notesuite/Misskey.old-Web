@@ -118,7 +118,7 @@ class Post
 		$button = THIS.$post.find '> .read-talk'
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
-		$.ajax "#{CONFIG.web-api-url}/posts/talk/show" {
+		$.ajax "#{CONFIG.urls.web-api}/posts/talk/show" {
 			data: {'post-id': THIS.destination-id}}
 		.done (posts) ->
 			$button.remove!
@@ -144,7 +144,7 @@ class Post
 			..attr \disabled on
 			..text 'Replying...'
 
-		$.ajax "#{CONFIG.web-api-url}/posts/reply" {
+		$.ajax "#{CONFIG.urls.web-api}/posts/reply" {
 			data:
 				'text': (THIS.$reply-form.find \textarea .val!)
 				'in-reply-to-post-id': (THIS.id)
@@ -208,7 +208,7 @@ class Post
 		} 500ms
 		if THIS.check-liked!
 			THIS.$post.attr \data-is-liked \false
-			$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/unlike" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				$button.attr \disabled off
@@ -217,7 +217,7 @@ class Post
 				THIS.$post.attr \data-is-liked \true
 		else
 			THIS.$post.attr \data-is-liked \true
-			$.ajax "#{CONFIG.web-api-url}/posts/like" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/like" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				$button.attr \disabled off
@@ -230,7 +230,7 @@ class Post
 
 		function repost(always, done, fail)
 			THIS.$post.attr \data-is-reposted \true
-			$.ajax "#{CONFIG.web-api-url}/posts/repost" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/repost" {
 				data: {'post-id': THIS.id}}
 			.done ->
 				window.display-message 'Reposted!'

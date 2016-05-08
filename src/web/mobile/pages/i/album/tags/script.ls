@@ -9,7 +9,7 @@ $ ->
 		if name? and name != ''
 			choose-color (color) ->
 				$add.attr \disabled on
-				$.ajax "#{CONFIG.web-api-url}/album/tags/create" {
+				$.ajax "#{CONFIG.urls.web-api}/album/tags/create" {
 					data:
 						'name': name
 						'color': color
@@ -31,7 +31,7 @@ $ ->
 			new-name = window.prompt LOCALE.sites.mobile.pages._i._album._tags.rename_dialog.replace '{name}' name
 			if new-name? and new-name != ''
 				$rename.attr \disabled on
-				$.ajax "#{CONFIG.web-api-url}/album/tags/rename" {
+				$.ajax "#{CONFIG.urls.web-api}/album/tags/rename" {
 					data:
 						'tag-id': id
 						'name': new-name
@@ -43,7 +43,7 @@ $ ->
 		$recolor.click ->
 			choose-color (color) ->
 				$recolor.attr \disabled on
-				$.ajax "#{CONFIG.web-api-url}/album/tags/recolor" {
+				$.ajax "#{CONFIG.urls.web-api}/album/tags/recolor" {
 					data:
 						'tag-id': id
 						'color': color
@@ -55,7 +55,7 @@ $ ->
 		$delete.click ->
 			if window.confirm LOCALE.sites.mobile.pages._i._album._tags.delete_dialog.replace '{name}' name
 				$delete.attr \disabled on
-				$.ajax "#{CONFIG.web-api-url}/album/tags/delete" {
+				$.ajax "#{CONFIG.urls.web-api}/album/tags/delete" {
 					data:
 						'tag-id': id
 				} .done ->

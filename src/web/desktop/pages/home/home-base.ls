@@ -99,8 +99,8 @@ module.exports = (type) ->
 			$button.attr \disabled on
 			$button.text '読み込み中'
 			endpoint = switch (type)
-				| \home => "#{CONFIG.web-api-url}/posts/timeline"
-				| \mentions => "#{CONFIG.web-api-url}/posts/mentions/show"
+				| \home => "#{CONFIG.urls.web-api}/posts/timeline"
+				| \mentions => "#{CONFIG.urls.web-api}/posts/mentions/show"
 			$.ajax endpoint, {
 				data:
 					limit: 10
@@ -228,7 +228,7 @@ function init-widgets
 
 	if $ \#widget-notifications .length != 0
 		# 通知読み込み
-		$.ajax "#{CONFIG.web-api-url}/notifications/timeline"
+		$.ajax "#{CONFIG.urls.web-api}/notifications/timeline"
 		.done (notifications) ->
 			if notifications != []
 				$notifications = $ notifications-compiler {
@@ -245,7 +245,7 @@ function init-widgets
 
 	if $ \#widget-recommendation-users .length != 0
 		# recommendation users
-		$.ajax "#{CONFIG.web-api-url}/users/recommendations"
+		$.ajax "#{CONFIG.urls.web-api}/users/recommendations"
 		.done (users) ->
 			if users != []
 				$users = $ recommendation-users-compiler {
@@ -260,7 +260,7 @@ function init-widgets
 					$user = $ @
 					$user.find \.follow-button .click ->
 						$user.remove!
-						$.ajax "#{CONFIG.web-api-url}/users/follow" {
+						$.ajax "#{CONFIG.urls.web-api}/users/follow" {
 							data: { 'user-id': $user.attr \data-user-id }
 						}
 

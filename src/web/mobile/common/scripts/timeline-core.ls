@@ -39,7 +39,7 @@ class Timeline
 				#} 500ms
 				if check-liked!
 					$post.attr \data-is-liked \false
-					$.ajax "#{CONFIG.web-api-url}/posts/unlike" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/unlike" {
 						data: {'post-id': post-id}}
 					.done ->
 						$button.attr \disabled off
@@ -48,7 +48,7 @@ class Timeline
 						$post.attr \data-is-liked \true
 				else
 					$post.attr \data-is-liked \true
-					$.ajax "#{CONFIG.web-api-url}/posts/like" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/like" {
 						data: {'post-id': post-id}}
 					.done ->
 						$button.attr \disabled off
@@ -65,7 +65,7 @@ class Timeline
 					"@#{user-screen-name} "
 
 				if reply-text? and reply-text != ''
-					$.ajax "#{CONFIG.web-api-url}/posts/reply" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/reply" {
 						data:
 							type: \text
 							text: reply-text
@@ -84,7 +84,7 @@ class Timeline
 			..find '> footer > .repost > button' .click ->
 				function repost
 					$post.attr \data-is-reposted \true
-					$.ajax "#{CONFIG.web-api-url}/posts/repost" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/repost" {
 						data: {'post-id': post-id}}
 					.done ->
 						$button.attr \disabled off
@@ -94,7 +94,7 @@ class Timeline
 
 				if check-reposted!
 					$post.attr \data-is-reposted \false
-					$.ajax "#{CONFIG.web-api-url}/posts/unrepost" {
+					$.ajax "#{CONFIG.urls.web-api}/posts/unrepost" {
 						data: {'post-id': post-id}}
 					.done ->
 						$button.attr \disabled off

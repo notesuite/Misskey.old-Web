@@ -9,7 +9,7 @@ $ ->
 
 		$submit-button.attr \disabled yes
 
-		$.ajax "#{CONFIG.web-api-url}/posts/create" {
+		$.ajax "#{CONFIG.urls.web-api}/posts/create" {
 			data:
 				'text': ($form.find \textarea .val!)
 		}

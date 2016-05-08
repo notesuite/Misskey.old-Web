@@ -12,7 +12,7 @@ $ ->
 		if name? and name != ''
 			choose-color (color) ->
 				$new.attr \disabled on
-				$.ajax "#{CONFIG.web-api-url}/album/tags/create" {
+				$.ajax "#{CONFIG.urls.web-api}/album/tags/create" {
 					data:
 						'name': name
 						'color': color

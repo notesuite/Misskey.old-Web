@@ -20,7 +20,7 @@ class UsersList
 		$friend-button.click ->
 			$friend-button.attr \disabled on
 			if check-follow!
-				$.ajax "#{CONFIG.web-api-url}/users/unfollow" {
+				$.ajax "#{CONFIG.urls.web-api}/users/unfollow" {
 					data: {'user-id': user-id}}
 				.done ->
 					$friend-button .remove-class \danger
@@ -34,7 +34,7 @@ class UsersList
 				.fail ->
 					$friend-button.attr \disabled off
 			else
-				$.ajax "#{CONFIG.web-api-url}/users/follow" {
+				$.ajax "#{CONFIG.urls.web-api}/users/follow" {
 					data: {'user-id': user-id}}
 				.done ->
 					$friend-button

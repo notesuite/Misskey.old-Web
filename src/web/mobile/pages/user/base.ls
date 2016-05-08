@@ -17,7 +17,7 @@ $ ->
 		$button = $ @
 			..attr \disabled on
 		if window.is-following
-			$.ajax "#{CONFIG.web-api-url}/users/unfollow" {
+			$.ajax "#{CONFIG.urls.web-api}/users/unfollow" {
 				data: {'user-id': USER.id}}
 			.done ->
 				$button .remove-class \danger
@@ -31,7 +31,7 @@ $ ->
 			.fail ->
 				$button.attr \disabled off
 		else
-			$.ajax "#{CONFIG.web-api-url}/users/follow" {
+			$.ajax "#{CONFIG.urls.web-api}/users/follow" {
 				data: {'user-id': USER.id}}
 			.done ->
 				$button

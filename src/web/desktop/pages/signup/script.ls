@@ -1,5 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
+
+CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 
 window.on-recaptchaed = ->
@@ -33,7 +35,7 @@ $ ->
 					..attr \data-state \processing
 				$ '#screen-name > .profile-page-url-preview' .text "#{CONFIG.url}/#sn"
 
-				$.ajax "#{CONFIG.web-api-url}/screenname/available" {
+				$.ajax "#{CONFIG.urls.web-api}/screenname/available" {
 					data: {'screen-name': sn}
 				} .done (result) ->
 					if result.available
@@ -104,7 +106,7 @@ $ ->
 
 		$ \html .add-class \logging
 
-		$.ajax "#{CONFIG.web-api-url}/account/create" {
+		$.ajax "#{CONFIG.urls.web-api}/account/create" {
 			data:
 				'screen-name': screen-name
 				'password': password
@@ -113,7 +115,7 @@ $ ->
 			$submit-button
 				.find \span .text LOCALE.sites.desktop.pages._signup.logging
 
-			location.href = "#{CONFIG.signin-url}?screen-name=#{screen-name}&password=#{password}"
+			location.href = "#{CONFIG.urls.signin}?screen-name=#{screen-name}&password=#{password}"
 		.fail ->
 			$submit-button
 				..attr \disabled off

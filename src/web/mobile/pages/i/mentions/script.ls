@@ -3,7 +3,7 @@ $ = require 'jquery'
 Timeline = require '../../../common/scripts/timeline-core.ls'
 
 function delete-all
-	$.ajax "#{CONFIG.web-api-url}/posts/mentions/delete-all"
+	$.ajax "#{CONFIG.urls.web-api}/posts/mentions/delete-all"
 	.done ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-trash-o'
 		alert '削除しました。'
@@ -18,7 +18,7 @@ $ ->
 	$ '#misskey-header .delete' .click ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-spinner fa-spin'
 		if window.confirm 'すべてのあなた宛ての投稿の通知を削除しますか？'
-			$.ajax "#{CONFIG.web-api-url}/notifications/unread/count"
+			$.ajax "#{CONFIG.urls.web-api}/notifications/unread/count"
 			.done (count) ->
 				if count != 0
 					if window.confirm '未読のあなた宛ての投稿の通知があるようですが、それでもすべて削除しますか？'
@@ -36,7 +36,7 @@ $ ->
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \p .text '読み込んでいます...'
-		$.ajax "#{CONFIG.web-api-url}/posts/mentions/show" {
+		$.ajax "#{CONFIG.urls.web-api}/posts/mentions/show" {
 			data:
 				limit: 20
 				'max-cursor': $ '#stream > .posts > .post:last-child' .attr \data-cursor

@@ -31,7 +31,7 @@ function send-message
 				'file': ($form.find '.files > li:first-child' .attr \data-id)
 			}
 
-	$.ajax "#{CONFIG.web-api-url}/talks/messages/say" {data}
+	$.ajax "#{CONFIG.urls.web-api}/talks/messages/say" {data}
 	.done (data) ->
 		$form[0].reset!
 		$form.find \.files .empty!
@@ -160,7 +160,7 @@ $ ->
 						'limit': 10
 						'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor
 					}
-			$.ajax "#{CONFIG.web-api-url}/talks/messages/stream" {data}
+			$.ajax "#{CONFIG.urls.web-api}/talks/messages/stream" {data}
 			.done (messages) ->
 				if messages.length > 0
 					old-height = $ document .height!
@@ -199,7 +199,7 @@ function init-streaming(stream)
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
 		stream.add message
-		$.ajax "#{CONFIG.web-api-url}/talks/messages/read" {
+		$.ajax "#{CONFIG.urls.web-api}/talks/messages/read" {
 			data: {'message-id': message.id}
 		}
 

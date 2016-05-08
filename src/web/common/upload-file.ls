@@ -4,7 +4,7 @@ module.exports = (file, folder, $progress, uploading, success, failed, always) -
 	data = new FormData!
 		..append \file file
 		..append \folder folder
-	$.ajax "#{CONFIG.web-api-url}/web/album/upload" {
+	$.ajax "#{CONFIG.urls.web-api}/web/album/upload" {
 		+async
 		-process-data
 		-content-type

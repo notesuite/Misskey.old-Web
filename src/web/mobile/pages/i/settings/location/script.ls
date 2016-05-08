@@ -11,7 +11,7 @@ $ ->
 			..attr \disabled on
 			..html '更新中...'
 
-		$.ajax "#{CONFIG.web-api-url}/account/location/update" {
+		$.ajax "#{CONFIG.urls.web-api}/account/location/update" {
 			data: {
 				'location': $form.find '[name="location"]' .val!
 			}

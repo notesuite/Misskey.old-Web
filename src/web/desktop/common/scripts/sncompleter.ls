@@ -181,7 +181,7 @@ module.exports = ($input) ->
 				$menu = open!
 
 				# search users
-				$.ajax "#{CONFIG.web-api-url}/users/search-by-screen-name" {
+				$.ajax "#{CONFIG.urls.web-api}/users/search-by-screen-name" {
 					data: {'screen-name': sn}
 					data-type: \json}
 				.done (result) ->
@@ -219,7 +219,7 @@ module.exports = ($input) ->
 					$menu = open!
 
 					# search users
-					$.ajax "#{CONFIG.web-api-url}/hashtags/search" {
+					$.ajax "#{CONFIG.urls.web-api}/hashtags/search" {
 						data: {'name': tag}
 						data-type: \json}
 					.done (result) ->

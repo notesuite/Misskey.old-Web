@@ -1,12 +1,14 @@
 $ = require 'jquery'
 require 'jquery.transit'
+
+CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 
 $ ->
 	$form = $ '#form'
 
 	$ '#id' .change ->
-		$.ajax "#{CONFIG.web-api-url}/users/show", {
+		$.ajax "#{CONFIG.urls.web-api}/users/show", {
 			data: {'screen-name': $ '#id' .val!}
 		}
 		.done (user) ->
@@ -24,7 +26,7 @@ $ ->
 
 		$ \html .add-class \logging
 
-		$.ajax CONFIG.signin-url, {
+		$.ajax CONFIG.urls.signin, {
 			data:
 				'screen-name': $form.find '[name="screen-name"]' .val!
 				'password': $form.find '[name="password"]' .val!

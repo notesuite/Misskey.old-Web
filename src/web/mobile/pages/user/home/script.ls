@@ -8,7 +8,7 @@ $ ->
 	$ '#misskey-header .post' .click ->
 		text = window.prompt 'このユーザーになんか言う' "@#{USER.screen-name} "
 		if text? and text != ''
-			$.ajax "#{CONFIG.web-api-url}/posts/create" {
+			$.ajax "#{CONFIG.urls.web-api}/posts/create" {
 				data: {
 					type: \text
 					text
@@ -23,7 +23,7 @@ $ ->
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \p .text '読み込んでいます...'
-		$.ajax "#{CONFIG.web-api-url}/posts/user-timeline" {
+		$.ajax "#{CONFIG.urls.web-api}/posts/user-timeline" {
 			data:
 				limit: 20
 				'user-id': USER.id
