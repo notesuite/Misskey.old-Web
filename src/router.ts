@@ -165,7 +165,7 @@ export default function(app: express.Express): void {
 				res.status(err.statusCode).send(err.body);
 			});
 		} else {
-			callController(req, res, 'login');
+			callController(req, res, 'signin');
 		}
 	});
 
