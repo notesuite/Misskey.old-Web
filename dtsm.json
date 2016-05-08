@@ -93,6 +93,9 @@
     },
     "js-yaml/js-yaml.d.ts": {
       "ref": "02ba1e3e95a3cb503656ca0415e0febc3bf8ba71"
+    },
+    "shelljs/shelljs.d.ts": {
+      "ref": "6052959591c9bc6f8463c58220965c7030ba934d"
     }
   }
 }

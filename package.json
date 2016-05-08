@@ -62,7 +62,8 @@
     "gm": "1.22.0",
     "html-entities": "1.2.0",
     "jade": "1.11.0",
-    "js-yaml": "^3.6.0",
+    "js-yaml": "3.6.0",
+    "log-cool": "1.1.0",
     "marked": "0.3.5",
     "moment": "2.13.0",
     "mongoose": "4.4.15",
@@ -71,6 +72,7 @@
     "redis": "2.6.0-1",
     "request": "2.72.0",
     "serve-favicon": "2.3.0",
+    "shelljs": "0.7.0",
     "socket.io": "1.4.6",
     "subdomain": "1.2.0",
     "vhost": "3.0.2"

@@ -27,7 +27,9 @@
  */
 
 import * as cluster from 'cluster';
+import {logInfo, logWarn} from 'log-cool';
 import config from './config';
+import checkDependencies from './check-dependencies';
 import name from './core/naming-worker-id';
 
 (<any>Error).stackTraceLimit = Infinity;
@@ -37,11 +39,14 @@ const env = process.env.NODE_ENV;
 // Master
 if (cluster.isMaster) {
 	console.log('Welcome to Misskey!');
-	console.log(`environment: ${env}`);
-	console.log(`maintainer: ${config.maintainer}`);
+
+	logInfo(`environment: ${env}`);
+	logInfo(`maintainer: ${config.maintainer}`);
+
+	checkDependencies();
 
 	if (env !== 'production') {
-		console.log('■　注意！　このMisskey-Webはproductionモードで起動していません。本番環境で使用しないでください。');
+		logWarn('このMisskey-Webはproductionモードで起動していません。本番環境で使用しないでください。');
 	}
 
 	// Count the machine's CPUs
