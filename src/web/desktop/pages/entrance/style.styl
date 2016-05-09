@@ -571,6 +571,11 @@ body > main {
 				margin: auto 0;
 			}
 
+			> p {
+				display: inline;
+				margin: 0;
+			}
+
 			&:disabled {
 				opacity: 0.5;
 			}
@@ -580,7 +585,7 @@ body > main {
 			}
 
 			&:active {
-				background: darken($theme-color, 10%);
+				//background: darken($theme-color, 10%);
 			}
 		}
 	}
@@ -615,12 +620,17 @@ body > main {
 			pointer-events: none;
 		}
 
-		i {
+		> i {
 			position: absolute;
 			top: 0;
 			left: 0;
 			padding: 18px;
 			background: rgba(0, 0, 0, 0.1);
+		}
+
+		> p {
+			display: inline;
+			margin: 0;
 		}
 
 		&:hover {
@@ -630,7 +640,7 @@ body > main {
 
 		&:active {
 			text-decoration: none;
-			background: darken($theme-color, 10%);
+			//background: darken($theme-color, 10%);
 		}
 	}
 }

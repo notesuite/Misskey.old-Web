@@ -61,11 +61,11 @@ block body
 			label.user-name
 				p.caption
 					i.fa.fa-at
-					=locale.sites.desktop.pages._entrance._signup.screen_name_caption
+					= locale.sites.desktop.pages._entrance._signup.screen_name_caption
 				input(name='user-name'
 					type='text'
 					pattern='^[0-9A-Za-z\-]{3,20}$'
-					placeholder=locale.sites.desktop.pages._entrance._signup.screen_name_placeholder
+					placeholder= locale.sites.desktop.pages._entrance._signup.screen_name_placeholder
 					autocomplete='off'
 					required)
 				p.profile-page-url-preview
@@ -76,10 +76,10 @@ block body
 			label.password
 				p.caption
 					i.fa.fa-lock
-					=locale.sites.desktop.pages._entrance._signup.password_caption
+					= locale.sites.desktop.pages._entrance._signup.password_caption
 				input(name='password'
 					type='password'
-					placeholder=locale.sites.desktop.pages._entrance._signup.password_placeholder
+					placeholder= locale.sites.desktop.pages._entrance._signup.password_placeholder
 					autocomplete='off'
 					required)
 				p.info(data-state='none')
@@ -89,10 +89,10 @@ block body
 			label.retype-password
 				p.caption
 					i.fa.fa-lock
-					=locale.sites.desktop.pages._entrance._signup.retype_password_caption
+					= locale.sites.desktop.pages._entrance._signup.retype_password_caption
 				input(name='password-retype'
 					type='password'
-					placeholder=locale.sites.desktop.pages._entrance._signup.retype_password_placeholder
+					placeholder= locale.sites.desktop.pages._entrance._signup.retype_password_placeholder
 					autocomplete='off'
 					required)
 				p.info(data-state='none')
@@ -102,7 +102,7 @@ block body
 			label.recaptcha
 				p.caption
 					i.fa.fa-toggle-off
-					=locale.sites.desktop.pages._entrance._signup.verify_caption
+					= locale.sites.desktop.pages._entrance._signup.verify_caption
 				div.g-recaptcha(
 					data-callback='onRecaptchaed'
 					data-expired-callback='onRecaptchaExpired'
@@ -114,12 +114,12 @@ block body
 					type='checkbox',
 					autocomplete='off',
 					required)
-				p!=locale.sites.desktop.pages._entrance._signup.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+				p!= locale.sites.desktop.pages._entrance._signup.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
 			
-			button(type='submit')
+			button.ripple-effect(type='submit')
 				i.fa.fa-check
-				span=locale.sites.desktop.pages._entrance._signup.create
+				p= locale.sites.desktop.pages._entrance._signup.create
 
-		button#new
+		button.ripple-effect#new
 			i.fa.fa-pencil-square-o
-			= locale.sites.desktop.pages._entrance.signup
+			p= locale.sites.desktop.pages._entrance.signup

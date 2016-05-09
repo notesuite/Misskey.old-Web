@@ -3,6 +3,10 @@ require 'jquery.transit'
 
 CONFIG = require 'config'
 require '../../common/scripts/main.ls'
+WavesEffect = require '../../common/scripts/lib/waves-effect.js'
+
+$ window .load ->
+	WavesEffect.attach-to-class \ripple-effect
 
 $ ->
 	init-signin-form!
