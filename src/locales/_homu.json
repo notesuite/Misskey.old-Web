@@ -117,6 +117,40 @@
 			"pages": {
 				"_about": {
 				},
+				"_entrance": {
+					"description": "ほむほむ",
+					"learn_more": "ほむ",
+					"_signin": {
+						"user_name": "ほむほむ",
+						"password": "ほむほむ",
+						"signin": "ほむほむ"
+					},
+					"signup": "ほむほむ",
+					"_signup": {
+						"screen_name_caption": "ほむほむ",
+						"screen_name_placeholder": "ほむほむ",
+						"screen_name_error_1": "ほむほむ",
+						"screen_name_error_2": "ほむほむ",
+						"screen_name_error_3": "ほむほむ",
+						"screen_name_info_1": "ほむほむ...",
+						"screen_name_info_2": "ほむほむ",
+						"screen_name_info_3": "ほむほむ",
+						"screen_name_info_4": "ほむほむ",
+						"password_caption": "ほむほむ",
+						"password_placeholder": "ほむほむ",
+						"password_error_1": "ほむほむ",
+						"password_info_1": "ほむ",
+						"retype_password_caption": "ほむほむ(ほむほむ)",
+						"retype_password_placeholder": "ほむほむ",
+						"retype_password_error_1": "ほむほむ",
+						"retype_password_info_1": "ほむ",
+						"verify_caption": "ほむほむ",
+						"agree_tou": "{ほむほむ}に同意します",
+						"create": "ほむほむ",
+						"creating": "ほむほむ...",
+						"logging": "ほむほむ..."
+					}
+				},
 				"_home": {
 					"my_status_widget": {
 						"name": "ほむ",
@@ -137,33 +171,6 @@
 					"ad_widget": {
 						"text": "ほむ"
 					}
-				},
-				"_signup": {
-					"page_title": "ほむ",
-					"title": "ほむ",
-					"screen_name_caption": "ほむ",
-					"screen_name_placeholder": "ほむ",
-					"screen_name_error_1": "ほむ",
-					"screen_name_error_2": "ほむ",
-					"screen_name_error_3": "ほむ",
-					"screen_name_info_1": "ほむ",
-					"screen_name_info_2": "ほむ",
-					"screen_name_info_3": "ほむ",
-					"screen_name_info_4": "ほむ",
-					"password_caption": "ほむ",
-					"password_placeholder": "ほむ",
-					"password_error_1": "ほむ",
-					"password_info_1": "ほむ",
-					"retype_password_caption": "ほむ",
-					"retype_password_placeholder": "ほむ",
-					"retype_password_error_1": "ほむ",
-					"retype_password_info_1": "ほむ",
-					"verify_caption": "ほむ",
-					"agree_tou": "ほむ",
-					"create": "ほむ",
-					"creating": "ほむ",
-					"logging": "ほむ",
-					"signin": "ほむ"
 				},
 				"_signin": {
 					"page_title": "ほむ",

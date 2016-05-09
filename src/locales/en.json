@@ -119,6 +119,40 @@
 			"pages": {
 				"_about": {
 				},
+				"_entrance": {
+					"description": "A miniblog-based online social networking service.",
+					"learn_more": "learn more",
+					"_signin": {
+						"user_name": "User name",
+						"password": "Passcode",
+						"signin": "Sign in"
+					},
+					"signup": "Create account",
+					"_signup": {
+						"screen_name_caption": "User ID",
+						"screen_name_placeholder": "Use alphabets, numbers, or hyphens at least 3",
+						"screen_name_error_1": "Your ID must be only alphabets, numbers, and hyphens.",
+						"screen_name_error_2": "Your ID must be at least 3 characters.",
+						"screen_name_error_3": "Your ID must be 20 characters or less.",
+						"screen_name_info_1": "Checking...",
+						"screen_name_info_2": "This ID is available.",
+						"screen_name_info_3": "This ID is already taken.",
+						"screen_name_info_4": "Failed to check.",
+						"password_caption": "Passcode",
+						"password_placeholder": "at least 8 characters",
+						"password_error_1": "Too short passcode.",
+						"password_info_1": "OK",
+						"retype_password_caption": "Retype passcode",
+						"retype_password_placeholder": "Enter again",
+						"retype_password_error_1": "Passcode doesn't match.",
+						"retype_password_info_1": "OK",
+						"verify_caption": "Verify",
+						"agree_tou": "I agree to the {Terms of Use}",
+						"create": "Create account",
+						"creating": "Processing...",
+						"logging": "Logging in..."
+					}
+				},
 				"_home": {
 					"my_status_widget": {
 						"name": "Status",
@@ -139,33 +173,6 @@
 					"ad_widget": {
 						"text": "Stop, No destination reply."
 					}
-				},
-				"_signup": {
-					"page_title": "Begin - Misskey",
-					"title": "Create a Misskey account",
-					"screen_name_caption": "User ID",
-					"screen_name_placeholder": "Use alphabets, numbers, or hyphens at least 3",
-					"screen_name_error_1": "Your ID must be only alphabets, numbers, and hyphens.",
-					"screen_name_error_2": "Your ID must be at least 3 characters.",
-					"screen_name_error_3": "Your ID must be 20 characters or less.",
-					"screen_name_info_1": "Checking...",
-					"screen_name_info_2": "This ID is available.",
-					"screen_name_info_3": "This ID is already taken.",
-					"screen_name_info_4": "Failed to check.",
-					"password_caption": "Passcode",
-					"password_placeholder": "at least 8 characters",
-					"password_error_1": "Too short passcode.",
-					"password_info_1": "OK",
-					"retype_password_caption": "Retype passcode",
-					"retype_password_placeholder": "Enter again",
-					"retype_password_error_1": "Passcode doesn't match.",
-					"retype_password_info_1": "OK",
-					"verify_caption": "Verify",
-					"agree_tou": "I agree to the {Terms of Use}",
-					"create": "Create account",
-					"creating": "Processing...",
-					"logging": "Logging in...",
-					"signin": "I already have my account"
 				},
 				"_signin": {
 					"page_title": "Sign in - Misskey",

@@ -4,22 +4,25 @@ block title
 	| Misskey
 
 block meta
-	meta(name='description', content='A mini-blog sns.')
+	meta(name='description', content= locale.sites.desktop.pages._entrance.description)
 	meta(name='keywords', content='Misskey')
 	meta(property='og:title', content='Misskey')
 	meta(property='og:type', content='website')
-	meta(property='og:description', content='A mini-blog sns.')
+	meta(property='og:description', content= locale.sites.desktop.pages._entrance.description)
 	meta(property='og:url', content=url)
 	meta(property='og:image', content='')
 	meta(property='og:site_name', content='Misskey')
+
+block assets
+	script(src='https://www.google.com/recaptcha/api.js')
 
 block body
 	header
 		h1 Misskey
 		p
-			| A miniblog-based online social networking service.
+			= locale.sites.desktop.pages._entrance.description
 			br
-			a(href= config.urls.about) learn more
+			a(href= config.urls.about)= locale.sites.desktop.pages._entrance.learn_more
 	main
 		div#login-form-container
 			div#loading.
@@ -37,18 +40,81 @@ block body
 					input#user-name(name='screen-name'
 						type='text'
 						pattern='^[0-9A-Za-z\-]+$'
-						placeholder='User name'
+						placeholder= locale.sites.desktop.pages._entrance._signin.user_name
 						autofocus
 						required)
 					i.fa.fa-at
 				label
 					input#password(name='password'
 						type='password'
-						placeholder='Password'
+						placeholder= locale.sites.desktop.pages._entrance._signin.password
 						required)
 					i.fa.fa-lock
 				button(type='submit')
-					| Sign in
-		a#new(href=config.urls.signup)
+					= locale.sites.desktop.pages._entrance._signin.signin
+		form#signup-form(autocomplete='off')
+			label.user-name
+				p.caption
+					i.fa.fa-at
+					=locale.sites.desktop.pages._entrance._signup.screen_name_caption
+				input(name='user-name'
+					type='text'
+					pattern='^[0-9A-Za-z\-]{3,20}$'
+					placeholder=locale.sites.desktop.pages._entrance._signup.screen_name_placeholder
+					autocomplete='off'
+					autofocus
+					required)
+				p.profile-page-url-preview
+				p.info(data-state='none')
+					i
+					span
+			
+			label.password
+				p.caption
+					i.fa.fa-lock
+					=locale.sites.desktop.pages._entrance._signup.password_caption
+				input(name='password'
+					type='password'
+					placeholder=locale.sites.desktop.pages._entrance._signup.password_placeholder
+					autocomplete='off'
+					required)
+				p.info(data-state='none')
+					i
+					span
+			
+			label.retype-password
+				p.caption
+					i.fa.fa-lock
+					=locale.sites.desktop.pages._entrance._signup.retype_password_caption
+				input(name='password-retype'
+					type='password'
+					placeholder=locale.sites.desktop.pages._entrance._signup.retype_password_placeholder
+					autocomplete='off'
+					required)
+				p.info(data-state='none')
+					i
+					span
+			
+			label.recaptcha
+				p.caption
+					i.fa.fa-toggle-off
+					=locale.sites.desktop.pages._entrance._signup.verify_caption
+				div.g-recaptcha(
+					data-callback='onRecaptchaed'
+					data-expired-callback='onRecaptchaExpired'
+					data-sitekey=config.recaptcha.siteKey)
+			
+			label.agree-tou
+				input(
+					name='agree-tou',
+					type='checkbox',
+					autocomplete='off',
+					required)
+				p!=locale.sites.desktop.pages._entrance._signup.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+			
+			button(type='submit')
+				i.fa.fa-check
+				span=locale.sites.desktop.pages._entrance._signup.create
+		button#new
 			i.fa.fa-pencil-square-o
-			| Create account
+			= locale.sites.desktop.pages._entrance.signup
