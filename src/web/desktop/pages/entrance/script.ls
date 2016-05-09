@@ -4,26 +4,31 @@ require 'jquery.transit'
 CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 
-$ ->
-	$form = $ \#login
+function init-card-effect($card)
+	force = 10
+	perspective = 512
 
-	$form.on 'mousedown' (e) ->
-		force = 10
-		cx = e.page-x - $form.position!.left
-		cy = e.page-y - $form.position!.top
-		w = $form.outer-width!
-		h = $form.outer-height!
+	$card.on 'mousedown' (e) ->
+		cx = e.page-x - $card.position!.left + ($ window).scroll-left!
+		cy = e.page-y - $card.position!.top + ($ window).scroll-top!
+		w = $card.outer-width!
+		h = $card.outer-height!
 		cxp = ((cx / w) * 2) - 1
 		cyp = ((cy / h) * 2) - 1
 		angle = Math.max(Math.abs(cxp), Math.abs(cyp)) * force
-		$form
+		$card
 			.css \transition 'transform 0.05s ease'
-			.css \transform "perspective(256px) rotate3d(#{-cyp}, #{cxp}, 0, #{angle}deg)"
+			.css \transform "perspective(#{perspective}px) rotate3d(#{-cyp}, #{cxp}, 0, #{angle}deg)"
 
-	$form.on 'mouseleave mouseup' (e) ->
-		$form
+	$card.on 'mouseleave mouseup' (e) ->
+		$card
 			.css \transition 'transform 1s ease'
-			.css \transform 'perspective(256px) rotate3d(0, 0, 0, 0deg)'
+			.css \transform "perspective(#{perspective}px) rotate3d(0, 0, 0, 0deg)"
+
+$ ->
+	$form = $ \#login
+
+	init-card-effect $form
 
 	$form.submit (event) ->
 		event.prevent-default!
