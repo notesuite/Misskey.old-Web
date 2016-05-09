@@ -236,6 +236,12 @@ body > main {
 			border: solid 1px rgba(0, 0, 0, 0.1);
 			border-radius: 4px;
 
+			&:hover {
+				> .help {
+					opacity: 1;
+				}
+			}
+
 			h2 {
 				display: block;
 				margin: 0;
@@ -267,6 +273,29 @@ body > main {
 					&[src=''] {
 						display: none;
 					}
+				}
+			}
+
+			> .help {
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				font-size: 1.2em;
+				color: #999;
+				opacity: 0;
+				transition: opacity 0.1s ease;
+
+				&:hover {
+					color: #444;
+				}
+
+				&:active {
+					color: #222;
+				}
+
+				> i {
+					padding: 14px;
 				}
 			}
 

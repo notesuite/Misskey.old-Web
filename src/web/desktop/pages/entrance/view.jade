@@ -33,10 +33,12 @@ block body
 					<div class="sk-cube4 sk-cube"></div>
 					<div class="sk-cube3 sk-cube"></div>
 				</div>
+
 			form#login
 				h2.title
 					img#avatar(src='', href='')
 					p Account
+				a.help(href= config.urls.help, title= locale.sites.desktop.pages._entrance._signin.help): i.fa.fa-question
 				label
 					input#user-name(name='screen-name'
 						type='text'

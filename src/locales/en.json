@@ -123,6 +123,7 @@
 					"description": "A miniblog-based online social networking service.",
 					"learn_more": "learn more",
 					"_signin": {
+						"help": "Help",
 						"user_name": "User name",
 						"password": "Passcode",
 						"signin": "Sign in"
