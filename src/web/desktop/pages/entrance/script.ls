@@ -85,6 +85,8 @@ $ ->
 					top: 0
 					left: 0
 				}
+
+				$signup-form.find '.user-name > input' .focus!
 			1000ms
 
 

@@ -23,6 +23,7 @@ block body
 			= locale.sites.desktop.pages._entrance.description
 			br
 			a(href= config.urls.about)= locale.sites.desktop.pages._entrance.learn_more
+
 	main
 		div#login-form-container
 			div#loading.
@@ -52,6 +53,7 @@ block body
 					i.fa.fa-lock
 				button(type='submit')
 					= locale.sites.desktop.pages._entrance._signin.signin
+
 		form#signup-form(autocomplete='off')
 			label.user-name
 				p.caption
@@ -62,7 +64,6 @@ block body
 					pattern='^[0-9A-Za-z\-]{3,20}$'
 					placeholder=locale.sites.desktop.pages._entrance._signup.screen_name_placeholder
 					autocomplete='off'
-					autofocus
 					required)
 				p.profile-page-url-preview
 				p.info(data-state='none')
@@ -115,6 +116,7 @@ block body
 			button(type='submit')
 				i.fa.fa-check
 				span=locale.sites.desktop.pages._entrance._signup.create
+
 		button#new
 			i.fa.fa-pencil-square-o
 			= locale.sites.desktop.pages._entrance.signup
