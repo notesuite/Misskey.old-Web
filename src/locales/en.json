@@ -131,6 +131,7 @@
 					"signup_title": "Let’s get started",
 					"signup": "Create account",
 					"_signup": {
+						"cancel": "Cancel",
 						"screen_name_caption": "User ID",
 						"screen_name_placeholder": "Use alphabets, numbers, or hyphens at least 3",
 						"screen_name_error_1": "Your ID must be only alphabets, numbers, and hyphens.",

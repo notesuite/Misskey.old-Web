@@ -281,12 +281,23 @@ body > main {
 			}
 
 			> .help {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
 				display: block;
 				position: absolute;
 				top: 0;
 				right: 0;
+				z-index: 1;
+				margin: 0;
+				padding: 0;
 				font-size: 1.2em;
 				color: #999;
+				border: none;
+				outline: none;
+				box-shadow: none;
+				background: transparent;
 				opacity: 0;
 				transition: opacity 0.1s ease;
 
@@ -388,6 +399,46 @@ body > main {
 			font-family: 'Meiryo', 'メイリオ', 'Meiryo UI', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
 		}
 
+		&:hover {
+			> .cancel {
+				opacity: 1;
+			}
+		}
+
+		> .cancel {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			cursor: pointer;
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 1;
+			margin: 0;
+			padding: 0;
+			font-size: 1.2em;
+			color: #999;
+			border: none;
+			outline: none;
+			box-shadow: none;
+			background: transparent;
+			opacity: 0;
+			transition: opacity 0.1s ease;
+
+			&:hover {
+				color: #555;
+			}
+
+			&:active {
+				color: #222;
+			}
+
+			> i {
+				padding: 14px;
+			}
+		}
+
 		label {
 			display: block;
 			position: relative;
@@ -453,7 +504,20 @@ body > main {
 		}
 
 		.agree-tou {
-			padding: 4px 0;
+			padding: 4px;
+			border-radius: 4px;
+
+			&:hover {
+				background: #f4f4f4;
+			}
+
+			&:active {
+				background: #eee;
+			}
+
+			&, * {
+				cursor: pointer;
+			}
 
 			p {
 				display: inline;

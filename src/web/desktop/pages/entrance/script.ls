@@ -8,87 +8,184 @@ $ ->
 	init-signin-form!
 	init-signup-form!
 
+	$ \#new .click go-signup
+	$ '#signup-form .cancel' .click go-signin
+
+function go-signup
 	$new = $ \#new
-	$new.click ->
-		$title = $ \#title
-		$description = $ \#description
-		$main = $ \main
-		$signin-form = $ \#login-form-container
-		$signup-form = $ \#signup-form
+	$title = $ \#title
+	$description = $ \#description
+	$main = $ \main
+	$signin-form = $ \#login-form-container
+	$signup-form = $ \#signup-form
 
-		$new.css \pointer-events \none
+	$new.css \pointer-events \none
 
-		$new
-			.transition {
-				scale: '0.7'
-				opacity: 0
-				duration: 500ms
+	$new
+		.transition {
+			scale: '0.7'
+			opacity: 0
+			duration: 500ms
+		}
+
+	$title
+		.transition {
+			opacity: 0
+			duration: 500ms
+		}
+		.transition {
+			opacity: 1
+			duration: 500ms
+		}
+
+	$main.css \overflow \hidden
+	$main.css \height "#{$main.outer-height!}px"
+	$main
+		.transition {
+			width: '434px'
+			duration: 500ms
+		}
+		.transition {
+			height: ($signup-form.outer-height! + 64px + 2px) + 'px'
+			'margin-top': (-$description.outer-height!) + 'px'
+			duration: 500ms
+		}
+
+	$signin-form
+		.transition {
+			left: '-100%'
+			opacity: 0
+			duration: 500ms
+		}
+
+	$signup-form.css \display \block
+	$signup-form
+		.transition {
+			left: '32px'
+			opacity: 1
+			duration: 500ms
+		}
+
+	set-timeout do
+		->
+			$title.text LOCALE.sites.desktop.pages._entrance.signup_title
+			$description
+				.transition {
+					opacity: 0
+					duration: 500ms
+				}
+		500ms
+
+	set-timeout do
+		->
+			$description.css \display \none
+			$main.css \height \auto
+			$main.css \margin-top \0
+			$main.css \overflow \visible
+			$new.css \display \none
+			$signin-form.css \display \none
+			$signup-form.css {
+				position: \relative
+				top: 0
+				left: 0
 			}
 
-		$title
-			.transition {
-				opacity: 0
-				duration: 500ms
-			}
-			.transition {
-				opacity: 1
-				duration: 500ms
-			}
+			$signup-form.find '.user-name > input' .focus!
+		1000ms
 
-		$main.css \overflow \hidden
-		$main.css \height "#{$main.outer-height! - 2px}px"
-		$main
-			.transition {
-				width: '434px'
-				duration: 500ms
-			}
-			.transition {
-				height: ($signup-form.outer-height! + 64px + 2px) + 'px'
-				'margin-top': (-$description.outer-height!) + 'px'
-				duration: 500ms
-			}
+function go-signin
+	$new = $ \#new
+	$title = $ \#title
+	$description = $ \#description
+	$main = $ \main
+	$signin-form = $ \#login-form-container
+	$signup-form = $ \#signup-form
 
-		$signin-form
-			.transition {
-				left: '-100%'
-				opacity: 0
-				duration: 500ms
-			}
+	$title
+		.transition {
+			opacity: 0
+			duration: 500ms
+		}
+		.transition {
+			opacity: 1
+			duration: 500ms
+		}
 
-		$signup-form.css \display \block
-		$signup-form
-			.transition {
-				left: '32px'
-				opacity: 1
-				duration: 500ms
-			}
+	$description.css \display \block
 
-		set-timeout do
-			->
-				$title.text LOCALE.sites.desktop.pages._entrance.signup_title
-				$description
-					.transition {
-						opacity: 0
-						duration: 500ms
-					}
-			500ms
+	$main.css \overflow \hidden
+	$main.css \height "#{$main.outer-height!}px"
+	$main.css 'margin-top' (-$description.outer-height!) + 'px'
+	$main
+		.transition {
+			width: '380px'
+			duration: 500ms
+		}
+		.transition {
+			height: ($signin-form.outer-height! + $new.outer-height! + 64px + 24px + 2px) + 'px'
+			'margin-top': '0px'
+			duration: 500ms
+		}
 
-		set-timeout do
-			->
-				$description.css \display \none
-				$main.css \height \auto
-				$main.css \margin-top \0
-				$new.css \display \none
-				$signin-form.css \display \none
-				$signup-form.css {
-					position: \relative
-					top: 0
-					left: 0
+	$new.css \display \block
+
+	$signup-form.css \position \absolute
+	$signup-form.css \top 32px
+	$signup-form
+		.transition {
+			left: '100%'
+			opacity: 0
+			duration: 500ms
+		}
+
+	$signin-form.css \display \block
+	$signin-form
+		.transition {
+			left: '0px'
+			opacity: 1
+			duration: 500ms
+		}
+
+	set-timeout do
+		->
+			$title.text \Misskey
+
+			$description
+				.transition {
+					opacity: 1
+					duration: 500ms
 				}
 
-				$signup-form.find '.user-name > input' .focus!
-			1000ms
+			$main.css \overflow \visible
 
+			$main
+				.transition {
+					'margin-top': '0px'
+					duration: 500ms
+				}
+
+			$new.css \pointer-events \auto
+			$new
+				.transition {
+					scale: '1'
+					opacity: 1
+					duration: 500ms
+				}
+		500ms
+
+	set-timeout do
+		->
+			$main.css \height \auto
+
+			$signup-form.css \display \none
+			$signin-form.css {
+				position: \relative
+				top: 0
+				left: 0
+			}
+
+			$signin-form.find '.user-name > input' .focus!
+		1000ms
 
 function init-card-effect($card)
 	force = 10
@@ -143,7 +240,7 @@ function init-signin-form
 
 		$.ajax CONFIG.urls.signin, {
 			data: {
-				'screen-name': $form.find '[name="screen-name"]' .val!
+				'screen-name': $form.find '[name="user-name"]' .val!
 				'password': $form.find '[name="password"]' .val!
 			}
 		}

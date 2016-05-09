@@ -39,15 +39,15 @@ block body
 					img#avatar(src='', href='')
 					p Account
 				a.help(href= config.urls.help, title= locale.sites.desktop.pages._entrance._signin.help): i.fa.fa-question
-				label
-					input#user-name(name='screen-name'
+				label.user-name
+					input#user-name(name='user-name'
 						type='text'
 						pattern='^[0-9A-Za-z\-]+$'
 						placeholder= locale.sites.desktop.pages._entrance._signin.user_name
 						autofocus
 						required)
 					i.fa.fa-at
-				label
+				label.password
 					input#password(name='password'
 						type='password'
 						placeholder= locale.sites.desktop.pages._entrance._signin.password
@@ -57,6 +57,7 @@ block body
 					= locale.sites.desktop.pages._entrance._signin.signin
 
 		form#signup-form(autocomplete='off')
+			button.cancel(type='button', title= locale.sites.desktop.pages._entrance._signup.cancel): i.fa.fa-times
 			label.user-name
 				p.caption
 					i.fa.fa-at
