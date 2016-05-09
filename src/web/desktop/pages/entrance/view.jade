@@ -30,10 +30,11 @@ block body
 					<div class="sk-cube3 sk-cube"></div>
 				</div>
 			form#login
-				h2
-					| Account
+				h2.title
+					img#avatar(src='', href='')
+					p Account
 				label
-					input(name='screen-name'
+					input#user-name(name='screen-name'
 						type='text'
 						pattern='^[0-9A-Za-z\-]+$'
 						placeholder='User name'
@@ -41,7 +42,7 @@ block body
 						required)
 					i.fa.fa-at
 				label
-					input(name='password'
+					input#password(name='password'
 						type='password'
 						placeholder='Password'
 						required)

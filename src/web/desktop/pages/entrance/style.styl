@@ -213,7 +213,7 @@ body > main {
 			position: relative;
 			z-index: 2;
 			box-sizing: border-box;
-			padding: 24px 32px 0 32px;
+			padding: 10px 32px 0 32px;
 			background: #fff;
 			background-clip: padding-box;
 			//border: solid 8px rgba(0, 0, 0, 0.05);
@@ -222,8 +222,10 @@ body > main {
 
 			h2 {
 				display: block;
-				margin: 0 0 12px 0;
-				padding: 0 0 14px 0;
+				margin: 0;
+				padding: 0;
+				height: 54px;
+				line-height: 54px;
 				text-align: center;
 				text-transform: uppercase;
 				font-size: 1em;
@@ -231,8 +233,24 @@ body > main {
 				color: #888;
 				border-bottom: solid 1px #eee;
 
-				> i {
-					margin-left: 0.25em;
+				p {
+					display: inline;
+					margin: 0;
+					padding: 0;
+				}
+
+				#avatar {
+					display: inline-block;
+					position: relative;
+					top: 10px;
+					width: 32px;
+					height: 32px;
+					margin-right: 8px;
+					border-radius: 100%;
+
+					&[src=''] {
+						display: none;
+					}
 				}
 			}
 

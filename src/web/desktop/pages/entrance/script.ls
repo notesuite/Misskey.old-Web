@@ -4,31 +4,18 @@ require 'jquery.transit'
 CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 
-function init-card-effect($card)
-	force = 10
-	perspective = 512
-
-	$card.on 'mousedown' (e) ->
-		cx = e.page-x - $card.offset!.left + ($ window).scroll-left!
-		cy = e.page-y - $card.offset!.top + ($ window).scroll-top!
-		w = $card.outer-width!
-		h = $card.outer-height!
-		cxp = ((cx / w) * 2) - 1
-		cyp = ((cy / h) * 2) - 1
-		angle = Math.max(Math.abs(cxp), Math.abs(cyp)) * force
-		$card
-			.css \transition 'transform 0.05s ease'
-			.css \transform "perspective(#{perspective}px) rotate3d(#{-cyp}, #{cxp}, 0, #{angle}deg)"
-
-	$card.on 'mouseleave mouseup' (e) ->
-		$card
-			.css \transition 'transform 1s ease'
-			.css \transform "perspective(#{perspective}px) rotate3d(0, 0, 0, 0deg)"
-
 $ ->
 	$form = $ \#login
 
 	init-card-effect $form
+
+	$ \#user-name .change ->
+		$.ajax "#{CONFIG.urls.web-api}/users/show", {
+			data: {'screen-name': $ \#user-name .val!}
+		}
+		.done (user) ->
+			$ '#login .title p' .text user.name
+			$ \#avatar .attr \src user.avatar-thumbnail-url
 
 	$form.submit (event) ->
 		event.prevent-default!
@@ -57,3 +44,24 @@ $ ->
 				"opacity": "1",
 				"transition": "all ease 0.7s"
 			}
+
+function init-card-effect($card)
+	force = 10
+	perspective = 512
+
+	$card.on 'mousedown' (e) ->
+		cx = e.page-x - $card.offset!.left + ($ window).scroll-left!
+		cy = e.page-y - $card.offset!.top + ($ window).scroll-top!
+		w = $card.outer-width!
+		h = $card.outer-height!
+		cxp = ((cx / w) * 2) - 1
+		cyp = ((cy / h) * 2) - 1
+		angle = Math.max(Math.abs(cxp), Math.abs(cyp)) * force
+		$card
+			.css \transition 'transform 0.05s ease'
+			.css \transform "perspective(#{perspective}px) rotate3d(#{-cyp}, #{cxp}, 0, #{angle}deg)"
+
+	$card.on 'mouseleave mouseup' (e) ->
+		$card
+			.css \transition 'transform 1s ease'
+			.css \transform "perspective(#{perspective}px) rotate3d(0, 0, 0, 0deg)"
