@@ -50,7 +50,7 @@ if (cluster.isMaster) {
 	}
 
 	// Count the machine's CPUs
-	const cpuCount: number = require('os').cpus().length;
+	const cpuCount = require('os').cpus().length;
 
 	// Create a worker for each CPU
 	for (let i = 0; i < cpuCount; i++) {
