@@ -66,7 +66,7 @@ else {
 }
 
 // Listen for dying workers
-cluster.on('exit', (worker: cluster.Worker) => {
+cluster.on('exit', worker => {
 	// Replace the dead worker,
 	// we're not sentimental
 	console.log(`\u001b[1;31m[${name(worker.id)}] died :(\u001b[0m`);
