@@ -46,7 +46,7 @@ if (cluster.isMaster) {
 	checkDependencies();
 
 	if (env !== 'production') {
-		logWarn('このMisskey-Webはproductionモードで起動していません。本番環境で使用しないでください。');
+		logWarn('Productionモードではありません。本番環境で使用しないでください。');
 	}
 
 	// Count the machine's CPUs
