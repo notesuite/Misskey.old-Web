@@ -127,6 +127,7 @@
 						"password": "Passcode",
 						"signin": "Sign in"
 					},
+					"signup_title": "Let’s get started",
 					"signup": "Create account",
 					"_signup": {
 						"screen_name_caption": "User ID",

@@ -127,6 +127,7 @@
 						"password": "パスコード",
 						"signin": "ログイン"
 					},
+					"signup_title": "Misskeyを始めよう",
 					"signup": "アカウントを作成する",
 					"_signup": {
 						"screen_name_caption": "ユーザー名",

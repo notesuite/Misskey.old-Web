@@ -10,6 +10,8 @@ $ ->
 
 	$new = $ \#new
 	$new.click ->
+		$title = $ \#title
+		$description = $ \#description
 		$main = $ \main
 		$signin-form = $ \#login-form-container
 		$signup-form = $ \#signup-form
@@ -23,6 +25,16 @@ $ ->
 				duration: 500ms
 			}
 
+		$title
+			.transition {
+				opacity: 0
+				duration: 500ms
+			}
+			.transition {
+				opacity: 1
+				duration: 500ms
+			}
+
 		$main.css \overflow \hidden
 		$main.css \height "#{$main.outer-height! - 2px}px"
 		$main
@@ -32,6 +44,7 @@ $ ->
 			}
 			.transition {
 				height: ($signup-form.outer-height! + 64px + 2px) + 'px'
+				'margin-top': (-$description.outer-height!) + 'px'
 				duration: 500ms
 			}
 
@@ -52,7 +65,19 @@ $ ->
 
 		set-timeout do
 			->
+				$title.text LOCALE.sites.desktop.pages._entrance.signup_title
+				$description
+					.transition {
+						opacity: 0
+						duration: 500ms
+					}
+			500ms
+
+		set-timeout do
+			->
+				$description.css \display \none
 				$main.css \height \auto
+				$main.css \margin-top \0
 				$new.css \display \none
 				$signin-form.css \display \none
 				$signup-form.css {
@@ -102,9 +127,11 @@ function init-signin-form
 
 		$ \html .add-class \logging
 
+		z = Math.floor(Math.random() * 40) - 20
+
 		$form = $ @
 			..css {
-				"transform": "perspective(512px) translateY(-100%) scale(0.7) rotateX(-180deg) rotateZ(" + (Math.floor(Math.random() * 40) - 20) + "deg)",
+				"transform": "perspective(512px) translateY(-100%) scale(0.7) rotateX(-180deg) rotateZ(#{z}deg)",
 				"opacity": "0",
 				"transition": "all ease-in 0.5s"
 			}

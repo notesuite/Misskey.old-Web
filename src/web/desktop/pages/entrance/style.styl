@@ -1,12 +1,12 @@
 @import "../../common";
 
-* {
+*:not(i) {
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: default;
-	font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+	font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', 'Meiryo UI', sans-serif;
 }
 
 html, body {
@@ -87,13 +87,15 @@ body > header {
 		font-size: 2em;
 		font-weight: normal;
 		color: rgba(0, 0, 0, 0.5);
+		opacity: 1;
 	}
 
 	p {
 		display: block;
-		margin: 8px 0 0 0;
-		padding: 0;
+		margin: 0;
+		padding: 8px 0 0 0;
 		color: rgba(0, 0, 0, 0.4);
+		opacity: 1;
 	}
 }
 
@@ -344,6 +346,10 @@ body > main {
 		border: solid 1px rgba(0, 0, 0, 0.1);
 		border-radius: 4px;
 
+		*:not(i) {
+			font-family: 'Meiryo', 'メイリオ', 'Meiryo UI', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+		}
+
 		label {
 			display: block;
 			position: relative;
@@ -519,6 +525,7 @@ body > main {
 		margin-top: 24px;
 		padding: 18px 18px 18px 36px;
 		line-height: 1em;
+		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', 'Meiryo UI', sans-serif;
 		font-size: 1em;
 		color: #fff;
 		text-transform: uppercase;
