@@ -9,8 +9,8 @@ function init-card-effect($card)
 	perspective = 512
 
 	$card.on 'mousedown' (e) ->
-		cx = e.page-x - $card.position!.left + ($ window).scroll-left!
-		cy = e.page-y - $card.position!.top + ($ window).scroll-top!
+		cx = e.page-x - $card.offset!.left + ($ window).scroll-left!
+		cy = e.page-y - $card.offset!.top + ($ window).scroll-top!
 		w = $card.outer-width!
 		h = $card.outer-height!
 		cxp = ((cx / w) * 2) - 1

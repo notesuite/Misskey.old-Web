@@ -106,94 +106,199 @@ body > main {
 	border: solid 1px rgba(0, 0, 0, 0.1);
 	border-radius: 4px;
 
-	#login {
-		display: block;
-		box-sizing: border-box;
-		padding: 24px 32px 0 32px;
-		background: #fff;
-		background-clip: padding-box;
-		//border: solid 8px rgba(0, 0, 0, 0.05);
-		border: solid 1px rgba(0, 0, 0, 0.1);
-		border-radius: 4px;
+	#login-form-container {
+		position: relative;
 
-		h2 {
-			display: block;
-			margin: 0 0 12px 0;
-			padding: 0 0 14px 0;
-			text-align: center;
-			text-transform: uppercase;
-			font-size: 1em;
-			font-weight: bold;
-			color: #888;
-			border-bottom: solid 1px #eee;
+		#loading {
+			position: absolute;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
 
-			> i {
-				margin-left: 0.25em;
-			}
-		}
-
-		label {
-			display: block;
-			position: relative;
-			margin: 12px 0;
-
-			i {
-				display: block;
-				pointer-events: none;
+			.sk-folding-cube {
 				position: absolute;
+				top: 0;
+				right: 0;
 				bottom: 0;
+				left: 0;
+				margin: auto;
+				width: 80px;
+				height: 80px;
+				-webkit-transform: rotateZ(45deg);
+				transform: rotateZ(45deg);
+			}
+
+			.sk-folding-cube .sk-cube {
+				float: left;
+				width: 50%;
+				height: 50%;
+				position: relative;
+			}
+			.sk-folding-cube .sk-cube:before {
+				content: '';
+				position: absolute;
 				top: 0;
 				left: 0;
-				z-index: 1;
-				margin: auto;
-				padding: 0 16px;
-				height: 1em;
-				color: #898786;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				background-color: rgba(255, 255, 255, 0.1);
+				background-clip: padding-box;
+				border: solid 1px rgba(0, 0, 0, 0.2);
+				-webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+				animation: sk-foldCubeAngle 2.4s infinite linear both;
+				-webkit-transform-origin: 100% 100%;
+				-ms-transform-origin: 100% 100%;
+				transform-origin: 100% 100%;
+			}
+			.sk-folding-cube .sk-cube2 {
+			  -webkit-transform: rotateZ(90deg);
+			          transform: rotateZ(90deg);
+			}
+			.sk-folding-cube .sk-cube3 {
+			  -webkit-transform: rotateZ(180deg);
+			          transform: rotateZ(180deg);
+			}
+			.sk-folding-cube .sk-cube4 {
+			  -webkit-transform: rotateZ(270deg);
+			          transform: rotateZ(270deg);
+			}
+			.sk-folding-cube .sk-cube2:before {
+			  -webkit-animation-delay: 0.3s;
+			          animation-delay: 0.3s;
+			}
+			.sk-folding-cube .sk-cube3:before {
+			  -webkit-animation-delay: 0.6s;
+			          animation-delay: 0.6s;
+			}
+			.sk-folding-cube .sk-cube4:before {
+			  -webkit-animation-delay: 0.9s;
+			          animation-delay: 0.9s;
+			}
+			@-webkit-keyframes sk-foldCubeAngle {
+			  0%, 10% {
+			    -webkit-transform: perspective(140px) rotateX(-180deg);
+			            transform: perspective(140px) rotateX(-180deg);
+			    opacity: 0;
+			  } 25%, 75% {
+			    -webkit-transform: perspective(140px) rotateX(0deg);
+			            transform: perspective(140px) rotateX(0deg);
+			    opacity: 1;
+			  } 90%, 100% {
+			    -webkit-transform: perspective(140px) rotateY(180deg);
+			            transform: perspective(140px) rotateY(180deg);
+			    opacity: 0;
+			  }
 			}
 
-			input[type=text],
-			input[type=password] {
-				text-input()
-				padding: 0 0 0 38px;
-
-				&:hover + i {
-					color: #797776;
-				}
+			@keyframes sk-foldCubeAngle {
+			  0%, 10% {
+			    -webkit-transform: perspective(140px) rotateX(-180deg);
+			            transform: perspective(140px) rotateX(-180deg);
+			    opacity: 0;
+			  } 25%, 75% {
+			    -webkit-transform: perspective(140px) rotateX(0deg);
+			            transform: perspective(140px) rotateX(0deg);
+			    opacity: 1;
+			  } 90%, 100% {
+			    -webkit-transform: perspective(140px) rotateY(180deg);
+			            transform: perspective(140px) rotateY(180deg);
+			    opacity: 0;
+			  }
 			}
 		}
 
-		[type=submit] {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			cursor: pointer;
+		#login {
+			display: block;
+			position: relative;
+			z-index: 2;
 			box-sizing: border-box;
-			padding: 16px 16px 32px 16px;
-			margin: -6px 0 0 0;
-			width: 100%;
-			font-size: 1.2em;
-			color: #555;
-			outline: none;
-			border: none;
-			border-radius: 0;
-			box-shadow: none;
-			background: transparent;
-			transition: all .5s ease;
-			font-family: FontAwesome, '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+			padding: 24px 32px 0 32px;
+			background: #fff;
+			background-clip: padding-box;
+			//border: solid 8px rgba(0, 0, 0, 0.05);
+			border: solid 1px rgba(0, 0, 0, 0.1);
+			border-radius: 4px;
 
-			&:hover {
-				color: $theme-color;
-				transition: all .2s ease;
+			h2 {
+				display: block;
+				margin: 0 0 12px 0;
+				padding: 0 0 14px 0;
+				text-align: center;
+				text-transform: uppercase;
+				font-size: 1em;
+				font-weight: bold;
+				color: #888;
+				border-bottom: solid 1px #eee;
+
+				> i {
+					margin-left: 0.25em;
+				}
 			}
 
-			&:focus {
-				color: $theme-color;
-				transition: all .2s ease;
+			label {
+				display: block;
+				position: relative;
+				margin: 12px 0;
+
+				i {
+					display: block;
+					pointer-events: none;
+					position: absolute;
+					bottom: 0;
+					top: 0;
+					left: 0;
+					z-index: 1;
+					margin: auto;
+					padding: 0 16px;
+					height: 1em;
+					color: #898786;
+				}
+
+				input[type=text],
+				input[type=password] {
+					text-input()
+					padding: 0 0 0 38px;
+
+					&:hover + i {
+						color: #797776;
+					}
+				}
 			}
 
-			&:active {
-				color: darken($theme-color, 30%);
-				transition: all .2s ease;
+			[type=submit] {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				box-sizing: border-box;
+				padding: 16px 16px 32px 16px;
+				margin: -6px 0 0 0;
+				width: 100%;
+				font-size: 1.2em;
+				color: #555;
+				outline: none;
+				border: none;
+				border-radius: 0;
+				box-shadow: none;
+				background: transparent;
+				transition: all .5s ease;
+				font-family: FontAwesome, '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+
+				&:hover {
+					color: $theme-color;
+					transition: all .2s ease;
+				}
+
+				&:focus {
+					color: $theme-color;
+					transition: all .2s ease;
+				}
+
+				&:active {
+					color: darken($theme-color, 30%);
+					transition: all .2s ease;
+				}
 			}
 		}
 	}
