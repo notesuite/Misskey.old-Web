@@ -8,7 +8,15 @@ WavesEffect = require '../../common/scripts/lib/waves-effect.js'
 $ window .load ->
 	WavesEffect.attach-to-class \ripple-effect
 
+window.on-recaptchaed = ->
+	$ \.recaptcha .find '> .caption > i' .attr \class 'fa fa-toggle-on'
+
+window.on-recaptcha-expired = ->
+	$ \.recaptcha .find '> .caption > i' .attr \class 'fa fa-toggle-off'
+
 $ ->
+	swing $ 'body > header'
+
 	init-signin-form!
 	init-signup-form!
 
@@ -191,27 +199,6 @@ function go-signin
 			$signin-form.find '.user-name > input' .focus!
 		1000ms
 
-function init-card-effect($card)
-	force = 10
-	perspective = 512
-
-	$card.on 'mousedown' (e) ->
-		cx = e.page-x - $card.offset!.left + ($ window).scroll-left!
-		cy = e.page-y - $card.offset!.top + ($ window).scroll-top!
-		w = $card.outer-width!
-		h = $card.outer-height!
-		cxp = ((cx / w) * 2) - 1
-		cyp = ((cy / h) * 2) - 1
-		angle = Math.max(Math.abs(cxp), Math.abs(cyp)) * force
-		$card
-			.css \transition 'transform 0.05s ease'
-			.css \transform "perspective(#{perspective}px) rotate3d(#{-cyp}, #{cxp}, 0, #{angle}deg)"
-
-	$card.on 'mouseleave mouseup' (e) ->
-		$card
-			.css \transition 'transform 1s ease'
-			.css \transform "perspective(#{perspective}px) rotate3d(0, 0, 0, 0deg)"
-
 function init-signin-form
 	$form = $ \#login
 
@@ -375,8 +362,34 @@ function init-signup-form
 
 			$ \html .remove-class \logging
 
-window.on-recaptchaed = ->
-	$ \.recaptcha .find '> .caption > i' .attr \class 'fa fa-toggle-on'
+function init-card-effect($card)
+	force = 10
+	perspective = 512
 
-window.on-recaptcha-expired = ->
-	$ \.recaptcha .find '> .caption > i' .attr \class 'fa fa-toggle-off'
+	$card.on 'mousedown' (e) ->
+		cx = e.page-x - $card.offset!.left + ($ window).scroll-left!
+		cy = e.page-y - $card.offset!.top + ($ window).scroll-top!
+		w = $card.outer-width!
+		h = $card.outer-height!
+		cxp = ((cx / w) * 2) - 1
+		cyp = ((cy / h) * 2) - 1
+		angle = Math.max(Math.abs(cxp), Math.abs(cyp)) * force
+		$card
+			.css \transition 'transform 0.05s ease'
+			.css \transform "perspective(#{perspective}px) rotate3d(#{-cyp}, #{cxp}, 0, #{angle}deg)"
+
+	$card.on 'mouseleave mouseup' (e) ->
+		$card
+			.css \transition 'transform 1s ease'
+			.css \transform "perspective(#{perspective}px) rotate3d(0, 0, 0, 0deg)"
+
+function swing($elem)
+	t = 1
+	f = 1
+	$elem.css \transform-origin 'center top'
+	timer = set-interval update, 10ms
+	function update
+		t++
+		f += (1 / f)
+		pos = Math.sin(t / 20) / (f / 256)
+		$elem.css \transform "perspective(1024px) rotateX(#{pos}deg)"
