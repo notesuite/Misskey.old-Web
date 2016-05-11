@@ -97,6 +97,20 @@ function loadConfig(): IConfig {
 
 export default loadConfig();
 
+export function sanitize(conf: IConfig): any {
+	const c = Object.assign({}, conf);
+
+	delete c.recaptcha.secretKey;
+	delete c.api.pass;
+	delete c.mongo;
+	delete c.redis;
+	delete c.cookiePass;
+	delete c.sessionSecret;
+	delete c.bindPorts;
+
+	return c;
+};
+
 //////////////////////////////////////////////////
 // CONFIGURATION INTERFACE DEFINITION
 

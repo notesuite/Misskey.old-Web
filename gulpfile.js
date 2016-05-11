@@ -54,6 +54,7 @@ const project = ts.createProject('tsconfig.json', {
 });
 
 const config = require('./src/_config.js').default;
+const sanitizedConfig = require('./src/_config.js').sanitize(config);
 
 //////////////////////////////////////////////////
 // Full build
@@ -103,7 +104,7 @@ gulp.task('build:public-config', ['build:ts'], done => {
 
 	fs.mkdir('./built/_', e => {
 		if (!e || (e && e.code === 'EEXIST')) {
-			fs.writeFile('./built/_/config.json', JSON.stringify(config), done);
+			fs.writeFile('./built/_/config.json', JSON.stringify(sanitizedConfig), done);
 		} else {
 			console.error(e);
 		}

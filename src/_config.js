@@ -68,6 +68,19 @@ function loadConfig() {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = loadConfig();
+function sanitize(conf) {
+    const c = Object.assign({}, conf);
+    delete c.recaptcha.secretKey;
+    delete c.api.pass;
+    delete c.mongo;
+    delete c.redis;
+    delete c.cookiePass;
+    delete c.sessionSecret;
+    delete c.bindPorts;
+    return c;
+}
+exports.sanitize = sanitize;
+;
 function validateHost(host) {
     if (host.indexOf(':') !== -1) {
         console.error('host にはポート情報は含めないでください。必要であれば port にポート情報を記述してください。');
