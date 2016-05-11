@@ -57,7 +57,7 @@ recaptcha:
   # サイトキー
   siteKey: <string>
   # シークレット
-  secret: <string>
+  secretKey: <string>
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ここから下は特に弄る必要は無いと思われます
