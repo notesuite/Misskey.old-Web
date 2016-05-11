@@ -1,4 +1,6 @@
-module.exports = analyze(locale, post) ->
+module.exports = analyze
+
+function analyze(locale, post)
 	switch post.type
 		| \status, \reply =>
 			text = if post.text? then post.text else ''
