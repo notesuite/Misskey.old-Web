@@ -1,5 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
+
+CONFIG = require 'config'
 tooltip = require './tooltiper.ls'
 ui-window = require './window.ls'
 card-popup-render = require '../views/user-card.jade'
