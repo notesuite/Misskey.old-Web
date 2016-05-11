@@ -1,7 +1,6 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 WavesEffect = require '../../common/scripts/lib/waves-effect.js'
 Strength = require '../../common/scripts/lib/strength.js'

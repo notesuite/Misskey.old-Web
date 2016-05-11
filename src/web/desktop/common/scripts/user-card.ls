@@ -1,7 +1,6 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-CONFIG = require 'config'
 tooltip = require './tooltiper.ls'
 ui-window = require './window.ls'
 card-popup-render = require '../views/user-card.jade'
@@ -34,7 +33,7 @@ module.exports = ($trigger) ->
 		.done (user) ->
 			$card := $ card-popup-render {
 				user
-				config: CONFIG
+				
 				login: LOGIN
 				me: ME
 				user-settings: USER_SETTINGS

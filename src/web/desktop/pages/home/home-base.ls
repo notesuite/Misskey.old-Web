@@ -2,7 +2,6 @@ require '../../common/scripts/ui.ls'
 $ = require 'jquery'
 moment = require 'moment'
 
-CONFIG = require 'config'
 Timeline = require '../../common/scripts/timeline-core.ls'
 notification-compiler = require '../../common/views/notification/smart/render.jade'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
@@ -147,7 +146,7 @@ module.exports = (type) ->
 
 				$notification = $ notification-compiler {
 					notification
-					config: CONFIG
+					
 					locale: LOCALE
 					user-settings: USER_SETTINGS
 					me: ME
@@ -235,7 +234,7 @@ function init-widgets
 			if notifications != []
 				$notifications = $ notifications-compiler {
 					items: notifications
-					config: CONFIG
+					
 					user-settings: USER_SETTINGS
 					me: ME
 					locale: LOCALE
@@ -252,7 +251,7 @@ function init-widgets
 			if users != []
 				$users = $ recommendation-users-compiler {
 					users
-					config: CONFIG
+					
 					me: ME
 					user-settings: USER_SETTINGS
 					locale: LOCALE

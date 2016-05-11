@@ -12,7 +12,7 @@ class AlbumDialog
 		$ \html .css \overflow \hidden
 
 		$album = $ album-dialog-compiler {
-			config: CONFIG
+			
 			me: ME
 		}
 

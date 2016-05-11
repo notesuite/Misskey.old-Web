@@ -70,7 +70,7 @@ $ ->
 	socket.on \notification (notification) ->
 		$notification = $ notification-render {
 			notification
-			config: CONFIG
+			
 			me: ME
 			locale: LOCALE
 			user-settings: USER_SETTINGS

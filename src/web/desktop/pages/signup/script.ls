@@ -1,7 +1,6 @@
 $ = require 'jquery'
 require 'jquery.transit'
 
-CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 
 window.on-recaptchaed = ->

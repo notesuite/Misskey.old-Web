@@ -119,7 +119,7 @@ class Timeline
 
 		$post = $ post-compiler {
 			post
-			config: CONFIG
+			
 			me: ME
 			locale: LOCALE
 			user-settings: USER_SETTINGS
@@ -137,7 +137,7 @@ class Timeline
 
 		$post = $ post-compiler {
 			post
-			config: CONFIG
+			
 			me: ME
 			locale: LOCALE
 			user-settings: USER_SETTINGS

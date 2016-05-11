@@ -4,7 +4,6 @@ moment = require 'moment'
 Sortable = require 'Sortable'
 require 'fuck-adblock'
 
-CONFIG = require 'config'
 require './main.ls'
 require '../../../common/kronos.ls'
 Tab = require './lib/tab.js'
@@ -238,7 +237,7 @@ function init-header
 					$ '#misskey-header .notifications .body .main' .css \margin-top \32px
 					$notifications = $ notifications-compiler {
 						items: notifications
-						config: CONFIG
+						
 						locale: LOCALE
 						user-settings: USER_SETTINGS
 						me: ME

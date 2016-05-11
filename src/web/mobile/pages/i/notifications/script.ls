@@ -42,7 +42,7 @@ $ ->
 			notifications.for-each (notification) ->
 				$notification = $ notification-compiler {
 					notification
-					config: CONFIG
+					
 					me: ME
 					user-settings: USER_SETTINGS
 				}

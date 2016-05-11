@@ -13,7 +13,7 @@ $ ->
 			$folder = $ folder-render {
 				folder
 				choose: CHOOSE
-				config: CONFIG
+				
 			}
 			$folders.prepend $folder
 		if CHOOSE != \folder
@@ -31,7 +31,7 @@ $ ->
 				files.for-each (file) ->
 					$file = $ file-render {
 						file
-						config: CONFIG
+						
 					}
 					$files.append $file
 			.fail ->
@@ -57,7 +57,7 @@ $ ->
 			files.for-each (file) ->
 				$file = $ file-render {
 					file
-					config: CONFIG
+					
 				}
 				$files.append $file
 		.always ->

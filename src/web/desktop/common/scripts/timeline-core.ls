@@ -20,7 +20,7 @@ class Post
 		if post?
 			$post = $ post-compiler {
 				post
-				config: CONFIG
+				
 				me: ME
 				user-settings: USER_SETTINGS
 				locale: LOCALE
@@ -175,7 +175,7 @@ class Post
 	sub-render: (post) ->
 		$post = $ sub-post-compiler {
 			post
-			config: CONFIG
+			
 			me: ME
 			user-settings: USER_SETTINGS
 			locale: LOCALE

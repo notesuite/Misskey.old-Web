@@ -129,7 +129,7 @@ class Album
 		THIS = @
 		$file = $ file-compiler {
 			file
-			config: CONFIG
+			
 			locale: LOCALE
 			me: ME
 		}
