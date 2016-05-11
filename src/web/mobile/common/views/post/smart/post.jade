@@ -17,7 +17,6 @@ mixin core(post, isRepost, repost)
 			itemscope
 			itemtype                = 'http://schema.org/BlogPosting'
 			data-id                 = post.id
-			data-cursor             = isRepost ? repost.cursor : post.cursor
 			data-type               = post.type
 			data-user-name          = post.user.name
 			data-user-screen-name   = post.user.screenName
