@@ -4,6 +4,7 @@ require 'jquery.transit'
 CONFIG = require 'config'
 require '../../common/scripts/main.ls'
 WavesEffect = require '../../common/scripts/lib/waves-effect.js'
+Strength = require '../../common/scripts/lib/strength.js'
 
 $ window .load ->
 	WavesEffect.attach-to-class \ripple-effect
@@ -293,21 +294,38 @@ function init-signup-form
 			$form.find '.user-name > .profile-page-url-preview' .text ""
 
 	$form.find '.password > input' .keyup ->
+		$meter = $form.find '.password > .meter'
 		password = $form.find '.password > input' .val!
+
 		if password != ''
-			err = switch
-				| password.length < 8chars => LOCALE.sites.desktop.pages._entrance._signup.password_error_1
-				| _                        => null
-			if err
+			strength = Strength password
+			text = ''
+
+			if strength > 0.3
+				text = LOCALE.sites.desktop.pages._entrance._signup.password_strength_medium
+				$meter.attr \data-strength \medium
+
+				if strength > 0.7
+					text = LOCALE.sites.desktop.pages._entrance._signup.password_strength_high
+					$meter.attr \data-strength \high
+			else
+				text = LOCALE.sites.desktop.pages._entrance._signup.password_strength_low
+				$meter.attr \data-strength \low
+
+			$meter.find '.value' .css \width "#{strength * 100}%"
+
+			if strength < 0.3
 				$form.find '.password > .info'
 					..children \i .attr \class 'fa fa-exclamation-triangle'
-					..children \span .text err
+					..children \span .text text
 					..attr \data-state \error
 			else
 				$form.find '.password > .info'
 					..children \i .attr \class 'fa fa-check'
-					..children \span .text LOCALE.sites.desktop.pages._entrance._signup.password_info_1
+					..children \span .text text
 					..attr \data-state \ok
+		else
+			$meter.attr \data-strength ''
 
 	$form.find '.retype-password > input' .keyup ->
 		password = $form.find '.password > input' .val!
