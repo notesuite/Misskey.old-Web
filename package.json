@@ -40,7 +40,7 @@
     "gulp-util": "3.0.7",
     "jadeify": "4.6.0",
     "livescript": "1.4.0",
-    "tslint": "3.9.0",
+    "tslint": "3.10.0",
     "typescript": "1.8.10",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0"
