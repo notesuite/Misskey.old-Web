@@ -153,7 +153,7 @@ class Album
 
 	load-files: ->
 		THIS = @
-		$.ajax "#{CONFIG.urls.web-api}/album/files/stream"
+		$.ajax "#{CONFIG.urls.api}/album/files/stream"
 		.done (files) ->
 			THIS.$album-files.empty!
 			files.for-each (file) ->

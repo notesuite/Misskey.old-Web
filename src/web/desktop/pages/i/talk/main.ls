@@ -31,7 +31,7 @@ function send-message
 				'file': ($form.find '.files > li:first-child' .attr \data-id)
 			}
 
-	$.ajax "#{CONFIG.urls.web-api}/talks/messages/say" {data}
+	$.ajax "#{CONFIG.urls.api}/talks/messages/say" {data}
 	.done (data) ->
 		$form[0].reset!
 		$form.find \.files .empty!
@@ -160,7 +160,7 @@ $ ->
 						'limit': 10
 						'max-cursor': $ '#stream > .message:first-of-type' .attr \data-cursor
 					}
-			$.ajax "#{CONFIG.urls.web-api}/talks/messages/stream" {data}
+			$.ajax "#{CONFIG.urls.api}/talks/messages/stream" {data}
 			.done (messages) ->
 				if messages.length > 0
 					old-height = $ document .height!
@@ -177,8 +177,8 @@ $ ->
 
 function init-streaming(stream)
 	endpoint = switch (TALK_TYPE)
-		| \user => "#{CONFIG.web-streaming-url}/streaming/talk"
-		| \group => "#{CONFIG.web-streaming-url}/streaming/group-talk"
+		| \user => "#{CONFIG.streaming-url}/streaming/talk"
+		| \group => "#{CONFIG.streaming-url}/streaming/group-talk"
 	socket = io.connect endpoint
 
 	socket.on \connected ->
@@ -199,7 +199,7 @@ function init-streaming(stream)
 		if ($ '#otherparty-status .now-typing')[0]
 			$ '#otherparty-status .now-typing' .remove!
 		stream.add message
-		$.ajax "#{CONFIG.urls.web-api}/talks/messages/read" {
+		$.ajax "#{CONFIG.urls.api}/talks/messages/read" {
 			data: {'message-id': message.id}
 		}
 

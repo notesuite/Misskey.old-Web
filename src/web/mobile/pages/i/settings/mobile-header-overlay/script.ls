@@ -9,7 +9,7 @@ $ ->
 			..attr \disabled on
 			..html '更新中...'
 
-		$.ajax "#{CONFIG.urls.web-api}/web/mobile-header-overlay/update" {
+		$.ajax "#{CONFIG.urls.api}/web/mobile-header-overlay/update" {
 			data: {
 				'id': $form.find '[name="id"]' .val!
 			}

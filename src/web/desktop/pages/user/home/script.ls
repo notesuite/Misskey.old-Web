@@ -50,7 +50,7 @@ function read-more
 		timeline-loading := yes
 		$button.attr \disabled on
 		$button.text '読み込み中'
-		$.ajax "#{CONFIG.urls.web-api}/posts/user-timeline" {
+		$.ajax "#{CONFIG.urls.api}/posts/user-timeline" {
 			data:
 				limit: 20
 				'user-id': USER.id

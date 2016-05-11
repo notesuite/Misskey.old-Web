@@ -3,7 +3,7 @@ $ = require 'jquery'
 notification-compiler = require '../../../common/views/notification/render.jade'
 
 function delete-all
-	$.ajax "#{CONFIG.urls.web-api}/notifications/delete-all"
+	$.ajax "#{CONFIG.urls.api}/notifications/delete-all"
 	.done ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-trash-o'
 		alert '削除しました。'
@@ -16,7 +16,7 @@ $ ->
 	$ '#misskey-header .delete' .click ->
 		$ '#misskey-header .delete i' .attr \class 'fa fa-spinner fa-spin'
 		if window.confirm 'すべての通知を削除しますか？'
-			$.ajax "#{CONFIG.urls.web-api}/notifications/unread/count"
+			$.ajax "#{CONFIG.urls.api}/notifications/unread/count"
 			.done (count) ->
 				if count != 0
 					if window.confirm '未読の通知があるようですが、それでもすべて削除しますか？'
@@ -34,7 +34,7 @@ $ ->
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \p .text '読み込んでいます...'
-		$.ajax "#{CONFIG.urls.web-api}/notifications/timeline" {
+		$.ajax "#{CONFIG.urls.api}/notifications/timeline" {
 			data:
 				limit: 20
 				'max-cursor': $ '#stream > .notifications > .notification:last-child' .attr \data-cursor

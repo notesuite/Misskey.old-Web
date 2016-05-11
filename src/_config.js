@@ -24,12 +24,19 @@ function loadConfig() {
         ? conf.ports.https === 443 ? '' : ':' + conf.ports.https
         : conf.ports.http === 80 ? '' : ':' + conf.ports.http;
     conf.url = `${scheme}://${host}` + port;
+    conf.api.url =
+        (conf.api.secure ? 'https' : 'http') + '://'
+            + conf.api.host
+            + (conf.api.secure ? conf.api.port === 443 ? '' : ':' + conf.api.port : conf.api.port === 80 ? '' : ':' + conf.api.port);
+    conf.streamingUrl =
+        scheme + '://'
+            + host
+            + ':' + conf.ports.streaming;
     conf.hosts = {
         admin: `${domains.admin}.${host}`,
         i: `${domains.i}.${host}`,
         about: `${scheme}${domains.about}.${host}`,
         api: `${domains.api}.${host}`,
-        webApi: `${domains.webApi}.${host}`,
         resources: `${domains.resources}.${host}`,
         signup: `${domains.signup}.${host}`,
         signin: `${domains.signin}.${host}`,
@@ -46,7 +53,6 @@ function loadConfig() {
         i: `${scheme}://${domains.i}.${host}`,
         about: `${scheme}://${domains.about}.${host}`,
         api: `${scheme}://${domains.api}.${host}`,
-        webApi: `${scheme}://${domains.webApi}.${host}`,
         resources: `${scheme}://${domains.resources}.${host}`,
         signup: `${scheme}://${domains.signup}.${host}`,
         signin: `${scheme}://${domains.signin}.${host}`,

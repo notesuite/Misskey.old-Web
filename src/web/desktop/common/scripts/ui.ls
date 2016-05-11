@@ -44,25 +44,25 @@ $ ->
 	if LOGIN
 		post-form = new PostForm
 
-		$.ajax "#{CONFIG.urls.web-api}/posts/timeline/unread/count"
+		$.ajax "#{CONFIG.urls.api}/posts/timeline/unread/count"
 		.done (count) ->
 			$ '#misskey-header .home a .unread-count' .remove!
 			if count != 0
 				$ '#misskey-header .home a' .append $ "<span class=\"unread-count\">#{count}</span>"
 
-		$.ajax "#{CONFIG.urls.web-api}/posts/mentions/unread/count"
+		$.ajax "#{CONFIG.urls.api}/posts/mentions/unread/count"
 		.done (count) ->
 			$ '#misskey-header .mentions a .unread-count' .remove!
 			if count != 0
 				$ '#misskey-header .mentions a' .append $ "<span class=\"unread-count\">#{count}</span>"
 
-		$.ajax "#{CONFIG.urls.web-api}/talks/messages/unread/count"
+		$.ajax "#{CONFIG.urls.api}/talks/messages/unread/count"
 		.done (count) ->
 			$ '#misskey-header .talks a .unread-count' .remove!
 			if count != 0
 				$ '#misskey-header .talks a' .append $ "<span class=\"unread-count\">#{count}</span>"
 
-		$.ajax "#{CONFIG.urls.web-api}/notifications/unread/count"
+		$.ajax "#{CONFIG.urls.api}/notifications/unread/count"
 		.done (count) ->
 			$ '#misskey-header .notifications .header span .unread-count' .remove!
 			if count != 0
@@ -228,7 +228,7 @@ function init-header
 			</div>'
 
 			# 通知読み込み
-			$.ajax "#{CONFIG.urls.web-api}/notifications/timeline"
+			$.ajax "#{CONFIG.urls.api}/notifications/timeline"
 			.done (notifications) ->
 				$ '#misskey-header .notifications .body .loading' .remove!
 				$ '#misskey-header .notifications .unread-count' .remove!
@@ -264,7 +264,7 @@ function init-header
 			$result.empty!
 		else
 			$input.attr \data-active \true
-			$.ajax "#{CONFIG.urls.web-api}/users/search" {
+			$.ajax "#{CONFIG.urls.api}/users/search" {
 				data: {'query': $input .val!}
 			} .done (result) ->
 				$result.empty!
@@ -298,7 +298,7 @@ function notification-delete-all
 		$i.attr \class 'fa fa-trash-o'
 	$modal-ok.click ->
 		dialog-close!
-		$.ajax "#{CONFIG.urls.web-api}/notifications/unread/count"
+		$.ajax "#{CONFIG.urls.api}/notifications/unread/count"
 		.done (count) ->
 			if count != 0
 				$modal-ok = $ "<button>#{LOCALE.sites.desktop.common.delete_all_notifications_flow.re_confirmation_dialog.ok}</button>"
@@ -321,7 +321,7 @@ function notification-delete-all
 			alert '削除の準備に失敗しました。再度お試しください。'
 
 	function del
-		$.ajax "#{CONFIG.urls.web-api}/notifications/delete-all"
+		$.ajax "#{CONFIG.urls.api}/notifications/delete-all"
 		.done ->
 			$i.attr \class 'fa fa-trash-o'
 			$ '#misskey-header .notifications .unread-count' .remove!
@@ -548,7 +548,7 @@ class StatusPostForm
 		file-ids = (THIS.$form.find '.photos > li' .map ->
 			$ @ .attr \data-id).get!
 
-		$.ajax "#{CONFIG.urls.web-api}/posts/create", { data: {
+		$.ajax "#{CONFIG.urls.api}/posts/create", { data: {
 			'text': THIS.$form.find \textarea .val!
 			'files': file-ids.join \,
 		}}

@@ -28,7 +28,7 @@ $ ->
 				..attr \disabled on
 			if check-liked!
 				$post.attr \data-is-liked \false
-				$.ajax "#{CONFIG.urls.web-api}/posts/unlike" {
+				$.ajax "#{CONFIG.urls.api}/posts/unlike" {
 					data: {'post-id': post-id}}
 				.done ->
 					$button.attr \disabled off
@@ -37,7 +37,7 @@ $ ->
 					$post.attr \data-is-liked \true
 			else
 				$post.attr \data-is-liked \true
-				$.ajax "#{CONFIG.urls.web-api}/posts/like" {
+				$.ajax "#{CONFIG.urls.api}/posts/like" {
 					data: {'post-id': post-id}}
 				.done ->
 					$button.attr \disabled off
@@ -49,7 +49,7 @@ $ ->
 		..find '> footer > .repost > button' .click ->
 			function repost
 				$post.attr \data-is-reposted \true
-				$.ajax "#{CONFIG.urls.web-api}/posts/repost" {
+				$.ajax "#{CONFIG.urls.api}/posts/repost" {
 					data: {'post-id': post-id}}
 				.done ->
 					$button.attr \disabled off
@@ -59,7 +59,7 @@ $ ->
 
 			if check-reposted!
 				$post.attr \data-is-reposted \false
-				$.ajax "#{CONFIG.urls.web-api}/posts/unrepost" {
+				$.ajax "#{CONFIG.urls.api}/posts/unrepost" {
 					data: {'post-id': post-id}}
 				.done ->
 					$button.attr \disabled off
@@ -89,7 +89,7 @@ $ ->
 		$submit-button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$progress.css \display \block
 
-		$.ajax "#{CONFIG.urls.web-api}/web/posts/create-with-file", {
+		$.ajax "#{CONFIG.urls.api}/web/posts/create-with-file", {
 			data: new FormData $form.0
 			+async
 			-process-data

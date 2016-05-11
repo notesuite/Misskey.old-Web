@@ -8,25 +8,25 @@ $ ->
 		init-view-position!
 
 		if LOGIN
-			$.ajax "#{CONFIG.urls.web-api}/posts/timeline/unread/count"
+			$.ajax "#{CONFIG.urls.api}/posts/timeline/unread/count"
 			.done (count) ->
 				if count != 0
 					$ '#misskey-nav .home a .unread-count' .remove!
 					$ '#misskey-nav .home a' .append $ "<span class=\"unread-count\">#{count}</span>"
 
-			$.ajax "#{CONFIG.urls.web-api}/posts/mentions/unread/count"
+			$.ajax "#{CONFIG.urls.api}/posts/mentions/unread/count"
 			.done (count) ->
 				if count != 0
 					$ '#misskey-nav .mentions a .unread-count' .remove!
 					$ '#misskey-nav .mentions a' .append $ "<span class=\"unread-count\">#{count}</span>"
 
-			$.ajax "#{CONFIG.urls.web-api}/notifications/unread/count"
+			$.ajax "#{CONFIG.urls.api}/notifications/unread/count"
 			.done (count) ->
 				if count != 0
 					$ '#misskey-nav .notifications a .unread-count' .remove!
 					$ '#misskey-nav .notifications a' .append $ "<span class=\"unread-count\">#{count}</span>"
 
-			$.ajax "#{CONFIG.urls.web-api}/talks/messages/unread/count"
+			$.ajax "#{CONFIG.urls.api}/talks/messages/unread/count"
 			.done (count) ->
 				if count != 0
 					$ '#misskey-nav .talks a .unread-count' .remove!

@@ -9,7 +9,7 @@ $ ->
 			..attr \disabled on
 			..html '更新中...'
 
-		$.ajax "#{CONFIG.urls.web-api}/web/ui-language/update" {
+		$.ajax "#{CONFIG.urls.api}/web/ui-language/update" {
 			data: {
 				'lang': $form.find '[name="lang"]' .val!
 			}

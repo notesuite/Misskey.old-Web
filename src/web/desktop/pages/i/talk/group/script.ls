@@ -43,7 +43,7 @@ $ ->
 			if $input .val! == ''
 				$result.empty!
 			else
-				$.ajax "#{CONFIG.urls.web-api}/users/search" {
+				$.ajax "#{CONFIG.urls.api}/users/search" {
 					data:
 						'query': $input .val!}
 				.done (result) ->
@@ -87,7 +87,7 @@ function send-invitetion(user)
 	$modal-ok.click ->
 		dialog-close!
 
-		$.ajax "#{CONFIG.urls.web-api}/talks/group/members/invite" {
+		$.ajax "#{CONFIG.urls.api}/talks/group/members/invite" {
 			data:
 				'group-id': GROUP.id
 				'user-id': user.id

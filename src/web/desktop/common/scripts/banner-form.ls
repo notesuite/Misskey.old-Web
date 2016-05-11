@@ -36,7 +36,7 @@ module.exports = (file) ->
 			..attr \disabled on
 			..attr \value '保存中...'
 		crop-data = $img.cropper \getData true
-		$.ajax "#{CONFIG.urls.web-api}/web/banner/update" {
+		$.ajax "#{CONFIG.urls.api}/web/banner/update" {
 			data:
 				'file-id': file.id
 				'trim-x': crop-data.x
@@ -57,7 +57,7 @@ module.exports = (file) ->
 	function ok
 		close!
 
-		$.ajax "#{CONFIG.urls.web-api}/web/refresh-session"
+		$.ajax "#{CONFIG.urls.api}/web/refresh-session"
 
 		#$ \body .find \img ->
 		#	$img = $ @

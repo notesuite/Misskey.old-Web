@@ -10,7 +10,7 @@ $ ->
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \p .text '読み込んでいます...'
-		$.ajax "#{CONFIG.urls.web-api}/users/following" {
+		$.ajax "#{CONFIG.urls.api}/users/following" {
 			data:
 				limit: 20
 				'user-id': USER.id

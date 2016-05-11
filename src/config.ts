@@ -46,13 +46,22 @@ function loadConfig(): IConfig {
 
 	conf.url = `${scheme}://${host}` + port;
 
+	conf.api.url =
+		(conf.api.secure ? 'https' : 'http') + '://'
+		+ conf.api.host
+		+ (conf.api.secure ? conf.api.port === 443 ? '' : ':' + conf.api.port : conf.api.port === 80 ? '' : ':' + conf.api.port);
+
+	conf.streamingUrl =
+		scheme + '://'
+		+ host
+		+ ':' + conf.ports.streaming;
+
 	// Define hosts
 	conf.hosts = {
 		admin: `${domains.admin}.${host}`,
 		i: `${domains.i}.${host}`,
 		about: `${scheme}${domains.about}.${host}`,
 		api: `${domains.api}.${host}`,
-		webApi: `${domains.webApi}.${host}`,
 		resources: `${domains.resources}.${host}`,
 		signup: `${domains.signup}.${host}`,
 		signin: `${domains.signin}.${host}`,
@@ -71,7 +80,6 @@ function loadConfig(): IConfig {
 		i: `${scheme}://${domains.i}.${host}`,
 		about: `${scheme}://${domains.about}.${host}`,
 		api: `${scheme}://${domains.api}.${host}`,
-		webApi: `${scheme}://${domains.webApi}.${host}`,
 		resources: `${scheme}://${domains.resources}.${host}`,
 		signup: `${scheme}://${domains.signup}.${host}`,
 		signin: `${scheme}://${domains.signin}.${host}`,
@@ -107,7 +115,6 @@ type Domains = {
 	share: string;
 	search: string;
 	talk: string;
-	webApi: string;
 }
 
 export interface IConfig {
@@ -115,6 +122,8 @@ export interface IConfig {
 		pass: string;
 		host: string;
 		port: number;
+		secure: boolean;
+		url: string;
 	};
 	bindIp: string;
 	cookiePass: string;
@@ -132,6 +141,7 @@ export interface IConfig {
 		host: string;
 		pass: string;
 	};
+	streamingUrl: string;
 	ports: {
 		http: number;
 		https: number;

@@ -40,6 +40,7 @@ https:
 api:
   host: <string>
   port: <string>
+  secure: <boolean>
   pass: <string>
 
 # よく分からない
@@ -76,19 +77,18 @@ themeColor: "#ec6b43"
 
 ### サブドメイン設定
 domains:
+  about: "about"
   admin: "admin"
+  api: "himasaku"
+  color: "color"
+  developer: "dev"
+  forum: "forum"
+  help: "help"
+  resources: "resources"
+  search: "search"
+  share: "share"
   signup: "signup"
   signin: "login"
   signout: "logout"
-  resources: "resources"
-  about: "about"
-  search: "search"
-  help: "help"
   talk: "talk"
-  forum: "forum"
-  webApi: "himasaku"
-  api: "api"
-  developer: "dev"
-  color: "color"
-  share: "share"
   widgets: "widgets"

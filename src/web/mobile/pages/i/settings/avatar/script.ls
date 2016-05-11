@@ -53,7 +53,7 @@ $ ->
 				..attr \disabled on
 				..html '保存中...'
 			crop-data = $img.cropper \getData true
-			$.ajax "#{CONFIG.urls.web-api}/web/avatar/update" {
+			$.ajax "#{CONFIG.urls.api}/web/avatar/update" {
 				data:
 					'file-id': file.id
 					'trim-x': crop-data.x

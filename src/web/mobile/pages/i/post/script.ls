@@ -16,7 +16,7 @@ $ ->
 		$submit-button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$progress.css \display \block
 
-		$.ajax "#{CONFIG.urls.web-api}/web/posts/create-with-file", {
+		$.ajax "#{CONFIG.urls.api}/web/posts/create-with-file", {
 			data: new FormData $form.0
 			+async
 			-process-data

@@ -35,7 +35,7 @@ $ ->
 					..attr \data-state \processing
 				$ '#screen-name > .profile-page-url-preview' .text "#{CONFIG.url}/#sn"
 
-				$.ajax "#{CONFIG.urls.web-api}/screenname/available" {
+				$.ajax "#{CONFIG.urls.api}/screenname/available" {
 					data: {'screen-name': sn}
 				} .done (result) ->
 					if result.available
@@ -106,7 +106,7 @@ $ ->
 
 		$ \html .add-class \logging
 
-		$.ajax "#{CONFIG.urls.web-api}/account/create" {
+		$.ajax "#{CONFIG.urls.api}/account/create" {
 			data:
 				'screen-name': screen-name
 				'password': password

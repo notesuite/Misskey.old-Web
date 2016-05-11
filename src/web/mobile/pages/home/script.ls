@@ -26,7 +26,7 @@ $ ->
 		$button.attr \disabled on
 		$button.find \i .attr \class 'fa fa-spinner fa-spin'
 		$button.find \.text .text LOCALE.sites.mobile.pages._home.timeline_loading
-		$.ajax "#{CONFIG.urls.web-api}/posts/timeline" {
+		$.ajax "#{CONFIG.urls.api}/posts/timeline" {
 			data:
 				limit: 20
 				'max-cursor': $ '#timeline > .posts > .post:last-child' .attr \data-cursor
@@ -38,7 +38,7 @@ $ ->
 			$button.find \i .attr \class 'fa fa-sort-amount-desc'
 			$button.find \.text .text LOCALE.sites.mobile.pages._home.read_more
 
-	socket = io.connect "#{CONFIG.web-streaming-url}/streaming/home"
+	socket = io.connect "#{CONFIG.streaming-url}/streaming/home"
 
 	$ \body .append $ "<p class=\"streaming-info\"><i class=\"fa fa-spinner fa-spin\"></i>#{LOCALE.sites.mobile.common.connecting_stream}</p>"
 
@@ -92,7 +92,7 @@ $ ->
 	$ '#misskey-header .post' .click ->
 		text = window.prompt LOCALE.sites.mobile.pages._home.new_post
 		if text? and text != ''
-			$.ajax "#{CONFIG.urls.web-api}/posts/create" {
+			$.ajax "#{CONFIG.urls.api}/posts/create" {
 				data: {
 					type: \text
 					text

@@ -1,6 +1,8 @@
 require '../../common/scripts/ui.ls'
 $ = require 'jquery'
 moment = require 'moment'
+
+CONFIG = require 'config'
 Timeline = require '../../common/scripts/timeline-core.ls'
 notification-compiler = require '../../common/views/notification/smart/render.jade'
 notifications-compiler = require '../../common/views/notification/smart/items.jade'
@@ -99,8 +101,8 @@ module.exports = (type) ->
 			$button.attr \disabled on
 			$button.text '読み込み中'
 			endpoint = switch (type)
-				| \home => "#{CONFIG.urls.web-api}/posts/timeline"
-				| \mentions => "#{CONFIG.urls.web-api}/posts/mentions/show"
+				| \home => "#{CONFIG.urls.api}/posts/timeline"
+				| \mentions => "#{CONFIG.urls.api}/posts/mentions/show"
 			$.ajax endpoint, {
 				data:
 					limit: 10
@@ -117,7 +119,7 @@ module.exports = (type) ->
 	function init-stream
 		$ \body .append $ "<p class=\"streaming-info\"><i class=\"fa fa-spinner fa-spin\"></i>#{LOCALE.sites.desktop.common.connecting_stream}</p>"
 
-		socket = io.connect CONFIG.web-streaming-url + '/streaming/' + type
+		socket = io.connect CONFIG.streaming-url + '/streaming/' + type
 
 		socket.on \connect ->
 			$ 'body > .streaming-info' .remove!
@@ -228,7 +230,7 @@ function init-widgets
 
 	if $ \#widget-notifications .length != 0
 		# 通知読み込み
-		$.ajax "#{CONFIG.urls.web-api}/notifications/timeline"
+		$.ajax "#{CONFIG.urls.api}/notifications/timeline"
 		.done (notifications) ->
 			if notifications != []
 				$notifications = $ notifications-compiler {
@@ -245,7 +247,7 @@ function init-widgets
 
 	if $ \#widget-recommendation-users .length != 0
 		# recommendation users
-		$.ajax "#{CONFIG.urls.web-api}/users/recommendations"
+		$.ajax "#{CONFIG.urls.api}/users/recommendations"
 		.done (users) ->
 			if users != []
 				$users = $ recommendation-users-compiler {
@@ -260,7 +262,7 @@ function init-widgets
 					$user = $ @
 					$user.find \.follow-button .click ->
 						$user.remove!
-						$.ajax "#{CONFIG.urls.web-api}/users/follow" {
+						$.ajax "#{CONFIG.urls.api}/users/follow" {
 							data: { 'user-id': $user.attr \data-user-id }
 						}
 

@@ -80,7 +80,7 @@ app.locals.cache = true;
 app.set('view engine', 'jade');
 
 // Init API server
-app.use(vhost(config.hosts.webApi, api(session)));
+app.use(vhost(config.hosts.api, api(session)));
 
 // Init static resources server
 app.use(vhost(config.hosts.resources, resources()));

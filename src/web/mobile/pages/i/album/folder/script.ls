@@ -7,7 +7,7 @@ $ ->
 	$folders = $ \#folders
 	$files = $ \#files
 
-	$.ajax "#{CONFIG.urls.web-api}/album/folders/list" {
+	$.ajax "#{CONFIG.urls.api}/album/folders/list" {
 		data:
 			'folder-id': FOLDER.id
 	}
@@ -20,7 +20,7 @@ $ ->
 			}
 			$folders.prepend $folder
 		if CHOOSE != \folder
-			$.ajax "#{CONFIG.urls.web-api}/album/files/list" {
+			$.ajax "#{CONFIG.urls.api}/album/files/list" {
 				data:
 					'folder-id': FOLDER.id
 					'limit': 21
@@ -47,7 +47,7 @@ $ ->
 	$load-more-button.click ->
 		$load-more-button.attr \disabled on
 		$load-more-button.text LOCALE.sites.mobile.pages._i._album.loading
-		$.ajax "#{CONFIG.urls.web-api}/album/files/list" {
+		$.ajax "#{CONFIG.urls.api}/album/files/list" {
 			data:
 				'limit': 21
 				'max-cursor': $ '#files > .file:last-child' .attr \data-cursor
@@ -73,7 +73,7 @@ $ ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album._folder.rename_dialog, FOLDER.name
 		if name? and name != '' and name != FOLDER.name
 			$rename-folder-button.attr \disabled on
-			$.ajax "#{CONFIG.urls.web-api}/album/folders/rename" {
+			$.ajax "#{CONFIG.urls.api}/album/folders/rename" {
 				data:
 					'name': name
 					'folder-id': FOLDER.id
@@ -88,7 +88,7 @@ $ ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album.create_folder_dialog
 		if name? and name != ''
 			$create-folder-button.attr \disabled on
-			$.ajax "#{CONFIG.urls.web-api}/album/folders/create" {
+			$.ajax "#{CONFIG.urls.api}/album/folders/create" {
 				data:
 					'name': name
 					'parent-folder-id': FOLDER.id

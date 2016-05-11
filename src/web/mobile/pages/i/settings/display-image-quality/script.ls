@@ -11,7 +11,7 @@ $ ->
 			..attr \disabled on
 			..html '更新中...'
 
-		$.ajax "#{CONFIG.urls.web-api}/web/display-image-quality/update" {
+		$.ajax "#{CONFIG.urls.api}/web/display-image-quality/update" {
 			data:
 				'quality': $form.find '[name="quality"]' .val!
 		}

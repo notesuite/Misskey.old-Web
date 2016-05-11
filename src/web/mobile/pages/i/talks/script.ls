@@ -9,7 +9,7 @@ $ ->
 		if $input .val! == ''
 			$result.empty!
 		else
-			$.ajax "#{CONFIG.urls.web-api}/users/search" {
+			$.ajax "#{CONFIG.urls.api}/users/search" {
 				data:
 					'query': $input .val!}
 			.done (result) ->

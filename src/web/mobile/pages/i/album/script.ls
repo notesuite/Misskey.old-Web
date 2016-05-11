@@ -7,7 +7,7 @@ $ ->
 	$folders = $ \#folders
 	$files = $ \#files
 
-	$.ajax "#{CONFIG.urls.web-api}/album/folders/list"
+	$.ajax "#{CONFIG.urls.api}/album/folders/list"
 	.done (folders) ->
 		folders.for-each (folder) ->
 			$folder = $ folder-render {
@@ -17,7 +17,7 @@ $ ->
 			}
 			$folders.prepend $folder
 		if CHOOSE != \folder
-			$.ajax "#{CONFIG.urls.web-api}/album/files/list" {
+			$.ajax "#{CONFIG.urls.api}/album/files/list" {
 				data:
 					'limit': 21
 			}
@@ -43,7 +43,7 @@ $ ->
 	$load-more-button.click ->
 		$load-more-button.attr \disabled on
 		$load-more-button.text LOCALE.sites.mobile.pages._i._album.loading
-		$.ajax "#{CONFIG.urls.web-api}/album/files/list" {
+		$.ajax "#{CONFIG.urls.api}/album/files/list" {
 			data:
 				'limit': 21
 				'max-cursor': $ '#files > .file:last-child' .attr \data-cursor
@@ -69,7 +69,7 @@ $ ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album.create_folder_dialog
 		if name? and name != ''
 			$create-folder-button.attr \disabled on
-			$.ajax "#{CONFIG.urls.web-api}/album/folders/create" {
+			$.ajax "#{CONFIG.urls.api}/album/folders/create" {
 				data:
 					'name': name
 			} .done (folder) ->

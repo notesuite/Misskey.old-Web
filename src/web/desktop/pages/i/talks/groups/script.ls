@@ -15,7 +15,7 @@ $ ->
 		if $input .val! == ''
 			$result.empty!
 		else
-			$.ajax "#{CONFIG.urls.web-api}/talks/group/search" {
+			$.ajax "#{CONFIG.urls.api}/talks/group/search" {
 				data:
 					'query': $input .val!}
 			.done (result) ->
@@ -38,14 +38,14 @@ $ ->
 	$ '#invitations > .invitation' .each ->
 		$invitation = $ @
 		$invitation.find 'button.accept' .click ->
-			$.ajax "#{CONFIG.urls.web-api}/talks/group/invitations/accept" {
+			$.ajax "#{CONFIG.urls.api}/talks/group/invitations/accept" {
 				data:
 					'invitation-id': $invitation.attr 'data-id'}
 			.done (result) ->
 				location.href = CONFIG.talk-url + '/:group/' + $invitation.attr 'data-group-id'
 
 		$invitation.find 'button.decline' .click ->
-			$.ajax "#{CONFIG.urls.web-api}/talks/group/invitations/decline" {
+			$.ajax "#{CONFIG.urls.api}/talks/group/invitations/decline" {
 				data:
 					'invitation-id': $invitation.attr 'data-id'}
 			$invitation.remove!

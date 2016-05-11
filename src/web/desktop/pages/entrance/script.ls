@@ -206,7 +206,7 @@ function init-signin-form
 	init-card-effect $form
 
 	$ \#user-name .change ->
-		$.ajax "#{CONFIG.urls.web-api}/users/show", {
+		$.ajax "#{CONFIG.urls.api}/users/show", {
 			data: {'screen-name': $ \#user-name .val!}
 		}
 		.done (user) ->
@@ -272,7 +272,7 @@ function init-signup-form
 					..attr \data-state \processing
 				$form.find '.user-name > .profile-page-url-preview' .text "#{CONFIG.url}/#sn"
 
-				$.ajax "#{CONFIG.urls.web-api}/screenname/available" {
+				$.ajax "#{CONFIG.urls.api}/screenname/available" {
 					data: {'screen-name': sn}
 				} .done (result) ->
 					if result.available
@@ -360,7 +360,7 @@ function init-signup-form
 
 		$ \html .add-class \logging
 
-		$.ajax "#{CONFIG.urls.web-api}/account/create" {
+		$.ajax "#{CONFIG.urls.api}/account/create" {
 			data:
 				'screen-name': screen-name
 				'password': password

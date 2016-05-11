@@ -20,10 +20,10 @@ if (config.https.enable) {
 	server = http.createServer();
 }
 
-const io: SocketIO.Server = SocketIO.listen(server);
+const io = SocketIO.listen(server);
 
 // Init DB connection
-const db: mongoose.Connection = mongoose.createConnection(config.mongo.uri, config.mongo.options);
+const db = mongoose.createConnection(config.mongo.uri, config.mongo.options);
 
 const sessionStore: any = new _MongoStore({
 	mongooseConnection: db

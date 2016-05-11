@@ -8,7 +8,7 @@ $ ->
 	$form = $ '#form'
 
 	$ '#id' .change ->
-		$.ajax "#{CONFIG.urls.web-api}/users/show", {
+		$.ajax "#{CONFIG.urls.api}/users/show", {
 			data: {'screen-name': $ '#id' .val!}
 		}
 		.done (user) ->

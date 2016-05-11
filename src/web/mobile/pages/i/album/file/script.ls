@@ -6,7 +6,7 @@ $ ->
 	$tag-edit.click ->
 		window.MISSKEY_EDIT_ALBUM_FILE_TAG_CALLBACK = (tags) ->
 			$tag-edit.attr \disabled on
-			$.ajax "#{CONFIG.urls.web-api}/album/files/update-tag" {
+			$.ajax "#{CONFIG.urls.api}/album/files/update-tag" {
 				data:
 					'file-id': FILE.id
 					'tags': tags.join \,
@@ -21,7 +21,7 @@ $ ->
 		name = window.prompt LOCALE.sites.mobile.pages._i._album._file.rename_dialog, FILE.name
 		if name? and name != '' and name != FILE.name
 			$rename.attr \disabled on
-			$.ajax "#{CONFIG.urls.web-api}/album/files/rename" {
+			$.ajax "#{CONFIG.urls.api}/album/files/rename" {
 				data:
 					'file-id': FILE.id
 					'name': name
@@ -35,7 +35,7 @@ $ ->
 	$delete.click ->
 		if window.confirm LOCALE.sites.mobile.pages._i._album._file.delete_dialog
 			$delete.attr \disabled on
-			$.ajax "#{CONFIG.urls.web-api}/album/files/delete" {
+			$.ajax "#{CONFIG.urls.api}/album/files/delete" {
 				data:
 					'file-id': FILE.id
 			} .done ->
@@ -48,7 +48,7 @@ $ ->
 	$move.click ->
 		window.MISSKEY_CHOOSE_ALBUM_FOLDER_CALLBACK = (folder) ->
 			$move.attr \disabled on
-			$.ajax "#{CONFIG.urls.web-api}/album/files/move" {
+			$.ajax "#{CONFIG.urls.api}/album/files/move" {
 				data:
 					'file-id': FILE.id
 					'folder-id': if folder? then folder.id else \null

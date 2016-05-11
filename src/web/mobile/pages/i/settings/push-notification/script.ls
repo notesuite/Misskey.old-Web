@@ -11,7 +11,7 @@ $ ->
 			..attr \disabled on
 			..html '更新中...'
 
-		$.ajax "#{CONFIG.urls.web-api}/web/pseudo-push-notification-display-duration/update" {
+		$.ajax "#{CONFIG.urls.api}/web/pseudo-push-notification-display-duration/update" {
 			data:
 				'duration': $form.find '[name="duration"]' .val!
 		}
