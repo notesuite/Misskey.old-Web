@@ -32,10 +32,7 @@ import api from './api/server';
 import resources from './resources-server';
 import router from './router';
 
-acceptLanguage.languages([
-	'en',
-	'ja'
-]);
+const env = process.env.NODE_ENV;
 
 const worker = cluster.worker;
 
@@ -43,6 +40,11 @@ console.log(`Init ${name(worker.id)} server...`);
 
 //////////////////////////////////////////////////
 // SERVER OPTIONS
+
+acceptLanguage.languages([
+	'en',
+	'ja'
+]);
 
 const store = MongoStore(expressSession);
 
@@ -76,6 +78,7 @@ const app = express();
 app.disable('x-powered-by');
 app.locals.compileDebug = false;
 app.locals.cache = true;
+app.locals.env = env;
 // app.locals.pretty = '    ';
 app.set('view engine', 'jade');
 
