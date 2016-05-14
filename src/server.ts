@@ -160,7 +160,7 @@ app.use((req, res, next) => {
 	res.locals.csrftoken = req.csrfToken();
 
 	if (res.locals.isLogin) {
-		const userId: string = (<any>req).session.userId;
+		const userId: string = (<any>req.session).userId;
 		requestApi('account/show', {}, userId).then((user: User) => {
 			UserSettings.findOne({
 				userId: userId
