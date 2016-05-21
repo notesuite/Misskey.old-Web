@@ -1,6 +1,10 @@
 title Misskey Launcher
 rem 1 Web, API, File のリポジトリがあるディレクトリのパス
 
+rem Skypeはポート占有するので殺す
+taskkill /im Skype.exe /F /T
+timeout /t 1 /nobreak
+
 rem Redis起動
 cd C:\Program Files\Redis
 start .\redis-server --maxheap 2gb
