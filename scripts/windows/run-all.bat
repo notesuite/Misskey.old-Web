@@ -24,4 +24,10 @@ rem Web起動
 cd %1\Misskey-Web
 start npm start
 
+rem 上のやつらが起動するまで待つ
+timeout /t 5 /nobreak
+
+rem ブラウザでアクセス
+start http://misskey.local
+
 exit
