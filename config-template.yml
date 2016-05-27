@@ -62,7 +62,7 @@ recaptcha:
 
 ### Search Console設定
 # SEE: https://support.google.com/webmasters/answer/35179?hl=ja
-google-site-verification: <string>
+GoogleSiteVerification: <string>
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ここから下は特に弄る必要は無いと思われます
