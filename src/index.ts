@@ -73,6 +73,7 @@ cluster.on('exit', worker => {
 	cluster.fork();
 });
 
+// Dying away...
 process.on('exit', () => {
 	console.log('Bye.');
 });
