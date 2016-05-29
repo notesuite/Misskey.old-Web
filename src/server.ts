@@ -128,7 +128,7 @@ app.use((req, res, next) => {
 	if (config.https.enable) {
 		res.header(
 			'Strict-Transport-Security',
-			'max-age=10886400; includeSubDomains; preload');
+			'max-age=15768000; includeSubDomains; preload');
 	}
 
 	// See http://web-tan.forum.impressrd.jp/e/2013/05/17/15269
