@@ -14,88 +14,88 @@
   },
   "dependencies": {
     "express/express.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "mongoose/mongoose.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "jade/jade.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "gulp/gulp.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "gulp-typescript/gulp-typescript.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "gulp-tslint/gulp-tslint.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "body-parser/body-parser.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "cookie-parser/cookie-parser.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "express-session/express-session.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "moment/moment.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "cors/cors.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "compression/compression.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "connect-mongo/connect-mongo.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "request/request.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "gm/gm.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "less/less.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "socket.io/socket.io.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "multer/multer.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "gulp-less/gulp-less.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "cookie/cookie.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "redis/redis.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "browserify/browserify.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "glob/glob.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "vinyl-source-stream/vinyl-source-stream.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "csurf/csurf.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "serve-favicon/serve-favicon.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "js-yaml/js-yaml.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     },
     "shelljs/shelljs.d.ts": {
-      "ref": "398bd742115e2b071ab3edf8b543b6df6fa62dc2"
+      "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
     }
   }
 }
