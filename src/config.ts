@@ -140,6 +140,7 @@ export interface IConfig {
 		url: string;
 	};
 	bindIp: string;
+	noIndex: boolean;
 	cookiePass: string;
 	host: string;
 	hosts: Domains;
