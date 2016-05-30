@@ -144,6 +144,7 @@ export interface IConfig {
 	host: string;
 	hosts: Domains;
 	maintainer: string;
+	googleSiteVerification: string;
 	mongo: {
 		uri: string;
 		options: {
