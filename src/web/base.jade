@@ -31,6 +31,8 @@ html(
 		meta(name='referrer', content='origin')
 		meta(name='format-detection', content='telephone=no')
 		meta(name='csrf-token', content= csrftoken)
+		if config.noIndex
+			meta(name='robots', content='noindex,follow')
 		block root-meta
 		title
 			if env !== 'production'
