@@ -1,6 +1,6 @@
 # Misskey Web
 [![][travis-badge]][travis-link]
-[![Dependency Status](https://gemnasium.com/MissKernel/Misskey-Web.svg)](https://gemnasium.com/MissKernel/Misskey-Web)
+[![][gemnasium-badge]][gemnasium-link]
 [![][david-dev-badge]][david-dev-link]
 [![][mit-badge]][mit]
 
@@ -40,3 +40,5 @@ The MIT License. See [LICENSE](LICENSE).
 [travis-badge]:    http://img.shields.io/travis/MissKernel/Misskey-Web.svg?style=flat-square
 [david-dev-link]:  https://david-dm.org/MissKernel/Misskey-Web#info=devDependencies&view=table
 [david-dev-badge]: https://img.shields.io/david/dev/MissKernel/Misskey-Web.svg?style=flat-square
+[gemnasium-link]:  https://gemnasium.com/MissKernel/Misskey-Web
+[gemnasium-badge]: https://gemnasium.com/MissKernel/Misskey-Web.svg
