@@ -35,7 +35,7 @@
     "gulp-replace": "0.5.4",
     "gulp-stylus": "2.4.0",
     "gulp-tslint": "5.0.0",
-    "gulp-typescript": "2.13.5",
+    "gulp-typescript": "2.13.6",
     "gulp-uglify": "1.5.3",
     "gulp-util": "3.0.7",
     "jadeify": "4.6.0",
