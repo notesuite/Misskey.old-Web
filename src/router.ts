@@ -340,7 +340,7 @@ function paramUserScreenName(
 			res.status(404);
 			callController(req, res, 'user-not-found');
 		}
-	}, (err: any) => {
+	}, err => {
 		if (err.body === 'not-found') {
 			res.status(404);
 			callController(req, res, 'user-not-found');
@@ -365,7 +365,7 @@ function paramPostId(
 			res.status(404);
 			callController(req, res, 'post-not-found');
 		}
-	}, (err: any) => {
+	}, err => {
 		if (err.body === 'not-found') {
 			res.status(404);
 			callController(req, res, 'post-not-found');
@@ -385,7 +385,7 @@ function paramFileId(
 	}, res.locals.isLogin ? req.user : null).then((file: Object) => {
 		res.locals.file = file;
 		next();
-	}, (err: any) => {
+	}, err => {
 		if (err.body === 'not-found') {
 			res.status(404);
 			callController(req, res, 'i/album/file-not-found');
@@ -405,7 +405,7 @@ function paramFolderId(
 	}, res.locals.isLogin ? req.user : null).then((folder: Object) => {
 		res.locals.folder = folder;
 		next();
-	}, (err: any) => {
+	}, err => {
 		if (err.body === 'not-found') {
 			res.status(404);
 			callController(req, res, 'i/album/folder-not-found');
@@ -425,7 +425,7 @@ function paramTalkGroupId(
 	}, req.user).then((group: Object) => {
 		res.locals.talkGroup = group;
 		next();
-	}, (err: any) => {
+	}, err => {
 		res.sendStatus(500);
 	});
 }
