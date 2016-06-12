@@ -1,6 +1,6 @@
-#===============================#
-#   Misskey Web Configuration   #
-#===============================#
+#================================================================
+# Misskey Web Configuration
+#================================================================
 
 ### サーバーの管理者情報
 # ex) "Your Name <youremail@example.com>"
@@ -64,10 +64,6 @@ recaptcha:
 # SEE: https://support.google.com/webmasters/answer/35179?hl=ja
 googleSiteVerification: <string>
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# ここから下は特に弄る必要は無いと思われます
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 bindIp: null
 
 ### Web待ち受けポート
@@ -78,21 +74,3 @@ bindPorts:
 
 ### テーマカラー
 themeColor: "#ec6b43"
-
-### サブドメイン設定
-domains:
-  about: "about"
-  admin: "admin"
-  api: "himasaku"
-  color: "color"
-  developer: "dev"
-  forum: "forum"
-  help: "help"
-  resources: "resources"
-  search: "search"
-  share: "share"
-  signup: "signup"
-  signin: "login"
-  signout: "logout"
-  talk: "talk"
-  widgets: "widgets"

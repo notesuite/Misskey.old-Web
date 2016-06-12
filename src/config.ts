@@ -20,6 +20,25 @@ const dirPath = `${home}/${dirName}`;
 const path = `${dirPath}/${fileName}`;
 
 //////////////////////////////////////////////////
+// DEFINE CONSTANTS
+const domains = {
+	about: 'about',
+	admin: 'admin',
+	api: 'api',
+	color: 'color',
+	forum: 'forum',
+	help: 'help',
+	i: 'i',
+	resources: 'resources',
+	signup: 'signup',
+	signin: 'signin',
+	signout: 'signout',
+	share: 'share',
+	search: 'search',
+	talk: 'talk'
+};
+
+//////////////////////////////////////////////////
 // CONFIGURATION LOADER
 
 function loadConfig(): IConfig {
@@ -37,7 +56,6 @@ function loadConfig(): IConfig {
 	validateHost(conf.host);
 
 	const host = conf.host;
-	const domains = conf.domains;
 
 	const scheme = conf.https.enable ? 'https' : 'http';
 	const port = conf.https.enable
