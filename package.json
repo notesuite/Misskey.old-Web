@@ -41,7 +41,7 @@
     "del": "2.2.0",
     "jadeify": "4.6.0",
     "livescript": "1.5.0",
-    "tslint": "3.10.2",
+    "tslint": "3.11.0",
     "typescript": "1.8.10",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0"
@@ -67,7 +67,7 @@
     "log-cool": "1.1.0",
     "marked": "0.3.5",
     "moment": "2.13.0",
-    "mongoose": "4.4.19",
+    "mongoose": "4.4.20",
     "multer": "1.1.0",
     "object-assign-deep": "0.0.4",
     "redis": "2.6.1",
