@@ -24,10 +24,14 @@ const uglify = require('gulp-uglify');
 const ls = require('browserify-livescript');
 const jadeify = require('jadeify');
 const aliasify = require('aliasify');
+require('typescript-require')(require('./tsconfig.json'));
 
 const env = process.env.NODE_ENV;
 
 const isProduction = env === 'production';
+
+const config = require('./src/config.ts').default;
+const sanitizedConfig = require('./src/config.ts').sanitize(config);
 
 /*
  * Browserifyのモジュールエイリアス
@@ -52,9 +56,6 @@ const aliasifyConfig = {
 const project = ts.createProject('tsconfig.json', {
 	typescript: require('typescript')
 });
-
-const config = require('./src/_config.js').default;
-const sanitizedConfig = require('./src/_config.js').sanitize(config);
 
 //////////////////////////////////////////////////
 // Full build
