@@ -21,7 +21,7 @@ rem MongoDB起動
 cd "C:\Program Files\MongoDB\Server\3.0\bin"
 start .\mongod
 
-rem 上のやつらが起動するまで待つ
+rem 上のプログラムらが起動するまで待つ
 timeout /t 5 /nobreak
 
 rem API起動
