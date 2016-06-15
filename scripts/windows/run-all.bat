@@ -28,15 +28,21 @@ rem API起動
 cd "%MISSKEY_PATH%\Misskey-API"
 start npm start
 
+rem 起動するまで待つ
+timeout /t 1 /nobreak
+
 rem File起動
 cd "%MISSKEY_PATH%\Misskey-File"
 start npm start
+
+rem 起動するまで待つ
+timeout /t 1 /nobreak
 
 rem Web起動
 cd "%MISSKEY_PATH%\Misskey-Web"
 start npm start
 
-rem 上のプログラムらが起動するまで待つ
+rem 起動するまで待つ
 timeout /t 10 /nobreak
 
 rem ブラウザでアクセス
