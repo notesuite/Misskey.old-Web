@@ -96,6 +96,9 @@
     },
     "shelljs/shelljs.d.ts": {
       "ref": "edb64e4a35896510ce02b93c0bca5ec3878db738"
+    },
+    "argv/argv.d.ts": {
+      "ref": "1315d46f8066eec8c197914da88e98629ebc2254"
     }
   }
 }

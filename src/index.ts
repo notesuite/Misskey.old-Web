@@ -28,6 +28,7 @@
 
 import * as cluster from 'cluster';
 import {logInfo, logWarn} from 'log-cool';
+import argv from './argv';
 import config from './config';
 import checkDependencies from './check-dependencies';
 import name from './core/naming-worker-id';
@@ -43,7 +44,9 @@ if (cluster.isMaster) {
 	logInfo(`environment: ${env}`);
 	logInfo(`maintainer: ${config.maintainer}`);
 
-	checkDependencies();
+	if (!argv.options.hasOwnProperty('skip-check-dependencies')) {
+		checkDependencies();
+	}
 
 	if (env !== 'production') {
 		logWarn('Productionモードではありません。本番環境で使用しないでください。');

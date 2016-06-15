@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "accept-language": "2.0.16",
+    "argv": "0.0.2",
     "body-parser": "1.15.1",
     "cheerio-httpcli": "0.6.8",
     "compression": "1.6.2",

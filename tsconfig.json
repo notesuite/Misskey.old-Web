@@ -43,6 +43,7 @@
 		"./src/api/streaming/home.ts",
 		"./src/api/streaming/index.ts",
 		"./src/api/streaming/talk.ts",
+		"./src/argv.ts",
 		"./src/call-controller.ts",
 		"./src/check-dependencies.ts",
 		"./src/config.ts",
