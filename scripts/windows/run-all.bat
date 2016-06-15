@@ -45,6 +45,9 @@ start npm start
 rem 起動するまで待つ
 timeout /t 10 /nobreak
 
+rem Logger起動
+start misskey-web-logger
+
 rem ブラウザでアクセス
 start http://misskey.local
 
