@@ -23,6 +23,88 @@ Misskey-Web is *Misskey* official client for the Web. run on [Node.js](https://g
 ## How to start Misskey Web server
 `npm start`
 
+## Configuration
+
+### Basic template
+``` yaml
+#================================================================
+# Misskey Web Configuration
+#================================================================
+
+### サーバーの管理者情報
+# ex) "Your Name <youremail@example.com>"
+maintainer: <string>
+
+### アクセスするときのドメイン
+host: "misskey.xyz"
+
+### アクセスするときのポート
+# サーバー内部でlistenするポートではありません。ブラウザでアクセスするときの最終的なポートです。
+# 内部でプロキシを使用していたりなどの理由で、リクエストを待ち受けるポートを指定する場合は bindPorts の項目を設定してください。
+ports:
+  http: 80
+  https: 443
+  streaming: 3000
+
+### ユーザーのクライアントに関する設定をストアするDB(Mongo)の情報
+mongo:
+  uri: <string>
+  options:
+   user: <string>
+   pass: <string>
+
+# 2016年5月現在、APIがストリーミングを提供していないため直接APIサーバーのRedisに繋ぐ必要があるので、その情報
+redis:
+  host: <string>
+  pass: <string>
+
+### TLS設定
+https:
+  enable: <boolean>
+  # 以下証明書設定。 enable が false の場合は省略
+  keyPath: <string>
+  certPath: <string>
+
+### APIサーバー設定
+api:
+  host: <string>
+  port: <string>
+  secure: <boolean>
+  pass: <string>
+
+# よく分からない
+cookiePass: <string>
+
+# セッションIDを保存するCookieのキー
+sessionKey: "hmsk"
+
+# よく分からない
+sessionSecret: <string>
+
+### reCAPTCHA設定
+# SEE: https://www.google.com/recaptcha/intro/index.html
+recaptcha:
+  # サイトキー
+  siteKey: <string>
+  # シークレット
+  secretKey: <string>
+
+### Search Console設定
+# SEE: https://support.google.com/webmasters/answer/35179?hl=ja
+googleSiteVerification: <string>
+
+bindIp: null
+
+### Web待ち受けポート
+bindPorts:
+  http: 80
+  https: 443
+  streaming: 3000
+
+### テーマカラー
+themeColor: "#ec6b43"
+```
+
 ## People
 
 The original author of Misskey is [syuilo](https://github.com/syuilo)
