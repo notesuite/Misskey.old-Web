@@ -56,6 +56,8 @@
 		"./src/db/models/user-settings.ts",
 		"./src/db/models/user.ts",
 		"./src/index.ts",
+		"./src/log-ipc.ts",
+		"./src/log.ts",
 		"./src/resources-server.ts",
 		"./src/router.ts",
 		"./src/server.ts",

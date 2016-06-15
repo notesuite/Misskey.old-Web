@@ -307,7 +307,7 @@ export default function(app: express.Express): void {
 
 	// Error handlings
 
-	app.use((err, req, res, next) => {
+	app.use((err: any, req: express.Request, res: express.Response, next: any) => {
 		if (err.code !== 'EBADCSRFTOKEN') {
 			return next(err);
 		}
@@ -317,7 +317,7 @@ export default function(app: express.Express): void {
 		res.send('form tampered with');
 	});
 
-	app.use((err, req, res, next) => {
+	app.use((err: any, req: express.Request, res: express.Response, next: any) => {
 		console.error(err);
 		callController(req, res, 'error', err);
 	});

@@ -71,6 +71,7 @@
     "moment": "2.13.0",
     "mongoose": "4.5.0",
     "multer": "1.1.0",
+    "node-ipc": "^7.0.0",
     "object-assign-deep": "0.0.4",
     "redis": "2.6.1",
     "request": "2.72.0",

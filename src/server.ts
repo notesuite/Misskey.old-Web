@@ -16,7 +16,6 @@ import * as cookieParser from 'cookie-parser';
 import * as csrf from 'csurf';
 import * as favicon from 'serve-favicon';
 const acceptLanguage = require('accept-language');
-
 const vhost = require('vhost');
 
 import db from './db/db';
@@ -92,6 +91,9 @@ app.use(favicon(`${__dirname}/resources/favicon.ico`));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.cookiePass));
 app.use(compression());
+
+// LOG
+app.use(require('./log'));
 
 // CORS
 app.use((req, res, next) => {
