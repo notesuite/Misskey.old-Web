@@ -23,6 +23,9 @@ Misskey-Web is *Misskey* official client for the Web. run on [Node.js](https://g
 ## How to start Misskey Web server
 `npm start`
 
+## How to display options
+`npm start -- -h`
+
 ## Configuration
 
 ### Basic template
