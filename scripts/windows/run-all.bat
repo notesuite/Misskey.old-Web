@@ -33,7 +33,7 @@ timeout /t 1 /nobreak
 
 rem File起動
 cd "%MISSKEY_PATH%\Misskey-File"
-start npm start
+start npm start -- --skip-check-dependencies
 
 rem 起動するまで待つ
 timeout /t 1 /nobreak
