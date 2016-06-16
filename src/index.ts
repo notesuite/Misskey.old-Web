@@ -61,12 +61,23 @@ if (cluster.isMaster) {
 	}
 
 	// Master Only
+	require('./ipc');
 	require('./api/streaming');
 }
 // Workers
 else {
 	require('./server');
 }
+
+// Listen new workers
+cluster.on('fork', worker => {
+	console.log(`Process forked: ${name(worker.id)}`);
+});
+
+// Listen online workers
+cluster.on('online', worker => {
+	console.log(`Process is now online: ${name(worker.id)}`);
+});
 
 // Listen for dying workers
 cluster.on('exit', worker => {
