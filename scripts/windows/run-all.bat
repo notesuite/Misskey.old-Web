@@ -46,10 +46,16 @@ rem 起動するまで待つ
 timeout /t 10 /nobreak
 
 rem Logger起動
-start misskey-web-logger
+start misskey-web-logger -w -p 616 --debug
 
 rem 起動するまで待つ
 timeout /t 1 /nobreak
+
+rem ブラウザでアクセス
+start http://localhost:616
+
+rem 起動するまで待つ
+timeout /t 2 /nobreak
 
 rem ブラウザでアクセス
 start http://misskey.local
