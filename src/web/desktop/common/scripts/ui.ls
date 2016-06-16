@@ -18,18 +18,6 @@ notifications-compiler = require '../../common/views/notification/smart/items.ja
 
 window.is-keyboard-shortcuts-open = no
 
-if fuck-ad-block == undefined
-	ad-block-detected!
-else
-	fuck-ad-block.on-detected ad-block-detected
-
-function ad-block-detected
-	$modal-ok = $ "<button>#{LOCALE.sites.desktop.common.ad_block_detected.ok}</button>"
-	dialog-close = show-modal-dialog do
-		$ "<p><i class=\"fa fa-exclamation-triangle\"></i>#{LOCALE.sites.desktop.common.ad_block_detected.title}</p>"
-		LOCALE.sites.desktop.common.ad_block_detected.text
-		[$modal-ok]
-	$modal-ok.click -> dialog-close!
 
 ################################
 
