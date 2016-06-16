@@ -48,6 +48,9 @@ timeout /t 10 /nobreak
 rem Logger起動
 start misskey-web-logger
 
+rem 起動するまで待つ
+timeout /t 1 /nobreak
+
 rem ブラウザでアクセス
 start http://misskey.local
 
