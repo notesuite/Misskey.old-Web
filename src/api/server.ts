@@ -11,7 +11,7 @@ import router from './router';
 
 export default function(session: any): express.Express {
 	// Init server
-	const app: express.Express = express();
+	const app = express();
 	app.disable('x-powered-by');
 
 	app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,6 +19,9 @@ export default function(session: any): express.Express {
 
 	// Session settings
 	app.use(expressSession(session));
+
+	// LOG
+	app.use(require('../log'));
 
 	// CSRF
 	app.use(csrf({

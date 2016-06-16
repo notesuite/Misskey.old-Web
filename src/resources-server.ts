@@ -4,8 +4,11 @@ const cors: any = require('cors');
 export default function server(): express.Express {
 
 	// Init server
-	const app: express.Express = express();
+	const app = express();
 	app.disable('x-powered-by');
+
+	// LOG
+	app.use(require('./log'));
 
 	// CORS
 	app.use(cors({
