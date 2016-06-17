@@ -61,7 +61,6 @@
 		"./src/resources-server.ts",
 		"./src/router.ts",
 		"./src/server.ts",
-		"./src/util/detect-ua.ts",
 		"./src/web/desktop/common/generate-homewidget-timeline.ts",
 		"./src/web/desktop/common/generate-homewidgets.ts",
 		"./src/web/desktop/common/generate-layouted-homewidgets.ts",

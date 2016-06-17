@@ -9,6 +9,7 @@ import * as https from 'https';
 import * as path from 'path';
 import * as express from 'express';
 import * as expressSession from 'express-session';
+import * as useragent from 'express-useragent';
 import * as MongoStore from 'connect-mongo';
 import * as compression from 'compression';
 import * as bodyParser from 'body-parser';
@@ -23,7 +24,6 @@ import { User } from './db/models/user';
 import { UserSettings, IUserSettings, guestUserSettings } from './db/models/user-settings';
 import name from './core/naming-worker-id';
 import requestApi from './core/request-api';
-import uatype from './util/detect-ua';
 
 import config from './config';
 
@@ -118,6 +118,9 @@ app.use(csrf({
 	cookie: false
 }));
 
+// Parse user agent
+app.use(useragent.express());
+
 // Intercept all requests
 app.use((req, res, next) => {
 
@@ -142,7 +145,7 @@ app.use((req, res, next) => {
 		req.session.hasOwnProperty('userId') &&
 		(<any>req.session).userId !== null;
 
-	const ua: string = uatype(req.headers['user-agent']);
+	const ua = req.useragent.isMobile ? 'mobile' : 'desktop';
 	const noui: boolean = req.query.hasOwnProperty('noui');
 	const cookieLang: boolean = req.cookies['ui-language'];
 	const browserAcceptLanguageString: string = req.headers['accept-language'];
