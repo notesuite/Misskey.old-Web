@@ -1,14 +1,16 @@
+- const i18n = locale.sites.desktop.pages._entrance;
+
 extends ../../base
 
 block title
 	| Misskey
 
 block meta
-	meta(name='description', content= locale.sites.desktop.pages._entrance.description)
+	meta(name='description', content= i18n.description)
 	meta(name='keywords', content='Misskey')
 	meta(property='og:title', content='Misskey')
 	meta(property='og:type', content='website')
-	meta(property='og:description', content= locale.sites.desktop.pages._entrance.description)
+	meta(property='og:description', content= i18n.description)
 	meta(property='og:url', content=url)
 	meta(property='og:image', content='')
 	meta(property='og:site_name', content='Misskey')
@@ -20,9 +22,9 @@ block body
 	header
 		h1#title Misskey
 		p#description
-			= locale.sites.desktop.pages._entrance.description
+			= i18n.description
 			br
-			a(href= config.urls.about)= locale.sites.desktop.pages._entrance.learn_more
+			a(href= config.urls.about)= i18n.learn_more
 
 	main
 		div#login-form-container
@@ -38,34 +40,34 @@ block body
 				h2.title
 					img#avatar(src='', href='')
 					p Account
-				a.help(href= config.urls.help, title= locale.sites.desktop.pages._entrance._signin.help): i.fa.fa-question
+				a.help(href= config.urls.help, title= i18n._signin.help): i.fa.fa-question
 				label.user-name
 					input#user-name(name='user-name'
 						type='text'
 						pattern='^[0-9A-Za-z\-]+$'
-						placeholder= locale.sites.desktop.pages._entrance._signin.user_name
+						placeholder= i18n._signin.user_name
 						autofocus
 						required)
 					i.fa.fa-at
 				label.password
 					input#password(name='password'
 						type='password'
-						placeholder= locale.sites.desktop.pages._entrance._signin.password
+						placeholder= i18n._signin.password
 						required)
 					i.fa.fa-lock
 				button(type='submit')
-					= locale.sites.desktop.pages._entrance._signin.signin
+					= i18n._signin.signin
 
 		form#signup-form(autocomplete='off')
-			button.cancel(type='button', title= locale.sites.desktop.pages._entrance._signup.cancel): i.fa.fa-times
+			button.cancel(type='button', title= i18n._signup.cancel): i.fa.fa-times
 			label.user-name
 				p.caption
 					i.fa.fa-at
-					= locale.sites.desktop.pages._entrance._signup.screen_name_caption
+					= i18n._signup.screen_name_caption
 				input(name='user-name'
 					type='text'
 					pattern='^[0-9A-Za-z\-]{3,20}$'
-					placeholder= locale.sites.desktop.pages._entrance._signup.screen_name_placeholder
+					placeholder= i18n._signup.screen_name_placeholder
 					autocomplete='off'
 					required)
 				p.profile-page-url-preview
@@ -76,10 +78,10 @@ block body
 			label.password
 				p.caption
 					i.fa.fa-lock
-					= locale.sites.desktop.pages._entrance._signup.password_caption
+					= i18n._signup.password_caption
 				input(name='password'
 					type='password'
-					placeholder= locale.sites.desktop.pages._entrance._signup.password_placeholder
+					placeholder= i18n._signup.password_placeholder
 					autocomplete='off'
 					required)
 				div.meter(data-strength='')
@@ -91,10 +93,10 @@ block body
 			label.retype-password
 				p.caption
 					i.fa.fa-lock
-					= locale.sites.desktop.pages._entrance._signup.retype_password_caption
+					= i18n._signup.retype_password_caption
 				input(name='password-retype'
 					type='password'
-					placeholder= locale.sites.desktop.pages._entrance._signup.retype_password_placeholder
+					placeholder= i18n._signup.retype_password_placeholder
 					autocomplete='off'
 					required)
 				p.info(data-state='none')
@@ -104,7 +106,7 @@ block body
 			label.recaptcha
 				p.caption
 					i.fa.fa-toggle-off
-					= locale.sites.desktop.pages._entrance._signup.verify_caption
+					= i18n._signup.verify_caption
 				div.g-recaptcha(
 					data-callback='onRecaptchaed'
 					data-expired-callback='onRecaptchaExpired'
@@ -116,12 +118,12 @@ block body
 					type='checkbox',
 					autocomplete='off',
 					required)
-				p!= locale.sites.desktop.pages._entrance._signup.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
+				p!= i18n._signup.agree_tou.replace('{', '<a href="' + config.url + '/terms-of-use' + '" target="_blank">').replace('}', '</a>')
 			
 			button.ripple-effect(type='submit')
 				i.fa.fa-check
-				p= locale.sites.desktop.pages._entrance._signup.create
+				p= i18n._signup.create
 
 		button.ripple-effect#new
 			i.fa.fa-pencil-square-o
-			p= locale.sites.desktop.pages._entrance.signup
+			p= i18n.signup
