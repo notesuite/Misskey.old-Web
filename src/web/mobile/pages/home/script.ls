@@ -2,7 +2,7 @@ require '../../common/scripts/ui.ls'
 $ = require 'jquery'
 require 'jquery.transit'
 Timeline = require '../../common/scripts/timeline-core.ls'
-notification-render = require '../../common/views/notification/render.jade'
+notification-render = require '../../common/views/notification/render.pug'
 get-post-summary = require '../../../common/get-post-summary.ls'
 
 is-active = yes

@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 post-content-initializer = require './post-content-initializer.ls'
-post-compiler = require '../views/post/smart/render.jade'
+post-compiler = require '../views/post/smart/render.pug'
 
 class Timeline
 	($tl) ->

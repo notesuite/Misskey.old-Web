@@ -22,7 +22,7 @@ const stylus = require('gulp-stylus');
 const cssnano = require('gulp-cssnano');
 const uglify = require('gulp-uglify');
 const ls = require('browserify-livescript');
-const jadeify = require('jadeify');
+const jadeify = require('pugify');
 const aliasify = require('aliasify');
 require('typescript-require')(require('./tsconfig.json'));
 
@@ -184,9 +184,10 @@ gulp.task('build-copy', [
 		gulp.src([
 			'./src/web/**/*.styl',
 			'./src/web/**/*.ts',
-			'./src/web/**/*.jade'
+			'./src/web/**/*.pug'
 		]).pipe(gulp.dest('./built/web/')),
 		gulp.src('./src/resources/**/*').pipe(gulp.dest('./built/resources/')),
+		gulp.src('./src/resources/favicon.ico').pipe(gulp.dest('./built/resources/')),
 		gulp.src('./src/locales/**/*').pipe(gulp.dest('./built/locales/')),
 		gulp.src([
 			'./src/web/**/*',

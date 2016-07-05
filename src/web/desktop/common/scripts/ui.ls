@@ -14,7 +14,7 @@ sncompleter = require './sncompleter.ls'
 show-modal-window = require './modal-window.ls'
 show-modal-dialog = require './modal-dialog.ls'
 ui-window = require './window.ls'
-notifications-compiler = require '../../common/views/notification/smart/items.jade'
+notifications-compiler = require '../../common/views/notification/smart/items.pug'
 
 window.is-keyboard-shortcuts-open = no
 

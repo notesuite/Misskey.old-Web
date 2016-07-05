@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require '../../../common/scripts/ui.ls'
-file-render = require './file.jade'
-folder-render = require './folder.jade'
+file-render = require './file.pug'
+folder-render = require './folder.pug'
 
 $ ->
 	$folders = $ \#folders

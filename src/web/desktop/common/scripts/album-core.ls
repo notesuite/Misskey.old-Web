@@ -1,7 +1,7 @@
 $ = require 'jquery'
 require 'jquery.transit'
 upload-file = require '../../../common/upload-file.ls'
-file-compiler = require '../views/album/file.jade'
+file-compiler = require '../views/album/file.pug'
 
 class Album
 	($album) ->

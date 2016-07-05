@@ -2,7 +2,7 @@ $ = require 'jquery'
 marked = require 'marked'
 imageviewer = require './image-viewer.ls'
 urldecorator = require '../../../common/urldecorator.ls'
-message-compiler = require '../views/talk/render.jade'
+message-compiler = require '../views/talk/render.pug'
 
 marked.set-options {
 	+gfm

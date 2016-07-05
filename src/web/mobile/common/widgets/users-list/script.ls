@@ -1,5 +1,5 @@
 $ = require 'jquery'
-user-compiler = require './user-render.jade'
+user-compiler = require './user-render.pug'
 
 class UsersList
 	($list) ->
