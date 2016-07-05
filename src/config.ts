@@ -2,6 +2,9 @@
 // CONFIGURATION MANAGER
 //////////////////////////////////////////////////
 
+/// <reference path="../typings/node/node.d.ts" />
+/// <reference path="../typings/js-yaml/js-yaml.d.ts" />
+
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 
@@ -116,7 +119,7 @@ function loadConfig(): IConfig {
 export default loadConfig();
 
 export function sanitize(conf: IConfig): any {
-	const c = Object.assign({}, conf);
+	const c = (<any>Object).assign({}, conf);
 
 	delete c.recaptcha.secretKey;
 	delete c.api.pass;

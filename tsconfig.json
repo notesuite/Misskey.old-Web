@@ -7,6 +7,7 @@
 		"sourceMap": false,
 		"target": "es6",
 		"module": "commonjs",
+		"moduleResolution": "node",
 		"removeComments": true,
 		"noLib": true,
 		"outDir": "built",
