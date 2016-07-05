@@ -35,7 +35,7 @@ function go-signup
 
 	$new
 		.transition {
-			scale: '0.7'
+			scale: \0.7
 			opacity: 0
 			duration: 500ms
 		}
@@ -54,18 +54,18 @@ function go-signup
 	$main.css \height "#{$main.outer-height!}px"
 	$main
 		.transition {
-			width: '434px'
+			width: \434px
 			duration: 500ms
 		}
 		.transition {
-			height: ($signup-form.outer-height! + 64px + 2px) + 'px'
-			'margin-top': (-$description.outer-height!) + 'px'
+			height: ($signup-form.outer-height! + 64px + 2px) + \px
+			'margin-top': (-$description.outer-height!) + \px
 			duration: 500ms
 		}
 
 	$signin-form
 		.transition {
-			left: '-100%'
+			left: \-100%
 			opacity: 0
 			duration: 500ms
 		}
@@ -73,7 +73,7 @@ function go-signup
 	$signup-form.css \display \block
 	$signup-form
 		.transition {
-			left: '32px'
+			left: \32px
 			opacity: 1
 			duration: 500ms
 		}
@@ -127,25 +127,26 @@ function go-signin
 
 	$main.css \overflow \hidden
 	$main.css \height "#{$main.outer-height!}px"
-	$main.css 'margin-top' (-$description.outer-height!) + 'px'
+	$main.css 'margin-top' (-$description.outer-height!) + \px
 	$main
 		.transition {
-			width: '380px'
+			width: \380px
 			duration: 500ms
 		}
 		.transition {
-			height: ($signin-form.outer-height! + $new.outer-height! + 64px + 24px + 2px) + 'px'
-			'margin-top': '0px'
+			height: ($signin-form.outer-height! + $new.outer-height! + 64px + 24px + 2px) + \px
+			'margin-top': \0px
 			duration: 500ms
 		}
 
 	$new.css \display \block
 
 	$signup-form.css \position \absolute
-	$signup-form.css \top 32px
+	$signup-form.css \top \32px
 	$signup-form
+		.css \left \32px
 		.transition {
-			left: '100%'
+			left: \100%
 			opacity: 0
 			duration: 500ms
 		}
@@ -153,7 +154,7 @@ function go-signin
 	$signin-form.css \display \block
 	$signin-form
 		.transition {
-			left: '0px'
+			left: \0px
 			opacity: 1
 			duration: 500ms
 		}
