@@ -3,6 +3,7 @@ node_js:
   - "6.1.0"
 before_script:
   - "npm run dtsm"
+  - "mkdir -p ~/.misskey-web && cp ./.ci-files/config.yml ~/.misskey-web"
 cache:
   directories:
     - node_modules
