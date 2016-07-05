@@ -3,9 +3,9 @@ $ = require 'jquery'
 moment = require 'moment'
 
 Timeline = require '../../common/scripts/timeline-core.ls'
-notification-compiler = require '../../common/views/notification/smart/render.jade'
-notifications-compiler = require '../../common/views/notification/smart/items.jade'
-recommendation-users-compiler = require '../../common/views/recommendation-users/users.jade'
+notification-compiler = require '../../common/views/notification/smart/render.pug'
+notifications-compiler = require '../../common/views/notification/smart/items.pug'
+recommendation-users-compiler = require '../../common/views/recommendation-users/users.pug'
 get-post-summary = require '../../../common/get-post-summary.ls'
 ui-window = require '../../common/scripts/window.ls'
 

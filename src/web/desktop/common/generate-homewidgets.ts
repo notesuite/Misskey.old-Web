@@ -1,4 +1,4 @@
-const jade: any = require('jade');
+const pug: any = require('pug');
 
 import { User } from '../../../db/models/user';
 import generateHomewidgetTimeline from './generate-homewidget-timeline';
@@ -18,8 +18,8 @@ export default function(me: User, locale: any, widgets: string[], tlsource: stri
 			case 'timeline':
 				return generateHomewidgetTimeline(me, locale, tlsource);
 			default:
-				const compiler: (locals?: any) => string = jade.compileFile(
-					`${__dirname}/views/home-widgets/${widget}.jade`, {
+				const compiler: (locals?: any) => string = pug.compileFile(
+					`${__dirname}/views/home-widgets/${widget}.pug`, {
 						cache: true
 				});
 				return Promise.resolve(compiler({

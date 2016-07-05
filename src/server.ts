@@ -79,7 +79,7 @@ app.locals.compileDebug = false;
 app.locals.cache = true;
 app.locals.env = env;
 // app.locals.pretty = '    ';
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 // Init API server
 app.use(vhost(config.hosts.api, api(session)));

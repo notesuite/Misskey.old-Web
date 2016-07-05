@@ -3,7 +3,7 @@ require 'jquery.transit'
 
 tooltip = require './tooltiper.ls'
 ui-window = require './window.ls'
-card-popup-render = require '../views/user-card.jade'
+card-popup-render = require '../views/user-card.pug'
 
 module.exports = ($trigger) ->
 	$card = null

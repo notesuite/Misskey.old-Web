@@ -1,6 +1,6 @@
 require '../../../common/scripts/ui.ls'
 $ = require 'jquery'
-notification-compiler = require '../../../common/views/notification/render.jade'
+notification-compiler = require '../../../common/views/notification/render.pug'
 
 function delete-all
 	$.ajax "#{CONFIG.urls.api}/notifications/delete-all"

@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as URL from 'url';
 import * as request from 'request';
-const jade: any = require('jade');
+const pug: any = require('pug');
 
 const client: any = require('cheerio-httpcli');
 client.headers['User-Agent'] = 'MisskeyBot';
@@ -68,8 +68,8 @@ function analyzeWikipedia(req: express.Request, res: express.Response, url: URL.
 		// Favicon
 		const icon: string = URL.resolve(url.href, $('link[rel="shortcut icon"]').attr('href'));
 
-		const compiler: (locals: any) => string = jade.compileFile(
-			`${__dirname}/summary.jade`);
+		const compiler: (locals: any) => string = pug.compileFile(
+			`${__dirname}/summary.pug`);
 
 		const viewer = compiler({
 			url: url,
@@ -103,8 +103,8 @@ function analyzeMobileWikipedia(req: express.Request, res: express.Response, url
 		// Favicon
 		const icon: string = URL.resolve(url.href, $('link[rel="shortcut icon"]').attr('href'));
 
-		const compiler: (locals: any) => string = jade.compileFile(
-			`${__dirname}/summary.jade`);
+		const compiler: (locals: any) => string = pug.compileFile(
+			`${__dirname}/summary.pug`);
 
 		const viewer = compiler({
 			url: url,
@@ -138,8 +138,8 @@ function analyzeYoutube(req: express.Request, res: express.Response, url: URL.Ur
 
 	const videoId = getVideoId();
 
-	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/youtube.jade`);
+	const compiler: (locals: any) => string = pug.compileFile(
+		`${__dirname}/youtube.pug`);
 
 	const player: string = compiler({
 		videoId
@@ -194,8 +194,8 @@ function analyzeGithubGist(req: express.Request, res: express.Response, url: URL
 			} else if (getRawResponse.statusCode !== 200) {
 				res.sendStatus(204);
 			} else {
-				const compiler: (locals: any) => string = jade.compileFile(
-					`${__dirname}/gist.jade`);
+				const compiler: (locals: any) => string = pug.compileFile(
+					`${__dirname}/gist.pug`);
 
 				const viewer: string = compiler({
 					url: url.href,
@@ -217,8 +217,8 @@ function analyzeGyazo(req: express.Request, res: express.Response, url: URL.Url)
 	const imageId: string = url.pathname.substring(1);
 	const src: string = `https://i.gyazo.com/${imageId}.png`;
 
-	const compiler: (locals: any) => string = jade.compileFile(
-		`${__dirname}/gyazo.jade`);
+	const compiler: (locals: any) => string = pug.compileFile(
+		`${__dirname}/gyazo.pug`);
 
 	const image: string = compiler({
 		src,
@@ -304,8 +304,8 @@ function analyzeGeneral(req: express.Request, res: express.Response, url: URL.Ur
 			'/favicon.ico');
 		icon = icon !== null ? URL.resolve(url.href, icon) : null;
 
-		const compiler: (locals: any) => string = jade.compileFile(
-			`${__dirname}/summary.jade`);
+		const compiler: (locals: any) => string = pug.compileFile(
+			`${__dirname}/summary.pug`);
 
 		// コンパイル
 		const viewer: string = compiler({
